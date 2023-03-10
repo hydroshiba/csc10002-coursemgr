@@ -1,9 +1,21 @@
-#include "Headers/Prototype.h"
+#include "Headers/Structures.h"
 
 int main() {
-    Course* a = new Course;
-    a->name = "CSC10002";
+    List<int> myList;
+    
+    myList.append(69);
+    myList.prepend(1);
+    myList.display();
+    myList.clear();
 
-    Student b;
-    b.name = "hydroshiba";
+    myList.prepend(420);
+    myList.display();
+    myList.clear();
+
+    for(int i = 1; i <= 10; ++i) 
+        myList.append(i ^ (i & (-i)));
+    myList.display();
+    
+    myList.remove(0, 1);
+    myList.display();
 }
