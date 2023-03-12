@@ -1,4 +1,5 @@
 main
-main.cpp
+testing.cpp
 *.json
 .DS_Store
+Demo_Structure.cpp
