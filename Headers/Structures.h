@@ -1,7 +1,6 @@
 #ifndef STRUCTURE_H
 #define STRUCTURE_H
 
-#include <string>
 #include <iostream>
 #include <fstream>
 #include <cassert>
@@ -14,12 +13,32 @@ struct Node {
 
 template <typename Type>
 struct List {
-protected:
     Node<Type>* head = nullptr;
     Node<Type>* tail = nullptr;
 
-public:
-    void append(Type value) {
+    List() {}
+
+    List(const List<Type> &list) {
+        clear();
+        Node<Type>* cur = list.head;
+        
+        while(cur) {
+            append(cur->value);
+            cur = cur->next;
+        }
+    }
+
+    void operator=(const List<Type> &list) {
+        clear();
+        Node<Type>* cur = list.head;
+        
+        while(cur) {
+            append(cur->value);
+            cur = cur->next;
+        }
+    }
+
+    void append(const Type &value) {
         if(head == nullptr) {
             head = new Node<Type>{value, nullptr};
             tail = head;
@@ -30,7 +49,7 @@ public:
         tail = tail->next;
     }
 
-    void prepend(Type value) {
+    void prepend(const Type &value) {
         if(head == nullptr) {
             append(value);
             return;
@@ -50,7 +69,7 @@ public:
         tail = nullptr;
     }
 
-    void remove(Type value, int amount = -1) {
+    void remove(const Type &value, int amount = -1) {
         Node<Type>* cur = head;
         Node<Type>* pre = new Node<Type>{NULL, head};
         head = pre;
@@ -78,7 +97,7 @@ public:
         delete cur;
     }
 
-    Node<Type>* find(Type value) {
+    Node<Type>* find(const Type &value) {
         Node<Type>* cur = head;
 
         while(cur) {
@@ -99,6 +118,10 @@ public:
 
         fout << std::endl;
     }
+
+    ~List() {
+        clear();
+    }
 };
 
 template <typename Type, class Compare = std::less<Type>>
@@ -106,12 +129,33 @@ struct OrderedList : List<Type> {
 private:
     using List<Type>::append;
     using List<Type>::prepend;
-
-    Compare comp;
+    Compare func;
 
 public:
-    void insert(Type value) {
-        if(this->head == nullptr || !comp(this->head->value, value)) {
+    OrderedList() {}
+
+    OrderedList(const OrderedList<Type> &list) {
+        this->clear();
+        Node<Type>* cur = list.head;
+        
+        while(cur) {
+            append(cur->value);
+            cur = cur->next;
+        }
+    }
+
+    void operator=(const OrderedList<Type> &list) {
+        this->clear();
+        Node<Type>* cur = list.head;
+        
+        while(cur) {
+            append(cur->value);
+            cur = cur->next;
+        }
+    }
+
+    void insert(const Type &value) {
+        if(this->head == nullptr || !func(this->head->value, value)) {
             prepend(value);
             return;
         }
@@ -119,7 +163,7 @@ public:
         Node<Type>* cur = this->head;
 
         while(cur->next) {
-            if(!comp(cur->next->value, value)) break;
+            if(!func(cur->next->value, value)) break;
             cur = cur->next;
         }
 
@@ -132,9 +176,9 @@ public:
 template <typename Type>
 struct Vector {
 private:
-    size_t length;
-    size_t capacity;
-    Type* array;
+    size_t length = 0;
+    size_t capacity = 1;
+    Type* array = nullptr;
 
     void reallocate(size_t newCapacity) {
         while(capacity < newCapacity) capacity *= 2;
@@ -143,7 +187,7 @@ private:
         for(size_t i = 0; i < length; ++i) 
             temp[i] = array[i];
         
-        delete[] array;
+        if(array) delete[] array;
         array = temp;
     }
 
@@ -156,13 +200,35 @@ public:
         array = new Type[size]();
     }
 
-    size_t size() {
+    Vector(const Vector<Type> &vec) {
+        resize(vec.size());
+
+        for(int i = 0; i < length; ++i)
+            array[i] = vec[i];
+    }
+
+    size_t size() const {
         return length;
     }
 
-    Type& operator[](size_t pos) {
+    Type& operator[](size_t pos) const {
         assert(("Out of bound access!", pos < length));
         return array[pos];
+    }
+
+    void operator=(const Vector<Type> &vec) {
+        resize(vec.size());
+        
+        for(int i = 0; i < length; ++i)
+            array[i] = vec[i];
+    }
+
+    Type* begin() {
+        return array;
+    }
+
+    Type* end() {
+        return array + length + 1;
     }
 
     void resize(size_t size) {
@@ -179,27 +245,46 @@ public:
         length = size;
     }
 
-    void append(Type value) {
+    void append(const Type &value) {
         if(length == capacity) reallocate(length + 1);
         array[length] = value;
         ++length;
     }
 
-    void remove(Type value, int amount = -1) {
+    void remove(const Type &value, int amount = -1) {
         size_t cur = 0;
 
         for(size_t i = 0; i < length; ++i) {
-            if(amount == 0) break;
-            if(array[i] == value) {
+            if(amount && array[i] == value) {
                 --amount;
                 continue;
             }
 
             array[cur] = array[i];
+            array[i].~Type();
             ++cur;
         }
 
-        resize(cur + 1);
+        resize(cur);
+    }
+
+    void remove(Type* const ptr) {
+        if(ptr - begin() < 0) return;
+        if(ptr - begin() >= length) return;
+
+        size_t pos = ptr - begin();
+        for(size_t i = pos; i < length - 1; ++i) {
+            array[i] = array[i + 1];
+        }
+
+        resize(length - 1);
+    }
+
+    Type* find(const Type &value) {
+        for(size_t i = 0; i < length; ++i) 
+            if(value == array[i]) return (array + i);
+
+        return nullptr;
     }
 
     ~Vector() {
