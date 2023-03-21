@@ -46,7 +46,7 @@ bool operator==(const AcademicYear& yearA, const AcademicYear& yearB);
 bool operator==(const Semester& semA, const Semester& semB);
 bool operator==(const Course& courseA, const Course& courseB);
 
-bool operator==(const Year& yearA, const Year& yearB);
+bool operator==(const SchoolYear& yearA, const SchoolYear& yearB);
 bool operator==(const Class& classA, const Class& classB);
 
 #endif

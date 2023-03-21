@@ -1,4 +1,4 @@
-#include "Components.h"
+#include "..\Headers\Components.h"
 
 /* Struct operator overloading */
 
@@ -58,7 +58,7 @@ bool operator==(const Course &courseA, const Course &courseB) {
     return true;
 }
 
-bool operator==(const Year &yearA, const Year &yearB) {
+bool operator==(const SchoolYear &yearA, const SchoolYear &yearB) {
     if(yearA.start != yearB.start) return false;
     return true;
 }
