@@ -1,9 +1,7 @@
 main
-testing.cpp
 testing
+testing.cpp
 *.json
 .DS_Store
 Demo_Structure.cpp
 tempCodeRunnerFile.cpp
-testing
-testing
