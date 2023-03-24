@@ -16,5 +16,6 @@
 #include "Graphics/Graphics.h"
 
 int main() {
+    Student s;
     newDisplay();
 }

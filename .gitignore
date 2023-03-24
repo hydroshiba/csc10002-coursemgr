@@ -43,3 +43,6 @@ Demo_Structure.cpp
 
 # Visual Studio Code directory
 .vscode/
+
+# Apple shits
+.DS_Store
