@@ -20,4 +20,10 @@ struct Name {
     }
 };
 
+bool operator==(const Name &nameA, const Name &nameB) {
+    if(nameA.first != nameB.first) return false;
+    if(nameA.last != nameB.last) return false;
+    return true;
+}
+
 #endif

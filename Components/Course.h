@@ -2,6 +2,8 @@
 #define COURSE_H
 
 #include "Components.h"
+
+#include "Scoreboard.h"
 #include "Student.h"
 
 struct Course {
@@ -57,5 +59,10 @@ struct Course {
     }
 };
 
-#endif // !COURSE_H
+bool operator==(const Course &courseA, const Course &courseB) {
+    if(courseA.ID != courseB.ID) return false;
+    if(courseA.classID != courseB.classID) return false;
+    return true;
+}
 
+#endif // !COURSE_H

@@ -50,7 +50,7 @@ void viewListOfStudentsInClass(const Class& curClass) {
 	std::cout << "List of students in class " << curClass.name << ": " << std::endl;
 	for (int i = 0; i < curClass.students.size(); i++)
 	{
-		std::cout << i + 1 << ". " << curClass.students[i].ID << " - " << curClass.students[i].fullname();
+		std::cout << i + 1 << ". " << curClass.students[i].ID << " - " << curClass.students[i].name.get();
 		std::cout << std::endl;
 	}
 }
@@ -61,7 +61,7 @@ void viewListOfStudentsInCourse(const Course& course) {
 	for (int i = 0; i < course.scoreboards.size(); i++)
 	{
 		Student* student = course.scoreboards[i]->ptrStudent;
-		std::cout << i + 1 << ". " << student->ID << " - " << student->fullname << std::endl;
+		std::cout << i + 1 << ". " << student->ID << " - " << student->name.get() << std::endl;
 	}
 }
 

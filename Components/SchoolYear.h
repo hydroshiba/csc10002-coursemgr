@@ -2,6 +2,7 @@
 #define SCHOOL_YEAR_H
 
 #include "Components.h"
+#include "Class.h"
 
 struct SchoolYear {
     unsigned int start;
@@ -24,5 +25,9 @@ struct SchoolYear {
     }
 };
 
-#endif 
+bool operator==(const SchoolYear &yearA, const SchoolYear &yearB) {
+    if(yearA.start != yearB.start) return false;
+    return true;
+}
 
+#endif

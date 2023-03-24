@@ -2,6 +2,8 @@
 #define SEMESTER_H
 
 #include "Components.h"
+
+#include "Course.h"
 #include "Date.h"
 
 struct Semester {
@@ -18,5 +20,10 @@ struct Semester {
     }
 };
 
-#endif 
+bool operator==(const Semester &semA, const Semester &semB) {
+    if(semA.startDate != semB.startDate) return false;
+    if(semA.endDate != semB.endDate) return false;
+    return true;
+}
 
+#endif

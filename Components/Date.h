@@ -28,4 +28,12 @@ struct Date {
     }
 };
 
+bool operator==(const Date &dateA, const Date &dateB) {
+    if(dateA.day != dateB.day) return false;
+    if(dateA.month != dateB.month) return false;
+    if(dateA.year != dateB.year) return false;
+
+    return true;
+}
+
 #endif

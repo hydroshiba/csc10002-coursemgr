@@ -9,7 +9,7 @@ private:
     uint64_t password;
 
     uint64_t hash(uint64_t left, uint64_t right) {
-        left ^= right + 0x6969696969696969 + (left << 6) + (right << 9);
+        left ^= right + 0x6969696969696969 + (left >> 6) + (right << 9);
         return left;
     }
 
@@ -27,10 +27,6 @@ private:
 public:
     Name name;
     std::string ID;
-
-    std::string fullname() {
-        return name.last + name.first;
-    }
 
     void setName(const std::string& first, const std::string& last) {
         name.first = first;
@@ -54,5 +50,10 @@ struct Staff : User {
 
 };
 
-#endif // !USER_H
+bool operator==(const User &userA, const User &userB) {
+    if(userA.ID != userB.ID) return false;
+    if(userA.name != userB.name) return false;
+    return true;
+}
 
+#endif // !USER_H

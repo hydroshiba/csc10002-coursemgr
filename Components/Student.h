@@ -2,6 +2,7 @@
 #define STUDENT_H
 
 #include "Components.h"
+
 #include "Date.h"
 #include "Scoreboard.h"
 #include "User.h"
@@ -25,8 +26,14 @@ struct Student : User {
             }
         return cur;
     }
-    
 };
 
-#endif // !STUDENT_H
+bool operator==(const Student &studentA, const Student &studentB) {
+    if(studentA.ID != studentB.ID) return false;
+    if(studentA.name != studentB.name) return false;
+    if(studentA.socialID != studentB.socialID) return false;
 
+    return true;
+}
+
+#endif // !STUDENT_H

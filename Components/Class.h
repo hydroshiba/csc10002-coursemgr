@@ -3,6 +3,7 @@
 
 #include "Components.h"
 #include "Student.h"
+
 struct Class {
     std::string name;
     Vector<Student> students;
@@ -18,5 +19,10 @@ struct Class {
         students.remove(pos);
     }
 };
-#endif // !CLASS_H
 
+bool operator==(const Class &classA, const Class &classB) {
+    if(classA.name != classB.name) return false;
+    return true;
+}
+
+#endif // !CLASS_H
