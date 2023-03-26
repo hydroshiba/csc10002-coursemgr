@@ -34,15 +34,14 @@ main
 coursemgr
 testing
 
-# CMake build directory
+# Directories
 build/
+.vscode/
+bin/
 
 # Testing source files
 testing.cpp
 Demo_Structure.cpp
-
-# Visual Studio Code directory
-.vscode/
 
 # Apple shits
 .DS_Store

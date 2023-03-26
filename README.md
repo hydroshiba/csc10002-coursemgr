@@ -11,7 +11,6 @@
 ## **How to run**
 
 * Download & install the latest version of [CMake](https://cmake.org/download/)
-* Download & install the latest version of [Raylib](https://github.com/raysan5/raylib#build-and-installation)
 * Clone this repository
 * Open a console in this exact directory and type the following:
     * `cmake -S . -B ./build`
