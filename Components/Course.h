@@ -49,13 +49,15 @@ struct Course {
 
         return cur;
     }
-
-    void display() {
-        std::cout << "+ Course ID: " << ID << std::endl;
-        std::cout << "+ Class ID: " <<  classID << std::endl;
-        std::cout << "+ Number of credits: " << credits << std::endl;
-        std::cout << "+ Weekday: " << weekday << std::endl;
-        std::cout << "+ Session: " << session << std::endl;
+    
+    void display(std::ostream& outDev = std::cout) {
+        outDev << "+ Course ID: " << ID << std::endl;
+        outDev << "+ Course name: " << name << std::endl;
+        outDev << "+ Class ID: " <<  classID << std::endl;
+        outDev << "+ Teacher: " << teacher << std::endl;
+        outDev << "+ Number of credits: " << credits << std::endl;
+        outDev << "+ Weekday: " << weekday << std::endl;
+        outDev << "+ Session: " << session << std::endl;
     }
 };
 
