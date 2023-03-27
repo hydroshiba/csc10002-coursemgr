@@ -16,6 +16,9 @@
 #include "Graphics/Graphics.h"
 
 int main() {
-    Student s;
-    newDisplay();
+    Application newApp;
+    
+    while(!newApp.AppShouldClose()) {
+        newApp.Tick();
+    }
 }

@@ -1,15 +1,35 @@
-#include "raylib.h"
+#include <cassert>
+#include <raylib.h>
 
-void newDisplay() {
-    InitWindow(800, 450, "Course Management System");
+#include "Graphics.h"
 
-    while (!WindowShouldClose())
-    {
-        BeginDrawing();
-            ClearBackground((RAYWHITE));
-            DrawText("Congrats! You created your first window!", 190, 200, 20, RED);
-        EndDrawing();
-    }
+Application::Application(int width, int height, std::string title) {
+    assert(GetWindowHandle() == nullptr);
+    InitWindow(width, height, title.c_str());
+}
 
+Application::~Application() noexcept {
+    assert(GetWindowHandle() != nullptr);
     CloseWindow();
+}
+
+bool Application::AppShouldClose() const {
+	return WindowShouldClose();
+}
+
+void Application::Tick() {
+    BeginDrawing();
+
+    Update();
+    Display();
+    
+    EndDrawing();
+}
+
+void Application::Display() {
+    ClearBackground(RAYWHITE);
+}
+
+void Application::Update() {
+
 }
