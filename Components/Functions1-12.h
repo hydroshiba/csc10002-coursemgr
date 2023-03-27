@@ -11,8 +11,10 @@
 
 // Add a new 1st-year & delete old 4th-year
 
-void addNewSchoolYear(Vector<SchoolYear>& yearList, unsigned int start){
-    SchoolYear newYear = {start};
+void addNewSchoolYear(Vector<SchoolYear>& yearList){
+    unsigned int startYear;
+    std::cout << "Enter the school year: "; std::cin >> startYear;
+    SchoolYear newYear = {startYear};
     yearList.append(newYear);
     if (yearList.size() > 4)
         yearList.remove(yearList.begin());
@@ -30,7 +32,7 @@ void addClasses (Vector<SchoolYear>& yearList){
 }
 
 // Add students into a specific class
-void addStudToClass(Class &actClass, const char* inFile){
+void addStudToClass(Class &actClass,const char* inFile){
     std::string no, id, first_name, last_name, gender, sID, day, month, year;
     Student newStud;
     std::ifstream inF;
@@ -65,11 +67,15 @@ void addStudToClass(Class &actClass, const char* inFile){
 }
 
 // Add a new academic year
-void addNewAcademicYear(AcademicYear &newYear, unsigned int startYear){
-    newYear = {startYear};
+void addNewAcademicYear(AcademicYear &newYear){
+    unsigned int startyear;
+    std::cout << "Enter a new year: ";
+    std::cin >> startyear;
+    newYear = {startyear};
 }
 
 // Add a semester to an academic year
+
 void addSemester(AcademicYear &newYear, Date startDate, Date endDate){
     Semester newSem;
     newSem.startDate = startDate;
@@ -77,4 +83,74 @@ void addSemester(AcademicYear &newYear, Date startDate, Date endDate){
     newYear.addSemester(newSem);
 }
 
+void addSemester(AcademicYear &newYear){
+    unsigned short day, month;
+    unsigned int year;
+
+    Date startDate;
+    std::cout << "Enter start date for the semester:\n";
+    std::cin >> day >> month >> year;
+    startDate.set(day, month, year);
+
+    Date endDate;
+    std::cout << "Enter end date for the semester:\n";
+    std::cin >> day >> month >> year;
+    endDate.set(day, month, year);
+
+    Semester newSem = {startDate, endDate, 0, &newYear};
+    newYear.addSemester(newSem);
+}
+
+
+void addNewCourse(Semester &semester){
+    Course newCourse;
+    std::string ID, classID, name, teacher;
+    int cre, maxEn;
+    int day, ss;
+
+    std::cout << "Enter Course ID: "; std::cin >> ID;
+    std::cout << "Enter Course Name: "; std::cin >>name;
+    std::cout << "Enter Teacher's Name: "; std::cin >>teacher;
+    std::cout << "Enter Class Name: "; std::cin >> classID;
+    std::cout << "Enter Number of Credits: "; std::cin >> cre;
+    std::cout << "Enter Maximun students: "; std::cin >> maxEn;
+    std::cout << "Day of week: "; std::cin >> day;
+    std::cout << "Session performed: "; std::cin >> ss;
+
+    newCourse = {ID, classID, name, teacher, cre, maxEn, static_cast<Weekday>(day), static_cast<Session>(ss)};
+    semester.addCourse(newCourse);
+}
+
+void getStudentToCourse(Vector<SchoolYear> years, Course &course, const char *stud_input_file){
+    std::ifstream inF;
+    inF.open("Data/"+stud_input_file);
+    if (!inF.is_open()){
+        std::cout << "Cannot open file!\n";
+        return;
+    }
+    std::string ignore;
+    getline(inF, ignore);
+    std::string no, id, first, last, actClass;
+    Student student;
+    while (!inF.eof()){
+        getline(inF, no, ',');
+        getline(inF, id, ',');
+        getline(inF, first, ',');
+        getline(inF, last, ',');
+        getline(inF, actClass);
+
+        student.number = stoi(no);
+        student.ID = id;
+        student.setName(first, last);
+        for (int i = 0; i<4; ++i)
+            for (int j = 0; j<years[i].classes.size(); ++j)
+                if (actClass == years[i].classes[j].name)
+                    for (int k = 0; k < years[i].classes[j].students.size(); ++k)
+                        if (years[i].classes[j].students[k] == student){
+                            course.addStudent(years[i].classes[j].students[k]);
+                            continue;
+                        }                
+    }
+    inF.close();
+}
 #endif
