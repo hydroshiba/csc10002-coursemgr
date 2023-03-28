@@ -2,6 +2,9 @@
 #define GRAPHICS_H
 
 #include <string>
+#include "raylib.h"
+
+#include "Button.h"
 
 const int defWidth = 800;
 const int defHeight = 450;
@@ -21,6 +24,8 @@ public:
 	void tick();
 
 private:
+	Vector2 mousePoint = { 0.0f, 0.0f };
+
 	void display();
 	void update();
 };
