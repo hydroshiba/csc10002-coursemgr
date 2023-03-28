@@ -26,6 +26,17 @@ struct Student : User {
             }
         return cur;
     }
+
+    float getGPA() {
+        int nCredits = 0;
+        float totalMark = 0;
+        for (int i = 0; i < scoreboards.size(); i++)
+        {
+            totalMark += scoreboards[i]->total;
+            nCredits += scoreboards[i]->ptrCourse->credits;
+        }
+        return totalMark / nCredits;
+    }
 };
 
 bool operator==(const Student &studentA, const Student &studentB) {
