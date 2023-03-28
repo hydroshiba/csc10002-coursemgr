@@ -18,7 +18,7 @@
 int main() {
     Application newApp;
     
-    while(!newApp.AppShouldClose()) {
-        newApp.Tick();
+    while(!newApp.appShouldClose()) {
+        newApp.tick();
     }
 }

@@ -15,23 +15,24 @@ Application::~Application() noexcept {
     CloseWindow();
 }
 
-bool Application::AppShouldClose() const {
+bool Application::appShouldClose() const {
 	return WindowShouldClose();
 }
 
-void Application::Tick() {
+void Application::tick() {
     BeginDrawing();
 
-    Update();
-    Display();
+    update();
+    display();
     
     EndDrawing();
 }
 
-void Application::Display() {
+void Application::display() {
     ClearBackground(RAYWHITE);
+    DrawText("Congrats! You created your first window!", 190, 200, 20, RED);
 }
 
-void Application::Update() {
+void Application::update() {
 
 }

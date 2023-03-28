@@ -17,12 +17,12 @@ public:
 	Application(const Application &other) = delete;
 	Application& operator=(const Application &other) = delete;
 
-	bool AppShouldClose() const;
-	void Tick();
+	bool appShouldClose() const;
+	void tick();
 
 private:
-	void Display();
-	void Update();
+	void display();
+	void update();
 };
 
 #endif
