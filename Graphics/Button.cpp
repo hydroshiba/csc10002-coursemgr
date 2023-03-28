@@ -6,7 +6,7 @@ Button::Button(Vector2 pos, float width, float height, Color color) {
     this->width = width;
     this->height = height;
 
-    bounds = {pos.x, pos.y, pos.x + width, pos.y + height};
+    bounds = Rectangle{pos.x, pos.y, width, height};
     this->color = color;
 }
 
