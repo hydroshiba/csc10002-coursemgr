@@ -3,9 +3,11 @@
 #include "raylib.h"
 class Button {
 public:
-    float width;
-    float height;
-    Button(float w, float h);
+    float x, y;
+    float width, height;
+    Color color;
+    Button() {}
+    Button(float x, float y, float width, float height, Color color);
     void display();
 };
 
