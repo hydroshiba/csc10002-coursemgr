@@ -50,14 +50,31 @@ struct Course {
         return cur;
     }
     
-    void display(std::ostream& outDev = std::cout) {
-        outDev << "+ Course ID: " << ID << std::endl;
-        outDev << "+ Course name: " << name << std::endl;
-        outDev << "+ Class ID: " <<  classID << std::endl;
-        outDev << "+ Teacher: " << teacher << std::endl;
-        outDev << "+ Number of credits: " << credits << std::endl;
-        outDev << "+ Weekday: " << weekday << std::endl;
-        outDev << "+ Session: " << session << std::endl;
+    void display(std::ostream& outDev) {
+        if (&outDev == &std::cout)
+            displayScreen();
+        else
+            displayCSVFile(outDev);
+    }
+
+    void displayScreen() {
+        std::cout << "+ Course ID: " << ID << std::endl;
+        std::cout << "+ Course name: " << name << std::endl;
+        std::cout << "+ Class ID: " << classID << std::endl;
+        std::cout << "+ Teacher: " << teacher << std::endl;
+        std::cout << "+ Number of credits: " << credits << std::endl;
+        std::cout << "+ Weekday: " << weekday << std::endl;
+        std::cout << "+ Session: " << session << std::endl;
+    }
+
+    void displayCSVFile(std::ostream& ofs) {
+        ofs << "Course ID," << ID << std::endl;
+        ofs << "Course name," << name << std::endl;
+        ofs << "Class ID," << classID << std::endl;
+        ofs << "Teacher," << teacher << std::endl;
+        ofs << "Number of credits," << credits << std::endl;
+        ofs << "Weekday," << weekday << std::endl;
+        ofs << "Session," << session << std::endl;
     }
 };
 

@@ -80,11 +80,11 @@ void viewListOfStudentsInCourse(const Course& course, std::ostream& outDev = std
 void exportListOfStudent(const Course& course, const std::string& fileName) {
 	std::ofstream ofs(fileName, std::ios::out);
 	course.display(ofs);
-	ofs << "List of student: " << std::endl;
+	ofs << "No,ID,Fullname" << std::endl;
 	for (int i = 0; i < course.scoreboards.size(); i++)
 	{
 		Student* student = course.scoreboards[i]->ptrStudent;
-		ofs << i + 1 << ", " << student->ID << ", " << student->name << std::endl;
+		ofs << i + 1 << "," << student->ID << "," << student->name << std::endl;
 	}
 	ofs.close();
 }
