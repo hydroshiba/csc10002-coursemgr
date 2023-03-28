@@ -3,8 +3,10 @@
 
 #include "Graphics.h"
 
-Application::Application(int width, int height, std::string title) {
+Application::Application(int width, int height, int fps, std::string title) {
     assert(GetWindowHandle() == nullptr);
+    
+    SetTargetFPS(fps);
     InitWindow(width, height, title.c_str());
 }
 

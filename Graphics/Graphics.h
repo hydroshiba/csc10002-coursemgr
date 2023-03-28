@@ -3,9 +3,15 @@
 
 #include <string>
 
+const int defWidth = 800;
+const int defHeight = 450;
+const int defFPS = 60;
+
+const std::string defTitle = "Course Management System";
+
 class Application {
 public:
-	Application(int width = 800, int height = 450, std::string title = "Course Management System");
+	Application(int width = defWidth, int height = defHeight, int fps = defFPS, std::string title = defTitle);
 	~Application() noexcept;
 
 	Application(const Application &other) = delete;
