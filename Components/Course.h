@@ -17,72 +17,19 @@ struct Course {
     Semester* ptrSemester = nullptr;
     Vector<Scoreboard*> scoreboards;
 
-    void addStudent(Student& student) {
-        Scoreboard* newBoard = new Scoreboard(this, &student);
-        student.scoreboards.append(newBoard);
-        scoreboards.append(newBoard);
-    }
+    void addStudent(Student& student);
 
-    void removeStudent(Student& student) {
-        Scoreboard* cur = nullptr;
+    void removeStudent(Student& student);
 
-        for (int i = 0; i < scoreboards.size(); ++i)
-            if (scoreboards[i]->ptrStudent == &student) {
-                cur = scoreboards[i];
-                break;
-            }
-
-        if (cur) {
-            student.scoreboards.remove(cur);
-            scoreboards.remove(cur);
-            delete cur;
-        }
-    }
-
-    Scoreboard* getScoreboard(Student& student) {
-        Scoreboard* cur = nullptr;
-
-        for (int i = 0; i < scoreboards.size(); ++i)
-            if (scoreboards[i]->ptrStudent == &student) {
-                cur = scoreboards[i];
-                break;
-            }
-
-        return cur;
-    }
+    Scoreboard* getScoreboard(Student& student);
     
-    void display(std::ostream& outDev) {
-        if (&outDev == &std::cout)
-            displayScreen();
-        else
-            displayCSVFile(outDev);
-    }
+    void display(std::ostream& outDev);
 
-    void displayScreen() {
-        std::cout << "+ Course ID: " << ID << std::endl;
-        std::cout << "+ Course name: " << name << std::endl;
-        std::cout << "+ Class ID: " << classID << std::endl;
-        std::cout << "+ Teacher: " << teacher << std::endl;
-        std::cout << "+ Number of credits: " << credits << std::endl;
-        std::cout << "+ Weekday: " << weekday << std::endl;
-        std::cout << "+ Session: " << session << std::endl;
-    }
+    void displayScreen();
 
-    void displayCSVFile(std::ostream& ofs) {
-        ofs << "Course ID," << ID << std::endl;
-        ofs << "Course name," << name << std::endl;
-        ofs << "Class ID," << classID << std::endl;
-        ofs << "Teacher," << teacher << std::endl;
-        ofs << "Number of credits," << credits << std::endl;
-        ofs << "Weekday," << weekday << std::endl;
-        ofs << "Session," << session << std::endl;
-    }
+    void displayCSVFile(std::ostream& ofs);
 };
 
-bool operator==(const Course &courseA, const Course &courseB) {
-    if(courseA.ID != courseB.ID) return false;
-    if(courseA.classID != courseB.classID) return false;
-    return true;
-}
+bool operator==(const Course& courseA, const Course& courseB);
 
 #endif // !COURSE_H

@@ -8,22 +8,13 @@ struct AcademicYear {
     unsigned int start;
     Vector<Semester> semesters;
 
-    void addSemester(const Semester& newSemester) {
-        semesters.append(newSemester);
-    }
+    void addSemester(const Semester& newSemester);
 
-    void removeSemester(const Semester& newSemester) {
-        semesters.remove(newSemester);
-    }
+    void removeSemester(const Semester& newSemester);
 
-    std::string getPeriod() {
-        return std::to_string(start) + " - " + std::to_string(start + 1);
-    }
+    std::string getPeriod();
 };
 
-bool operator==(const AcademicYear &yearA, const AcademicYear &yearB) {
-    if(yearA.start != yearB.start) return false;
-    return true;
-}
+bool operator==(const AcademicYear& yearA, const AcademicYear& yearB);
 
 #endif

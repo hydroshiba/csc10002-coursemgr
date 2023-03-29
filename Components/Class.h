@@ -8,21 +8,11 @@ struct Class {
     std::string name;
     Vector<Student> students;
 
-    void addStudent(const Student& student) {
-        students.append(student);
-        (students.end() - 1)->myClass = this;
-    }
+    void addStudent(const Student& student);
 
-    void removeStudent(const Student& student) {
-        Student* pos = students.find(student);
-        pos->myClass = nullptr;
-        students.remove(pos);
-    }
+    void removeStudent(const Student& student);
 };
 
-bool operator==(const Class &classA, const Class &classB) {
-    if(classA.name != classB.name) return false;
-    return true;
-}
+bool operator==(const Class& classA, const Class& classB);
 
 #endif // !CLASS_H

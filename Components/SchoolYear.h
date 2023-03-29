@@ -8,26 +8,15 @@ struct SchoolYear {
     unsigned int start;
     Vector<Class> classes;
 
-    unsigned int get() {
-        return start;
-    }
+    unsigned int get();
 
-    void addClass(const Class& newClass) {
-        classes.append(newClass);
-    }
+    void addClass(const Class& newClass);
 
-    void removeClass(const Class& newClass) {
-        classes.remove(newClass);
-    }
+    void removeClass(const Class& newClass);
 
-    std::string getPeriod() {
-        return std::to_string(start) + " - " + std::to_string(start + 4);
-    }
+    std::string getPeriod();
 };
 
-bool operator==(const SchoolYear &yearA, const SchoolYear &yearB) {
-    if(yearA.start != yearB.start) return false;
-    return true;
-}
+bool operator==(const SchoolYear& yearA, const SchoolYear& yearB);
 
 #endif

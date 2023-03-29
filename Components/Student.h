@@ -6,6 +6,7 @@
 #include "Date.h"
 #include "Scoreboard.h"
 #include "User.h"
+#include "Course.h"
 
 struct Student : User {
     int number;
@@ -16,35 +17,12 @@ struct Student : User {
     Class* myClass = nullptr;
     Vector<Scoreboard*> scoreboards;
 
-    Scoreboard* getScoreboard(Course& course) {
-        Scoreboard* cur = nullptr;
+    Scoreboard* getScoreboard(Course& course);
 
-        for (int i = 0; i < scoreboards.size(); ++i)
-            if (scoreboards[i]->ptrCourse == &course) {
-                cur = scoreboards[i];
-                break;
-            }
-        return cur;
-    }
+    float getGPA();
 
-    float getGPA() {
-        int nCredits = 0;
-        float totalMark = 0;
-        for (int i = 0; i < scoreboards.size(); i++)
-        {
-            totalMark += scoreboards[i]->total;
-            nCredits += scoreboards[i]->ptrCourse->credits;
-        }
-        return totalMark / nCredits;
-    }
 };
 
-bool operator==(const Student &studentA, const Student &studentB) {
-    if(studentA.ID != studentB.ID) return false;
-    if(studentA.name != studentB.name) return false;
-    if(studentA.socialID != studentB.socialID) return false;
-
-    return true;
-}
+bool operator==(const Student& studentA, const Student& studentB);
 
 #endif // !STUDENT_H

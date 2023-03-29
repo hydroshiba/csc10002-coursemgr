@@ -6,24 +6,14 @@
 struct Name {
     std::string first, last;
 
-    Name() {}
-    Name(const std::string& nameLast, const std::string& nameFirst) :
-        last{ nameLast }, first{ nameFirst } {}
+    Name();
+    Name(const std::string& nameLast, const std::string& nameFirst);
 
-    void set(const std::string& nameLast, const std::string& nameFirst) {
-        last = nameLast;
-        first = nameFirst;
-    }
+    void set(const std::string& nameLast, const std::string& nameFirst);
 
-    std::string get() {
-        return last + " " + first;
-    }
+    std::string get();
 };
 
-bool operator==(const Name &nameA, const Name &nameB) {
-    if(nameA.first != nameB.first) return false;
-    if(nameA.last != nameB.last) return false;
-    return true;
-}
+bool operator==(const Name& nameA, const Name& nameB);
 
 #endif
