@@ -2,8 +2,6 @@
 #include <iostream>
 
 #include "raylib.h"
-#include "raygui.h"
-
 #include "Graphics.h"
 
 Application::Application(int width, int height, int fps, std::string title) {

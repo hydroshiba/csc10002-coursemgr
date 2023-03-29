@@ -42,7 +42,6 @@ bin/
 # Testing source files
 testing.cpp
 Demo_Structure.cpp
-layout_name.c
 
 # Apple shits
 .DS_Store

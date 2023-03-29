@@ -2,7 +2,6 @@
 #define BUTTON_H
 
 #include "raylib.h"
-#include "raygui.h"
 
 class Button {
 private:

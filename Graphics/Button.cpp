@@ -1,6 +1,4 @@
 #include "raylib.h"
-#include "raygui.h"
-
 #include "Button.h"
 
 Button::Button(Vector2 pos, float width, float height, Color color) {
