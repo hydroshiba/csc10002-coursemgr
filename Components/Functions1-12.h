@@ -33,7 +33,6 @@ void addClasses (Vector<SchoolYear>& yearList){
 
 // Add students into a specific class
 void addStudToClass(Class &actClass,const std::string inFile){
-    std::string no, id, first_name, last_name, gender, sID, day, month, year;
     Student newStud;
     std::ifstream inF;
     inF.open("Data/"+inFile);
@@ -44,22 +43,7 @@ void addStudToClass(Class &actClass,const std::string inFile){
     std::string ignore;
     getline(inF, ignore);
     while (!inF.eof()){
-        getline(inF, no, ',');
-        getline(inF, id, ',');
-        getline(inF, first_name, ',');
-        getline(inF, last_name, ',');
-        getline(inF, gender, ',');
-        getline(inF, day, '/');
-        getline(inF, month, '/');
-        getline(inF, year, ',');
-        getline(inF, sID);
-        
-        newStud.number = stoi(no);
-        newStud.ID = id;
-        newStud.setName(first_name, last_name);
-        newStud.gender = (gender == "Male") ? male : female;
-        newStud.birth.set(stoi(day), stoi(month), stoi(year));
-        newStud.socialID = sID;
+        newStud.setInfoToClass(inF);
         actClass.addStudent(newStud);
         newStud.myClass = &actClass;
     }
@@ -132,18 +116,10 @@ void getStudentToCourse(Vector<SchoolYear> years, Course &course, const std::str
     }
     std::string ignore;
     getline(inF, ignore);
-    std::string no, id, first, last, actClass;
+    std::string actClass;
     Student student;
     while (!inF.eof()){
-        getline(inF, no, ',');
-        getline(inF, id, ',');
-        getline(inF, first, ',');
-        getline(inF, last, ',');
-        getline(inF, actClass);
-
-        student.number = stoi(no);
-        student.ID = id;
-        student.setName(first, last);
+        student.setInfoToCourseCSV(inF, actClass);
         for (int i = 0; i<4; ++i)
             for (int j = 0; j<years[i].classes.size(); ++j)
                 if (actClass == years[i].classes[j].name){

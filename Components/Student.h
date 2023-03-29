@@ -20,7 +20,10 @@ struct Student : User {
     Scoreboard* getScoreboard(Course& course);
 
     float getGPA();
-    
+    void setInfoToClass(std::ifstream &ifs);
+    void setInfoToCourseCSV(std::ifstream &ifs, std::string&actClass);
+    void setInfoCourseConsole(std::string &actClass);
+
 };
 
 bool operator==(const Student& studentA, const Student& studentB);
