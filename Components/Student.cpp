@@ -22,6 +22,18 @@ float Student::getGPA() {
     return totalMark;
 }
 
+float Student::getGPA(const Semester& semester) {
+    int nCredits = 0;
+    float totalMark = 0;
+    for (int i = 0; i < scoreboards.size(); i++)
+        if (scoreboards[i]->ptrCourse->ptrSemester == &semester)
+        {
+            totalMark = totalMark + scoreboards[i]->total;
+            nCredits = nCredits + scoreboards[i]->ptrCourse->credits;
+        }
+    return totalMark;
+} // 
+
 void Student::setInfoToClass(std::ifstream &ifs){
     std::string no, id, first_name, last_name, gender, sID, day, month, year;
     getline(ifs, no, ',');

@@ -42,6 +42,7 @@ void Course::display(std::ostream& outDev) {
 }
 
 void Course::displayScreen() {
+    std::cout << "+ Semester ID: " << ptrSemester->semesterID << std::endl;
     std::cout << "+ Course ID: " << ID << std::endl;
     std::cout << "+ Course name: " << name << std::endl;
     std::cout << "+ Class ID: " << classID << std::endl;
@@ -52,6 +53,7 @@ void Course::displayScreen() {
 }
 
 void Course::displayCSVFile(std::ostream& ofs) {
+    ofs << "Semester ID," << ptrSemester->semesterID << std::endl;
     ofs << "Course ID," << ID << std::endl;
     ofs << "Course name," << name << std::endl;
     ofs << "Class ID," << classID << std::endl;

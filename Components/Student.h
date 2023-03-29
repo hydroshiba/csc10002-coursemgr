@@ -19,7 +19,9 @@ struct Student : User {
 
     Scoreboard* getScoreboard(Course& course);
 
-    float getGPA();
+    float getGPA(); // Overall GPA
+    float getGPA(const Semester& semester); // Current semester GPA
+
     void setInfoToClass(std::ifstream &ifs);
     void setInfoToCourseCSV(std::ifstream &ifs, std::string&actClass);
     void setInfoCourseConsole(std::string &actClass);

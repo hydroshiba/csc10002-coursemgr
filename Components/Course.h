@@ -5,7 +5,7 @@
 
 #include "Scoreboard.h"
 #include "Student.h"
-
+#include "Semester.h"
 struct Course {
     std::string ID, classID;
     std::string name, teacher;
