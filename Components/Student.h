@@ -20,7 +20,7 @@ struct Student : User {
     Scoreboard* getScoreboard(Course& course);
 
     float getGPA();
-
+    
 };
 
 bool operator==(const Student& studentA, const Student& studentB);

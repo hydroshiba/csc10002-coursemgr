@@ -32,11 +32,11 @@ void addClasses (Vector<SchoolYear>& yearList){
 }
 
 // Add students into a specific class
-void addStudToClass(Class &actClass,const char* inFile){
+void addStudToClass(Class &actClass,const std::string inFile){
     std::string no, id, first_name, last_name, gender, sID, day, month, year;
     Student newStud;
     std::ifstream inF;
-    inF.open(inFile);
+    inF.open("Data/"+inFile);
     if (!inF.is_open()){
         std::cout << "Cannot open file!\n";
         return ;
@@ -86,7 +86,8 @@ void addSemester(AcademicYear &newYear, Date startDate, Date endDate){
 void addSemester(AcademicYear &newYear){
     unsigned short day, month;
     unsigned int year;
-
+    std::string id;
+    std::cout << "Enter semester id: "; std::cin >> id;
     Date startDate;
     std::cout << "Enter start date for the semester:\n";
     std::cin >> day >> month >> year;
@@ -97,11 +98,11 @@ void addSemester(AcademicYear &newYear){
     std::cin >> day >> month >> year;
     endDate.set(day, month, year);
 
-    Semester newSem = {startDate, endDate, 0, &newYear};
+    Semester newSem = {id, startDate, endDate, 0, &newYear};
     newYear.addSemester(newSem);
 }
 
-
+// Add a new course
 void addNewCourse(Semester &semester){
     Course newCourse;
     std::string ID, classID, name, teacher;
@@ -117,11 +118,12 @@ void addNewCourse(Semester &semester){
     std::cout << "Day of week: "; std::cin >> day;
     std::cout << "Session performed: "; std::cin >> ss;
 
-    newCourse = {ID, classID, name, teacher, cre, maxEn, static_cast<Weekday>(day), static_cast<Session>(ss)};
+    newCourse = {ID, classID, name, teacher, cre, maxEn, static_cast<Weekday>(day), static_cast<Session>(ss), &semester};
     semester.addCourse(newCourse);
 }
 
-void getStudentToCourse(Vector<SchoolYear> years, Course &course, const char *stud_input_file){
+// Get students' info to course
+void getStudentToCourse(Vector<SchoolYear> years, Course &course, const std::string stud_input_file){
     std::ifstream inF;
     inF.open("Data/"+stud_input_file);
     if (!inF.is_open()){
@@ -144,13 +146,18 @@ void getStudentToCourse(Vector<SchoolYear> years, Course &course, const char *st
         student.setName(first, last);
         for (int i = 0; i<4; ++i)
             for (int j = 0; j<years[i].classes.size(); ++j)
-                if (actClass == years[i].classes[j].name)
-                    for (int k = 0; k < years[i].classes[j].students.size(); ++k)
-                        if (years[i].classes[j].students[k] == student){
-                            course.addStudent(years[i].classes[j].students[k]);
-                            continue;
-                        }                
+                if (actClass == years[i].classes[j].name){
+                    course.addStudent(*years[i].classes[j].students.find(student));
+                    break;
+                }           
     }
     inF.close();
+}
+
+// View list of courses
+void viewCourses(Semester sem, std::ostream& outDev = std::cout){
+    std::cout << "List of courses: ";
+    for (size_t i = 0; i<sem.courses.size(); ++i)
+        sem.courses[i].display(outDev);
 }
 #endif
