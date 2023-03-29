@@ -7,6 +7,7 @@
 #include "Date.h"
 
 struct Semester {
+    std::string semesterID;
     Date startDate, endDate;
     Vector<Course> courses;
     AcademicYear* year = nullptr;

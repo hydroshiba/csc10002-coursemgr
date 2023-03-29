@@ -14,6 +14,7 @@ struct Course {
     Weekday weekday;
     Session session;
 
+    Semester* ptrSemester = nullptr;
     Vector<Scoreboard*> scoreboards;
 
     void addStudent(Student& student) {
