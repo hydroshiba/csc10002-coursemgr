@@ -96,9 +96,9 @@ void addNewCourse(Semester &semester){
     std::cout << "Enter Course ID: "; std::cin >> ID;
     std::cout << "Enter Course Name: "; std::cin >>name;
     std::cout << "Enter Teacher's Name: "; std::cin >>teacher;
-    std::cout << "Enter Class Name: "; std::cin >> classID;
+    std::cout << "Enter Class ID: "; std::cin >> classID;
     std::cout << "Enter Number of Credits: "; std::cin >> cre;
-    std::cout << "Enter Maximun students: "; std::cin >> maxEn;
+    std::cout << "Enter Maximun students enrolled: "; std::cin >> maxEn;
     std::cout << "Day of week: "; std::cin >> day;
     std::cout << "Session performed: "; std::cin >> ss;
 
@@ -135,5 +135,55 @@ void viewCourses(Semester sem, std::ostream& outDev = std::cout){
     std::cout << "List of courses: ";
     for (size_t i = 0; i<sem.courses.size(); ++i)
         sem.courses[i].display(outDev);
+}
+
+void updateCourse(Course &course){
+    int input;
+    do {
+        std::cout << "Update course informations:\n";
+        std::cout << "0. Back\n";
+        std::cout << "1. Change course id\n";
+        std::cout << "2. Change teacher's name\n";
+        std::cout << "3. Change course name\n";
+        std::cout << "4. Change class id\n";
+        std::cout << "5. Change number of credits\n";
+        std::cout << "6. Change max students enrolled\n";
+        std::cout << "7. Change session\n";
+        switch (input){
+            case 1: 
+                std::cout << "Enter Course ID: "; std::cin >> course.ID;
+                break;
+            case 2: 
+                std::cout << "Enter Teacher's Name: "; std::cin >> course.teacher;
+                break;
+            case 3: 
+                std::cout << "Enter Course Name: "; std::cin >> course.name; 
+                break;
+            case 4: 
+                std::cout << "Enter Class ID: "; std::cin >> course.classID;
+                break;
+            case 5:
+                std::cout << "Enter Number of Credits: "; std::cin >> course.credits;
+                break;
+            case 6:
+                std::cout << "Enter Maximun students enrolled: "; std::cin >> course.maxEnroll;
+                break;
+            case 7: 
+                int in, day, ss;
+                std::cout << "0. Change weekday\n";
+                std::cout << "1. Change session\n";
+                std::cin >> in;
+                if (!in){
+                    std::cout << "Enter weekday: "; std::cin >> day;
+                    course.weekday = static_cast<Weekday>(day); 
+                }
+                else{
+                    std::cout << "Enter Session performed: "; std::cin >> ss;
+                    course.session = static_cast<Session>(ss);
+                }
+                break;
+            default: break;
+        }
+    }while (input);
 }
 #endif
