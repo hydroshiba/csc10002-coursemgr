@@ -6,6 +6,7 @@
 #include "Class.h"
 #include "Semester.h"
 #include "Course.h"
+#include "Scoreboard.h"
 
 // 13. delete course in current semester 
 bool deleteACourse(Semester& semester, const std::string& courseID) {
@@ -29,11 +30,12 @@ bool deleteACourse(Semester& semester, const std::string& courseID) {
 }
 
 // 14. view list of courses at current student
-void viewListOfCourses(const Student& student, std::ostream& outDev = std::cout) {
+void viewListOfCoursesOfStudent(const Student& student, std::ostream& outDev = std::cout) {
 	outDev << "List of courses in this semester: ";
 	for (int i = 0; i < student.scoreboards.size(); i++)
 	{
-		student.scoreboards[i]->ptrCourse->display();
+		outDev << "No " << i + 1 << ": " << std::endl;
+		student.scoreboards[i]->ptrCourse->displayInfoScreen();
 		outDev << "--------------------------------------" << std::endl;
 	}
 }
@@ -56,13 +58,13 @@ void viewListOfStudentsInClass(const Class& curClass, std::ostream& outDev = std
 }
 
 // 17. view list of course
-void viewListOfCourse(const Semester& semester, std::ostream& outDev = std::cout) {
+void viewListOfCoursesInSemester(const Semester& semester, std::ostream& outDev = std::cout) {
 	outDev << "List of course in this semester: " << std::endl;
 	outDev << "No  " << "CourseID   " << "ClassID   " << std::endl;
 	for (int i = 0; i < semester.courses.size(); i++)
 	{
 		outDev << "No " << i + 1 << ": " << std::endl;
-		semester.courses[i].display(outDev);
+		semester.courses[i].displayInfo(outDev);
 	}
 }
 
@@ -89,4 +91,21 @@ void exportListOfStudent(const Course& course, const std::string& fileName) {
 	ofs.close();
 }
  
+// 20. import scoreboard of course
+void importScoreBoardOfCourse(Course& course) {
+	std::cout << "Input filename: ";
+	std::string fileName;
+	std::getline(std::cin, fileName, '\n');
+	fileName = "Data\\" + fileName;
+	std::ifstream ifs(fileName);
+	if (!ifs.is_open())
+	{
+		std::cout << "Can't find file with that name, pls try again!" << std::endl;
+		return;
+	}
+	course.importScoreBoards(ifs);
+	std::cout << "Complete importion!" << std::endl;
+	ifs.close();
+}
+
 #endif 

@@ -137,8 +137,6 @@ void Course::displayScoreBoardScreen() {
     }
 }
 
-
-
 bool operator==(const Course& courseA, const Course& courseB) {
     if (courseA.ID != courseB.ID) return false;
     if (courseA.classID != courseB.classID) return false;

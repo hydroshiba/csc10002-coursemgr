@@ -16,7 +16,6 @@ struct Course {
 
     Semester* ptrSemester = nullptr;
     Vector<Scoreboard*> scoreboards;
-
     void addStudent(Student& student);  
     // already set double linke between Course & Score, Score & Student
     void removeStudent(Student& student);
