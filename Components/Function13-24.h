@@ -9,21 +9,30 @@
 #include "Scoreboard.h"
 
 // 13. delete course in current semester 
-bool deleteACourse(Semester& semester, const std::string& courseID) {
+bool deleteCourse(Semester& semester, const std::string& courseID) {
 	bool found = false;
-	Course course;
+	Course* course = nullptr;
 	for (int i = 0; i < semester.courses.size(); i++)
 		if (semester.courses[i].ID == courseID)
 		{
 			found = true;
-			course = semester.courses[i];
+			course = &semester.courses[i];
 			break;
 		}
 	if (!found)
 		std::cout << "Can't find a course with ID " << courseID;
 	else
 	{
-		semester.removeCourse(course);
+		course->ptrSemester = nullptr;
+		for (int i = 0; i < course->scoreboards.size(); i++)
+		{
+			Student* student = course->scoreboards[i]->ptrStudent; 
+			student->scoreboards.remove(course->scoreboards[i]); // delete link from student->scoreboard
+			course->scoreboards[i]->ptrStudent = nullptr; // delete link sb->student
+			course->scoreboards[i]->ptrCourse = nullptr; // delete link sb->course
+			delete course->scoreboards[i]; // delete scoreboard
+		}
+		semester.removeCourse(course); // delete course
 		std::cout << "Course with ID " << courseID << " have been removed from semester!";
 	}
 	std::cout << std::endl;
