@@ -1,6 +1,6 @@
 #include "Course.h"
 
-void Course::addStudent(Student& student) {
+void Course::addStudent(Student& student) { 
     Scoreboard* newBoard = new Scoreboard(this, &student);
     student.scoreboards.append(newBoard);
     scoreboards.append(newBoard);
