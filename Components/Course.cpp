@@ -34,14 +34,14 @@ Scoreboard* Course::getScoreboard(Student& student) {
     return cur;
 }
 
-void Course::display(std::ostream& outDev) {
+void Course::displayInfo(std::ostream& outDev) {
     if (&outDev == &std::cout)
-        displayScreen();
+        displayInfoScreen();
     else
-        displayCSVFile(outDev);
+        displayInfoFile(outDev);
 }
 
-void Course::displayScreen() {
+void Course::displayInfoScreen() {
     std::cout << "+ Semester ID: " << ptrSemester->semesterID << std::endl;
     std::cout << "+ Course ID: " << ID << std::endl;
     std::cout << "+ Course name: " << name << std::endl;
@@ -52,7 +52,7 @@ void Course::displayScreen() {
     std::cout << "+ Session: " << session << std::endl;
 }
 
-void Course::displayCSVFile(std::ostream& ofs) {
+void Course::displayInfoFile(std::ostream& ofs) {
     ofs << "Semester ID," << ptrSemester->semesterID << std::endl;
     ofs << "Course ID," << ID << std::endl;
     ofs << "Course name," << name << std::endl;
