@@ -39,7 +39,7 @@ file(GLOB cpp_files
     ${PROJECT_SOURCE_DIR}/Components/*.cpp
     ${PROJECT_SOURCE_DIR}/Graphics/*.cpp)
 
-add_executable(${PROJECT_NAME} ${cpp_files} "Components/Semester.cpp" "Components/Date.cpp" "Components/Name.cpp" "Components/SchoolYear.cpp" "Components/User.cpp" "Components/Structure.cpp" "Components/Class.cpp" "Components/AcademicYear.cpp")
+add_executable(${PROJECT_NAME} ${cpp_files})
 
 target_link_libraries(${PROJECT_NAME} raylib)
 
