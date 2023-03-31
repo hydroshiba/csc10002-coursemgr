@@ -116,16 +116,19 @@ void getStudentToCourse(Vector<SchoolYear> years, Course &course, const std::str
     }
     std::string ignore;
     getline(inF, ignore);
-    std::string actClass;
+    std::string className;
+    Class actClass;
+    Class *ptrClass;
     Student student;
+    Student *ptrStudent;
     while (!inF.eof()){
-        student.setInfoToCourseCSV(inF, actClass);
+        student.setInfoToCourseCSV(inF, className);
+        actClass = {className};
         for (int i = 0; i<4; ++i)
-            for (int j = 0; j<years[i].classes.size(); ++j)
-                if (actClass == years[i].classes[j].name){
-                    course.addStudent(*years[i].classes[j].students.find(student));
-                    break;
-                }           
+            if (ptrClass = years[i].classes.find(actClass))
+                break;
+        ptrStudent = ptrClass->students.find(student);
+        course.addStudent(*ptrStudent);
     }
     inF.close();
 }
@@ -134,9 +137,10 @@ void getStudentToCourse(Vector<SchoolYear> years, Course &course, const std::str
 void viewCourses(Semester sem, std::ostream& outDev = std::cout){
     std::cout << "List of courses: ";
     for (size_t i = 0; i<sem.courses.size(); ++i)
-        sem.courses[i].display(outDev);
+        sem.courses[i].displayInfo(outDev);
 }
 
+// Update course informations
 void updateCourse(Course &course){
     int input;
     do {
@@ -185,5 +189,10 @@ void updateCourse(Course &course){
             default: break;
         }
     }while (input);
+}
+
+// Add student to course
+void addNewStudToCourse(Vector <SchoolYear>& yearlist, Course &course, std::ostream& outDev){
+
 }
 #endif

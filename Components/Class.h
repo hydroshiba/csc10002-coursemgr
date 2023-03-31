@@ -3,6 +3,7 @@
 
 #include "Components.h"
 #include "Student.h"
+#include "SchoolYear.h"
 
 struct Class {
     std::string name;
@@ -17,6 +18,7 @@ struct Class {
     void displayScoreboardScreen(const Semester& semester);
 
     void displayScoreboardFile(const Semester& semester, std::ofstream& ofs);
+
 };
 
 bool operator==(const Class& classA, const Class& classB);
