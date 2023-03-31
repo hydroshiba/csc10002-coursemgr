@@ -13,7 +13,7 @@ Vector<std::string> Class::getListCourse() {
     return listCourse;
 }
 
-void Class::viewScoreboardScreen(const Semester& semester){
+void Class::displayScoreboardScreen(const Semester& semester){
     Vector<std::string> listCourse = getListCourse();
     int nCourse = listCourse.size();
     const int noMaxLength = 4;
@@ -57,7 +57,7 @@ void Class::viewScoreboardScreen(const Semester& semester){
     }
 }
 
-void Class::viewScoreboardFile(const Semester& semester, std::ofstream& ofs){
+void Class::displayScoreboardFile(const Semester& semester, std::ofstream& ofs){
     Vector<std::string> listCourse = getListCourse();
     int nCourse = listCourse.size();
     ofs << "Scoreboard of class," << name << std::endl;

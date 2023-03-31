@@ -14,9 +14,9 @@ struct Class {
 
     Vector<std::string> getListCourse();
 
-    void viewScoreboardScreen(const Semester& semester);
+    void displayScoreboardScreen(const Semester& semester);
 
-    void viewScoreboardFile(const Semester& semester, std::ofstream& ofs);
+    void displayScoreboardFile(const Semester& semester, std::ofstream& ofs);
 };
 
 bool operator==(const Class& classA, const Class& classB);
