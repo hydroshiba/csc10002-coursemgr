@@ -26,13 +26,13 @@ bool deleteCourse(Semester& semester, const std::string& courseID) {
 		course->ptrSemester = nullptr;
 		for (int i = 0; i < course->scoreboards.size(); i++)
 		{
-			Student* student = course->scoreboards[i]->ptrStudent; 
+			Student* student = course->scoreboards[i]->ptrStudent;
 			student->scoreboards.remove(course->scoreboards[i]); // delete link from student->scoreboard
 			course->scoreboards[i]->ptrStudent = nullptr; // delete link sb->student
 			course->scoreboards[i]->ptrCourse = nullptr; // delete link sb->course
 			delete course->scoreboards[i]; // delete scoreboard
 		}
-		semester.removeCourse(course); // delete course
+		semester.removeCourse(*course); // delete course
 		std::cout << "Course with ID " << courseID << " have been removed from semester!";
 	}
 	std::cout << std::endl;
@@ -54,7 +54,7 @@ void viewListOfClasses(const SchoolYear& schoolYear, std::ostream& outDev = std:
 	outDev << "List of classes: " << std::endl;
 	for (int i = 0; i < schoolYear.classes.size(); i++)
 		outDev << i + 1 << ". " << schoolYear.classes[i].name << std::endl;
-} 
+}
 
 // 16. view list of students in a class
 void viewListOfStudentsInClass(const Class& curClass, std::ostream& outDev = std::cout) {
@@ -88,18 +88,18 @@ void viewListOfStudentsInCourse(const Course& course, std::ostream& outDev = std
 }
 
 // 19. export list of students in course to csv file
-void exportListOfStudent(const Course& course, const std::string& fileName) {
+void exportListOfStudent(Course& course, const std::string& fileName) {
 	std::ofstream ofs(fileName, std::ios::out);
-	course.display(ofs);
+	course.displayInfo(ofs);
 	ofs << "No,ID,Fullname" << std::endl;
 	for (int i = 0; i < course.scoreboards.size(); i++)
 	{
 		Student* student = course.scoreboards[i]->ptrStudent;
-		ofs << i + 1 << "," << student->ID << "," << student->name << std::endl;
+		ofs << i + 1 << "," << student->ID << "," << student->name.get() << std::endl;
 	}
 	ofs.close();
 }
- 
+
 // 20. import scoreboard of course
 void importScoreBoardOfCourse(Course& course) {
 	std::cout << "Input filename: ";
@@ -158,7 +158,7 @@ void viewScoreBoardOfCourse(Course& course) {
 void updateStudentResult(Student& student) {
 	viewListOfCoursesOfStudent(student);
 	const int nCourse = student.scoreboards.size();
-	std::cout << "Choose the course to update result (1" << << " - " << nCourse << "): ";
+	std::cout << "Choose the course to update result (1" << " - " << nCourse << "): ";
 	int option;
 	std::cin >> option;
 	while (option < 1 || option > nCourse)
@@ -166,7 +166,7 @@ void updateStudentResult(Student& student) {
 		std::cout << "Invalid option, pls try again: ";
 		std::cin >> option;
 	}
-	Scoreboard* updateSB = &student.scoreboards[option - 1];
+	Scoreboard* updateSB = student.scoreboards[option - 1];
 	int updateOption;
 	do
 	{
@@ -219,7 +219,7 @@ void updateStudentResult(Student& student) {
 			break;
 		}
 		}
-	} while (updateOption != 0)
+	} while (updateOption != 0);
 }
 
 // 23. View scoreboard of class
@@ -288,5 +288,4 @@ void viewScoreBoardOfStudent(Student& student) {
 		std::cout << std::endl;
 	}
 }
-
 #endif 

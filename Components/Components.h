@@ -4,6 +4,17 @@
 #include <string>
 #include "Structures.h"
 #include <iomanip>
+#include "AcademicYear.h"
+#include "Class.h"
+#include "Course.h"
+#include "Name.h"
+#include "Student.h"
+#include "Scoreboard.h"
+#include "Date.h"
+#include "Semester.h"
+#include "User.h"
+#include "SchoolYear.h"
+
 /* Enumerators */
 
 enum Weekday { SUN, MON, TUE, WED, THU, FRI, SAT };
@@ -37,5 +48,7 @@ template <typename Type>
 bool operator!=(const Type &typeA, const Type &typeB) {
     return !(typeA == typeB);
 }
+
+
 
 #endif
