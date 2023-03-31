@@ -60,13 +60,6 @@ void addNewAcademicYear(AcademicYear &newYear){
 
 // Add a semester to an academic year
 
-void addSemester(AcademicYear &newYear, Date startDate, Date endDate){
-    Semester newSem;
-    newSem.startDate = startDate;
-    newSem.endDate = endDate;
-    newYear.addSemester(newSem);
-}
-
 void addSemester(AcademicYear &newYear){
     unsigned short day, month;
     unsigned int year;
