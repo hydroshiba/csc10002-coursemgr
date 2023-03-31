@@ -192,7 +192,28 @@ void updateCourse(Course &course){
 }
 
 // Add student to course
-void addNewStudToCourse(Vector <SchoolYear>& yearlist, Course &course, std::ostream& outDev){
-
+void addNewStudToCourse(Vector <SchoolYear>& yearlist, Course &course, std::istream& inDev = std::cin){
+    Student newStud;
+    std::string className;
+    Class myClass;
+    Class *ptrClass;
+    Student *ptrStudent;
+    if (&inDev == &std::cin)
+        newStud.setInfoCourseConsole(className);
+    else{
+        std::ifstream ifs;
+        std::string file;
+        std::cout << "Enter file name: "; std::cin >> file;
+        ifs.open(file);
+        newStud.setInfoToCourseCSV(ifs, className);
+    }
+    myClass = {className};
+    for (int i = 0; i<4; ++i)
+        if (ptrClass = yearlist[i].classes.find(myClass))
+            break;
+    ptrStudent = ptrClass->students.find(newStud);
+    course.addStudent(*ptrStudent);
 }
+
+
 #endif
