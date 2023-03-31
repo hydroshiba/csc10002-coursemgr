@@ -222,4 +222,34 @@ void updateStudentResult(Student& student) {
 	} while (updateOption != 0)
 }
 
+// 24. view scoreboard of student
+void viewScoreBoardOfStudent(Student& student) {
+	const int noMaxLength = 3;
+	const int idSemesterMaxLength = 10;
+	const int idCourseNameMaxLength = 20;
+	const int midtermMaxLength = 10;
+	const int finalMaxLength = 8;
+	const int totalMaxLength = 8;
+	const int otherMaxLength = 8;
+	std::cout << std::setw(noMaxLength) << std::left << "No";
+	std::cout << std::setw(idSemesterMaxLength) << std::left << "Semester";
+	std::cout << std::setw(idCourseNameMaxLength) << std::left << "Course";
+	std::cout << std::setw(midtermMaxLength) << std::left << "Midterm";
+	std::cout << std::setw(finalMaxLength) << std::left << "Final";
+	std::cout << std::setw(otherMaxLength) << std::left << "Other";
+	std::cout << std::setw(totalMaxLength) << std::left << "Total";
+	std::cout << std::endl;
+	for (int i = 0; i < student.scoreboards.size(); i++)
+	{
+		std::cout << std::setw(noMaxLength) << std::left << i + 1;
+		std::cout << std::setw(idSemesterMaxLength) << std::left << student.scoreboards[i]->ptrCourse->ptrSemester->semesterID;
+		std::cout << std::setw(idCourseNameMaxLength) << std::left << student.scoreboards[i]->ptrCourse->ID;
+		std::cout << std::setw(midtermMaxLength) << std::left << student.scoreboards[i]->midterm;
+		std::cout << std::setw(finalMaxLength) << std::left << student.scoreboards[i]->final;
+		std::cout << std::setw(otherMaxLength) << std::left << student.scoreboards[i]->other;
+		std::cout << std::setw(totalMaxLength) << std::left << student.scoreboards[i]->total;
+		std::cout << std::endl;
+	}
+}
+
 #endif 
