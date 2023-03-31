@@ -35,11 +35,11 @@ void Application::display() {
     ClearBackground(RAYWHITE);
     DrawText("Congrats! You created your first window!", 190, 200, 20, RED);
 
-    Button butt(Vector2{300, 200}, 100, 100, BLUE);
-    butt.display();
+    Button butt(Vector2{300, 200}, 100, 100);
+    butt.display(mousePoint);
 
     if(butt.clicked(mousePoint)) {
-        std::cout <<  "PRESSED!" << std::endl;
+        std::cout <<  "CLICKED!" << std::endl;
         std::cout << mousePoint.x << ' ' << mousePoint.y << std::endl;
     }
 }
