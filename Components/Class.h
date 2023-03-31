@@ -11,6 +11,12 @@ struct Class {
     void addStudent(const Student& student);
 
     void removeStudent(const Student& student);
+
+    Vector<std::string> getListCourse();
+
+    void viewScoreboardScreen(const Semester& semester);
+
+    void viewScoreboardFile(const Semester& semester, std::ofstream& ofs);
 };
 
 bool operator==(const Class& classA, const Class& classB);
