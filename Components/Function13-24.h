@@ -117,4 +117,42 @@ void importScoreBoardOfCourse(Course& course) {
 	ifs.close();
 }
 
+// 21. view scoreboard of course
+void viewScoreBoardOfCourse(Course& course) {
+	std::cout << "1. View on screen" << std::endl;
+	std::cout << "2. View on file" << std::endl;
+	std::cout << "Choose one of following options to view: ";
+	int option;
+	std::cin >> option;
+	while (option <= 0 || option > 2)
+	{
+		std::cout << "Invalid option! Pls input 1 or 2: ";
+		std::cin >> option;
+	}
+	switch (option)
+	{
+	case 1:
+	{
+		course.displayScoreBoardScreen();
+		break;
+	}
+	case 2:
+	{
+		std::cout << "Input filename: ";
+		std::string fileName;
+		std::getline(std::cin, fileName, '\n');
+		fileName = "Data\\" + fileName;
+		std::ofstream ofs(fileName);
+		if (!ofs.is_open())
+		{
+			std::cout << "Can't find file with that name, pls try again!" << std::endl;
+			return;
+		}
+		course.displayScoreBoardFile(ofs);
+		break;
+	}
+	}
+}
+
+
 #endif 
