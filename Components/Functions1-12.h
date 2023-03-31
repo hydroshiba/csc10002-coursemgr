@@ -199,6 +199,7 @@ void addNewStudToCourse(Vector <SchoolYear>& yearlist, Course &course, std::istr
         std::cout << "Enter file name: "; std::cin >> file;
         ifs.open(file);
         newStud.setInfoToCourseCSV(ifs, className);
+        ifs.close();
     }
     myClass = {className};
     for (int i = 0; i<4; ++i)
@@ -208,5 +209,25 @@ void addNewStudToCourse(Vector <SchoolYear>& yearlist, Course &course, std::istr
     course.addStudent(*ptrStudent);
 }
 
-
+void removeStudFromCourse(Course &course, std::istream &inDev = std::cin){
+    Student student;
+    std::string className;
+    Student *pStud;
+    if (&inDev == &std::cin)
+        student.setInfoCourseConsole(className);
+    else{
+        std::ifstream ifs;
+        std::string file;
+        std::cout << "Enter file name: "; std::cin >> file;
+        ifs.open(file);
+        student.setInfoToCourseCSV(ifs, className);
+        ifs.close();
+    }
+    for (int i = 0; i<course.scoreboards.size(); ++i)
+        if (*(course.scoreboards[i]->ptrStudent) == student){
+            pStud = course.scoreboards[i]->ptrStudent;
+            break;
+        }
+    course.removeStudent(*pStud);
+}
 #endif
