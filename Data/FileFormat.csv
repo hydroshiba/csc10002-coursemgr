@@ -1,0 +1,13 @@
+Name	Format	Example
+InputSchoolYear (SchoolYear)	"""HCMUS_"" + start + "".txt"""	HCMUS_2022.txt; HCMUS_2021.txt
+Input AcademicYear (AcademicYear)	"start + ""_"" + (start + 1) + "".txt"""	2021_2022.txt; 2022_2023.txt
+Input class (Class)	"name + "".txt"""	"22CLC06.txt, APCS01.txt"
+Input list of students to class (Class)	"name + ""_InputStud.csv"""	"22CLC06_InputStud.csv, APCS02_InputStud.csv"
+Input semester (Semester)	"semesterID + "".txt"""	HK1_2022.txt
+Input course (Course)	"ID + "".txt"""	CSC10002_22CLC06.txt
+Input list of students to course(Course)	"ID + ""_InputStud.csv"""	CSC10002_22CLC06_InputStud.csv
+Export list of students of course(Course)	"ID + ""_ExportStud.csv"""	CSC10002_22CLC06_ExportStud.csv
+Import (Input) list of scoreboards to course(Course)	"ID + ""_ImportScore.csv"""	CSC10002_22CLC06_ImportScore.csv
+Export scoreboard of course(Course)	"ID + ""_ExportScore.csv"""	CSC10002_22CLC06_ExportScore.csv
+Export scoreboard of student(Student)	"ID + ""_ExportScore.csv"""	22127154_ExportScore.csv
+Export scoreboard of class (Class)	"name + ""_ExportScore.csv"""	22CLC06_ExportScore.csv
