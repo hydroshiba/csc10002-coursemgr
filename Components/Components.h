@@ -1,20 +1,9 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H
 
-#include <string>
-#include "Structures.h"
 #include <iomanip>
-
-//#include "AcademicYear.h"
-//#include "Class.h"
-//#include "Course.h"
-//#include "Name.h"
-//#include "Student.h"
-//#include "Scoreboard.h"
-//#include "Date.h"
-//#include "Semester.h"
-//#include "User.h"
-//#include "SchoolYear.h"
+#include <string>
+#include "Vector.h"
 
 /* Enumerators */
 
@@ -50,6 +39,37 @@ bool operator!=(const Type &typeA, const Type &typeB) {
     return !(typeA == typeB);
 }
 
+// 1 - 12
 
+void addNewSchoolYear(Vector<SchoolYear>& yearList);
+void addClasses (Vector<SchoolYear>& yearList);
+void addStudToClass(Class &actClass,const std::string inFile);
+void addNewAcademicYear(AcademicYear &newYear);
+
+void addSemester(AcademicYear &newYear);
+void addNewCourse(Semester &semester);
+void getStudentToCourse(Vector<SchoolYear> years, Course &course, const std::string stud_input_file);
+void viewCourses(Semester sem, std::ostream& outDev = std::cout);
+
+void updateCourse(Course &course);
+void addNewStudToCourse(Vector <SchoolYear>& yearlist, Course &course, std::istream& inDev = std::cin);
+void removeStudFromCourse(Course &course, std::istream &inDev = std::cin);
+
+// 13 - 24
+
+void deleteCourse(Semester& semester, const std::string& courseID);
+void viewListOfCoursesOfStudent(const Student& student, std::ostream& outDev = std::cout);
+void viewListOfClasses(const SchoolYear& schoolYear, std::ostream& outDev = std::cout);
+void viewListOfStudentsInClass(const Class& curClass, std::ostream& outDev = std::cout);
+
+void viewListOfCoursesInSemester(const Semester& semester, std::ostream& outDev = std::cout);
+void viewListOfStudentsInCourse(const Course& course, std::ostream& outDev = std::cout);
+void exportListOfStudent(Course& course, const std::string& fileName);
+void importScoreBoardOfCourse(Course& course);
+
+void viewScoreBoardOfCourse(Course& course);
+void updateStudentResult(Student& student);
+void viewScoreboardOfClass(Class& curClass, const Semester& curSemester);
+void viewScoreBoardOfStudent(Student& student);
 
 #endif
