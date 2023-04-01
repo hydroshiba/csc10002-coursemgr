@@ -233,7 +233,7 @@ bool deleteCourse(Semester& semester, const std::string& courseID) {
 		if (semester.courses[i].ID == courseID)
 		{
 			found = true;
-			course = &(semester.courses[i]);
+			course = &semester.courses[i];
 			break;
 		}
 	if (!found)
@@ -284,7 +284,7 @@ void viewListOfStudentsInClass(const Class& curClass, std::ostream& outDev) {
 }
 
 // 17. view list of course
-void viewListOfCoursesInSemester(Semester& semester, std::ostream& outDev) {
+void viewListOfCoursesInSemester(const Semester& semester, std::ostream& outDev) {
 	outDev << "List of course in this semester: " << std::endl;
 	outDev << "No  " << "CourseID   " << "ClassID   " << std::endl;
 	for (int i = 0; i < semester.courses.size(); i++)
