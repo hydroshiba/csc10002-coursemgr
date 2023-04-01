@@ -9,7 +9,8 @@
 #include "Name.h"
 #include "Semester.h"
 
-// 1. Add a new 1st-year & delete old 4th-year
+// Add a new 1st-year & delete old 4th-year
+
 void addNewSchoolYear(Vector<SchoolYear>& yearList){
     unsigned int startYear;
     std::cout << "Enter the school year: "; std::cin >> startYear;
@@ -19,7 +20,7 @@ void addNewSchoolYear(Vector<SchoolYear>& yearList){
         yearList.remove(yearList.begin());
 }
 
-// 2. Add several classes for 1st year
+// Add several classes for 1st year
 void addClasses (Vector<SchoolYear>& yearList){
     Class newClass;
     do {
@@ -30,7 +31,7 @@ void addClasses (Vector<SchoolYear>& yearList){
     } while (newClass.name != "0");
 }
 
-// 3-4-5 Add students into a specific class
+// Add students into a specific class
 void addStudToClass(Class &actClass,const std::string inFile){
     Student newStud;
     std::ifstream inF;
@@ -49,7 +50,7 @@ void addStudToClass(Class &actClass,const std::string inFile){
     inF.close();
 }
 
-// 6. Add a new academic year
+// Add a new academic year
 void addNewAcademicYear(AcademicYear &newYear){
     unsigned int startyear;
     std::cout << "Enter a new year: ";
@@ -57,7 +58,8 @@ void addNewAcademicYear(AcademicYear &newYear){
     newYear = {startyear};
 }
 
-// 6. Add a semester to an academic year
+// Add a semester to an academic year
+
 void addSemester(AcademicYear &newYear){
     unsigned short day, month;
     unsigned int year;
@@ -77,7 +79,7 @@ void addSemester(AcademicYear &newYear){
     newYear.addSemester(newSem);
 }
 
-// 7. Add a new course
+// Add a new course
 void addNewCourse(Semester &semester){
     Course newCourse;
     std::string ID, classID, name, teacher;
@@ -97,7 +99,7 @@ void addNewCourse(Semester &semester){
     semester.addCourse(newCourse);
 }
 
-// 8. Get students' info to course
+// Get students' info to course
 void getStudentToCourse(Vector<SchoolYear> years, Course &course, const std::string stud_input_file){
     std::ifstream inF;
     inF.open("Data/"+stud_input_file);
@@ -124,14 +126,14 @@ void getStudentToCourse(Vector<SchoolYear> years, Course &course, const std::str
     inF.close();
 }
 
-// 9. View list of courses
+// View list of courses
 void viewCourses(Semester sem, std::ostream& outDev = std::cout){
     std::cout << "List of courses: ";
     for (size_t i = 0; i<sem.courses.size(); ++i)
         sem.courses[i].displayInfo(outDev);
 }
 
-// 10. Update course informations
+// Update course informations
 void updateCourse(Course &course){
     int input;
     do {
@@ -182,7 +184,7 @@ void updateCourse(Course &course){
     }while (input);
 }
 
-// 11. Add student to course
+// Add student to course
 void addNewStudToCourse(Vector <SchoolYear>& yearlist, Course &course, std::istream& inDev = std::cin){
     Student newStud;
     std::string className;
@@ -207,7 +209,6 @@ void addNewStudToCourse(Vector <SchoolYear>& yearlist, Course &course, std::istr
     course.addStudent(*ptrStudent);
 }
 
-// 12. Remove student from course
 void removeStudFromCourse(Course &course, std::istream &inDev = std::cin){
     Student student;
     std::string className;
