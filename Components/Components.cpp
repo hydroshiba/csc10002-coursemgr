@@ -120,7 +120,7 @@ void getStudentToCourse(Vector<SchoolYear> years, Course& course, const std::str
 }
 
 // 9. View list of courses
-void viewCourses(Semester sem, std::ostream& outDev) {
+void viewCourses(Semester sem, std::ostream& outDev = std::cout) {
 	std::cout << "List of courses: ";
 	for (size_t i = 0; i < sem.courses.size(); ++i)
 		sem.courses[i].displayInfo(outDev);
@@ -203,7 +203,7 @@ void addNewStudToCourse(Vector <SchoolYear>& yearlist, Course& course, std::istr
 }
 
 // 12. Remove student from course
-void removeStudFromCourse(Course& course, std::istream& inDev) {
+void removeStudFromCourse(Course& course, std::istream& inDev = std::cin) {
 	Student student;
 	std::string className;
 	Student* pStud;
@@ -224,7 +224,6 @@ void removeStudFromCourse(Course& course, std::istream& inDev) {
 		}
 	course.removeStudent(*pStud);
 }
-
 // 13. delete course in current semester 
 bool deleteCourse(Semester& semester, const std::string& courseID) {
 	bool found = false;
@@ -256,7 +255,7 @@ bool deleteCourse(Semester& semester, const std::string& courseID) {
 }
 
 // 14. view list of courses at current student
-void viewListOfCoursesOfStudent(const Student& student, std::ostream& outDev) {
+void viewListOfCoursesOfStudent(const Student& student, std::ostream& outDev = std::cout) {
 	outDev << "List of courses: ";
 	for (int i = 0; i < student.scoreboards.size(); i++)
 	{
@@ -267,14 +266,14 @@ void viewListOfCoursesOfStudent(const Student& student, std::ostream& outDev) {
 }
 
 // 15. view list of classes 
-void viewListOfClasses(const SchoolYear& schoolYear, std::ostream& outDev) {
+void viewListOfClasses(const SchoolYear& schoolYear, std::ostream& outDev = std::cout) {
 	outDev << "List of classes: " << std::endl;
 	for (int i = 0; i < schoolYear.classes.size(); i++)
 		outDev << i + 1 << ". " << schoolYear.classes[i].name << std::endl;
 }
 
 // 16. view list of students in a class
-void viewListOfStudentsInClass(const Class& curClass, std::ostream& outDev) {
+void viewListOfStudentsInClass(const Class& curClass, std::ostream& outDev = std::cout) {
 	outDev << "List of students in class " << curClass.name << ": " << std::endl;
 	for (int i = 0; i < curClass.students.size(); i++)
 	{
@@ -284,7 +283,7 @@ void viewListOfStudentsInClass(const Class& curClass, std::ostream& outDev) {
 }
 
 // 17. view list of course
-void viewListOfCoursesInSemester(const Semester& semester, std::ostream& outDev) {
+void viewListOfCoursesInSemester(const Semester& semester, std::ostream& outDev = std::cout) {
 	outDev << "List of course in this semester: " << std::endl;
 	outDev << "No  " << "CourseID   " << "ClassID   " << std::endl;
 	for (int i = 0; i < semester.courses.size(); i++)
@@ -295,7 +294,7 @@ void viewListOfCoursesInSemester(const Semester& semester, std::ostream& outDev)
 }
 
 // 18. view list of students in course
-void viewListOfStudentsInCourse(const Course& course, std::ostream& outDev) {
+void viewListOfStudentsInCourse(const Course& course, std::ostream& outDev = std::cout) {
 	outDev << "List of students in course " << course.ID << " - " << course.name << ": " << std::endl;
 	for (int i = 0; i < course.scoreboards.size(); i++)
 	{
