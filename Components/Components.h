@@ -87,7 +87,7 @@ void viewListOfClasses(const SchoolYear& schoolYear, std::ostream& outDev = std:
 void viewListOfStudentsInClass(const Class& curClass, std::ostream& outDev = std::cout);
 
 // 17. view list of course
-void viewListOfCoursesInSemester(const Semester& semester, std::ostream& outDev = std::cout);
+void viewListOfCoursesInSemester(Semester& semester, std::ostream& outDev = std::cout);
 
 // 18. view list of students in course
 void viewListOfStudentsInCourse(const Course& course, std::ostream& outDev = std::cout);

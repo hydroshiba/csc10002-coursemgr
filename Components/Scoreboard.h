@@ -2,7 +2,8 @@
 #define SCOREBOARD_H
 
 #include "Components.h"
-
+#include "Course.h"
+#include "Student.h"
 struct Scoreboard {
     float midterm, final, other, total;
     Course*  ptrCourse;
