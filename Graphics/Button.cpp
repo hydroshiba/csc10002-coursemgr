@@ -74,7 +74,7 @@ void Button::display(const Vector2 &mouse) const {
     else color = fill_color;
 
     DrawRectangleRec(fill_bound, color);
-    DrawText(label.text.c_str(), textpos.x, textpos.y, label.font_size,  label.color); 
+    DrawTextEx(label.font, label.text.c_str(), textpos, label.font_size, 2, label.color);
 }
 
 void Button::setX(float x) {

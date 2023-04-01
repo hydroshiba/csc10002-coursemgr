@@ -7,11 +7,11 @@
 
 namespace button_color {
 
-const Color fill = SKYBLUE;
+const Color fill = RAYWHITE;
 const Color border = GRAY;
 
-const Color hover = BLUE;
-const Color press = DARKBLUE;
+const Color hover = SKYBLUE;
+const Color press = BLUE;
 
 }
 
