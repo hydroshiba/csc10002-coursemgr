@@ -1,49 +1,133 @@
 #include "raylib.h"
 #include "Button.h"
 
-Button::Button(Vector2 pos, float width, float height, Color fill, Color border, Color hover, Color press) {
-    this->pos = pos;
+#include <iostream>
 
-    this->width = width;
-    this->height = height;
-    bounds = Rectangle{pos.x, pos.y, width, height};
+void Button::refreshText() {
+    label.font_size = 25;
 
-    this->fill = fill;
-    this->border = border;
-    this->hover = hover;
-    this->press = press;
+    // while(label.size().x < size.x && label.size().y < size.y) {
+    //     ++label.font_size;
+    // }
+
+    // --label.font_size;
+    textpos.x = fill_bound.x + (label.size().x) / 2;
+    textpos.y = fill_bound.y + (label.size().y) / 2;
+
+    //textpos = pos;
+}
+
+void Button::refreshBound() {
+    border_bound = Rectangle{pos.x, pos.y, size.x, size.y};
+    fill_bound = Rectangle{pos.x + wborder, pos.y + wborder, size.x - 2 * wborder, size.y - 2 * wborder};
+    refreshText();
+}
+
+Button::Button() {
+    pos = {0, 0};
+    size = {20, 10};
+    
+    label = "";
+
+    fill_color = button_color::fill;
+    border_color = button_color::border;
+    hover_color = button_color::hover;
+    press_color = button_color::press;
+
+    refreshBound();
+}
+
+Button::Button(float x, float y, float width, float height, std::string text, Color fill, Color hover, Color press, Color border) {
+	this->pos = {x, y};
+    this->size = {width, height};
+
+    refreshBound();
+
+    this->fill_color = fill;
+    this->hover_color = hover;
+    this->press_color = press;
+    this->border_color = border;
+
+    this->label = text;
+}
+
+Button::Button(Vector2 pos, Vector2 size, std::string text, Color fill, Color hover, Color press, Color border) {
+	this->pos = pos;
+    this->size = size;
+
+    refreshBound();
+
+    this->fill_color = fill;
+    this->hover_color = hover;
+    this->press_color = press;
+    this->border_color = border;
+
+    this->label = text;
 }
 
 void Button::display(const Vector2 &mouse) const {
-    DrawRectangle(pos.x, pos.y, width, height, border);
+    DrawRectangleRec(border_bound, border_color);
+    Color color;
 
-    if(hovering(mouse))
-        DrawRectangle(pos.x + wborder, pos.y + wborder, width - wborder * 2, height - wborder * 2, hover);
-    else if(pressed(mouse))
-        DrawRectangle(pos.x + wborder, pos.y + wborder, width - wborder * 2, height - wborder * 2, press);
-    else
-        DrawRectangle(pos.x + wborder, pos.y + wborder, width - wborder * 2, height - wborder * 2, fill);
+    if(hovering(mouse)) color = hover_color;
+    else if(pressed(mouse)) color = press_color;
+    else color = fill_color;
+
+    DrawRectangleRec(fill_bound, color);
+    DrawText(label.text.c_str(), textpos.x, textpos.y, label.font_size,  label.color); 
+}
+
+void Button::setX(float x) {
+    pos.x = x;
+    refreshBound();
+}
+
+void Button::setY(float y) {
+    pos.y = y;
+    refreshBound();
+}
+
+void Button::setWidth(float width) {
+    size.x = width;
+    refreshBound();
+}
+
+void Button::setHeight(float height) {
+    size.y = height;
+    refreshBound();
+}
+
+void Button::setPos(Vector2 pos) {
+    this->pos = pos;
+    refreshBound();
+}
+
+void Button::setSize(Vector2 size) {
+    this->size = size;
+    refreshBound();
 }
 
 void Button::centerX() {
-    pos.x = (GetScreenWidth() - width) / 2.0f;
+    pos.x = (GetScreenWidth() - size.x) / 2.0f;
+    refreshBound();
 }
 
 void Button::centerY() {
-    pos.y = (GetScreenHeight() - height) / 2.0f;
+    pos.y = (GetScreenHeight() - size.y) / 2.0f;
+    refreshBound();
 }
 
 bool Button::clicked(const Vector2 &mouse) const {
-    if(!CheckCollisionPointRec(mouse, bounds)) return false;
+    if(!CheckCollisionPointRec(mouse, border_bound)) return false;
     return IsMouseButtonReleased(MOUSE_BUTTON_LEFT);
 }
 
 bool Button::pressed(const Vector2 &mouse) const {
-    if(!CheckCollisionPointRec(mouse, bounds)) return false;
+    if(!CheckCollisionPointRec(mouse, border_bound)) return false;
     return IsMouseButtonDown(MOUSE_BUTTON_LEFT);
 }
 
 bool Button::hovering(const Vector2 &mouse) const {
-    if(!CheckCollisionPointRec(mouse, bounds)) return false;
+    if(!CheckCollisionPointRec(mouse, border_bound)) return false;
     return IsMouseButtonUp(MOUSE_BUTTON_LEFT);
 }

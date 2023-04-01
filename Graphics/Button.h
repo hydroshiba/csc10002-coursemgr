@@ -1,7 +1,9 @@
 #ifndef BUTTON_H
 #define BUTTON_H
 
+#include <string>
 #include "raylib.h"
+#include "Text.h"
 
 namespace button_color {
 
@@ -9,7 +11,7 @@ const Color fill = SKYBLUE;
 const Color border = GRAY;
 
 const Color hover = BLUE;
-const Color clicked = DARKBLUE;
+const Color press = DARKBLUE;
 
 }
 
@@ -17,23 +19,46 @@ const float wborder = 2;
 
 class Button {
 private:
-    Vector2 pos = Vector2{0, 0};
-    float width = 20, height = 10;
+    Vector2 pos;
+    Vector2 size;
+    Vector2 textpos;
+    
+    Rectangle border_bound, fill_bound, text_bound;
 
-    Color fill = button_color::fill, border = button_color::border;
-    Color hover = button_color::hover, press = button_color::clicked;
-
-    Rectangle bounds = Rectangle{pos.x, pos.y, width, height};
+    void refreshText();
+    void refreshBound();
 
 public:
-    Button() {}
-    Button(Vector2 pos, float width, float height,
+    Text label;
+    Color fill_color, border_color;
+    Color hover_color, press_color;
+
+    Button();
+
+    Button(float x, float y, float width, float height,
+            std::string text = "",
             Color fill = button_color::fill,
-            Color border = button_color::border,
             Color hover = button_color::hover,
-            Color press = button_color::clicked);
+            Color press = button_color::press,
+            Color border = button_color::border);
+
+    Button(Vector2 pos, Vector2 size,
+            std::string text = "",
+            Color fill = button_color::fill,
+            Color hover = button_color::hover,
+            Color press = button_color::press,
+            Color border = button_color::border);
 
     void display(const Vector2 &mouse) const;
+    
+    void setX(float x);
+    void setY(float y);
+    void setWidth(float width);
+    void setHeight(float height);
+
+    void setPos(Vector2 pos);
+    void setSize(Vector2 size);
+
     void centerX();
     void centerY();
 
