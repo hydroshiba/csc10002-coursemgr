@@ -121,17 +121,22 @@ void getStudentToCourse(Vector<SchoolYear> years, Course &course, const std::str
     getline(inF, ignore);
     std::string className;
     Class actClass;
-    Class *ptrClass;
+	Class* ptrClass = nullptr;
     Student student;
-    Student *ptrStudent;
+	Student* ptrStudent = nullptr;
     while (!inF.eof()){
         student.setInfoToCourseCSV(inF, className);
         actClass = {className};
         for (int i = 0; i<4; ++i)
-            if (ptrClass == years[i].classes.find(actClass))
-                break;
-        ptrStudent = ptrClass->students.find(student);
-        course.addStudent(*ptrStudent);
+			if (years[i].classes.find(actClass))
+			{
+				ptrClass = years[i].classes.find(actClass);
+				break;
+			} 
+		if (ptrClass != nullptr)
+			ptrStudent = ptrClass->students.find(student);
+		if (ptrStudent != nullptr)
+			course.addStudent(*ptrStudent);
     }
     inF.close();
 }
@@ -145,7 +150,7 @@ void viewCourses(Semester sem, std::ostream& outDev){
 
 // Update course informations
 void updateCourse(Course &course){
-    int input;
+    int option;
     do {
         std::cout << "Update course informations:\n";
         std::cout << "0. Back\n";
@@ -156,7 +161,14 @@ void updateCourse(Course &course){
         std::cout << "5. Change number of credits\n";
         std::cout << "6. Change max students enrolled\n";
         std::cout << "7. Change session\n";
-        switch (input){
+		std::cout << "Choose the following option 0-7: ";
+		std::cin >> option;
+		while (option < 0 || option > 7)
+		{
+			std::cout << "Invalid option, pls try again: ";
+			std::cin >> option;
+		}
+        switch (option){
             case 1: 
                 std::cout << "Enter Course ID: "; std::cin >> course.ID;
                 break;
@@ -189,9 +201,11 @@ void updateCourse(Course &course){
                     course.session = static_cast<Session>(ss);
                 }
                 break;
-            default: break;
+            default: 
+				std::cout << "Exit update course information!" << std::endl;
+				break;
         }
-    }while (input);
+    }while (option);
 }
 
 // Add student to course
@@ -199,8 +213,8 @@ void addNewStudToCourse(Vector <SchoolYear>& yearlist, Course &course, std::istr
     Student newStud;
     std::string className;
     Class myClass;
-    Class *ptrClass;
-    Student *ptrStudent;
+	Class* ptrClass = nullptr;
+	Student* ptrStudent = nullptr;
     if (&inDev == &std::cin)
         newStud.setInfoCourseConsole(className);
     else{
@@ -213,16 +227,20 @@ void addNewStudToCourse(Vector <SchoolYear>& yearlist, Course &course, std::istr
     }
     myClass = {className};
     for (int i = 0; i<4; ++i)
-        if (ptrClass == yearlist[i].classes.find(myClass))
-            break;
-    ptrStudent = ptrClass->students.find(newStud);
-    course.addStudent(*ptrStudent);
+		if (yearlist[i].classes.find(myClass)) {
+			ptrClass = yearlist[i].classes.find(myClass);
+			break;
+		}
+	if (ptrClass != nullptr)
+		ptrStudent = ptrClass->students.find(newStud);
+	if (ptrStudent != nullptr)
+		course.addStudent(*ptrStudent);
 }
 
 void removeStudFromCourse(Course &course, std::istream &inDev){
     Student student;
     std::string className;
-    Student *pStud;
+	Student* pStud = nullptr;
     if (&inDev == &std::cin)
         student.setInfoCourseConsole(className);
     else{
@@ -238,7 +256,8 @@ void removeStudFromCourse(Course &course, std::istream &inDev){
             pStud = course.scoreboards[i]->ptrStudent;
             break;
         }
-    course.removeStudent(*pStud);
+	if (pStud != nullptr)
+		course.removeStudent(*pStud);
 }
 
 // 13. delete course in current semester 
