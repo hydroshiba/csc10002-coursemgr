@@ -87,4 +87,8 @@ std::string getStudentFolderPath(const Student& student);
 
 std::string getInputStudentFilePath(const Student& student);
 
+std::string getAcademicYearFolderPath(const AcademicYear& academicYear);
+
+std::string getAcademicYearFilePath(const AcademicYear& academicYear);
+
 #endif

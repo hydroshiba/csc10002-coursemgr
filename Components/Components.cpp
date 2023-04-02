@@ -575,3 +575,13 @@ std::string getInputStudentFilePath(const Student& student) {
 	std::string studentFolderPath = getStudentFolderPath(student);
 	return studentFolderPath + student.ID + "_OutputScore.csv";
 }
+
+std::string getAcademicYearFolderPath(const AcademicYear& academicYear) {
+	return "Data\\AcademicYear\\" + std::to_string(academicYear.start) + "_" + std::to_string(academicYear.start + 1) + "\\";
+}
+
+std::string getAcademicYearFilePath(const AcademicYear& academicYear) {
+	std::string academicYearFolderPath = getAcademicYearFolderPath(academicYear);
+	return academicYearFolderPath + std::to_string(academicYear.start) + "_" + std::to_string(academicYear.start + 1) + ".txt";
+}
+
