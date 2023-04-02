@@ -91,4 +91,8 @@ std::string getAcademicYearFolderPath(const AcademicYear& academicYear);
 
 std::string getAcademicYearFilePath(const AcademicYear& academicYear);
 
+std::string getSemesterFolderPath(const Semester& semester);
+
+std::string getSemesterFilePath(const Semester& semester);
+
 #endif

@@ -585,3 +585,12 @@ std::string getAcademicYearFilePath(const AcademicYear& academicYear) {
 	return academicYearFolderPath + std::to_string(academicYear.start) + "_" + std::to_string(academicYear.start + 1) + ".txt";
 }
 
+std::string getSemesterFolderPath(const Semester& semester) {
+	std::string academicYearFolderPath = getAcademicYearFolderPath(*(semester.year));
+	return academicYearFolderPath + semester.semesterID + "\\";
+}
+
+std::string getSemesterFilePath(const Semester& semester) {
+	std::string semesterFolderPath = getSemesterFolderPath(semester);
+	return semesterFolderPath + semester.semesterID + ".txt";
+}
