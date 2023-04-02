@@ -126,7 +126,7 @@ void getStudentToCourse(Vector<SchoolYear> years, Course &course, const std::str
 	Student* ptrStudent = nullptr;
     while (!inF.eof()){
         student.setInfoToCourseCSV(inF, className);
-        actClass = {className};
+        actClass.name = className;
         for (int i = 0; i<4; ++i)
 			if (years[i].classes.find(actClass))
 			{
@@ -225,7 +225,7 @@ void addNewStudToCourse(Vector <SchoolYear>& yearlist, Course &course, std::istr
         newStud.setInfoToCourseCSV(ifs, className);
         ifs.close();
     }
-    myClass = {className};
+    myClass.name = className;
     for (int i = 0; i<4; ++i)
 		if (yearlist[i].classes.find(myClass)) {
 			ptrClass = yearlist[i].classes.find(myClass);
