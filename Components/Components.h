@@ -76,4 +76,11 @@ void viewScoreBoardOfStudent(Student& student);
 std::string getSchoolYearFolderPath(const SchoolYear& schoolyear);
 
 std::string getInputSchoolYearFilePath(const SchoolYear& schoolyear);
+
+std::string getClassFolderPath(const Class& CLASS);
+
+std::string getInputStudClassFilePath(const Class& CLASS);
+
+std::string getInputScoreClassFilePath(const Class& CLASS);
+
 #endif

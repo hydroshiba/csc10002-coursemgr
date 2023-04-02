@@ -6,6 +6,7 @@
 #include "SchoolYear.h"
 
 struct Class {
+    SchoolYear* ptrSchoolYear = nullptr;
     std::string name;
     Vector<Student> students;
 

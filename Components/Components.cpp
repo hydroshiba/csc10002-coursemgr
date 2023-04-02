@@ -550,3 +550,18 @@ std::string getInputSchoolYearFilePath(const SchoolYear& schoolyear) {
 	std::string schoolYearFolderPath = getSchoolYearFolderPath(schoolyear);
 	return schoolYearFolderPath + "HCMUS_" + std::to_string(schoolyear.start) + ".txt";
 }
+
+std::string getClassFolderPath(const Class& CLASS) {
+	std::string schoolYearFolderPath = getSchoolYearFolderPath(*(CLASS.ptrSchoolYear));
+	return schoolYearFolderPath + CLASS.name + "\\";
+}
+
+std::string getInputStudClassFilePath(const Class& CLASS) {
+	std::string classFolderPath = getClassFolderPath(CLASS);
+	return classFolderPath + CLASS.name + "_InputStud.csv";
+}
+
+std::string getInputScoreClassFilePath(const Class& CLASS) {
+	std::string classFolderPath = getClassFolderPath(CLASS);
+	return classFolderPath + CLASS.name + "_OutputScore.csv";
+}
