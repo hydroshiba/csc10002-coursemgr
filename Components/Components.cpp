@@ -565,3 +565,13 @@ std::string getInputScoreClassFilePath(const Class& CLASS) {
 	std::string classFolderPath = getClassFolderPath(CLASS);
 	return classFolderPath + CLASS.name + "_OutputScore.csv";
 }
+
+std::string getStudentFolderPath(const Student& student) {
+	std::string classFolderPath = getClassFolderPath(*(student.myClass));
+	return classFolderPath + "Students\\" + student.ID + "\\";
+}
+
+std::string getInputStudentFilePath(const Student& student) {
+	std::string studentFolderPath = getStudentFolderPath(student);
+	return studentFolderPath + student.ID + "_OutputScore.csv";
+}

@@ -83,4 +83,8 @@ std::string getInputStudClassFilePath(const Class& CLASS);
 
 std::string getInputScoreClassFilePath(const Class& CLASS);
 
+std::string getStudentFolderPath(const Student& student);
+
+std::string getInputStudentFilePath(const Student& student);
+
 #endif
