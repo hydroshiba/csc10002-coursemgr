@@ -540,3 +540,13 @@ void viewScoreBoardOfStudent(Student& student) {
 		std::cout << std::endl;
 	}
 }
+
+// Get file path in Data Folder
+std::string getSchoolYearFolderPath(const SchoolYear& schoolyear) {
+	return "Data\\SchoolYear\\HCMUS_" + std::to_string(schoolyear.start) + "\\";
+}
+
+std::string getInputSchoolYearFilePath(const SchoolYear& schoolyear) {
+	std::string schoolYearFolderPath = getSchoolYearFolderPath(schoolyear);
+	return schoolYearFolderPath + "HCMUS_" + std::to_string(schoolyear.start) + ".txt";
+}
