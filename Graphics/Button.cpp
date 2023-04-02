@@ -23,47 +23,32 @@ void Button::refreshBound() {
     refreshText();
 }
 
-Button::Button() {
-    pos = {0, 0};
-    size = {20, 10};
-    
-    label = "";
+Button::Button() :
+    pos({0, 0}),
+    size({20, 10}),
+    label(""),
+    fill_color(button_color::fill),
+    border_color(button_color::border),
+    hover_color(button_color::hover),
+    press_color(button_color::press) { refreshBound(); }
 
-    fill_color = button_color::fill;
-    border_color = button_color::border;
-    hover_color = button_color::hover;
-    press_color = button_color::press;
+Button::Button(float x, float y, float width, float height, std::string text, Color fill, Color hover, Color press, Color border) :
+    pos({x, y}),
+    size({width, height}),
+    label(text),
+    fill_color(fill),
+    border_color(border),
+    hover_color(hover),
+    press_color(press) { refreshBound(); }
 
-    refreshBound();
-}
-
-Button::Button(float x, float y, float width, float height, std::string text, Color fill, Color hover, Color press, Color border) {
-	this->pos = {x, y};
-    this->size = {width, height};
-
-    refreshBound();
-
-    this->fill_color = fill;
-    this->hover_color = hover;
-    this->press_color = press;
-    this->border_color = border;
-
-    this->label = text;
-}
-
-Button::Button(Vector2 pos, Vector2 size, std::string text, Color fill, Color hover, Color press, Color border) {
-	this->pos = pos;
-    this->size = size;
-
-    refreshBound();
-
-    this->fill_color = fill;
-    this->hover_color = hover;
-    this->press_color = press;
-    this->border_color = border;
-
-    this->label = text;
-}
+Button::Button(Vector2 pos, Vector2 size, std::string text, Color fill, Color hover, Color press, Color border) :
+    pos(pos),
+    size(size),
+    label(text),
+    fill_color(fill),
+    border_color(border),
+    hover_color(hover),
+    press_color(press) { refreshBound(); }
 
 void Button::display(const Vector2 &mouse) const {
     DrawRectangleRec(border_bound, border_color);

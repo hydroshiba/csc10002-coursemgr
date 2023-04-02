@@ -14,8 +14,7 @@ Text::Text(std::string text, int fsize, Font font, Color color) {
 	this->color = color;
 }
 
-void Text::operator=(std::string text)
-{
+void Text::operator=(std::string text) {
 	this->text = text;
 }
 
