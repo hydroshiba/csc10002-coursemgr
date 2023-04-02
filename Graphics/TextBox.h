@@ -7,10 +7,11 @@ class TextBox {
 private:
     Text content;
     Rectangle box;
-    Color color;
+    Color color_text;
+    Color color_box;
 public:
     TextBox();
-    TextBox(Text content, Rectangle box, Color color);
+    TextBox(Text content, Rectangle box, Color color_text = RED, Color color_box = WHITE);
     void display();
 };
 
