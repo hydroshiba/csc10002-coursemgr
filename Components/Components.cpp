@@ -666,5 +666,24 @@ void downloadAcademicYearFolder(AcademicYear& academicYear) {
 	ofs << academicYear.semesters.size() << std::endl;
 	for (int i = 0; i < academicYear.semesters.size(); i++)
 		ofs << academicYear.semesters[i].semesterID << std::endl;
+	for (int i = 0; i < academicYear.semesters.size(); i++)
+		downloadSemesterFolder(academicYear.semesters[i]);
+	ofs.close();
+}
+
+void downloadSemesterFolder(Semester& semester) {
+	std::string semesterFilePath = getSemesterFilePath(semester);
+	std::ofstream ofs(semesterFilePath);
+	if (ofs.is_open() == false)
+	{
+		std::cout << "Can't open " << semesterFilePath << std::endl;
+		return;
+	}
+	ofs << semester.semesterID << std::endl;
+	ofs << semester.startDate.day << "/" << semester.startDate.month << "/" << semester.startDate.year << std::endl;
+	ofs << semester.endDate.day << "/" << semester.endDate.month << "/" << semester.endDate.year << std::endl;
+	ofs << semester.courses.size() << std::endl;
+	for (int i = 0; i < semester.courses.size(); i++)
+		ofs << semester.courses[i].ID << std::endl;
 	ofs.close();
 }
