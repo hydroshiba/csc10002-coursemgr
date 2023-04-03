@@ -40,11 +40,9 @@ void Application::display() {
     ClearBackground(RAYWHITE);
     DrawText("Congrats! You created your first window!", 190, 200, 20, RED);
 
-    Button butt({300, 300}, {100, 50}, "click me!");
+    Button butt({300, 300}, {150, 75}, "click me!");
     butt.centerX();
     //butt.centerY();
-
-    std::cout << butt.label.size().x << ' ' << butt.label.size().y << std::endl;
 
     butt.display(mousePoint);
 
