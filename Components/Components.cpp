@@ -594,3 +594,13 @@ std::string getSemesterFilePath(const Semester& semester) {
 	std::string semesterFolderPath = getSemesterFolderPath(semester);
 	return semesterFolderPath + semester.semesterID + ".txt";
 }
+
+std::string getCourseFolderPath(const Course& course) {
+	std::string semesterFolderPath = getSemesterFolderPath(*(course.ptrSemester));
+	return semesterFolderPath + course.ID + "\\";
+}
+
+std::string getCourseFilePath(const Course& course) {
+	std::string courseFolderPath = getCourseFolderPath(course);
+	return courseFolderPath + course.ID + ".txt";
+}

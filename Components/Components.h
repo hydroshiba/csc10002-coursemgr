@@ -95,4 +95,7 @@ std::string getSemesterFolderPath(const Semester& semester);
 
 std::string getSemesterFilePath(const Semester& semester);
 
+std::string getCourseFolderPath(const Course& course);
+
+std::string getCourseFilePath(const Course& course);
 #endif
