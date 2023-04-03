@@ -637,3 +637,17 @@ std::string getOutputScoreStudCourseFilePath(const Course& course) {
 	std::string courseFolderPath = getCourseFolderPath(course);
 	return courseFolderPath + course.ID + "_OutputScore.csv";
 }
+
+void downloadListAcademicYearFolder(Vector<AcademicYear>& academicYears) {
+	std::string listAcademicYearFilePath = getListAcademicYearFilePath();
+	std::ofstream ofs(listAcademicYearFilePath);
+	if (ofs.is_open() == false)
+	{
+		std::cout << "Can't open " << listAcademicYearFilePath << std::endl;
+		return;
+	}
+	ofs << academicYears.size() << std::endl;
+	for (int i = 0; i < academicYears.size(); i++)
+		ofs << academicYears[i].start << std::endl;
+	ofs.close();
+}
