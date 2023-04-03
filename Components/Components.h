@@ -121,4 +121,5 @@ void downloadSemesterFolder(Semester& semester);
 
 void downloadCourseFolder(Course& course);
 
+void dowdloadScoreboardFile(Course& course);
 #endif

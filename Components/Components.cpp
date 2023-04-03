@@ -687,13 +687,18 @@ void downloadSemesterFolder(Semester& semester) {
 	ofs << semester.courses.size() << std::endl;
 	for (int i = 0; i < semester.courses.size(); i++)
 		ofs << semester.courses[i].ID << std::endl;
+	for (int i = 0; i < semester.courses.size(); i++)
+	{
+		downloadCourseFolder(semester.courses[i]);
+		dowdloadScoreboardFile(semester.courses[i]);
+	}
 	ofs.close();
 }
 
 void downloadCourseFolder(Course& course) {
 	std::string courseFilePath = getCourseFilePath(course);
 	std::ofstream ofs(courseFilePath);
-	if (ofs.is_open() == false)
+	if (!ofs.is_open())
 	{
 		std::cout << "Can't open " << courseFilePath << std::endl;
 		return;
@@ -709,3 +714,14 @@ void downloadCourseFolder(Course& course) {
 	ofs.close();
 }
 
+void dowdloadScoreboardFile(Course& course) {
+	std::string scoreBoardFilePath = getOutputScoreStudCourseFilePath(course);
+	std::ofstream ofs(scoreBoardFilePath);
+	if (!ofs.is_open())
+	{
+		std::cout << "Can't open " << scoreBoardFilePath << std::endl;
+		return;
+	}
+	course.displayScoreBoardFile(ofs);
+	ofs.close();
+}
