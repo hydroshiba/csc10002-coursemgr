@@ -118,4 +118,7 @@ void downloadListAcademicYearFolder(Vector<AcademicYear>& academicYears);
 void downloadAcademicYearFolder(AcademicYear& academicYear);
 
 void downloadSemesterFolder(Semester& semester);
+
+void downloadCourseFolder(Course& course);
+
 #endif

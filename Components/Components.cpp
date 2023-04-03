@@ -689,3 +689,23 @@ void downloadSemesterFolder(Semester& semester) {
 		ofs << semester.courses[i].ID << std::endl;
 	ofs.close();
 }
+
+void downloadCourseFolder(Course& course) {
+	std::string courseFilePath = getCourseFilePath(course);
+	std::ofstream ofs(courseFilePath);
+	if (ofs.is_open() == false)
+	{
+		std::cout << "Can't open " << courseFilePath << std::endl;
+		return;
+	}
+	ofs << course.ID << std::endl;
+	ofs << course.classID << std::endl;
+	ofs << course.name << std::endl;
+	ofs << course.teacher << std::endl;
+	ofs << course.credits << std::endl;
+	ofs << course.maxEnroll << std::endl;
+	ofs << course.weekday << std::endl;
+	ofs << course.session << std::endl;
+	ofs.close();
+}
+
