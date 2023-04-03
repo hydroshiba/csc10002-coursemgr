@@ -115,4 +115,5 @@ std::string getOutputScoreStudCourseFilePath(const Course& course);
 
 void downloadListAcademicYearFolder(Vector<AcademicYear>& academicYears);
 
+void downloadAcademicYearFolder(AcademicYear& academicYear);
 #endif
