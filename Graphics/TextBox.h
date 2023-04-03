@@ -5,13 +5,12 @@
 #include <string>
 class TextBox {
 private:
+    Vector2 pos;
     Text content;
-    Rectangle box;
-    Color color_text;
     Color color_box;
 public:
     TextBox();
-    TextBox(Text content, Rectangle box, Color color_text = RED, Color color_box = WHITE);
+    TextBox(Vector2 pos, Text content, Color color_box = BLACK);
     void display();
 };
 

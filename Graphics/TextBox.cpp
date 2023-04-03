@@ -1,17 +1,18 @@
 #include "raylib.h"
 #include "TextBox.h"
 #include <string>
-
+#include <cstring>
+#include <iostream>
 TextBox::TextBox() {}
 
-TextBox::TextBox(Text content, Rectangle box, Color color_text, Color color_box)
-    : content(content), 
-      box(box), 
-      color_text(color_text), 
+TextBox::TextBox(Vector2 pos, Text content, Color color_box) 
+    : pos(pos),
+      content(content),
       color_box(color_box) {}
 
 void TextBox::display() {
-    DrawRectangleRec(box, color_box);
-    DrawTextEx(content.font, content.text.c_str(), Vector2{box.x, box.y}, content.font_size, 0.5, color_text); 
-    //void DrawTextEx(Font font, const char *text, Vector2 position, float fontSize, float spacing, Color tint);
+    float width = MeasureText(content.text.c_str(), content.font_size);
+    Rectangle bounds{pos.x, pos.y, width, width / 5.9};
+    DrawRectangleRec(bounds, color_box);
+    DrawTextEx(content.font, content.text.c_str(), pos, content.font_size, content.space, content.color);
 }
