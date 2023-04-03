@@ -617,3 +617,23 @@ std::string getCourseFilePath(const Course& course) {
 	std::string courseFolderPath = getCourseFolderPath(course);
 	return courseFolderPath + course.ID + ".txt";
 }
+
+std::string getInputListStudCourseFilePath(const Course& course) {
+	std::string courseFolderPath = getCourseFolderPath(course);
+	return courseFolderPath + course.ID + "_InputStud.csv";
+}
+
+std::string getOutputListStudCourseFilePath(const Course& course) {
+	std::string courseFolderPath = getCourseFolderPath(course);
+	return courseFolderPath + course.ID + "_OutputStud.csv";
+}
+
+std::string getInputScoreCourseFilePath(const Course& course) {
+	std::string courseFolderPath = getCourseFolderPath(course);
+	return courseFolderPath + course.ID + "_InputScore.csv";
+}
+
+std::string getOutputScoreStudCourseFilePath(const Course& course) {
+	std::string courseFolderPath = getCourseFolderPath(course);
+	return courseFolderPath + course.ID + "_OutputScore.csv";
+}
