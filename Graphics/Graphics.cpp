@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include "raylib.h"
+
 #include "Graphics.h"
 #include "Text.h"
 #include "TextBox.h"
@@ -33,15 +34,14 @@ void Application::tick() {
     EndDrawing();
 }
 
+Font lmao;
+
 void Application::display() {
     ClearBackground(RAYWHITE);
     DrawText("Congrats! You created your first window!", 190, 200, 20, RED);
-    Text content("welcome to raylib", 40, GetFontDefault());
-    TextBox newBox(Vector2{100, 300}, content);
-    newBox.display();
 
-    Button butt({300, 300}, {100, 50}, "click");
-    //butt.centerX();
+    Button butt({300, 300}, {100, 50}, "click me");
+    butt.centerX();
     //butt.centerY();
 
     butt.display(mousePoint);
