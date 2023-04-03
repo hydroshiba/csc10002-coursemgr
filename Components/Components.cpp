@@ -648,9 +648,10 @@ void downloadListAcademicYearFolder(Vector<AcademicYear>& academicYears) {
 	}
 	ofs << academicYears.size() << std::endl;
 	for (int i = 0; i < academicYears.size(); i++)
+	{
 		ofs << academicYears[i].start << std::endl;
-	for (int i = 0; i < academicYears.size(); i++)
 		downloadAcademicYearFolder(academicYears[i]);
+	}
 	ofs.close();
 }
 
@@ -665,9 +666,10 @@ void downloadAcademicYearFolder(AcademicYear& academicYear) {
 	ofs << academicYear.start << std::endl;
 	ofs << academicYear.semesters.size() << std::endl;
 	for (int i = 0; i < academicYear.semesters.size(); i++)
+	{
 		ofs << academicYear.semesters[i].semesterID << std::endl;
-	for (int i = 0; i < academicYear.semesters.size(); i++)
 		downloadSemesterFolder(academicYear.semesters[i]);
+	}
 	ofs.close();
 }
 
