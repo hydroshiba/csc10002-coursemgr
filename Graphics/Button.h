@@ -2,19 +2,9 @@
 #define BUTTON_H
 
 #include "raylib.h"
+
+#include "Constants.h"
 #include "Text.h"
-
-namespace button_color {
-
-const Color fill = RAYWHITE;
-const Color border = GRAY;
-
-const Color hover = SKYBLUE;
-const Color press = BLUE;
-
-}
-
-const float wborder = 2;
 
 class Button {
 private:
@@ -36,17 +26,17 @@ public:
 
     Button(float x, float y, float width, float height,
             std::string text = "",
-            Color fill = button_color::fill,
-            Color hover = button_color::hover,
-            Color press = button_color::press,
-            Color border = button_color::border);
+            Color fill = button_const::fill_color,
+            Color hover = button_const::hover_color,
+            Color press = button_const::press_color,
+            Color border = button_const::border_color);
 
     Button(Vector2 pos, Vector2 size,
             std::string text = "",
-            Color fill = button_color::fill,
-            Color hover = button_color::hover,
-            Color press = button_color::press,
-            Color border = button_color::border);
+            Color fill = button_const::fill_color,
+            Color hover = button_const::hover_color,
+            Color press = button_const::press_color,
+            Color border = button_const::border_color);
 
     void display(const Vector2 &mouse) const;
     

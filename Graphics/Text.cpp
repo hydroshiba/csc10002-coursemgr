@@ -1,25 +1,38 @@
 #include "raylib.h"
 #include "Text.h"
 
-Text::Text() {
-	text = "";
-	font = text_const::regular;
-	space = text_const::space;
-	color = text_const::color;
-}
+#include <cassert>
+#include <iostream>
 
-Text::Text(std::string text, int fsize, Font font, float space, Color color) {
-	this->text = text;
-	this->font_size = fsize;
-	this->font = font;
-	this->space = space;
-	this->color = color;
-}
+Text::Text() : 
+	text(""),
+	font_size(text_const::size),
+	font(text_const::regular),
+	space(text_const::space),
+	color(text_const::color) {}
+
+Text::Text(std::string text, float fsize, Font font, float space, Color color) : 
+	text(text),
+	font_size(fsize),
+	font(font),
+	space(space),
+	color(color) {}
+
+Text::Text(const char* text, float fsize, Font font, float space, Color color) :
+	text(text),
+	font_size(fsize),
+	font(font),
+	space(space),
+	color(color) {}
 
 void Text::operator=(std::string text) {
 	this->text = text;
 }
 
 Vector2 Text::size() {
-	return MeasureTextEx(font, text.c_str(), font_size, 0);
+	Font newFont = GetFontDefault();
+	font = newFont;
+	
+	Vector2 box = MeasureTextEx(font, text.c_str(), font_size, 2);
+	return box;
 }
