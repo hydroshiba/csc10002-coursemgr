@@ -6,8 +6,8 @@
 
 namespace text_const {
 
-const char font_path[] = "Graphics/Resources/GooglSans.ttf";
-const char bold_path[] = "Graphics/Resources/GooglSans.ttf";
+const char font_path[] = "Graphics/Resources/GoogleSans.ttf";
+const char bold_path[] = "Graphics/Resources/GoogleSans.ttf";
 
 const float space = 0;
 const float size = 24;
