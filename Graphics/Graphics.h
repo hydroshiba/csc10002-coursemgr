@@ -6,8 +6,8 @@
 
 #include "Button.h"
 
-const int defWidth = 800;
-const int defHeight = 450;
+const int defWidth = 1280;
+const int defHeight = 720;
 const int defFPS = 60;
 
 const std::string defTitle = "Course Management System";

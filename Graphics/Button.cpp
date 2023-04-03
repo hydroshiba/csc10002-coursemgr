@@ -4,17 +4,15 @@
 #include <iostream>
 
 void Button::refreshText() {
-    label.font_size = 25;
+    // label.font_size = 25;
 
     // while(label.size().x < size.x && label.size().y < size.y) {
     //     ++label.font_size;
     // }
 
     // --label.font_size;
-    textpos.x = fill_bound.x + (label.size().x) / 2;
-    textpos.y = fill_bound.y + (label.size().y) / 2;
-
-    //textpos = pos;
+    textpos.x = fill_bound.x + (fill_bound.width - (label.size().x)) / 2;
+    textpos.y = fill_bound.y + (fill_bound.height - (label.size().y)) / 2;
 }
 
 void Button::refreshBound() {
@@ -65,7 +63,7 @@ void Button::display(const Vector2 &mouse) const {
     else color = fill_color;
 
     DrawRectangleRec(fill_bound, color);
-    DrawTextEx(label.font, label.text.c_str(), textpos, label.font_size, 2, label.color);
+    DrawTextEx(label.font, label.text.c_str(), textpos, label.font_size, label.space, label.color);
 }
 
 void Button::setX(float x) {

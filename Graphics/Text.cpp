@@ -7,7 +7,7 @@
 Text::Text() : 
 	text(""),
 	font_size(text_const::size),
-	font(text_const::regular),
+	font(LoadFontEx(text_const::font_path, 96, 0, 0)),
 	space(text_const::space),
 	color(text_const::color) {}
 
@@ -30,9 +30,5 @@ void Text::operator=(std::string text) {
 }
 
 Vector2 Text::size() {
-	Font newFont = GetFontDefault();
-	font = newFont;
-	
-	Vector2 box = MeasureTextEx(font, text.c_str(), font_size, 2);
-	return box;
+	return MeasureTextEx(font, text.c_str(), font_size, space);
 }
