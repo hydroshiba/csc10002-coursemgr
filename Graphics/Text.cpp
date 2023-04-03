@@ -26,6 +26,10 @@ void Text::operator=(std::string text) {
 	this->text = text;
 }
 
+void Text::operator=(const char *text) {
+	this->text = text;
+}
+
 Vector2 Text::size() {
 	return MeasureTextEx(font, text.c_str(), font_size, space);
 }

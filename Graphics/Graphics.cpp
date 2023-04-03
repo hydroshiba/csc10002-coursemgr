@@ -7,6 +7,8 @@
 #include "Text.h"
 #include "TextBox.h"
 
+#include "Menu.h"
+
 Application::Application(int width, int height, int fps, std::string title) {
     assert(GetWindowHandle() == nullptr);
     
@@ -34,15 +36,12 @@ void Application::tick() {
     EndDrawing();
 }
 
-Font lmao;
-
 void Application::display() {
     ClearBackground(RAYWHITE);
     DrawText("Congrats! You created your first window!", 190, 200, 20, RED);
 
     Button butt({300, 300}, {150, 75}, "click me!");
     butt.centerX();
-    //butt.centerY();
 
     butt.display(mousePoint);
 

@@ -19,6 +19,7 @@ struct Text {
 	Text(std::string text, float fsize = text_const::size, Font font = LoadFontEx(text_const::font_path, 256, 0, 0), float space = text_const::space, Color color = text_const::color);
 
 	void operator=(std::string text);
+	void operator=(const char* text);
 	Vector2 size();
 };
 
