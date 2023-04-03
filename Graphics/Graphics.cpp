@@ -36,7 +36,7 @@ void Application::tick() {
 void Application::display() {
     ClearBackground(RAYWHITE);
     DrawText("Congrats! You created your first window!", 190, 200, 20, RED);
-    Text content("fuck raylib imma jump from the roof", 21);
+    Text content("welcome to raylib", 40);
     TextBox newBox(Vector2{100, 300}, content);
     newBox.display();
 }
