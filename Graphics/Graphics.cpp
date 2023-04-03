@@ -52,8 +52,6 @@ void Application::display() {
         std::cout <<  "CLICKED!" << std::endl;
         std::cout << mousePoint.x << ' ' << mousePoint.y << std::endl;
     }
-
-    DrawFPS(0, 0);
 }
 
 void Application::update() {
