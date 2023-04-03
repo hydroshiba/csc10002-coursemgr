@@ -73,6 +73,10 @@ void viewScoreboardOfClass(Class& curClass, const Semester& curSemester);
 void viewScoreBoardOfStudent(Student& student);
 
 // Get file path in Data Folder
+std::string getListSchoolYearFilePath();
+
+std::string getListAcademicYearFilePath();
+
 std::string getSchoolYearFolderPath(const SchoolYear& schoolyear);
 
 std::string getInputSchoolYearFilePath(const SchoolYear& schoolyear);

@@ -542,6 +542,14 @@ void viewScoreBoardOfStudent(Student& student) {
 }
 
 // Get file path in Data Folder
+std::string getListSchoolYearFilePath() {
+	return "Data\\SchoolYear\\ListSchoolYear.txt";
+}
+
+std::string getListAcademicYearFilePath() {
+	return "Data\\AcademicYear\\ListAcademicYear.txt";
+}
+
 std::string getSchoolYearFolderPath(const SchoolYear& schoolyear) {
 	return "Data\\SchoolYear\\HCMUS_" + std::to_string(schoolyear.start) + "\\";
 }
@@ -604,3 +612,5 @@ std::string getCourseFilePath(const Course& course) {
 	std::string courseFolderPath = getCourseFolderPath(course);
 	return courseFolderPath + course.ID + ".txt";
 }
+
+
