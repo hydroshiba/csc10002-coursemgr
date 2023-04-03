@@ -4,13 +4,13 @@
 #include <iostream>
 
 void Button::refreshText() {
-    // label.font_size = 25;
+    label.font_size = 0;
 
-    // while(label.size().x < size.x && label.size().y < size.y) {
-    //     ++label.font_size;
-    // }
+    while(label.size().x * 3 < size.x * 2 && label.size().y * 3 < size.y * 2) {
+        ++label.font_size;
+    }
 
-    // --label.font_size;
+    --label.font_size;
     textpos.x = fill_bound.x + (fill_bound.width - (label.size().x)) / 2;
     textpos.y = fill_bound.y + (fill_bound.height - (label.size().y)) / 2;
 }
