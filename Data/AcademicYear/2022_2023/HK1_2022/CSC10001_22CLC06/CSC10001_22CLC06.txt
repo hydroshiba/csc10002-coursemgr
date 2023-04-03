@@ -6,4 +6,3 @@ Le Ngoc Thanh
 50
 MON
 7:30
-CSC10001_22CLC06_ExportScore.csv
