@@ -39,6 +39,19 @@ void Application::display() {
     Text content("welcome to raylib", 40, GetFontDefault());
     TextBox newBox(Vector2{100, 300}, content);
     newBox.display();
+
+    Button butt({300, 300}, {100, 50}, "click");
+    //butt.centerX();
+    //butt.centerY();
+
+    butt.display(mousePoint);
+
+    if(butt.clicked(mousePoint)) {
+        std::cout <<  "CLICKED!" << std::endl;
+        std::cout << mousePoint.x << ' ' << mousePoint.y << std::endl;
+    }
+
+    DrawFPS(0, 0);
 }
 
 void Application::update() {

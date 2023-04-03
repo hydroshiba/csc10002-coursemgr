@@ -19,18 +19,24 @@ void Button::refreshText() {
 
 void Button::refreshBound() {
     border_bound = Rectangle{pos.x, pos.y, size.x, size.y};
-    fill_bound = Rectangle{pos.x + wborder, pos.y + wborder, size.x - 2 * wborder, size.y - 2 * wborder};
+    
+    fill_bound.x = pos.x + button_const::border_width;
+    fill_bound.y = pos.y + button_const::border_width;
+    
+    fill_bound.width = size.x - 2 * button_const::border_width;
+    fill_bound.height = size.y - 2 * button_const::border_width;
+
     refreshText();
 }
 
 Button::Button() :
     pos({0, 0}),
-    size({20, 10}),
+    size({button_const::width, button_const::height}),
     label(""),
-    fill_color(button_color::fill),
-    border_color(button_color::border),
-    hover_color(button_color::hover),
-    press_color(button_color::press) { refreshBound(); }
+    fill_color(button_const::fill_color),
+    hover_color(button_const::hover_color),
+    press_color(button_const::press_color),
+    border_color(button_const::border_color) { refreshBound(); }
 
 Button::Button(float x, float y, float width, float height, std::string text, Color fill, Color hover, Color press, Color border) :
     pos({x, y}),
