@@ -1,9 +1,6 @@
 #include "raylib.h"
 #include "Text.h"
 
-#include <cassert>
-#include <iostream>
-
 Text::Text() : 
 	text(""),
 	font_size(text_const::size),
