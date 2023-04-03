@@ -579,9 +579,14 @@ std::string getStudentFolderPath(const Student& student) {
 	return classFolderPath + "Students\\" + student.ID + "\\";
 }
 
-std::string getInputStudentFilePath(const Student& student) {
+std::string getOutputScoreStudentFilePath(const Student& student) {
 	std::string studentFolderPath = getStudentFolderPath(student);
 	return studentFolderPath + student.ID + "_OutputScore.csv";
+}
+
+std::string getInputStandardIn4StudentFilePath(const Student& student) {
+	std::string studentFolderPath = getStudentFolderPath(student);
+	return studentFolderPath + student.ID + "_OutputStdIn4.csv";
 }
 
 std::string getAcademicYearFolderPath(const AcademicYear& academicYear) {
@@ -612,5 +617,3 @@ std::string getCourseFilePath(const Course& course) {
 	std::string courseFolderPath = getCourseFolderPath(course);
 	return courseFolderPath + course.ID + ".txt";
 }
-
-

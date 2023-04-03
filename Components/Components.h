@@ -91,6 +91,8 @@ std::string getStudentFolderPath(const Student& student);
 
 std::string getInputStudentFilePath(const Student& student);
 
+std::string getInputStandardIn4StudentFilePath(const Student& student);
+
 std::string getAcademicYearFolderPath(const AcademicYear& academicYear);
 
 std::string getAcademicYearFilePath(const AcademicYear& academicYear);
@@ -102,4 +104,12 @@ std::string getSemesterFilePath(const Semester& semester);
 std::string getCourseFolderPath(const Course& course);
 
 std::string getCourseFilePath(const Course& course);
+
+std::string getInputListStudCourseFilePath(const Course& course);
+
+std::string getOutputListStudCourseFilePath(const Course& course);
+
+std::string getInputScoreCourseFilePath(const Course& course);
+
+std::string getOutputScoreStudCourseFilePath(const Course& course);
 #endif
