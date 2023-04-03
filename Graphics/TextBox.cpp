@@ -11,8 +11,8 @@ TextBox::TextBox(Vector2 pos, Text content, Color color_box)
       color_box(color_box) {}
 
 void TextBox::display() {
-    float width = MeasureText(content.text.c_str(), content.font_size);
-    Rectangle bounds{pos.x, pos.y, width, width / 5.9};
+    Vector2 size = MeasureTextEx(content.font, content.text.c_str(), content.font_size, content.space);
+    Rectangle bounds{pos.x - 2, pos.y - 2, size.x + 4, size.y + 4};
     DrawRectangleRec(bounds, color_box);
     DrawTextEx(content.font, content.text.c_str(), pos, content.font_size, content.space, content.color);
 }
