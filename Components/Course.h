@@ -3,6 +3,7 @@
 
 #include "Components.h"
 
+#include "Class.h"
 #include "Scoreboard.h"
 #include "Student.h"
 #include "Semester.h"

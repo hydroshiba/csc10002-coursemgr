@@ -14,7 +14,7 @@ struct Student : User {
     Date birth;
     std::string socialID;
 
-    Class* myClass = nullptr;
+    Class* myClass;
     Vector<Scoreboard*> scoreboards;
 
     Scoreboard* getScoreboard(Course& course);

@@ -61,6 +61,7 @@ void Course::displayInfoFile(std::ostream& ofs) {
     ofs << "Number of credits," << credits << std::endl;
     ofs << "Weekday," << weekday << std::endl;
     ofs << "Session," << session << std::endl;
+    ofs << "Students," << scoreboards.size() << std::endl;
 }
 
 void Course::importScoreBoards(std::ifstream& ifs) {
@@ -97,11 +98,11 @@ void Course::displayScoreBoards(std::ostream& outDev) {
 
 void Course::displayScoreBoardFile(std::ostream& outDev) {
     displayInfoFile(outDev);
-    outDev << "No," << "ID," << "Fullname," << "Midterm," << "Final," << "Other," << "Total";
-    outDev << std::endl;
+    outDev << "No,ID,Fullname,Class,Midterm,Final,Other,Total" << std::endl;
     for (int i = 0; i < scoreboards.size(); i++)
     {
         outDev << i + 1 << "," << scoreboards[i]->ptrStudent->ID << "," << scoreboards[i]->ptrStudent->name.get() << ",";
+        outDev << scoreboards[i]->ptrStudent->myClass->name << ",";
         outDev << scoreboards[i]->midterm << "," << scoreboards[i]->final << "," << scoreboards[i]->other << ",";
         outDev << scoreboards[i]->total << std::endl;
     }
