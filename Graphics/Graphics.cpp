@@ -56,8 +56,8 @@ void Application::render() {
         std::cout << mousePoint.x << ' ' << mousePoint.y << std::endl;
     }
     
-    // InputBox example({400, 200}, 55);
-    // example.draw();
+    InputBox example({400, 200}, 55);
+    example.draw();
 }
 
 void Application::update() {

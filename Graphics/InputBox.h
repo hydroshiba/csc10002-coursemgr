@@ -19,7 +19,6 @@ public:
     InputBox();
     InputBox(Vector2 pos, float sizeOfBox = text_const::size);
 
-    void refresh();
     void draw();
 };
 

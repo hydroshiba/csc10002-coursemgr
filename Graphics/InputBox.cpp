@@ -12,27 +12,6 @@ InputBox::InputBox(Vector2 pos, float sizeOfBox):
         inputBox = {pos.x, pos.y, dimension.x, dimension.y};
     }
 
-void InputBox::refresh() {
-    // if (CheckCollisionPointRec(GetMousePosition(), inputBox)) mouseOnText = true;
-    // else mouseOnText = false;
-    // if (mouseOnText) {
-    //     SetMouseCursor(MOUSE_CURSOR_IBEAM);
-    //     int key = GetCharPressed();
-    //     while (key > 0) {
-    //         content.text.push_back((char)key);
-    //         key = GetCharPressed();
-    //     }
-    //     if (IsKeyPressed(KEY_BACKSPACE)) {
-    //         content.text.pop_back();
-    //     }
-    // }
-    // else {
-    //     SetMouseCursor(MOUSE_CURSOR_DEFAULT);
-    // }
-    // if (mouseOnText) framesCounter++;
-    // else framesCounter = 0;
-}
-
 void InputBox::draw() {
     if (CheckCollisionPointRec(GetMousePosition(), inputBox)) mouseOnText = true;
     else mouseOnText = false;
