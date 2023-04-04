@@ -201,7 +201,7 @@ void getStudentToCourse(Vector<SchoolYear> years, Course &course, const std::str
     while (!inF.eof()){
         student.setInfoToCourseCSV(inF, className);
         actClass.name = className;
-        for (int i = 0; i<4; ++i)
+        for (int i = 0; i<years.size(); ++i)
 			if (years[i].classes.find(actClass))
 			{
 				ptrClass = years[i].classes.find(actClass);
