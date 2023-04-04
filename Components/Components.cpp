@@ -744,7 +744,7 @@ void downloadSchoolYearFolder(SchoolYear &schoolYear){
 	ofs.close();
 }
 
-void downloadStudentFolder(Student student){
+void downloadStudentFolder(Student& student){
 	std::string studentDir = getInputStandardIn4StudentFilePath(student);
 	std::ofstream ofs(studentDir);
 	if (!ofs.is_open()){

@@ -130,6 +130,8 @@ void downloadListSchoolYearFolder(Vector <SchoolYear>& schoolYears);
 
 void downloadSchoolYearFolder(SchoolYear &schoolYear);
 
+void downloadStudentFolder(Student& student);
+
 void downloadListAcademicYearFolder(Vector<AcademicYear>& academicYears);
 
 void downloadAcademicYearFolder(AcademicYear& academicYear);
