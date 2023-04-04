@@ -38,10 +38,10 @@ void Application::tick() {
 
 void Application::display() {
     ClearBackground(RAYWHITE);
-    DrawText("Congrats! You created your first window!", 190, 200, 20, RED);
 
-    TextBox boxx("lorem ipsum dolores met", {300, 300});
+    TextBox boxx(Text("Course Management System", 75), {300, 300});
     boxx.centerX();
+    boxx.setY(boxx.getPos().y / 2);
     boxx.display();
 
     Button butt({300, 300}, {125, 50}, "click me!");
