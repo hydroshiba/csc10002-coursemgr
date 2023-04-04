@@ -942,7 +942,46 @@ void uploadSemesterFolder(Semester& semester) {
 		course.ID = courseID;
 		semester.courses.append(course);
 		semester.courses[i].ptrSemester = &semester;
-		
+		uploadCourseFolder(semester.courses[i]);
 	}
 	ifs.close();
 }
+
+void uploadCourseFolder(Course& course) {
+	std::string courseFilePath = getCourseFilePath(course);
+	std::ifstream ifs(courseFilePath);
+	if (!ifs.is_open())
+	{
+		std::cout << "Can't open " << courseFilePath << std::endl;
+		return;
+	}
+	std::string courseID;
+	std::getline(ifs, courseID);
+	if (course.ID != courseID)
+	{
+		std::cout << "Incorrect file path " << courseFilePath << std::endl;
+		return;
+	}
+	std::string classID, name, teacher, weekdayStr, sessionStr, sTemp;
+	Weekday weekday;
+	Session session;
+	int credits, maxEnroll;
+	std::getline(ifs, classID);
+	std::getline(ifs, name);
+	std::getline(ifs, teacher);
+	ifs >> credits >> maxEnroll;
+	std::getline(ifs, sTemp);
+	std::getline(ifs, weekdayStr);
+	weekday = string_to_weekday(weekdayStr);
+	std::getline(ifs, sessionStr);
+	session = string_to_session(sessionStr);
+	course.classID = classID;
+	course.name = name;
+	course.teacher = teacher;
+	course.credits = credits;
+	course.maxEnroll = maxEnroll;
+	course.weekday = weekday;
+	course.session = session;
+	ifs.close();
+}
+

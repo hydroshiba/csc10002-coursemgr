@@ -147,4 +147,6 @@ void uploadListAcademicYearFolder(Vector<AcademicYear>& academicYears);
 void uploadAcademicYearFolder(AcademicYear& academicYear);
 
 void uploadSemesterFolder(Semester& semester);
+
+void uploadCourseFolder(Course& course);
 #endif
