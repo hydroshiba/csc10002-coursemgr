@@ -54,16 +54,15 @@ Button::Button(Vector2 pos, Vector2 size, std::string text, Color fill, Color ho
     hover_color(hover),
     press_color(press) { refresh(); }
 
-void Button::display(const Vector2 &mouse) const
-{
-	DrawRectangleRec(border_bound, border_color);
+void Button::display(const Vector2 &mouse) const {
     Color color;
 
     if(hovering(mouse)) color = hover_color;
     else if(pressed(mouse)) color = press_color;
     else color = fill_color;
 
-    DrawRectangleRec(fill_bound, color);
+    DrawRectangleRounded(border_bound, box_const::roundness, box_const::segments, color);
+    DrawRectangleRoundedLines(fill_bound, box_const::roundness, box_const::segments, box_const::thickness, border_color);
     DrawTextEx(label.font, label.text.c_str(), textpos, label.font_size, label.space, label.color);
 }
 

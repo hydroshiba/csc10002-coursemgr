@@ -19,7 +19,7 @@ namespace box_const {
 
 const float width = 50;
 const float height = 10;
-const float thickness = 1.5;
+const float thickness = 2;
 
 const float roundness = 0.07;
 const float segments = 2;
