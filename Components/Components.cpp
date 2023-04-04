@@ -47,6 +47,42 @@ Weekday string_to_weekday(const std::string& str) {
 		return SUN;
 }
 
+std::string session_to_string(const Session& session) {
+	switch (session) {
+	case S1:
+		return "7:30";
+	case S2:
+		return "9:30";
+	case S3:
+		return "13:30";
+	case S4:
+		return "15:30";
+	}
+}
+
+Session string_to_session(const std::string& str) {
+	if (str == "7:30")
+		return S1;
+	else if (str == "9:30")
+		return S2;
+	else if (str == "13:30")
+		return S3;
+	else if (str == "15:30")
+		return S4;
+}
+
+std::string gender_to_strong(const Gender& gender) {
+	if (gender == male)
+		return "Male";
+	return "Female";
+}
+
+Gender string_to_gender(const std::string& str) {
+	if (str == "Male")
+		return male;
+	return female;
+}
+
 /* Task functions */
 
 // Add a new 1st-year

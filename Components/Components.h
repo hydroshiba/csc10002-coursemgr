@@ -44,6 +44,14 @@ std::string weekday_to_string(const Weekday& weekday);
 
 Weekday string_to_weekday(const std::string& str);
 
+std::string session_to_string(const Session& session);
+
+Session string_to_session(const std::string& str);
+
+std::string gender_to_strong(const Gender& gender);
+
+Gender string_to_gender(const std::string& str);
+
 // 1 - 12
 
 void addNewSchoolYear(Vector<SchoolYear>& yearList);
