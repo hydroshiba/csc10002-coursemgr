@@ -154,7 +154,7 @@ void addSemester(AcademicYear &newYear){
     newSem.semesterID = id;
     newSem.startDate = startDate;
     newSem.endDate = endDate;
-    newSem.year = &newYear;
+    newSem.ptrAcademicYear = &newYear;
 
     newYear.addSemester(newSem);
 }
@@ -673,7 +673,7 @@ std::string getAcademicYearFilePath(const AcademicYear& academicYear) {
 }
 
 std::string getSemesterFolderPath(const Semester& semester) {
-	std::string academicYearFolderPath = getAcademicYearFolderPath(*(semester.year));
+	std::string academicYearFolderPath = getAcademicYearFolderPath(*(semester.ptrAcademicYear));
 	return academicYearFolderPath + semester.semesterID + "\\";
 }
 
@@ -829,3 +829,28 @@ void dowdloadScoreboardFile(Course& course) {
 	course.displayScoreBoardFile(ofs);
 	ofs.close();
 }
+
+void uploadListAcademicYearFolder(Vector<AcademicYear>& academicYears) {
+	std::string listAcademicYearFilePath = getListAcademicYearFilePath();
+	std::ifstream ifs(listAcademicYearFilePath);
+	if (!ifs.is_open())
+	{
+		std::cout << "Can't open " << listAcademicYearFilePath << std::endl;
+		return;
+	}
+	int nAcademicYear;
+	ifs >> nAcademicYear;
+	academicYears.resize(nAcademicYear);
+	unsigned int startOfAcademicYear;
+	for (int i = 0; i < academicYears.size(); i++)
+	{
+		ifs >> startOfAcademicYear;
+		AcademicYear academicYear;
+		academicYear.start = startOfAcademicYear;
+		academicYears.append(academicYear);
+	}
+	ifs.close();
+}
+
+
+

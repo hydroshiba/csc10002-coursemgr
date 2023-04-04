@@ -10,7 +10,7 @@ struct Semester {
     std::string semesterID;
     Date startDate, endDate;
     Vector<Course> courses;
-    AcademicYear* year = nullptr;
+    AcademicYear* ptrAcademicYear;
 
     void addCourse(const Course& newCourse);
 
