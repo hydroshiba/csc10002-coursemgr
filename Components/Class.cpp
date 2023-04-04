@@ -4,6 +4,17 @@ void Class::addStudent(const Student& student){}
 
 void Class::removeStudent(const Student& student){}
 
+Student* Class::getStudent(const std::string& studentID) {
+    Student* ptrStudent = nullptr;
+    for (int i = 0; i < students.size(); i++)
+        if (students[i].ID == studentID)
+        {
+            ptrStudent = &students[i];
+            break;
+        }
+    return ptrStudent;
+}
+
 Vector<std::string> Class::getListCourse() {
     Vector<std::string> listCourse(0);
     for (int i = 0; i < students.size(); i++)

@@ -16,6 +16,8 @@ struct Class {
 
     Vector<std::string> getListCourse();
 
+    Student* getStudent(const std::string& studentID);
+
     void displayScoreboardScreen(const Semester& semester);
 
     void displayScoreboardFile(const Semester& semester, std::ofstream& ofs);
