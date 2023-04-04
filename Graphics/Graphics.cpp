@@ -40,7 +40,8 @@ void Application::display() {
     ClearBackground(RAYWHITE);
     DrawText("Congrats! You created your first window!", 190, 200, 20, RED);
 
-    TextBox boxx({200, 300}, Text("lorem ipsum dolores met", 55), RAYWHITE);
+    TextBox boxx("lorem ipsum dolores met", {300, 300});
+    boxx.centerX();
     boxx.display();
 
     Button butt({300, 300}, {125, 50}, "click me!");

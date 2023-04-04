@@ -15,7 +15,7 @@ private:
     Rectangle border_bound, fill_bound, text_bound;
 
     void refreshText();
-    void refreshBound();
+    void refresh();
 
 public:
     Text label;
@@ -26,17 +26,17 @@ public:
 
     Button(float x, float y, float width, float height,
             std::string text = "",
-            Color fill = button_const::fill_color,
+            Color fill = box_const::fill_color,
             Color hover = button_const::hover_color,
             Color press = button_const::press_color,
-            Color border = button_const::border_color);
+            Color border = box_const::border_color);
 
     Button(Vector2 pos, Vector2 size,
             std::string text = "",
-            Color fill = button_const::fill_color,
+            Color fill = box_const::fill_color,
             Color hover = button_const::hover_color,
             Color press = button_const::press_color,
-            Color border = button_const::border_color);
+            Color border = box_const::border_color);
 
     void display(const Vector2 &mouse) const;
     

@@ -15,26 +15,26 @@ void Button::refreshText() {
     textpos.y = fill_bound.y + (fill_bound.height - (label.size().y)) / 2;
 }
 
-void Button::refreshBound() {
+void Button::refresh() {
     border_bound = Rectangle{pos.x, pos.y, size.x, size.y};
     
-    fill_bound.x = pos.x + button_const::border_width;
-    fill_bound.y = pos.y + button_const::border_width;
+    fill_bound.x = pos.x + box_const::thickness;
+    fill_bound.y = pos.y + box_const::thickness;
     
-    fill_bound.width = size.x - 2 * button_const::border_width;
-    fill_bound.height = size.y - 2 * button_const::border_width;
+    fill_bound.width = size.x - 2 * box_const::thickness;
+    fill_bound.height = size.y - 2 * box_const::thickness;
 
     refreshText();
 }
 
 Button::Button() :
     pos({0, 0}),
-    size({button_const::width, button_const::height}),
+    size({box_const::width, box_const::height}),
     label(""),
-    fill_color(button_const::fill_color),
+    fill_color(box_const::fill_color),
     hover_color(button_const::hover_color),
     press_color(button_const::press_color),
-    border_color(button_const::border_color) { refreshBound(); }
+    border_color(box_const::border_color) { refresh(); }
 
 Button::Button(float x, float y, float width, float height, std::string text, Color fill, Color hover, Color press, Color border) :
     pos({x, y}),
@@ -43,7 +43,7 @@ Button::Button(float x, float y, float width, float height, std::string text, Co
     fill_color(fill),
     border_color(border),
     hover_color(hover),
-    press_color(press) { refreshBound(); }
+    press_color(press) { refresh(); }
 
 Button::Button(Vector2 pos, Vector2 size, std::string text, Color fill, Color hover, Color press, Color border) :
     pos(pos),
@@ -52,7 +52,7 @@ Button::Button(Vector2 pos, Vector2 size, std::string text, Color fill, Color ho
     fill_color(fill),
     border_color(border),
     hover_color(hover),
-    press_color(press) { refreshBound(); }
+    press_color(press) { refresh(); }
 
 void Button::display(const Vector2 &mouse) const
 {
@@ -69,32 +69,32 @@ void Button::display(const Vector2 &mouse) const
 
 void Button::setX(float x) {
     pos.x = x;
-    refreshBound();
+    refresh();
 }
 
 void Button::setY(float y) {
     pos.y = y;
-    refreshBound();
+    refresh();
 }
 
 void Button::setWidth(float width) {
     size.x = width;
-    refreshBound();
+    refresh();
 }
 
 void Button::setHeight(float height) {
     size.y = height;
-    refreshBound();
+    refresh();
 }
 
 void Button::setPos(Vector2 pos) {
     this->pos = pos;
-    refreshBound();
+    refresh();
 }
 
 void Button::setSize(Vector2 size) {
     this->size = size;
-    refreshBound();
+    refresh();
 }
 
 Vector2 Button::getPos() {
@@ -107,12 +107,12 @@ Vector2 Button::getSize() {
 
 void Button::centerX() {
     pos.x = (GetScreenWidth() - size.x) / 2.0f;
-    refreshBound();
+    refresh();
 }
 
 void Button::centerY() {
     pos.y = (GetScreenHeight() - size.y) / 2.0f;
-    refreshBound();
+    refresh();
 }
 
 bool Button::clicked(const Vector2 &mouse) const {

@@ -1,16 +1,33 @@
 #ifndef TEXTBOX_H
 #define TEXTBOX_H
+
+#include <string>
+#include <cstring>
+
 #include "raylib.h"
 #include "Text.h"
-#include <string>
+
 class TextBox {
 private:
     Vector2 pos;
     Text content;
+    Rectangle bound;
     Color color_box;
+
+    void refresh();
+
 public:
     TextBox();
-    TextBox(Vector2 pos, Text content, Color color_box = BLACK);
+    TextBox(Text content, Vector2 pos = {0, 0}, Color color_box = box_const::fill_color);
+    TextBox(std::string text, Vector2 pos = {0, 0}, Color color_box = box_const::fill_color);
+    TextBox(const char* text, Vector2 pos = {0, 0}, Color color_box = box_const::fill_color);
+    
+    TextBox& operator=(Text content);
+    TextBox& operator=(std::string text);
+    TextBox& operator=(const char* text);
+
+    void centerX();
+    void centerY();
     void display();
 };
 

@@ -1,20 +1,65 @@
-#include "raylib.h"
 #include "TextBox.h"
-#include <string>
-#include <cstring>
-#include <iostream>
-TextBox::TextBox() {}
 
-TextBox::TextBox(Vector2 pos, Text content, Color color_box) 
-    : pos(pos),
-      content(content),
-      color_box(color_box) {}
+void TextBox::refresh() {
+    Vector2 size = content.size();
+
+    bound.x = pos.x - box_const::thickness;
+    bound.y = pos.y - box_const::thickness;
+    
+    bound.width = size.x + 2 * box_const::thickness;
+    bound.height = size.y + 2 * box_const::thickness;
+}
+
+TextBox::TextBox() : content(""),
+					 pos({0, 0}),
+					 color_box(box_const::fill_color) { refresh(); }
+
+TextBox::TextBox(Text content, Vector2 pos, Color color_box) : 
+    content(content),
+    pos(pos),
+    color_box(color_box) { refresh(); }
+
+TextBox::TextBox(std::string text, Vector2 pos, Color color_box) :
+    content(text),
+    pos(pos),
+    color_box(color_box) { refresh(); }
+
+TextBox::TextBox(const char *text, Vector2 pos, Color color_box) :
+    content(text),
+    pos(pos),
+    color_box(color_box) { refresh(); }
+
+TextBox &TextBox::operator=(Text content) {
+	this->content = content;
+    refresh();
+    return *this;
+}
+
+TextBox &TextBox::operator=(std::string text) {
+	this->content = text;
+    refresh();
+    return *this;
+}
+
+TextBox &TextBox::operator=(const char *text) {
+    this->content = text;
+    refresh();
+    return *this;
+}
+
+void TextBox::centerX() {
+    pos.x = (GetScreenWidth() - bound.x) / 2.0f;
+}
+
+void TextBox::centerY() {
+    pos.y = (GetScreenHeight() - bound.y) / 2.0f;
+}
 
 void TextBox::display() {
-    // Vector2 size = MeasureTextEx(content.font, content.text.c_str(), content.font_size, content.space);
-    Vector2 size = content.size();
-    Rectangle bounds{pos.x - 4, pos.y - 4, size.x + 8, size.y + 8};
+	// Vector2 size = MeasureTextEx(content.font, content.text.c_str(), content.font_size, content.space);
+    
+
     // DrawRectangleLinesEx(bounds, 1, color_box);
     DrawTextEx(content.font, content.text.c_str(), pos, content.font_size, content.space, content.color);
-    DrawRectangleRoundedLines(bounds, 0.1, 1, 2, color_box);
+    DrawRectangleRoundedLines(bound, box_const::roundness, box_const::segments, box_const::thickness, color_box);
 }
