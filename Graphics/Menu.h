@@ -5,11 +5,15 @@
 #include "Graphics.h"
 
 #include "Button.h"
+#include "TextBox.h"
 #include "Scene.h"
 
 class Menu : public Scene {
 private:
 	Button login;
+	Button quit;
+
+	TextBox title;
 
 public: 
 	Menu();

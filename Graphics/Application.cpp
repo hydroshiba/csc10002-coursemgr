@@ -11,49 +11,38 @@
 
 #include "Menu.h"
 
+Application::Application() {
+    menu.app = this;
+    scene = &menu;
+}
+
+Application::~Application() {
+    if(GetWindowHandle() == nullptr) return;
+    CloseWindow();
+}
+
 bool Application::appShouldClose() const {
-	return WindowShouldClose();
+	return (GetWindowHandle() == nullptr || WindowShouldClose());
 }
 
 void Application::tick() {
     BeginDrawing();
-
-    mousePoint = GetMousePosition();
-
     update();
+
+    if(GetWindowHandle() == nullptr) return;
+
     render();
-    
     EndDrawing();
 }
 
 void Application::render() {
     ClearBackground(RAYWHITE);
-    
-    boxx = "Course Management System";
-    boxx.setSize(75);
-    boxx.setPos({300, 300});
-
-    boxx.centerX();
-    boxx.setY(boxx.getPos().y / 2);
-    boxx.render();
-
-    butt.setSize({150, 75});
-    butt.setPos({300, 300});
-    butt.label = "click me!";
-    butt.centerX();
-    butt.setY((butt.getPos().y * 3) / 2);
-
-    butt.render(mousePoint);
-
-    if(butt.clicked(mousePoint)) {
-        std::cout <<  "CLICKED!" << std::endl;
-        std::cout << mousePoint.x << ' ' << mousePoint.y << std::endl;
-    }
-    
-    //InputBox example({400, 200}, 55);
-    //example.draw();
+    scene->render();
 }
 
 void Application::update() {
+    mousePoint = GetMousePosition();
 
+    if(scene) scene = scene->process();
+    else CloseWindow();
 }

@@ -40,5 +40,5 @@ int main() {
         newApp.tick();
     }
 
-    CloseWindow();
+    //CloseWindow();
 }

@@ -12,22 +12,22 @@
 #include "Menu.h"
 
 class Application {
+private:
+	Vector2 mousePoint = { 0.0f, 0.0f };
+	Menu menu;
+	Scene* scene;
+
+	void render();
+	void update();
+
 public:
-	Application() {}
+	Application();
+	~Application();
 	Application(const Application &other) = delete;
 	Application& operator=(const Application &other) = delete;
 
 	bool appShouldClose() const;
 	void tick();
-
-private:
-	Vector2 mousePoint = { 0.0f, 0.0f };
-	Menu menu;
-	Button butt;
-	TextBox boxx;
-
-	void render();
-	void update();
 };
 
 #endif

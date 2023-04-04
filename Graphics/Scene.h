@@ -6,8 +6,10 @@
 
 class Scene {
 protected:
-	Application* app;
 	Vector2 mousePoint = { 0.0f, 0.0f };
+
+public:
+	Application* app;
 
 	virtual void render() {}
 	virtual Scene* process() {}
