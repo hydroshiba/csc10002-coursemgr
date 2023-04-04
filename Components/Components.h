@@ -56,12 +56,12 @@ Gender string_to_gender(const std::string& str);
 
 void addNewSchoolYear(Vector<SchoolYear>& yearList);
 void addClasses (Vector<SchoolYear>& yearList);
-void addStudToClass(Class &actClass,const std::string inFile);
+void addStudToClass(Class &actClass);
 void addNewAcademicYear(Vector <AcademicYear> &newYear);
 
 void addSemester(AcademicYear &newYear);
 void addNewCourse(Semester &semester);
-void getStudentToCourse(Vector<SchoolYear> years, Course &course, const std::string stud_input_file);
+void getStudentToCourse(Vector<SchoolYear>& years, Course &course);
 void viewCourses(Semester sem, std::ostream& outDev = std::cout);
 
 void updateCourse(Course &course);
