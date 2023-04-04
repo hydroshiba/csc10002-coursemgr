@@ -848,7 +848,7 @@ void dowdloadScoreboardFile(Course& course) {
 	ofs.close();
 }
 
-void uploadListAcademicYearFolder(Vector<AcademicYear>& academicYears) {
+void uploadListAcademicYearFolder(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears) {
 	std::string listAcademicYearFilePath = getListAcademicYearFilePath();
 	std::ifstream ifs(listAcademicYearFilePath);
 	if (!ifs.is_open())
@@ -866,12 +866,12 @@ void uploadListAcademicYearFolder(Vector<AcademicYear>& academicYears) {
 		AcademicYear academicYear;
 		academicYear.start = startOfAcademicYear;
 		academicYears.append(academicYear);
-		uploadAcademicYearFolder(academicYears[i]);
+		uploadAcademicYearFolder(schoolYears, academicYears[i]);
 	}
 	ifs.close();
 }
 
-void uploadAcademicYearFolder(AcademicYear& academicYear) {
+void uploadAcademicYearFolder(Vector<SchoolYear>& schoolYears, AcademicYear& academicYear) {
 	std::string academicYearFilePath = getAcademicYearFilePath(academicYear);
 	std::ifstream ifs(academicYearFilePath);
 	if (!ifs.is_open())
@@ -898,12 +898,12 @@ void uploadAcademicYearFolder(AcademicYear& academicYear) {
 		semester.semesterID = semesterID;
 		academicYear.semesters.append(semester);
 		academicYear.semesters[i].ptrAcademicYear = &academicYear;
-		uploadSemesterFolder(academicYear.semesters[i]);
+		uploadSemesterFolder(schoolYears, academicYear.semesters[i]);
 	}
 	ifs.close();
 }
 
-void uploadSemesterFolder(Semester& semester) {
+void uploadSemesterFolder(Vector<SchoolYear>& schoolYears, Semester& semester) {
 	std::string semesterFilePath = getSemesterFilePath(semester);
 	std::ifstream ifs(semesterFilePath);
 	if (!ifs.is_open())
