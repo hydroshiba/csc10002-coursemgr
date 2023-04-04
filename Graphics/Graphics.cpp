@@ -40,10 +40,12 @@ void Application::display() {
     ClearBackground(RAYWHITE);
     DrawText("Congrats! You created your first window!", 190, 200, 20, RED);
 
+    TextBox boxx({200, 300}, Text("lorem ipsum dolores met", 55));
+    boxx.display();
     Button butt({300, 300}, {150, 75}, "click me!");
     butt.centerX();
 
-    butt.display(mousePoint);
+    //butt.display(mousePoint);
 
     if(butt.clicked(mousePoint)) {
         std::cout <<  "CLICKED!" << std::endl;
