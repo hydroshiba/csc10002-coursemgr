@@ -47,6 +47,25 @@ TextBox &TextBox::operator=(const char *text) {
     return *this;
 }
 
+void TextBox::setX(float x) {
+    pos.x = x;
+    refresh();
+}
+
+void TextBox::setY(float y) {
+    pos.y = y;
+    refresh();
+}
+
+void TextBox::setPos(Vector2 pos) {
+    this->pos = pos;
+    refresh();
+}
+
+Vector2 TextBox::getPos() {
+	return pos;
+}
+
 void TextBox::centerX() {
     pos.x = (GetScreenWidth() - bound.width) / 2.0f;
     refresh();
