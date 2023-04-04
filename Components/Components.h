@@ -4,6 +4,7 @@
 #include <iomanip>
 #include <string>
 #include "Vector.h"
+#include <filesystem>
 
 /* Enumerators */
 
@@ -86,6 +87,8 @@ void viewScoreboardOfClass(Class& curClass, const Semester& curSemester);
 void viewScoreBoardOfStudent(Student& student);
 
 // Get file path in Data Folder
+void createDirectoryIfNotExists(const std::string& dirPath);
+
 std::string getListSchoolYearFilePath();
 
 std::string getListAcademicYearFilePath();

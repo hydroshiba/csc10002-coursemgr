@@ -616,6 +616,13 @@ void viewScoreBoardOfStudent(Student& student) {
 
 // Get file path in Data Folder
 
+void createDirectoryIfNotExists(const std::string& dirPath)
+{
+	if (!std::filesystem::exists(dirPath)) {
+		std::filesystem::create_directory(dirPath);
+	}
+}
+
 std::string getListSchoolYearFilePath() {
 	return "Data\\SchoolYear\\ListSchoolYear.txt";
 }
