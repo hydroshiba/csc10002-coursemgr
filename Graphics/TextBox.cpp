@@ -48,18 +48,16 @@ TextBox &TextBox::operator=(const char *text) {
 }
 
 void TextBox::centerX() {
-    pos.x = (GetScreenWidth() - bound.x) / 2.0f;
+    pos.x = (GetScreenWidth() - bound.width) / 2.0f;
+    refresh();
 }
 
 void TextBox::centerY() {
-    pos.y = (GetScreenHeight() - bound.y) / 2.0f;
+    pos.y = (GetScreenHeight() - bound.height) / 2.0f;
+    refresh();
 }
 
 void TextBox::display() {
-	// Vector2 size = MeasureTextEx(content.font, content.text.c_str(), content.font_size, content.space);
-    
-
-    // DrawRectangleLinesEx(bounds, 1, color_box);
     DrawTextEx(content.font, content.text.c_str(), pos, content.font_size, content.space, content.color);
     DrawRectangleRoundedLines(bound, box_const::roundness, box_const::segments, box_const::thickness, color_box);
 }
