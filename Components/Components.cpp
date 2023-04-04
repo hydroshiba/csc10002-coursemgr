@@ -866,9 +866,42 @@ void uploadListAcademicYearFolder(Vector<AcademicYear>& academicYears) {
 		AcademicYear academicYear;
 		academicYear.start = startOfAcademicYear;
 		academicYears.append(academicYear);
+		uploadAcademicYearFolder(academicYears[i]);
 	}
 	ifs.close();
 }
+
+void uploadAcademicYearFolder(AcademicYear& academicYear) {
+	std::string academicYearFilePath = getAcademicYearFilePath(academicYear);
+	std::ifstream ifs(academicYearFilePath);
+	if (!ifs.is_open())
+	{
+		std::cout << "Can't open " << academicYearFilePath << std::endl;
+		return;
+	}
+	unsigned int startOfAcademicYear;
+	ifs >> startOfAcademicYear;
+	if (startOfAcademicYear != academicYear.start)
+	{
+		std::cout << "Incorrect file path " << academicYearFilePath << std::endl;
+		return;
+	}
+	int nSemester;
+	ifs >> nSemester;
+	academicYear.semesters.resize(nSemester);
+	std::string semesterID = "";
+	std::getline(ifs, semesterID);
+	for (int i = 0; i < academicYear.semesters.size(); i++)
+	{
+		std::getline(ifs, semesterID);
+		Semester semester;
+		semester.semesterID = semesterID;
+		academicYear.semesters.append(semester);
+		academicYear.semesters[i].ptrAcademicYear = &academicYear;
+	}
+	ifs.close();
+}
+
 
 
 
