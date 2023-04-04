@@ -6,6 +6,7 @@
 #include "Graphics.h"
 #include "Text.h"
 #include "TextBox.h"
+#include "InputBox.h"
 
 #include "Menu.h"
 
@@ -54,6 +55,9 @@ void Application::display() {
         std::cout <<  "CLICKED!" << std::endl;
         std::cout << mousePoint.x << ' ' << mousePoint.y << std::endl;
     }
+    
+    InputBox example({400, 200}, 55);
+    example.refresh();
 }
 
 void Application::update() {
