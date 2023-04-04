@@ -39,12 +39,17 @@ bool operator!=(const Type &typeA, const Type &typeB) {
     return !(typeA == typeB);
 }
 
+// Convert enum to string
+std::string weekday_to_string(const Weekday& weekday);
+
+Weekday string_to_weekday(const std::string& str);
+
 // 1 - 12
 
 void addNewSchoolYear(Vector<SchoolYear>& yearList);
 void addClasses (Vector<SchoolYear>& yearList);
 void addStudToClass(Class &actClass,const std::string inFile);
-void addNewAcademicYear(AcademicYear &newYear);
+void addNewAcademicYear(Vector <AcademicYear> &newYear);
 
 void addSemester(AcademicYear &newYear);
 void addNewCourse(Semester &semester);
@@ -113,6 +118,10 @@ std::string getInputScoreCourseFilePath(const Course& course);
 
 std::string getOutputScoreStudCourseFilePath(const Course& course);
 
+void downloadListSchoolYearFolder(Vector <SchoolYear>& schoolYears);
+
+void downloadSchoolYearFolder(SchoolYear &schoolYear);
+
 void downloadListAcademicYearFolder(Vector<AcademicYear>& academicYears);
 
 void downloadAcademicYearFolder(AcademicYear& academicYear);
@@ -122,4 +131,5 @@ void downloadSemesterFolder(Semester& semester);
 void downloadCourseFolder(Course& course);
 
 void dowdloadScoreboardFile(Course& course);
+
 #endif

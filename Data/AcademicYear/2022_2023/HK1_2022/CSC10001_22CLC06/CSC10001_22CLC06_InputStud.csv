@@ -5,8 +5,9 @@ Teacher,Le Ngoc Thanh,,,,,
 Number of credits,4,,,,,
 Weekday,MON,,,,,
 Session,7:30,,,,,
-No,ID,Fullname,Midterm,Final,Other,Total
-1,1,Nguyen Gia Huy,,,,
-2,2,Quach Tran Quan Vinh,,,,
-3,3,Phan Hai Minh,,,,
-4,4,Dao Viet Hoang,,,,
+Students,4
+No,ID,Fullname,Class,Midterm,Final,Other,Total
+1,1,Nguyen Gia Huy, 22CLC06
+2,2,Quach Tran Quan Vinh, 22CLC05
+3,3,Phan Hai Minh, 22CLC05
+4,4,Dao Viet Hoang, 22CLC04

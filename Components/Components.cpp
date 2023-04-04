@@ -9,16 +9,52 @@
 #include "Semester.h"
 #include "Scoreboard.h"
 
+// Convert enum to string
+std::string weekday_to_string(const Weekday& weekday) {
+	switch (weekday)
+	{
+	case MON:
+		return "MON";
+	case TUE:
+		return "TUE";
+	case WED:
+		return "WED";
+	case THU:
+		return "THU";
+	case FRI:
+		return "FRI";
+	case SAT:
+		return "SAT";
+	case SUN:
+		return "SUN";
+	}
+}
+
+Weekday string_to_weekday(const std::string& str) {
+	if (str == "MON")
+		return MON;
+	else if (str == "TUE")
+		return TUE;
+	else if (str == "WED")
+		return WED;
+	else if (str == "THU")
+		return THU;
+	else if (str == "FRI")
+		return FRI;
+	else if (str == "SAT")
+		return SAT;
+	else
+		return SUN;
+}
+
 /* Task functions */
 
-// Add a new 1st-year & delete old 4th-year
+// Add a new 1st-year
 void addNewSchoolYear(Vector<SchoolYear>& yearList){
     unsigned int startYear;
     std::cout << "Enter the school year: "; std::cin >> startYear;
     SchoolYear newYear = {startYear};
     yearList.append(newYear);
-    if (yearList.size() > 4)
-        yearList.remove(yearList.begin());
 }
 
 // Add several classes for 1st year
@@ -52,11 +88,13 @@ void addStudToClass(Class &actClass,const std::string inFile){
 }
 
 // Add a new academic year
-void addNewAcademicYear(AcademicYear &newYear){
+void addNewAcademicYear(Vector <AcademicYear> &acadeYear){
     unsigned int startyear;
+	AcademicYear newYear;
     std::cout << "Enter a new year: ";
     std::cin >> startyear;
     newYear = {startyear};
+	acadeYear.append(newYear);
 }
 
 // Add a semester to an academic year
@@ -636,6 +674,36 @@ std::string getInputScoreCourseFilePath(const Course& course) {
 std::string getOutputScoreStudCourseFilePath(const Course& course) {
 	std::string courseFolderPath = getCourseFolderPath(course);
 	return courseFolderPath + course.ID + "_OutputScore.csv";
+}
+
+void downloadListSchoolYearFolder(Vector <SchoolYear>& schoolYears){
+	std::string dir = getListSchoolYearFilePath();
+	std::ofstream ofs(dir);
+	if (!ofs.is_open()){
+		std::cout << "Cannot open " << dir << '\n';
+		return;
+	}
+	ofs << schoolYears.size() << '\n';
+	for (int i = 0; i<schoolYears.size(); ++i){
+		ofs << schoolYears[i].start << '\n';
+		downloadSchoolYearFolder(schoolYears[i]);
+	}
+	ofs.close();
+}
+
+void downloadSchoolYearFolder(SchoolYear &schoolYear){
+	std::string dir = getSchoolYearFolderPath(schoolYear);
+	std::ofstream ofs(dir);
+	if (!ofs.is_open()){
+		std::cout << "Cannot open " << dir;
+		return;
+	}
+	ofs << schoolYear.start << '\n';
+	ofs << schoolYear.classes.size() << '\n';
+	for (int i = 0; i<schoolYear.classes.size(); ++i){
+		ofs << schoolYear.classes[i].name;
+	}
+	ofs.close();
 }
 
 void downloadListAcademicYearFolder(Vector<AcademicYear>& academicYears) {
