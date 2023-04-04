@@ -91,7 +91,6 @@ void addNewSchoolYear(Vector<SchoolYear>& yearList){
     std::cout << "Enter the school year: "; std::cin >> startYear;
     SchoolYear newYear = {startYear};
     yearList.append(newYear);
-	downloadListSchoolYearFolder(yearList);
 }
 
 // Add several classes for 1st year
@@ -103,7 +102,6 @@ void addClasses (Vector<SchoolYear>& yearList){
         if (newClass.name == "0") break;
         yearList[yearList.size()-1].addClass(newClass);
     } while (newClass.name != "0");
-	downloadListSchoolYearFolder(yearList);
 }
 
 // Add students into a specific class
@@ -133,7 +131,6 @@ void addNewAcademicYear(Vector<AcademicYear> &acadeYear){
     std::cin >> startyear;
     newYear = {startyear};
 	acadeYear.append(newYear);
-	downloadListAcademicYearFolder(acadeYear);
 }
 
 // Add a semester to an academic year
@@ -159,7 +156,6 @@ void addSemester(AcademicYear &newYear){
     newSem.ptrAcademicYear = &newYear;
 
     newYear.addSemester(newSem);
-	downloadAcademicYearFolder(newYear);
 }
 
 // Add a new course
@@ -184,7 +180,6 @@ void addNewCourse(Semester &semester){
     newCourse.ptrSemester = &semester;
 
     semester.addCourse(newCourse);
-	downloadCourseFolder(newCourse);
 }
 
 // Get students' info to course
@@ -620,6 +615,7 @@ void viewScoreBoardOfStudent(Student& student) {
 }
 
 // Get file path in Data Folder
+
 std::string getListSchoolYearFilePath() {
 	return "Data\\SchoolYear\\ListSchoolYear.txt";
 }
