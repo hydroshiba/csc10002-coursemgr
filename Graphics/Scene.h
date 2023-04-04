@@ -5,9 +5,12 @@
 #include "Graphics.h"
 
 class Scene {
-private:
+protected:
 	Application* app;
+	Vector2 mousePoint = { 0.0f, 0.0f };
 
+	virtual void render() {}
+	virtual Scene* process() {}
 };
 
 #endif

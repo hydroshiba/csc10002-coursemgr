@@ -5,6 +5,7 @@
 #include <cstring>
 
 #include "raylib.h"
+#include "Graphics.h"
 #include "Text.h"
 
 class TextBox {

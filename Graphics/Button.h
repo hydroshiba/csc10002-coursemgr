@@ -4,6 +4,7 @@
 #include "raylib.h"
 
 #include "Constants.h"
+#include "Graphics.h"
 #include "Text.h"
 
 class Button {

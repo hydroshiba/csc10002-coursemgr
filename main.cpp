@@ -1,5 +1,7 @@
 #include <iostream>
 
+/*--------- COMPONENTS INCLUDE ---------*/
+
 #include "Components/Components.h"
 
 #include "Components/AcademicYear.h"
@@ -13,7 +15,20 @@
 #include "Components/Student.h"
 #include "Components/User.h"
 
+/*---------- GRAPHICS INCLUDE ----------*/
+
 #include "Graphics/Graphics.h"
+
+#include "Graphics/Application.h"
+#include "Graphics/Menu.h"
+#include "Graphics/Scene.h"
+
+#include "Graphics/Button.h"
+#include "Graphics/InputBox.h"
+#include "Graphics/Text.h"
+#include "Graphics/TextBox.h"
+
+/*--------------------------------------*/
 
 int main() {
     Application newApp;

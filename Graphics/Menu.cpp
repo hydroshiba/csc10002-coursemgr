@@ -6,3 +6,12 @@ Menu::Menu() {
 	login.centerX();
 }
 
+void Menu::render() {
+	login.render(this->mousePoint);
+}
+
+Scene *Menu::process() {
+	this->mousePoint = GetMousePosition();
+	render();
+	return nullptr;
+}

@@ -5,8 +5,10 @@
 #include "raylib.h"
 
 #include "Constants.h"
+#include "Graphics.h"
 
-struct Text {
+class Text {
+public:
 	std::string text;
 	float font_size;
 	float space;
