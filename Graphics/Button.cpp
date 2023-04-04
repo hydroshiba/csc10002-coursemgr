@@ -54,7 +54,7 @@ Button::Button(Vector2 pos, Vector2 size, std::string text, Color fill, Color ho
     hover_color(hover),
     press_color(press) { refresh(); }
 
-void Button::display(const Vector2 &mouse) const {
+void Button::render(const Vector2 &mouse) const {
     Color color;
 
     if(hovering(mouse)) color = hover_color;

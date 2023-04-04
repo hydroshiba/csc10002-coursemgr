@@ -34,7 +34,7 @@ public:
     void centerX();
     void centerY();
 
-    void display();
+    void render();
 };
 
 #endif // TEXTBOX_H

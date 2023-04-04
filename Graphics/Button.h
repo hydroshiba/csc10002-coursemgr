@@ -38,7 +38,7 @@ public:
             Color press = button_const::press_color,
             Color border = box_const::border_color);
 
-    void display(const Vector2 &mouse) const;
+    void render(const Vector2 &mouse) const;
     
     void setX(float x);
     void setY(float y);

@@ -31,24 +31,24 @@ void Application::tick() {
     mousePoint = GetMousePosition();
 
     update();
-    display();
+    render();
     
     EndDrawing();
 }
 
-void Application::display() {
+void Application::render() {
     ClearBackground(RAYWHITE);
 
     TextBox boxx(Text("Course Management System", 75), {300, 300});
     boxx.centerX();
     boxx.setY(boxx.getPos().y / 2);
-    boxx.display();
+    boxx.render();
 
     Button butt({300, 300}, {125, 50}, "click me!");
     butt.centerX();
     butt.setY((butt.getPos().y * 3) / 2);
 
-    butt.display(mousePoint);
+    butt.render(mousePoint);
 
     if(butt.clicked(mousePoint)) {
         std::cout <<  "CLICKED!" << std::endl;
