@@ -71,7 +71,7 @@ Session string_to_session(const std::string& str) {
 		return S4;
 }
 
-std::string gender_to_strong(const Gender& gender) {
+std::string gender_to_string(const Gender& gender) {
 	if (gender == male)
 		return "Male";
 	return "Female";
@@ -713,10 +713,10 @@ std::string getOutputScoreStudCourseFilePath(const Course& course) {
 }
 
 void downloadListSchoolYearFolder(Vector <SchoolYear>& schoolYears){
-	std::string dir = getListSchoolYearFilePath();
-	std::ofstream ofs(dir);
+	std::string listSchoolYearDir = getListSchoolYearFilePath();
+	std::ofstream ofs(listSchoolYearDir);
 	if (!ofs.is_open()){
-		std::cout << "Cannot open " << dir << '\n';
+		std::cout << "Cannot open " << listSchoolYearDir << '\n';
 		return;
 	}
 	ofs << schoolYears.size() << '\n';
@@ -728,17 +728,35 @@ void downloadListSchoolYearFolder(Vector <SchoolYear>& schoolYears){
 }
 
 void downloadSchoolYearFolder(SchoolYear &schoolYear){
-	std::string dir = getSchoolYearFolderPath(schoolYear);
-	std::ofstream ofs(dir);
+	std::string schoolYearDir = getInputSchoolYearFilePath(schoolYear);
+	std::ofstream ofs(schoolYearDir);
 	if (!ofs.is_open()){
-		std::cout << "Cannot open " << dir;
+		std::cout << "Cannot open " << schoolYearDir;
 		return;
 	}
 	ofs << schoolYear.start << '\n';
 	ofs << schoolYear.classes.size() << '\n';
 	for (int i = 0; i<schoolYear.classes.size(); ++i){
 		ofs << schoolYear.classes[i].name;
+		for (int j = 0; j<schoolYear.classes[i].students.size(); ++j)
+			downloadStudentFolder(schoolYear.classes[i].students[j]);
 	}
+	ofs.close();
+}
+
+void downloadStudentFolder(Student student){
+	std::string studentDir = getInputStandardIn4StudentFilePath(student);
+	std::ofstream ofs(studentDir);
+	if (!ofs.is_open()){
+		std::cout << "Cannot open " << studentDir;
+		return;
+	}
+	ofs << "ID," << student.ID << std::endl;
+	ofs << "Name," << student.name.get() << std::endl;
+	ofs << "Gender," << gender_to_string(student.gender) << std::endl;
+	ofs << "Dob," << student.birth.get() << std::endl;
+	ofs << "SocialID," << student.socialID << std::endl;
+	ofs << "Class," << student.myClass->name << std::endl;
 	ofs.close();
 }
 

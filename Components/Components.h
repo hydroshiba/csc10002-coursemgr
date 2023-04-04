@@ -48,7 +48,7 @@ std::string session_to_string(const Session& session);
 
 Session string_to_session(const std::string& str);
 
-std::string gender_to_strong(const Gender& gender);
+std::string gender_to_string(const Gender& gender);
 
 Gender string_to_gender(const std::string& str);
 
