@@ -53,10 +53,9 @@ void Course::displayInfoScreen() {
 }
 
 void Course::displayInfoFile(std::ostream& ofs) {
-    ofs << "Semester ID," << ptrSemester->semesterID << std::endl;
     ofs << "Course ID," << ID << std::endl;
-    ofs << "Course name," << name << std::endl;
     ofs << "Class ID," << classID << std::endl;
+    ofs << "Course name," << name << std::endl;
     ofs << "Teacher," << teacher << std::endl;
     ofs << "Number of credits," << credits << std::endl;
     ofs << "Weekday," << weekday << std::endl;
@@ -66,8 +65,8 @@ void Course::displayInfoFile(std::ostream& ofs) {
 
 void Course::importScoreBoards(std::ifstream& ifs) {
     const char delimiter = ',';
-    const int nSkipLine = 8;
-    const int nSkipInfo = 3;
+    const int nSkipLine = 9;
+    const int nSkipInfo = 4;
     std::string s = "";
     for (int i = 0; i < nSkipLine; i++)
         std::getline(ifs, s);

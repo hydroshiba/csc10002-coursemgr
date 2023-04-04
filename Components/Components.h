@@ -56,12 +56,12 @@ Gender string_to_gender(const std::string& str);
 
 void addNewSchoolYear(Vector<SchoolYear>& yearList);
 void addClasses (Vector<SchoolYear>& yearList);
-void addStudToClass(Class &actClass,const std::string inFile);
+void addStudToClass(Class &actClass);
 void addNewAcademicYear(Vector <AcademicYear> &newYear);
 
 void addSemester(AcademicYear &newYear);
 void addNewCourse(Semester &semester);
-void getStudentToCourse(Vector<SchoolYear> years, Course &course, const std::string stud_input_file);
+void getStudentToCourse(Vector<SchoolYear>& years, Course &course);
 void viewCourses(Semester sem, std::ostream& outDev = std::cout);
 
 void updateCourse(Course &course);
@@ -102,7 +102,7 @@ std::string getInputScoreClassFilePath(const Class& CLASS);
 
 std::string getStudentFolderPath(const Student& student);
 
-std::string getInputStudentFilePath(const Student& student);
+std::string getOutputScoreStudentFilePath(const Student& student);
 
 std::string getInputStandardIn4StudentFilePath(const Student& student);
 
@@ -142,6 +142,8 @@ void downloadCourseFolder(Course& course);
 
 void dowdloadScoreboardFile(Course& course);
 
+void uploadListSchoolYearFolder(Vector <SchoolYear>& schoolYears);
+
 void uploadListAcademicYearFolder(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears);
 
 void uploadAcademicYearFolder(Vector<SchoolYear>& schoolYears, AcademicYear& academicYear);
@@ -149,6 +151,4 @@ void uploadAcademicYearFolder(Vector<SchoolYear>& schoolYears, AcademicYear& aca
 void uploadSemesterFolder(Vector<SchoolYear>& schoolYears, Semester& semester);
 
 void uploadCourseFolder(Course& course);
-
-void uploadScoreboardFile(Vector<SchoolYear>& schoolYears, Course& course);
 #endif

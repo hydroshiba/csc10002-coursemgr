@@ -91,6 +91,7 @@ void addNewSchoolYear(Vector<SchoolYear>& yearList){
     std::cout << "Enter the school year: "; std::cin >> startYear;
     SchoolYear newYear = {startYear};
     yearList.append(newYear);
+	downloadListSchoolYearFolder(yearList);
 }
 
 // Add several classes for 1st year
@@ -102,16 +103,17 @@ void addClasses (Vector<SchoolYear>& yearList){
         if (newClass.name == "0") break;
         yearList[yearList.size()-1].addClass(newClass);
     } while (newClass.name != "0");
+	downloadListSchoolYearFolder(yearList);
 }
 
 // Add students into a specific class
-void addStudToClass(Class &actClass,const std::string inFile){
+void addStudToClass(Class &actClass){
     Student newStud;
-    std::ifstream inF;
-    inF.open("Data/"+inFile);
+	std::string inputStudClassFilePath = getInputStudClassFilePath(actClass);
+    std::ifstream inF(inputStudClassFilePath);
     if (!inF.is_open()){
-        std::cout << "Cannot open file!\n";
-        return ;
+		std::cout << "Cannot open file path " << inputStudClassFilePath << std::endl;
+        return;
     }
     std::string ignore;
     getline(inF, ignore);
@@ -124,17 +126,17 @@ void addStudToClass(Class &actClass,const std::string inFile){
 }
 
 // Add a new academic year
-void addNewAcademicYear(Vector <AcademicYear> &acadeYear){
+void addNewAcademicYear(Vector<AcademicYear> &acadeYear){
     unsigned int startyear;
 	AcademicYear newYear;
     std::cout << "Enter a new year: ";
     std::cin >> startyear;
     newYear = {startyear};
 	acadeYear.append(newYear);
+	downloadListAcademicYearFolder(acadeYear);
 }
 
 // Add a semester to an academic year
-
 void addSemester(AcademicYear &newYear){
     unsigned short day, month;
     unsigned int year;
@@ -157,6 +159,7 @@ void addSemester(AcademicYear &newYear){
     newSem.ptrAcademicYear = &newYear;
 
     newYear.addSemester(newSem);
+	downloadAcademicYearFolder(newYear);
 }
 
 // Add a new course
@@ -181,14 +184,15 @@ void addNewCourse(Semester &semester){
     newCourse.ptrSemester = &semester;
 
     semester.addCourse(newCourse);
+	downloadCourseFolder(newCourse);
 }
 
 // Get students' info to course
-void getStudentToCourse(Vector<SchoolYear> years, Course &course, const std::string stud_input_file){
-    std::ifstream inF;
-    inF.open("Data/"+stud_input_file);
+void getStudentToCourse(Vector<SchoolYear>& years, Course &course){
+	std::string inputStudCourseFilePath = getInputListStudCourseFilePath(course);
+	std::ifstream inF(inputStudCourseFilePath);
     if (!inF.is_open()){
-        std::cout << "Cannot open file!\n";
+		std::cout << "Cannot open file path " << inputStudCourseFilePath << std::endl;
         return;
     }
     std::string ignore;
@@ -848,7 +852,7 @@ void dowdloadScoreboardFile(Course& course) {
 	ofs.close();
 }
 
-void uploadListSchoolYear(Vector <SchoolYear>& schoolYears){
+void uploadListSchoolYearFolder(Vector <SchoolYear>& schoolYears){
 	std::string listSchoolYearDir = getListSchoolYearFilePath();
 	std::ifstream ifs(listSchoolYearDir);
 	if (!ifs.is_open()){
@@ -867,6 +871,30 @@ void uploadListSchoolYear(Vector <SchoolYear>& schoolYears){
 	}
 	ifs.close();
 }	
+
+void uploadSchoolYearFolder(SchoolYear &schoolYear){
+	std::string schoolYearDir = getInputSchoolYearFilePath(schoolYear);
+	std::ifstream ifs(schoolYearDir);
+	if (!ifs.is_open()){
+		std::cout << "Cannot open " << schoolYearDir << '\n';
+		return;
+	}
+	unsigned int start;
+	ifs >> start;
+	if (start == schoolYear.start){
+		std::cout << "Incorrect directory\n";
+		return;
+	}
+	size_t nClasses;
+	ifs >> nClasses;
+	schoolYear.classes.resize(nClasses);
+	for (int i = 0; i<nClasses; ++i){
+		std::string className;
+		ifs >> className;
+		schoolYear.classes[i].name = className; 
+	}
+	ifs.close();
+}
 
 void uploadListAcademicYearFolder(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears) {
 	std::string listAcademicYearFilePath = getListAcademicYearFilePath();
