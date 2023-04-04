@@ -3,7 +3,7 @@
 Menu::Menu() {
 	login.label = "Login";
 	login.setSize({125, 50});
-	login.setY(500);
+	login.setY(525);
 	login.centerX();
 
 	quit.label = "Quit";
