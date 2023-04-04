@@ -44,7 +44,7 @@ bool operator!=(const Type &typeA, const Type &typeB) {
 void addNewSchoolYear(Vector<SchoolYear>& yearList);
 void addClasses (Vector<SchoolYear>& yearList);
 void addStudToClass(Class &actClass,const std::string inFile);
-void addNewAcademicYear(AcademicYear &newYear);
+void addNewAcademicYear(Vector <AcademicYear> &newYear);
 
 void addSemester(AcademicYear &newYear);
 void addNewCourse(Semester &semester);
@@ -112,6 +112,10 @@ std::string getOutputListStudCourseFilePath(const Course& course);
 std::string getInputScoreCourseFilePath(const Course& course);
 
 std::string getOutputScoreStudCourseFilePath(const Course& course);
+
+void downloadListSchoolYearFolder(Vector <SchoolYear>& schoolYears);
+
+void downloadSchoolYearFolder(SchoolYear &schoolYear);
 
 void downloadListAcademicYearFolder(Vector<AcademicYear>& academicYears);
 
