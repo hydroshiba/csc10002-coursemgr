@@ -18,7 +18,7 @@ private:
 	Scene* scene;
 
 	void render();
-	void update();
+	void process();
 
 public:
 	Application();

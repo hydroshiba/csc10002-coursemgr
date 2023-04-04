@@ -27,7 +27,7 @@ bool Application::appShouldClose() const {
 
 void Application::tick() {
     BeginDrawing();
-    update();
+    process();
 
     if(GetWindowHandle() == nullptr) return;
 
@@ -40,7 +40,7 @@ void Application::render() {
     scene->render();
 }
 
-void Application::update() {
+void Application::process() {
     mousePoint = GetMousePosition();
 
     if(scene) scene = scene->process();
