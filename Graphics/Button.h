@@ -48,6 +48,9 @@ public:
     void setPos(Vector2 pos);
     void setSize(Vector2 size);
 
+    Vector2 getPos();
+    Vector2 getSize();
+
     void centerX();
     void centerY();
 

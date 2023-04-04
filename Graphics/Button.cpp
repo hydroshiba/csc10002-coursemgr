@@ -54,8 +54,9 @@ Button::Button(Vector2 pos, Vector2 size, std::string text, Color fill, Color ho
     hover_color(hover),
     press_color(press) { refreshBound(); }
 
-void Button::display(const Vector2 &mouse) const {
-    DrawRectangleRec(border_bound, border_color);
+void Button::display(const Vector2 &mouse) const
+{
+	DrawRectangleRec(border_bound, border_color);
     Color color;
 
     if(hovering(mouse)) color = hover_color;
@@ -94,6 +95,14 @@ void Button::setPos(Vector2 pos) {
 void Button::setSize(Vector2 size) {
     this->size = size;
     refreshBound();
+}
+
+Vector2 Button::getPos() {
+    return pos;
+}
+
+Vector2 Button::getSize() {
+    return size;
 }
 
 void Button::centerX() {

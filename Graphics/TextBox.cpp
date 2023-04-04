@@ -16,6 +16,5 @@ void TextBox::display() {
     Rectangle bounds{pos.x - 4, pos.y - 4, size.x + 8, size.y + 8};
     // DrawRectangleLinesEx(bounds, 1, color_box);
     DrawTextEx(content.font, content.text.c_str(), pos, content.font_size, content.space, content.color);
-    DrawRectangleRoundedLines(bounds, 0.1, 4, 2, color_box);
+    DrawRectangleRoundedLines(bounds, 0.1, 1, 2, color_box);
 }
-

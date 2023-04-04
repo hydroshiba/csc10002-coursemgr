@@ -11,6 +11,7 @@ class Menu {
 	Button login;
 
 	Menu();
+	
 };
 
 #endif
