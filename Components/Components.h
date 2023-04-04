@@ -149,4 +149,6 @@ void uploadAcademicYearFolder(Vector<SchoolYear>& schoolYears, AcademicYear& aca
 void uploadSemesterFolder(Vector<SchoolYear>& schoolYears, Semester& semester);
 
 void uploadCourseFolder(Course& course);
+
+void uploadScoreboardFile(Vector<SchoolYear>& schoolYears, Course& course);
 #endif

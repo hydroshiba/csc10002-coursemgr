@@ -943,6 +943,7 @@ void uploadSemesterFolder(Vector<SchoolYear>& schoolYears, Semester& semester) {
 		semester.courses.append(course);
 		semester.courses[i].ptrSemester = &semester;
 		uploadCourseFolder(semester.courses[i]);
+		uploadScoreboardFile(schoolYears, semester.courses[i]);
 	}
 	ifs.close();
 }
@@ -982,6 +983,99 @@ void uploadCourseFolder(Course& course) {
 	course.maxEnroll = maxEnroll;
 	course.weekday = weekday;
 	course.session = session;
+	ifs.close();
+}
+
+void uploadScoreboardFile(Vector<SchoolYear>& schoolYears, Course& course) {
+	std::string scoreboardFilePath = getOutputScoreStudCourseFilePath(course);
+	std::ifstream ifs(scoreboardFilePath);
+	if (!ifs.is_open())
+	{
+		std::cout << "Incorrect file path " << scoreboardFilePath << std::endl;
+		return;
+	}
+	std::string sTemp, courseID, classID, name, teacher, weekdayStr, sessionStr;
+	Weekday weekday;
+	Session session;
+	int credits, maxEnroll, nStudent;
+	char delimitChar = ',';
+	std::getline(ifs, sTemp, delimitChar);
+	std::getline(ifs, courseID);
+	std::getline(ifs, sTemp);
+	std::getline(ifs, sTemp, delimitChar);
+	std::getline(ifs, classID);
+	std::getline(ifs, sTemp);
+	std::getline(ifs, sTemp, delimitChar);
+	std::getline(ifs, name);
+	std::getline(ifs, sTemp);
+	std::getline(ifs, sTemp, delimitChar);
+	std::getline(ifs, teacher);
+	std::getline(ifs, sTemp);
+	std::getline(ifs, sTemp, delimitChar);
+	ifs >> credits;
+	std::getline(ifs, sTemp);
+	std::getline(ifs, sTemp, delimitChar);
+	ifs >> maxEnroll;
+	std::getline(ifs, sTemp);
+	std::getline(ifs, sTemp, delimitChar);
+	std::getline(ifs, weekdayStr);
+	weekday = string_to_weekday(weekdayStr);
+	std::getline(ifs, sTemp);
+	std::getline(ifs, sTemp, delimitChar);
+	std::getline(ifs, sessionStr);
+	session = string_to_session(sessionStr);
+	std::getline(ifs, sTemp);
+	std::getline(ifs, sTemp, delimitChar);
+	ifs >> nStudent;
+	std::getline(ifs, sTemp);
+	if (course.ID != courseID || course.classID != classID || course.name != name || course.teacher != teacher || course.credits != credits || course.maxEnroll != maxEnroll || course.weekday != weekday || course.session != session)
+	{
+		std::cout << "Incorrect file path " << scoreboardFilePath << std::endl;
+		return;
+	}
+	course.scoreboards.resize(nStudent);
+	for (int i = 0; i < course.scoreboards.size(); i++)
+	{
+		std::string studentID;
+		std::string className;
+		Class* ptrClass = nullptr;
+		Student* ptrStudent = nullptr;
+		std::getline(ifs, sTemp, delimitChar);
+		std::getline(ifs, studentID, delimitChar);
+		std::getline(ifs, sTemp, delimitChar);
+		std::getline(ifs, className, delimitChar);
+		for (int i = 0; i < schoolYears.size(); i++)
+			for (int j = 0; j < schoolYears[i].classes.size(); j++)
+			{
+				Class* foundClass = schoolYears[i].getClass(className);
+				if (foundClass != nullptr)
+					ptrClass = foundClass;
+			}
+		if (ptrClass == nullptr)
+		{
+			std::cout << "Can't find class " << className << std::endl;
+			return;
+		}
+		ptrStudent = ptrClass->getStudent(studentID);
+		if (ptrStudent == nullptr)
+		{
+			std::cout << "Can't find student with ID " << studentID << std::endl;
+			return;
+		}
+		float midterm, final, other, total;
+		std::getline(ifs, sTemp, delimitChar);
+		midterm = std::stof(sTemp);
+		std::getline(ifs, sTemp, delimitChar);
+		final = std::stof(sTemp);
+		std::getline(ifs, sTemp, delimitChar);
+		other = std::stof(sTemp);
+		std::getline(ifs, sTemp);
+		total = std::stof(sTemp);
+		course.scoreboards[i]->setScore(midterm, final, total, other);
+		course.scoreboards[i]->ptrCourse = &course;
+		course.scoreboards[i]->ptrStudent = ptrStudent;
+		ptrStudent->scoreboards.append(course.scoreboards[i]);
+	}
 	ifs.close();
 }
 
