@@ -29,12 +29,14 @@ public:
 
     void setX(float x);
     void setY(float y);
+
     void setPos(Vector2 pos);
     Vector2 getPos();
 
     void centerX();
     void centerY();
 
+    void setSize(float size);
     void render();
 };
 

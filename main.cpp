@@ -31,9 +31,14 @@
 /*--------------------------------------*/
 
 int main() {
+    SetTargetFPS(app_const::fps);
+    InitWindow(app_const::width, app_const::height, app_const::title.c_str());
+
     Application newApp;
     
     while(!newApp.appShouldClose()) {
         newApp.tick();
     }
+
+    CloseWindow();
 }

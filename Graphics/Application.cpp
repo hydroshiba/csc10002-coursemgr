@@ -11,18 +11,6 @@
 
 #include "Menu.h"
 
-Application::Application(int width, int height, int fps, std::string title) {
-    assert(GetWindowHandle() == nullptr);
-    
-    SetTargetFPS(fps);
-    InitWindow(width, height, title.c_str());
-}
-
-Application::~Application() noexcept {
-    assert(GetWindowHandle() != nullptr);
-    CloseWindow();
-}
-
 bool Application::appShouldClose() const {
 	return WindowShouldClose();
 }
@@ -40,13 +28,18 @@ void Application::tick() {
 
 void Application::render() {
     ClearBackground(RAYWHITE);
+    
+    boxx = "Course Management System";
+    boxx.setSize(75);
+    boxx.setPos({300, 300});
 
-    TextBox boxx(Text("Course Management System", 75), {300, 300});
     boxx.centerX();
     boxx.setY(boxx.getPos().y / 2);
     boxx.render();
 
-    Button butt({300, 300}, {125, 50}, "click me!");
+    butt.setSize({150, 75});
+    butt.setPos({300, 300});
+    butt.label = "click me!";
     butt.centerX();
     butt.setY((butt.getPos().y * 3) / 2);
 
@@ -57,8 +50,8 @@ void Application::render() {
         std::cout << mousePoint.x << ' ' << mousePoint.y << std::endl;
     }
     
-    InputBox example({400, 200}, 55);
-    example.draw();
+    //InputBox example({400, 200}, 55);
+    //example.draw();
 }
 
 void Application::update() {

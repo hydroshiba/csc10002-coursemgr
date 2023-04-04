@@ -8,13 +8,12 @@
 #include "Graphics.h"
 
 #include "Button.h"
+#include "TextBox.h"
 #include "Menu.h"
 
 class Application {
 public:
-	Application(int width = app_const::width, int height = app_const::height, int fps = app_const::fps, std::string title = app_const::title);
-	~Application() noexcept;
-
+	Application() {}
 	Application(const Application &other) = delete;
 	Application& operator=(const Application &other) = delete;
 
@@ -23,6 +22,9 @@ public:
 
 private:
 	Vector2 mousePoint = { 0.0f, 0.0f };
+	Menu menu;
+	Button butt;
+	TextBox boxx;
 
 	void render();
 	void update();
