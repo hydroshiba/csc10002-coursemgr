@@ -898,10 +898,51 @@ void uploadAcademicYearFolder(AcademicYear& academicYear) {
 		semester.semesterID = semesterID;
 		academicYear.semesters.append(semester);
 		academicYear.semesters[i].ptrAcademicYear = &academicYear;
+		uploadSemesterFolder(academicYear.semesters[i]);
 	}
 	ifs.close();
 }
 
-
-
-
+void uploadSemesterFolder(Semester& semester) {
+	std::string semesterFilePath = getSemesterFilePath(semester);
+	std::ifstream ifs(semesterFilePath);
+	if (!ifs.is_open())
+	{
+		std::cout << "Can't open " << semesterFilePath << std::endl;
+		return;
+	}
+	std::string semesterID;
+	std::getline(ifs, semesterID);
+	if (semester.semesterID != semesterID)
+	{
+		std::cout << "Incorrect file path " << semesterFilePath << std::endl;
+		return;
+	}
+	Date startDate, endDate;
+	std::string day, month, year;
+	getline(ifs, day, '/');
+	getline(ifs, month, '/');
+	getline(ifs, year);
+	startDate.set(std::stoi(day), std::stoi(month), std::stoi(year));
+	getline(ifs, day, '/');
+	getline(ifs, month, '/');
+	getline(ifs, year);
+	endDate.set(std::stoi(day), std::stoi(month), std::stoi(year));
+	semester.startDate = startDate;
+	semester.endDate = endDate;
+	int nCourse;
+	std::string courseID = "";
+	ifs >> nCourse;
+	semester.courses.resize(nCourse);
+	std::getline(ifs, courseID);
+	for (int i = 0; i < semester.courses.size(); i++)
+	{
+		std::getline(ifs, courseID);
+		Course course;
+		course.ID = courseID;
+		semester.courses.append(course);
+		semester.courses[i].ptrSemester = &semester;
+		
+	}
+	ifs.close();
+}

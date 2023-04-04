@@ -145,4 +145,6 @@ void dowdloadScoreboardFile(Course& course);
 void uploadListAcademicYearFolder(Vector<AcademicYear>& academicYears);
 
 void uploadAcademicYearFolder(AcademicYear& academicYear);
+
+void uploadSemesterFolder(Semester& semester);
 #endif
