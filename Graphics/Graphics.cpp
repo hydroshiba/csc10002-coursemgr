@@ -57,7 +57,7 @@ void Application::render() {
     }
     
     InputBox example({400, 200}, 55);
-    example.refresh();
+    example.draw();
 }
 
 void Application::update() {

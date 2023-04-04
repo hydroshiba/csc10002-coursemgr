@@ -848,7 +848,7 @@ void dowdloadScoreboardFile(Course& course) {
 	ofs.close();
 }
 
-void uploadListSchoolYear(Vector <SchoolYear>& schoolYears){
+void uploadListSchoolYearFolder(Vector <SchoolYear>& schoolYears){
 	std::string listSchoolYearDir = getListSchoolYearFilePath();
 	std::ifstream ifs(listSchoolYearDir);
 	if (!ifs.is_open()){
@@ -867,6 +867,30 @@ void uploadListSchoolYear(Vector <SchoolYear>& schoolYears){
 	}
 	ifs.close();
 }	
+
+void uploadSchoolYearFolder(SchoolYear &schoolYear){
+	std::string schoolYearDir = getInputSchoolYearFilePath(schoolYear);
+	std::ifstream ifs(schoolYearDir);
+	if (!ifs.is_open()){
+		std::cout << "Cannot open " << schoolYearDir << '\n';
+		return;
+	}
+	unsigned int start;
+	ifs >> start;
+	if (start == schoolYear.start){
+		std::cout << "Incorrect directory\n";
+		return;
+	}
+	size_t nClasses;
+	ifs >> nClasses;
+	schoolYear.classes.resize(nClasses);
+	for (int i = 0; i<nClasses; ++i){
+		std::string className;
+		ifs >> className;
+		schoolYear.classes[i].name = className; 
+	}
+	ifs.close();
+}
 
 void uploadListAcademicYearFolder(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears) {
 	std::string listAcademicYearFilePath = getListAcademicYearFilePath();
