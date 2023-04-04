@@ -9,6 +9,44 @@
 #include "Semester.h"
 #include "Scoreboard.h"
 
+// Convert enum to string
+std::string weekday_to_string(const Weekday& weekday) {
+	switch (weekday)
+	{
+	case MON:
+		return "MON";
+	case TUE:
+		return "TUE";
+	case WED:
+		return "WED";
+	case THU:
+		return "THU";
+	case FRI:
+		return "FRI";
+	case SAT:
+		return "SAT";
+	case SUN:
+		return "SUN";
+	}
+}
+
+Weekday string_to_weekday(const std::string& str) {
+	if (str == "MON")
+		return MON;
+	else if (str == "TUE")
+		return TUE;
+	else if (str == "WED")
+		return WED;
+	else if (str == "THU")
+		return THU;
+	else if (str == "FRI")
+		return FRI;
+	else if (str == "SAT")
+		return SAT;
+	else
+		return SUN;
+}
+
 /* Task functions */
 
 // Add a new 1st-year

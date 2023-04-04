@@ -39,6 +39,11 @@ bool operator!=(const Type &typeA, const Type &typeB) {
     return !(typeA == typeB);
 }
 
+// Convert enum to string
+std::string weekday_to_string(const Weekday& weekday);
+
+Weekday string_to_weekday(const std::string& str);
+
 // 1 - 12
 
 void addNewSchoolYear(Vector<SchoolYear>& yearList);
@@ -126,4 +131,5 @@ void downloadSemesterFolder(Semester& semester);
 void downloadCourseFolder(Course& course);
 
 void dowdloadScoreboardFile(Course& course);
+
 #endif
