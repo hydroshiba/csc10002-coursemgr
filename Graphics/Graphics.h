@@ -4,17 +4,12 @@
 #include <string>
 #include "raylib.h"
 
+#include "Constants.h"
 #include "Button.h"
-
-const int defWidth = 1280;
-const int defHeight = 720;
-const int defFPS = 60;
-
-const std::string defTitle = "Course Management System";
 
 class Application {
 public:
-	Application(int width = defWidth, int height = defHeight, int fps = defFPS, std::string title = defTitle);
+	Application(int width = app_const::width, int height = app_const::height, int fps = app_const::fps, std::string title = app_const::title);
 	~Application() noexcept;
 
 	Application(const Application &other) = delete;

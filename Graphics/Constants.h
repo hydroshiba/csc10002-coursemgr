@@ -2,16 +2,16 @@
 #define CONSTANTS_H
 
 #include <cstring>
+#include <string>
 #include "raylib.h"
 
-namespace text_const {
+namespace app_const {
 
-const char font_path[] = "Graphics/Resources/GoogleSans.ttf";
-const char bold_path[] = "Graphics/Resources/GoogleSans.ttf";
+const int width = 1280;
+const int height = 720;
+const int fps = 30;
 
-const float space = 0;
-const float size = 24;
-const Color color = BLACK;
+const std::string title = "Course Management System";
 
 }
 
@@ -33,6 +33,17 @@ namespace button_const {
 
 const Color hover_color = SKYBLUE;
 const Color press_color = BLUE;
+
+}
+
+namespace text_const {
+
+const char font_path[] = "Graphics/Resources/GoogleSans.ttf";
+const char bold_path[] = "Graphics/Resources/GoogleSans.ttf";
+
+const float space = 0;
+const float size = 24;
+const Color color = BLACK;
 
 }
 
