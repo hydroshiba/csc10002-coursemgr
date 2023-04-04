@@ -7,7 +7,9 @@
 #include "Text.h"
 #include "TextBox.h"
 
-class Menu {
+#include "Scene.h"
+
+class Menu : public Scene {
 	Button login;
 
 	Menu();

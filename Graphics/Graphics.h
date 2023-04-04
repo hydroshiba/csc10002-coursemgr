@@ -26,7 +26,7 @@ public:
 private:
 	Vector2 mousePoint = { 0.0f, 0.0f };
 
-	void display();
+	void render();
 	void update();
 };
 
