@@ -6,7 +6,7 @@ Number of credits,4,,,,,
 Weekday,MON,,,,,
 Session,7:30,,,,,
 Students,4
-No,ID,Fullname,Class,Midterm,Final,Other,Total
+No,ID,Fullname,Class
 1,1,Nguyen Gia Huy, 22CLC06
 2,2,Quach Tran Quan Vinh, 22CLC05
 3,3,Phan Hai Minh, 22CLC05
