@@ -12,7 +12,7 @@ public:
 	Application* app;
 
 	virtual void render() {}
-	virtual Scene* process() {}
+	virtual Scene* process() { return nullptr; }
 };
 
 #endif
