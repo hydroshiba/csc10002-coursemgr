@@ -17,7 +17,7 @@
 
 /*---------- GRAPHICS INCLUDE ----------*/
 
-#include "Graphics/Graphics.h"
+#include "Graphics/Application.h"
 
 /*--------------------------------------*/
 
