@@ -38,8 +38,8 @@ const Color press_color = BLUE;
 
 namespace text_const {
 
-const char font_path[] = "Graphics/Resources/GoogleSans.ttf";
-const char bold_path[] = "Graphics/Resources/GoogleSans.ttf";
+const char font_path[] = "Graphics/Assets/GoogleSans.ttf";
+const char bold_path[] = "Graphics/Assets/GoogleSans.ttf";
 
 const float space = 0;
 const float size = 24;
