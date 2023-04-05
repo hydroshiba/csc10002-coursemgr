@@ -22,16 +22,13 @@ Application::~Application() {
 }
 
 bool Application::appShouldClose() const {
-	return (GetWindowHandle() == nullptr || WindowShouldClose());
+	return (scene == nullptr || WindowShouldClose());
 }
 
 void Application::tick() {
     BeginDrawing();
-    process();
-
-    if(GetWindowHandle() == nullptr) return;
-
     render();
+    process();
     EndDrawing();
 }
 
@@ -42,7 +39,5 @@ void Application::render() {
 
 void Application::process() {
     mousePoint = GetMousePosition();
-
     if(scene) scene = scene->process();
-    else CloseWindow();
 }

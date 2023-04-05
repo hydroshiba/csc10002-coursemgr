@@ -1,12 +1,16 @@
 #ifndef MENU_H
 #define MENU_H
 
+#include <iostream>
 #include "raylib.h"
+
+#include "Constants.h"
 #include "Graphics.h"
+#include "Scene.h"
 
 #include "Button.h"
 #include "TextBox.h"
-#include "Scene.h"
+#include "InputBox.h"
 
 class Menu : public Scene {
 private:
@@ -14,6 +18,7 @@ private:
 	Button quit;
 
 	TextBox title;
+	InputBox username, password;
 
 public: 
 	Menu();

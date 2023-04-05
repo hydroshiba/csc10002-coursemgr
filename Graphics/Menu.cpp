@@ -14,21 +14,27 @@ Menu::Menu() {
 	quit.hover_color = RED;
 	quit.press_color = MAROON;
 
-	title = "Course Management System";
+	title = app_const::title;
 	title.setSize(75);
 	title.setY(100);
 	title.centerX();
+
+	username.pos = {300, 300};
 }
 
 void Menu::render() {
+	title.render();
 	login.render(this->mousePoint);
 	quit.render(this->mousePoint);
-	title.render();
 }
 
-Scene *Menu::process() {
+Scene* Menu::process() {
 	this->mousePoint = GetMousePosition();
 
 	if(quit.clicked(mousePoint)) return nullptr;
+	if(login.clicked(mousePoint)) {
+		
+	}
+
 	return this;
 }
