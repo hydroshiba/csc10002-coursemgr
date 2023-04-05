@@ -41,7 +41,7 @@ void InputBox::render() {
     }
     DrawTextEx(font, content.text.c_str(), pos, sizeOfBox, text_const::space, MAROON);
     if (mouseOnText) {
-        if (((framesCounter/20)%2) == 0) DrawText("_", (int)inputBox.x + 8 + MeasureText(content.text.c_str(), sizeOfBox), (int)inputBox.y + 12, sizeOfBox, MAROON);
+        if (((framesCounter / 20) % 2) == 0) DrawText("|", (int)inputBox.x + 2 + content.size().x, (int)inputBox.y + 1, sizeOfBox, MAROON);
     }
     //End of drawing
 }
