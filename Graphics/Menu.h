@@ -4,13 +4,11 @@
 #include <iostream>
 #include "raylib.h"
 
-#include "Constants.h"
-#include "Graphics.h"
 #include "Scene.h"
 
-#include "Button.h"
-#include "TextBox.h"
-#include "InputBox.h"
+#include "Objects/Button.h"
+#include "Objects/TextBox.h"
+#include "Objects/InputBox.h"
 
 class Menu : public Scene {
 private:

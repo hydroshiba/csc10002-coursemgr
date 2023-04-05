@@ -4,13 +4,6 @@
 #include <string>
 #include "raylib.h"
 
-class Application;
-class Menu;
-class Scene;
-
-class Button;
-class InputBox;
-class Text;
-class TextBox;
+#include "Application.h"
 
 #endif

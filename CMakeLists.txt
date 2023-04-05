@@ -33,7 +33,7 @@ endif()
 
 ###############################################################################
 
-file(GLOB cpp_files
+file(GLOB_RECURSE cpp_files
     ${PROJECT_SOURCE_DIR}/main.cpp
     ${PROJECT_SOURCE_DIR}/Components/*.cpp
     ${PROJECT_SOURCE_DIR}/Graphics/*.cpp)

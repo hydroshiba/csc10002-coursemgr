@@ -19,15 +19,6 @@
 
 #include "Graphics/Graphics.h"
 
-#include "Graphics/Application.h"
-#include "Graphics/Menu.h"
-#include "Graphics/Scene.h"
-
-#include "Graphics/Button.h"
-#include "Graphics/InputBox.h"
-#include "Graphics/Text.h"
-#include "Graphics/TextBox.h"
-
 /*--------------------------------------*/
 
 int main() {
@@ -39,6 +30,4 @@ int main() {
     while(!newApp.appShouldClose()) {
         newApp.tick();
     }
-
-    //CloseWindow();
 }

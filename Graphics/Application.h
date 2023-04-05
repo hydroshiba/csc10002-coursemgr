@@ -4,11 +4,8 @@
 #include <string>
 #include "raylib.h"
 
-#include "Constants.h"
-#include "Graphics.h"
+#include "Scene.h"
 
-#include "Button.h"
-#include "TextBox.h"
 #include "Menu.h"
 
 class Application {

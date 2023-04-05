@@ -1,18 +1,6 @@
-#include <cassert>
-#include <iostream>
-
-#include "raylib.h"
-
 #include "Application.h"
-#include "Text.h"
-
-#include "TextBox.h"
-#include "InputBox.h"
-
-#include "Menu.h"
 
 Application::Application() {
-    menu.app = this;
     scene = &menu;
 }
 

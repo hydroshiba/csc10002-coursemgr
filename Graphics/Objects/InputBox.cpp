@@ -1,6 +1,4 @@
-#include "raylib.h"
 #include "InputBox.h"
-#include "Constants.h"
 
 InputBox::InputBox() {}
 

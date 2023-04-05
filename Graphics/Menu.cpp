@@ -26,6 +26,8 @@ void Menu::render() {
 	title.render();
 	login.render(this->mousePoint);
 	quit.render(this->mousePoint);
+
+	username.render();
 }
 
 Scene* Menu::process() {
