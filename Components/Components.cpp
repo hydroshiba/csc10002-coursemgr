@@ -662,7 +662,9 @@ std::string getInputScoreClassFilePath(const Class& CLASS) {
 
 std::string getStudentFolderPath(const Student& student) {
 	std::string classFolderPath = getClassFolderPath(*(student.myClass));
-	return classFolderPath + "Students\\" + student.ID + "\\";
+	std::string studentFolderPath = classFolderPath + "Students\\" + student.ID + "\\";
+	createDirectoryIfNotExists(studentFolderPath);
+	return studentFolderPath;
 }
 
 std::string getOutputScoreStudentFilePath(const Student& student) {
@@ -676,7 +678,9 @@ std::string getInputStandardIn4StudentFilePath(const Student& student) {
 }
 
 std::string getAcademicYearFolderPath(const AcademicYear& academicYear) {
-	return "Data\\AcademicYear\\" + std::to_string(academicYear.start) + "_" + std::to_string(academicYear.start + 1) + "\\";
+	std::string academicYearFolderPath = "Data\\AcademicYear\\" + std::to_string(academicYear.start) + "_" + std::to_string(academicYear.start + 1) + "\\";
+	createDirectoryIfNotExists(academicYearFolderPath);
+	return academicYearFolderPath;
 }
 
 std::string getAcademicYearFilePath(const AcademicYear& academicYear) {
@@ -686,7 +690,8 @@ std::string getAcademicYearFilePath(const AcademicYear& academicYear) {
 
 std::string getSemesterFolderPath(const Semester& semester) {
 	std::string academicYearFolderPath = getAcademicYearFolderPath(*(semester.ptrAcademicYear));
-	return academicYearFolderPath + semester.semesterID + "\\";
+	std::string semesterFolderPath = academicYearFolderPath + semester.semesterID + "\\";
+	return semesterFolderPath;
 }
 
 std::string getSemesterFilePath(const Semester& semester) {
@@ -696,7 +701,8 @@ std::string getSemesterFilePath(const Semester& semester) {
 
 std::string getCourseFolderPath(const Course& course) {
 	std::string semesterFolderPath = getSemesterFolderPath(*(course.ptrSemester));
-	return semesterFolderPath + course.ID + "\\";
+	std::string courseFolderPath = semesterFolderPath + course.ID + "\\";
+	return courseFolderPath;
 }
 
 std::string getCourseFilePath(const Course& course) {
