@@ -620,6 +620,7 @@ void createDirectoryIfNotExists(const std::string& dirPath)
 {
 	if (!std::filesystem::exists(dirPath)) {
 		std::filesystem::create_directory(dirPath);
+		std::cout << "Create directory " << dirPath << std::endl;
 	}
 }
 
@@ -632,7 +633,9 @@ std::string getListAcademicYearFilePath() {
 }
 
 std::string getSchoolYearFolderPath(const SchoolYear& schoolyear) {
-	return "Data\\SchoolYear\\HCMUS_" + std::to_string(schoolyear.start) + "\\";
+	std::string schoolYearDirPath = "Data\\SchoolYear\\HCMUS_" + std::to_string(schoolyear.start) + "\\";
+	createDirectoryIfNotExists(schoolYearDirPath);
+	return schoolYearDirPath;
 }
 
 std::string getInputSchoolYearFilePath(const SchoolYear& schoolyear) {
@@ -642,7 +645,9 @@ std::string getInputSchoolYearFilePath(const SchoolYear& schoolyear) {
 
 std::string getClassFolderPath(const Class& CLASS) {
 	std::string schoolYearFolderPath = getSchoolYearFolderPath(*(CLASS.ptrSchoolYear));
-	return schoolYearFolderPath + CLASS.name + "\\";
+	std::string classFolderPath = schoolYearFolderPath + CLASS.name + "\\";
+	createDirectoryIfNotExists(classFolderPath);
+	return classFolderPath;
 }
 
 std::string getInputStudClassFilePath(const Class& CLASS) {
