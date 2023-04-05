@@ -12,7 +12,7 @@ InputBox::InputBox(Vector2 pos, float sizeOfBox):
         inputBox = {pos.x, pos.y, dimension.x, dimension.y};
     }
 
-void InputBox::draw() {
+void InputBox::render() {
     if (CheckCollisionPointRec(GetMousePosition(), inputBox)) mouseOnText = true;
     else mouseOnText = false;
     if (mouseOnText) {

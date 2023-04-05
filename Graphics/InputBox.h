@@ -23,7 +23,7 @@ public:
     InputBox();
     InputBox(Vector2 pos, float sizeOfBox = text_const::size);
 
-    void draw();
+    void render();
 };
 
 #endif //INPUTBOX_H
