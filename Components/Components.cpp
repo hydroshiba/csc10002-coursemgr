@@ -730,10 +730,10 @@ std::string getOutputScoreStudCourseFilePath(const Course& course) {
 void downloadListSchoolYearFolder(Vector <SchoolYear>& schoolYears){
 	std::string listSchoolYearDir = getListSchoolYearFilePath();
 	std::ofstream ofs(listSchoolYearDir);
-	if (!ofs.is_open()){
+	/*if (!ofs.is_open()){
 		std::cout << "Cannot open " << listSchoolYearDir << '\n';
 		return;
-	}
+	}*/
 	ofs << schoolYears.size() << '\n';
 	for (int i = 0; i<schoolYears.size(); ++i){
 		ofs << schoolYears[i].start << '\n';
@@ -745,10 +745,10 @@ void downloadListSchoolYearFolder(Vector <SchoolYear>& schoolYears){
 void downloadSchoolYearFolder(SchoolYear &schoolYear){
 	std::string schoolYearDir = getInputSchoolYearFilePath(schoolYear);
 	std::ofstream ofs(schoolYearDir);
-	if (!ofs.is_open()){
+	/*if (!ofs.is_open()){
 		std::cout << "Cannot open " << schoolYearDir;
 		return;
-	}
+	}*/
 	ofs << schoolYear.start << '\n';
 	ofs << schoolYear.classes.size() << '\n';
 	for (int i = 0; i<schoolYear.classes.size(); ++i){
@@ -762,10 +762,10 @@ void downloadSchoolYearFolder(SchoolYear &schoolYear){
 void downloadStudentFolder(Student& student){
 	std::string studentDir = getInputStandardIn4StudentFilePath(student);
 	std::ofstream ofs(studentDir);
-	if (!ofs.is_open()){
+	/*if (!ofs.is_open()){
 		std::cout << "Cannot open " << studentDir;
 		return;
-	}
+	}*/
 	ofs << "ID," << student.ID << std::endl;
 	ofs << "Name," << student.name.get() << std::endl;
 	ofs << "Gender," << gender_to_string(student.gender) << std::endl;
@@ -778,11 +778,11 @@ void downloadStudentFolder(Student& student){
 void downloadListAcademicYearFolder(Vector<AcademicYear>& academicYears) {
 	std::string listAcademicYearFilePath = getListAcademicYearFilePath();
 	std::ofstream ofs(listAcademicYearFilePath);
-	if (!ofs.is_open())
+	/*if (!ofs.is_open())
 	{
 		std::cout << "Can't open " << listAcademicYearFilePath << std::endl;
 		return;
-	}
+	}*/
 	ofs << academicYears.size() << std::endl;
 	for (int i = 0; i < academicYears.size(); i++)
 	{
@@ -795,11 +795,11 @@ void downloadListAcademicYearFolder(Vector<AcademicYear>& academicYears) {
 void downloadAcademicYearFolder(AcademicYear& academicYear) {
 	std::string academicYearFilePath = getAcademicYearFilePath(academicYear);
 	std::ofstream ofs(academicYearFilePath);
-	if (!ofs.is_open())
+	/*if (!ofs.is_open())
 	{
 		std::cout << "Can't open " << academicYearFilePath << std::endl;
 		return;
-	}
+	}*/
 	ofs << academicYear.start << std::endl;
 	ofs << academicYear.semesters.size() << std::endl;
 	for (int i = 0; i < academicYear.semesters.size(); i++)
@@ -813,11 +813,11 @@ void downloadAcademicYearFolder(AcademicYear& academicYear) {
 void downloadSemesterFolder(Semester& semester) {
 	std::string semesterFilePath = getSemesterFilePath(semester);
 	std::ofstream ofs(semesterFilePath);
-	if (!ofs.is_open())
+	/*if (!ofs.is_open())
 	{
 		std::cout << "Can't open " << semesterFilePath << std::endl;
 		return;
-	}
+	}*/
 	ofs << semester.semesterID << std::endl;
 	ofs << semester.startDate.day << "/" << semester.startDate.month << "/" << semester.startDate.year << std::endl;
 	ofs << semester.endDate.day << "/" << semester.endDate.month << "/" << semester.endDate.year << std::endl;
@@ -835,11 +835,6 @@ void downloadSemesterFolder(Semester& semester) {
 void downloadCourseFolder(Course& course) {
 	std::string courseFilePath = getCourseFilePath(course);
 	std::ofstream ofs(courseFilePath);
-	if (!ofs.is_open())
-	{
-		std::cout << "Can't open " << courseFilePath << std::endl;
-		return;
-	}
 	ofs << course.ID << std::endl;
 	ofs << course.classID << std::endl;
 	ofs << course.name << std::endl;
@@ -854,11 +849,11 @@ void downloadCourseFolder(Course& course) {
 void dowdloadScoreboardFile(Course& course) {
 	std::string scoreBoardFilePath = getOutputScoreStudCourseFilePath(course);
 	std::ofstream ofs(scoreBoardFilePath);
-	if (!ofs.is_open())
+	/*if (!ofs.is_open())
 	{
 		std::cout << "Can't open " << scoreBoardFilePath << std::endl;
 		return;
-	}
+	}*/
 	course.displayScoreBoardFile(ofs);
 	ofs.close();
 }
