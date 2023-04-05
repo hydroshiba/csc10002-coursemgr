@@ -427,11 +427,7 @@ void exportListOfStudent(Course& course, const std::string& fileName) {
 
 // 20. import scoreboard of course
 void importScoreBoardOfCourse(Course& course) {
-	std::cout << "Input filename: ";
-	std::string fileName;
-	std::getline(std::cin, fileName, '\n');
-	fileName = "Data\\" + fileName;
-	std::ifstream ifs(fileName);
+	std::ifstream ifs(getInputScoreCourseFilePath(course));
 	if (!ifs.is_open())
 	{
 		std::cout << "Can't find file with that name, pls try again!" << std::endl;
@@ -612,6 +608,7 @@ void viewScoreBoardOfStudent(Student& student) {
 		std::cout << std::setw(totalMaxLength) << std::left << student.scoreboards[i]->total;
 		std::cout << std::endl;
 	}
+	std::cout << std::setw(noMaxLength) << std::left << "GPA:" << student.getGPA() << std::endl;
 }
 
 // Get file path in Data Folder
