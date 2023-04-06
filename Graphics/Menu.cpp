@@ -19,18 +19,26 @@ Menu::Menu() {
 	title.setY(100);
 	title.centerX();
 
-	username.pos = {300, 300};
+	username.setY(275);
+	username.setSize({300, 50});
+	username.centerX();
+	username.defaultText = "Username";
 
-	test.pos = {200, 200};
-	test.length = 25;
+	password.setY(350);
+	password.setSize({300, 50});
+	password.centerX();
+	password.defaultText = "Password";
+
+	//test.pos = {200, 200};
 }
 
 void Menu::render() {
 	title.render();
-	login.render(this->mousePoint);
-	quit.render(this->mousePoint);
+	login.render(mousePoint);
+	quit.render(mousePoint);
 
-	username.render();
+	username.render(mousePoint);
+	password.render(mousePoint);
 
 	test.render();
 }
@@ -42,6 +50,9 @@ Scene* Menu::process() {
 	if(login.clicked(mousePoint)) {
 		
 	}
+
+	username.process(mousePoint);
+	password.process(mousePoint);
 
 	return this;
 }
