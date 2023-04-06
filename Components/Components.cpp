@@ -164,6 +164,11 @@ void addSemester(AcademicYear &newYear){
     unsigned int year;
     std::string id;
     std::cout << "Enter semester id: "; std::cin >> id;
+	if (newYear.getSemester(id) != nullptr)
+	{
+		std::cout << "This SemesterID have been already existed in this AcademicYear! Pls input another semesterID";
+		return;
+	}
     Date startDate;
     std::cout << "Enter start date for the semester:\n";
     std::cin >> day >> month >> year;
@@ -174,7 +179,7 @@ void addSemester(AcademicYear &newYear){
     std::cin >> day >> month >> year;
     endDate.set(day, month, year);
 
-    Semester newSem;
+	Semester newSem;
     newSem.semesterID = id;
     newSem.startDate = startDate;
     newSem.endDate = endDate;
