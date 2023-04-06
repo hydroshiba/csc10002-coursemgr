@@ -2,7 +2,6 @@
 #include "math.h"
 #include <iostream>
 
-
 Dropbox::Dropbox() {}
 
 Dropbox::Dropbox(float x, float y, float length):
@@ -25,7 +24,14 @@ void Dropbox::DropTriangle() {
     p3 = {pos.x - length / 2, pos.y - length / 2};
 }
 
+bool Dropbox::mouseInsideDropbox(const Vector2 &mouse) {
+    return CheckCollisionPointTriangle(mouse, p1, p2, p3);
+}
+
 void Dropbox::render(const Vector2 &mouse) {
+    //process
+    
+    //draw
     if (degree == 180) DropTriangle();
     else RaiseTriangle();
     DrawTriangle(p1, p2, p3, BLACK);

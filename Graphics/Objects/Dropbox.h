@@ -17,6 +17,7 @@ struct Dropbox {
 
     void RaiseTriangle();
     void DropTriangle();
+    bool mouseInsideDropbox(const Vector2 &mouse);
     void render(const Vector2 &mouse);
 };
 
