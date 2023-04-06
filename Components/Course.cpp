@@ -46,15 +46,14 @@ void Course::removeStudent(Student& student) {
     }
 }
 
-Scoreboard* Course::getScoreboard(Student& student) {
+Scoreboard* Course::getScoreboard(const std::string& studentID) {
     Scoreboard* ptrScoreboard = nullptr;
 
     for (int i = 0; i < scoreboards.size(); ++i)
-        if (scoreboards[i]->ptrStudent == &student) {
+        if (scoreboards[i]->ptrStudent->ID == studentID) {
             ptrScoreboard = scoreboards[i];
             break;
         }
-
     return ptrScoreboard;
 }
 

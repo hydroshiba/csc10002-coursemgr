@@ -26,7 +26,7 @@ struct Course {
     // already set double linke between Course & Score, Score & Student
     void removeStudent(Student& student);
 
-    Scoreboard* getScoreboard(Student& student);
+    Scoreboard* getScoreboard(const std::string& studentID);
     
     void displayInfo(std::ostream& outDev);
 
