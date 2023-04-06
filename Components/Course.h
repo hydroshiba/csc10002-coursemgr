@@ -19,6 +19,9 @@ struct Course {
     Vector<Scoreboard*> scoreboards;
 
     Course(const std::string& ID = defaultStr, const std::string& classID = defaultStr, const std::string& name = defaultStr, const std::string& teacher = defaultStr, const int& credits = 0, const int& maxEnroll = 50, Semester* ptrSemester = nullptr, Vector<Scoreboard*> scoreboards = Vector<Scoreboard*>());
+
+    Student* getStudent(const std::string& studentID);
+
     void addStudent(Student& student);  
     // already set double linke between Course & Score, Score & Student
     void removeStudent(Student& student);

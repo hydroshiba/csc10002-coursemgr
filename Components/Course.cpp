@@ -11,6 +11,17 @@ Course::Course(const std::string& ID, const std::string& classID, const std::str
     this->scoreboards = scoreboards;
 }
 
+Student* Course::getStudent(const std::string& studentID) {
+    Student* ptrStudent = nullptr;
+    for (int i = 0; i < scoreboards.size(); i++)
+        if (scoreboards[i]->ptrStudent->ID == studentID)
+        {
+            ptrStudent = scoreboards[i]->ptrStudent;
+            break;
+        }
+    return ptrStudent;
+}
+
 void Course::addStudent(Student& student) { 
     Scoreboard* newBoard = new Scoreboard(this, &student);
     student.scoreboards.append(newBoard);
