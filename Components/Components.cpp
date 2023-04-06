@@ -158,6 +158,18 @@ void addNewAcademicYear(Vector<AcademicYear> academicYears){
     
 }
 
+// Find SchoolYear
+SchoolYear* findSchoolYear(Vector<SchoolYear>& schoolYears, const unsigned int& start) {
+	SchoolYear* ptrSchoolYear = nullptr;
+	for (int i = 0; i < schoolYears.size(); i++)
+		if (schoolYears[i].start == start)
+		{
+			ptrSchoolYear = &schoolYears[i];
+			break;
+		}
+	return ptrSchoolYear;
+}
+
 // Add a semester to an academic year
 void addSemester(AcademicYear &newYear){
     unsigned short day, month;

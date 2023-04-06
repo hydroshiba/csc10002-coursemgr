@@ -22,11 +22,11 @@ struct Course {
 
     Student* getStudent(const std::string& studentID);
 
-    void addStudent(Student& student);  
-    // already set double linke between Course & Score, Score & Student
-    void removeStudent(Student& student);
-
     Scoreboard* getScoreboard(const std::string& studentID);
+
+    void addStudent(Student& student);  
+
+    void removeStudent(Student& student);
     
     void displayInfo(std::ostream& outDev);
 

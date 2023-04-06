@@ -61,6 +61,8 @@ void addClasses (Vector<SchoolYear>& yearList);
 void addStudToClass(Class &actClass);
 void addNewAcademicYear(Vector <AcademicYear> &newYear);
 
+SchoolYear* findSchoolYear(Vector<SchoolYear>& schoolYears, const unsigned int& start);
+
 void addSemester(AcademicYear &newYear);
 void addNewCourse(Semester &semester);
 void getStudentToCourse(Vector<SchoolYear>& years, Course &course);
@@ -80,7 +82,7 @@ void viewListOfStudentsInClass(const Class& curClass, std::ostream& outDev = std
 
 void viewListOfCoursesInSemester(const Semester& semester, std::ostream& outDev = std::cout);
 void viewListOfStudentsInCourse(const Course& course, std::ostream& outDev = std::cout);
-void exportListOfStudent(Course& course, const std::string& fileName);
+void exportListOfStudent(Course& course);
 void importScoreBoardOfCourse(Course& course);
 
 void viewScoreBoardOfCourse(Course& course);
