@@ -160,7 +160,7 @@ void addNewAcademicYear(Vector<AcademicYear> academicYears){
 
 // Remove schoolYear
 void removeSchoolYear(Vector<SchoolYear>& schoolYears, const unsigned int& start) {
-	SchoolYear* ptrSchoolYear = findSchoolYear(schoolYears, start);
+	SchoolYear* ptrSchoolYear = getSchoolYear(schoolYears, start);
 	if (ptrSchoolYear == nullptr)
 	{
 		std::cout << "SchoolYear with start year " << start << "is not exist!" << std::endl;
@@ -170,7 +170,7 @@ void removeSchoolYear(Vector<SchoolYear>& schoolYears, const unsigned int& start
 }
 
 // Find SchoolYear
-SchoolYear* findSchoolYear(Vector<SchoolYear>& schoolYears, const unsigned int& start) {
+SchoolYear* getSchoolYear(Vector<SchoolYear>& schoolYears, const unsigned int& start) {
 	SchoolYear* ptrSchoolYear = nullptr;
 	for (int i = 0; i < schoolYears.size(); i++)
 		if (schoolYears[i].start == start)
@@ -179,6 +179,18 @@ SchoolYear* findSchoolYear(Vector<SchoolYear>& schoolYears, const unsigned int& 
 			break;
 		}
 	return ptrSchoolYear;
+}
+
+// Find Academic Year
+AcademicYear* getAcademicYear(Vector<AcademicYear>& academicYears, const unsigned int& start) {
+	AcademicYear* ptrAcademicYear = nullptr;
+	for (int i = 0; i < academicYears.size(); i++)
+		if (academicYears[i].start == start)
+		{
+			ptrAcademicYear = &academicYears[i];
+			break;
+		}
+	return ptrAcademicYear;
 }
 
 // Add a semester to an academic year
