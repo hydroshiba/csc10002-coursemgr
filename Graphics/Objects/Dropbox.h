@@ -13,7 +13,9 @@ struct Dropbox {
     Dropbox();
     Dropbox(float x, float y, float length = 1);
     Dropbox(Vector2 pos, float length = 1);
-    void drawButton();
+    void mouseNotOnDropbox();
+    void mouseOnDropbox();
+    void render();
 };
 
 #endif //DROPBOX_H

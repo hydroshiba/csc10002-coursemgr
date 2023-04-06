@@ -32,7 +32,7 @@ void Menu::render() {
 
 	username.render();
 
-	test.drawButton();
+	test.render();
 }
 
 Scene* Menu::process() {
