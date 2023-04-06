@@ -67,7 +67,8 @@ void getStudentToCourse(Vector<SchoolYear>& years, Course &course);
 void viewCourses(Semester& sem, std::ostream& outDev = std::cout);
 
 void updateCourse(Course &course);
-void addNewStudToCourse(Vector <SchoolYear>& yearlist, Course &course, std::istream& inDev = std::cin);
+void addNewStudToCourse(Vector <SchoolYear>& yearlist, Course& course, std::istream& inDev = std::cin);
+void addANewStudentToCourse(Vector<SchoolYear>& schoolYears, Course& course);
 void removeStudFromCourse(Course &course);
 
 // 13 - 24

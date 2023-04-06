@@ -352,6 +352,27 @@ void addNewStudToCourse(Vector <SchoolYear>& yearlist, Course &course, std::istr
 		course.addStudent(*ptrStudent);
 }
 
+void addANewStudentToCourse(Vector<SchoolYear>& schoolYears, Course& course) {
+	std::string studentID;
+	std::cout << "Input studentID to insert to course: ";
+	std::getline(std::cin, studentID);
+	Student* ptrStudent = nullptr;
+	for (int i = 0; i < schoolYears.size(); i++)
+		for (int j = 0; j < schoolYears[i].classes.size(); j++)
+			if (schoolYears[i].classes[j].getStudent(studentID) != nullptr)
+			{
+				ptrStudent = schoolYears[i].classes[j].getStudent(studentID);
+				break;
+			}
+	if (ptrStudent == nullptr)
+	{
+		std::cout << "Student with ID " << studentID << " is not exist in school! Pls try another!";
+		return;
+	}
+	course.addStudent(*ptrStudent);
+	std::cout << "Complete add student with ID " << studentID << " to Course " << course.ID << std::endl;
+}
+
 void removeStudFromCourse(Course &course){
 	std::string studentID;
 	std::cout << "Input studentID to remove from course: ";
