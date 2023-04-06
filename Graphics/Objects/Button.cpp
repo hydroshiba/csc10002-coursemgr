@@ -10,8 +10,8 @@ void Button::refreshText() {
     }
 
     --label.font_size;
-    textpos.x = fill_bound.x + (fill_bound.width - (label.size().x)) / 2;
-    textpos.y = fill_bound.y + (fill_bound.height - (label.size().y)) / 2;
+    textPos.x = fill_bound.x + (fill_bound.width - (label.size().x)) / 2;
+    textPos.y = fill_bound.y + (fill_bound.height - (label.size().y)) / 2;
 }
 
 void Button::refresh() {
@@ -62,7 +62,7 @@ void Button::render(const Vector2 &mouse) const {
 
     DrawRectangleRounded(border_bound, box_const::roundness, box_const::segments, color);
     DrawRectangleRoundedLines(fill_bound, box_const::roundness, box_const::segments, box_const::thickness, border_color);
-    DrawTextEx(label.font, label.text.c_str(), textpos, label.font_size, label.space, label.color);
+    DrawTextEx(label.font, label.text.c_str(), textPos, label.font_size, label.space, label.color);
 }
 
 void Button::setX(float x) {

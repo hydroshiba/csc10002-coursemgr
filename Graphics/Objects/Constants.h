@@ -12,6 +12,7 @@ const int height = 720;
 const int fps = 30;
 
 const std::string title = "Course Management System";
+const std::string path = GetApplicationDirectory();
 
 }
 
@@ -38,8 +39,8 @@ const Color press_color = BLUE;
 
 namespace text_const {
 
-const char font_path[] = "Graphics/Assets/GoogleSans.ttf";
-const char bold_path[] = "Graphics/Assets/GoogleSans.ttf";
+const std::string font_path = app_const::path + "/Graphics/Assets/GoogleSans.ttf";
+const std::string bold_path = app_const::path + "/Graphics/Assets/GoogleBold.ttf";
 
 const float space = 0;
 const float size = 24;

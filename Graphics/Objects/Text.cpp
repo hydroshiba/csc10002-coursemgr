@@ -3,7 +3,7 @@
 Text::Text() : 
 	text(""),
 	font_size(text_const::size),
-	font(LoadFontEx(text_const::font_path, 96, 0, 0)),
+	font(LoadFontEx(text_const::font_path.c_str(), 192, 0, 0)),
 	space(text_const::space),
 	color(text_const::color) {}
 
