@@ -102,6 +102,8 @@ std::string getClassFolderPath(const Class& CLASS);
 
 std::string getInputStudClassFilePath(const Class& CLASS);
 
+std::string getOutputStudClassFilePath(const Class& CLASS);
+
 std::string getInputScoreClassFilePath(const Class& CLASS);
 
 std::string getStudentFolderPath(const Student& student);
