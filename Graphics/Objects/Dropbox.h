@@ -7,10 +7,14 @@ struct Dropbox {
     //triangle is placed based on the center of gravity
     Vector2 pos;
     float size;
+    float length;
+
+    float degree = 90;
+    
     Dropbox();
-    Dropbox(float x, float y, float size);
-    Dropbox(Vector2 pos, float size);
-    void DrawRectangle();
+    Dropbox(float x, float y, float size, float length);
+    Dropbox(Vector2 pos, float size, float length);
+    void drawButton();
 };
 
 #endif //DROPBOX_H
