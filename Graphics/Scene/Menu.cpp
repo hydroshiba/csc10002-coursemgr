@@ -30,6 +30,7 @@ Menu::Menu() {
 	password.defaultText = "Password";
 
 	drop.pos = {200, 200};
+	drop.content.text = "aaaaaaaaaaaaaaaaaaaaaaaaaaa";
 }
 
 void Menu::render() {
