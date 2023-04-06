@@ -98,14 +98,20 @@ void addNewSchoolYear(Vector<SchoolYear>& yearList){
 }
 
 // Add several classes for 1st year
-void addClasses (Vector<SchoolYear>& yearList){
-    Class newClass;
+void addClasses (SchoolYear& schoolYear){
+	std::string className;
     do {
         std::cout << "Enter class name (enter 0 when done): ";
-        std::cin >> newClass.name;
-        if (newClass.name == "0") break;
-        yearList[yearList.size()-1].addClass(newClass);
-    } while (newClass.name != "0");
+        std::cin >> className;
+        if (className == "0") break;
+		if (schoolYear.getClass(className) == nullptr)
+		{
+			Class newClass;
+			newClass.name = className;
+			schoolYear.addClass(newClass);
+		}
+        
+    } while (className != "0");
 }
 
 // Add students into a specific class
