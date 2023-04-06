@@ -60,7 +60,7 @@ void addNewSchoolYear(Vector<SchoolYear>& yearList);
 void addClasses (Vector<SchoolYear>& yearList);
 void addStudToClass(Class &actClass);
 void addNewAcademicYear(Vector <AcademicYear> &newYear);
-
+void removeSchoolYear(Vector<SchoolYear>& schoolYears, const unsigned int& start);
 SchoolYear* findSchoolYear(Vector<SchoolYear>& schoolYears, const unsigned int& start);
 
 void addSemester(AcademicYear &newYear);
