@@ -1,6 +1,6 @@
 #include "Course.h"
 
-Course::Course(std::string ID, std::string classID, std::string name, std::string teacher, const int& credits, const int& maxEnroll, Semester* ptrSemester, Vector<Scoreboard*> scoreboards) {
+Course::Course(const std::string& ID, const std::string& classID, const std::string& name, const std::string& teacher, const int& credits, const int& maxEnroll, Semester* ptrSemester, Vector<Scoreboard*> scoreboards) {
     this->ID = ID;
     this->classID = classID;
     this->name = name;
