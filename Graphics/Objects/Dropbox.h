@@ -9,14 +9,14 @@ struct Dropbox {
     float length = 25; //length of edges
     
     Vector2 p1, p2, p3;
+    float degree = 90;
 
     Dropbox();
     Dropbox(float x, float y, float length = 25);
     Dropbox(Vector2 pos, float length = 25);
 
-    void CreateTriangle();
-    void DropboxNotClicked();
-    void DropboxClicked();
+    void RaiseTriangle();
+    void DropTriangle();
     void render(const Vector2 &mouse);
 };
 

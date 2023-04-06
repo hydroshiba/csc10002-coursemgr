@@ -2,11 +2,6 @@
 #include "math.h"
 #include <iostream>
 
-void Dropbox::CreateTriangle() {
-    p1 = {pos.x + length / 2, pos.y};
-    p2 = {pos.x - length / 2, pos.y - length / 2};
-    p3 = {pos.x - length / 2, pos.y + length / 2};
-}
 
 Dropbox::Dropbox() {}
 
@@ -18,24 +13,20 @@ Dropbox::Dropbox(Vector2 pos, float length):
     pos(pos),
     length(length) {}
 
-
-void Dropbox::DropboxNotClicked() {
-    CreateTriangle();
-    DrawTriangle(p1, p2, p3, BLACK);
+void Dropbox::RaiseTriangle() {
+    p1 = {pos.x + length / 2, pos.y};
+    p2 = {pos.x - length / 2, pos.y - length / 2};
+    p3 = {pos.x - length / 2, pos.y + length / 2};
 }
 
-void Dropbox::DropboxClicked() {
+void Dropbox::DropTriangle() {
     p1 = {pos.x, pos.y + length / 2};
     p2 = {pos.x + length / 2, pos.y - length / 2};
     p3 = {pos.x - length / 2, pos.y - length / 2};
-    DrawTriangle(p1, p2, p3, BLACK);
 }
 
 void Dropbox::render(const Vector2 &mouse) {
-    if (CheckCollisionPointTriangle(mouse, p1, p2, p3)) {
-        DropboxClicked();
-    }
-    else {
-        DropboxNotClicked();
-    }
+    if (degree == 180) DropTriangle();
+    else RaiseTriangle();
+    DrawTriangle(p1, p2, p3, BLACK);
 }
