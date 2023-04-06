@@ -33,6 +33,7 @@ struct Compare {
 
 };
 
+const std::string defaultStr = "Error";
 /* Forward declaration of struct operator overloading */
 
 template <typename Type>
