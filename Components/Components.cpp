@@ -28,6 +28,7 @@ std::string weekday_to_string(const Weekday& weekday) {
 	case SUN:
 		return "SUN";
 	}
+	return "\n";
 }
 
 Weekday string_to_weekday(const std::string& str) {
@@ -58,6 +59,7 @@ std::string session_to_string(const Session& session) {
 	case S4:
 		return "15:30";
 	}
+	return "\n";
 }
 
 Session string_to_session(const std::string& str) {
@@ -67,14 +69,15 @@ Session string_to_session(const std::string& str) {
 		return S2;
 	else if (str == "13:30")
 		return S3;
-	else if (str == "15:30")
-		return S4;
+	return S4;
 }
 
 std::string gender_to_string(const Gender& gender) {
 	if (gender == male)
 		return "Male";
-	return "Female";
+	else if (gender == female) 
+		return "Female";
+	return "\n";
 }
 
 Gender string_to_gender(const std::string& str) {
