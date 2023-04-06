@@ -1,11 +1,16 @@
 #include "AcademicYear.h"
 
-void AcademicYear::addSemester(const Semester& newSemester) {
-    semesters.append(newSemester);
+AcademicYear::AcademicYear(const unsigned int& start, Vector<Semester> semesters) {
+    this->start = start;
+    this->semesters = semesters;
 }
 
-void AcademicYear::removeSemester(const Semester& newSemester) {
-    semesters.remove(newSemester);
+void AcademicYear::addSemester(Semester& semester) {
+    semesters.append(semester);
+}
+
+void AcademicYear::removeSemester(Semester& semester) {
+    semesters.remove(semester);
 }
 
 std::string AcademicYear::getPeriod() {

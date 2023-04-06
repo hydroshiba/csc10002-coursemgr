@@ -8,9 +8,11 @@ struct AcademicYear {
     unsigned int start;
     Vector<Semester> semesters;
 
-    void addSemester(const Semester& newSemester);
+    AcademicYear(const unsigned int& start = 0, Vector<Semester> semester = Vector<Semester>());
 
-    void removeSemester(const Semester& newSemester);
+    void addSemester(Semester& semester);
+
+    void removeSemester(Semester& semester);
 
     std::string getPeriod();
 };
