@@ -18,15 +18,15 @@ Dropbox::Dropbox(Vector2 pos, Text content, float length):
     length(length) {}
 
 void Dropbox::RaiseTriangle() {
-    p1 = {pos.x + length / 2, pos.y};
-    p2 = {pos.x - length / 2, pos.y - length / 2};
-    p3 = {pos.x - length / 2, pos.y + length / 2};
+    p1 = {pos.x + length * sqrt(3.0f) / 3, pos.y};
+    p2 = {pos.x - length * sqrt(3.0f) / 6, pos.y - length / 2};
+    p3 = {pos.x - length * sqrt(3.0f) / 6, pos.y + length / 2};
 }
 
 void Dropbox::DropTriangle() {
-    p1 = {pos.x, pos.y + length / 2};
-    p2 = {pos.x + length / 2, pos.y - length / 2};
-    p3 = {pos.x - length / 2, pos.y - length / 2};
+    p1 = {pos.x, pos.y + length * sqrt(3.0f) / 3};
+    p2 = {pos.x + length / 2, pos.y - length * sqrt(3.0f) / 6};
+    p3 = {pos.x - length / 2, pos.y - length * sqrt(3.0f) / 6};
 }
 
 bool Dropbox::mouseInsideDropbox(const Vector2 &mouse) {
