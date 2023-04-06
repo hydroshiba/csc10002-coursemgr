@@ -8,12 +8,12 @@ Class::Class(SchoolYear* ptrSchoolYear, std::string name, Vector<Student> studen
 
 void Class::addStudent(Student& student){
     students.append(student);
-    student.myClass = this;
+    student.ptrClass = this;
 }
 
 void Class::removeStudent(Student& student){
     students.remove(student);
-    student.myClass = nullptr;
+    student.ptrClass = nullptr;
 }
 
 Student* Class::getStudent(const std::string& studentID) {

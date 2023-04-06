@@ -114,7 +114,7 @@ void Course::displayScoreBoardFile(std::ostream& outDev) {
     for (int i = 0; i < scoreboards.size(); i++)
     {
         outDev << i + 1 << "," << scoreboards[i]->ptrStudent->ID << "," << scoreboards[i]->ptrStudent->name.get() << ",";
-        outDev << scoreboards[i]->ptrStudent->myClass->name << ",";
+        outDev << scoreboards[i]->ptrStudent->ptrClass->name << ",";
         outDev << scoreboards[i]->midterm << "," << scoreboards[i]->final << "," << scoreboards[i]->other << ",";
         outDev << scoreboards[i]->total << std::endl;
     }
