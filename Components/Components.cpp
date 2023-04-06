@@ -392,29 +392,21 @@ void removeStudFromCourse(Course &course){
 
 // 13. delete course in current semester 
 void deleteCourse(Semester& semester, const std::string& courseID) {
-	bool found = false;
-	Course* course = nullptr;
-	for (int i = 0; i < semester.courses.size(); i++)
-		if (semester.courses[i].ID == courseID)
-		{
-			found = true;
-			course = &semester.courses[i];
-			break;
-		}
-	if (!found)
+	Course* ptrCourse = semester.getCourse(courseID);
+	if (ptrCourse == nullptr)
 		std::cout << "Can't find a course with ID " << courseID;
 	else
 	{
-		course->ptrSemester = nullptr;
-		for (int i = 0; i < course->scoreboards.size(); i++)
+		ptrCourse->ptrSemester = nullptr;
+		for (int i = 0; i < ptrCourse->scoreboards.size(); i++)
 		{
-			Student* student = course->scoreboards[i]->ptrStudent;
-			student->scoreboards.remove(course->scoreboards[i]); // delete link from student->scoreboard
-			course->scoreboards[i]->ptrStudent = nullptr; // delete link sb->student
-			course->scoreboards[i]->ptrCourse = nullptr; // delete link sb->course
-			delete course->scoreboards[i]; // delete scoreboard
+			Student* student = ptrCourse->scoreboards[i]->ptrStudent;
+			student->scoreboards.remove(ptrCourse->scoreboards[i]); // delete link from student->scoreboard
+			ptrCourse->scoreboards[i]->ptrStudent = nullptr; // delete link sb->student
+			ptrCourse->scoreboards[i]->ptrCourse = nullptr; // delete link sb->course
+			delete ptrCourse->scoreboards[i]; // delete scoreboard
 		}
-		semester.removeCourse(*course); // delete course
+		semester.removeCourse(*ptrCourse); // delete course
 		std::cout << "Course with ID " << courseID << " have been removed from semester!";
 	}
 	std::cout << std::endl;
