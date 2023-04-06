@@ -152,6 +152,8 @@ void uploadListSchoolYearFolder(Vector <SchoolYear>& schoolYears);
 
 void uploadSchoolYearFolder(SchoolYear &schoolYear);
 
+void uploadOutputStudClassFile(Class &actClass);
+
 void uploadListAcademicYearFolder(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears);
 
 void uploadAcademicYearFolder(Vector<SchoolYear>& schoolYears, AcademicYear& academicYear);

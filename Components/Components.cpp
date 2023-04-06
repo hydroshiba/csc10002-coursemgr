@@ -907,11 +907,40 @@ void uploadSchoolYearFolder(SchoolYear &schoolYear){
 		std::string className;
 		ifs >> className;
 		schoolYear.classes[i].name = className; 
+		schoolYear.classes[i].ptrSchoolYear = &schoolYear;
+		uploadOutputStudClassFile(schoolYear.classes[i]);
 	}
 	ifs.close();
 }
 
-
+void uploadOutputStudClassFile(Class &actClass){
+	std::string oFile = getOutputStudClassFilePath(actClass);
+	std::ifstream ifs (oFile);
+	if (!ifs.is_open()){
+		std::cout << "Cannot open " << oFile;
+		return;
+	}
+	std::string ignore;
+	std::string className;
+	std::getline(ifs, ignore, ',');
+	std::getline(ifs, className);
+	if (className != actClass.name){
+		std::cout << "Incorrect file!";
+		return;
+	}
+	std::getline(ifs, ignore, ',');
+	size_t nStud;
+	ifs >> nStud;
+	actClass.students.resize(nStud);
+	Student student;
+	int i = 0;
+	while (!ifs.eof()){
+		student.setInfoToClass(ifs);
+		actClass.students[i++] = student;
+		student.ptrClass = &actClass;
+	}
+	ifs.close();
+}
 
 void uploadListAcademicYearFolder(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears) {
 	std::string listAcademicYearFilePath = getListAcademicYearFilePath();
