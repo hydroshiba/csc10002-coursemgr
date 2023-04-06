@@ -29,7 +29,7 @@ Menu::Menu() {
 	password.centerX();
 	password.defaultText = "Password";
 
-	//test.pos = {200, 200};
+	drop.pos = {200, 200};
 }
 
 void Menu::render() {
@@ -40,7 +40,7 @@ void Menu::render() {
 	username.render(mousePoint);
 	password.render(mousePoint);
 
-	test.render();
+	drop.render();
 }
 
 Scene* Menu::process() {
