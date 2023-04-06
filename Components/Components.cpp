@@ -169,6 +169,17 @@ void removeSchoolYear(Vector<SchoolYear>& schoolYears, const unsigned int& start
 	schoolYears.remove(*ptrSchoolYear);
 }
 
+// Remove academicYear
+void removeAcademicYear(Vector<AcademicYear>& academicYears, const unsigned int& start) {
+	AcademicYear* ptrAcademicYear = getAcademicYear(academicYears, start);
+	if (ptrAcademicYear == nullptr)
+	{
+		std::cout << "AcademicYear with start year " << start << "is not exist!" << std::endl;
+		return;
+	}
+	academicYears.remove(*ptrAcademicYear);
+}
+
 // Find SchoolYear
 SchoolYear* getSchoolYear(Vector<SchoolYear>& schoolYears, const unsigned int& start) {
 	SchoolYear* ptrSchoolYear = nullptr;

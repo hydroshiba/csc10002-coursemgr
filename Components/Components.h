@@ -61,6 +61,7 @@ void addClasses (Vector<SchoolYear>& yearList);
 void addStudToClass(Class &actClass);
 void addNewAcademicYear(Vector <AcademicYear> &newYear);
 void removeSchoolYear(Vector<SchoolYear>& schoolYears, const unsigned int& start);
+void removeAcademicYear(Vector<AcademicYear>& academicYears, const unsigned int& start);
 SchoolYear* getSchoolYear(Vector<SchoolYear>& schoolYears, const unsigned int& start);
 AcademicYear* getAcademicYear(Vector<AcademicYear>& academicYears, const unsigned int& start);
 
