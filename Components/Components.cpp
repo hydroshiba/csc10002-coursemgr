@@ -92,7 +92,8 @@ Gender string_to_gender(const std::string& str) {
 void addNewSchoolYear(Vector<SchoolYear>& yearList){
     unsigned int startYear;
     std::cout << "Enter the school year: "; std::cin >> startYear;
-    SchoolYear newYear = {startYear};
+	SchoolYear newYear;
+	newYear.start = startYear;
     yearList.append(newYear);
 }
 

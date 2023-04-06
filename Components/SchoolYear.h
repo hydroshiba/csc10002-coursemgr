@@ -8,13 +8,15 @@ struct SchoolYear {
     unsigned int start;
     Vector<Class> classes;
 
-    unsigned int get();
+    unsigned int getStartYear();
+
+    SchoolYear(const int& start = 0, Vector<Class> classes = Vector<Class>());
 
     Class* getClass(const std::string& className);
 
-    void addClass(const Class& newClass);
+    void addClass(Class& CLASS);
 
-    void removeClass(const Class& newClass);
+    void removeClass(Class& CLASS);
 
     std::string getPeriod();
 };

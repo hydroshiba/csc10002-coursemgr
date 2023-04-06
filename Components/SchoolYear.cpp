@@ -1,7 +1,12 @@
 #include "SchoolYear.h"
 
-unsigned int SchoolYear::get() {
+unsigned int SchoolYear::getStartYear() {
     return start;
+}
+
+SchoolYear::SchoolYear(const int& start, Vector<Class> classes) {
+    this->start = start;
+    this->classes = classes;
 }
 
 Class* SchoolYear::getClass(const std::string& className) {
@@ -15,12 +20,14 @@ Class* SchoolYear::getClass(const std::string& className) {
     return ptrClass;
 }
 
-void SchoolYear::addClass(const Class& newClass) {
-    classes.append(newClass);
+void SchoolYear::addClass(Class& CLASS) {
+    classes.append(CLASS);
+    CLASS.ptrSchoolYear = this;
 }
 
-void SchoolYear::removeClass(const Class& newClass) {
-    classes.remove(newClass);
+void SchoolYear::removeClass(Class& CLASS) {
+    classes.remove(CLASS);
+    CLASS.ptrSchoolYear = nullptr;
 }
 
 std::string SchoolYear::getPeriod() {
