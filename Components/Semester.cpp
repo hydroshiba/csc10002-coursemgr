@@ -8,6 +8,17 @@ Semester::Semester(const std::string semesterID, const Date& startDate, const Da
     this->ptrAcademicYear = ptrAcademicYear;
 }
 
+Course* Semester::getCourse(const std::string& courseID) {
+    Course* ptrCourse = nullptr;
+    for (int i = 0; i < courses.size(); i++)
+        if (courses[i].ID == courseID)
+        {
+            ptrCourse = &courses[i];
+            break;
+        }
+    return ptrCourse;
+}
+
 void Semester::addCourse(Course& course) {
     courses.append(course);
     course.ptrSemester = this;

@@ -14,6 +14,8 @@ struct Semester {
 
     Semester(const std::string semesterID = "\n", const Date& startDate = { 0, 0, 0 }, const Date& endDate = { 0, 0, 0 }, Vector<Course> course = Vector<Course>(), AcademicYear* ptrAcademicYear = nullptr);
 
+    Course* getCourse(const std::string& courseID);
+
     void addCourse(Course& course);
 
     void removeCourse(Course& course);
