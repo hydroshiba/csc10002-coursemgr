@@ -7,10 +7,12 @@ AcademicYear::AcademicYear(const unsigned int& start, Vector<Semester> semesters
 
 void AcademicYear::addSemester(Semester& semester) {
     semesters.append(semester);
+    semester.ptrAcademicYear = this;
 }
 
 void AcademicYear::removeSemester(Semester& semester) {
     semesters.remove(semester);
+    semester.ptrAcademicYear = nullptr;
 }
 
 std::string AcademicYear::getPeriod() {
@@ -18,6 +20,7 @@ std::string AcademicYear::getPeriod() {
 }
 
 bool operator==(const AcademicYear& yearA, const AcademicYear& yearB) {
-    if (yearA.start != yearB.start) return false;
+    if (yearA.start != yearB.start) 
+        return false;
     return true;
 }
