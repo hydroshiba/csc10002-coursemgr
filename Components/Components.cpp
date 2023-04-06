@@ -257,9 +257,9 @@ void getStudentToCourse(Vector<SchoolYear>& years, Course &course){
 }
 
 // View list of courses
-void viewCourses(Semester sem, std::ostream& outDev){
+void viewCourses(Semester& sem, std::ostream& outDev){
     std::cout << "List of courses: ";
-    for (size_t i = 0; i<sem.courses.size(); ++i)
+    for (size_t i = 0; i < sem.courses.size(); ++i)
         sem.courses[i].displayInfo(outDev);
 }
 
@@ -331,7 +331,8 @@ void addNewStudToCourse(Vector <SchoolYear>& yearlist, Course &course, std::istr
 	Student* ptrStudent = nullptr;
     if (&inDev == &std::cin)
         student.setInfoCourseConsole(className);
-    else{
+    else
+	{
         std::ifstream ifs;
         std::string file;
         std::cout << "Enter file name: "; std::cin >> file;
@@ -339,7 +340,7 @@ void addNewStudToCourse(Vector <SchoolYear>& yearlist, Course &course, std::istr
         student.setInfoToCourseCSV(ifs, className);
         ifs.close();
     }
-    ptrClass->name = className;
+	ptrClass->name = className;
     for (int i = 0; i < yearlist.size(); ++i)
 		if (yearlist[i].classes.find(*ptrClass)) {
 			ptrClass = yearlist[i].classes.find(*ptrClass);
@@ -351,27 +352,21 @@ void addNewStudToCourse(Vector <SchoolYear>& yearlist, Course &course, std::istr
 		course.addStudent(*ptrStudent);
 }
 
-void removeStudFromCourse(Course &course, std::istream &inDev){
-    Student student;
-    std::string className;
-	Student* pStud = nullptr;
-    if (&inDev == &std::cin)
-        student.setInfoCourseConsole(className);
-    else{
-        std::ifstream ifs;
-        std::string file;
-        std::cout << "Enter file name: "; std::cin >> file;
-        ifs.open(file);
-        student.setInfoToCourseCSV(ifs, className);
-        ifs.close();
-    }
-    for (int i = 0; i<course.scoreboards.size(); ++i)
-        if (*(course.scoreboards[i]->ptrStudent) == student){
-            pStud = course.scoreboards[i]->ptrStudent;
-            break;
-        }
-	if (pStud != nullptr)
-		course.removeStudent(*pStud);
+void removeStudFromCourse(Course &course){
+	std::string studentID;
+	std::cout << "Input studentID to remove from course: ";
+	std::getline(std::cin, studentID);
+	Student* ptrStudent = course.getStudent(studentID);
+	if (ptrStudent == nullptr)
+	{
+		std::cout << "Student with ID " << studentID << " is not exist in this Course " << course.ID << std::endl;
+		return;
+	}
+	Scoreboard* ptrScoreboard = course.getScoreboard(studentID);
+	ptrStudent->scoreboards.remove(ptrScoreboard);
+	ptrScoreboard->ptrStudent = nullptr;
+	course.scoreboards.remove(ptrScoreboard);
+	ptrScoreboard->ptrCourse = nullptr;
 }
 
 // 13. delete course in current semester 
