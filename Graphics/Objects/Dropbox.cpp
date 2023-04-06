@@ -4,14 +4,17 @@
 
 Dropbox::Dropbox():
     pos({0, 0}),
+    content(""),
     length(25) {}
 
-Dropbox::Dropbox(float x, float y, float length):
+Dropbox::Dropbox(float x, float y, Text content, float length):
     pos({x, y}),
+    content(content),
     length(length) {}
 
-Dropbox::Dropbox(Vector2 pos, float length):
+Dropbox::Dropbox(Vector2 pos, Text content, float length):
     pos(pos),
+    content(content),
     length(length) {}
 
 void Dropbox::RaiseTriangle() {
@@ -40,4 +43,5 @@ void Dropbox::render(const Vector2 &mouse) {
     if (degree == 180) DropTriangle();
     else RaiseTriangle();
     DrawTriangle(p1, p2, p3, BLACK);
+    DrawTextEx(content.font, content.text.c_str(), {pos.x + length, pos.y - length / 2}, content.font_size, content.space, BLACK);
 }
