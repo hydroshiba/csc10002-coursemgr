@@ -38,6 +38,9 @@ file(GLOB_RECURSE cpp_files
     ${PROJECT_SOURCE_DIR}/Components/*.cpp
     ${PROJECT_SOURCE_DIR}/Graphics/*.cpp)
 
+include_directories(Components)
+include_directories(Graphics)
+
 add_executable(${PROJECT_NAME} ${cpp_files})
 
 target_link_libraries(${PROJECT_NAME} raylib)

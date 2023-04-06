@@ -70,7 +70,7 @@ void InputBox::process(const Vector2 &mouse) {
 			key = GetCharPressed();
 		}
 
-		if (IsKeyPressed(KEY_BACKSPACE)) {
+		if(IsKeyPressed(KEY_BACKSPACE)) {
 			if(!content.text.empty()) content.text.pop_back();
 		}
 	}

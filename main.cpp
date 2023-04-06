@@ -2,22 +2,22 @@
 
 /*--------- COMPONENTS INCLUDE ---------*/
 
-#include "Components/Components.h"
+#include "Components.h"
 
-#include "Components/AcademicYear.h"
-#include "Components/Class.h"
-#include "Components/Course.h"
-#include "Components/Date.h"
-#include "Components/Name.h"
-#include "Components/SchoolYear.h"
-#include "Components/Scoreboard.h"
-#include "Components/Semester.h"
-#include "Components/Student.h"
-#include "Components/User.h"
+#include "AcademicYear.h"
+#include "Class.h"
+#include "Course.h"
+#include "Date.h"
+#include "Name.h"
+#include "SchoolYear.h"
+#include "Scoreboard.h"
+#include "Semester.h"
+#include "Student.h"
+#include "User.h"
 
 /*---------- GRAPHICS INCLUDE ----------*/
 
-#include "Graphics/Application.h"
+#include "Application.h"
 
 /*--------------------------------------*/
 

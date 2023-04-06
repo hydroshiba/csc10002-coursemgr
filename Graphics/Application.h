@@ -4,9 +4,8 @@
 #include <string>
 #include "raylib.h"
 
-#include "Scene.h"
-
-#include "Menu.h"
+#include "Scene/Scene.h"
+#include "Scene/Menu.h"
 
 class Application {
 private:
