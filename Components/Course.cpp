@@ -1,6 +1,6 @@
 #include "Course.h"
 
-Course::Course(std::string ID, std::string classID, std::string name, std::string teacher, const int& credits, const int& maxEnroll, Semester* ptrSemester) {
+Course::Course(std::string ID, std::string classID, std::string name, std::string teacher, const int& credits, const int& maxEnroll, Semester* ptrSemester, Vector<Scoreboard*> scoreboards) {
     this->ID = ID;
     this->classID = classID;
     this->name = name;
@@ -8,6 +8,7 @@ Course::Course(std::string ID, std::string classID, std::string name, std::strin
     this->credits = credits;
     this->maxEnroll = maxEnroll;
     this->ptrSemester = ptrSemester;
+    this->scoreboards = scoreboards;
 }
 
 void Course::addStudent(Student& student) { 
@@ -17,31 +18,33 @@ void Course::addStudent(Student& student) {
 }
 
 void Course::removeStudent(Student& student) {
-    Scoreboard* cur = nullptr;
+    Scoreboard* ptrScoreboard = nullptr;
 
     for (int i = 0; i < scoreboards.size(); ++i)
         if (scoreboards[i]->ptrStudent == &student) {
-            cur = scoreboards[i];
+            ptrScoreboard = scoreboards[i];
             break;
         }
 
-    if (cur) {
-        student.scoreboards.remove(cur);
-        scoreboards.remove(cur);
-        delete cur;
+    if (ptrScoreboard != nullptr) {
+        student.scoreboards.remove(ptrScoreboard);
+        scoreboards.remove(ptrScoreboard);
+        ptrScoreboard->ptrCourse = nullptr;
+        ptrScoreboard->ptrStudent = nullptr;
+        delete ptrScoreboard;
     }
 }
 
 Scoreboard* Course::getScoreboard(Student& student) {
-    Scoreboard* cur = nullptr;
+    Scoreboard* ptrScoreboard = nullptr;
 
     for (int i = 0; i < scoreboards.size(); ++i)
         if (scoreboards[i]->ptrStudent == &student) {
-            cur = scoreboards[i];
+            ptrScoreboard = scoreboards[i];
             break;
         }
 
-    return cur;
+    return ptrScoreboard;
 }
 
 void Course::displayInfo(std::ostream& outDev) {

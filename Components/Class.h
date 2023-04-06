@@ -12,9 +12,9 @@ struct Class {
     
     Class(SchoolYear* ptrSchoolYear = nullptr, std::string name = "\n", Vector<Student> students = Vector<Student>());
 
-    void addStudent(const Student& student);
+    void addStudent(Student& student);
 
-    void removeStudent(const Student& student);
+    void removeStudent(Student& student);
 
     Vector<std::string> getListCourse();
 

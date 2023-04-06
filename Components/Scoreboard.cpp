@@ -1,12 +1,12 @@
 #include "Scoreboard.h"
 
-Scoreboard::Scoreboard(Course* ptrC, Student* ptrS, const float& midterm, const float& final, const float& other, const float& total) {
+Scoreboard::Scoreboard(Course* ptrCourse, Student* ptrStudent, const float& midterm, const float& final, const float& other, const float& total) {
     this->midterm = midterm;
     this->final = final;
     this->other = other;
     this->total = total;
-    this->ptrCourse = ptrC;
-    this->ptrStudent = ptrS;
+    this->ptrCourse = ptrCourse;
+    this->ptrStudent = ptrStudent;
 }
 
 void Scoreboard::setScore(const float& midterm, const float& final, const float& other, const float& total) {

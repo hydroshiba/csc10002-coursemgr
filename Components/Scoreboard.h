@@ -8,7 +8,7 @@ struct Scoreboard {
     Course*  ptrCourse;
     Student* ptrStudent;
 
-    Scoreboard(Course* ptrC = nullptr, Student* ptrS = nullptr, const float& midterm = -1, const float& final = -1, const float& other = -1, const float& total = -1);
+    Scoreboard(Course* ptrCourse = nullptr, Student* ptrStudent = nullptr, const float& midterm = -1, const float& final = -1, const float& other = -1, const float& total = -1);
 
     void setScore(const float& midterm = -1, const float& final = -1, const float& other = -1, const float& total = -1);
 };
