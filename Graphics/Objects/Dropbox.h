@@ -6,7 +6,7 @@
 struct Dropbox {
     //triangle is placed based on the center of gravity
     Vector2 pos;
-    float length = 25; //length of edges
+    float length; //length of edges
     
     Vector2 p1, p2, p3;
     float degree = 90;

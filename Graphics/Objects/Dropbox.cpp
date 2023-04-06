@@ -2,7 +2,9 @@
 #include "math.h"
 #include <iostream>
 
-Dropbox::Dropbox() {}
+Dropbox::Dropbox():
+    pos({0, 0}),
+    length(25) {}
 
 Dropbox::Dropbox(float x, float y, float length):
     pos({x, y}),
@@ -30,7 +32,11 @@ bool Dropbox::mouseInsideDropbox(const Vector2 &mouse) {
 
 void Dropbox::render(const Vector2 &mouse) {
     //process
-    
+    if (mouseInsideDropbox(mouse) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+        std::cout << "Inside and clicked\n";
+        if (degree == 90) degree = 180;
+        else degree = 90;
+    }
     //draw
     if (degree == 180) DropTriangle();
     else RaiseTriangle();
