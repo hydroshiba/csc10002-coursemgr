@@ -17,7 +17,7 @@ public:
     bool mouseOnText = false;
     Vector2 dimension;
     Rectangle inputBox;
-    Font font = LoadFontEx(text_const::font_path, 192, 0, 0);
+    Font font = LoadFontEx(text_const::font_path.c_str(), 192, 0, 0);
 
     InputBox();
     InputBox(Vector2 pos, float sizeOfBox = text_const::size);
