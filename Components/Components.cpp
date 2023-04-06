@@ -462,8 +462,9 @@ void viewListOfStudentsInCourse(const Course& course, std::ostream& outDev) {
 }
 
 // 19. export list of students in course to csv file
-void exportListOfStudent(Course& course, const std::string& fileName) {
-	std::ofstream ofs(fileName, std::ios::out);
+void exportListOfStudent(Course& course) {
+	std::string inputStudCouseFilePath = getInputListStudCourseFilePath(course);
+	std::ofstream ofs(inputStudCouseFilePath, std::ios::out);
 	course.displayInfo(ofs);
 	ofs << "No,ID,Fullname" << std::endl;
 	for (int i = 0; i < course.scoreboards.size(); i++)
@@ -476,10 +477,11 @@ void exportListOfStudent(Course& course, const std::string& fileName) {
 
 // 20. import scoreboard of course
 void importScoreBoardOfCourse(Course& course) {
-	std::ifstream ifs(getInputScoreCourseFilePath(course));
+	std::string inputScoreCourseFilePath = getInputScoreCourseFilePath(course);
+	std::ifstream ifs(inputScoreCourseFilePath);
 	if (!ifs.is_open())
 	{
-		std::cout << "Can't find file with that name, pls try again!" << std::endl;
+		std::cout << "Can't find file with path " << inputScoreCourseFilePath << std::endl;
 		return;
 	}
 	course.importScoreBoards(ifs);
