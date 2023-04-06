@@ -1,7 +1,5 @@
 #include "Button.h"
 
-#include <iostream>
-
 void Button::refreshText() {
     label.font_size = 0;
 

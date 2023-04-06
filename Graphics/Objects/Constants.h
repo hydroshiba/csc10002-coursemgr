@@ -46,6 +46,8 @@ const float space = 0;
 const float size = 24;
 const Color color = BLACK;
 
+const float padding = 10;
+
 }
 
 #endif
