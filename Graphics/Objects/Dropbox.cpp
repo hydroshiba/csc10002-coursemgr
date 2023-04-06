@@ -11,7 +11,7 @@ Dropbox::Dropbox(Vector2 pos, float length):
     pos(pos),
     length(length) {}
 
-void Dropbox::mouseNotOnDropbox() {
+void Dropbox::DropboxNotClicked() {
     Vector2 point1, point2, point3;
     point1 = {pos.x + length / 2, pos.y};
     point2 = {pos.x - length / 2, pos.y - length / 2};
@@ -19,7 +19,7 @@ void Dropbox::mouseNotOnDropbox() {
     DrawTriangle(point1, point2, point3, BLACK);
 }
 
-void Dropbox::mouseOnDropbox() {
+void Dropbox::DropboxClicked() {
     Vector2 point1, point2, point3;
     point1 = {pos.x, pos.y + length / 2};
     point2 = {pos.x + length / 2, pos.y - length / 2};
@@ -28,6 +28,7 @@ void Dropbox::mouseOnDropbox() {
 }
 
 void Dropbox::render() {
-    //mouseNotOnDropbox();
-    mouseOnDropbox();
+    clicked = !IsMouseButtonPressed(MOUSE_BUTTON_LEFT);
+    if (clicked) DropboxNotClicked();
+    else DropboxClicked();
 }
