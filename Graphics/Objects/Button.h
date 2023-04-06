@@ -10,7 +10,7 @@ class Button {
 private:
     Vector2 pos;
     Vector2 size;
-    Vector2 textpos;
+    Vector2 textPos;
     
     Rectangle border_bound, fill_bound, text_bound;
 
