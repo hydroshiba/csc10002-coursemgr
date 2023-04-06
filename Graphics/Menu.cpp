@@ -22,6 +22,7 @@ Menu::Menu() {
 	username.pos = {300, 300};
 
 	test.pos = {200, 200};
+	test.length = 25;
 }
 
 void Menu::render() {
