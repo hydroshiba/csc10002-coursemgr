@@ -5,13 +5,18 @@
 #include "raylib.h"
 
 #include "Scene/Scene.h"
+#include "Scene/Registry.h"
+
+#include "Scene/Blank.h"
 #include "Scene/Menu.h"
 
 class Application {
 private:
 	Vector2 mousePoint = { 0.0f, 0.0f };
-	Menu menu;
 	Scene* scene;
+
+	Blank blank;
+	Menu menu;
 
 	void render();
 	void process();

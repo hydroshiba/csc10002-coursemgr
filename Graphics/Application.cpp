@@ -1,7 +1,10 @@
 #include "Application.h"
 
 Application::Application() {
-    scene = &menu;
+    registry.menu = &menu;
+    registry.blank = &blank;
+
+    scene = registry.menu;
 }
 
 Application::~Application() {

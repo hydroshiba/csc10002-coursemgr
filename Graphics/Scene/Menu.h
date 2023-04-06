@@ -1,10 +1,10 @@
 #ifndef MENU_H
 #define MENU_H
 
-#include <iostream>
 #include "raylib.h"
 
 #include "Scene.h"
+#include "Registry.h"
 
 #include "Objects/Button.h"
 #include "Objects/TextBox.h"

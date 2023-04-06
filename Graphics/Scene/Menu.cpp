@@ -30,7 +30,7 @@ Menu::Menu() {
 	password.defaultText = "Password";
 
 	drop.pos = {200, 200};
-	drop.content.text = "aaaaaaaaaaaaaaaaaaaaaaaaaaa";
+	drop.content.text = "try to click \"login\" guys! also gimme the box when?";
 }
 
 void Menu::render() {
@@ -49,7 +49,7 @@ Scene* Menu::process() {
 
 	if(quit.clicked(mousePoint)) return nullptr;
 	if(login.clicked(mousePoint)) {
-		
+		return registry.blank;
 	}
 
 	username.process(mousePoint);
