@@ -878,10 +878,11 @@ void uploadListSchoolYearFolder(Vector <SchoolYear>& schoolYears){
 	schoolYears.resize(nSchoolYear);
 	for (int i = 0; i<schoolYears.size(); ++i){
 		unsigned int startYear;
-		SchoolYear schoolYear;
+		SchoolYear school_year;
 		ifs >> startYear;
-		schoolYear.start = startYear;
-		schoolYears[i] = schoolYear;
+		school_year.start = startYear;
+		schoolYears[i] = school_year;
+		uploadSchoolYearFolder(schoolYears[i]);
 	}
 	ifs.close();
 }	
@@ -909,6 +910,8 @@ void uploadSchoolYearFolder(SchoolYear &schoolYear){
 	}
 	ifs.close();
 }
+
+
 
 void uploadListAcademicYearFolder(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears) {
 	std::string listAcademicYearFilePath = getListAcademicYearFilePath();
