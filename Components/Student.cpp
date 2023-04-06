@@ -1,5 +1,13 @@
 #include "Student.h"
 
+Student::Student(const Name& name, const std::string& id, const uint64_t password, const Gender& gender, const Date& birth, const std::string& socialID, Class* ptrClass, Vector<Scoreboard*> scoreboards) : User(name, id, password) {
+    this->gender = gender;
+    this->birth = birth;
+    this->socialID = socialID;
+    this->ptrClass = ptrClass;
+    this->scoreboards = scoreboards;
+}
+
 Scoreboard* Student::getScoreboard(Course& course) {
     Scoreboard* cur = nullptr;
 
@@ -35,8 +43,8 @@ float Student::getGPA(const Semester& semester) {
 } // 
 
 void Student::setInfoToClass(std::ifstream &ifs){
-    std::string no, id, first_name, last_name, gender, sID, day, month, year;
-    getline(ifs, no, ',');
+    std::string id, first_name, last_name, gender, sID, day, month, year, sTemp;
+    getline(ifs, sTemp, ',');
     getline(ifs, id, ',');
     getline(ifs, first_name, ',');
     getline(ifs, last_name, ',');
@@ -46,7 +54,6 @@ void Student::setInfoToClass(std::ifstream &ifs){
     getline(ifs, year, ',');
     getline(ifs, sID);
 
-    number = stoi(no);
     ID = id;
     setName(first_name, last_name);
     gender = (gender == "Male") ? male : female;
@@ -55,21 +62,19 @@ void Student::setInfoToClass(std::ifstream &ifs){
 }
 
 void Student::setInfoToCourseCSV(std::ifstream &ifs, std::string &actClass){
-    std::string no, id, first, last;
-    getline(ifs, no, ',');
+    std::string id, first, last, sTemp;
+    getline(ifs, sTemp, ',');
     getline(ifs, id, ',');
     getline(ifs, first, ',');
     getline(ifs, last, ',');
     getline(ifs, actClass);
 
-    number = stoi(no);
     ID = id;
     setName(first, last);
 }
 
 void Student::setInfoCourseConsole(std::string &actClass){
     std::string first, last;
-    std::cout << "Enter number: "; std::cin >> number;
     std::cout << "Enter id: "; std::cin >> ID;
     std::cout << "Enter first name: "; std::cin >> first;
     std::cout << "Enter last name: "; std::cin >> last;
