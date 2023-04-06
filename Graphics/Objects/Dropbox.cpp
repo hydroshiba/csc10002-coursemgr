@@ -33,7 +33,6 @@ bool Dropbox::mouseInsideDropbox(const Vector2 &mouse) {
 void Dropbox::render(const Vector2 &mouse) {
     //process
     if (mouseInsideDropbox(mouse) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
-        std::cout << "Inside and clicked\n";
         if (degree == 90) degree = 180;
         else degree = 90;
     }
