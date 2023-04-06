@@ -8,15 +8,16 @@ struct Dropbox {
     Vector2 pos;
     float length = 25; //length of edges
     
-    bool clicked;
-    
+    Vector2 p1, p2, p3;
+
     Dropbox();
     Dropbox(float x, float y, float length = 25);
     Dropbox(Vector2 pos, float length = 25);
 
+    void CreateTriangle();
     void DropboxNotClicked();
     void DropboxClicked();
-    void render();
+    void render(const Vector2 &mouse);
 };
 
 #endif //DROPBOX_H

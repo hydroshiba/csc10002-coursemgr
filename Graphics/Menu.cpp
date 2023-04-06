@@ -40,7 +40,7 @@ void Menu::render() {
 	username.render(mousePoint);
 	password.render(mousePoint);
 
-	drop.render();
+	drop.render(mousePoint);
 }
 
 Scene* Menu::process() {

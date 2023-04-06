@@ -95,7 +95,7 @@ void InputBox::render(const Vector2 &mouse) const {
 
 	BeginScissorMode(fill_bound.x + text_const::padding, fill_bound.y, fill_bound.width - text_const::padding, fill_bound.height);
     
-	if(!content.text.empty()) {
+	if(!content.text.empty() || selected || pressed(mouse)) {
 		if(!selected && !pressed(mouse) && !hovering(mouse)) text_color = text_const::color;
 		DrawTextEx(content.font, (content.text + cursor).c_str(), textPos, content.font_size, content.space, text_color);
 	}

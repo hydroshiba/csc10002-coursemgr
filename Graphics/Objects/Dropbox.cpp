@@ -1,5 +1,12 @@
 #include "Dropbox.h"
 #include "math.h"
+#include <iostream>
+
+void Dropbox::CreateTriangle() {
+    p1 = {pos.x + length / 2, pos.y};
+    p2 = {pos.x - length / 2, pos.y - length / 2};
+    p3 = {pos.x - length / 2, pos.y + length / 2};
+}
 
 Dropbox::Dropbox() {}
 
@@ -11,24 +18,24 @@ Dropbox::Dropbox(Vector2 pos, float length):
     pos(pos),
     length(length) {}
 
+
 void Dropbox::DropboxNotClicked() {
-    Vector2 point1, point2, point3;
-    point1 = {pos.x + length / 2, pos.y};
-    point2 = {pos.x - length / 2, pos.y - length / 2};
-    point3 = {pos.x - length / 2, pos.y + length / 2};
-    DrawTriangle(point1, point2, point3, BLACK);
+    CreateTriangle();
+    DrawTriangle(p1, p2, p3, BLACK);
 }
 
 void Dropbox::DropboxClicked() {
-    Vector2 point1, point2, point3;
-    point1 = {pos.x, pos.y + length / 2};
-    point2 = {pos.x + length / 2, pos.y - length / 2};
-    point3 = {pos.x - length / 2, pos.y - length / 2};
-    DrawTriangle(point1, point2, point3, BLACK);
+    p1 = {pos.x, pos.y + length / 2};
+    p2 = {pos.x + length / 2, pos.y - length / 2};
+    p3 = {pos.x - length / 2, pos.y - length / 2};
+    DrawTriangle(p1, p2, p3, BLACK);
 }
 
-void Dropbox::render() {
-    clicked = !IsMouseButtonPressed(MOUSE_BUTTON_LEFT);
-    if (clicked) DropboxNotClicked();
-    else DropboxClicked();
+void Dropbox::render(const Vector2 &mouse) {
+    if (CheckCollisionPointTriangle(mouse, p1, p2, p3)) {
+        DropboxClicked();
+    }
+    else {
+        DropboxNotClicked();
+    }
 }
