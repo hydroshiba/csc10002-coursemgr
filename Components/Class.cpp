@@ -6,9 +6,15 @@ Class::Class(SchoolYear* ptrSchoolYear, std::string name, Vector<Student> studen
     this->students = students;
 }
 
-void Class::addStudent(const Student& student){}
+void Class::addStudent(Student& student){
+    students.append(student);
+    student.myClass = this;
+}
 
-void Class::removeStudent(const Student& student){}
+void Class::removeStudent(Student& student){
+    students.remove(student);
+    student.myClass = nullptr;
+}
 
 Student* Class::getStudent(const std::string& studentID) {
     Student* ptrStudent = nullptr;
@@ -108,6 +114,9 @@ void Class::displayScoreboardFile(const Semester& semester, std::ofstream& ofs){
 }
 
 bool operator==(const Class& classA, const Class& classB) {
-    if (classA.name != classB.name) return false;
+    if (classA.name != classB.name) 
+        return false;
+    if (classA.ptrSchoolYear != classB.ptrSchoolYear)
+        return false;
     return true;
 }
