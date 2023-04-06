@@ -16,6 +16,8 @@ public:
     Name name;
     std::string ID;
 
+    User(const Name& name = {defaultStr, defaultStr}, const std::string& ID = defaultStr, const uint64_t& password = 0);
+
     void setName(const std::string& first, const std::string& last);
 
     void setPassword(const std::string& str);

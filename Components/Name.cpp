@@ -1,6 +1,5 @@
 #include "Name.h"
 
-Name::Name() {}
 Name::Name(const std::string& nameLast, const std::string& nameFirst) :
     last{ nameLast }, first{ nameFirst } {}
 

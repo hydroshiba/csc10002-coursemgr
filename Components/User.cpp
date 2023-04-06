@@ -1,5 +1,11 @@
 #include "User.h"
 
+User::User(const Name& name, const std::string& ID, const uint64_t& password) {
+    this->name = name;
+    this->ID = ID;
+    this->password = password;
+}
+
 uint64_t User::hash(uint64_t left, uint64_t right) {
     left ^= right + 0x6969696969696969 + (left >> 6) + (right << 9);
     return left;

@@ -6,8 +6,7 @@
 struct Name {
     std::string first, last;
 
-    Name();
-    Name(const std::string& nameLast, const std::string& nameFirst);
+    Name(const std::string& nameLast = defaultStr, const std::string& nameFirst = defaultStr);
 
     void set(const std::string& nameLast, const std::string& nameFirst);
 
