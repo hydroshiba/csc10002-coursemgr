@@ -122,7 +122,7 @@ void addStudToClass(Class &actClass){
     while (!inF.eof()){
         newStud.setInfoToClass(inF);
         actClass.addStudent(newStud);
-        newStud.myClass = &actClass;
+        newStud.ptrClass = &actClass;
     }
     inF.close();
 }
@@ -287,29 +287,28 @@ void updateCourse(Course &course){
 
 // Add student to course
 void addNewStudToCourse(Vector <SchoolYear>& yearlist, Course &course, std::istream& inDev){
-    Student newStud;
+    Student student;
     std::string className;
-    Class myClass;
 	Class* ptrClass = nullptr;
 	Student* ptrStudent = nullptr;
     if (&inDev == &std::cin)
-        newStud.setInfoCourseConsole(className);
+        student.setInfoCourseConsole(className);
     else{
         std::ifstream ifs;
         std::string file;
         std::cout << "Enter file name: "; std::cin >> file;
         ifs.open(file);
-        newStud.setInfoToCourseCSV(ifs, className);
+        student.setInfoToCourseCSV(ifs, className);
         ifs.close();
     }
-    myClass.name = className;
-    for (int i = 0; i<4; ++i)
-		if (yearlist[i].classes.find(myClass)) {
-			ptrClass = yearlist[i].classes.find(myClass);
+    ptrClass->name = className;
+    for (int i = 0; i < yearlist.size(); ++i)
+		if (yearlist[i].classes.find(*ptrClass)) {
+			ptrClass = yearlist[i].classes.find(*ptrClass);
 			break;
 		}
 	if (ptrClass != nullptr)
-		ptrStudent = ptrClass->students.find(newStud);
+		ptrStudent = ptrClass->students.find(student);
 	if (ptrStudent != nullptr)
 		course.addStudent(*ptrStudent);
 }
@@ -662,7 +661,7 @@ std::string getInputScoreClassFilePath(const Class& CLASS) {
 }
 
 std::string getStudentFolderPath(const Student& student) {
-	std::string classFolderPath = getClassFolderPath(*(student.myClass));
+	std::string classFolderPath = getClassFolderPath(*(student.ptrClass));
 	std::string studentFolderPath = classFolderPath + "Students\\" + student.ID + "\\";
 	createDirectoryIfNotExists(studentFolderPath);
 	return studentFolderPath;
@@ -775,7 +774,7 @@ void downloadStudentFolder(Student& student){
 	ofs << "Gender," << gender_to_string(student.gender) << std::endl;
 	ofs << "Dob," << student.birth.get() << std::endl;
 	ofs << "SocialID," << student.socialID << std::endl;
-	ofs << "Class," << student.myClass->name << std::endl;
+	ofs << "Class," << student.ptrClass->name << std::endl;
 	ofs.close();
 }
 
