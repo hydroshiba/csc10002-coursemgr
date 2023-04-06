@@ -1,5 +1,11 @@
 #include "Class.h"
 
+Class::Class(SchoolYear* ptrSchoolYear, std::string name, Vector<Student> students) {
+    this->ptrSchoolYear = nullptr;
+    this->name = name;
+    this->students = students;
+}
+
 void Class::addStudent(const Student& student){}
 
 void Class::removeStudent(const Student& student){}
