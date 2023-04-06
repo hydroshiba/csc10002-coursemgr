@@ -20,6 +20,8 @@ Menu::Menu() {
 	title.centerX();
 
 	username.pos = {300, 300};
+
+	test.pos = {200, 200};
 }
 
 void Menu::render() {
@@ -28,6 +30,8 @@ void Menu::render() {
 	quit.render(this->mousePoint);
 
 	username.render();
+
+	test.drawButton();
 }
 
 Scene* Menu::process() {
