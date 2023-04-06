@@ -12,9 +12,11 @@ struct Semester {
     Vector<Course> courses;
     AcademicYear* ptrAcademicYear;
 
-    void addCourse(const Course& newCourse);
+    Semester(const std::string semesterID = "\n", const Date& startDate = { 0, 0, 0 }, const Date& endDate = { 0, 0, 0 }, Vector<Course> course = Vector<Course>(), AcademicYear* ptrAcademicYear = nullptr);
 
-    void removeCourse(const Course& newCourse);
+    void addCourse(Course& course);
+
+    void removeCourse(Course& course);
 };
 
 bool operator==(const Semester& semA, const Semester& semB);

@@ -1,14 +1,25 @@
 #include "Semester.h"
 
-void Semester::addCourse(const Course& newCourse) {
-    courses.append(newCourse);
+Semester::Semester(const std::string semesterID, const Date& startDate, const Date& endDate, Vector<Course> course, AcademicYear* ptrAcademicYear) {
+    this->semesterID = semesterID;
+    this->startDate = startDate;
+    this->endDate = endDate;
+    this->courses = course;
+    this->ptrAcademicYear = ptrAcademicYear;
 }
 
-void Semester::removeCourse(const Course& newCourse) {
-    courses.remove(newCourse);
+void Semester::addCourse(Course& course) {
+    courses.append(course);
+    course.ptrSemester = this;
+}
+
+void Semester::removeCourse(Course& course) {
+    courses.remove(course);
+    course.ptrSemester = nullptr;
 }
 
 bool operator==(const Semester& semA, const Semester& semB) {
+    if (semA.semesterID != semB.semesterID) return false;
     if (semA.startDate != semB.startDate) return false;
     if (semA.endDate != semB.endDate) return false;
     return true;
