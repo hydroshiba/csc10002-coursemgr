@@ -1,5 +1,15 @@
 #include "Course.h"
 
+Course::Course(std::string ID, std::string classID, std::string name, std::string teacher, const int& credits, const int& maxEnroll, Semester* ptrSemester) {
+    this->ID = ID;
+    this->classID = classID;
+    this->name = name;
+    this->teacher = teacher;
+    this->credits = credits;
+    this->maxEnroll = maxEnroll;
+    this->ptrSemester = ptrSemester;
+}
+
 void Course::addStudent(Student& student) { 
     Scoreboard* newBoard = new Scoreboard(this, &student);
     student.scoreboards.append(newBoard);
