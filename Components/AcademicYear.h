@@ -10,6 +10,8 @@ struct AcademicYear {
 
     AcademicYear(const unsigned int& start = 0, Vector<Semester> semester = Vector<Semester>());
 
+    Semester* getSemester(const std::string& semesterID);
+
     void addSemester(Semester& semester);
 
     void removeSemester(Semester& semester);

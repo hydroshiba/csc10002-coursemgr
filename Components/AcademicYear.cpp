@@ -5,6 +5,17 @@ AcademicYear::AcademicYear(const unsigned int& start, Vector<Semester> semesters
     this->semesters = semesters;
 }
 
+Semester* AcademicYear::getSemester(const std::string& semesterID) {
+    Semester* ptrSemester = nullptr;
+    for (int i = 0; i < semesters.size(); i++)
+        if (semesters[i].semesterID == semesterID)
+        {
+            ptrSemester = &semesters[i];
+            break;
+        }
+    return nullptr;
+}
+
 void AcademicYear::addSemester(Semester& semester) {
     semesters.append(semester);
     semester.ptrAcademicYear = this;
