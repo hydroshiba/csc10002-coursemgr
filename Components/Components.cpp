@@ -782,9 +782,27 @@ void downloadSchoolYearFolder(SchoolYear &schoolYear){
 	ofs << schoolYear.classes.size() << '\n';
 	for (int i = 0; i<schoolYear.classes.size(); ++i){
 		ofs << schoolYear.classes[i].name;
+		downloadOutputStudClassFile(schoolYear.classes[i]);
 		for (int j = 0; j<schoolYear.classes[i].students.size(); ++j)
 			downloadStudentFolder(schoolYear.classes[i].students[j]);
 	}
+	ofs.close();
+}
+
+void downloadOutputStudClassFile(Class &actClass){
+	std::string outputStudentDir = getOutputStudClassFilePath(actClass);
+	std::ofstream ofs (outputStudentDir);
+	ofs << "Class," << actClass.name << '\n';
+	ofs << "Number of student," << actClass.students.size();
+	ofs << "No,StudentID,First name,Last name,Gender,Date of Birth,SocialID\n";
+	for (int i = 0; i<actClass.students.size(); ++i){
+		ofs << i+1 << ",";
+		ofs << actClass.students[i].ID << ",";
+		ofs << actClass.students[i].name.first << "," << actClass.students[i].name.last << ",";
+		ofs << gender_to_string(actClass.students[i].gender) << ",";
+		ofs << actClass.students[i].birth.day << "/" << actClass.students[i].birth.month << "/" << actClass.students[i].birth.year << ",";
+		ofs << actClass.students[i].socialID << "\n";
+	}	
 	ofs.close();
 }
 
