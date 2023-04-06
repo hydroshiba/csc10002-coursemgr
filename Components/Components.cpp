@@ -190,25 +190,37 @@ void addSemester(AcademicYear &newYear){
 
 // Add a new course
 void addNewCourse(Semester &semester){
-    Course newCourse;
     std::string ID, classID, name, teacher;
     int cre, maxEn;
     int day, ss;
 
-    std::cout << "Enter Course ID: "; std::cin >> newCourse.ID;
-    std::cout << "Enter Course Name: "; std::cin >> newCourse.name;
-    std::cout << "Enter Teacher's Name: "; std::cin >> newCourse.teacher;
-    std::cout << "Enter Class ID: "; std::cin >> newCourse.classID;
-    std::cout << "Enter Number of Credits: "; std::cin >> newCourse.credits;
-    std::cout << "Enter Maximun students enrolled: "; std::cin >> newCourse.maxEnroll;
+    std::cout << "Enter Course ID: "; 
+	std::getline(std::cin, ID);
+	if (semester.getCourse(ID) != nullptr)
+	{
+		std::cout << "Course with ID " << ID << " have been already existed in this semester!";
+		return;
+	}
+    std::cout << "Enter Course Name: "; std::cin >> name;
+    std::cout << "Enter Teacher's Name: "; std::cin >> teacher;
+    std::cout << "Enter Class ID: "; std::cin >> classID;
+    std::cout << "Enter Number of Credits: "; std::cin >> cre;
+    std::cout << "Enter Maximun students enrolled: "; std::cin >> maxEn;
 
     std::cout << "Day of week: "; std::cin >> day;
     std::cout << "Session performed: "; std::cin >> ss;
 
-    newCourse.weekday = static_cast<Weekday>(day);
-    newCourse.session = static_cast<Session>(ss);
-    newCourse.ptrSemester = &semester;
+	Weekday weekday = static_cast<Weekday>(day);
+	Session session = static_cast<Session>(ss);
 
+	Course newCourse;
+	newCourse.ID = ID;
+	newCourse.classID = classID;
+	newCourse.name = name;
+	newCourse.teacher = teacher;
+	newCourse.credits = cre;
+	newCourse.maxEnroll = maxEn;
+	//Course newCourse(ID, classID, name, teacher, cre, maxEn, weekday, session);
     semester.addCourse(newCourse);
 }
 
