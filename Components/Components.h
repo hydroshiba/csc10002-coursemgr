@@ -60,6 +60,12 @@ Staff* getStaff(Vector<Staff> staffs, const std::string& staffID);
 SchoolYear* getSchoolYear(Vector<SchoolYear>& schoolYears, const unsigned int& start);
 // Find AcademicYear
 AcademicYear* getAcademicYear(Vector<AcademicYear>& academicYears, const unsigned int& start);
+// Find Class
+Class* getClass(Vector<SchoolYear>& schoolYears, const std::string& className);
+// Find Semester
+Semester* getSemester(Vector<AcademicYear>& academicYears, const std::string& semesterID);
+// Find Course
+Course* getCourse(Vector<AcademicYear>& academicYears, const std::string& courseID);
 
 //----------------------------------------------------------------------------------------------//
 
@@ -75,10 +81,10 @@ void addStudToClass(Class &actClass);
 void addNewAcademicYear(Vector <AcademicYear>& newYear);
 // Add a semester to an academic year
 void addNewSemester(AcademicYear& newYear);
-// Add a student to course
-void addANewStudentToCourse(Vector<SchoolYear>& schoolYears, Course& course);
 // Add a new course
 void addNewCourse(Semester& semester);
+// Add a student to course
+void addANewStudentToCourse(Vector<SchoolYear>& schoolYears, Course& course);
 // Add list student to course (from file)
 void addNewStudToCourse(Vector <SchoolYear>& yearlist, Course& course, std::istream& inDev = std::cin);
 // Get students' info to course
@@ -96,6 +102,15 @@ void removeListAcademicYear(Vector<AcademicYear>& academicYears);
 void removeSchoolYear(Vector<SchoolYear>& schoolYears, const unsigned int& start);
 // Remove AcademicYear
 void removeAcademicYear(Vector<AcademicYear>& academicYears, const unsigned int& start);
+// Remove Class from School
+void removeClass(Vector<SchoolYear>& schoolYears, const std::string& className);
+// Remove Student from School
+void removeStudent(Vector<SchoolYear>& schoolYears, const std::string& studentID);
+// Remove Semester
+void removeSemester(Vector<AcademicYear>& academicYears, const std::string& semesterID);
+// Remove Course
+void removeCourse(Vector<AcademicYear>& academicYears, const std::string& courseID);
+
 // Remove student from course
 void removeStudFromCourse(Course& course);
 // Remove course from semester
@@ -105,8 +120,20 @@ void deleteCourse(Semester& semester, const std::string& courseID);
 
 /*		Update function		*/
 
-// Update course informations
+// Update AcademicYear
+void updateAcademicYear(AcademicYear& academicYear);
+// Update SchoolYear
+void updateSchoolYear(SchoolYear& schoolYear);
+// Update Class
+void updateClass(Class& CLASS);
+// Update Student
+void updateStudent(Student& student);
+// Update Semester
+void updateSemester(Semester& semester);
+// Update Course
 void updateCourse(Course& course);
+// Update Scoreboard
+void updateScoreboard(Scoreboard& scoreboard);
 // 19. export list of students in course to csv file
 void exportListOfStudent(Course& course);
 // 20. import scoreboard of course
@@ -118,20 +145,31 @@ void updateStudentResult(Student& student);
 
 /*		Display function	*/
 
+// View list of SchoolYear
+void viewListSchoolYear(Vector<SchoolYear>& schoolYears);
+// 15. view list of classes
+void viewListOfClasses(const SchoolYear & schoolYear, std::ostream & outDev);
+// 16. view list of students in a class
+void viewListOfStudentsInClass(const Class& curClass, std::ostream& outDev);
+
+
 // View list of courses
 void viewCourses(Semester& sem, std::ostream& outDev);
 // 14. view list of courses at current student
 void viewListOfCoursesOfStudent(const Student& student, std::ostream& outDev = std::cout);
-// 15. view list of classes 
-void viewListOfClasses(const SchoolYear& schoolYear, std::ostream& outDev);
-// 16. view list of students in a class
-void viewListOfStudentsInClass(const Class& curClass, std::ostream& outDev);
+
+// View list of AcademicYear
+void viewListAcademicYear(Vector<AcademicYear>& academicYears);
+// View list of Semester
+void viewListSemester(AcademicYear& academicYear);
 // 17. view list of course
 void viewListOfCoursesInSemester(const Semester& semester, std::ostream& outDev);
 // 18. view list of students in course
 void viewListOfStudentsInCourse(const Course& course, std::ostream& outDev);
 // 21. view scoreboard of course
 void viewScoreBoardOfCourse(Course& course);
+
+
 // 23. View scoreboard of class
 void viewScoreboardOfClass(Class& curClass, const Semester& curSemester);
 // 24. view scoreboard of student
