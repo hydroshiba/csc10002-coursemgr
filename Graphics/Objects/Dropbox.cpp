@@ -54,7 +54,10 @@ void Dropbox::renderAllOptions(const Vector2 &mouse) {
     int number_of_options = options.size();
     for (int i = 0; i < number_of_options; ++i) {
         if (options[i].clicked(mouse) == true) {
+            chosen[i] = true;
             select.label.text = options[i].label.text;
+            select.setPos(position);
+            select.setSize(size);
             clicked = false;
             return;
         }
@@ -79,5 +82,8 @@ void Dropbox::render(const Vector2 &mouse) {
         if (clicked == false) clicked = true;
         else clicked = false;
     }
-    if (clicked) renderAllOptions(mouse);
+    if (clicked) {
+        renderAllOptions(mouse);
+        // returnChosenButton();
+    }
 }
