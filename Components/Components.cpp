@@ -289,6 +289,14 @@ void getStudentToCourse(Vector<SchoolYear>& years, Course& course) {
 	}
 	std::string ignore;
 	getline(inF, ignore);
+	getline(inF, ignore);
+	getline(inF, ignore);
+	getline(inF, ignore);
+	getline(inF, ignore);
+	getline(inF, ignore);
+	getline(inF, ignore);
+	getline(inF, ignore);
+	getline(inF, ignore);
 	std::string className;
 	Class actClass;
 	Class* ptrClass = nullptr;
