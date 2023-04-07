@@ -12,9 +12,17 @@ struct Semester {
     Vector<Course> courses;
     AcademicYear* ptrAcademicYear;
 
-    Semester(const std::string semesterID = "\n", const Date& startDate = { 0, 0, 0 }, const Date& endDate = { 0, 0, 0 }, Vector<Course> course = Vector<Course>(), AcademicYear* ptrAcademicYear = nullptr);
+    Semester(const std::string& semesterID = defaultStr, const Date& startDate = { 0, 0, 0 }, const Date& endDate = { 0, 0, 0 }, Vector<Course>& course = Vector<Course>(), AcademicYear* ptrAcademicYear = nullptr);
 
     Course* getCourse(const std::string& courseID);
+
+    void set(const std::string& semesterID, const Date& startDate, const Date& endDate, Vector<Course>& course, AcademicYear* ptrAcademicYear);
+    
+    void updateSemesterID(const std::string& semesterID);
+    void updateStartDate(const Date& startDate);
+    void updateEndDate(const Date& endDate);
+    void updateCourses(Vector<Course>& course);
+    void updateAcademicYear(AcademicYear* ptrAcademicYear);
 
     void addCourse(Course& course);
 

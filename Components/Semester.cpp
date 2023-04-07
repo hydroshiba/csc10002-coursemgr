@@ -1,10 +1,38 @@
 #include "Semester.h"
 
-Semester::Semester(const std::string semesterID, const Date& startDate, const Date& endDate, Vector<Course> course, AcademicYear* ptrAcademicYear) {
+Semester::Semester(const std::string& semesterID, const Date& startDate, const Date& endDate, Vector<Course>& course, AcademicYear* ptrAcademicYear) {
     this->semesterID = semesterID;
     this->startDate = startDate;
     this->endDate = endDate;
     this->courses = course;
+    this->ptrAcademicYear = ptrAcademicYear;
+}
+
+void Semester::set(const std::string& semesterID, const Date& startDate, const Date& endDate, Vector<Course>& course, AcademicYear* ptrAcademicYear) {
+    this->semesterID = semesterID;
+    this->startDate = startDate;
+    this->endDate = endDate;
+    this->courses = course;
+    this->ptrAcademicYear = ptrAcademicYear;
+}
+
+void Semester::updateSemesterID(const std::string& semesterID) {
+    this->semesterID = semesterID;
+}
+
+void Semester::updateStartDate(const Date& startDate) {
+    this->startDate = startDate;
+}
+
+void Semester::updateEndDate(const Date& endDate) {
+    this->endDate = endDate;
+}
+
+void Semester::updateCourses(Vector<Course>& course) {
+    this->courses = course;
+}
+
+void Semester::updateAcademicYear(AcademicYear* ptrAcademicYear) {
     this->ptrAcademicYear = ptrAcademicYear;
 }
 
