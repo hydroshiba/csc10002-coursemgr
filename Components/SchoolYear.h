@@ -12,6 +12,8 @@ struct SchoolYear {
 
     SchoolYear(const int& start = 0, Vector<Class> classes = Vector<Class>());
 
+    Student* getStudent(const std::string& studentID);
+
     Class* getClass(const std::string& className);
 
     void addClass(Class& CLASS);
