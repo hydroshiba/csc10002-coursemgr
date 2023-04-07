@@ -48,6 +48,10 @@ void Dropbox::addNewButton(std::string label) {
     options.append(temp);
     total_height += size.y;
     chosen.append(false);
+    if (options.size() != 1) return;
+    select.label.text = label;
+    select.setPos(position);
+    select.setSize(size);
 }
 
 void Dropbox::renderAllOptions(const Vector2 &mouse) {

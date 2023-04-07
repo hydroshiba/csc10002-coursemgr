@@ -29,11 +29,10 @@ Menu::Menu() {
 	password.centerX();
 	password.defaultText = "Password";
 
-	test.setLabel("hello");
 	test.setPos({200, 200});
 	test.setSize({400, 50});
 
-	test.addNewButton("hello");
+	test.addNewButton("yo wtf bro");
 	test.addNewButton("anyone there");
 	test.addNewButton("please send me hope");
 	test.addNewButton("or nudes");
