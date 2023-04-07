@@ -10,7 +10,15 @@ struct Class {
     std::string name;
     Vector<Student> students;
     
-    Class(SchoolYear* ptrSchoolYear = nullptr, std::string name = "\n", Vector<Student> students = Vector<Student>());
+    Class(SchoolYear* ptrSchoolYear = nullptr, const std::string& name = defaultStr, Vector<Student>& students = Vector<Student>());
+
+    void set(SchoolYear* ptrSchoolYear, const std::string& name, Vector<Student>& students);
+
+    void update(SchoolYear* ptrSchoolYear);
+
+    void update(const std::string& name);
+
+    void update(Vector<Student>& students);
 
     void addStudent(Student& student);
 
