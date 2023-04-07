@@ -88,8 +88,6 @@ void addNewCourse(Semester& semester);
 // Add a student to course
 void addANewStudentToCourse(Vector<SchoolYear>& schoolYears, Course& course);
 // Add list student to course (from file)
-void addNewStudToCourse(Vector <SchoolYear>& yearlist, Course& course, std::istream& inDev = std::cin);
-// Get students' info to course
 void getStudentToCourse(Vector<SchoolYear>& years, Course& course);
 
 // ----------------------------------------------------------------------------------------------//

@@ -279,7 +279,7 @@ void addNewCourse(Semester& semester) {
 	//Course newCourse(ID, classID, name, teacher, cre, maxEn, weekday, session);
 	semester.addCourse(newCourse);
 }
-// Get students' info to course
+// Add list student to course (from file)
 void getStudentToCourse(Vector<SchoolYear>& years, Course& course) {
 	std::string inputStudCourseFilePath = getInputListStudCourseFilePath(course);
 	std::ifstream inF(inputStudCourseFilePath);
@@ -309,34 +309,6 @@ void getStudentToCourse(Vector<SchoolYear>& years, Course& course) {
 			course.addStudent(*ptrStudent);
 	}
 	inF.close();
-}
-// Add list student to course (from file)
-void addNewStudToCourse(Vector <SchoolYear>& yearlist, Course& course, std::istream& inDev) {
-	Student student;
-	std::string className;
-	Class* ptrClass = nullptr;
-	Student* ptrStudent = nullptr;
-	if (&inDev == &std::cin)
-		student.setInfoCourseConsole(className);
-	else
-	{
-		std::ifstream ifs;
-		std::string file;
-		std::cout << "Enter file name: "; std::cin >> file;
-		ifs.open(file);
-		student.setInfoToCourseCSV(ifs, className);
-		ifs.close();
-	}
-	ptrClass->name = className;
-	for (int i = 0; i < yearlist.size(); ++i)
-		if (yearlist[i].classes.find(*ptrClass)) {
-			ptrClass = yearlist[i].classes.find(*ptrClass);
-			break;
-		}
-	if (ptrClass != nullptr)
-		ptrStudent = ptrClass->students.find(student);
-	if (ptrStudent != nullptr)
-		course.addStudent(*ptrStudent);
 }
 // Add a student to course
 void addANewStudentToCourse(Vector<SchoolYear>& schoolYears, Course& course) {
