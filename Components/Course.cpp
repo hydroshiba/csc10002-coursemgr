@@ -26,43 +26,43 @@ void Course::set(const std::string& ID, const std::string& classID, const std::s
     this->scoreboards = scoreboards;
 }
 
-void Course::update(const std::string& ID) {
+void Course::updateID(const std::string& ID) {
     this->ID = ID;
 }
 
-void Course::update(const std::string& classID) {
+void Course::updateClassID(const std::string& classID) {
     this->classID = classID;
 }
 
-void Course::update(const std::string& name) {
+void Course::updateName(const std::string& name) {
     this->name = name;
 }
 
-void Course::update(const std::string& teacher) {
+void Course::updateTeacher(const std::string& teacher) {
     this->teacher = teacher;
 }
 
-void Course::update(const int& credits) {
+void Course::updateCredits(const int& credits) {
     this->credits = credits;
 }
 
-void Course::update(const int& maxEnroll) {
+void Course::updateMaxEnroll(const int& maxEnroll) {
     this->maxEnroll = maxEnroll;
 }
 
-void Course::update(const Weekday& weekday) {
+void Course::updateWeekday(const Weekday& weekday) {
     this->weekday = weekday;
 }
 
-void Course::update(const Session& session) {
+void Course::updateSession(const Session& session) {
     this->session = session;
 }
 
-void Course::update(Semester* ptrSemester) {
+void Course::updateSemester(Semester* ptrSemester) {
     this->ptrSemester = ptrSemester;
 }
 
-void Course::update(Vector<Scoreboard*> scoreboards) {
+void Course::updateScoreboard(Vector<Scoreboard*> scoreboards) {
     this->scoreboards = scoreboards;
 }
 

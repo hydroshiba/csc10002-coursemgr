@@ -22,16 +22,16 @@ struct Course {
 
     void set(const std::string& ID, const std::string& classID, const std::string& name, const std::string& teacher, const int& credits, const int& maxEnroll, const Weekday& weekday, const Session& session, Semester* ptrSemester, Vector<Scoreboard*>& scoreboards);
     
-    void update(const std::string& ID);
-    void update(const std::string& classID);
-    void update(const std::string& name);
-    void update(const std::string& teacher);
-    void update(const int& credits);
-    void update(const int& maxEnroll);
-    void update(const Weekday& weekday);
-    void update(const Session& session);
-    void update(Semester* ptrSemester);
-    void update(Vector<Scoreboard*> scoreboards);
+    void updateID(const std::string& ID);
+    void updateClassID(const std::string& classID);
+    void updateName(const std::string& name);
+    void updateTeacher(const std::string& teacher);
+    void updateCredits(const int& credits);
+    void updateMaxEnroll(const int& maxEnroll);
+    void updateWeekday(const Weekday& weekday);
+    void updateSession(const Session& session);
+    void updateSemester(Semester* ptrSemester);
+    void updateScoreboard(Vector<Scoreboard*> scoreboards);
 
     Student* getStudent(const std::string& studentID);
 
