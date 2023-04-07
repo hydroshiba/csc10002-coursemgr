@@ -57,43 +57,50 @@ Gender string_to_gender(const std::string& str);
 Student* getStudent(Vector<SchoolYear>& schoolYears, const std::string& studentID);
 
 Staff* getStaff(Vector<Staff> staffs, const std::string& staffID);
-// 1 - 12
 
+SchoolYear* getSchoolYear(Vector<SchoolYear>& schoolYears, const unsigned int& start);
+
+AcademicYear* getAcademicYear(Vector<AcademicYear>& academicYears, const unsigned int& start);
+// Insert 
 void addNewSchoolYear(Vector<SchoolYear>& yearList);
-void addClasses (Vector<SchoolYear>& yearList);
+void addNewClass(Vector<SchoolYear>& yearList);
 void addStudToClass(Class &actClass);
-void addNewAcademicYear(Vector <AcademicYear> &newYear);
+
+void addNewAcademicYear(Vector <AcademicYear>& newYear);
+void addNewSemester(AcademicYear& newYear);
+void addANewStudentToCourse(Vector<SchoolYear>& schoolYears, Course& course);
+void addNewCourse(Semester& semester);
+void addNewStudToCourse(Vector <SchoolYear>& yearlist, Course& course, std::istream& inDev = std::cin);
+void getStudentToCourse(Vector<SchoolYear>& years, Course& course);
+
+// Remove 
+void removeListSchoolYear(Vector<SchoolYear>& schoolYears);
+void removeAcademicYear(Vector<AcademicYear>& academicYears);
 void removeSchoolYear(Vector<SchoolYear>& schoolYears, const unsigned int& start);
 void removeAcademicYear(Vector<AcademicYear>& academicYears, const unsigned int& start);
-SchoolYear* getSchoolYear(Vector<SchoolYear>& schoolYears, const unsigned int& start);
-AcademicYear* getAcademicYear(Vector<AcademicYear>& academicYears, const unsigned int& start);
-
-void addSemester(AcademicYear &newYear);
-void addNewCourse(Semester &semester);
-void getStudentToCourse(Vector<SchoolYear>& years, Course &course);
-void viewCourses(Semester& sem, std::ostream& outDev = std::cout);
-
-void updateCourse(Course &course);
-void addNewStudToCourse(Vector <SchoolYear>& yearlist, Course& course, std::istream& inDev = std::cin);
-void addANewStudentToCourse(Vector<SchoolYear>& schoolYears, Course& course);
-void removeStudFromCourse(Course &course);
-
-// 13 - 24
-
+void removeStudFromCourse(Course& course);
 void deleteCourse(Semester& semester, const std::string& courseID);
+
+// View
+void viewCourses(Semester& sem, std::ostream& outDev = std::cout);
 void viewListOfCoursesOfStudent(const Student& student, std::ostream& outDev = std::cout);
 void viewListOfClasses(const SchoolYear& schoolYear, std::ostream& outDev = std::cout);
 void viewListOfStudentsInClass(const Class& curClass, std::ostream& outDev = std::cout);
-
+void viewScoreBoardOfCourse(Course& course);
+void viewScoreboardOfClass(Class& curClass, const Semester& curSemester);
+void viewScoreBoardOfStudent(Student& student);
 void viewListOfCoursesInSemester(const Semester& semester, std::ostream& outDev = std::cout);
 void viewListOfStudentsInCourse(const Course& course, std::ostream& outDev = std::cout);
+
+// Update
+void updateStudentResult(Student& student);
+void updateCourse(Course &course);
+
+// File import and export
 void exportListOfStudent(Course& course);
 void importScoreBoardOfCourse(Course& course);
 
-void viewScoreBoardOfCourse(Course& course);
-void updateStudentResult(Student& student);
-void viewScoreboardOfClass(Class& curClass, const Semester& curSemester);
-void viewScoreBoardOfStudent(Student& student);
+
 
 // Get file path in Data Folder
 void createDirectoryIfNotExists(const std::string& dirPath);

@@ -129,19 +129,51 @@ void addNewSchoolYear(Vector<SchoolYear>& yearList){
 }
 
 // Add several classes for 1st year
-void addClasses (SchoolYear& schoolYear){
+void addNewClass (SchoolYear& schoolYear){
 	std::string className;
     do {
         std::cout << "Enter class name (enter 0 when done): ";
-        std::cin >> className;
+        std::getline(std::cin,className);
         if (className == "0") break;
-		if (schoolYear.getClass(className) == nullptr)
+		Class* ptrClass = schoolYear.getClass(className);
+		if (ptrClass != nullptr)
+		{
+			std::cout << "Class " << className << " have been already existed!" << std::endl;
+			return;
+		}
+		else
 		{
 			Class newClass;
 			newClass.name = className;
 			schoolYear.addClass(newClass);
 		}
     } while (className != "0");
+}
+
+// Add a new academic year
+void addNewAcademicYear(Vector<AcademicYear>& academicYears) {
+	unsigned int startyear;
+	AcademicYear newYear;
+	bool found = false;
+	std::cout << "Enter a new year: ";
+	std::cin >> startyear;
+	for (int i = 0; i < academicYears.size(); i++)
+		if (academicYears[i].start == startyear)
+		{
+			found = true;
+			break;
+		}
+	if (found)
+	{
+		std::cout << "Academic Year " << startyear << " have been already existed! Pls input another start year!" << std::endl;
+		return;
+	}
+	else
+	{
+		newYear = { startyear };
+		academicYears.append(newYear);
+	}
+
 }
 
 // Add students into a specific class
@@ -163,31 +195,7 @@ void addStudToClass(Class &actClass){
     inF.close();
 }
 
-// Add a new academic year
-void addNewAcademicYear(Vector<AcademicYear>& academicYears){
-    unsigned int startyear;
-	AcademicYear newYear;
-	bool found = false;
-    std::cout << "Enter a new year: ";
-    std::cin >> startyear;
-	for (int i = 0; i < academicYears.size(); i++)
-		if (academicYears[i].start == startyear)
-		{
-			found = true;
-			break;
-		}
-	if (found)
-	{
-		std::cout << "Academic Year " << startyear << " have been already existed! Pls input another start year!" << std::endl;
-		return;
-	}
-	else
-	{
-		newYear = { startyear };
-		academicYears.append(newYear);
-	}
-    
-}
+
 
 // Remove schoolYear
 void removeSchoolYear(Vector<SchoolYear>& schoolYears, const unsigned int& start) {
