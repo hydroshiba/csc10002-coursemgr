@@ -117,6 +117,12 @@ Staff* getStaff(Vector<Staff> staffs, const std::string& staffID) {
 void addNewSchoolYear(Vector<SchoolYear>& yearList){
     unsigned int startYear;
     std::cout << "Enter the school year: "; std::cin >> startYear;
+	SchoolYear* ptrSchoolYear = getSchoolYear(yearList, startYear);
+	if (ptrSchoolYear != nullptr)
+	{
+		std::cout << "SchoolYear with start year " << startYear << " have been already existed!" << std::endl;
+		return;
+	}
 	SchoolYear newYear;
 	newYear.start = startYear;
     yearList.append(newYear);
