@@ -11,9 +11,9 @@ struct Dropbox {
     float length; //length of edges
     Text content;
     Vector2 p1, p2, p3;
-    float degree = 90;
+    bool clicked;
 
-    Vector2 starting_point;
+    Vector2 optionStartPos;
     Vector<Button> options;
 
     //init
@@ -22,8 +22,8 @@ struct Dropbox {
     Dropbox(Vector2 pos, Text content = Text(""), float length = 25);
 
     //opening or closing options
-    void RaiseTriangle();
-    void DropTriangle();
+    void Closed();
+    void Opened();
     bool mouseInsideDropbox(const Vector2 &mouse);
 
     //adding options
