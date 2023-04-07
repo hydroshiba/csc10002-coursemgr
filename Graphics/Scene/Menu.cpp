@@ -38,6 +38,12 @@ Menu::Menu() {
 	test.addNewButton("3");
 	test.addNewButton("4");
 	test.addNewButton("5");
+
+	invalid = "";
+	invalid.setColor(RED);
+	invalid.setSize(24);
+	invalid.centerX();
+	invalid.setY(425);
 }
 
 void Menu::render() {
@@ -49,6 +55,7 @@ void Menu::render() {
 	password.render(mousePoint);
 
 	test.render(mousePoint);
+	invalid.render();
 }
 
 Scene* Menu::process() {
@@ -56,6 +63,14 @@ Scene* Menu::process() {
 
 	if(quit.clicked(mousePoint)) return nullptr;
 	if(login.clicked(mousePoint)) {
+		if(username.content.text.empty() || password.content.text.empty()) {
+			invalid = "Invalid username/password, please retry";
+			invalid.centerX();
+			return this;
+		}
+		
+		invalid = "";
+		invalid.centerX();
 		return registry.blank;
 	}
 

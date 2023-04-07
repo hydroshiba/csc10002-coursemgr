@@ -16,7 +16,7 @@ private:
 	Button login;
 	Button quit;
 
-	TextBox title;
+	TextBox title, invalid;
 	InputBox username, password;
 
 	Dropbox test;

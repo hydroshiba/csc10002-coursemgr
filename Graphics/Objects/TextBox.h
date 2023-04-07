@@ -36,6 +36,7 @@ public:
     void centerY();
 
     void setSize(float size);
+    void setColor(Color color);
     void render();
 };
 

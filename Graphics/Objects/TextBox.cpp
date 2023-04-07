@@ -81,8 +81,11 @@ void TextBox::setSize(float size) {
     refresh();
 }
 
-void TextBox::render()
-{
+void TextBox::setColor(Color color) {
+    content.color = color;
+}
+
+void TextBox::render() {
 	DrawTextEx(content.font, content.text.c_str(), pos, content.font_size, content.space, content.color);
     DrawRectangleRoundedLines(bound, box_const::roundness, box_const::segments, box_const::thickness, color_box);
 }
