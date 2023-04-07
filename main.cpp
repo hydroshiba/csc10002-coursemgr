@@ -30,4 +30,11 @@ int main() {
     while(!newApp.appShouldClose()) {
         newApp.tick();
     }
+    
+    //Vector<SchoolYear> schoolYears;
+    //Vector<AcademicYear> academicYears;
+    //uploadAllData(schoolYears, academicYears);
+    //// Do all thing
+    //downloadAllData(schoolYears, academicYears);
+    //freeMemory(academicYears);
 }

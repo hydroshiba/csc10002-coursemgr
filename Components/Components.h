@@ -66,6 +66,8 @@ Class* getClass(Vector<SchoolYear>& schoolYears, const std::string& className);
 Semester* getSemester(Vector<AcademicYear>& academicYears, const std::string& semesterID);
 // Find Course
 Course* getCourse(Vector<AcademicYear>& academicYears, const std::string& courseID);
+// Find Scoreboard of Course of Student
+Scoreboard* getScoreboard(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears, const std::string& courseID, const std::string& studentID);
 
 //----------------------------------------------------------------------------------------------//
 
@@ -116,6 +118,9 @@ void removeStudFromCourse(Course& course);
 // Remove course from semester
 void deleteCourse(Semester& semester, const std::string& courseID);
 
+// Free memory
+void freeMemory(Vector<AcademicYear>& academicYears);
+
 //----------------------------------------------------------------------------------------------//
 
 /*		Update function		*/
@@ -152,23 +157,21 @@ void viewListOfClasses(const SchoolYear & schoolYear, std::ostream & outDev);
 // 16. view list of students in a class
 void viewListOfStudentsInClass(const Class& curClass, std::ostream& outDev);
 
-
-// View list of courses
-void viewCourses(Semester& sem, std::ostream& outDev);
-// 14. view list of courses at current student
-void viewListOfCoursesOfStudent(const Student& student, std::ostream& outDev = std::cout);
-
 // View list of AcademicYear
 void viewListAcademicYear(Vector<AcademicYear>& academicYears);
 // View list of Semester
 void viewListSemester(AcademicYear& academicYear);
+// View list of courses
+void viewCourses(Semester& sem, std::ostream& outDev);
+
 // 17. view list of course
 void viewListOfCoursesInSemester(const Semester& semester, std::ostream& outDev);
 // 18. view list of students in course
 void viewListOfStudentsInCourse(const Course& course, std::ostream& outDev);
 // 21. view scoreboard of course
 void viewScoreBoardOfCourse(Course& course);
-
+// 14. view list of courses at current student
+void viewListOfCoursesOfStudent(const Student& student, std::ostream& outDev = std::cout);
 
 // 23. View scoreboard of class
 void viewScoreboardOfClass(Class& curClass, const Semester& curSemester);
@@ -239,6 +242,8 @@ void downloadStudentFolder(Student& student);
 
 // AcademicYear
 
+void downloadAllData(Vector <SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears);
+
 void downloadListAcademicYearFolder(Vector<AcademicYear>& academicYears);
 
 void downloadAcademicYearFolder(AcademicYear& academicYear);
@@ -248,6 +253,8 @@ void downloadSemesterFolder(Semester& semester);
 void downloadCourseFolder(Course& course);
 
 void dowdloadScoreboardFile(Course& course);
+
+void uploadAllData(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears);
 
 void uploadListSchoolYearFolder(Vector <SchoolYear>& schoolYears);
 
