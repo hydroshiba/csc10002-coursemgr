@@ -19,7 +19,7 @@ private:
 	TextBox title;
 	InputBox username, password;
 
-	Dropbox drop;
+	Dropbox test;
 
 public: 
 	Menu();

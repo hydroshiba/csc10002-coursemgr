@@ -29,8 +29,9 @@ Menu::Menu() {
 	password.centerX();
 	password.defaultText = "Password";
 
-	drop.pos = {200, 200};
-	drop.content.text = "try to click \"login\" guys! also gimme the box when?";
+	test.setLabel("Hello there!");
+	test.setPos({200, 200});
+	test.setSize({300, 50});
 }
 
 void Menu::render() {
@@ -41,7 +42,7 @@ void Menu::render() {
 	username.render(mousePoint);
 	password.render(mousePoint);
 
-	drop.render(mousePoint);
+	test.render(mousePoint);
 }
 
 Scene* Menu::process() {

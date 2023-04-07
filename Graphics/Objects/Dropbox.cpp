@@ -2,50 +2,42 @@
 #include "math.h"
 #include <iostream>
 
-Dropbox::Dropbox():
-    pos({0, 0}),
-    content(""),
-    length(25) {}
+Dropbox::Dropbox() {}
 
-Dropbox::Dropbox(float x, float y, Text content, float length):
-    pos({x, y}),
-    content(content),
-    length(length) {}
-
-Dropbox::Dropbox(Vector2 pos, Text content, float length):
-    pos(pos),
-    content(content),
-    length(length) {}
-
-void Dropbox::Closed() {
-    p1 = {pos.x + length * sqrt(3.0f) / 3, pos.y};
-    p2 = {pos.x - length * sqrt(3.0f) / 6, pos.y - length / 2};
-    p3 = {pos.x - length * sqrt(3.0f) / 6, pos.y + length / 2};
+void Dropbox::setLabel(std::string label) {
+    select.label = label;
 }
 
-void Dropbox::Opened() {
-    p1 = {pos.x, pos.y + length * sqrt(3.0f) / 3};
-    p2 = {pos.x + length / 2, pos.y - length * sqrt(3.0f) / 6};
-    p3 = {pos.x - length / 2, pos.y - length * sqrt(3.0f) / 6};
+void Dropbox::setX(float x) {
+    position.x = x;
+    select.setX(x);
 }
 
-bool Dropbox::mouseInsideDropbox(const Vector2 &mouse) {
-    return CheckCollisionPointTriangle(mouse, p1, p2, p3);
+void Dropbox::setY(float y) {
+    position.y = y;
+    select.setY(y);
 }
 
-void Dropbox::AddButton(Text options) {
+void Dropbox::setWidth(float width) {
+    size.x = width;
+    select.setWidth(width);
+}
 
+void Dropbox::setHeight(float height) {
+    size.y = height;
+    select.setHeight(height);
+}
+
+void Dropbox::setPos(Vector2 pos) {
+    position = pos;
+    select.setPos(pos);
+}
+
+void Dropbox::setSize(Vector2 sz) {
+    size = sz;
+    select.setSize(sz);
 }
 
 void Dropbox::render(const Vector2 &mouse) {
-    //process
-    if (mouseInsideDropbox(mouse) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
-        if (clicked == false) clicked = true;
-        else clicked = false;
-    }
-    //draw
-    if (clicked) Opened();
-    else Closed();
-    DrawTriangle(p1, p2, p3, BLACK);
-    DrawTextEx(content.font, content.text.c_str(), {pos.x + length, pos.y - length / 2}, content.font_size, content.space, BLACK);
+    select.render(mouse);
 }
