@@ -88,6 +88,21 @@ Gender string_to_gender(const std::string& str) {
 
 /* Task functions */
 
+Student* getStudent(Vector<SchoolYear>& schoolYears, const std::string& studentID) {
+	Student* ptrStudent = nullptr;
+	for (int i = 0; i < schoolYears.size(); i++)
+	{
+		Student* temp = schoolYears[i].getStudent(studentID);
+		if (temp != nullptr)
+		{
+			ptrStudent = temp;
+			break;
+		}
+	}
+	return ptrStudent;
+}
+
+
 // Add a new 1st-year
 void addNewSchoolYear(Vector<SchoolYear>& yearList){
     unsigned int startYear;

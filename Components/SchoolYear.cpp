@@ -12,11 +12,14 @@ SchoolYear::SchoolYear(const int& start, Vector<Class> classes) {
 Student* SchoolYear::getStudent(const std::string& studentID) {
     Student* ptrStudent = nullptr;
     for (int i = 0; i < classes.size(); i++)
-        if (classes[i].getStudent(studentID) != nullptr)
+    {
+        Student* temp = classes[i].getStudent(studentID);
+        if (temp != nullptr)
         {
-            ptrStudent = classes[i].getStudent(studentID);
+            ptrStudent = temp;
             break;
         }
+    }
     return ptrStudent;
 }
 

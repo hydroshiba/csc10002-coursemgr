@@ -54,6 +54,8 @@ std::string gender_to_string(const Gender& gender);
 
 Gender string_to_gender(const std::string& str);
 
+Student* getStudent(Vector<SchoolYear>& schoolYears, const std::string& studentID);
+
 // 1 - 12
 
 void addNewSchoolYear(Vector<SchoolYear>& yearList);
