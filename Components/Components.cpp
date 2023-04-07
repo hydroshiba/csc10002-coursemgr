@@ -932,6 +932,120 @@ void downloadStudentFolder(Student& student){
 	ofs.close();
 }
 
+void uploadListSchoolYearFolder(Vector <SchoolYear>& schoolYears){
+	std::string listSchoolYearDir = getListSchoolYearFilePath();
+	std::ifstream ifs(listSchoolYearDir);
+	if (!ifs.is_open()){
+		std::cout << "Cannot open " << listSchoolYearDir;
+		return;
+	}
+	size_t nSchoolYear;
+	ifs >> nSchoolYear;
+	schoolYears.resize(nSchoolYear);
+	for (int i = 0; i<schoolYears.size(); ++i){
+		unsigned int startYear;
+		SchoolYear school_year;
+		ifs >> startYear;
+		school_year.start = startYear;
+		schoolYears[i] = school_year;
+		uploadSchoolYearFolder(schoolYears[i]);
+	}
+	ifs.close();
+}	
+
+void uploadSchoolYearFolder(SchoolYear &schoolYear){
+	std::string schoolYearDir = getInputSchoolYearFilePath(schoolYear);
+	std::ifstream ifs(schoolYearDir);
+	if (!ifs.is_open()){
+		std::cout << "Cannot open " << schoolYearDir << '\n';
+		return;
+	}
+	unsigned int start;
+	ifs >> start;
+	if (start == schoolYear.start){
+		std::cout << "Incorrect directory\n";
+		return;
+	}
+	size_t nClasses;
+	ifs >> nClasses;
+	schoolYear.classes.resize(nClasses);
+	for (int i = 0; i<nClasses; ++i){
+		std::string className;
+		ifs >> className;
+		schoolYear.classes[i].name = className; 
+		schoolYear.classes[i].ptrSchoolYear = &schoolYear;
+		uploadOutputStudClassFile(schoolYear.classes[i]);
+	}
+	ifs.close();
+}
+
+void uploadStudentFolder(Class &actClass, Student &student){
+	std::string studentDir = getInputStandardIn4StudentFilePath(student);
+	std::ifstream ifs (studentDir);
+	if (!ifs.is_open()){
+		std::cout << "Cannot open " << studentDir;
+		return;
+	}
+	std::string ignore;
+	std::string id, first, last, gender, socialId, className, day, month, year;
+	uint64_t password;
+	std::getline(ifs, ignore, ',');
+	ifs >> id;
+	std::getline(ifs, ignore, ',');
+	ifs >> password;
+	std::getline(ifs, ignore, ',');
+	std::getline(ifs, first);
+	std::getline(ifs, ignore, ',');
+	std::getline(ifs, last);
+	std::getline(ifs, ignore, ',');
+	ifs >> gender;
+	std::getline(ifs, ignore, ',');
+	std::getline(ifs, day, '/');
+	std::getline(ifs, month, '/');
+	std::getline(ifs, year);
+	std::getline(ifs, ignore, ',');
+	ifs >> socialId;
+	std::getline(ifs, ignore, ',');
+	ifs >> className;
+	if (actClass.name != className){
+		std::cout << "Incorrect class directory";
+		return;
+	}
+	unsigned short d = static_cast<unsigned short>(std::stoul(day)), m = static_cast<unsigned short>(std::stoul(month));
+	unsigned int y = static_cast<unsigned int>(std::stoul(year));
+
+	Student studInfo({first, last}, id, password,string_to_gender(gender),{d, m, y}, socialId, &actClass);
+}
+
+void uploadOutputStudClassFile(Class &actClass){
+	std::string oFile = getOutputStudClassFilePath(actClass);
+	std::ifstream ifs (oFile);
+	if (!ifs.is_open()){
+		std::cout << "Cannot open " << oFile;
+		return;
+	}
+	std::string ignore;
+	std::string className;
+	std::getline(ifs, ignore, ',');
+	std::getline(ifs, className);
+	if (className != actClass.name){
+		std::cout << "Incorrect file!";
+		return;
+	}
+	std::getline(ifs, ignore, ',');
+	size_t nStud;
+	ifs >> nStud;
+	actClass.students.resize(nStud);
+	Student student;
+	int i = 0;
+	while (!ifs.eof()){
+		student.setInfoToClass(ifs);
+		actClass.students[i++] = student;
+		student.ptrClass = &actClass;
+	}
+	ifs.close();
+}
+
 // AcademicYear
 
 void downloadListAcademicYearFolder(Vector<AcademicYear>& academicYears) {
@@ -995,82 +1109,6 @@ void dowdloadScoreboardFile(Course& course) {
 	std::ofstream ofs(scoreBoardFilePath);
 	course.displayScoreBoardFile(ofs);
 	ofs.close();
-}
-
-void uploadListSchoolYearFolder(Vector <SchoolYear>& schoolYears){
-	std::string listSchoolYearDir = getListSchoolYearFilePath();
-	std::ifstream ifs(listSchoolYearDir);
-	if (!ifs.is_open()){
-		std::cout << "Cannot open " << listSchoolYearDir;
-		return;
-	}
-	size_t nSchoolYear;
-	ifs >> nSchoolYear;
-	schoolYears.resize(nSchoolYear);
-	for (int i = 0; i<schoolYears.size(); ++i){
-		unsigned int startYear;
-		SchoolYear school_year;
-		ifs >> startYear;
-		school_year.start = startYear;
-		schoolYears[i] = school_year;
-		uploadSchoolYearFolder(schoolYears[i]);
-	}
-	ifs.close();
-}	
-
-void uploadSchoolYearFolder(SchoolYear &schoolYear){
-	std::string schoolYearDir = getInputSchoolYearFilePath(schoolYear);
-	std::ifstream ifs(schoolYearDir);
-	if (!ifs.is_open()){
-		std::cout << "Cannot open " << schoolYearDir << '\n';
-		return;
-	}
-	unsigned int start;
-	ifs >> start;
-	if (start == schoolYear.start){
-		std::cout << "Incorrect directory\n";
-		return;
-	}
-	size_t nClasses;
-	ifs >> nClasses;
-	schoolYear.classes.resize(nClasses);
-	for (int i = 0; i<nClasses; ++i){
-		std::string className;
-		ifs >> className;
-		schoolYear.classes[i].name = className; 
-		schoolYear.classes[i].ptrSchoolYear = &schoolYear;
-		uploadOutputStudClassFile(schoolYear.classes[i]);
-	}
-	ifs.close();
-}
-
-void uploadOutputStudClassFile(Class &actClass){
-	std::string oFile = getOutputStudClassFilePath(actClass);
-	std::ifstream ifs (oFile);
-	if (!ifs.is_open()){
-		std::cout << "Cannot open " << oFile;
-		return;
-	}
-	std::string ignore;
-	std::string className;
-	std::getline(ifs, ignore, ',');
-	std::getline(ifs, className);
-	if (className != actClass.name){
-		std::cout << "Incorrect file!";
-		return;
-	}
-	std::getline(ifs, ignore, ',');
-	size_t nStud;
-	ifs >> nStud;
-	actClass.students.resize(nStud);
-	Student student;
-	int i = 0;
-	while (!ifs.eof()){
-		student.setInfoToClass(ifs);
-		actClass.students[i++] = student;
-		student.ptrClass = &actClass;
-	}
-	ifs.close();
 }
 
 void uploadListAcademicYearFolder(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears) {

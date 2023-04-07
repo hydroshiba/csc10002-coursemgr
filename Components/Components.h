@@ -240,6 +240,16 @@ void downloadOutputStudClassFile(Class& actClass);
 
 void downloadStudentFolder(Student& student);
 
+void uploadAllData(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears);
+
+void uploadListSchoolYearFolder(Vector <SchoolYear>& schoolYears);
+
+void uploadSchoolYearFolder(SchoolYear& schoolYear);
+
+void uploadStudentFolder(Class &actClass, Student &student);
+
+void uploadOutputStudClassFile(Class& actClass);
+
 // AcademicYear
 
 void downloadAllData(Vector <SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears);
@@ -253,14 +263,6 @@ void downloadSemesterFolder(Semester& semester);
 void downloadCourseFolder(Course& course);
 
 void dowdloadScoreboardFile(Course& course);
-
-void uploadAllData(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears);
-
-void uploadListSchoolYearFolder(Vector <SchoolYear>& schoolYears);
-
-void uploadSchoolYearFolder(SchoolYear& schoolYear);
-
-void uploadOutputStudClassFile(Class& actClass);
 
 void uploadListAcademicYearFolder(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears);
 
