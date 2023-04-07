@@ -343,7 +343,10 @@ void addANewStudentToCourse(Vector<SchoolYear>& schoolYears, Course& course) {
 //----------------------------------------------------------------------------------------------//
 
 /*		Remove function		*/
-
+// Remove list SchoolYear
+void removeListSchoolYear(Vector<SchoolYear>& schoolYears){
+	schoolYears.~Vector();
+}
 // Remove SchoolYear
 void removeSchoolYear(Vector<SchoolYear>& schoolYears, const unsigned int& start) {
 	SchoolYear* ptrSchoolYear = getSchoolYear(schoolYears, start);
