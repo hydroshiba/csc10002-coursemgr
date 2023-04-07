@@ -1,6 +1,6 @@
 #include "Course.h"
 
-Course::Course(const std::string& ID, const std::string& classID, const std::string& name, const std::string& teacher, const int& credits, const int& maxEnroll, const Weekday& weekday, const Session& session, Semester* ptrSemester, Vector<Scoreboard*>& scoreboards) {
+Course::Course(const std::string& ID, const std::string& classID, const std::string& name, const std::string& teacher, const int& credits, const int& maxEnroll, const Weekday& weekday, const Session& session, Semester* ptrSemester, const Vector<Scoreboard*>& scoreboards) {
     this->ID = ID;
     this->classID = classID;
     this->name = name;
@@ -13,7 +13,7 @@ Course::Course(const std::string& ID, const std::string& classID, const std::str
     this->scoreboards = scoreboards;
 }
 
-void Course::set(const std::string& ID, const std::string& classID, const std::string& name, const std::string& teacher, const int& credits, const int& maxEnroll, const Weekday& weekday, const Session& session, Semester* ptrSemester, Vector<Scoreboard*>& scoreboards) {
+void Course::set(const std::string& ID, const std::string& classID, const std::string& name, const std::string& teacher, const int& credits, const int& maxEnroll, const Weekday& weekday, const Session& session, Semester* ptrSemester, const Vector<Scoreboard*>& scoreboards) {
     this->ID = ID;
     this->classID = classID;
     this->name = name;

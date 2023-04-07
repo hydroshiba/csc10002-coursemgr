@@ -1,12 +1,12 @@
 #include "Class.h"
 
-Class::Class(SchoolYear* ptrSchoolYear, const std::string& name, Vector<Student>& students) {
+Class::Class(SchoolYear* ptrSchoolYear, const std::string& name, const Vector<Student>& students) {
     this->ptrSchoolYear = nullptr;
     this->name = name;
     this->students = students;
 }
 
-void Class::set(SchoolYear* ptrSchoolYear, const std::string& name, Vector<Student>& students) {
+void Class::set(SchoolYear* ptrSchoolYear, const std::string& name, const Vector<Student>& students) {
     this->ptrSchoolYear = ptrSchoolYear;
     this->name = name;
     this->students = students;

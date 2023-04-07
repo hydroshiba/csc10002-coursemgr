@@ -8,7 +8,7 @@ struct AcademicYear {
     unsigned int start;
     Vector<Semester> semesters;
 
-    AcademicYear(const unsigned int& start = 0, Vector<Semester> semester = Vector<Semester>());
+    AcademicYear(const unsigned int& start = 0, const Vector<Semester>& semester = Vector<Semester>());
 
     Semester* getSemester(const std::string& semesterID);
 

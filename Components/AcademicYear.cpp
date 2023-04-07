@@ -1,6 +1,6 @@
 #include "AcademicYear.h"
 
-AcademicYear::AcademicYear(const unsigned int& start, Vector<Semester> semesters) {
+AcademicYear::AcademicYear(const unsigned int& start, const Vector<Semester>& semesters) {
     this->start = start;
     this->semesters = semesters;
 }

@@ -10,9 +10,9 @@ struct SchoolYear {
 
     unsigned int getStartYear();
 
-    SchoolYear(const int& start = 0, Vector<Class> classes = Vector<Class>());
+    SchoolYear(const int& start = 0, const Vector<Class>& classes = Vector<Class>());
 
-    void set(const unsigned int& start, Vector<Class>& classes);
+    void set(const unsigned int& start, const Vector<Class>& classes);
 
     void update(const unsigned int& start);
 

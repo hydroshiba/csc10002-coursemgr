@@ -16,11 +16,11 @@ struct Student : public User {
     Class* ptrClass;
     Vector<Scoreboard*> scoreboards;
 
-    Student(const Name& name = { defaultStr, defaultStr }, const std::string & id = defaultStr, const uint64_t password = 0, const Gender & gender = male, const Date & birth = { 0, 0, 0 }, const std::string & socialID = defaultStr, Class * ptrClass = nullptr, Vector<Scoreboard*>& scoreboards = Vector<Scoreboard*>());
+    Student(const Name& name = { defaultStr, defaultStr }, const std::string & id = defaultStr, const uint64_t password = 0, const Gender & gender = male, const Date & birth = { 0, 0, 0 }, const std::string & socialID = defaultStr, Class * ptrClass = nullptr, const Vector<Scoreboard*>& scoreboards = Vector<Scoreboard*>());
     
     Scoreboard* getScoreboard(Course& course);
 
-    void set(const Name& name, const std::string& id, const uint64_t password, const Gender& gender, const Date& birth, const std::string& socialID, Class* ptrClass, Vector<Scoreboard*>& scoreboards);
+    void set(const Name& name, const std::string& id, const uint64_t password, const Gender& gender, const Date& birth, const std::string& socialID, Class* ptrClass, const Vector<Scoreboard*>& scoreboards);
 
     void update(const Name& name);
     void update(const Gender& gender);

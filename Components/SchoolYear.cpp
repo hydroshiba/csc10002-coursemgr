@@ -4,12 +4,12 @@ unsigned int SchoolYear::getStartYear() {
     return start;
 }
 
-SchoolYear::SchoolYear(const int& start, Vector<Class> classes) {
+SchoolYear::SchoolYear(const int& start, const Vector<Class>& classes) {
     this->start = start;
     this->classes = classes;
 }
 
-void SchoolYear::set(const unsigned int& start, Vector<Class>& classes) {
+void SchoolYear::set(const unsigned int& start, const Vector<Class>& classes) {
     this->start = start;
     this->classes = classes;
 }
