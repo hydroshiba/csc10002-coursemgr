@@ -16,6 +16,22 @@ void Scoreboard::setScore(const float& midterm, const float& final, const float&
     this->total = total;
 }
 
+void Scoreboard::updateMidterm(const float& midterm) {
+    this->midterm = midterm;   
+}
+
+void Scoreboard::updateFinal(const float& final) {
+    this->final = final;  
+}
+
+void Scoreboard::updateOther(const float& other) {
+    this->other = other;   
+}
+
+void Scoreboard::updateTotal(const float& total) {
+    this->total = total;
+}
+
 bool operator==(const Scoreboard& boardA, const Scoreboard& boardB) {
     if (boardA.ptrCourse != boardB.ptrCourse) return false;
     if (boardA.ptrStudent != boardB.ptrStudent) return false;
