@@ -33,6 +33,10 @@ bool Dropbox::mouseInsideDropbox(const Vector2 &mouse) {
     return CheckCollisionPointTriangle(mouse, p1, p2, p3);
 }
 
+void Dropbox::AddButton(Text options) {
+
+}
+
 void Dropbox::render(const Vector2 &mouse) {
     //process
     if (mouseInsideDropbox(mouse) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
