@@ -1,9 +1,9 @@
 #include "Date.h"
 
-Date::Date(unsigned short newDay, unsigned short newMonth, unsigned int newYear) :
+Date::Date(const unsigned short& newDay, const unsigned short& newMonth, const unsigned int& newYear) :
     day{ newDay }, month{ newMonth }, year{ newYear } {}
 
-void Date::set(unsigned short newDay, unsigned short newMonth, unsigned int newYear) {
+void Date::set(const unsigned short& newDay, const unsigned short& newMonth, const unsigned int& newYear) {
     day = newDay;
     month = newMonth;
     year = newYear;

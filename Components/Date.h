@@ -7,9 +7,9 @@ struct Date {
     unsigned short day, month;
     unsigned int year;
 
-    Date(unsigned short newDay = 0, unsigned short newMonth = 0, unsigned int newYear = 0);
+    Date(const unsigned short& newDay = 0, const unsigned short& newMonth = 0, const unsigned int& newYear = 0);
 
-    void set(unsigned short newDay, unsigned short newMonth, unsigned int newYear);
+    void set(const unsigned short& newDay, const unsigned short& newMonth, const unsigned int& newYear);
 
     std::string get();
 };
