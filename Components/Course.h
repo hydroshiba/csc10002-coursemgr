@@ -28,10 +28,10 @@ struct Course {
     void update(const std::string& teacher);
     void update(const int& credits);
     void update(const int& maxEnroll);
-    void update();
-    void update();
-    void update();
-    void update();
+    void update(const Weekday& weekday);
+    void update(const Session& session);
+    void update(Semester* ptrSemester);
+    void update(Vector<Scoreboard*> scoreboards);
 
     Student* getStudent(const std::string& studentID);
 
