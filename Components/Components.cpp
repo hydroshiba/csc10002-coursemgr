@@ -158,7 +158,7 @@ void addStudToClass(Class &actClass){
 }
 
 // Add a new academic year
-void addNewAcademicYear(Vector<AcademicYear> academicYears){
+void addNewAcademicYear(Vector<AcademicYear>& academicYears){
     unsigned int startyear;
 	AcademicYear newYear;
 	bool found = false;
