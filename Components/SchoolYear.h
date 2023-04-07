@@ -12,6 +12,12 @@ struct SchoolYear {
 
     SchoolYear(const int& start = 0, Vector<Class> classes = Vector<Class>());
 
+    void set(const unsigned int& start, Vector<Class>& classes);
+
+    void update(const unsigned int& start);
+
+    void update(Vector<Class>& classes);
+
     Student* getStudent(const std::string& studentID);
 
     Class* getClass(const std::string& className);

@@ -9,6 +9,19 @@ SchoolYear::SchoolYear(const int& start, Vector<Class> classes) {
     this->classes = classes;
 }
 
+void SchoolYear::set(const unsigned int& start, Vector<Class>& classes) {
+    this->start = start;
+    this->classes = classes;
+}
+
+void SchoolYear::update(const unsigned int& start) {
+    this->start = start;
+}
+
+void SchoolYear::update(Vector<Class>& classes) {
+    this->classes = classes;
+}
+
 Student* SchoolYear::getStudent(const std::string& studentID) {
     Student* ptrStudent = nullptr;
     for (int i = 0; i < classes.size(); i++)
