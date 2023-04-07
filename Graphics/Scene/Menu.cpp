@@ -32,6 +32,10 @@ Menu::Menu() {
 	test.setLabel("Hello there!");
 	test.setPos({200, 200});
 	test.setSize({300, 50});
+
+	test.addNewButton("Now I added the dropbox that you wanted");
+	test.addNewButton("This thing took some brains out of my skull");
+	test.addNewButton("So now go buy me some milks");
 }
 
 void Menu::render() {
