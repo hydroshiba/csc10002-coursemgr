@@ -102,6 +102,16 @@ Student* getStudent(Vector<SchoolYear>& schoolYears, const std::string& studentI
 	return ptrStudent;
 }
 
+Staff* getStaff(Vector<Staff> staffs, const std::string& staffID) {
+	Staff* ptrStaff = nullptr;
+	for (int i = 0; i < staffs.size(); i++)
+		if (staffs[i].ID == staffID)
+		{
+			ptrStaff = &staffs[i];
+			break;
+		}
+	return ptrStaff;
+}
 
 // Add a new 1st-year
 void addNewSchoolYear(Vector<SchoolYear>& yearList){
