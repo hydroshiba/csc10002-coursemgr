@@ -974,20 +974,20 @@ void uploadSchoolYearFolder(SchoolYear &schoolYear){
 		ifs >> className;
 		schoolYear.classes[i].name = className; 
 		schoolYear.classes[i].ptrSchoolYear = &schoolYear;
-		uploadOutputStudClassFile(schoolYear.classes[i]);
+		get_students_priority(schoolYear.classes[i]);
 	}
 	ifs.close();
 }
 
-void uploadStudentFolder(Class &actClass, Student &student){
-	std::string studentDir = getInputStandardIn4StudentFilePath(student);
+void uploadStudentFolder(Class &actClass, Student &student, std::string id){
+	std::string studentDir = "Students\\"+ id + "\\" + id + "_OutputStdIn4.csv";
 	std::ifstream ifs (studentDir);
 	if (!ifs.is_open()){
 		std::cout << "Cannot open " << studentDir;
 		return;
 	}
 	std::string ignore;
-	std::string id, first, last, gender, socialId, className, day, month, year;
+	std::string ID, first, last, gender, socialId, className, day, month, year;
 	uint64_t password;
 	std::getline(ifs, ignore, ',');
 	ifs >> id;
@@ -1017,7 +1017,7 @@ void uploadStudentFolder(Class &actClass, Student &student){
 	Student studInfo({first, last}, id, password,string_to_gender(gender),{d, m, y}, socialId, &actClass);
 }
 
-void uploadOutputStudClassFile(Class &actClass){
+void get_students_priority(Class &actClass){
 	std::string oFile = getOutputStudClassFilePath(actClass);
 	std::ifstream ifs (oFile);
 	if (!ifs.is_open()){
@@ -1036,12 +1036,13 @@ void uploadOutputStudClassFile(Class &actClass){
 	size_t nStud;
 	ifs >> nStud;
 	actClass.students.resize(nStud);
-	Student student;
-	int i = 0;
-	while (!ifs.eof()){
-		student.setInfoToClass(ifs);
-		actClass.students[i++] = student;
-		student.ptrClass = &actClass;
+	std::string id;
+	std::getline(ifs, ignore);
+	for (int i = 0; i<actClass.students.size(); ++i){
+		std::getline(ifs, ignore, ',');
+		std::getline(ifs, id, ',');
+		uploadStudentFolder(actClass, actClass.students[i], id);
+		std::getline(ifs, ignore);
 	}
 	ifs.close();
 }

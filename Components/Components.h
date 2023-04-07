@@ -246,9 +246,9 @@ void uploadListSchoolYearFolder(Vector <SchoolYear>& schoolYears);
 
 void uploadSchoolYearFolder(SchoolYear& schoolYear);
 
-void uploadStudentFolder(Class &actClass, Student &student);
+void uploadStudentFolder(Class &actClass, Student &student, std::string id);
 
-void uploadOutputStudClassFile(Class& actClass);
+void get_students_priority(Class& actClass);
 
 // AcademicYear
 
