@@ -912,6 +912,12 @@ void downloadStudentFolder(Student& student){
 	ofs.close();
 }
 
+void uploadAllData(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears){
+	uploadListSchoolYearFolder(schoolYears);
+	uploadListAcademicYearFolder(schoolYears, academicYears);
+}
+
+
 void uploadListSchoolYearFolder(Vector <SchoolYear>& schoolYears){
 	std::string listSchoolYearDir = getListSchoolYearFilePath();
 	std::ifstream ifs(listSchoolYearDir);
@@ -1026,6 +1032,7 @@ void get_students_priority(Class &actClass){
 	}
 	ifs.close();
 }
+
 
 // AcademicYear
 

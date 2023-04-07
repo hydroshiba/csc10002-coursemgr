@@ -76,13 +76,13 @@ Scoreboard* getScoreboard(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>&
 // Add a new SchoolYear
 void addNewSchoolYear(Vector<SchoolYear>& yearList);
 // Add new class for SchoolYear
-void addNewClass(Vector<SchoolYear>& yearList);
+void addNewClass(SchoolYear &schoolYear);
 // Add students into a specific class
 void addStudToClass(Class &actClass);
 // Add a new academic year
 void addNewAcademicYear(Vector <AcademicYear>& newYear);
 // Add a semester to an academic year
-void addNewSemester(AcademicYear& newYear);
+void addSemester(AcademicYear& newYear);
 // Add a new course
 void addNewCourse(Semester& semester);
 // Add a student to course
