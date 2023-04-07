@@ -18,7 +18,20 @@ struct Course {
     Semester* ptrSemester;
     Vector<Scoreboard*> scoreboards;
 
-    Course(const std::string& ID = defaultStr, const std::string& classID = defaultStr, const std::string& name = defaultStr, const std::string& teacher = defaultStr, const int& credits = 0, const int& maxEnroll = 50, Semester* ptrSemester = nullptr, Vector<Scoreboard*> scoreboards = Vector<Scoreboard*>());
+    Course(const std::string& ID = defaultStr, const std::string& classID = defaultStr, const std::string& name = defaultStr, const std::string& teacher = defaultStr, const int& credits = 0, const int& maxEnroll = 50, const Weekday& weekday = MON, const Session& session = S1, Semester* ptrSemester = nullptr, Vector<Scoreboard*>& scoreboards = Vector<Scoreboard*>());
+
+    void set(const std::string& ID, const std::string& classID, const std::string& name, const std::string& teacher, const int& credits, const int& maxEnroll, const Weekday& weekday, const Session& session, Semester* ptrSemester, Vector<Scoreboard*>& scoreboards);
+    
+    void update(const std::string& ID);
+    void update(const std::string& classID);
+    void update(const std::string& name);
+    void update(const std::string& teacher);
+    void update(const int& credits);
+    void update(const int& maxEnroll);
+    void update();
+    void update();
+    void update();
+    void update();
 
     Student* getStudent(const std::string& studentID);
 

@@ -1,12 +1,14 @@
 #include "Course.h"
 
-Course::Course(const std::string& ID, const std::string& classID, const std::string& name, const std::string& teacher, const int& credits, const int& maxEnroll, Semester* ptrSemester, Vector<Scoreboard*> scoreboards) {
+Course::Course(const std::string& ID, const std::string& classID, const std::string& name, const std::string& teacher, const int& credits, const int& maxEnroll, const Weekday& weekday, const Session& session, Semester* ptrSemester, Vector<Scoreboard*>& scoreboards) {
     this->ID = ID;
     this->classID = classID;
     this->name = name;
     this->teacher = teacher;
     this->credits = credits;
     this->maxEnroll = maxEnroll;
+    this->weekday = weekday;
+    this->session = session;
     this->ptrSemester = ptrSemester;
     this->scoreboards = scoreboards;
 }
