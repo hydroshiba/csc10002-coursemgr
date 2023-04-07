@@ -14,6 +14,7 @@ struct Dropbox {
     Vector<Button> options;
     bool clicked;
     float total_height;
+    Vector<bool> chosen;
 
     Dropbox();
     void setLabel(std::string label);
@@ -26,6 +27,7 @@ struct Dropbox {
 
     void addNewButton(std::string label);
     void renderAllOptions(const Vector2 &mouse);
+    int returnChosenButton();
     void render(const Vector2 &mouse);
 };
 

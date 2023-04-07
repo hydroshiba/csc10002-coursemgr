@@ -47,13 +47,28 @@ void Dropbox::addNewButton(std::string label) {
     temp.setPos({position.x, position.y + total_height});
     options.append(temp);
     total_height += size.y;
+    chosen.append(false);
 }
 
 void Dropbox::renderAllOptions(const Vector2 &mouse) {
-    int number_of_buttons = options.size();
-    for (int i = 0; i < number_of_buttons; ++i) {
+    int number_of_options = options.size();
+    for (int i = 0; i < number_of_options; ++i) {
+        if (options[i].clicked(mouse) == true) {
+            chosen[i] = true;
+        }
         options[i].render(mouse);
     }
+}
+
+int Dropbox::returnChosenButton() {
+    int number_of_options = options.size();
+    for (int i = 0; i < number_of_options; ++i) {
+        if (chosen[i] == true) {
+            chosen[i] = false;
+            return i;
+        }
+    }
+    return -1;
 }
 
 void Dropbox::render(const Vector2 &mouse) {
@@ -62,5 +77,8 @@ void Dropbox::render(const Vector2 &mouse) {
         if (clicked == false) clicked = true;
         else clicked = false;
     }
-    if (clicked) renderAllOptions(mouse);
+    if (clicked) {
+        renderAllOptions(mouse);
+        std::cout << returnChosenButton() << '\n';
+    }
 }
