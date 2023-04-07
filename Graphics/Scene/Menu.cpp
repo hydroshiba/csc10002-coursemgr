@@ -29,15 +29,15 @@ Menu::Menu() {
 	password.centerX();
 	password.defaultText = "Password";
 
-	test.setLabel("Hello there!");
+	test.setLabel("hello");
 	test.setPos({200, 200});
 	test.setSize({400, 50});
 
-	test.addNewButton("1");
-	test.addNewButton("2");
-	test.addNewButton("3");
-	test.addNewButton("4");
-	test.addNewButton("5");
+	test.addNewButton("hello");
+	test.addNewButton("anyone there");
+	test.addNewButton("please send me hope");
+	test.addNewButton("or nudes");
+	test.addNewButton("or a rope");
 
 	invalid = "";
 	invalid.setColor(RED);

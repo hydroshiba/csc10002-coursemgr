@@ -8,7 +8,6 @@
 struct Dropbox {
     Vector2 position;
     Vector2 size;
-    std::string name;
 
     Button select;
     Vector<Button> options;
