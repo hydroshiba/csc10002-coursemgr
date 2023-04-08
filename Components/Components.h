@@ -190,6 +190,8 @@ void viewScoreBoardOfStudent(Student& student);
 
 void createDirectoryIfNotExists(const std::string& dirPath);
 
+std::string getListStaffFilePath();
+
 std::string getListSchoolYearFilePath();
 
 std::string getListAcademicYearFilePath();
@@ -238,15 +240,19 @@ std::string getOutputScoreStudCourseFilePath(const Course& course);
 
 // SchoolYear
 
-void downloadListSchoolYearFolder(Vector <SchoolYear>& schoolYears);
+void downloadListSchoolYearFolder(Vector<SchoolYear>& schoolYears);
 
 void downloadSchoolYearFolder(SchoolYear& schoolYear);
+
+void downloadListStaff(Vector<Staff>& staffs);
 
 void downloadOutputStudClassFile(Class& actClass);
 
 void downloadStudentFolder(Student& student);
 
 void uploadAllData(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears);
+
+void uploadListStaff(Vector<Staff> staffs);
 
 void uploadListSchoolYearFolder(Vector <SchoolYear>& schoolYears);
 
