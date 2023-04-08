@@ -353,6 +353,14 @@ void removeListAcademicYear(Vector<AcademicYear>& academicYears){
 	academicYears.~Vector();
 }
 // Remove SchoolYear
+void removeSchoolYear(Vector<SchoolYear>& schoolYears, const std::string start){
+	unsigned int startYear = static_cast<unsigned int>(stoul(start));
+	SchoolYear* ptrSchoolYear = getSchoolYear(schoolYears, startYear);
+	if (ptrSchoolYear == nullptr)
+		return;
+	schoolYears.remove(*ptrSchoolYear);
+}
+
 void removeSchoolYearV2(Vector<SchoolYear>& schoolYears, const unsigned int& start) {
 	SchoolYear* ptrSchoolYear = getSchoolYear(schoolYears, start);
 	if (ptrSchoolYear == nullptr)
