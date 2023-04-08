@@ -74,19 +74,19 @@ Scoreboard* getScoreboard(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>&
 /*		Insert function		*/
 
 // Add a new SchoolYear
-void addNewSchoolYear(Vector<SchoolYear>& yearList);
+void addNewSchoolYear(Vector<SchoolYear>& yearList, const unsigned int& start);
 // Add new class for SchoolYear
-void addNewClass(SchoolYear &schoolYear);
+void addNewClass(SchoolYear &schoolYear, const std::string& className);
 // Add students into a specific class
 void addStudToClass(Class &actClass);
 // Add a new academic year
-void addNewAcademicYear(Vector <AcademicYear>& newYear);
+void addNewAcademicYear(Vector <AcademicYear>& newYear, const unsigned int& start);
 // Add a semester to an academic year
-void addSemester(AcademicYear& newYear);
+void addSemester(AcademicYear& newYear, const std::string& semesterID);
 // Add a new course
-void addNewCourse(Semester& semester);
+void addNewCourse(Semester& semester, const std::string& courseID);
 // Add a student to course
-void addANewStudentToCourse(Vector<SchoolYear>& schoolYears, Course& course);
+void addANewStudentToCourse(Vector<SchoolYear>& schoolYears, Course& course, const std::string& studentID);
 // Add list student to course (from file)
 void getStudentToCourse(Vector<SchoolYear>& years, Course& course);
 

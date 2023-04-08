@@ -138,9 +138,9 @@ AcademicYear* getAcademicYear(Vector<AcademicYear>& academicYears, const unsigne
 /*		Insert function		*/
 
 // Add a new SchoolYear
-void addNewSchoolYear(Vector<SchoolYear>& yearList){
-    unsigned int startYear;
-    std::cout << "Enter the school year: "; std::cin >> startYear;
+void addNewSchoolYear(Vector<SchoolYear>& yearList, const unsigned int& startYear){
+    /*unsigned int startYear;
+    std::cout << "Enter the school year: "; std::cin >> startYear;*/
 	SchoolYear* ptrSchoolYear = getSchoolYear(yearList, startYear);
 	if (ptrSchoolYear != nullptr)
 	{
@@ -152,12 +152,12 @@ void addNewSchoolYear(Vector<SchoolYear>& yearList){
     yearList.append(newYear);
 }
 // Add new class for SchoolYear
-void addNewClass(SchoolYear& schoolYear){
-	std::string className;
+void addNewClass(SchoolYear& schoolYear, const std::string& className){
+	/*std::string className;
     do {
         std::cout << "Enter class name (enter 0 when done): ";
         std::getline(std::cin,className);
-        if (className == "0") break;
+        if (className == "0") break;*/
 		Class* ptrClass = schoolYear.getClass(className);
 		if (ptrClass != nullptr)
 		{
@@ -170,11 +170,11 @@ void addNewClass(SchoolYear& schoolYear){
 			newClass.name = className;
 			schoolYear.addClass(newClass);
 		}
-    } while (className != "0");
+    //} /*while (className != "0");*/
 }
 // Add a new academic year
-void addNewAcademicYear(Vector<AcademicYear>& academicYears) {
-	unsigned int startyear;
+void addNewAcademicYear(Vector<AcademicYear>& academicYears, const unsigned int& startyear) {
+	/*unsigned int startyear;
 	AcademicYear newYear;
 	bool found = false;
 	std::cout << "Enter a new year: ";
@@ -184,15 +184,16 @@ void addNewAcademicYear(Vector<AcademicYear>& academicYears) {
 		{
 			found = true;
 			break;
-		}
-	if (found)
+		}*/
+	if (getAcademicYear(academicYears, startyear) != nullptr)
 	{
 		std::cout << "Academic Year " << startyear << " have been already existed! Pls input another start year!" << std::endl;
 		return;
 	}
 	else
 	{
-		newYear = { startyear };
+		AcademicYear newYear;
+		newYear.start = startyear;
 		academicYears.append(newYear);
 	}
 
@@ -216,7 +217,7 @@ void addStudToClass(Class &actClass){
     inF.close();
 }
 // Add a semester to an academic year
-void addSemester(AcademicYear& newYear) {
+void addSemester(AcademicYear& newYear, const std::string& semesterID) {
 	unsigned short day, month;
 	unsigned int year;
 	std::string id;
@@ -245,7 +246,7 @@ void addSemester(AcademicYear& newYear) {
 	newYear.addSemester(newSem);
 }
 // Add a new course
-void addNewCourse(Semester& semester) {
+void addNewCourse(Semester& semester, const std::string& courseID) {
 	std::string ID, classID, name, teacher;
 	int cre, maxEn;
 	int day, ss;
