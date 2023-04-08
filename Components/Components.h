@@ -84,7 +84,7 @@ void addStudToClass(Class &actClass);
 // Add a new academic year
 void addNewAcademicYear(Vector <AcademicYear>& newYear, const std::string& start);
 // Add a new academic year
-void addNewAcademicYear(Vector <AcademicYear>& newYear, const unsigned int& start);
+void addNewAcademicYearV2(Vector <AcademicYear>& newYear, const unsigned int& start);
 // Add a semester to an academic year
 void addSemester(AcademicYear& newYear, const std::string& semesterID);
 // Add a new course

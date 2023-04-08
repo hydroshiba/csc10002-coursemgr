@@ -186,7 +186,22 @@ void addNewClass(SchoolYear& schoolYear, const std::string& className){
     //} /*while (className != "0");*/
 }
 // Add a new academic year
-void addNewAcademicYear(Vector<AcademicYear>& academicYears, const unsigned int& startyear) {
+void addNewAcademicYear(Vector<AcademicYear>& academicYears, const std::string& start){
+	unsigned int startYear = static_cast<unsigned int>(stoul(start));
+	if (getAcademicYear(academicYears, startYear) != nullptr)
+	{
+		std::cout << "Academic Year " << startYear << " have been already existed! Pls input another start year!" << std::endl;
+		return;
+	}
+	else
+	{
+		AcademicYear newYear;
+		newYear.start = startYear;
+		academicYears.append(newYear);
+	}
+}
+
+void addNewAcademicYearV2(Vector<AcademicYear>& academicYears, const unsigned int& start) {
 	/*unsigned int startyear;
 	AcademicYear newYear;
 	bool found = false;
@@ -198,15 +213,15 @@ void addNewAcademicYear(Vector<AcademicYear>& academicYears, const unsigned int&
 			found = true;
 			break;
 		}*/
-	if (getAcademicYear(academicYears, startyear) != nullptr)
+	if (getAcademicYear(academicYears, start) != nullptr)
 	{
-		std::cout << "Academic Year " << startyear << " have been already existed! Pls input another start year!" << std::endl;
+		std::cout << "Academic Year " << start << " have been already existed! Pls input another start year!" << std::endl;
 		return;
 	}
 	else
 	{
 		AcademicYear newYear;
-		newYear.start = startyear;
+		newYear.start = start;
 		academicYears.append(newYear);
 	}
 
