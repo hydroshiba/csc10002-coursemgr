@@ -74,11 +74,15 @@ Scoreboard* getScoreboard(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>&
 /*		Insert function		*/
 
 // Add a new SchoolYear
+void addNewSchoolYear(Vector<SchoolYear>& yearList, const std::string& start);
+// Add a new SchoolYear
 void addNewSchoolYear(Vector<SchoolYear>& yearList, const unsigned int& start);
 // Add new class for SchoolYear
 void addNewClass(SchoolYear &schoolYear, const std::string& className);
 // Add students into a specific class
 void addStudToClass(Class &actClass);
+// Add a new academic year
+void addNewAcademicYear(Vector <AcademicYear>& newYear, const std::string& start);
 // Add a new academic year
 void addNewAcademicYear(Vector <AcademicYear>& newYear, const unsigned int& start);
 // Add a semester to an academic year
@@ -99,7 +103,11 @@ void removeListSchoolYear(Vector<SchoolYear>& schoolYears);
 // Remove list AcademicYear
 void removeListAcademicYear(Vector<AcademicYear>& academicYears);
 // Remove SchoolYear
+void removeSchoolYear(Vector<SchoolYear>& schoolYears, const std::string& start);
+// Remove SchoolYear
 void removeSchoolYear(Vector<SchoolYear>& schoolYears, const unsigned int& start);
+// Remove AcademicYear
+void removeAcademicYear(Vector<AcademicYear>& academicYears, const std::string& start);
 // Remove AcademicYear
 void removeAcademicYear(Vector<AcademicYear>& academicYears, const unsigned int& start);
 // Remove Class from School
@@ -112,7 +120,7 @@ void removeSemester(Vector<AcademicYear>& academicYears, const std::string& seme
 void removeCourse(Vector<AcademicYear>& academicYears, const std::string& courseID);
 
 // Remove student from course
-void removeStudFromCourse(Course& course);
+void removeStudFromCourse(Course& course, const std::string& studentID);
 // Remove course from semester
 void deleteCourse(Semester& semester, const std::string& courseID);
 
@@ -124,25 +132,25 @@ void freeMemory(Vector<AcademicYear>& academicYears);
 /*		Update function		*/
 
 // Update AcademicYear
-void updateAcademicYear(AcademicYear& academicYear);
+void updateAcademicYear(AcademicYear& academicYear, const std::string& newStartYear);
 // Update SchoolYear
-void updateSchoolYear(SchoolYear& schoolYear);
+void updateSchoolYear(SchoolYear& schoolYear, const std::string& newStartYear);
 // Update Class
-void updateClass(Class& CLASS);
+void updateClass(Class& CLASS, const std::string& newClassName);
 // Update Student
-void updateStudent(Student& student);
+void updateStudent(Student& student, const int& option);
 // Update Semester
-void updateSemester(Semester& semester);
+void updateSemester(Semester& semester, const int& option);
 // Update Course
-void updateCourse(Course& course);
+void updateCourse(Course& course, const int& option);
 // Update Scoreboard
-void updateScoreboard(Scoreboard& scoreboard);
+void updateScoreboard(Scoreboard& scoreboard, const int& option);
 // 19. export list of students in course to csv file
 void exportListOfStudent(Course& course);
 // 20. import scoreboard of course
 void importScoreBoardOfCourse(Course& course);
 // 22. Update student result
-void updateStudentResult(Student& student);
+void updateStudentResult(Student& student, std::string& courseID, const int& option);
 
 //----------------------------------------------------------------------------------------------//
 
