@@ -373,10 +373,7 @@ void removeAcademicYear(Vector<AcademicYear>& academicYears, const unsigned int&
 	academicYears.remove(*ptrAcademicYear);
 }
 // Remove student from course
-void removeStudFromCourse(Course& course) {
-	std::string studentID;
-	std::cout << "Input studentID to remove from course: ";
-	std::getline(std::cin, studentID);
+void removeStudFromCourse(Course& course, const std::string& studentID) {
 	Student* ptrStudent = course.getStudent(studentID);
 	if (ptrStudent == nullptr)
 	{
