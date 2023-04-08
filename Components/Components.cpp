@@ -349,7 +349,6 @@ void getStudentToCourse(Vector<SchoolYear>& years, Course& course) {
 }
 // Add a student to course
 void addANewStudentToCourse(Vector<SchoolYear>& schoolYears, Course& course, const std::string& studentID) {
-	std::string studentID;
 	Student* ptrStudent = nullptr;
 	for (int i = 0; i < schoolYears.size(); i++)
 		for (int j = 0; j < schoolYears[i].classes.size(); j++)
