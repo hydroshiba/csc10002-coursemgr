@@ -138,9 +138,8 @@ AcademicYear* getAcademicYear(Vector<AcademicYear>& academicYears, const unsigne
 /*		Insert function		*/
 
 // Add a new SchoolYear
-void addNewSchoolYear(Vector<SchoolYear>& yearList, const unsigned int& startYear){
-    /*unsigned int startYear;
-    std::cout << "Enter the school year: "; std::cin >> startYear;*/
+void addNewSchoolYear(Vector<SchoolYear>& yearList, const std::string &start){
+	unsigned int startYear = static_cast<unsigned int>(stoul(start));
 	SchoolYear* ptrSchoolYear = getSchoolYear(yearList, startYear);
 	if (ptrSchoolYear != nullptr)
 	{
@@ -149,6 +148,20 @@ void addNewSchoolYear(Vector<SchoolYear>& yearList, const unsigned int& startYea
 	}
 	SchoolYear newYear;
 	newYear.start = startYear;
+    yearList.append(newYear);
+}
+
+void addNewSchoolYearV2(Vector<SchoolYear>& yearList, const unsigned int& start){
+    /*unsigned int startYear;
+    std::cout << "Enter the school year: "; std::cin >> startYear;*/
+	SchoolYear* ptrSchoolYear = getSchoolYear(yearList, start);
+	if (ptrSchoolYear != nullptr)
+	{
+		std::cout << "SchoolYear with start year " << start << " have been already existed!" << std::endl;
+		return;
+	}
+	SchoolYear newYear;
+	newYear.start = start;
     yearList.append(newYear);
 }
 // Add new class for SchoolYear

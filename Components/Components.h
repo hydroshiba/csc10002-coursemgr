@@ -76,7 +76,7 @@ Scoreboard* getScoreboard(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>&
 // Add a new SchoolYear
 void addNewSchoolYear(Vector<SchoolYear>& yearList, const std::string& start);
 // Add a new SchoolYear
-void addNewSchoolYear(Vector<SchoolYear>& yearList, const unsigned int& start);
+void addNewSchoolYearV2(Vector<SchoolYear>& yearList, const unsigned int& start);
 // Add new class for SchoolYear
 void addNewClass(SchoolYear &schoolYear, const std::string& className);
 // Add students into a specific class
