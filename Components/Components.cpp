@@ -374,17 +374,14 @@ void removeAcademicYear(Vector<AcademicYear>& academicYears, const unsigned int&
 }
 // Remove Class from School
 void removeClass(Vector<SchoolYear>& schoolYears, const std::string& className){
-	SchoolYear *ptrSchoolYear;
-	Class *ptrClass;
-	Class theClass;
-	theClass.name = className;
+	Class *ptrClass = nullptr;
 	for (int i = 0; i<schoolYears.size(); ++i){
-		if (schoolYears[i].classes.find(theClass)){
-			ptrClass = schoolYears[i].classes.find(theClass);
-			ptrSchoolYear = &schoolYears[i];
+		ptrClass = schoolYears[i].getClass(className);
+		if (ptrClass){
+			schoolYears[i].classes.remove(ptrClass);
+			return;
 		}
 	}
-	ptrSchoolYear->classes.remove(ptrClass);
 }
 // Remove student from course
 void removeStudFromCourse(Course& course) {
