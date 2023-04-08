@@ -61,8 +61,8 @@ void Button::render(const Vector2 &mouse) const {
     else if(pressed(mouse)) color = press_color;
     else color = fill_color;
 
-    DrawRectangleRounded(border_bound, box_const::roundness, box_const::segments, color);
-    DrawRectangleRoundedLines(fill_bound, box_const::roundness, box_const::segments, box_const::thickness, border_color);
+    DrawRectangleRounded(border_bound, roundness, box_const::segments, color);
+    DrawRectangleRoundedLines(fill_bound, roundness, box_const::segments, box_const::thickness, border_color);
     DrawTextEx(label.font, label.text.c_str(), textPos, label.font_size, label.space, label.color);
 }
 
