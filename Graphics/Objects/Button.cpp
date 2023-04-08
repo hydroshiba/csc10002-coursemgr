@@ -28,24 +28,27 @@ Button::Button() :
     pos({0, 0}),
     size({box_const::width, box_const::height}),
     label(""),
+    roundness(box_const::roundness),
     fill_color(box_const::fill_color),
     hover_color(button_const::hover_color),
     press_color(button_const::press_color),
     border_color(box_const::border_color) { refresh(); }
 
-Button::Button(float x, float y, float width, float height, std::string text, Color fill, Color hover, Color press, Color border) :
+Button::Button(float x, float y, float width, float height, std::string text, float roundness, Color fill, Color hover, Color press, Color border) :
     pos({x, y}),
     size({width, height}),
     label(text),
+    roundness(roundness),
     fill_color(fill),
     border_color(border),
     hover_color(hover),
     press_color(press) { refresh(); }
 
-Button::Button(Vector2 pos, Vector2 size, std::string text, Color fill, Color hover, Color press, Color border) :
+Button::Button(Vector2 pos, Vector2 size, std::string text, float roundness, Color fill, Color hover, Color press, Color border) :
     pos(pos),
     size(size),
     label(text),
+    roundness(roundness),
     fill_color(fill),
     border_color(border),
     hover_color(hover),

@@ -19,6 +19,7 @@ private:
 
 public:
     Text label;
+    float roundness;
     Color fill_color, border_color;
     Color hover_color, press_color;
 
@@ -26,6 +27,7 @@ public:
 
     Button(float x, float y, float width, float height,
             std::string text = "",
+            float roundness = box_const::roundness,
             Color fill = box_const::fill_color,
             Color hover = button_const::hover_color,
             Color press = button_const::press_color,
@@ -33,6 +35,7 @@ public:
 
     Button(Vector2 pos, Vector2 size,
             std::string text = "",
+            float roundness = box_const::roundness,
             Color fill = box_const::fill_color,
             Color hover = button_const::hover_color,
             Color press = button_const::press_color,
