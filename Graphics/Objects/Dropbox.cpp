@@ -52,32 +52,39 @@ void Dropbox::addNewButton(std::string label) {
     select.label.text = label;
     select.setPos(position);
     select.setSize(size);
+    chosen[0] = true;
 }
 
 void Dropbox::renderAllOptions(const Vector2 &mouse) {
     int number_of_options = options.size();
     for (int i = 0; i < number_of_options; ++i) {
-        if (options[i].clicked(mouse) == true) {
-            chosen[i] = true;
-            select.label.text = options[i].label.text;
-            select.setPos(position);
-            select.setSize(size);
+        //rendering
+        if (chosen[i]) {
+            options[i].render(options[i].getPos());
+        }
+        else {
+            options[i].render(mouse);
+        }
+        //check if a button is chosen
+        if (options[i].clicked(mouse)) {
+            if (!chosen[i]) {
+                //unhighlight option chosen before
+                chosen[option_chosen_before] = false;
+                //highlight option chosen now
+                select.label.text = options[i].label.text;
+                select.setPos(position);
+                select.setSize(size);
+                chosen[i] = true;
+                option_chosen_before = i;
+            }
             clicked = false;
             return;
         }
-        options[i].render(mouse);
     }
 }
 
 int Dropbox::returnChosenButton() {
-    int number_of_options = options.size();
-    for (int i = 0; i < number_of_options; ++i) {
-        if (chosen[i] == true) {
-            chosen[i] = false;
-            return i;
-        }
-    }
-    return -1;
+    return option_chosen_before;
 }
 
 void Dropbox::render(const Vector2 &mouse) {
@@ -88,6 +95,6 @@ void Dropbox::render(const Vector2 &mouse) {
     }
     if (clicked) {
         renderAllOptions(mouse);
-        // returnChosenButton();
+        std::cout << returnChosenButton() << '\n';
     }
 }

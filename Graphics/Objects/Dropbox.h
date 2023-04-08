@@ -14,6 +14,7 @@ struct Dropbox {
     bool clicked;
     float total_height;
     Vector<bool> chosen;
+    int option_chosen_before = 0;
 
     Dropbox();
     void setLabel(std::string label);
