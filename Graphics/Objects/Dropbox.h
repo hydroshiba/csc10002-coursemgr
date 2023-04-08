@@ -4,11 +4,11 @@
 #include "raylib.h"
 #include "Vector.h"
 #include "Button.h"
-
-struct Dropbox {
+class Dropbox {
+private:
     Vector2 position;
     Vector2 size;
-
+public:
     Button select;
     Vector<Button> options;
     bool clicked;
@@ -17,6 +17,7 @@ struct Dropbox {
     int option_chosen_before = 0;
 
     Dropbox();
+    //changing position and size of dropbox
     void setLabel(std::string label);
     void setX(float x);
     void setY(float y);
@@ -25,6 +26,7 @@ struct Dropbox {
     void setPos(Vector2 pos);
     void setSize(Vector2 sz);
 
+    //changing content of dropbox
     void addNewButton(std::string label);
     void renderAllOptions(const Vector2 &mouse);
     int returnChosenButton();
