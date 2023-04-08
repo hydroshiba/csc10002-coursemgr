@@ -353,7 +353,7 @@ void removeListAcademicYear(Vector<AcademicYear>& academicYears){
 	academicYears.~Vector();
 }
 // Remove SchoolYear
-void removeSchoolYear(Vector<SchoolYear>& schoolYears, const unsigned int& start) {
+void removeSchoolYearV2(Vector<SchoolYear>& schoolYears, const unsigned int& start) {
 	SchoolYear* ptrSchoolYear = getSchoolYear(schoolYears, start);
 	if (ptrSchoolYear == nullptr)
 	{
@@ -363,7 +363,7 @@ void removeSchoolYear(Vector<SchoolYear>& schoolYears, const unsigned int& start
 	schoolYears.remove(*ptrSchoolYear);
 }
 // Remove AcademicYear
-void removeAcademicYear(Vector<AcademicYear>& academicYears, const unsigned int& start) {
+void removeAcademicYearV2(Vector<AcademicYear>& academicYears, const unsigned int& start) {
 	AcademicYear* ptrAcademicYear = getAcademicYear(academicYears, start);
 	if (ptrAcademicYear == nullptr)
 	{

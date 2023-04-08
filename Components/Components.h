@@ -105,11 +105,11 @@ void removeListAcademicYear(Vector<AcademicYear>& academicYears);
 // Remove SchoolYear
 void removeSchoolYear(Vector<SchoolYear>& schoolYears, const std::string& start);
 // Remove SchoolYear
-void removeSchoolYear(Vector<SchoolYear>& schoolYears, const unsigned int& start);
+void removeSchoolYearV2(Vector<SchoolYear>& schoolYears, const unsigned int& start);
 // Remove AcademicYear
 void removeAcademicYear(Vector<AcademicYear>& academicYears, const std::string& start);
 // Remove AcademicYear
-void removeAcademicYear(Vector<AcademicYear>& academicYears, const unsigned int& start);
+void removeAcademicYearV2(Vector<AcademicYear>& academicYears, const unsigned int& start);
 // Remove Class from School
 void removeClass(Vector<SchoolYear>& schoolYears, const std::string& className);
 // Remove Student from School
