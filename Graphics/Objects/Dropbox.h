@@ -3,34 +3,44 @@
 
 #include "raylib.h"
 #include "Vector.h"
-#include "Button.h"
+#include "Box.h"
+
 class Dropbox {
 private:
-    Vector2 position;
+    float textSize;
+    bool selected;
+    int curIndex;
+    Box curBox;
+
+    Vector2 pos;
     Vector2 size;
+
+    Vector<Box> options;
+
 public:
-    Button select;
-    Vector<Button> options;
-    bool clicked;
-    float total_height;
-    Vector<bool> chosen;
-    int option_chosen_before = 0;
+    float roundness = box_const::roundness;
+    Color fill_color = box_const::fill_color, border_color = box_const::border_color;
+    Color hover_color = button_const::hover_color, press_color = button_const::press_color;
+    Color text_color = text_const::color;
 
     Dropbox();
-    //changing position and size of dropbox
+    void refresh();
+    
     void setLabel(std::string label);
     void setX(float x);
     void setY(float y);
+
     void setWidth(float width);
     void setHeight(float height);
+    
     void setPos(Vector2 pos);
-    void setSize(Vector2 sz);
+    void setSize(Vector2 size);
 
-    //changing content of dropbox
-    void addNewButton(std::string label);
-    void renderAllOptions(const Vector2 &mouse);
-    int returnChosenButton();
+    void add(std::string label);
+    int getSelected();
+
     void render(const Vector2 &mouse);
+    void process(const Vector2 &mouse);
 };
 
 #endif //DROPBOX_H

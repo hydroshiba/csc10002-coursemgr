@@ -7,15 +7,15 @@
 #include "Text.h"
 
 class Button {
-private:
+protected:
     Vector2 pos;
     Vector2 size;
     Vector2 textPos;
     
     Rectangle border_bound, fill_bound, text_bound;
 
-    void refreshText();
-    void refresh();
+    virtual void refreshText();
+    virtual void refresh();
 
 public:
     Text label;
@@ -41,7 +41,7 @@ public:
             Color press = button_const::press_color,
             Color border = box_const::border_color);
 
-    void render(const Vector2 &mouse) const;
+    virtual void render(const Vector2 &mouse) const;
     
     void setX(float x);
     void setY(float y);

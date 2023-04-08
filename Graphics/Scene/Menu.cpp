@@ -32,11 +32,12 @@ Menu::Menu() {
 	test.setPos({200, 200});
 	test.setSize({400, 50});
 
-	test.addNewButton("yo wtf bro");
-	test.addNewButton("anyone there");
-	test.addNewButton("please send me hope");
-	test.addNewButton("or nudes");
-	test.addNewButton("or a rope");
+	test.add("yo wtf bro");
+	test.add("anyone there");
+	test.add("please send me hope");
+	test.add("or nudes");
+	test.add("or a rope");
+	test.add("this is a very long text, with the purpose of testing the display of the option box");
 
 	invalid = "";
 	invalid.setColor(RED);
@@ -75,6 +76,7 @@ Scene* Menu::process() {
 
 	username.process(mousePoint);
 	password.process(mousePoint);
+	test.process(mousePoint);
 
 	return this;
 }

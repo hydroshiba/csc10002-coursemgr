@@ -60,7 +60,7 @@ public:
     }
 
     Type* end() {
-        return array + length + 1;
+        return array + length;
     }
 
     void resize(size_t size) {

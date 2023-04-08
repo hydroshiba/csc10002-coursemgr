@@ -1,99 +1,118 @@
 #include "Dropbox.h"
 #include "math.h"
-#include <iostream>
 
-Dropbox::Dropbox() {}
+Dropbox::Dropbox() {
+    curIndex = -1;
+    selected = false;
+
+    curBox.label = "Choose an option";
+    curBox.label.color = border_color;
+
+    pos = {0, 0};
+    size = {box_const::width, box_const::height};
+
+    refresh();
+}
+
+void Dropbox::refresh() {
+    curBox.setPos(pos);
+    curBox.setSize(size);
+
+    for(int i = 0; i < options.size(); ++i) {
+        options[i].setSize(size);
+
+        Vector2 curPos;
+        if(i) curPos = options[i - 1].getPos();
+        else curPos = pos;
+
+        options[i].setPos({curPos.x, curPos.y + size.y - box_const::thickness});
+    }
+}
 
 void Dropbox::setLabel(std::string label) {
-    select.label = label;
+    curBox.label = label;
 }
 
 void Dropbox::setX(float x) {
-    position.x = x;
-    select.setX(x);
+    pos.x = x;
+    refresh();
 }
 
 void Dropbox::setY(float y) {
-    position.y = y;
-    select.setY(y);
+    pos.y = y;
+    refresh();
 }
 
 void Dropbox::setWidth(float width) {
     size.x = width;
-    select.setWidth(width);
+    refresh();
 }
 
 void Dropbox::setHeight(float height) {
     size.y = height;
-    select.setHeight(height);
-    total_height = height;
+    refresh();
 }
 
 void Dropbox::setPos(Vector2 pos) {
-    position = pos;
-    select.setPos(pos);
+    this->pos = pos;
+    refresh();
 }
 
-void Dropbox::setSize(Vector2 sz) {
-    size = sz;
-    select.setSize(sz);
-    total_height = sz.y;
+void Dropbox::setSize(Vector2 size) {
+    this->size = size;
+    refresh();
 }
 
-void Dropbox::addNewButton(std::string label) {
-    Button temp({position.x, position.y + total_height}, size, label, 0);
-    options.append(temp);
+void Dropbox::add(std::string label) {
+    Box* last = nullptr;
+    Box newBox;
 
-    total_height += size.y;
-    chosen.append(false);
-
-    if (options.size() != 1) return;
-    select.label.text = label;
-    select.setPos(position);
-    select.setSize(size);
-    chosen[0] = true;
-}
-
-void Dropbox::renderAllOptions(const Vector2 &mouse) {
-    int number_of_options = options.size();
-    for (int i = 0; i < number_of_options; ++i) {
-        //rendering
-        if (chosen[i]) {
-            options[i].render(options[i].getPos());
-        }
-        else {
-            options[i].render(mouse);
-        }
-        //check if a button is chosen
-        if (options[i].clicked(mouse)) {
-            if (!chosen[i]) {
-                //unhighlight option chosen before
-                chosen[option_chosen_before] = false;
-                //highlight option chosen now
-                select.label.text = options[i].label.text;
-                select.setPos(position);
-                select.setSize(size);
-                chosen[i] = true;
-                option_chosen_before = i;
-            }
-            clicked = false;
-            return;
-        }
+    if(options.size() == 0) last = &curBox;
+    else {
+        last = (options.end() - 1);
+        last->roundness = 0;
     }
+    
+    newBox.setPos({pos.x, last->getPos().y + size.y - box_const::thickness});
+    newBox.setSize(size);
+    newBox.label = label;
+    newBox.roundness = roundness;
+
+    newBox.fill_color = fill_color;
+    newBox.border_color = border_color;
+    newBox.hover_color = hover_color;
+    newBox.press_color = press_color;
+
+    options.append(newBox);
 }
 
-int Dropbox::returnChosenButton() {
-    return option_chosen_before;
+int Dropbox::getSelected() {
+    return curIndex;
 }
 
 void Dropbox::render(const Vector2 &mouse) {
-    select.render(mouse);
-    if (select.clicked(mouse)) {
-        if (clicked == false) clicked = true;
-        else clicked = false;
+    curBox.render(mouse);
+
+    if(selected) {
+        for(int i = options.size() - 1; i > -1; --i)
+            options[i].render(mouse);
     }
-    if (clicked) {
-        renderAllOptions(mouse);
-        std::cout << returnChosenButton() << '\n';
+}
+
+void Dropbox::process(const Vector2 &mouse) {
+    if(selected) {
+        for(int i = 0; i < options.size(); ++i) if(options[i].clicked(mouse)){
+            options[curIndex].fill_color = fill_color;
+            curIndex = i;
+
+            selected = false;
+            curBox.label = options[i].label;
+            curBox.label.color = text_color;
+
+            options[i].fill_color = hover_color;
+        }
     }
+
+    if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && !curBox.clicked(mouse)) selected = false;
+	if(curBox.clicked(mouse)) selected = !selected;
 }
