@@ -78,62 +78,68 @@ Scoreboard* getScoreboard(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>&
 /*		Insert function		*/
 
 // Add a new SchoolYear
-void addNewSchoolYear(Vector<SchoolYear>& yearList, const std::string& start);
+void addNewSchoolYear(Vector<SchoolYear>& yearList, const std::string& start); // Inputbox
 // Add a new SchoolYear
 void addNewSchoolYearV2(Vector<SchoolYear>& yearList, const unsigned int& start);
 // Add new class for SchoolYear
-void addNewClass(SchoolYear &schoolYear, const std::string& className);
+void addNewClass(SchoolYear &schoolYear, const std::string& className); // Inputbox
 // Add students into a specific class
-void addStudToClass(Class &actClass);
+void addStudToClass(Class &actClass); // By file
+// Add a new students to class
+void addStudToClass(Class& actClass, const std::string& studentID); // Only one student by InputBox
 // Add a new academic year
-void addNewAcademicYear(Vector <AcademicYear>& newYear, const std::string& start);
+void addNewAcademicYear(Vector <AcademicYear>& newYear, const std::string& start); // Inputbox
 // Add a new academic year
 void addNewAcademicYearV2(Vector <AcademicYear>& newYear, const unsigned int& start);
 // Add a semester to an academic year
-void addSemester(AcademicYear& newYear, const std::string& semesterID);
+void addSemester(AcademicYear& newYear, const std::string& semesterID); // Inputbox
 // Add a new course
-void addNewCourse(Semester& semester, const std::string& courseID);
+void addNewCourse(Semester& semester, const std::string& courseID); // Inputbox
 // Add a student to course
-void addANewStudentToCourse(Vector<SchoolYear>& schoolYears, Course& course, const std::string& studentID);
+void addANewStudentToCourse(Vector<SchoolYear>& schoolYears, std::string& courseID, const std::string& studentID); // Inputbox
+// Add a student to course
+void addANewStudentToCourse(Vector<SchoolYear>& schoolYears, Course& course, const std::string& studentID); // Inputbox but already have Course
 // Add list student to course (from file)
-void getStudentToCourse(Vector<SchoolYear>& years, Course& course);
+void getStudentToCourse(Vector<SchoolYear>& years, const std::string& courseID); // Only 1 student by Inputbox
+// Add list student to course (from file)
+void getStudentToCourse(Vector<SchoolYear>& years, Course& course); // By file
 
 // ----------------------------------------------------------------------------------------------//
 
 /*		Remove function		*/
 
 // Remove list SchoolYear
-void removeListSchoolYear(Vector<SchoolYear>& schoolYears);
+void removeListSchoolYear(Vector<SchoolYear>& schoolYears); // Button
 // Remove list AcademicYear
-void removeListAcademicYear(Vector<AcademicYear>& academicYears);
+void removeListAcademicYear(Vector<AcademicYear>& academicYears); // Button
 // Remove SchoolYear
-void removeSchoolYear(Vector<SchoolYear>& schoolYears, const std::string& start);
+void removeSchoolYear(Vector<SchoolYear>& schoolYears, const std::string& start); // Inputbox
 // Remove SchoolYear
 void removeSchoolYearV2(Vector<SchoolYear>& schoolYears, const unsigned int& start);
 // Remove AcademicYear
-void removeAcademicYear(Vector<AcademicYear>& academicYears, const std::string& start);
+void removeAcademicYear(Vector<AcademicYear>& academicYears, const std::string& start); // Inputbox
 // Remove AcademicYear
 void removeAcademicYearV2(Vector<AcademicYear>& academicYears, const unsigned int& start);
 // Remove Class from School
-void removeClass(Vector<SchoolYear>& schoolYears, const std::string& className);
+void removeClass(Vector<SchoolYear>& schoolYears, const std::string& className); // Inputbox
 
 void removeClass(SchoolYear &schoolYear, const Class& thisClass);
 // Remove Student from School
-void removeStudent(Vector<SchoolYear>& schoolYears, const std::string& studentID);
+void removeStudent(Vector<SchoolYear>& schoolYears, const std::string& studentID); // Inputbox
 
 void removeStudent(Class &thisClass, const Student& student);
 // Remove Semester
-void removeSemester(Vector<AcademicYear>& academicYears, const std::string& semesterID);
+void removeSemester(Vector<AcademicYear>& academicYears, const std::string& semesterID); // Inputbox
 
 void removeSemester(AcademicYear& academicYear, const Semester semester);
 // Remove Course
-void removeCourse(Vector<AcademicYear>& academicYears, const std::string& courseID);
+void removeCourse(Vector<AcademicYear>& academicYears, const std::string& courseID); // Inputbox
 
 void removeCourse(Semester& semester, const Course& course);
 // Remove student from course
-void removeStudFromCourse(Course& course, const std::string& studentID);
+void removeStudFromCourse(Course& course, const std::string& studentID); // Inputbox
 // Remove course from semester
-void deleteCourse(Semester& semester, const std::string& courseID);
+void deleteCourse(Semester& semester, const std::string& courseID); // Inputbox
 
 // Free memory
 void freeMemory(Vector<AcademicYear>& academicYears);
@@ -143,32 +149,32 @@ void freeMemory(Vector<AcademicYear>& academicYears);
 /*		Update function		*/
 
 // Update AcademicYear
-void updateAcademicYear(AcademicYear& academicYear, const std::string& newStartYear);
+void updateAcademicYear(AcademicYear& academicYear, const std::string& newStartYear); // Inputbox
 // Update SchoolYear
-void updateSchoolYear(SchoolYear& schoolYear, const std::string& newStartYear);
+void updateSchoolYear(SchoolYear& schoolYear, const std::string& newStartYear); // Inputbox
 // Update Class
-void updateClass(Class& CLASS, const std::string& newClassName);
+void updateClass(Class& CLASS, const std::string& newClassName); // Inputbox
 // Update Student
-void updateStudent(Student& student, const int& option);
+void updateStudent(Student& student, const int& option); // Inputbox
 // Update Semester
-void updateSemester(Semester& semester, const int& option);
+void updateSemester(Semester& semester, const int& option); // Inputbox
 // Update Course
-void updateCourse(Course& course, const int& option);
+void updateCourse(Course& course, const int& option); // Inputbox
 // Update Scoreboard
-void updateScoreboard(Scoreboard& scoreboard, const int& option);
+void updateScoreboard(Scoreboard& scoreboard, const int& option); // Inputbox
 // 19. export list of students in course to csv file
 void exportListOfStudent(Course& course);
 // 20. import scoreboard of course
 void importScoreBoardOfCourse(Course& course);
 // 22. Update student result
-void updateStudentResult(Student& student, std::string& courseID, const int& option);
+void updateStudentResult(Student& student, std::string& courseID, const int& option); // Inputbox
 
 //----------------------------------------------------------------------------------------------//
 
 /*		Display function	*/
 
 // View list of SchoolYear
-void viewListSchoolYear(Vector<SchoolYear>& schoolYears);
+void viewListSchoolYear(Vector<SchoolYear>& schoolYears); 
 // 15. view list of classes
 void viewListOfClasses(const SchoolYear & schoolYear, std::ostream & outDev);
 // 16. view list of students in a class
