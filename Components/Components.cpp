@@ -430,7 +430,7 @@ void removeClass(Vector<SchoolYear>& schoolYears, const std::string& className){
 		}
 	}
 }
-
+// Remove List Classes
 void removeListClasses(SchoolYear& schoolYear){
 	for (int i = 0; i<schoolYear.classes.size(); ++i){
 		removeListStudents(schoolYear.classes[i]);
@@ -450,7 +450,7 @@ void removeSemester(Vector<AcademicYear>& academicYears, const std::string& seme
 		}
 	}
 }
-
+// Remove List Semesters
 void removeListSemesters(AcademicYear& academicYear){
 	for (int i = 0; i < academicYear.semesters.size(); ++i){
 		removeListCourses(academicYear.semesters[i]);
@@ -479,7 +479,7 @@ void removeCourse(Vector<AcademicYear>& academicYears, const std::string& course
 		}
 	}
 }
-
+// Remove List Courses
 void removeListCourses(Semester& semester){
 	for (int i = 0; i < semester.courses.size(); ++i){
 		for (int j = 0; j < semester.courses[i].scoreboards.size(); ++j)
@@ -506,10 +506,10 @@ void removeStudent(Vector<SchoolYear>& schoolYears, const std::string& studentID
 			}
 		}
 }
-
+// Remove List Students
 void removeListStudents(Class &thisClass){
 	for (int i = 0; i < thisClass.students.size(); ++i){
-		thisClass.students[i].scoreboards.~Vector();
+		thisClass.students[i].scoreboards.~Vector(); // delete a student's scoreboard pointers
 		thisClass.students.remove(&thisClass.students[i]);
 	}
 }
