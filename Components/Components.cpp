@@ -372,6 +372,7 @@ void addANewStudentToCourse(Vector<SchoolYear>& schoolYears, Course& course, con
 // Remove list SchoolYear
 void removeListSchoolYear(Vector<SchoolYear>& schoolYears){
 	for (int i = 0; i < schoolYears.size(); ++i){
+		removeListClasses(schoolYears[i]);
 		schoolYears.remove(&schoolYears[i]);
 	}
 }
@@ -424,6 +425,12 @@ void removeClass(Vector<SchoolYear>& schoolYears, const std::string& className){
 			schoolYears[i].classes.remove(ptrClass);
 			return;
 		}
+	}
+}
+
+void removeListClasses(SchoolYear& schoolYear){
+	for (int i = 0; i<schoolYear.classes.size(); ++i){
+		schoolYear.classes.remove(&schoolYear.classes[i]);
 	}
 }
 // Remove Semester
