@@ -15,4 +15,4 @@ public:
 	void render(const Vector2 &mouse) const;
 };
 
-#endif
+#endif //OPTION_H
