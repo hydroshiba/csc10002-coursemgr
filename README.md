@@ -13,7 +13,7 @@
 
 * Download & install the latest version of [CMake](https://cmake.org/download/).
 * Clone this repository.
-* Open console in this exact directory and type the following:
+* Open console exactly in this repository's directory and type the following:
     * `cmake -S . -B ./build` (this step might require internet connection if Raylib hasn't been installed before)
     * `cmake --build ./build -j 10`
 * The executable `coursemgr` will appear, run it by typing `./coursemgr` in your console.
