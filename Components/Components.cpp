@@ -379,6 +379,7 @@ void removeListSchoolYear(Vector<SchoolYear>& schoolYears){
 // Remove list AcademicYear
 void removeListAcademicYear(Vector<AcademicYear>& academicYears){
 	for (int i = 0; i < academicYears.size(); ++i){
+		removeListSemesters(academicYears[i]);
 		academicYears.remove(&academicYears[i]);
 	}
 }
@@ -388,7 +389,7 @@ void removeSchoolYear(Vector<SchoolYear>& schoolYears, const std::string& start)
 	SchoolYear* ptrSchoolYear = getSchoolYear(schoolYears, startYear);
 	if (ptrSchoolYear == nullptr)
 		return;
-	schoolYears.remove(*ptrSchoolYear);
+	schoolYears.remove(ptrSchoolYear);
 }
 
 void removeSchoolYearV2(Vector<SchoolYear>& schoolYears, const unsigned int& start) {
@@ -398,7 +399,7 @@ void removeSchoolYearV2(Vector<SchoolYear>& schoolYears, const unsigned int& sta
 		std::cout << "SchoolYear with start year " << start << "is not exist!" << std::endl;
 		return;
 	}
-	schoolYears.remove(*ptrSchoolYear);
+	schoolYears.remove(ptrSchoolYear);
 }
 // Remove AcademicYear
 void removeAcademicYear(Vector<AcademicYear> &academicYears, const std::string& start){
@@ -406,7 +407,7 @@ void removeAcademicYear(Vector<AcademicYear> &academicYears, const std::string& 
 	AcademicYear* ptrAcademicYear = getAcademicYear(academicYears, startYear);
 	if (ptrAcademicYear == nullptr)
 		return;
-	academicYears.remove(*ptrAcademicYear);
+	academicYears.remove(ptrAcademicYear);
 }
 
 void removeAcademicYearV2(Vector<AcademicYear>& academicYears, const unsigned int& start) {
@@ -416,7 +417,7 @@ void removeAcademicYearV2(Vector<AcademicYear>& academicYears, const unsigned in
 		std::cout << "AcademicYear with start year " << start << "is not exist!" << std::endl;
 		return;
 	}
-	academicYears.remove(*ptrAcademicYear);
+	academicYears.remove(ptrAcademicYear);
 }
 // Remove Class from School
 void removeClass(Vector<SchoolYear>& schoolYears, const std::string& className){
@@ -447,6 +448,12 @@ void removeSemester(Vector<AcademicYear>& academicYears, const std::string& seme
 			academicYears[i].semesters.remove(ptrSemester);
 			return;
 		}
+	}
+}
+
+void removeListSemesters(AcademicYear& academicYear){
+	for (int i = 0; i < academicYear.semesters.size(); ++i){
+		academicYear.semesters.remove(&academicYear.semesters[i]);
 	}
 }
 // Remove Course
