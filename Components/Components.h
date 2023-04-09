@@ -112,13 +112,20 @@ void removeAcademicYear(Vector<AcademicYear>& academicYears, const std::string& 
 void removeAcademicYearV2(Vector<AcademicYear>& academicYears, const unsigned int& start);
 // Remove Class from School
 void removeClass(Vector<SchoolYear>& schoolYears, const std::string& className);
+
+void removeClass(SchoolYear &schoolYear, const Class& thisClass);
 // Remove Student from School
 void removeStudent(Vector<SchoolYear>& schoolYears, const std::string& studentID);
+
+void removeStudent(Class &thisClass, const Student& student);
 // Remove Semester
 void removeSemester(Vector<AcademicYear>& academicYears, const std::string& semesterID);
+
+void removeSemester(AcademicYear& academicYear, const Semester semester);
 // Remove Course
 void removeCourse(Vector<AcademicYear>& academicYears, const std::string& courseID);
 
+void removeCourse(Semester& semester, const Course& course);
 // Remove student from course
 void removeStudFromCourse(Course& course, const std::string& studentID);
 // Remove course from semester
