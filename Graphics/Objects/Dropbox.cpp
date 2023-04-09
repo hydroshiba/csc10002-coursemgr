@@ -101,7 +101,7 @@ void DropBox::render(const Vector2 &mouse) {
 void DropBox::process(const Vector2 &mouse) {
     if(selected) {
         for(int i = 0; i < options.size(); ++i) if(options[i].clicked(mouse)){
-            options[curIndex].fill_color = fill_color;
+            if(curIndex > 0) options[curIndex].fill_color = fill_color;
             curIndex = i;
 
             selected = false;
