@@ -1,6 +1,8 @@
 #ifndef DROPBOX_H
 #define DROPBOX_H
 
+#include <cmath>
+
 #include "raylib.h"
 #include "Vector.h"
 #include "Option.h"
@@ -10,7 +12,7 @@ private:
     float textSize;
     bool selected;
     int curIndex;
-    Option curBox;
+    Option current;
 
     Vector2 pos;
     Vector2 size;

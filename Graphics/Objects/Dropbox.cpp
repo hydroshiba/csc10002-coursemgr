@@ -1,12 +1,11 @@
 #include "DropBox.h"
-#include "math.h"
 
 DropBox::DropBox() {
     curIndex = -1;
     selected = false;
 
-    curBox.label = "Choose an option";
-    curBox.label.color = border_color;
+    current.label = "Choose an option";
+    current.label.color = border_color;
 
     pos = {0, 0};
     size = {box_const::width, box_const::height};
@@ -15,8 +14,8 @@ DropBox::DropBox() {
 }
 
 void DropBox::refresh() {
-    curBox.setPos(pos);
-    curBox.setSize(size);
+    current.setPos(pos);
+    current.setSize(size);
 
     for(int i = 0; i < options.size(); ++i) {
         options[i].setSize(size);
@@ -30,7 +29,7 @@ void DropBox::refresh() {
 }
 
 void DropBox::setLabel(std::string label) {
-    curBox.label = label;
+    current.label = label;
 }
 
 void DropBox::setX(float x) {
@@ -65,25 +64,25 @@ void DropBox::setSize(Vector2 size) {
 
 void DropBox::add(std::string label) {
     Option* last = nullptr;
-    Option newBox;
+    Option option;
 
-    if(options.size() == 0) last = &curBox;
+    if(options.size() == 0) last = &current;
     else {
         last = (options.end() - 1);
         last->roundness = 0;
     }
     
-    newBox.setPos({pos.x, last->getPos().y + size.y - box_const::thickness});
-    newBox.setSize(size);
-    newBox.label = label;
-    newBox.roundness = roundness;
+    option.setPos({pos.x, last->getPos().y + size.y - box_const::thickness});
+    option.setSize(size);
+    option.label = label;
+    option.roundness = roundness;
 
-    newBox.fill_color = fill_color;
-    newBox.border_color = border_color;
-    newBox.hover_color = hover_color;
-    newBox.press_color = press_color;
+    option.fill_color = fill_color;
+    option.border_color = border_color;
+    option.hover_color = hover_color;
+    option.press_color = press_color;
 
-    options.append(newBox);
+    options.append(option);
 }
 
 int DropBox::getSelected() {
@@ -91,7 +90,7 @@ int DropBox::getSelected() {
 }
 
 void DropBox::render(const Vector2 &mouse) {
-    curBox.render(mouse);
+    current.render(mouse);
 
     if(selected) {
         for(int i = options.size() - 1; i > -1; --i)
@@ -106,13 +105,13 @@ void DropBox::process(const Vector2 &mouse) {
             curIndex = i;
 
             selected = false;
-            curBox.label = options[i].label;
-            curBox.label.color = text_color;
+            current.label = options[i].label;
+            current.label.color = text_color;
 
             options[i].fill_color = hover_color;
         }
     }
 
-    if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && !curBox.clicked(mouse)) selected = false;
-	if(curBox.clicked(mouse)) selected = !selected;
+    if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && !current.clicked(mouse)) selected = false;
+	if(current.clicked(mouse)) selected = !selected;
 }
