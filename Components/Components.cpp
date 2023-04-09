@@ -550,7 +550,11 @@ void deleteCourse(Semester& semester, const std::string& courseID) {
 	}
 	std::cout << std::endl;
 }
-
+// Free memory
+void freeMemory(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears){
+	removeListSchoolYear(schoolYears);
+	removeListAcademicYear(academicYears);
+}
 //----------------------------------------------------------------------------------------------//
 
 /*		Update function		*/	

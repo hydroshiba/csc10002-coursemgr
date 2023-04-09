@@ -142,7 +142,7 @@ void removeStudFromCourse(Course& course, const std::string& studentID); // Inpu
 void deleteCourse(Semester& semester, const std::string& courseID); // Inputbox
 
 // Free memory
-void freeMemory(Vector<AcademicYear>& academicYears);
+void freeMemory(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears);
 
 //----------------------------------------------------------------------------------------------//
 
