@@ -9,7 +9,7 @@
 #include "Objects/Button.h"
 #include "Objects/TextBox.h"
 #include "Objects/InputBox.h"
-#include "Objects/Dropbox.h"
+#include "Objects/DropBox.h"
 
 class Menu : public Scene {
 private:
@@ -19,7 +19,7 @@ private:
 	TextBox title, invalid;
 	InputBox username, password;
 
-	Dropbox test;
+	DropBox test;
 
 public: 
 	Menu();

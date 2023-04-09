@@ -1,7 +1,7 @@
-#include "Dropbox.h"
+#include "DropBox.h"
 #include "math.h"
 
-Dropbox::Dropbox() {
+DropBox::DropBox() {
     curIndex = -1;
     selected = false;
 
@@ -14,7 +14,7 @@ Dropbox::Dropbox() {
     refresh();
 }
 
-void Dropbox::refresh() {
+void DropBox::refresh() {
     curBox.setPos(pos);
     curBox.setSize(size);
 
@@ -29,43 +29,43 @@ void Dropbox::refresh() {
     }
 }
 
-void Dropbox::setLabel(std::string label) {
+void DropBox::setLabel(std::string label) {
     curBox.label = label;
 }
 
-void Dropbox::setX(float x) {
+void DropBox::setX(float x) {
     pos.x = x;
     refresh();
 }
 
-void Dropbox::setY(float y) {
+void DropBox::setY(float y) {
     pos.y = y;
     refresh();
 }
 
-void Dropbox::setWidth(float width) {
+void DropBox::setWidth(float width) {
     size.x = width;
     refresh();
 }
 
-void Dropbox::setHeight(float height) {
+void DropBox::setHeight(float height) {
     size.y = height;
     refresh();
 }
 
-void Dropbox::setPos(Vector2 pos) {
+void DropBox::setPos(Vector2 pos) {
     this->pos = pos;
     refresh();
 }
 
-void Dropbox::setSize(Vector2 size) {
+void DropBox::setSize(Vector2 size) {
     this->size = size;
     refresh();
 }
 
-void Dropbox::add(std::string label) {
-    Box* last = nullptr;
-    Box newBox;
+void DropBox::add(std::string label) {
+    Option* last = nullptr;
+    Option newBox;
 
     if(options.size() == 0) last = &curBox;
     else {
@@ -86,11 +86,11 @@ void Dropbox::add(std::string label) {
     options.append(newBox);
 }
 
-int Dropbox::getSelected() {
+int DropBox::getSelected() {
     return curIndex;
 }
 
-void Dropbox::render(const Vector2 &mouse) {
+void DropBox::render(const Vector2 &mouse) {
     curBox.render(mouse);
 
     if(selected) {
@@ -99,7 +99,7 @@ void Dropbox::render(const Vector2 &mouse) {
     }
 }
 
-void Dropbox::process(const Vector2 &mouse) {
+void DropBox::process(const Vector2 &mouse) {
     if(selected) {
         for(int i = 0; i < options.size(); ++i) if(options[i].clicked(mouse)){
             options[curIndex].fill_color = fill_color;

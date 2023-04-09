@@ -1,6 +1,6 @@
-#include "Box.h"
+#include "Option.h"
 
-void Box::refreshText() {
+void Option::refreshText() {
 	label.font_size = 0;
 
     while(label.size().y * 3 < size.y * 2) {
@@ -12,7 +12,7 @@ void Box::refreshText() {
     textPos.y = fill_bound.y + (fill_bound.height - (label.size().y)) / 2;
 }
 
-void Box::refresh() {
+void Option::refresh() {
     border_bound = Rectangle{pos.x, pos.y, size.x, size.y};
     
     fill_bound.x = pos.x + box_const::thickness;
@@ -26,7 +26,7 @@ void Box::refresh() {
     refreshText();
 }
 
-void Box::render(const Vector2 &mouse) const {
+void Option::render(const Vector2 &mouse) const {
 	Color color;
 
     if(hovering(mouse)) color = hover_color;

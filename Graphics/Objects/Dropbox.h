@@ -3,19 +3,19 @@
 
 #include "raylib.h"
 #include "Vector.h"
-#include "Box.h"
+#include "Option.h"
 
-class Dropbox {
+class DropBox {
 private:
     float textSize;
     bool selected;
     int curIndex;
-    Box curBox;
+    Option curBox;
 
     Vector2 pos;
     Vector2 size;
 
-    Vector<Box> options;
+    Vector<Option> options;
 
 public:
     float roundness = box_const::roundness;
@@ -23,7 +23,7 @@ public:
     Color hover_color = button_const::hover_color, press_color = button_const::press_color;
     Color text_color = text_const::color;
 
-    Dropbox();
+    DropBox();
     void refresh();
     
     void setLabel(std::string label);

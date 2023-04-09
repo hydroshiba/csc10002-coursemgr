@@ -1,10 +1,10 @@
-#ifndef BOX_H
-#define BOX_H
+#ifndef OPTION_H
+#define OPTION_H
 
 #include "raylib.h"
 #include "Button.h"
 
-class Box : public Button {
+class Option : public Button {
 protected:
 	float right_padding, left_padding = text_const::padding;
 	
