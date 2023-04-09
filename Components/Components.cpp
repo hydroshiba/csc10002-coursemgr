@@ -473,6 +473,7 @@ void removeCourse(Vector<AcademicYear>& academicYears, const std::string& course
 					student->scoreboards.remove(ptrCourse->scoreboards[i]); // delete link from student->scoreboard
 					delete ptrCourse->scoreboards[i]; // delete scoreboard
 				}
+				ptrCourse->scoreboards.~Vector(); // delete Vector pointer of scoreboards 
 				academicYears[i].semesters[j].courses.remove(ptrCourse); // delete course
 				return;
 			}
@@ -483,9 +484,9 @@ void removeCourse(Vector<AcademicYear>& academicYears, const std::string& course
 void removeListCourses(Semester& semester){
 	for (int i = 0; i < semester.courses.size(); ++i){
 		for (int j = 0; j < semester.courses[i].scoreboards.size(); ++j)
-			delete semester.courses[i].scoreboards[j];
-		semester.courses[i].scoreboards.~Vector();
-		semester.courses.remove(&semester.courses[i]);
+			delete semester.courses[i].scoreboards[j]; // delete scoreboard
+		semester.courses[i].scoreboards.~Vector(); // delete Vector pointer of Scoreboards
+		semester.courses.remove(&semester.courses[i]); // delete course
 	}
 }
 // Remove Student from School
@@ -543,6 +544,7 @@ void deleteCourse(Semester& semester, const std::string& courseID) {
 			ptrCourse->scoreboards[i]->ptrCourse = nullptr; // delete link sb->course
 			delete ptrCourse->scoreboards[i]; // delete scoreboard
 		}
+		ptrCourse->scoreboards.~Vector(); // delete Vector pointer of scoreboards
 		semester.removeCourse(*ptrCourse); // delete course
 		std::cout << "Course with ID " << courseID << " have been removed from semester!";
 	}
