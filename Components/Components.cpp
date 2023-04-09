@@ -472,15 +472,19 @@ void removeCourse(Vector<AcademicYear>& academicYears, const std::string& course
 // Remove Student from School
 void removeStudent(Vector<SchoolYear>& schoolYears, const std::string& studentID){
 	Student *ptrStudent = nullptr;
-	for (int i = 0; i < schoolYears.size(); ++i){
+	for (int i = 0; i < schoolYears.size(); ++i)
 		for (int j = 0; j<schoolYears[i].classes.size(); ++j){
 			ptrStudent = schoolYears[i].classes[j].getStudent(studentID);
 			if (ptrStudent){
+				for (int k = 0; k < ptrStudent->scoreboards.size(); ++k){
+					Course *ptrCourse = ptrStudent->scoreboards[k]->ptrCourse;
+					ptrCourse->scoreboards.remove(ptrStudent->scoreboards[k]);
+					delete ptrStudent->scoreboards[k]; 
+				}
 				schoolYears[i].classes[j].students.remove(ptrStudent);
 				return;
 			}
 		}
-	}
 }
 
 void removeListStudents(Class &thisClass){
