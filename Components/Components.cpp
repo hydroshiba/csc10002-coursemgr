@@ -130,12 +130,13 @@ Scoreboard* getScoreboard(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>&
 /*		Insert function		*/
 
 // Add a new SchoolYear
-bool addNewSchoolYear(Vector<SchoolYear>& yearList, const std::string &start){
+bool addNewSchoolYear(Vector<SchoolYear>& yearList, const std::string &start, std::string& invalid){
 	unsigned int startYear = static_cast<unsigned int>(stoul(start));
 	SchoolYear* ptrSchoolYear = getSchoolYear(yearList, startYear);
 	if (ptrSchoolYear != nullptr)
 	{
-		std::cout << "SchoolYear with start year " << startYear << " have been already existed!" << std::endl;
+		//std::cout << "SchoolYear with start year " << startYear << " have been already existed!" << std::endl;
+		invalid = "SchoolYear with start year " + start + " have been already existed!";
 		return false;
 	}
 	SchoolYear newYear;
@@ -144,13 +145,14 @@ bool addNewSchoolYear(Vector<SchoolYear>& yearList, const std::string &start){
 	return true;
 }
 // Add a new SchoolYear
-bool addNewSchoolYear(Vector<SchoolYear>& yearList, const unsigned int& start){
+bool addNewSchoolYear(Vector<SchoolYear>& yearList, const unsigned int& start, std::string& invalid){
     /*unsigned int startYear;
     std::cout << "Enter the school year: "; std::cin >> startYear;*/
 	SchoolYear* ptrSchoolYear = getSchoolYear(yearList, start);
 	if (ptrSchoolYear != nullptr)
 	{
-		std::cout << "SchoolYear with start year " << start << " have been already existed!" << std::endl;
+		//std::cout << "SchoolYear with start year " << start << " have been already existed!" << std::endl;
+		invalid = "SchoolYear with start year " + std::to_string(start) + " have been already existed!";
 		return false;
 	}
 	SchoolYear newYear;
@@ -159,7 +161,7 @@ bool addNewSchoolYear(Vector<SchoolYear>& yearList, const unsigned int& start){
 	return true;
 }
 // Add new class for SchoolYear
-bool addNewClass(SchoolYear& schoolYear, const std::string& className){
+bool addNewClass(SchoolYear& schoolYear, const std::string& className, std::string& invalid){
 	/*std::string className;
     do {
         std::cout << "Enter class name (enter 0 when done): ";
@@ -168,7 +170,8 @@ bool addNewClass(SchoolYear& schoolYear, const std::string& className){
 		Class* ptrClass = schoolYear.getClass(className);
 		if (ptrClass != nullptr)
 		{
-			std::cout << "Class " << className << " have been already existed!" << std::endl;
+			//std::cout << "Class " << className << " have been already existed!" << std::endl;
+			invalid = "Class " + className + " have been already existed!";
 			return false;
 		}
 		else
@@ -181,11 +184,12 @@ bool addNewClass(SchoolYear& schoolYear, const std::string& className){
     //} /*while (className != "0");*/
 }
 // Add a new academic year
-bool addNewAcademicYear(Vector<AcademicYear>& academicYears, const std::string& start){
+bool addNewAcademicYear(Vector<AcademicYear>& academicYears, const std::string& start, std::string& invalid){
 	unsigned int startYear = static_cast<unsigned int>(stoul(start));
 	if (getAcademicYear(academicYears, startYear) != nullptr)
 	{
-		std::cout << "Academic Year " << startYear << " have been already existed! Pls input another start year!" << std::endl;
+		//std::cout << "Academic Year " << startYear << " have been already existed! Pls input another start year!" << std::endl;
+		invalid = "Academic Year " + start + " have been already existed! Pls input another start year!";
 		return false;
 	}
 	else
@@ -197,7 +201,7 @@ bool addNewAcademicYear(Vector<AcademicYear>& academicYears, const std::string& 
 	}
 }
 // Add a new academic year
-bool addNewAcademicYear(Vector<AcademicYear>& academicYears, const unsigned int& start) {
+bool addNewAcademicYear(Vector<AcademicYear>& academicYears, const unsigned int& start, std::string& invalid) {
 	/*unsigned int startyear;
 	AcademicYear newYear;
 	bool found = false;
@@ -211,7 +215,8 @@ bool addNewAcademicYear(Vector<AcademicYear>& academicYears, const unsigned int&
 		}*/
 	if (getAcademicYear(academicYears, start) != nullptr)
 	{
-		std::cout << "Academic Year " << start << " have been already existed! Pls input another start year!" << std::endl;
+		//std::cout << "Academic Year " << start << " have been already existed! Pls input another start year!" << std::endl;
+		invalid = "Academic Year " + std::to_string(start) + " have been already existed! Pls input another start year!";
 		return false;
 	}
 	else
@@ -224,13 +229,14 @@ bool addNewAcademicYear(Vector<AcademicYear>& academicYears, const unsigned int&
 
 }
 // Add students into a specific class
-bool addStudToClass(Class &actClass){
+bool addStudToClass(Class &actClass, std::string& invalid){
     Student newStud;
 	std::string inputStudClassFilePath = getInputStudClassFilePath(actClass);
     std::ifstream inF(inputStudClassFilePath);
     if (!inF.is_open()){
-		std::cout << "Cannot open file path " << inputStudClassFilePath << std::endl;
-        return false;
+		//std::cout << "Cannot open file path " << inputStudClassFilePath << std::endl;
+		invalid = "Cannot open file path " + inputStudClassFilePath;
+		return false;
     }
     std::string ignore;
     getline(inF, ignore);
@@ -243,14 +249,15 @@ bool addStudToClass(Class &actClass){
 	return true;
 }
 // Add a semester to an academic year
-bool addSemester(AcademicYear& newYear, const std::string& semesterID) {
+bool addSemester(AcademicYear& newYear, const std::string& semesterID, std::string& invalid) {
 	unsigned short day, month;
 	unsigned int year;
 	std::string id;
 	std::cout << "Enter semester id: "; std::cin >> id;
 	if (newYear.getSemester(id) != nullptr)
 	{
-		std::cout << "This SemesterID have been already existed in this AcademicYear! Pls input another semesterID";
+		//std::cout << "This SemesterID have been already existed in this AcademicYear! Pls input another semesterID";
+		invalid = "This SemesterID have been already existed in this AcademicYear! Pls input another semesterID";
 		return false;
 	}
 	Date startDate;
@@ -273,7 +280,7 @@ bool addSemester(AcademicYear& newYear, const std::string& semesterID) {
 	return true;
 }
 // Add a new course
-bool addNewCourse(Semester& semester, const std::string& courseID) {
+bool addNewCourse(Semester& semester, const std::string& courseID, std::string& invalid) {
 	std::string ID, classID, name, teacher;
 	int cre, maxEn;
 	int day, ss;
@@ -282,7 +289,8 @@ bool addNewCourse(Semester& semester, const std::string& courseID) {
 	std::getline(std::cin, ID);
 	if (semester.getCourse(ID) != nullptr)
 	{
-		std::cout << "Course with ID " << ID << " have been already existed in this semester!";
+		//std::cout << "Course with ID " << ID << " have been already existed in this semester!";
+		invalid = "Course with ID " + ID + " have been already existed in this semester!";
 		return false;
 	}
 	std::cout << "Enter Course Name: "; std::cin >> name;
@@ -309,11 +317,12 @@ bool addNewCourse(Semester& semester, const std::string& courseID) {
 	return true;
 }
 // Add list student to course (from file)
-bool getStudentToCourse(Vector<SchoolYear>& years, Course& course) {
+bool getStudentToCourse(Vector<SchoolYear>& years, Course& course, std::string& invalid) {
 	std::string inputStudCourseFilePath = getInputListStudCourseFilePath(course);
 	std::ifstream inF(inputStudCourseFilePath);
 	if (!inF.is_open()) {
-		std::cout << "Cannot open file path " << inputStudCourseFilePath << std::endl;
+		//std::cout << "Cannot open file path " << inputStudCourseFilePath << std::endl;
+		invalid = "Cannot open file path " + inputStudCourseFilePath;
 		return false;
 	}
 	std::string ignore;
@@ -349,7 +358,7 @@ bool getStudentToCourse(Vector<SchoolYear>& years, Course& course) {
 	return true;
 }
 // Add a student to course
-bool addANewStudentToCourse(Vector<SchoolYear>& schoolYears, Course& course, const std::string& studentID) {
+bool addANewStudentToCourse(Vector<SchoolYear>& schoolYears, Course& course, const std::string& studentID, std::string& invalid, std::string& success) {
 	Student* ptrStudent = nullptr;
 	for (int i = 0; i < schoolYears.size(); i++)
 		for (int j = 0; j < schoolYears[i].classes.size(); j++)
@@ -360,11 +369,13 @@ bool addANewStudentToCourse(Vector<SchoolYear>& schoolYears, Course& course, con
 			}
 	if (ptrStudent == nullptr)
 	{
-		std::cout << "Student with ID " << studentID << " is not exist in school! Pls try another!";
+		//std::cout << "Student with ID " << studentID << " is not exist in school! Pls try another!";
+		invalid = "Student with ID " + studentID + " is not exist in school! Pls try another!";
 		return false;
 	}
 	course.addStudent(*ptrStudent);
-	std::cout << "Complete add student with ID " << studentID << " to Course " << course.ID << std::endl;
+	//std::cout << "Complete add student with ID " << studentID << " to Course " << course.ID << std::endl;
+	success = "Complete add student with ID " + studentID + " to Course " + course.ID;
 	return true;
 }
 
