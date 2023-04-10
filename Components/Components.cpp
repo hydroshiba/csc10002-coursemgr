@@ -130,7 +130,7 @@ Scoreboard* getScoreboard(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>&
 /*		Insert function		*/
 
 // Add a new SchoolYear
-bool addNewSchoolYear(Vector<SchoolYear>& yearList, const std::string &start, std::string& outStr){
+bool addSchoolYear(Vector<SchoolYear>& yearList, const std::string &start, std::string& outStr){
 	unsigned int startYear = static_cast<unsigned int>(stoul(start));
 	SchoolYear* ptrSchoolYear = getSchoolYear(yearList, startYear);
 	if (ptrSchoolYear != nullptr)
@@ -146,7 +146,7 @@ bool addNewSchoolYear(Vector<SchoolYear>& yearList, const std::string &start, st
 	return true;
 }
 // Add a new SchoolYear
-bool addNewSchoolYear(Vector<SchoolYear>& yearList, const unsigned int& start, std::string& outStr){
+bool addSchoolYear(Vector<SchoolYear>& yearList, const unsigned int& start, std::string& outStr){
     /*unsigned int startYear;
     std::cout << "Enter the school year: "; std::cin >> startYear;*/
 	SchoolYear* ptrSchoolYear = getSchoolYear(yearList, start);
@@ -163,7 +163,7 @@ bool addNewSchoolYear(Vector<SchoolYear>& yearList, const unsigned int& start, s
 	return true;
 }
 // Add new class for SchoolYear
-bool addNewClass(SchoolYear& schoolYear, const std::string& className, std::string& outStr){
+bool addClass(SchoolYear& schoolYear, const std::string& className, std::string& outStr){
 	/*std::string className;
     do {
         std::cout << "Enter class name (enter 0 when done): ";
@@ -186,8 +186,31 @@ bool addNewClass(SchoolYear& schoolYear, const std::string& className, std::stri
 		}
     //} /*while (className != "0");*/
 }
+// Add students into a specific class (from File)
+bool addStudToClass(Class& actClass, std::string& outStr) {
+	Student newStud;
+	std::string inputStudClassFilePath = getInputStudClassFilePath(actClass);
+	std::ifstream inF(inputStudClassFilePath);
+	if (!inF.is_open()) {
+		//std::cout << "Cannot open file path " << inputStudClassFilePath << std::endl;
+		outStr = "Cannot open file path " + inputStudClassFilePath;
+		return false;
+	}
+	std::string ignore;
+	getline(inF, ignore);
+	while (!inF.eof()) {
+		newStud.setInfoToClass(inF);
+		actClass.addStudent(newStud);
+		newStud.ptrClass = &actClass;
+	}
+	inF.close();
+	outStr = "Complete add list of student to class " + actClass.name + "!";
+	return true;
+}
+// Add a new students to class
+bool addStudToClass(Class& actClass, const std::string& studentID, std::string& outStr) { return false; }
 // Add a new academic year
-bool addNewAcademicYear(Vector<AcademicYear>& academicYears, const std::string& start, std::string& outStr){
+bool addAcademicYear(Vector<AcademicYear>& academicYears, const std::string& start, std::string& outStr){
 	unsigned int startYear = static_cast<unsigned int>(stoul(start));
 	if (getAcademicYear(academicYears, startYear) != nullptr)
 	{
@@ -205,7 +228,7 @@ bool addNewAcademicYear(Vector<AcademicYear>& academicYears, const std::string& 
 	}
 }
 // Add a new academic year
-bool addNewAcademicYear(Vector<AcademicYear>& academicYears, const unsigned int& start, std::string& outStr) {
+bool addAcademicYear(Vector<AcademicYear>& academicYears, const unsigned int& start, std::string& outStr) {
 	/*unsigned int startyear;
 	AcademicYear newYear;
 	bool found = false;
@@ -232,27 +255,6 @@ bool addNewAcademicYear(Vector<AcademicYear>& academicYears, const unsigned int&
 		return true;
 	}
 
-}
-// Add students into a specific class (from File)
-bool addStudToClass(Class &actClass, std::string& outStr){
-    Student newStud;
-	std::string inputStudClassFilePath = getInputStudClassFilePath(actClass);
-    std::ifstream inF(inputStudClassFilePath);
-    if (!inF.is_open()){
-		//std::cout << "Cannot open file path " << inputStudClassFilePath << std::endl;
-		outStr = "Cannot open file path " + inputStudClassFilePath;
-		return false;
-    }
-    std::string ignore;
-    getline(inF, ignore);
-    while (!inF.eof()){
-        newStud.setInfoToClass(inF);
-        actClass.addStudent(newStud);
-        newStud.ptrClass = &actClass;
-    }
-    inF.close();
-	outStr = "Complete add list of student to class " + actClass.name  + "!";
-	return true;
 }
 // Add a semester to an academic year
 bool addSemester(AcademicYear& newYear, const std::string& semesterID, std::string& outStr) {
@@ -287,7 +289,7 @@ bool addSemester(AcademicYear& newYear, const std::string& semesterID, std::stri
 	return true;
 }
 // Add a new course
-bool addNewCourse(Semester& semester, const std::string& courseID, std::string& outStr) {
+bool addCourse(Semester& semester, const std::string& courseID, std::string& outStr) {
 	std::string ID, classID, name, teacher;
 	int cre, maxEn;
 	int day, ss;
@@ -366,8 +368,10 @@ bool getStudentToCourse(Vector<SchoolYear>& years, Course& course, std::string& 
 	outStr = "Complete add list of student to Course " + course.ID;
 	return true;
 }
+// Add list student to course (from file)
+bool getStudentToCourse(Vector<SchoolYear>& years, const std::string& courseID, std::string& outStr) { return false; }
 // Add a student to course
-bool addANewStudentToCourse(Vector<SchoolYear>& schoolYears, Course& course, const std::string& studentID, std::string& outStr) {
+bool addAStudentToCourse(Vector<SchoolYear>& schoolYears, Course& course, const std::string& studentID, std::string& outStr) {
 	Student* ptrStudent = nullptr;
 	for (int i = 0; i < schoolYears.size(); i++)
 		for (int j = 0; j < schoolYears[i].classes.size(); j++)
@@ -387,6 +391,8 @@ bool addANewStudentToCourse(Vector<SchoolYear>& schoolYears, Course& course, con
 	outStr = "Complete add student with ID " + studentID + " to Course " + course.ID;
 	return true;
 }
+// Add a student to course
+bool addAStudentToCourse(Vector<SchoolYear>& schoolYears, std::string& courseID, const std::string& studentID, std::string& outStr) { return false; }
 
 //----------------------------------------------------------------------------------------------//
 
