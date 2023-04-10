@@ -6,6 +6,7 @@
 #include "Vector.h"
 #include <filesystem>
 
+
 /* Enumerators */
 
 enum Weekday { SUN, MON, TUE, WED, THU, FRI, SAT };
@@ -33,6 +34,8 @@ struct Compare {
 
 };
 
+#include "ConvertType.h"
+
 const std::string defaultStr = "Error";
 /* Forward declaration of struct operator overloading */
 
@@ -40,14 +43,6 @@ template <typename Type>
 bool operator!=(const Type &typeA, const Type &typeB) {
     return !(typeA == typeB);
 }
-
-/*			Convert enum to string function			*/
-std::string weekday_to_string(const Weekday& weekday);
-Weekday string_to_weekday(const std::string& str);
-std::string session_to_string(const Session& session);
-Session string_to_session(const std::string& str);
-std::string gender_to_string(const Gender& gender);
-Gender string_to_gender(const std::string& str);
 
 //----------------------------------------------------------------------------------------------//
 
