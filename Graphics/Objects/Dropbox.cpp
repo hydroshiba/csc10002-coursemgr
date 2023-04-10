@@ -1,5 +1,9 @@
 #include "DropBox.h"
 
+void Triangle::draw() {
+    DrawTriangle(p1, p2, p3, BLACK);
+}
+
 DropBox::DropBox() {
     curIndex = -1;
     selected = false;
@@ -16,6 +20,7 @@ DropBox::DropBox() {
 void DropBox::refresh() {
     current.setPos(pos);
     current.setSize(size);
+    createTriangle();
 
     for(int i = 0; i < options.size(); ++i) {
         options[i].setSize(size);
@@ -26,6 +31,19 @@ void DropBox::refresh() {
 
         options[i].setPos({curPos.x, curPos.y + size.y - box_const::thickness});
     }
+}
+
+void DropBox::createTriangle() {
+    float length = 1;
+    Vector2 center = {pos.x + size.x - length * 3 / 2, pos.y + size.y / 2};
+    //open
+    open.p1 = {center.x, center.y + length * (float)sqrt(3) / 3};
+    open.p2 = {center.x + length / 2, center.y - length * (float)sqrt(3) / 6};
+    open.p3 = {center.x - length / 2, center.y - length * (float)sqrt(3) / 6};
+    //close
+    close.p1 = {center.x - length * (float)sqrt(3) / 3, center.y};
+    close.p1 = {center.x + length * (float)sqrt(3) / 6, center.y + length / 2};
+    close.p1 = {center.x + length * (float)sqrt(3) / 6, center.y - length / 2};
 }
 
 void DropBox::setLabel(std::string label) {

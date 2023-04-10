@@ -7,6 +7,12 @@
 #include "Vector.h"
 #include "Option.h"
 
+struct Triangle {
+    Vector2 p1;
+    Vector2 p2;
+    Vector2 p3;
+    void draw();
+};
 class DropBox {
 private:
     float textSize;
@@ -25,9 +31,13 @@ public:
     Color hover_color = button_const::hover_color, press_color = button_const::press_color;
     Color text_color = text_const::color;
 
+    Triangle open;
+    Triangle close;
+
     DropBox();
     void refresh();
-    
+    void createTriangle();
+
     void setLabel(std::string label);
     void setX(float x);
     void setY(float y);
