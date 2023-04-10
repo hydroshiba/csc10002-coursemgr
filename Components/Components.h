@@ -78,57 +78,57 @@ bool isCorrectStaffAccount(const std::string& staffID, const std::string& passwo
 // Check staff acc
 bool isCorrectStudentAccount(const std::string& studentID, const std::string& password);
 // Check student
-bool isStudent(const std::string& studentID, std::string& invalid);
+bool isStudent(const std::string& studentID, std::string& outStr);
 // Check staff
-bool isStaff(const std::string& staffID, std::string& invalid);
+bool isStaff(const std::string& staffID, std::string& outStr);
 // Check SchoolYear
-bool isSchoolYear(const std::string& start, std::string& invalid);
+bool isSchoolYear(const std::string& start, std::string& outStr);
 // Check AcademicYear
-bool isAcademicYear(const std::string& start, std::string& invalid);
+bool isAcademicYear(const std::string& start, std::string& outStr);
 // Check Class
-bool isClass(const std::string& className, std::string& invalid);
+bool isClass(const std::string& className, std::string& outStr);
 // Check Semester
-bool isSemester(const std::string& semesterID, std::string& invalid);
+bool isSemester(const std::string& semesterID, std::string& outStr);
 // Check Course
-bool isCourse(const std::string& courseID, std::string& invalid);
+bool isCourse(const std::string& courseID, std::string& outStr);
 
 //----------------------------------------------------------------------------------------------//
 
 /*		Insert function		*/
 
 // Add a new SchoolYear
-bool addNewSchoolYear(Vector<SchoolYear>& yearList, const std::string& start, std::string& invalid); // Inputbox
+bool addNewSchoolYear(Vector<SchoolYear>& yearList, const std::string& start, std::string& outStr); // Inputbox
 // Add a new SchoolYear
-bool addNewSchoolYear(Vector<SchoolYear>& yearList, const unsigned int& start, std::string& invalid);
+bool addNewSchoolYear(Vector<SchoolYear>& yearList, const unsigned int& start, std::string& outStr);
 // Add new class for SchoolYear
-bool addNewClass(SchoolYear &schoolYear, const std::string& className, std::string& invalid); // Inputbox
-// Add students into a specific class
-bool addStudToClass(Class &actClass, std::string& invalid); // By file
+bool addNewClass(SchoolYear &schoolYear, const std::string& className, std::string& outStr); // Inputbox
+// Add students into a specific class (from File)
+bool addStudToClass(Class &actClass, std::string& outStr); // By file
 // Add a new students to class
-bool addStudToClass(Class& actClass, const std::string& studentID, std::string& invalid); // Only one student by InputBox
+bool addStudToClass(Class& actClass, const std::string& studentID, std::string& outStr); // Only one student by InputBox
 // Add a new academic year
-bool addNewAcademicYear(Vector <AcademicYear>& newYear, const std::string& start, std::string& invalid); // Inputbox
+bool addNewAcademicYear(Vector <AcademicYear>& newYear, const std::string& start, std::string& outStr); // Inputbox
 // Add a new academic year
-bool addNewAcademicYear(Vector <AcademicYear>& newYear, const unsigned int& start, std::string& invalid);
+bool addNewAcademicYear(Vector <AcademicYear>& newYear, const unsigned int& start, std::string& outStr);
 // Add a semester to an academic year
-bool addSemester(AcademicYear& newYear, const std::string& semesterID, std::string& invalid); // Inputbox
+bool addSemester(AcademicYear& newYear, const std::string& semesterID, std::string& outStr); // Inputbox
 // Add a new course
-bool addNewCourse(Semester& semester, const std::string& courseID, std::string& invalid); // Inputbox
+bool addNewCourse(Semester& semester, const std::string& courseID, std::string& outStr); // Inputbox
 // Add a student to course
-bool addANewStudentToCourse(Vector<SchoolYear>& schoolYears, std::string& courseID, const std::string& studentID, std::string& invalid); // Inputbox
+bool addANewStudentToCourse(Vector<SchoolYear>& schoolYears, std::string& courseID, const std::string& studentID, std::string& outStr); // Inputbox
 // Add a student to course
 bool addANewStudentToCourse(Vector<SchoolYear>& schoolYears, Course& course, const std::string& studentID); // Inputbox but already have Course
 // Add list student to course (from file)
-bool getStudentToCourse(Vector<SchoolYear>& years, const std::string& courseID, std::string& invalid);
+bool getStudentToCourse(Vector<SchoolYear>& years, const std::string& courseID, std::string& outStr);
 // Add list student to course (from file)
-bool getStudentToCourse(Vector<SchoolYear>& years, Course& course, std::string& invalid, std::string& success); // By file
+bool getStudentToCourse(Vector<SchoolYear>& years, Course& course, std::string& outStr, std::string& success); // By file
 
 // ----------------------------------------------------------------------------------------------//
 
 /*		Remove function		*/
 
 // Remove list SchoolYear
-bool removeListSchoolYear(Vector<SchoolYear>& schoolYears, std::string& invalid); // Button
+bool removeListSchoolYear(Vector<SchoolYear>& schoolYears); // Button
 // Remove list AcademicYear
 bool removeListAcademicYear(Vector<AcademicYear>& academicYears); // Button
 // Remove SchoolYear
