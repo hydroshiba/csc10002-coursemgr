@@ -117,6 +117,14 @@ Course* getCourse(Vector<AcademicYear>& academicYears, const std::string& course
 		}
 	return nullptr;
 }
+// Find Scoreboard of Course of Student
+Scoreboard* getScoreboard(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears, const std::string& courseID, const std::string& studentID) {
+	Scoreboard* ptrScoreboard = nullptr;
+	Course* ptrCourse = getCourse(academicYears, courseID);
+	if (ptrCourse != nullptr)
+		ptrScoreboard = ptrCourse->getScoreboard(studentID);
+	return ptrScoreboard;
+}
 //----------------------------------------------------------------------------------------------//
 
 /*		Insert function		*/
@@ -135,8 +143,8 @@ bool addNewSchoolYear(Vector<SchoolYear>& yearList, const std::string &start){
     yearList.append(newYear);
 	return true;
 }
-
-bool addNewSchoolYearV2(Vector<SchoolYear>& yearList, const unsigned int& start){
+// Add a new SchoolYear
+bool addNewSchoolYear(Vector<SchoolYear>& yearList, const unsigned int& start){
     /*unsigned int startYear;
     std::cout << "Enter the school year: "; std::cin >> startYear;*/
 	SchoolYear* ptrSchoolYear = getSchoolYear(yearList, start);
@@ -188,8 +196,8 @@ bool addNewAcademicYear(Vector<AcademicYear>& academicYears, const std::string& 
 		return true;
 	}
 }
-
-bool addNewAcademicYearV2(Vector<AcademicYear>& academicYears, const unsigned int& start) {
+// Add a new academic year
+bool addNewAcademicYear(Vector<AcademicYear>& academicYears, const unsigned int& start) {
 	/*unsigned int startyear;
 	AcademicYear newYear;
 	bool found = false;

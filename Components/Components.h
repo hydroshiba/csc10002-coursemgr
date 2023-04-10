@@ -73,6 +73,24 @@ Semester* getSemester(Vector<AcademicYear>& academicYears, const std::string& se
 Course* getCourse(Vector<AcademicYear>& academicYears, const std::string& courseID);
 // Find Scoreboard of Course of Student
 Scoreboard* getScoreboard(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears, const std::string& courseID, const std::string& studentID);
+// Check student acc
+bool isCorrectStaffAccount(const std::string& staffID, const std::string& password);
+// Check staff acc
+bool isCorrectStudentAccount(const std::string& studentID, const std::string& password);
+// Check student
+bool isStudent(const std::string& studentID, std::string& invalid);
+// Check staff
+bool isStaff(const std::string& staffID, std::string& invalid);
+// Check SchoolYear
+bool isSchoolYear(const std::string& start, std::string& invalid);
+// Check AcademicYear
+bool isAcademicYear(const std::string& start, std::string& invalid);
+// Check Class
+bool isClass(const std::string& className, std::string& invalid);
+// Check Semester
+bool isSemester(const std::string& semesterID, std::string& invalid);
+// Check Course
+bool isCourse(const std::string& courseID, std::string& invalid);
 
 //----------------------------------------------------------------------------------------------//
 
@@ -81,7 +99,7 @@ Scoreboard* getScoreboard(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>&
 // Add a new SchoolYear
 bool addNewSchoolYear(Vector<SchoolYear>& yearList, const std::string& start); // Inputbox
 // Add a new SchoolYear
-bool addNewSchoolYearV2(Vector<SchoolYear>& yearList, const unsigned int& start);
+bool addNewSchoolYear(Vector<SchoolYear>& yearList, const unsigned int& start);
 // Add new class for SchoolYear
 bool addNewClass(SchoolYear &schoolYear, const std::string& className); // Inputbox
 // Add students into a specific class
@@ -91,7 +109,7 @@ bool addStudToClass(Class& actClass, const std::string& studentID); // Only one 
 // Add a new academic year
 bool addNewAcademicYear(Vector <AcademicYear>& newYear, const std::string& start); // Inputbox
 // Add a new academic year
-bool addNewAcademicYearV2(Vector <AcademicYear>& newYear, const unsigned int& start);
+bool addNewAcademicYear(Vector <AcademicYear>& newYear, const unsigned int& start);
 // Add a semester to an academic year
 bool addSemester(AcademicYear& newYear, const std::string& semesterID); // Inputbox
 // Add a new course
