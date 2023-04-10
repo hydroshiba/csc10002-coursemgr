@@ -1,5 +1,6 @@
 #include "UpdateFunction.h"
 #include "FileAndDirFunction.h"
+#include "DisplayFunction.h"
 
 #include "Date.h"
 #include "Name.h"
