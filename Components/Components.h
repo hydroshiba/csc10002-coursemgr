@@ -6,7 +6,7 @@
 #include "Vector.h"
 #include <filesystem>
 
-
+const std::string defaultStr = "Error";
 /* Enumerators */
 
 enum Weekday { SUN, MON, TUE, WED, THU, FRI, SAT };
@@ -17,26 +17,34 @@ enum Session { S1, S2, S3, S4 };
 
 struct Date;
 struct Name;
-struct Scoreboard;
 
 struct User;
 struct Staff;
+
+struct SchoolYear;
+struct Class;
 struct Student;
 
 struct AcademicYear;
 struct Semester;
 struct Course;
+struct Scoreboard;
 
-struct SchoolYear;
-struct Class;
-
-struct Compare {
-
-};
+//#include "Date.h"
+//#include "Name.h"
+//#include "User.h"
+//
+//#include "SchoolYear.h"
+//#include "Class.h"
+//#include "Student.h"
+//
+//#include "AcademicYear.h"
+//#include "Semester.h"
+//#include "Course.h"
+//#include "Scoreboard.h"
 
 #include "ConvertType.h"
 
-const std::string defaultStr = "Error";
 /* Forward declaration of struct operator overloading */
 
 template <typename Type>

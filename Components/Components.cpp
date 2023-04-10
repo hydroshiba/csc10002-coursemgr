@@ -1,12 +1,16 @@
 #include "Components.h"
 
-#include "AcademicYear.h"
-#include "Components.h"
-#include "Course.h"
+#include "Date.h"
+#include "Name.h"
+#include "User.h"
+
 #include "SchoolYear.h"
 #include "Class.h"
-#include "Name.h"
+#include "Student.h"
+
+#include "AcademicYear.h"
 #include "Semester.h"
+#include "Course.h"
 #include "Scoreboard.h"
 
 /*			Convert enum to string function			*/ 
