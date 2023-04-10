@@ -52,8 +52,6 @@ bool operator!=(const Type &typeA, const Type &typeB) {
     return !(typeA == typeB);
 }
 
-//----------------------------------------------------------------------------------------------//
-
 /*		Search function		*/
 // Find student
 Student* getStudent(Vector<SchoolYear>& schoolYears, const std::string& studentID);

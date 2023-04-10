@@ -13,80 +13,6 @@
 #include "Course.h"
 #include "Scoreboard.h"
 
-/*			Convert enum to string function			*/ 
-//std::string weekday_to_string(const Weekday& weekday) {
-//	switch (weekday)
-//	{
-//	case MON:
-//		return "MON";
-//	case TUE:
-//		return "TUE";
-//	case WED:
-//		return "WED";
-//	case THU:
-//		return "THU";
-//	case FRI:
-//		return "FRI";
-//	case SAT:
-//		return "SAT";
-//	case SUN:
-//		return "SUN";
-//	}
-//	return "\n";
-//}
-//Weekday string_to_weekday(const std::string& str) {
-//	if (str == "MON")
-//		return MON;
-//	else if (str == "TUE")
-//		return TUE;
-//	else if (str == "WED")
-//		return WED;
-//	else if (str == "THU")
-//		return THU;
-//	else if (str == "FRI")
-//		return FRI;
-//	else if (str == "SAT")
-//		return SAT;
-//	else
-//		return SUN;
-//}
-//std::string session_to_string(const Session& session) {
-//	switch (session) {
-//	case S1:
-//		return "7:30";
-//	case S2:
-//		return "9:30";
-//	case S3:
-//		return "13:30";
-//	case S4:
-//		return "15:30";
-//	}
-//	return "\n";
-//}
-//Session string_to_session(const std::string& str) {
-//	if (str == "7:30")
-//		return S1;
-//	else if (str == "9:30")
-//		return S2;
-//	else if (str == "13:30")
-//		return S3;
-//	return S4;
-//}
-//std::string gender_to_string(const Gender& gender) {
-//	if (gender == male)
-//		return "Male";
-//	else if (gender == female) 
-//		return "Female";
-//	return "\n";
-//}
-//Gender string_to_gender(const std::string& str) {
-//	if (str == "Male")
-//		return male;
-//	return female;
-//}
-
-//----------------------------------------------------------------------------------------------//
-
 /*		Search function		*/ 
 
 // Find student
@@ -160,7 +86,37 @@ AcademicYear* getAcademicYear(Vector<AcademicYear>& academicYears, const unsigne
 		}
 	return ptrAcademicYear;
 }
-
+// Find Class
+Class* getClass(Vector<SchoolYear>& schoolYears, const std::string& className) {
+	for (int i = 0; i < schoolYears.size(); i++)
+	{
+		Class* ptrClass = schoolYears[i].getClass(className);
+		if (ptrClass != nullptr)
+			return ptrClass;
+	}
+	return nullptr;
+}
+// Find Semester
+Semester* getSemester(Vector<AcademicYear>& academicYears, const std::string& semesterID) {
+	for (int i = 0; i < academicYears.size(); i++)
+	{
+		Semester* ptrSemester = academicYears[i].getSemester(semesterID);
+		if (ptrSemester != nullptr)
+			return ptrSemester;
+	}
+	return nullptr;
+}
+// Find Course
+Course* getCourse(Vector<AcademicYear>& academicYears, const std::string& courseID) {
+	for (int i = 0; i < academicYears.size(); i++)
+		for (int j = 0; j < academicYears[i].semesters.size(); j++)
+		{
+			Course* ptrCourse = academicYears[i].semesters[j].getCourse(courseID);
+			if (ptrCourse != nullptr)
+				return ptrCourse;
+		}
+	return nullptr;
+}
 //----------------------------------------------------------------------------------------------//
 
 /*		Insert function		*/
