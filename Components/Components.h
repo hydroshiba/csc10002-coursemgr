@@ -149,25 +149,25 @@ bool freeMemory(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicY
 /*		Update function		*/
 
 // Update AcademicYear
-bool updateAcademicYear(AcademicYear& academicYear, const std::string& newStartYear); // Inputbox
+void updateAcademicYear(AcademicYear& academicYear, const std::string& newStartYear); // Inputbox
 // Update SchoolYear
-bool updateSchoolYear(SchoolYear& schoolYear, const std::string& newStartYear); // Inputbox
+void updateSchoolYear(SchoolYear& schoolYear, const std::string& newStartYear); // Inputbox
 // Update Class
-bool updateClass(Class& CLASS, const std::string& newClassName); // Inputbox
+void updateClass(Class& CLASS, const std::string& newClassName); // Inputbox
 // Update Student
-bool updateStudent(Student& student, const int& option); // Inputbox
+void updateStudent(Student& student, const int& option); // Inputbox
 // Update Semester
-bool updateSemester(Semester& semester, const int& option); // Inputbox
+void updateSemester(Semester& semester, const int& option); // Inputbox
 // Update Course
-bool updateCourse(Course& course, const int& option); // Inputbox
+void updateCourse(Course& course, const int& option); // Inputbox
 // Update Scoreboard
-bool updateScoreboard(Scoreboard& scoreboard, const int& option); // Inputbox
+void updateScoreboard(Scoreboard& scoreboard, const int& option); // Inputbox
 // 19. export list of students in course to csv file
-bool exportListOfStudent(Course& course);
+void exportListOfStudent(Course& course);
 // 20. import scoreboard of course
-bool importScoreBoardOfCourse(Course& course);
+void importScoreBoardOfCourse(Course& course);
 // 22. Update student result
-bool updateStudentResult(Student& student, std::string& courseID, const int& option); // Inputbox
+void updateStudentResult(Student& student, std::string& courseID, const int& option); // Inputbox
 
 //----------------------------------------------------------------------------------------------//
 

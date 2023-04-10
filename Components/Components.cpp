@@ -138,31 +138,33 @@ AcademicYear* getAcademicYear(Vector<AcademicYear>& academicYears, const unsigne
 /*		Insert function		*/
 
 // Add a new SchoolYear
-void addNewSchoolYear(Vector<SchoolYear>& yearList, const std::string &start){
+bool addNewSchoolYear(Vector<SchoolYear>& yearList, const std::string &start){
 	unsigned int startYear = static_cast<unsigned int>(stoul(start));
 	SchoolYear* ptrSchoolYear = getSchoolYear(yearList, startYear);
 	if (ptrSchoolYear != nullptr)
 	{
 		std::cout << "SchoolYear with start year " << startYear << " have been already existed!" << std::endl;
-		return;
+		return false;
 	}
 	SchoolYear newYear;
 	newYear.start = startYear;
     yearList.append(newYear);
+	return true;
 }
 
-void addNewSchoolYearV2(Vector<SchoolYear>& yearList, const unsigned int& start){
+bool addNewSchoolYearV2(Vector<SchoolYear>& yearList, const unsigned int& start){
     /*unsigned int startYear;
     std::cout << "Enter the school year: "; std::cin >> startYear;*/
 	SchoolYear* ptrSchoolYear = getSchoolYear(yearList, start);
 	if (ptrSchoolYear != nullptr)
 	{
 		std::cout << "SchoolYear with start year " << start << " have been already existed!" << std::endl;
-		return;
+		return false;
 	}
 	SchoolYear newYear;
 	newYear.start = start;
     yearList.append(newYear);
+	return true;
 }
 // Add new class for SchoolYear
 bool addNewClass(SchoolYear& schoolYear, const std::string& className){
@@ -175,13 +177,14 @@ bool addNewClass(SchoolYear& schoolYear, const std::string& className){
 		if (ptrClass != nullptr)
 		{
 			std::cout << "Class " << className << " have been already existed!" << std::endl;
-			return;
+			return false;
 		}
 		else
 		{
 			Class newClass;
 			newClass.name = className;
 			schoolYear.addClass(newClass);
+			return true;
 		}
     //} /*while (className != "0");*/
 }
@@ -191,13 +194,14 @@ bool addNewAcademicYear(Vector<AcademicYear>& academicYears, const std::string& 
 	if (getAcademicYear(academicYears, startYear) != nullptr)
 	{
 		std::cout << "Academic Year " << startYear << " have been already existed! Pls input another start year!" << std::endl;
-		return;
+		return false;
 	}
 	else
 	{
 		AcademicYear newYear;
 		newYear.start = startYear;
 		academicYears.append(newYear);
+		return true;
 	}
 }
 
@@ -216,13 +220,14 @@ bool addNewAcademicYearV2(Vector<AcademicYear>& academicYears, const unsigned in
 	if (getAcademicYear(academicYears, start) != nullptr)
 	{
 		std::cout << "Academic Year " << start << " have been already existed! Pls input another start year!" << std::endl;
-		return;
+		return false;
 	}
 	else
 	{
 		AcademicYear newYear;
 		newYear.start = start;
 		academicYears.append(newYear);
+		return true;
 	}
 
 }
@@ -233,7 +238,7 @@ bool addStudToClass(Class &actClass){
     std::ifstream inF(inputStudClassFilePath);
     if (!inF.is_open()){
 		std::cout << "Cannot open file path " << inputStudClassFilePath << std::endl;
-        return;
+        return false;
     }
     std::string ignore;
     getline(inF, ignore);
@@ -243,6 +248,7 @@ bool addStudToClass(Class &actClass){
         newStud.ptrClass = &actClass;
     }
     inF.close();
+	return true;
 }
 // Add a semester to an academic year
 bool addSemester(AcademicYear& newYear, const std::string& semesterID) {
@@ -253,7 +259,7 @@ bool addSemester(AcademicYear& newYear, const std::string& semesterID) {
 	if (newYear.getSemester(id) != nullptr)
 	{
 		std::cout << "This SemesterID have been already existed in this AcademicYear! Pls input another semesterID";
-		return;
+		return false;
 	}
 	Date startDate;
 	std::cout << "Enter start date for the semester:\n";
@@ -272,6 +278,7 @@ bool addSemester(AcademicYear& newYear, const std::string& semesterID) {
 	newSem.ptrAcademicYear = &newYear;
 
 	newYear.addSemester(newSem);
+	return true;
 }
 // Add a new course
 bool addNewCourse(Semester& semester, const std::string& courseID) {
@@ -284,7 +291,7 @@ bool addNewCourse(Semester& semester, const std::string& courseID) {
 	if (semester.getCourse(ID) != nullptr)
 	{
 		std::cout << "Course with ID " << ID << " have been already existed in this semester!";
-		return;
+		return false;
 	}
 	std::cout << "Enter Course Name: "; std::cin >> name;
 	std::cout << "Enter Teacher's Name: "; std::cin >> teacher;
@@ -307,6 +314,7 @@ bool addNewCourse(Semester& semester, const std::string& courseID) {
 	newCourse.maxEnroll = maxEn;
 	//Course newCourse(ID, classID, name, teacher, cre, maxEn, weekday, session);
 	semester.addCourse(newCourse);
+	return true;
 }
 // Add list student to course (from file)
 bool getStudentToCourse(Vector<SchoolYear>& years, Course& course) {
@@ -314,7 +322,7 @@ bool getStudentToCourse(Vector<SchoolYear>& years, Course& course) {
 	std::ifstream inF(inputStudCourseFilePath);
 	if (!inF.is_open()) {
 		std::cout << "Cannot open file path " << inputStudCourseFilePath << std::endl;
-		return;
+		return false;
 	}
 	std::string ignore;
 	getline(inF, ignore);
@@ -346,6 +354,7 @@ bool getStudentToCourse(Vector<SchoolYear>& years, Course& course) {
 			course.addStudent(*ptrStudent);
 	}
 	inF.close();
+	return true;
 }
 // Add a student to course
 bool addANewStudentToCourse(Vector<SchoolYear>& schoolYears, Course& course, const std::string& studentID) {
@@ -360,10 +369,11 @@ bool addANewStudentToCourse(Vector<SchoolYear>& schoolYears, Course& course, con
 	if (ptrStudent == nullptr)
 	{
 		std::cout << "Student with ID " << studentID << " is not exist in school! Pls try another!";
-		return;
+		return false;
 	}
 	course.addStudent(*ptrStudent);
 	std::cout << "Complete add student with ID " << studentID << " to Course " << course.ID << std::endl;
+	return true;
 }
 
 //----------------------------------------------------------------------------------------------//
@@ -375,6 +385,7 @@ bool removeListSchoolYear(Vector<SchoolYear>& schoolYears){
 		removeListClasses(schoolYears[i]);
 		schoolYears.remove(&schoolYears[i]);
 	}
+	return true;
 }
 // Remove list AcademicYear
 bool removeListAcademicYear(Vector<AcademicYear>& academicYears){
@@ -382,14 +393,16 @@ bool removeListAcademicYear(Vector<AcademicYear>& academicYears){
 		removeListSemesters(academicYears[i]);
 		academicYears.remove(&academicYears[i]);
 	}
+	return true;
 }
 // Remove SchoolYear
 bool removeSchoolYear(Vector<SchoolYear>& schoolYears, const std::string& start){
 	unsigned int startYear = static_cast<unsigned int>(stoul(start));
 	SchoolYear* ptrSchoolYear = getSchoolYear(schoolYears, startYear);
 	if (ptrSchoolYear == nullptr)
-		return;
+		return false;
 	schoolYears.remove(ptrSchoolYear);
+	return true;
 }
 
 bool removeSchoolYearV2(Vector<SchoolYear>& schoolYears, const unsigned int& start) {
@@ -397,17 +410,19 @@ bool removeSchoolYearV2(Vector<SchoolYear>& schoolYears, const unsigned int& sta
 	if (ptrSchoolYear == nullptr)
 	{
 		std::cout << "SchoolYear with start year " << start << "is not exist!" << std::endl;
-		return;
+		return false;
 	}
 	schoolYears.remove(ptrSchoolYear);
+	return true;
 }
 // Remove AcademicYear
 bool removeAcademicYear(Vector<AcademicYear> &academicYears, const std::string& start){
 	unsigned int startYear = static_cast<unsigned int>(stoul(start));
 	AcademicYear* ptrAcademicYear = getAcademicYear(academicYears, startYear);
 	if (ptrAcademicYear == nullptr)
-		return;
+		return false;
 	academicYears.remove(ptrAcademicYear);
+	return true;
 }
 
 bool removeAcademicYearV2(Vector<AcademicYear>& academicYears, const unsigned int& start) {
@@ -415,20 +430,24 @@ bool removeAcademicYearV2(Vector<AcademicYear>& academicYears, const unsigned in
 	if (ptrAcademicYear == nullptr)
 	{
 		std::cout << "AcademicYear with start year " << start << "is not exist!" << std::endl;
-		return;
+		return false;
 	}
 	academicYears.remove(ptrAcademicYear);
+	return true;
 }
 // Remove Class from School
 bool removeClass(Vector<SchoolYear>& schoolYears, const std::string& className){
 	Class *ptrClass = nullptr;
 	for (int i = 0; i<schoolYears.size(); ++i){
 		ptrClass = schoolYears[i].getClass(className);
-		if (ptrClass){
+		if (ptrClass == nullptr) {
+			return false;
+		}
+		else{
 			schoolYears[i].classes.remove(ptrClass);
-			return;
 		}
 	}
+	return true;
 }
 // Remove List Classes
 bool removeListClasses(SchoolYear& schoolYear){
@@ -436,6 +455,7 @@ bool removeListClasses(SchoolYear& schoolYear){
 		removeListStudents(schoolYear.classes[i]);
 		schoolYear.classes.remove(&schoolYear.classes[i]);
 	}
+	return true;
 }
 // Remove Semester
 bool removeSemester(Vector<AcademicYear>& academicYears, const std::string& semesterID){
@@ -444,11 +464,13 @@ bool removeSemester(Vector<AcademicYear>& academicYears, const std::string& seme
 	Semester *ptrSemester = nullptr;
 	for (int i = 0; i<academicYears.size(); ++i){
 		ptrSemester = academicYears[i].semesters.find(semester);
-		if (ptrSemester){
+		if (ptrSemester == nullptr)
+			return false;
+		else{
 			academicYears[i].semesters.remove(ptrSemester);
-			return;
 		}
 	}
+	return true;
 }
 // Remove List Semesters
 bool removeListSemesters(AcademicYear& academicYear){
@@ -456,6 +478,7 @@ bool removeListSemesters(AcademicYear& academicYear){
 		removeListCourses(academicYear.semesters[i]);
 		academicYear.semesters.remove(&academicYear.semesters[i]);
 	}
+	return true;
 }
 // Remove Course
 bool removeCourse(Vector<AcademicYear>& academicYears, const std::string& courseID){
@@ -475,10 +498,11 @@ bool removeCourse(Vector<AcademicYear>& academicYears, const std::string& course
 				}
 				ptrCourse->scoreboards.~Vector(); // delete Vector pointer of scoreboards 
 				academicYears[i].semesters[j].courses.remove(ptrCourse); // delete course
-				return;
+				return true;
 			}
 		}
 	}
+	return false;
 }
 // Remove List Courses
 bool removeListCourses(Semester& semester){
@@ -488,6 +512,7 @@ bool removeListCourses(Semester& semester){
 		semester.courses[i].scoreboards.~Vector(); // delete Vector pointer of Scoreboards
 		semester.courses.remove(&semester.courses[i]); // delete course
 	}
+	return true;
 }
 // Remove Student from School
 bool removeStudent(Vector<SchoolYear>& schoolYears, const std::string& studentID){
@@ -503,9 +528,10 @@ bool removeStudent(Vector<SchoolYear>& schoolYears, const std::string& studentID
 				}
 				ptrStudent->scoreboards.~Vector();
 				schoolYears[i].classes[j].students.remove(ptrStudent);
-				return;
+				return true;
 			}
 		}
+	return false;
 }
 // Remove List Students
 bool removeListStudents(Class &thisClass){
@@ -513,6 +539,7 @@ bool removeListStudents(Class &thisClass){
 		thisClass.students[i].scoreboards.~Vector(); // delete a student's scoreboard pointers
 		thisClass.students.remove(&thisClass.students[i]);
 	}
+	return true;
 }
 // Remove student from course
 bool removeStudFromCourse(Course& course, const std::string& studentID) {
@@ -520,19 +547,22 @@ bool removeStudFromCourse(Course& course, const std::string& studentID) {
 	if (ptrStudent == nullptr)
 	{
 		std::cout << "Student with ID " << studentID << " is not exist in this Course " << course.ID << std::endl;
-		return;
+		return false;
 	}
 	Scoreboard* ptrScoreboard = course.getScoreboard(studentID);
 	ptrStudent->scoreboards.remove(ptrScoreboard);
 	ptrScoreboard->ptrStudent = nullptr;
 	course.scoreboards.remove(ptrScoreboard);
 	ptrScoreboard->ptrCourse = nullptr;
+	return true;
 }
 // Remove course from semester
 bool deleteCourse(Semester& semester, const std::string& courseID) {
 	Course* ptrCourse = semester.getCourse(courseID);
-	if (ptrCourse == nullptr)
+	if (ptrCourse == nullptr) {
 		std::cout << "Can't find a course with ID " << courseID;
+		return false;
+	}
 	else
 	{
 		ptrCourse->ptrSemester = nullptr;
@@ -549,11 +579,13 @@ bool deleteCourse(Semester& semester, const std::string& courseID) {
 		std::cout << "Course with ID " << courseID << " have been removed from semester!";
 	}
 	std::cout << std::endl;
+	return true;
 }
 // Free memory
 bool freeMemory(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears){
-	removeListSchoolYear(schoolYears);
-	removeListAcademicYear(academicYears);
+	bool b1 = removeListSchoolYear(schoolYears);
+	bool b2 = removeListAcademicYear(academicYears);
+	return (b1 && b2);
 }
 //----------------------------------------------------------------------------------------------//
 
