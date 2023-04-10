@@ -1,5 +1,6 @@
 #include "InsertFunction.h"
 #include "SearchFunction.h"
+#include "FileAndDirFunction.h"
 
 #include "Date.h"
 #include "Name.h"
