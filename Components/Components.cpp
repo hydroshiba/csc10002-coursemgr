@@ -111,6 +111,18 @@ Staff* getStaff(Vector<Staff> staffs, const std::string& staffID) {
 	return ptrStaff;
 }
 // Find SchoolYear
+SchoolYear* getSchoolYear(Vector<SchoolYear>& schoolYears, const std::string& start) {
+	const unsigned int startYear = std::stoul(start);
+	SchoolYear* ptrSchoolYear = nullptr;
+	for (int i = 0; i < schoolYears.size(); i++)
+		if (schoolYears[i].start == startYear)
+		{
+			ptrSchoolYear = &schoolYears[i];
+			break;
+		}
+	return ptrSchoolYear;
+}
+// Find SchoolYear
 SchoolYear* getSchoolYear(Vector<SchoolYear>& schoolYears, const unsigned int& start) {
 	SchoolYear* ptrSchoolYear = nullptr;
 	for (int i = 0; i < schoolYears.size(); i++)
@@ -120,6 +132,18 @@ SchoolYear* getSchoolYear(Vector<SchoolYear>& schoolYears, const unsigned int& s
 			break;
 		}
 	return ptrSchoolYear;
+}
+// Find AcademicYear
+AcademicYear* getAcademicYear(Vector<AcademicYear>& academicYears, const std::string& start) {
+	const unsigned int startYear = std::stoul(start);
+	AcademicYear* ptrAcademicYear = nullptr;
+	for (int i = 0; i < academicYears.size(); i++)
+		if (academicYears[i].start == startYear)
+		{
+			ptrAcademicYear = &academicYears[i];
+			break;
+		}
+	return ptrAcademicYear;
 }
 // Find Academic Year
 AcademicYear* getAcademicYear(Vector<AcademicYear>& academicYears, const unsigned int& start) {
