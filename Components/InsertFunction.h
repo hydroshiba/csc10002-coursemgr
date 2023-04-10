@@ -1,6 +1,8 @@
 #ifndef INSERT_FUNCTION_H
-#define SEARCH_FUNCTION_H
+#define INSERT_FUNCTION_H
+
 #include "Components.h"
+
 /*		Insert function		*/
 
 // Add a new SchoolYear

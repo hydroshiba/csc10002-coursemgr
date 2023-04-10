@@ -1,4 +1,5 @@
 #include "InsertFunction.h"
+#include "SearchFunction.h"
 
 #include "Date.h"
 #include "Name.h"
@@ -13,7 +14,6 @@
 #include "Course.h"
 #include "Scoreboard.h"
 
-#include "SearchFunction.h"
 
 /*		Insert function		*/
 
