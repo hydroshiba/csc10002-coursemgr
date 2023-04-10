@@ -1,6 +1,6 @@
-#include "DownUpLoad.h"
-#include "FileAndDirFunction.h"
+#include "UpdateFunction.h"
 #include "ConvertType.h"
+#include "FileAndDirFunction.h"
 
 #include "Date.h"
 #include "Name.h"
@@ -14,76 +14,6 @@
 #include "Semester.h"
 #include "Course.h"
 #include "Scoreboard.h"
-
-/*			Upload and download function		*/
-
-// SchoolYear
-
-void downloadListSchoolYearFolder(Vector <SchoolYear>& schoolYears) {
-	std::string listSchoolYearDir = getListSchoolYearFilePath();
-	std::ofstream ofs(listSchoolYearDir);
-	/*if (!ofs.is_open()){
-		std::cout << "Cannot open " << listSchoolYearDir << '\n';
-		return;
-	}*/
-	ofs << schoolYears.size() << '\n';
-	for (int i = 0; i < schoolYears.size(); ++i) {
-		ofs << schoolYears[i].start << '\n';
-		downloadSchoolYearFolder(schoolYears[i]);
-	}
-	ofs.close();
-}
-
-void downloadSchoolYearFolder(SchoolYear& schoolYear) {
-	std::string schoolYearDir = getInputSchoolYearFilePath(schoolYear);
-	std::ofstream ofs(schoolYearDir);
-	/*if (!ofs.is_open()){
-		std::cout << "Cannot open " << schoolYearDir;
-		return;
-	}*/
-	ofs << schoolYear.start << '\n';
-	ofs << schoolYear.classes.size() << '\n';
-	for (int i = 0; i < schoolYear.classes.size(); ++i) {
-		ofs << schoolYear.classes[i].name;
-		downloadOutputStudClassFile(schoolYear.classes[i]);
-		for (int j = 0; j < schoolYear.classes[i].students.size(); ++j)
-			downloadStudentFolder(schoolYear.classes[i].students[j]);
-	}
-	ofs.close();
-}
-
-void downloadOutputStudClassFile(Class& actClass) {
-	std::string outputStudentDir = getOutputStudClassFilePath(actClass);
-	std::ofstream ofs(outputStudentDir);
-	ofs << "Class," << actClass.name << '\n';
-	ofs << "Number of student," << actClass.students.size();
-	ofs << "No,StudentID,First name,Last name,Gender,Date of Birth,SocialID\n";
-	for (int i = 0; i < actClass.students.size(); ++i) {
-		ofs << i + 1 << ",";
-		ofs << actClass.students[i].ID << ",";
-		ofs << actClass.students[i].name.first << "," << actClass.students[i].name.last << ",";
-		ofs << gender_to_string(actClass.students[i].gender) << ",";
-		ofs << actClass.students[i].birth.day << "/" << actClass.students[i].birth.month << "/" << actClass.students[i].birth.year << ",";
-		ofs << actClass.students[i].socialID << "\n";
-	}
-	ofs.close();
-}
-
-void downloadStudentFolder(Student& student) {
-	std::string studentDir = getInputStandardIn4StudentFilePath(student);
-	std::ofstream ofs(studentDir);
-	/*if (!ofs.is_open()){
-		std::cout << "Cannot open " << studentDir;
-		return;
-	}*/
-	ofs << "ID," << student.ID << std::endl;
-	ofs << "Name," << student.name.get() << std::endl;
-	ofs << "Gender," << gender_to_string(student.gender) << std::endl;
-	ofs << "Dob," << student.birth.get() << std::endl;
-	ofs << "SocialID," << student.socialID << std::endl;
-	ofs << "Class," << student.ptrClass->name << std::endl;
-	ofs.close();
-}
 
 void uploadAllData(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears) {
 	uploadListSchoolYearFolder(schoolYears);
@@ -208,73 +138,7 @@ void get_students_priority(Class& actClass) {
 
 // AcademicYear
 
-void downloadAllData(Vector <SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears) {
-	downloadListSchoolYearFolder(schoolYears);
-	downloadListAcademicYearFolder(academicYears);
-}
 
-void downloadListAcademicYearFolder(Vector<AcademicYear>& academicYears) {
-	std::string listAcademicYearFilePath = getListAcademicYearFilePath();
-	std::ofstream ofs(listAcademicYearFilePath);
-	ofs << academicYears.size() << std::endl;
-	for (int i = 0; i < academicYears.size(); i++)
-	{
-		ofs << academicYears[i].start << std::endl;
-		downloadAcademicYearFolder(academicYears[i]);
-	}
-	ofs.close();
-}
-
-void downloadAcademicYearFolder(AcademicYear& academicYear) {
-	std::string academicYearFilePath = getAcademicYearFilePath(academicYear);
-	std::ofstream ofs(academicYearFilePath);
-	ofs << academicYear.start << std::endl;
-	ofs << academicYear.semesters.size() << std::endl;
-	for (int i = 0; i < academicYear.semesters.size(); i++)
-	{
-		ofs << academicYear.semesters[i].semesterID << std::endl;
-		downloadSemesterFolder(academicYear.semesters[i]);
-	}
-	ofs.close();
-}
-
-void downloadSemesterFolder(Semester& semester) {
-	std::string semesterFilePath = getSemesterFilePath(semester);
-	std::ofstream ofs(semesterFilePath);
-	ofs << semester.semesterID << std::endl;
-	ofs << semester.startDate.day << "/" << semester.startDate.month << "/" << semester.startDate.year << std::endl;
-	ofs << semester.endDate.day << "/" << semester.endDate.month << "/" << semester.endDate.year << std::endl;
-	ofs << semester.courses.size() << std::endl;
-	for (int i = 0; i < semester.courses.size(); i++)
-		ofs << semester.courses[i].ID << std::endl;
-	for (int i = 0; i < semester.courses.size(); i++)
-	{
-		downloadCourseFolder(semester.courses[i]);
-		dowdloadScoreboardFile(semester.courses[i]);
-	}
-	ofs.close();
-}
-
-void downloadCourseFolder(Course& course) {
-	std::string courseFilePath = getCourseFilePath(course);
-	std::ofstream ofs(courseFilePath);
-	ofs << course.ID << std::endl;
-	ofs << course.classID << std::endl;
-	ofs << course.name << std::endl;
-	ofs << course.teacher << std::endl;
-	ofs << course.credits << std::endl;
-	ofs << course.maxEnroll << std::endl;
-	ofs << course.weekday << std::endl;
-	ofs << course.session << std::endl;
-	ofs.close();
-}
-
-void dowdloadScoreboardFile(Course& course) {
-	std::string scoreBoardFilePath = getOutputScoreStudCourseFilePath(course);
-	std::ofstream ofs(scoreBoardFilePath);
-	course.displayScoreBoardFile(ofs);
-	ofs.close();
-}
 
 void uploadListAcademicYearFolder(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears) {
 	std::string listAcademicYearFilePath = getListAcademicYearFilePath();

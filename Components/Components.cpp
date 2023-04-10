@@ -20,9 +20,5 @@
 #include "UpdateFunction.h"
 #include "FileAndDirFunction.h"
 #include "DisplayFunction.h"
-#include "DownUpLoad.h"
-
-
-
-
-
+#include "DownLoadFunction.h"
+#include "UpLoadFunction.h"
