@@ -16,18 +16,11 @@
 /*		Search function		*/
 
 // Find student
-Student* getStudent(Vector<SchoolYear>& schoolYears, const std::string& studentID) {
-	Student* ptrStudent = nullptr;
-	for (int i = 0; i < schoolYears.size(); i++)
-	{
-		Student* temp = schoolYears[i].getStudent(studentID);
-		if (temp != nullptr)
-		{
-			ptrStudent = temp;
-			break;
-		}
-	}
-	return ptrStudent;
+Student* getStudent(Vector<Student>& students, const std::string& studentID) {
+	for (int i = 0; i < students.size(); i++)
+		if (students[i].ID == studentID)
+			return &students[i];
+	return nullptr;
 }
 // Find staff
 Staff* getStaff(Vector<Staff> staffs, const std::string& staffID) {

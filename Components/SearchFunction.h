@@ -5,7 +5,7 @@
 
 /*		Search function		*/
 // Find student
-Student* getStudent(Vector<SchoolYear>& schoolYears, const std::string& studentID);
+Student* getStudent(Vector<Student>& students, const std::string& studentID);
 // Find staff
 Staff* getStaff(Vector<Staff> staffs, const std::string& staffID);
 // Find SchoolYear

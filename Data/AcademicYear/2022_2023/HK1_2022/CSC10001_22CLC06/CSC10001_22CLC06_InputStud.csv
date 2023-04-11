@@ -1,13 +1,13 @@
-Course ID,CSC10001_22CLC06,,,
-Class ID,NMLT_22CLC06,,,
-Course name,Introduction to Programming,,,
-Teacher,Le Ngoc Thanh,,,
-Number of credits,4,,,
-Weekday,MON,,,
-Session,7:30,,,
-Students,4,,,
-No,ID,First name,Last name,Class
-1,1,Nguyen,Gia Huy, 22CLC06
-2,2,Quach Tran,Quan Vinh, 22CLC05
-3,3,Phan,Hai Minh, 22CLC05
-4,4,Dao,Viet Hoang, 22CLC04
+Course ID,CSC10001_22CLC06,,
+Class ID,NMLT_22CLC06,,
+Course name,Introduction to Programming,,
+Teacher,Le Ngoc Thanh,,
+Number of credits,4,,
+Weekday,MON,,
+Session,7:30,,
+Students,4,,
+No,ID,First name,Last name
+1,1,Nguyen,Gia Huy
+2,2,Quach Tran,Quan Vinh
+3,3,Phan,Hai Minh
+4,4,Dao,Viet Hoang

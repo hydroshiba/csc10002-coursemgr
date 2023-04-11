@@ -76,8 +76,9 @@ bool addClass(SchoolYear& schoolYear, const std::string& className, std::string&
 	//} /*while (className != "0");*/
 }
 // Add students into a specific class (from File)
-bool addStudToClass(Class& actClass, std::string& outStr) {
+bool addStudToClass(Vector<Student> &students, Class& actClass, std::string& outStr) {
 	Student newStud;
+	Student *ptrStudent;
 	std::string inputStudClassFilePath = getInputStudClassFilePath(actClass);
 	std::ifstream inF(inputStudClassFilePath);
 	if (!inF.is_open()) {
@@ -89,8 +90,8 @@ bool addStudToClass(Class& actClass, std::string& outStr) {
 	getline(inF, ignore);
 	while (!inF.eof()) {
 		newStud.setInfoToClass(inF);
-		actClass.addStudent(newStud);
-		newStud.ptrClass = &actClass;
+		ptrStudent = getStudent(students, newStud.ID);
+		actClass.addStudent(*ptrStudent);
 	}
 	inF.close();
 	outStr = "Complete add list of student to class " + actClass.name + "!";
@@ -216,7 +217,7 @@ bool addCourse(Semester& semester, const std::string& courseID, std::string& out
 	return true;
 }
 // Add list student to course (from file)
-bool getStudentToCourse(Vector<SchoolYear>& years, Course& course, std::string& outStr) {
+bool getStudentToCourse(Vector <Student> &students, Course& course, std::string& outStr) {
 	std::string inputStudCourseFilePath = getInputListStudCourseFilePath(course);
 	std::ifstream inF(inputStudCourseFilePath);
 	if (!inF.is_open()) {
@@ -234,22 +235,11 @@ bool getStudentToCourse(Vector<SchoolYear>& years, Course& course, std::string& 
 	getline(inF, ignore);
 	getline(inF, ignore);
 	getline(inF, ignore);
-	std::string className;
-	Class actClass;
-	Class* ptrClass = nullptr;
 	Student student;
 	Student* ptrStudent = nullptr;
 	while (!inF.eof()) {
-		student.setInfoToCourseCSV(inF, className);
-		actClass.name = className;
-		for (int i = 0; i < years.size(); ++i)
-			if (years[i].classes.find(actClass))
-			{
-				ptrClass = years[i].classes.find(actClass);
-				break;
-			}
-		if (ptrClass != nullptr)
-			ptrStudent = ptrClass->students.find(student);
+		student.setInfoToCourseCSV(inF);
+		ptrStudent = getStudent(students, student.ID);
 		if (ptrStudent != nullptr)
 			course.addStudent(*ptrStudent);
 	}

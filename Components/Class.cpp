@@ -1,12 +1,12 @@
 #include "Class.h"
 
-Class::Class(SchoolYear* ptrSchoolYear, const std::string& name, const Vector<Student>& students) {
+Class::Class(SchoolYear* ptrSchoolYear, const std::string& name, const Vector<Student*>& students) {
     this->ptrSchoolYear = nullptr;
     this->name = name;
     this->students = students;
 }
 
-void Class::set(SchoolYear* ptrSchoolYear, const std::string& name, const Vector<Student>& students) {
+void Class::set(SchoolYear* ptrSchoolYear, const std::string& name, const Vector<Student*>& students) {
     this->ptrSchoolYear = ptrSchoolYear;
     this->name = name;
     this->students = students;
@@ -19,38 +19,36 @@ void Class::update(SchoolYear* ptrSchoolYear) {
 void Class::update(const std::string& name) {
     this->name = name;
 }
-
+/*
 void Class::update(Vector<Student>& students) {
     this->students = students;
 }
-
+*/
 void Class::addStudent(Student& student){
-    students.append(student);
+    Student *ptrStudent = &student;
+    students.append(ptrStudent);
     student.ptrClass = this;
 }
 
 void Class::removeStudent(Student& student){
-    students.remove(student);
+    for (int i = 0; i < this->students.size(); ++i)
+        if (*students[i] == student)
+            students.remove(&students[i]);
     student.ptrClass = nullptr;
 }
 
 Student* Class::getStudent(const std::string& studentID) {
-    Student* ptrStudent = nullptr;
     for (int i = 0; i < students.size(); i++)
-        if (students[i].ID == studentID)
-        {
-            ptrStudent = &students[i];
-            break;
-        }
-    return ptrStudent;
+        if (students[i]->ID == studentID)
+            return students[i];
 }
 
 Vector<std::string> Class::getListCourse() {
     Vector<std::string> listCourse(0);
     for (int i = 0; i < students.size(); i++)
-        for (int j = 0; j < students[i].scoreboards.size(); j++)
-            if (listCourse.find(students[i].scoreboards[j]->ptrCourse->ID) == nullptr)
-                listCourse.append(students[i].scoreboards[j]->ptrCourse->ID);
+        for (int j = 0; j < students[i]->scoreboards.size(); j++)
+            if (listCourse.find(students[i]->scoreboards[j]->ptrCourse->ID) == nullptr)
+                listCourse.append(students[i]->scoreboards[j]->ptrCourse->ID);
     return listCourse;
 }
 
@@ -74,17 +72,17 @@ void Class::displayScoreboardScreen(const Semester& semester){
     for (int i = 0; i < students.size(); i++)
     {
         std::cout << std::setw(noMaxLength) << std::left << i + 1;
-        std::cout << std::setw(idMaxLength) << std::left << students[i].ID;
-        std::cout << std::setw(fullNameMaxLength) << std::left << students[i].name.get();
+        std::cout << std::setw(idMaxLength) << std::left << students[i]->ID;
+        std::cout << std::setw(fullNameMaxLength) << std::left << students[i]->name.get();
         for (int j = 0; j < nCourse; j++)
         {
             bool found = false;
             int score = -1;
-            for (int k = 0; k < students[i].scoreboards.size(); k++)
-                if (students[i].scoreboards[k]->ptrCourse->ID == listCourse[j])
+            for (int k = 0; k < students[i]->scoreboards.size(); k++)
+                if (students[i]->scoreboards[k]->ptrCourse->ID == listCourse[j])
                 {
                     found = true;
-                    score = students[i].scoreboards[k]->total;
+                    score = students[i]->scoreboards[k]->total;
                     break;
                 }
             if (found)
@@ -92,8 +90,8 @@ void Class::displayScoreboardScreen(const Semester& semester){
             else
                 std::cout << std::setw(courseIdMaxLength) << std::left << "x";      
         }
-        std::cout << std::setw(gpaMaxLength) << std::left << students[i].getGPA(semester);
-        std::cout << std::setw(gpaMaxLength) << std::left << students[i].getGPA();
+        std::cout << std::setw(gpaMaxLength) << std::left << students[i]->getGPA(semester);
+        std::cout << std::setw(gpaMaxLength) << std::left << students[i]->getGPA();
         std::cout << std::endl;
     }
 }
@@ -109,16 +107,16 @@ void Class::displayScoreboardFile(const Semester& semester, std::ofstream& ofs){
     ofs << std::endl;
     for (int i = 0; i < students.size(); i++)
     {
-        ofs << i + 1 << "," << students[i].ID << "," << students[i].name.get() << ",";
+        ofs << i + 1 << "," << students[i]->ID << "," << students[i]->name.get() << ",";
         for (int j = 0; j < nCourse; j++)
         {
             bool found = false;
             int score = -1;
-            for (int k = 0; k < students[i].scoreboards.size(); k++)
-                if (students[i].scoreboards[k]->ptrCourse->ID == listCourse[j])
+            for (int k = 0; k < students[i]->scoreboards.size(); k++)
+                if (students[i]->scoreboards[k]->ptrCourse->ID == listCourse[j])
                 {
                     found = true;
-                    score = students[i].scoreboards[k]->total;
+                    score = students[i]->scoreboards[k]->total;
                     break;
                 }
             if (found)
@@ -126,7 +124,7 @@ void Class::displayScoreboardFile(const Semester& semester, std::ofstream& ofs){
             else
                 ofs << "x,";
         }
-        ofs << students[i].getGPA(semester) << "," << students[i].getGPA();
+        ofs << students[i]->getGPA(semester) << "," << students[i]->getGPA();
         ofs << std::endl;
     }
 }

@@ -33,7 +33,7 @@ struct Student : public User {
     float getGPA(const Semester& semester); // Current semester GPA
 
     void setInfoToClass(std::ifstream &ifs);
-    void setInfoToCourseCSV(std::ifstream &ifs, std::string& actClass);
+    void setInfoToCourseCSV(std::ifstream &ifs);
     void setInfoCourseConsole(std::string &actClass);
 
 };

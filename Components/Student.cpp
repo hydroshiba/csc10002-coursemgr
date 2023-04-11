@@ -96,13 +96,12 @@ void Student::setInfoToClass(std::ifstream &ifs){
     socialID = sID;
 }
 
-void Student::setInfoToCourseCSV(std::ifstream &ifs, std::string &actClass){
+void Student::setInfoToCourseCSV(std::ifstream &ifs){
     std::string id, first, last, sTemp;
     getline(ifs, sTemp, ',');
     getline(ifs, id, ',');
     getline(ifs, first, ',');
-    getline(ifs, last, ',');
-    getline(ifs, actClass);
+    getline(ifs, last);
 
     ID = id;
     setName(first, last);

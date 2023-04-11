@@ -8,11 +8,11 @@
 struct Class {
     SchoolYear* ptrSchoolYear;
     std::string name;
-    Vector<Student> students;
+    Vector<Student*> students;
     
-    Class(SchoolYear* ptrSchoolYear = nullptr, const std::string& name = defaultStr, const Vector<Student>& students = Vector<Student>());
+    Class(SchoolYear* ptrSchoolYear = nullptr, const std::string& name = defaultStr, const Vector<Student*>& students = Vector<Student*>());
 
-    void set(SchoolYear* ptrSchoolYear, const std::string& name, const Vector<Student>& students);
+    void set(SchoolYear* ptrSchoolYear, const std::string& name, const Vector<Student*>& students);
 
     void update(SchoolYear* ptrSchoolYear);
 

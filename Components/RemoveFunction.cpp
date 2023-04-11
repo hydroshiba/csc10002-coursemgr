@@ -172,7 +172,7 @@ bool removeStudent(Vector<SchoolYear>& schoolYears, const std::string& studentID
 // Remove List Students
 bool removeListStudents(Class& thisClass) {
 	for (int i = 0; i < thisClass.students.size(); ++i) {
-		thisClass.students[i].scoreboards.~Vector(); // delete a student's scoreboard pointers
+		thisClass.students[i]->scoreboards.~Vector(); // delete a student's scoreboard pointers
 		thisClass.students.remove(&thisClass.students[i]);
 	}
 	return true;

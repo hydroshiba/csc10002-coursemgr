@@ -154,7 +154,7 @@ void get_students_priority(Class& actClass) {
 	for (int i = 0; i < actClass.students.size(); ++i) {
 		std::getline(ifs, ignore, ',');
 		std::getline(ifs, id, ',');
-		uploadStudentFolder(actClass, actClass.students[i], id);
+		uploadStudentFolder(actClass, *actClass.students[i], id);
 		std::getline(ifs, ignore);
 	}
 	ifs.close();

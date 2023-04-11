@@ -42,7 +42,7 @@ void viewListOfStudentsInClass(const Class& curClass, std::ostream& outDev) {
 	outDev << "List of students in class " << curClass.name << ": " << std::endl;
 	for (int i = 0; i < curClass.students.size(); i++)
 	{
-		outDev << i + 1 << ". " << curClass.students[i].ID << " - " << curClass.students[i].name.get();
+		outDev << i + 1 << ". " << curClass.students[i]->ID << " - " << curClass.students[i]->name.get();
 		outDev << std::endl;
 	}
 }
