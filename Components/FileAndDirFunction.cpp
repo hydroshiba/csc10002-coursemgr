@@ -24,6 +24,10 @@ void createDirectoryIfNotExists(const std::string& dirPath)
 	}
 }
 
+std::string getListStudentFilePath(){
+	return "Data\\StudentList.csv";
+}
+
 std::string getListSchoolYearFilePath() {
 	return "Data\\SchoolYear\\ListSchoolYear.txt";
 }

@@ -9,6 +9,8 @@ void createDirectoryIfNotExists(const std::string& dirPath);
 
 std::string getListStaffFilePath();
 
+std::string getListStudentFilePath();
+
 std::string getListSchoolYearFilePath();
 
 std::string getListAcademicYearFilePath();
