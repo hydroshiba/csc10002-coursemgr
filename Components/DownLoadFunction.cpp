@@ -15,6 +15,11 @@
 #include "Course.h"
 #include "Scoreboard.h"
 
+void downloadAllData(Vector <SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears) {
+	downloadListSchoolYearFolder(schoolYears);
+	downloadListAcademicYearFolder(academicYears);
+}
+
 void downloadListStudent(Vector<Student>& students){
 	std::string list_stud_dir = getListStudentFilePath();
 	std::ofstream ofs(list_stud_dir);
@@ -58,8 +63,6 @@ void downloadSchoolYearFolder(SchoolYear& schoolYear) {
 	for (int i = 0; i < schoolYear.classes.size(); ++i) {
 		ofs << schoolYear.classes[i].name;
 		downloadOutputStudClassFile(schoolYear.classes[i]);
-		for (int j = 0; j < schoolYear.classes[i].students.size(); ++j)
-			downloadStudentFolder(*schoolYear.classes[i].students[j]);
 	}
 	ofs.close();
 }
@@ -95,11 +98,6 @@ void downloadStudentFolder(Student& student) {
 	ofs << "SocialID," << student.socialID << std::endl;
 	ofs << "Class," << student.ptrClass->name << std::endl;
 	ofs.close();
-}
-
-void downloadAllData(Vector <SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears) {
-	downloadListSchoolYearFolder(schoolYears);
-	downloadListAcademicYearFolder(academicYears);
 }
 
 void downloadListAcademicYearFolder(Vector<AcademicYear>& academicYears) {
