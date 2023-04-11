@@ -1,6 +1,7 @@
 #include "UploadFunction.h"
 #include "ConvertType.h"
 #include "FileAndDirFunction.h"
+#include "SearchFunction.h"
 
 #include "Date.h"
 #include "Name.h"
@@ -15,8 +16,8 @@
 #include "Course.h"
 #include "Scoreboard.h"
 
-void uploadAllData(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears) {
-	uploadListSchoolYearFolder(schoolYears);
+void uploadAllData(Vector<Student> &students, Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears) {
+	uploadListSchoolYearFolder(students, schoolYears);
 	uploadListAcademicYearFolder(schoolYears, academicYears);
 }
 
@@ -45,7 +46,7 @@ void uploadListStudent(Vector<Student>& students, Vector <SchoolYear>& schoolYea
 	ifs.close();
 }
 
-void uploadListSchoolYearFolder(Vector <SchoolYear>& schoolYears) {
+void uploadListSchoolYearFolder(Vector <Student> &students, Vector <SchoolYear>& schoolYears) {
 	std::string listSchoolYearDir = getListSchoolYearFilePath();
 	std::ifstream ifs(listSchoolYearDir);
 	if (!ifs.is_open()) {
@@ -61,12 +62,12 @@ void uploadListSchoolYearFolder(Vector <SchoolYear>& schoolYears) {
 		ifs >> startYear;
 		school_year.start = startYear;
 		schoolYears[i] = school_year;
-		uploadSchoolYearFolder(schoolYears[i]);
+		uploadSchoolYearFolder(students, schoolYears[i]);
 	}
 	ifs.close();
 }
 
-void uploadSchoolYearFolder(SchoolYear& schoolYear) {
+void uploadSchoolYearFolder(Vector <Student>& students, SchoolYear& schoolYear) {
 	std::string schoolYearDir = getInputSchoolYearFilePath(schoolYear);
 	std::ifstream ifs(schoolYearDir);
 	if (!ifs.is_open()) {
@@ -87,7 +88,7 @@ void uploadSchoolYearFolder(SchoolYear& schoolYear) {
 		ifs >> className;
 		schoolYear.classes[i].name = className;
 		schoolYear.classes[i].ptrSchoolYear = &schoolYear;
-		get_students_priority(schoolYear.classes[i]);
+		get_students_priority(students, schoolYear.classes[i]);
 	}
 	ifs.close();
 }
@@ -130,7 +131,7 @@ void uploadStudentFolder(Class& actClass, Student& student, std::string id) {
 	Student studInfo({ first, last }, id, password, string_to_gender(gender), { d, m, y }, socialId, &actClass);
 }
 
-void get_students_priority(Class& actClass) {
+void get_students_priority(Vector<Student> &students, Class& actClass) {
 	std::string oFile = getOutputStudClassFilePath(actClass);
 	std::ifstream ifs(oFile);
 	if (!ifs.is_open()) {
@@ -150,12 +151,15 @@ void get_students_priority(Class& actClass) {
 	ifs >> nStud;
 	actClass.students.resize(nStud);
 	std::string id;
+	Student *ptrStudent;
 	std::getline(ifs, ignore);
 	for (int i = 0; i < actClass.students.size(); ++i) {
 		std::getline(ifs, ignore, ',');
 		std::getline(ifs, id, ',');
-		uploadStudentFolder(actClass, *actClass.students[i], id);
 		std::getline(ifs, ignore);
+		ptrStudent = getStudent(students, id);
+		actClass.students[i] = ptrStudent;
+		actClass.students[i]->ptrClass = &actClass;
 	}
 	ifs.close();
 }

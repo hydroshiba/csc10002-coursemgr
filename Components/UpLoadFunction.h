@@ -3,19 +3,19 @@
 
 #include "Components.h"
 
-void uploadAllData(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears);
+void uploadAllData(Vector<Student> &students, Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears);
 
 void uploadListStaff(Vector<Staff> staffs);
 
 void uploadListStudent(Vector<Student>& students, Vector<SchoolYear>& schoolYears);
 
-void uploadListSchoolYearFolder(Vector <SchoolYear>& schoolYears);
+void uploadListSchoolYearFolder(Vector<Student> &students, Vector <SchoolYear>& schoolYears);
 
-void uploadSchoolYearFolder(SchoolYear& schoolYear);
+void uploadSchoolYearFolder(Vector<Student> &students, SchoolYear& schoolYear);
 
 void uploadStudentFolder(Class& actClass, Student& student, std::string id);
 
-void get_students_priority(Class& actClass);
+void get_students_priority(Vector<Student> &students, Class& actClass);
 
 // AcademicYear
 
