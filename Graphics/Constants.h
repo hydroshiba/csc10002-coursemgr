@@ -9,7 +9,7 @@ namespace app_const {
 
 const int width = 1280;
 const int height = 720;
-const int fps = 30;
+const int fps = 60;
 
 const std::string title = "Course Management System";
 const std::string path = GetApplicationDirectory();

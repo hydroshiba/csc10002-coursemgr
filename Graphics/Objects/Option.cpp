@@ -26,6 +26,14 @@ void Option::refresh() {
     refreshText();
 }
 
+float Option::getLeftPad() {
+	return left_padding;
+}
+
+float Option::getRightPad() {
+	return right_padding;
+}
+
 void Option::render(const Vector2 &mouse) const {
 	Color color;
 

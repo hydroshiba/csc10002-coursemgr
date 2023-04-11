@@ -1,9 +1,5 @@
 #include "DropBox.h"
 
-void Triangle::draw() {
-    DrawTriangle(p1, p2, p3, BLACK);
-}
-
 DropBox::DropBox() {
     curIndex = -1;
     selected = false;
@@ -14,13 +10,17 @@ DropBox::DropBox() {
     pos = {0, 0};
     size = {box_const::width, box_const::height};
 
+    arrow.center = {300, 300};
+    arrow.length = 5;
+    arrow.angle = 0;
+    arrow.color = border_color;
+
     refresh();
 }
 
 void DropBox::refresh() {
     current.setPos(pos);
     current.setSize(size);
-    createTriangle();
 
     for(int i = 0; i < options.size(); ++i) {
         options[i].setSize(size);
@@ -31,19 +31,9 @@ void DropBox::refresh() {
 
         options[i].setPos({curPos.x, curPos.y + size.y - box_const::thickness});
     }
-}
 
-void DropBox::createTriangle() {
-    float length = 1;
-    Vector2 center = {pos.x + size.x - length * 3 / 2, pos.y + size.y / 2};
-    //open
-    open.p1 = {center.x, center.y + length * (float)sqrt(3) / 3};
-    open.p2 = {center.x + length / 2, center.y - length * (float)sqrt(3) / 6};
-    open.p3 = {center.x - length / 2, center.y - length * (float)sqrt(3) / 6};
-    //close
-    close.p1 = {center.x - length * (float)sqrt(3) / 3, center.y};
-    close.p1 = {center.x + length * (float)sqrt(3) / 6, center.y + length / 2};
-    close.p1 = {center.x + length * (float)sqrt(3) / 6, center.y - length / 2};
+    arrow.length = current.getRightPad() / 3;
+    arrow.center = {pos.x + size.x - current.getRightPad() / 2, pos.y + size.y / 2};
 }
 
 void DropBox::setLabel(std::string label) {
@@ -114,10 +104,14 @@ void DropBox::render(const Vector2 &mouse) {
         for(int i = options.size() - 1; i > -1; --i)
             options[i].render(mouse);
     }
+
+    arrow.render();
 }
 
 void DropBox::process(const Vector2 &mouse) {
     if(selected) {
+        if(arrow.angle != 90) arrow.angle += 900.0 / app_const::fps;
+
         for(int i = 0; i < options.size(); ++i) if(options[i].clicked(mouse)){
             if(curIndex >= 0) options[curIndex].fill_color = fill_color;
             curIndex = i;
@@ -128,6 +122,9 @@ void DropBox::process(const Vector2 &mouse) {
 
             options[i].fill_color = hover_color;
         }
+    }
+    else {
+        if(arrow.angle) arrow.angle -= 900.0 / app_const::fps;
     }
 
     if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && !current.clicked(mouse)) selected = false;

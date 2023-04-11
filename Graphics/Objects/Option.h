@@ -12,6 +12,9 @@ protected:
 	void refresh();
 
 public:
+	float getLeftPad();
+    float getRightPad();
+
 	void render(const Vector2 &mouse) const;
 };
 
