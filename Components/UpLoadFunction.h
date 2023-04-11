@@ -7,6 +7,8 @@ void uploadAllData(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academ
 
 void uploadListStaff(Vector<Staff> staffs);
 
+void uploadListStudent(Vector<Student>& students, Vector<SchoolYear>& schoolYears);
+
 void uploadListSchoolYearFolder(Vector <SchoolYear>& schoolYears);
 
 void uploadSchoolYearFolder(SchoolYear& schoolYear);

@@ -20,6 +20,31 @@ void uploadAllData(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academ
 	uploadListAcademicYearFolder(schoolYears, academicYears);
 }
 
+void uploadListStudent(Vector<Student>& students, Vector <SchoolYear>& schoolYears){
+	std::string list_stud_dir = getListStudentFilePath();
+	std::ifstream ifs (list_stud_dir);
+	std::string ID, pass, first, last, gender, socialId, className, day, month, year;
+	std::string ignore;
+	std::getline (ifs, ignore);
+	while (!ifs.eof()){
+		std::getline(ifs, ID, ',');
+		std::getline(ifs, pass, ',');
+		std::getline(ifs, first, ',');
+		std::getline(ifs, last, ',');
+		std::getline(ifs, gender, ',');
+		std::getline(ifs, day, '/');
+		std::getline(ifs, month, '/');
+		std::getline(ifs, year, ',');
+		std::getline(ifs, socialId);
+		unsigned short d = static_cast<unsigned short>(std::stoul(day)), m = static_cast<unsigned short>(std::stoul(month));
+		unsigned int y = static_cast<unsigned int>(std::stoul(year));
+		uint64_t password = std::stoull(pass);
+		Student newStudent({ first, last }, ID, password, string_to_gender(gender), { d, m, y }, socialId);
+		students.append(newStudent);
+	}
+	ifs.close();
+}
+
 void uploadListSchoolYearFolder(Vector <SchoolYear>& schoolYears) {
 	std::string listSchoolYearDir = getListSchoolYearFilePath();
 	std::ifstream ifs(listSchoolYearDir);
