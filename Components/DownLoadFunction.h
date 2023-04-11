@@ -9,6 +9,8 @@ void downloadSchoolYearFolder(SchoolYear& schoolYear);
 
 void downloadListStaff(Vector<Staff>& staffs);
 
+void downloadListStudent(Vector<Student>& students);
+
 void downloadOutputStudClassFile(Class& actClass);
 
 void downloadStudentFolder(Student& student);

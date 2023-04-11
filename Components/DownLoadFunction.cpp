@@ -15,6 +15,22 @@
 #include "Course.h"
 #include "Scoreboard.h"
 
+void downloadListStudent(Vector<Student>& students){
+	std::string list_stud_dir = getListStudentFilePath();
+	std::ofstream ofs(list_stud_dir);
+	ofs << "ID,Password,First name,Last name,Gender,Dob,SocialID\n";
+	for (int i = 0; i < students.size(); ++i){
+		ofs << students[i].ID << ",";
+		ofs << students[i].getHashedPass() << ",";
+		ofs << students[i].name.first << ",";
+		ofs << students[i].name.last << ",";
+		ofs << gender_to_string(students[i].gender) << ",";
+		ofs << students[i].birth.get() << ",";
+		ofs << students[i].socialID << '\n';
+	}
+	ofs.close();
+}
+
 void downloadListSchoolYearFolder(Vector <SchoolYear>& schoolYears) {
 	std::string listSchoolYearDir = getListSchoolYearFilePath();
 	std::ofstream ofs(listSchoolYearDir);
