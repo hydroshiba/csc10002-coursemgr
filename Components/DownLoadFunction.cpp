@@ -15,7 +15,8 @@
 #include "Course.h"
 #include "Scoreboard.h"
 
-void downloadAllData(Vector <SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears) {
+void downloadAllData(Vector <Student>& students, Vector <SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears) {
+	downloadListStudent(students);
 	downloadListSchoolYearFolder(schoolYears);
 	downloadListAcademicYearFolder(academicYears);
 }
