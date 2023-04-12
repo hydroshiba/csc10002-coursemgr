@@ -168,4 +168,56 @@ bool isStaff(Vector<Staff>& staffs, const std::string& staffID, std::string& out
 	}
 	return true;
 }
+
+// Check SchoolYear
+bool isSchoolYear(Vector<SchoolYear>& schoolYears, const std::string& start, std::string& outStr) {
+	SchoolYear* ptrSchoolYear = getSchoolYear(schoolYears, start);
+	if (ptrSchoolYear == nullptr)
+	{
+		outStr = "SchoolYear with start year " + start + " is not existed!";
+		return false;
+	}
+	return true;
+}
+// Check AcademicYear
+bool isAcademicYear(Vector<AcademicYear>& academicYears, const std::string& start, std::string& outStr) {
+	AcademicYear* ptrAcademicYear = getAcademicYear(academicYears, start);
+	if (ptrAcademicYear == nullptr)
+	{
+		outStr = "AcademicYear with start year " + start + " is not existed!";
+		return false;
+	}
+	return true;
+}
+// Check Class
+bool isClass(Vector<SchoolYear>& schoolYears, const std::string& className, std::string& outStr) {
+	Class* ptrClass = getClass(schoolYears, className);
+	if (ptrClass == nullptr)
+	{
+		outStr = "Class with classname " + className + " is not existed!";
+		return false;
+	}
+	return true;
+}
+// Check Semester
+bool isSemester(Vector<AcademicYear>& academicYears, const std::string& semesterID, std::string& outStr) {
+	Semester* ptrSemester = getSemester(academicYears, semesterID);
+	if (ptrSemester == nullptr)
+	{
+		outStr = "Semester with semesterID " + semesterID + " is not existed!";
+		return false;
+	}
+	return true;
+}
+// Check Course
+bool isCourse(Vector<AcademicYear>& academicYears, const std::string& courseID, std::string& outStr) {
+	Course* ptrCourse = getCourse(academicYears, courseID);
+	if (ptrCourse == nullptr)
+	{
+		outStr = "Course with courseID " + courseID + " is not existed!";
+		return false;
+	}
+	return true;
+}
+
 //----------------------------------------------------------------------------------------------//
