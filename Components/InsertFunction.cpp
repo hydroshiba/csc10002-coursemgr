@@ -265,7 +265,42 @@ bool getStudentToCourse(Vector <Student> &students, Course& course, std::string&
 	return true;
 }
 // Add list student to course (from file)
-bool getStudentToCourse(Vector<SchoolYear>& years, const std::string& courseID, std::string& outStr) { return false; }
+bool getStudentToCourse(Vector<AcademicYear>& academicYears, Vector<Student>& students, const std::string& courseID, std::string& outStr) {
+	Course *ptrCourse = getCourse(academicYears, courseID);
+	if (ptrCourse == nullptr){
+		outStr = "Course with ID " + courseID + " have been already existed in this semester!";
+		return false;
+	}
+	std::string inputStudCourseFilePath = getInputListStudCourseFilePath(*ptrCourse);
+	std::ifstream ifs(inputStudCourseFilePath);
+
+	if (!ifs.is_open()){
+		outStr = "Cannot open file path " + inputStudCourseFilePath;
+		return false;
+	}
+
+	std::string ignore;
+	getline(ifs, ignore);
+	getline(ifs, ignore);
+	getline(ifs, ignore);
+	getline(ifs, ignore);
+	getline(ifs, ignore);
+	getline(ifs, ignore);
+	getline(ifs, ignore);
+	getline(ifs, ignore);
+	getline(ifs, ignore);
+	Student student;
+	Student* ptrStudent = nullptr;
+	while (!ifs.eof()) {
+		student.setInfoToCourseCSV(ifs);
+		ptrStudent = getStudent(students, student.ID);
+		if (ptrStudent != nullptr)
+			ptrCourse->addStudent(*ptrStudent);
+	}
+	ifs.close();
+	outStr = "Complete add list of student to Course " + ptrCourse->ID;
+	return true; 
+}
 // Add a student to course
 bool addAStudentToCourse(Vector<Student>& students, Course& course, const std::string& studentID, std::string& outStr) {
 	Student* ptrStudent = getStudent(students, studentID);

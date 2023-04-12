@@ -28,7 +28,7 @@ bool addCourse(Semester& semester, const std::string& courseID, const std::strin
 // Add list student to course (from file)
 bool getStudentToCourse(Vector<Student> &students, Course& course, std::string& outStr); // By file
 // Add list student to course (from file)
-bool getStudentToCourse(Vector<SchoolYear>& years, const std::string& courseID, std::string& outStr); // Already have course
+bool getStudentToCourse(Vector<AcademicYear> &academicYears, Vector<Student>& students, const std::string& courseID, std::string& outStr); // Already have course
 // Add a student to course
 bool addAStudentToCourse(Vector<SchoolYear>& schoolYears, std::string& courseID, const std::string& studentID, std::string& outStr); // Inputbox but already have Course
 // Add a student to course
