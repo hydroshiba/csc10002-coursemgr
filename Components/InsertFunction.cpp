@@ -113,7 +113,14 @@ bool addStudToClass(Vector<Student> &students, Class& actClass, std::string& out
 	return true;
 }
 // Add a new students to class
-bool addStudToClass(Class& actClass, const std::string& studentID, std::string& outStr) { return false; }
+bool addStudToClass(Vector<Student> students, Class& actClass, const std::string& studentID, std::string& outStr) { 
+	Student *ptrStudent = getStudent(students, studentID);
+	if (ptrStudent){
+		actClass.addStudent(*ptrStudent);
+		return true;
+	}	
+	return false;
+}
 // Add a new academic year
 bool addAcademicYear(Vector<AcademicYear>& academicYears, const std::string& start, std::string& outStr) {
 	unsigned int startYear = static_cast<unsigned int>(stoul(start));
