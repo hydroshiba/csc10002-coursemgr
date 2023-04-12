@@ -113,7 +113,7 @@ bool addStudToClass(Vector<Student> &students, Class& actClass, std::string& out
 	return true;
 }
 // Add a new students to class
-bool addStudToClass(Vector<Student> students, Class& actClass, const std::string& studentID, std::string& outStr) { 
+bool addStudToClass(Vector<Student>& students, Class& actClass, const std::string& studentID, std::string& outStr) { 
 	Student *ptrStudent = getStudent(students, studentID);
 	if (ptrStudent){
 		actClass.addStudent(*ptrStudent);
@@ -169,29 +169,29 @@ bool addAcademicYear(Vector<AcademicYear>& academicYears, const unsigned int& st
 
 }
 // Add a semester to an academic year
-bool addSemester(AcademicYear& newYear, const std::string& semesterID, std::string& outStr) {
-	unsigned short day, month;
-	unsigned int year;
-	std::string id;
-	std::cout << "Enter semester id: "; std::cin >> id;
-	if (newYear.getSemester(id) != nullptr)
+bool addSemester(AcademicYear& newYear, const std::string& semesterID, const std::string& startDay, const std::string &startMonth, const std::string& startYear, const std::string &endDay, const std::string &endMonth, const std::string &endYear, std::string& outStr) {
+	if (newYear.getSemester(semesterID) != nullptr)
 	{
 		//std::cout << "This SemesterID have been already existed in this AcademicYear! Pls input another semesterID";
 		outStr = "This SemesterID have been already existed in this AcademicYear! Pls input another semesterID";
 		return false;
 	}
+	unsigned short d = static_cast<unsigned short>(std::stoul(startDay));
+	unsigned short m = static_cast<unsigned short>(std::stoul(startMonth));
+	unsigned int y = static_cast<unsigned int>(std::stoul(startYear));
 	Date startDate;
-	std::cout << "Enter start date for the semester:\n";
-	std::cin >> day >> month >> year;
-	startDate.set(day, month, year);
+	outStr = "Enter start date for the semester:\n";
+	startDate.set(d, m, y);
 
+	d = static_cast<unsigned short>(std::stoul(endDay));
+	m = static_cast<unsigned short>(std::stoul(endMonth));
+	y = static_cast<unsigned int>(std::stoul(endYear));
 	Date endDate;
-	std::cout << "Enter end date for the semester:\n";
-	std::cin >> day >> month >> year;
-	endDate.set(day, month, year);
+	outStr = "Enter end date for the semester:\n";
+	endDate.set(d, m, y);
 
 	Semester newSem;
-	newSem.semesterID = id;
+	newSem.semesterID = semesterID;
 	newSem.startDate = startDate;
 	newSem.endDate = endDate;
 	newSem.ptrAcademicYear = &newYear;
