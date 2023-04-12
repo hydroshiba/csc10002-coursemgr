@@ -23,7 +23,7 @@ Student* getStudent(Vector<Student>& students, const std::string& studentID) {
 	return nullptr;
 }
 // Find staff
-Staff* getStaff(Vector<Staff> staffs, const std::string& staffID) {
+Staff* getStaff(Vector<Staff>& staffs, const std::string& staffID) {
 	Staff* ptrStaff = nullptr;
 	for (int i = 0; i < staffs.size(); i++)
 		if (staffs[i].ID == staffID)
@@ -111,11 +111,61 @@ Course* getCourse(Vector<AcademicYear>& academicYears, const std::string& course
 	return nullptr;
 }
 // Find Scoreboard of Course of Student
-Scoreboard* getScoreboard(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears, const std::string& courseID, const std::string& studentID) {
+Scoreboard* getScoreboard(Vector<AcademicYear>& academicYears, const std::string& courseID, const std::string& studentID) {
 	Scoreboard* ptrScoreboard = nullptr;
 	Course* ptrCourse = getCourse(academicYears, courseID);
 	if (ptrCourse != nullptr)
 		ptrScoreboard = ptrCourse->getScoreboard(studentID);
 	return ptrScoreboard;
+}
+// Check student acc
+bool isCorrectStaffAccount(Vector<Staff>& staffs, const std::string& staffID, const std::string& password, std::string& outStr) {
+	Staff* ptrStaff = getStaff(staffs, staffID);
+	if (ptrStaff == nullptr) 
+	{
+		outStr = "Invalid username or password! Pls try again!";
+		return false;
+	}
+	if (!ptrStaff->isPassword(password)) 
+	{
+		outStr = "Invalid username or password! Pls try again!";
+		return false;
+	}
+	return true;
+}
+// Check staff acc
+bool isCorrectStudentAccount(Vector<Student>& students, const std::string& studentID, const std::string& password, std::string& outStr) {
+	Student* ptrStudent = getStudent(students, studentID);
+	if (ptrStudent == nullptr) 
+	{
+		outStr = "Invalid username or password! Pls try again!";
+		return false;
+	}
+	if (!ptrStudent->isPassword(password)) 
+	{
+		outStr = "Invalid username or password! Pls try again!";
+		return false;
+	}
+	return true;
+}
+// Check student
+bool isStudent(Vector<Student>& students, const std::string& studentID, std::string& outStr) {
+	Student* ptrStudent = getStudent(students, studentID);
+	if (ptrStudent == nullptr)
+	{
+		outStr = "Student with ID " + studentID + " is not existed in school!";
+		return false;
+	}
+	return true;
+}
+// Check staff
+bool isStaff(Vector<Staff>& staffs, const std::string& staffID, std::string& outStr) {
+	Staff* ptrStaff = getStaff(staffs, staffID);
+	if (ptrStaff == nullptr)
+	{
+		outStr = "Staff with ID " + staffID + " is not existed in school!";
+		return false;
+	}
+	return true;
 }
 //----------------------------------------------------------------------------------------------//

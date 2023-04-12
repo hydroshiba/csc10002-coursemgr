@@ -7,7 +7,7 @@
 // Find student
 Student* getStudent(Vector<Student>& students, const std::string& studentID);
 // Find staff
-Staff* getStaff(Vector<Staff> staffs, const std::string& staffID);
+Staff* getStaff(Vector<Staff>& staffs, const std::string& staffID);
 // Find SchoolYear
 SchoolYear* getSchoolYear(Vector<SchoolYear>& schoolYears, const std::string& start);
 // Find SchoolYear
@@ -23,15 +23,15 @@ Semester* getSemester(Vector<AcademicYear>& academicYears, const std::string& se
 // Find Course
 Course* getCourse(Vector<AcademicYear>& academicYears, const std::string& courseID);
 // Find Scoreboard of Course of Student
-Scoreboard* getScoreboard(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears, const std::string& courseID, const std::string& studentID);
+Scoreboard* getScoreboard(Vector<AcademicYear>& academicYears, const std::string& courseID, const std::string& studentID);
 // Check student acc
-bool isCorrectStaffAccount(Vector<Staff> staffs, const std::string& staffID, const std::string& password);
+bool isCorrectStaffAccount(Vector<Staff>& staffs, const std::string& staffID, const std::string& password, std::string& outStr);
 // Check staff acc
-bool isCorrectStudentAccount(Vector<SchoolYear>& schoolYears, const std::string& studentID, const std::string& password);
+bool isCorrectStudentAccount(Vector<Student>& students, const std::string& studentID, const std::string& password, std::string& outStr);
 // Check student
-bool isStudent(Vector<SchoolYear>& schoolYears, const std::string& studentID, std::string& outStr);
+bool isStudent(Vector<Student>& students, const std::string& studentID, std::string& outStr);
 // Check staff
-bool isStaff(Vector<Staff> staffs, const std::string& staffID, std::string& outStr);
+bool isStaff(Vector<Staff>& staffs, const std::string& staffID, std::string& outStr);
 // Check SchoolYear
 bool isSchoolYear(Vector<SchoolYear>& schoolYears, const std::string& start, std::string& outStr);
 // Check AcademicYear
