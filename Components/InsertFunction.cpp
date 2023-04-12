@@ -267,7 +267,7 @@ bool getStudentToCourse(Vector <Student> &students, Course& course, std::string&
 // Add list student to course (from file)
 bool getStudentToCourse(Vector<AcademicYear>& academicYears, Vector<Student>& students, const std::string& courseID, std::string& outStr) {
 	Course *ptrCourse = getCourse(academicYears, courseID);
-	if (ptrCourse == nullptr){
+	if (ptrCourse != nullptr){
 		outStr = "Course with ID " + courseID + " have been already existed in this semester!";
 		return false;
 	}
@@ -316,6 +316,20 @@ bool addAStudentToCourse(Vector<Student>& students, Course& course, const std::s
 	return true;
 }
 // Add a student to course
-bool addAStudentToCourse(Vector<SchoolYear>& schoolYears, std::string& courseID, const std::string& studentID, std::string& outStr) { return false; }
+bool addAStudentToCourse(Vector<AcademicYear>& academicYears, Vector<Student>& students, std::string& courseID, const std::string& studentID, std::string& outStr) {
+	Course* ptrCourse = getCourse(academicYears, courseID);
+	Student* ptrStudent = getStudent(students, studentID);
+	if (ptrCourse != nullptr){
+		outStr = "Course with ID " + courseID + " have been already existed in this semester!";
+		return false;
+	}
+	if (ptrStudent == nullptr){
+		outStr = "Student with ID " + studentID + " is not exist in school! Pls try another!";
+		return false;
+	}
+	ptrCourse->addStudent(*ptrStudent);
+	outStr = "Complete add student with ID " + studentID + " to Course " + ptrCourse->ID;
+	return true;
+}
 
 //----------------------------------------------------------------------------------------------//
