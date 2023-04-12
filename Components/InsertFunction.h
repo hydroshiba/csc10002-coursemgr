@@ -30,9 +30,9 @@ bool getStudentToCourse(Vector<Student> &students, Course& course, std::string& 
 // Add list student to course (from file)
 bool getStudentToCourse(Vector<SchoolYear>& years, const std::string& courseID, std::string& outStr); // Already have course
 // Add a student to course
-bool addAStudentToCourse(Vector<SchoolYear>& schoolYears, std::string& courseID, const std::string& studentID, std::string& outStr); // Inputbox
+bool addAStudentToCourse(Vector<SchoolYear>& schoolYears, std::string& courseID, const std::string& studentID, std::string& outStr); // Inputbox but already have Course
 // Add a student to course
-bool addAStudentToCourse(Vector<SchoolYear>& schoolYears, Course& course, const std::string& studentID, std::string& outStr); // Inputbox but already have Course
+bool addAStudentToCourse(Vector<Student>& students, Course& course, const std::string& studentID, std::string& outStr); // Inputbox 
 
 // ----------------------------------------------------------------------------------------------//
 

@@ -267,15 +267,8 @@ bool getStudentToCourse(Vector <Student> &students, Course& course, std::string&
 // Add list student to course (from file)
 bool getStudentToCourse(Vector<SchoolYear>& years, const std::string& courseID, std::string& outStr) { return false; }
 // Add a student to course
-bool addAStudentToCourse(Vector<SchoolYear>& schoolYears, Course& course, const std::string& studentID, std::string& outStr) {
-	Student* ptrStudent = nullptr;
-	for (int i = 0; i < schoolYears.size(); i++)
-		for (int j = 0; j < schoolYears[i].classes.size(); j++)
-			if (schoolYears[i].classes[j].getStudent(studentID) != nullptr)
-			{
-				ptrStudent = schoolYears[i].classes[j].getStudent(studentID);
-				break;
-			}
+bool addAStudentToCourse(Vector<Student>& students, Course& course, const std::string& studentID, std::string& outStr) {
+	Student* ptrStudent = getStudent(students, studentID);
 	if (ptrStudent == nullptr)
 	{
 		//std::cout << "Student with ID " << studentID << " is not exist in school! Pls try another!";
