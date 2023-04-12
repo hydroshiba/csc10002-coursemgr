@@ -17,7 +17,22 @@
 
 
 /*		Insert function		*/
-
+// Add new staff
+bool addStaff(Vector<Staff>& staffs, const std::string& ID, const std::string& password, const std::string& firstName, const std::string& lastName, std::string& outStr) {
+	Staff staff;
+	staff.ID = ID;
+	Staff* ptrStaff = getStaff(staffs, ID);
+	if (ptrStaff != nullptr) 
+	{
+		outStr = "Staff with ID " + ID + " have been already existed!";
+		return false;
+	}
+	staff.setName(firstName, lastName);
+	staff.setPassword(password);
+	staffs.append(staff);
+	outStr = "Complete add new staff with ID " + ID;
+	return true;
+}
 // Add a new SchoolYear
 bool addSchoolYear(Vector<SchoolYear>& yearList, const std::string& start, std::string& outStr) {
 	unsigned int startYear = static_cast<unsigned int>(stoul(start));

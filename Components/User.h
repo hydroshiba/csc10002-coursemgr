@@ -28,7 +28,6 @@ public:
 };
 
 struct Staff : User {
-
 };
 
 bool operator==(const User& userA, const User& userB);

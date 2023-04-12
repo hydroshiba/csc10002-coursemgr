@@ -5,6 +5,8 @@
 
 /*		Insert function		*/
 
+// Add new staff
+bool addStaff(Vector<Staff>& staffs, const std::string& ID, const std::string& password, const std::string& firstName, const std::string& lastName, std::string& outStr);
 // Add a new SchoolYear
 bool addSchoolYear(Vector<SchoolYear>& yearList, const std::string& start, std::string& outStr); // Inputbox
 // Add a new SchoolYear
