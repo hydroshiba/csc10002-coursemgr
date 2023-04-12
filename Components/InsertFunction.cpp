@@ -1,6 +1,7 @@
 #include "InsertFunction.h"
 #include "SearchFunction.h"
 #include "FileAndDirFunction.h"
+#include "ConvertType.h"
 
 #include "Date.h"
 #include "Name.h"
@@ -201,38 +202,32 @@ bool addSemester(AcademicYear& newYear, const std::string& semesterID, const std
 	return true;
 }
 // Add a new course
-bool addCourse(Semester& semester, const std::string& courseID, std::string& outStr) {
-	std::string ID, classID, name, teacher;
-	int cre, maxEn;
-	int day, ss;
+bool addCourse(Semester& semester, const std::string& courseID, const std::string& classID, const std::string& name, const std::string& teacher, const std::string& cre, const std::string& maxEn, const std::string& day, const std::string& ss, std::string& outStr) {
+	Weekday weekday = string_to_weekday(day);
+	Session session = string_to_session(ss);
 
-	std::cout << "Enter Course ID: ";
-	std::getline(std::cin, ID);
-	if (semester.getCourse(ID) != nullptr)
+	if (semester.getCourse(courseID) != nullptr)
 	{
 		//std::cout << "Course with ID " << ID << " have been already existed in this semester!";
-		outStr = "Course with ID " + ID + " have been already existed in this semester!";
+		outStr = "Course with ID " + courseID + " have been already existed in this semester!";
 		return false;
 	}
-	std::cout << "Enter Course Name: "; std::cin >> name;
-	std::cout << "Enter Teacher's Name: "; std::cin >> teacher;
-	std::cout << "Enter Class ID: "; std::cin >> classID;
-	std::cout << "Enter Number of Credits: "; std::cin >> cre;
-	std::cout << "Enter Maximun students enrolled: "; std::cin >> maxEn;
+	// std::cout << "Enter Course Name: "; std::cin >> name;
+	// std::cout << "Enter Teacher's Name: "; std::cin >> teacher;
+	// std::cout << "Enter Class ID: "; std::cin >> classID;
+	// std::cout << "Enter Number of Credits: "; std::cin >> cre;
+	// std::cout << "Enter Maximun students enrolled: "; std::cin >> maxEn;
 
-	std::cout << "Day of week: "; std::cin >> day;
-	std::cout << "Session performed: "; std::cin >> ss;
-
-	Weekday weekday = static_cast<Weekday>(day);
-	Session session = static_cast<Session>(ss);
+	// std::cout << "Day of week: "; std::cin >> day;
+	// std::cout << "Session performed: "; std::cin >> ss;
 
 	Course newCourse;
-	newCourse.ID = ID;
+	newCourse.ID = courseID;
 	newCourse.classID = classID;
 	newCourse.name = name;
 	newCourse.teacher = teacher;
-	newCourse.credits = cre;
-	newCourse.maxEnroll = maxEn;
+	newCourse.credits = std::stoi(cre);
+	newCourse.maxEnroll = std::stoi(maxEn);
 	//Course newCourse(ID, classID, name, teacher, cre, maxEn, weekday, session);
 	semester.addCourse(newCourse);
 	outStr = "Complete add new course " + courseID + " to list of course in Semester " + semester.semesterID;
