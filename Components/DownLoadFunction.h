@@ -15,7 +15,7 @@ void downloadOutputStudClassFile(Class& actClass);
 
 void downloadStudentFolder(Student& student);
 
-void downloadAllData(Vector<Student> students, Vector <SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears);
+void downloadAllData(Vector<Staff>& staffs, Vector<Student>& students, Vector <SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears);
 
 void downloadListAcademicYearFolder(Vector<AcademicYear>& academicYears);
 
