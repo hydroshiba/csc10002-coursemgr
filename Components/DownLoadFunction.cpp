@@ -37,6 +37,18 @@ void downloadListStudent(Vector<Student>& students){
 	ofs.close();
 }
 
+void downloadListStaff(Vector<Staff>& staffs){
+	std::string list_staff_dir = getListStaffFilePath();
+	std::ofstream ofs(list_staff_dir);
+	ofs << "Number of staffs,";
+	size_t nStaffs = staffs.size();
+	ofs << nStaffs << std::endl;
+	for (int i = 0; i<nStaffs; ++i){
+		ofs << staffs[i].ID << "," << staffs[i].getHashedPass() << std::endl;
+	}
+	ofs.close();
+}
+
 void downloadListSchoolYearFolder(Vector <SchoolYear>& schoolYears) {
 	std::string listSchoolYearDir = getListSchoolYearFilePath();
 	std::ofstream ofs(listSchoolYearDir);
