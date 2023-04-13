@@ -2,12 +2,13 @@
 #define UPLOAD_FUNCTION_H
 
 #include "Components.h"
+#include "User.h"
 
-void uploadAllData(Vector<Student> &students, Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears);
+void uploadAllData(Vector<Staff::User>& staffs, Vector<Student> &students, Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears);
 
-void uploadListStaff(Vector<Staff> staffs);
+void uploadListStaff(Vector<Staff::User>& staffs);
 
-void uploadListStudent(Vector<Student>& students, Vector<SchoolYear>& schoolYears);
+void uploadListStudent(Vector<Student>& students);
 
 void uploadListSchoolYearFolder(Vector<Student> &students, Vector <SchoolYear>& schoolYears);
 

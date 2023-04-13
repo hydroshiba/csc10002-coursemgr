@@ -16,12 +16,36 @@
 #include "Course.h"
 #include "Scoreboard.h"
 
-void uploadAllData(Vector<Student> &students, Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears) {
+void uploadAllData(Vector<Staff::User>& staffs, Vector<Student> &students, Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears) {
+	uploadListStudent(students);
+	uploadListStaff(staffs);
 	uploadListSchoolYearFolder(students, schoolYears);
 	uploadListAcademicYearFolder(schoolYears, academicYears);
 }
 
-void uploadListStudent(Vector<Student>& students, Vector <SchoolYear>& schoolYears){
+void uploadListStaff(Vector<Staff::User>& staffs){
+	std::string list_staff_dir = getListStaffFilePath();
+	std::ifstream ifs (list_staff_dir);
+	std::string first, last, ID, pass, ignore;
+	std::string nStaffs;
+	getline(ifs, ignore, ',');
+	getline(ifs, nStaffs);
+	size_t n = stoull(nStaffs);
+	getline(ifs, ignore);
+	for (int i = 0; i<n; ++i){
+		getline(ifs, ignore, ',');
+		getline(ifs, first, ',');
+		getline(ifs, last, ',');
+		getline(ifs,ID, ',');
+		getline(ifs, pass);
+		uint64_t password = std::stoull(pass);
+		Staff::User newStaff({first, last}, ID, password);
+		staffs.append(newStaff);
+	}
+	ifs.close();
+}
+
+void uploadListStudent(Vector<Student>& students){
 	std::string list_stud_dir = getListStudentFilePath();
 	std::ifstream ifs (list_stud_dir);
 	std::string ID, pass, first, last, gender, socialId, className, day, month, year;
@@ -92,7 +116,7 @@ void uploadSchoolYearFolder(Vector <Student>& students, SchoolYear& schoolYear) 
 	}
 	ifs.close();
 }
-
+/*
 void uploadStudentFolder(Class& actClass, Student& student, std::string id) {
 	std::string studentDir = "Students\\" + id + "\\" + id + "_OutputStdIn4.csv";
 	std::ifstream ifs(studentDir);
@@ -130,7 +154,7 @@ void uploadStudentFolder(Class& actClass, Student& student, std::string id) {
 
 	Student studInfo({ first, last }, id, password, string_to_gender(gender), { d, m, y }, socialId, &actClass);
 }
-
+*/
 void get_students_priority(Vector<Student> &students, Class& actClass) {
 	std::string oFile = getOutputStudClassFilePath(actClass);
 	std::ifstream ifs(oFile);
