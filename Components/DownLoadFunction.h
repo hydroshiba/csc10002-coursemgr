@@ -2,12 +2,13 @@
 #define DOWNLOAD_FUNCTION_H
 
 #include "Components.h"
+#include "User.h"
 
 void downloadListSchoolYearFolder(Vector<SchoolYear>& schoolYears);
 
 void downloadSchoolYearFolder(SchoolYear& schoolYear);
 
-void downloadListStaff(Vector<Staff>& staffs);
+void downloadListStaff(Vector<Staff::User>& staffs);
 
 void downloadListStudent(Vector<Student>& students);
 
@@ -15,7 +16,7 @@ void downloadOutputStudClassFile(Class& actClass);
 
 void downloadStudentFolder(Student& student);
 
-void downloadAllData(Vector<Student> students, Vector <SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears);
+void downloadAllData(Vector<Staff::User>& staffs, Vector<Student>& students, Vector <SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears);
 
 void downloadListAcademicYearFolder(Vector<AcademicYear>& academicYears);
 

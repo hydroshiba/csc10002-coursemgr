@@ -25,7 +25,7 @@ void createDirectoryIfNotExists(const std::string& dirPath)
 }
 
 std::string getListStaffFilePath(){
-	return "Data\\StaffList.txt";
+	return "Data\\StaffList.csv";
 }
 
 std::string getListStudentFilePath(){

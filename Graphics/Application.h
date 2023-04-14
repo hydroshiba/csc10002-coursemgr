@@ -15,9 +15,6 @@ private:
 	Vector2 mousePoint = { 0.0f, 0.0f };
 	Scene* scene;
 
-	Blank blank;
-	Menu menu;
-
 	void render();
 	void process();
 
@@ -27,8 +24,8 @@ public:
 	Application(const Application &other) = delete;
 	Application& operator=(const Application &other) = delete;
 
-	bool appShouldClose() const;
-	void tick();
+	bool shouldClose() const;
+	void run();
 };
 
 #endif

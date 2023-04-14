@@ -41,6 +41,7 @@ Student* Class::getStudent(const std::string& studentID) {
     for (int i = 0; i < students.size(); i++)
         if (students[i]->ID == studentID)
             return students[i];
+    return nullptr;
 }
 
 Vector<std::string> Class::getListCourse() {
