@@ -1,8 +1,11 @@
 #include "Application.h"
 
 Application::Application() {
-    registry.menu = &menu;
-    registry.blank = &blank;
+    SetTargetFPS(app_const::fps);
+    InitWindow(app_const::width, app_const::height, app_const::title.c_str());
+
+    registry.menu = new Menu();
+    registry.blank = new Blank();
 
     scene = registry.menu;
 }
@@ -12,11 +15,11 @@ Application::~Application() {
     CloseWindow();
 }
 
-bool Application::appShouldClose() const {
+bool Application::shouldClose() const {
 	return (scene == nullptr || WindowShouldClose());
 }
 
-void Application::tick() {
+void Application::run() {
     BeginDrawing();
     render();
     process();
