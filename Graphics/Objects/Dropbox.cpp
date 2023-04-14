@@ -108,7 +108,9 @@ void DropBox::render(const Vector2 &mouse) {
     arrow.render();
 }
 
-void DropBox::process(const Vector2 &mouse) {
+bool DropBox::process(const Vector2 &mouse) {
+    bool areaClicked = false;
+
     if(selected) {
         if(arrow.angle != 90) arrow.angle += 900.0 / app_const::fps;
 
@@ -121,6 +123,7 @@ void DropBox::process(const Vector2 &mouse) {
             current.label.color = text_color;
 
             options[i].fill_color = hover_color;
+            areaClicked = true;
         }
     }
     else {
@@ -129,4 +132,7 @@ void DropBox::process(const Vector2 &mouse) {
 
     if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && !current.clicked(mouse)) selected = false;
 	if(current.clicked(mouse)) selected = !selected;
+
+    areaClicked = areaClicked || current.clicked(mouse);
+    return areaClicked;
 }

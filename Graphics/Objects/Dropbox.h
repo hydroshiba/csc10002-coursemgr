@@ -46,7 +46,7 @@ public:
     int getSelected();
 
     void render(const Vector2 &mouse);
-    void process(const Vector2 &mouse);
+    bool process(const Vector2 &mouse);
 };
 
 #endif //DROPBOX_H

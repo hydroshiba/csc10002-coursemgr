@@ -53,15 +53,16 @@ void Menu::render() {
 
 	username.render(mousePoint);
 	password.render(mousePoint);
+	invalid.render();
 
 	test.render(mousePoint);
-	invalid.render();
 }
 
 Scene* Menu::process() {
 	this->mousePoint = GetMousePosition();
 
 	if(quit.clicked(mousePoint)) return nullptr;
+
 	if(login.clicked(mousePoint)) {
 		if(username.content.text.empty() || password.content.text.empty()) {
 			invalid = "Invalid username/password, please retry";
@@ -74,9 +75,10 @@ Scene* Menu::process() {
 		return registry.blank;
 	}
 
-	username.process(mousePoint);
-	password.process(mousePoint);
-	test.process(mousePoint);
+	if(!test.process(mousePoint)) {
+		username.process(mousePoint);
+		password.process(mousePoint);
+	}
 
 	return this;
 }
