@@ -15,7 +15,7 @@ Blank::Blank() {
 Scene* Blank::process() {
 	this->mousePoint = GetMousePosition();
 
-	if(back.clicked(mousePoint)) return registry.menu;
+	if(back.clicked(mousePoint)) return registry.login;
 	return this;
 }
 

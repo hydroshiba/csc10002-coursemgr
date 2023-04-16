@@ -4,10 +4,10 @@ Application::Application() {
     SetTargetFPS(app_const::fps);
     InitWindow(app_const::width, app_const::height, app_const::title.c_str());
 
-    registry.menu = new Menu();
+    registry.login = new Login();
     registry.blank = new Blank();
 
-    scene = registry.menu;
+    scene = registry.login;
 }
 
 Application::~Application() {

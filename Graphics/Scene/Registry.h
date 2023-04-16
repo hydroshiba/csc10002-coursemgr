@@ -6,9 +6,9 @@
 class Registry {
 public:
 	Scene* blank;
-	Scene* menu;
+	Scene* login;
 
-	Registry() : blank(nullptr), menu(nullptr) {}
+	Registry() : blank(nullptr), login(nullptr) {}
 };
 
 extern Registry registry;

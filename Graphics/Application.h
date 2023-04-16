@@ -8,7 +8,7 @@
 #include "Scene/Registry.h"
 
 #include "Scene/Blank.h"
-#include "Scene/Menu.h"
+#include "Scene/Login.h"
 
 class Application {
 private:

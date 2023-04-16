@@ -1,6 +1,6 @@
-#include "Menu.h"
+#include "Login.h"
 
-Menu::Menu() {
+Login::Login() {
 	login.label = "Login";
 	login.setSize({125, 50});
 	login.setY(525);
@@ -46,7 +46,7 @@ Menu::Menu() {
 	invalid.setY(425);
 }
 
-void Menu::render() {
+void Login::render() {
 	title.render();
 	login.render(mousePoint);
 	quit.render(mousePoint);
@@ -58,7 +58,7 @@ void Menu::render() {
 	test.render(mousePoint);
 }
 
-Scene* Menu::process() {
+Scene* Login::process() {
 	this->mousePoint = GetMousePosition();
 
 	if(quit.clicked(mousePoint)) return nullptr;

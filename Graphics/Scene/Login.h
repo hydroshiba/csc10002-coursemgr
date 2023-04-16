@@ -1,5 +1,5 @@
-#ifndef MENU_H
-#define MENU_H
+#ifndef LOGIN_H
+#define LOGIN_H
 
 #include "raylib.h"
 
@@ -11,7 +11,7 @@
 #include "Objects/InputBox.h"
 #include "Objects/DropBox.h"
 
-class Menu : public Scene {
+class Login : public Scene {
 private:
 	Button login;
 	Button quit;
@@ -22,7 +22,7 @@ private:
 	DropBox test;
 
 public: 
-	Menu();
+	Login();
 	Scene* process();
 	void render();
 };

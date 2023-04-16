@@ -12,7 +12,4 @@ public:
 	virtual Scene* process() { return nullptr; }
 };
 
-class Blank;
-class Menu;
-
 #endif
