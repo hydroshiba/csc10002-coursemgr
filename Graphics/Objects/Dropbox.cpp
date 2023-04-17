@@ -105,6 +105,7 @@ void DropBox::render(const Vector2 &mouse) {
             options[i].render(mouse);
     }
 
+    bar.render(mouse);
     arrow.render();
 }
 
@@ -133,6 +134,7 @@ bool DropBox::process(const Vector2 &mouse) {
     if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && !current.clicked(mouse)) selected = false;
 	if(current.clicked(mouse)) selected = !selected;
 
+    bar.process(mouse);
     areaClicked = areaClicked || current.clicked(mouse);
     return areaClicked;
 }

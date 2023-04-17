@@ -8,6 +8,7 @@
 
 #include "Option.h"
 #include "Equilateral.h"
+#include "Scrollbar.h"
 
 class DropBox {
 private:
@@ -15,6 +16,7 @@ private:
     bool selected;
     int curIndex;
     Option current;
+    Bar bar;
 
     Vector2 pos;
     Vector2 size;
