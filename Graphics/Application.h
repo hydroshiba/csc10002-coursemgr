@@ -9,6 +9,7 @@
 
 #include "Scene/Blank.h"
 #include "Scene/Login.h"
+#include "Scene/CourseScene.h"
 
 class Application {
 private:

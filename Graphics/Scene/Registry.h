@@ -7,8 +7,9 @@ class Registry {
 public:
 	Scene* blank;
 	Scene* login;
+	Scene* courseScene;
 
-	Registry() : blank(nullptr), login(nullptr) {}
+	Registry() : blank(nullptr), login(nullptr), courseScene(nullptr) {}
 };
 
 extern Registry registry;

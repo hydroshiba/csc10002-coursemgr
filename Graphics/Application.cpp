@@ -6,6 +6,7 @@ Application::Application() {
 
     registry.login = new Login();
     registry.blank = new Blank();
+    registry.courseScene = new CourseScene();
 
     scene = registry.login;
 }
