@@ -6,14 +6,17 @@
 
 class Bar {
 private:
-	Vector2 origin, mouse_origin;
+	Vector2 origin, last_mouse;
 	bool pressing;
 
 public:
 	Vector2 pos, size;
 	Color fill, press;
+	bool horizontal;
+	float limit;
 
 	Bar();
+	Bar(Vector2 pos, Vector2 size, float limit, bool horizontal = false, Color fill = box_const::border_color, Color press = button_const::press_color);
 	Rectangle getRect();
 
 	bool clicked(const Vector2 &mouse);
