@@ -6,7 +6,7 @@
 
 class Bar {
 private:
-	Vector2 lastMousePos;
+	Vector2 origin, mouse_origin;
 	bool pressing;
 
 public:

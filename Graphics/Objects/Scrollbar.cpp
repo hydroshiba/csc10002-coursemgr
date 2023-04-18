@@ -5,7 +5,8 @@ Bar::Bar() :
 	pos({0, 0}),
 	size({50, 200}),
 	fill(box_const::border_color),
-	press(button_const::press_color) {}
+	press(button_const::press_color),
+	origin(pos) {}
 
 Rectangle Bar::getRect() {
 	return Rectangle{pos.x, pos.y, size.x, size.y};
@@ -31,14 +32,15 @@ void Bar::render(const Vector2 &mouse) {
 }
 
 void Bar::process(const Vector2 &mouse) {
-	std::cout << lastMousePos.x << ' ' << lastMousePos.y << std::endl;
-	
 	if(!IsMouseButtonDown(MOUSE_BUTTON_LEFT)) pressing = false;
 	
 	if(pressed(mouse)) {
-		if(!pressing) lastMousePos = mouse;
+		if(!pressing) {
+			origin = pos;
+			mouse_origin = mouse;
+		}
 		pressing = true;
 	}
 
-	if(pressing) pos.y = mouse.y - lastMousePos.y;
+	if(pressing) pos.y = origin.y + mouse.y - mouse_origin.y;
 }
