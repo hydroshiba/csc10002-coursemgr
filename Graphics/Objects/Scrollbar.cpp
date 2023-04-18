@@ -40,8 +40,8 @@ void Bar::render(const Vector2 &mouse) {
 	
 	if(pressing || pressed(mouse)) color = press;
 	else color = fill;
-
-	DrawRectangleRec(getRect(), color);
+	
+	DrawRectangleRounded(getRect(), box_const::roundness, box_const::segments, color);
 }
 
 void Bar::process(const Vector2 &mouse) {
