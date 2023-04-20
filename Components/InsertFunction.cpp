@@ -228,6 +228,8 @@ bool addCourse(Semester& semester, const std::string& courseID, const std::strin
 	newCourse.teacher = teacher;
 	newCourse.credits = std::stoi(cre);
 	newCourse.maxEnroll = std::stoi(maxEn);
+	newCourse.weekday = weekday;
+	newCourse.session = session;
 	//Course newCourse(ID, classID, name, teacher, cre, maxEn, weekday, session);
 	semester.addCourse(newCourse);
 	outStr = "Complete add new course " + courseID + " to list of course in Semester " + semester.semesterID;

@@ -1,6 +1,7 @@
 #include "UpdateFunction.h"
 #include "FileAndDirFunction.h"
 #include "DisplayFunction.h"
+#include "ConvertType.h"
 
 #include "Date.h"
 #include "Name.h"
@@ -26,67 +27,21 @@ void updateSchoolYear(SchoolYear &schoolYear, const std::string &newStartYear){
 	schoolYear.start = (unsigned int)stoi(newStartYear);
 }
 
-void updateClass(Class &CLASS, std::string &newClassName){
+void updateClass(Class &CLASS, const std::string &newClassName){
 	CLASS.name = newClassName;
 }
 
-void updateCourse(Course& course) {
-	int option;
-	do {
-		std::cout << "Update course informations:\n";
-		std::cout << "0. Back\n";
-		std::cout << "1. Change course id\n";
-		std::cout << "2. Change teacher's name\n";
-		std::cout << "3. Change course name\n";
-		std::cout << "4. Change class id\n";
-		std::cout << "5. Change number of credits\n";
-		std::cout << "6. Change max students enrolled\n";
-		std::cout << "7. Change session\n";
-		std::cout << "Choose the following option 0-7: ";
-		std::cin >> option;
-		while (option < 0 || option > 7)
-		{
-			std::cout << "Invalid option, pls try again: ";
-			std::cin >> option;
-		}
-		switch (option) {
-		case 1:
-			std::cout << "Enter Course ID: "; std::cin >> course.ID;
-			break;
-		case 2:
-			std::cout << "Enter Teacher's Name: "; std::cin >> course.teacher;
-			break;
-		case 3:
-			std::cout << "Enter Course Name: "; std::cin >> course.name;
-			break;
-		case 4:
-			std::cout << "Enter Class ID: "; std::cin >> course.classID;
-			break;
-		case 5:
-			std::cout << "Enter Number of Credits: "; std::cin >> course.credits;
-			break;
-		case 6:
-			std::cout << "Enter Maximun students enrolled: "; std::cin >> course.maxEnroll;
-			break;
-		case 7:
-			int in, day, ss;
-			std::cout << "0. Change weekday\n";
-			std::cout << "1. Change session\n";
-			std::cin >> in;
-			if (!in) {
-				std::cout << "Enter weekday: "; std::cin >> day;
-				course.weekday = static_cast<Weekday>(day);
-			}
-			else {
-				std::cout << "Enter Session performed: "; std::cin >> ss;
-				course.session = static_cast<Session>(ss);
-			}
-			break;
-		default:
-			std::cout << "Exit update course information!" << std::endl;
-			break;
-		}
-	} while (option);
+void updateCourse(Course& course, const std::string& courseID, const std::string& classID, const std::string& name, const std::string& teacher, const std::string& cre, const std::string& maxEn, const std::string& day, const std::string& ss) {
+	Weekday weekday = string_to_weekday(day);
+	Session session = string_to_session(ss);
+	course.ID = courseID;
+	course.classID = classID;
+	course.name = name;
+	course.teacher = teacher;
+	course.credits = std::stoi(cre);
+	course.maxEnroll = std::stoi(maxEn);
+	course.weekday = weekday;
+	course.session = session;
 }
 // 22. Update student result
 void updateStudentResult(Student& student) {
