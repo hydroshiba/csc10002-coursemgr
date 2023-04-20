@@ -210,7 +210,7 @@ void uploadListAcademicYearFolder(Vector<SchoolYear>& schoolYears, Vector<Academ
 		ifs >> startOfAcademicYear;
 		AcademicYear academicYear;
 		academicYear.start = startOfAcademicYear;
-		academicYears.append(academicYear);
+		academicYears[i] = academicYear;
 		uploadAcademicYearFolder(schoolYears, academicYears[i]);
 	}
 	ifs.close();
@@ -241,7 +241,7 @@ void uploadAcademicYearFolder(Vector<SchoolYear>& schoolYears, AcademicYear& aca
 		std::getline(ifs, semesterID);
 		Semester semester;
 		semester.semesterID = semesterID;
-		academicYear.semesters.append(semester);
+		academicYear.semesters[i] = semester;
 		academicYear.semesters[i].ptrAcademicYear = &academicYear;
 		uploadSemesterFolder(schoolYears, academicYear.semesters[i]);
 	}
@@ -285,7 +285,7 @@ void uploadSemesterFolder(Vector<SchoolYear>& schoolYears, Semester& semester) {
 		std::getline(ifs, courseID);
 		Course course;
 		course.ID = courseID;
-		semester.courses.append(course);
+		semester.courses[i] = course;
 		semester.courses[i].ptrSemester = &semester;
 		uploadCourseFolder(semester.courses[i]);
 	}
