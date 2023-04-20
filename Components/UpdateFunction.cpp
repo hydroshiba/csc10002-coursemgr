@@ -22,6 +22,10 @@ void updateAcademicYear(AcademicYear &academuicYear, const std::string& newStart
 	academuicYear.start = (unsigned int)stoi(newStartYear);
 }
 
+void updateSchoolYear(SchoolYear &schoolYear, const std::string &newStartYear){
+	schoolYear.start = (unsigned int)stoi(newStartYear);
+}
+
 void updateCourse(Course& course) {
 	int option;
 	do {
