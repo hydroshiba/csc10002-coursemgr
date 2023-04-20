@@ -129,7 +129,7 @@ Scene* CourseScene::process(){
 
     if (viewStudent.clicked(mousePoint)) return registry.blank;
 
-    if (updateBox.clicked(mousePoint)) return registry.blank;
+    if (updateBox.clicked(mousePoint)) return registry.editScene;
 
     if (back.clicked(mousePoint)) return registry.blank;
 

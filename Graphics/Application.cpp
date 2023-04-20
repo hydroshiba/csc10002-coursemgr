@@ -7,8 +7,9 @@ Application::Application() {
     registry.login = new Login();
     registry.blank = new Blank();
     registry.courseScene = new CourseScene();
+    registry.editScene = new EditCourse();
 
-    scene = registry.login;
+    scene = registry.editScene;
 }
 
 Application::~Application() {

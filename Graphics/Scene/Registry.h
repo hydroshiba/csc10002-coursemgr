@@ -8,8 +8,9 @@ public:
 	Scene* blank;
 	Scene* login;
 	Scene* courseScene;
+	Scene* editScene;
 
-	Registry() : blank(nullptr), login(nullptr), courseScene(nullptr) {}
+	Registry() : blank(nullptr), login(nullptr), courseScene(nullptr), editScene(nullptr) {}
 };
 
 extern Registry registry;
