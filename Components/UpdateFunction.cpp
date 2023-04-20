@@ -18,6 +18,10 @@
 /*		Update function		*/
 
 // Update course informations
+void updateAcademicYear(AcademicYear &academuicYear, const std::string& newStartYear){
+	academuicYear.start = (unsigned int)stoi(newStartYear);
+}
+
 void updateCourse(Course& course) {
 	int option;
 	do {
