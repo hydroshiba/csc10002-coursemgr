@@ -9,7 +9,7 @@ Application::Application() {
     registry.courseScene = new CourseScene();
     registry.editScene = new EditCourse();
 
-    scene = registry.editScene;
+    scene = registry.login;
 }
 
 Application::~Application() {
