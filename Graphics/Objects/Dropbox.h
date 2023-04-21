@@ -16,7 +16,7 @@ private:
     bool selected;
     int curIndex;
     Option current;
-    Bar bar;
+    Scrollbar bar;
 
     Vector2 pos;
     Vector2 size;

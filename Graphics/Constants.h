@@ -23,7 +23,7 @@ const float height = 10;
 const float thickness = 2;
 
 const float roundness = 0.07;
-const float segments = 2;
+const float segments = 10;
 
 const Color fill_color = RAYWHITE;
 const Color border_color = GRAY;

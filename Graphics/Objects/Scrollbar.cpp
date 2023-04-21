@@ -1,50 +1,62 @@
 #include "Scrollbar.h"
 #include <iostream>
 
-Bar::Bar() :
-	pos({0, 0}),
-	size({50, 200}),
-	limit(500),
+Scrollbar::Scrollbar() :
+	pos_min(0),
+	pos_max(500),
+	content_len(100),
+	content_max_len(500),
+	thickness(10),
 	horizontal(false),
 	fill(box_const::border_color),
 	press(button_const::press_color),
-	origin({0, 0}),
+	pos({0, 0}),
 	last_mouse({0, 0}) {}
 
-Bar::Bar(Vector2 pos, Vector2 size, float limit, bool horizontal, Color fill, Color press) :
-	pos(pos),
-	size(size),
-	limit(limit),
+Scrollbar::Scrollbar(float pos_min, float pos_max, float content_len, float content_max_len, float thickness, bool horizontal, Color fill, Color press) :
+	pos_min(pos_min),
+	pos_max(pos_max),
+	content_len(content_len),
+	content_max_len(content_max_len),
+	thickness(thickness),
 	horizontal(horizontal),
 	fill(fill),
 	press(press),
-	origin(pos),
-	last_mouse(pos) {}
+	pos(cur_pos),
+	last_mouse(cur_pos) {}
 
-Rectangle Bar::getRect() {
-	return Rectangle{pos.x, pos.y, size.x, size.y};
+Rectangle Scrollbar::getRect() {
+	if(horizontal) return Rectangle{cur_pos.x, cur_pos.y, len, thickness};
+	return Rectangle{cur_pos.x, cur_pos.y, thickness, len};
 }
 
-bool Bar::clicked(const Vector2 &mouse) {
+float Scrollbar::content_height() {
+	float h = (horizontal ? cur_pos.x - pos.x : cur_pos.y - pos.y);
+	return content_len * h / len;
+}
+
+bool Scrollbar::clicked(const Vector2 &mouse) {
 	if(!CheckCollisionPointRec(mouse, getRect())) return false;
     return IsMouseButtonReleased(MOUSE_BUTTON_LEFT);
 }
 
-bool Bar::pressed(const Vector2 &mouse) {
+bool Scrollbar::pressed(const Vector2 &mouse) {
 	if(!CheckCollisionPointRec(mouse, getRect())) return false;
     return IsMouseButtonDown(MOUSE_BUTTON_LEFT);
 }
 
-void Bar::render(const Vector2 &mouse) {
+void Scrollbar::render(const Vector2 &mouse) {
 	Color color;
 	
 	if(pressing || pressed(mouse)) color = press;
 	else color = fill;
-	
-	DrawRectangleRounded(getRect(), box_const::roundness, box_const::segments, color);
+
+	DrawRectangleRounded(getRect(), 1.0, box_const::segments, color);
 }
 
-void Bar::process(const Vector2 &mouse) {
+void Scrollbar::process(const Vector2 &mouse) {
+	len = (content_len / content_max_len) * (pos_max - pos_min);
+
 	if(!IsMouseButtonDown(MOUSE_BUTTON_LEFT)) pressing = false;
 	
 	if(pressed(mouse)) {
@@ -54,12 +66,9 @@ void Bar::process(const Vector2 &mouse) {
 
 	if(pressing) {
 		float diff = (mouse.x - last_mouse.x) * horizontal + (mouse.y - last_mouse.y) * (!horizontal);
-		float &cur = (horizontal ? pos.x : pos.y);
+		float &cur = (horizontal ? cur_pos.x : cur_pos.y);
 
-		float org = (horizontal ? origin.x : origin.y);
-		float len = (horizontal ? size.x : size.y);
-
-		if(cur + diff + len <= limit && cur + diff >= org) cur += diff;
+		if(cur + diff + len <= pos_max && cur + diff >= pos_min) cur += diff;
 		last_mouse = mouse;
 	}
 }
