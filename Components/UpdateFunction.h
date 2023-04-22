@@ -24,7 +24,7 @@ void exportListOfStudent(Course& course);
 // 20. import scoreboard of course
 void importScoreBoardOfCourse(Course& course);
 // 22. Update student result
-void updateStudentResult(Student& student, std::string& courseID, const int& option); // Inputbox
+void updateStudentResult(Course &course, const std::string studentID, const std::string midTerm, const std::string other, const std::string final, const std::string total); // Inputbox
 
 //----------------------------------------------------------------------------------------------//
 

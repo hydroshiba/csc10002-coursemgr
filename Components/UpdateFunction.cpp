@@ -61,71 +61,17 @@ void updateCourse(Course& course, const std::string& courseID, const std::string
 	course.session = session;
 }
 // 22. Update student result
-void updateStudentResult(Student& student) {
-	viewListOfCoursesOfStudent(student);
-	const int nCourse = student.scoreboards.size();
-	std::cout << "Choose the course to update result (1" << " - " << nCourse << "): ";
-	int option;
-	std::cin >> option;
-	while (option < 1 || option > nCourse)
-	{
-		std::cout << "Invalid option, pls try again: ";
-		std::cin >> option;
-	}
-	Scoreboard* updateSB = student.scoreboards[option - 1];
-	int updateOption;
-	do
-	{
-		std::cout << "1. Midterm" << std::endl;
-		std::cout << "2. Final" << std::endl;
-		std::cout << "3. Other" << std::endl;
-		std::cout << "4. Total" << std::endl;
-		std::cout << "0. Exit" << std::endl;
-		std::cout << "Choose the following option (0 - 4): ";
-		std::cin >> updateOption;
-		while (updateOption < 0 || updateOption > 4)
-		{
-			std::cout << "Invalid option, pls try again: ";
-			std::cin >> updateOption;
-		}
-		if (updateOption == 0)
-		{
-			std::cout << "Finish update result!";
-			return;
-		}
-		int updateScore;
-		switch (updateOption)
-		{
-		case 1:
-		{
-			std::cout << "Input updated midterm score: ";
-			std::cin >> updateScore;
-			updateSB->midterm = updateScore;
-			break;
-		}
-		case 2:
-		{
-			std::cout << "Input updated final score: ";
-			std::cin >> updateScore;
-			updateSB->final = updateScore;
-			break;
-		}
-		case 3:
-		{
-			std::cout << "Input updated other score: ";
-			std::cin >> updateScore;
-			updateSB->other = updateScore;
-			break;
-		}
-		case 4:
-		{
-			std::cout << "Input updated total score: ";
-			std::cin >> updateScore;
-			updateSB->total = updateScore;
-			break;
-		}
-		}
-	} while (updateOption != 0);
+void updateStudentResult(Course &course, const std::string studentID, const std::string midTerm, const std::string other, const std::string finalScore, const std::string totalScore) {
+	Scoreboard *ptrScoreboard = course.getScoreboard(studentID);
+	float mid, others, final, total;
+	mid = std::stof(midTerm);
+	others = std::stof(other);
+	final = std::stof(finalScore);
+	total = std::stof(totalScore);
+	ptrScoreboard->midterm = mid;
+	ptrScoreboard->final = final;
+	ptrScoreboard->other = others;
+	ptrScoreboard->total = total;
 }
 // 19. export list of students in course to csv file
 void exportListOfStudent(Course& course) {
