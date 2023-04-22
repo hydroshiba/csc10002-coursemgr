@@ -1,12 +1,15 @@
 #ifndef COURSE_H
 #define COURSE_H
 
-#include "Components.h"
+#include <iostream>
+#include <fstream>
 
+#include "Components.h"
 #include "Class.h"
 #include "Scoreboard.h"
 #include "Student.h"
 #include "Semester.h"
+
 struct Course {
     std::string ID, classID;
     std::string name, teacher;

@@ -6,6 +6,7 @@ DropBox::DropBox() {
 
     current.label = "Choose an option";
     current.label.color = border_color;
+    current.roundness = 0;
 
     pos = {0, 0};
     size = {box_const::width, box_const::height};
@@ -83,7 +84,7 @@ void DropBox::add(std::string label) {
     option.setPos({pos.x, last->getPos().y + size.y - box_const::thickness});
     option.setSize(size);
     option.label = label;
-    option.roundness = roundness;
+    option.roundness = 0;
 
     option.fill_color = fill_color;
     option.border_color = border_color;
@@ -98,15 +99,21 @@ int DropBox::getSelected() {
 }
 
 void DropBox::render(const Vector2 &mouse) {
+    // DrawRectangleRoundedLines(bound, 0.05, box_const::segments, box_const::thickness, border_color);
+    
     current.render(mouse);
+    bar.render(mouse);
+    arrow.render();
+
+    // BeginScissorMode(0, 0, 10, 100);
 
     if(selected) {
         for(int i = options.size() - 1; i > -1; --i)
             options[i].render(mouse);
+        // BeginScissorMode(0, 0, 10, 100);
     }
 
-    bar.render(mouse);
-    arrow.render();
+    // EndScissorMode();
 }
 
 bool DropBox::process(const Vector2 &mouse) {
@@ -133,6 +140,8 @@ bool DropBox::process(const Vector2 &mouse) {
 
     if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && !current.clicked(mouse)) selected = false;
 	if(current.clicked(mouse)) selected = !selected;
+
+    bound = Rectangle{size.x, size.y, pos.x, pos.y};
 
     bar.process(mouse);
     areaClicked = areaClicked || current.clicked(mouse);

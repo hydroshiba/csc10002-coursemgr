@@ -1,6 +1,9 @@
 #ifndef DISPLAY_FUNCTION_H
 #define DISPLAY_FUNCTION_H
 
+#include <iostream>
+#include <fstream>
+
 #include "Components.h"
 
 /*		Display function	*/

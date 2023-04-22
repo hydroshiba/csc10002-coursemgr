@@ -1,12 +1,10 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
-#include <iostream>
-#include <fstream>
 #include <cassert>
 
 template <typename Type>
-struct Vector {
+class Vector {
 private:
     size_t length = 0;
     size_t capacity = 1;

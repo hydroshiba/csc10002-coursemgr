@@ -20,6 +20,7 @@ private:
 
     Vector2 pos;
     Vector2 size;
+    Rectangle bound;
 
     Vector<Option> options;
 

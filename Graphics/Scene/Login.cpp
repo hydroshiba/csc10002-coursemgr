@@ -34,10 +34,10 @@ Login::Login() {
 
 	test.add("yo wtf bro");
 	test.add("anyone there");
+	test.add("this is a very long text, with the purpose of testing the display of the option box");
 	test.add("please send me hope");
 	test.add("or nudes");
 	test.add("or a rope");
-	test.add("this is a very long text, with the purpose of testing the display of the option box");
 
 	invalid = "";
 	invalid.setColor(RED);

@@ -35,9 +35,11 @@ endif()
 
 file(GLOB_RECURSE cpp_files
     ${PROJECT_SOURCE_DIR}/main.cpp
+    ${PROJECT_SOURCE_DIR}/Structures/*.cpp
     ${PROJECT_SOURCE_DIR}/Components/*.cpp
     ${PROJECT_SOURCE_DIR}/Graphics/*.cpp)
 
+include_directories(Structures)
 include_directories(Components)
 include_directories(Graphics)
 
