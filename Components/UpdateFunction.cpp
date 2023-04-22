@@ -31,6 +31,23 @@ void updateClass(Class &CLASS, const std::string &newClassName){
 	CLASS.name = newClassName;
 }
 
+void updateSemester(Semester &semester, const std::string startDate, const std::string endDate){
+	Date start, end;
+	std::string day, month, year;
+	std::stringstream ss(startDate);
+	getline(ss, day, '/');
+	getline(ss, month, '/');
+	getline(ss, year);
+	start.set((unsigned short)std::stoi(day), (unsigned short)std::stoi(month), (unsigned int)std::stoi(year));
+	std::stringstream sstring(endDate);
+	getline(sstring, day, '/');
+	getline(sstring, month, '/');
+	getline(sstring, year);
+	end.set((unsigned short)std::stoi(day), (unsigned short)std::stoi(month), (unsigned int)std::stoi(year));
+	semester.startDate = start;
+	semester.endDate = end;
+}
+
 void updateCourse(Course& course, const std::string& courseID, const std::string& classID, const std::string& name, const std::string& teacher, const std::string& cre, const std::string& maxEn, const std::string& day, const std::string& ss) {
 	Weekday weekday = string_to_weekday(day);
 	Session session = string_to_session(ss);

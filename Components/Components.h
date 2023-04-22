@@ -5,6 +5,7 @@
 #include <string>
 #include "Vector.h"
 #include <filesystem>
+#include <sstream>
 
 const std::string defaultStr = "Error";
 /* Enumerators */
