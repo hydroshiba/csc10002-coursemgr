@@ -6,9 +6,7 @@ struct Node {
 	Type value;
 	Node* next;
 
-	Node() : 
-		value(NULL),
-		next(nullptr) {}
+	Node() : next(nullptr) {}
 };
 
 #endif
