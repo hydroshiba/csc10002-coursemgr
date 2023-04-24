@@ -6,6 +6,7 @@
 
 #include "Constants.h"
 #include "Text.h"
+#include "Scissor.h"
 
 class InputBox {
 private:

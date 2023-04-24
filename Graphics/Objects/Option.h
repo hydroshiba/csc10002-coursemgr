@@ -3,6 +3,7 @@
 
 #include "raylib.h"
 #include "Button.h"
+#include "Scissor.h"
 
 class Option : public Button {
 protected:
