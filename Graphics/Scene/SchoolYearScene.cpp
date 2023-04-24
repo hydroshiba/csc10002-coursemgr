@@ -26,6 +26,10 @@ SchoolYearScene::SchoolYearScene() {
     removeClass.setSize(30);
     removeClass.setPos({100, 450});
 
+    inputClassNameRemoved.defaultText = "Enter Class Name";
+    inputClassNameRemoved.setPos({400, 440});
+    inputClassNameRemoved.setSize({300, 50});
+
     editYear = "Edit Year";
     editYear.setSize(30);
     editYear.setPos({100, 550});
@@ -41,6 +45,8 @@ void SchoolYearScene::render() {
     inputClassNameAdded.render(mousePoint);
 
     removeClass.render();
+    inputClassNameRemoved.render(mousePoint);
+
     editYear.render();
 }
 
@@ -50,6 +56,8 @@ Scene* SchoolYearScene::process() {
     listClass.process(mousePoint);
     
     inputClassNameAdded.process(mousePoint);
+
+    inputClassNameRemoved.process(mousePoint);
     
     return this;
 } 
