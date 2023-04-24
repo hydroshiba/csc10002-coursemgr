@@ -24,7 +24,7 @@ private:
     InputBox inputClassNameRemoved;
 
     TextBox editYear;
-    InputBox inputNewStartYear;
+    InputBox inputYearEditted;
 public:
     SchoolYearScene();
     void render();
