@@ -22,6 +22,21 @@ DropBox::DropBox() {
 void DropBox::refresh() {
     current.setPos(pos);
     current.setSize(size);
+    
+    int optionNum = options.size();
+    if(optionNum > 5) optionNum = 5;
+
+    bound.x = pos.x;
+    bound.y = pos.y + size.y;
+
+    bound.width = size.x;
+    bound.height = (size.y - box_const::thickness) * optionNum;
+    
+    bar.setPos({pos.x + size.x - 2 * box_const::thickness - bar.thickness, pos.y + size.y + box_const::thickness});
+    bar.pos_max = bound.y + bound.height - 2 * box_const::thickness;
+
+    bar.content_max_len = (size.y - box_const::thickness) * options.size();
+    bar.content_len = bound.height;
 
     for(int i = 0; i < options.size(); ++i) {
         options[i].setSize(size);
@@ -92,6 +107,8 @@ void DropBox::add(std::string label) {
     option.press_color = press_color;
 
     options.append(option);
+    
+    refresh();
 }
 
 int DropBox::getSelected() {
@@ -99,21 +116,26 @@ int DropBox::getSelected() {
 }
 
 void DropBox::render(const Vector2 &mouse) {
-    // DrawRectangleRoundedLines(bound, 0.05, box_const::segments, box_const::thickness, border_color);
-    
     current.render(mouse);
-    bar.render(mouse);
     arrow.render();
 
-    // BeginScissorMode(0, 0, 10, 100);
-
     if(selected) {
-        for(int i = options.size() - 1; i > -1; --i)
-            options[i].render(mouse);
-        // BeginScissorMode(0, 0, 10, 100);
-    }
+        StartScissor(bound);
 
-    // EndScissorMode();
+        for(int i = options.size() - 1; i > -1; --i) {
+            if(bar.currentlyPressed(mouse)) options[i].render({0, 0});
+            else options[i].render(mouse);
+        }
+        
+        EndScissor();
+
+        Rectangle tempBound = bound;
+        tempBound.y -= box_const::thickness;
+        tempBound.height += box_const::thickness;
+
+        DrawRectangleLinesEx(tempBound, box_const::thickness, border_color);
+        bar.render(mouse);
+    }
 }
 
 bool DropBox::process(const Vector2 &mouse) {
@@ -121,29 +143,35 @@ bool DropBox::process(const Vector2 &mouse) {
 
     if(selected) {
         if(arrow.angle != 90) arrow.angle += 900.0 / app_const::fps;
+        float curY = current.getPos().y + size.y - box_const::thickness - bar.content_height();
 
-        for(int i = 0; i < options.size(); ++i) if(options[i].clicked(mouse)){
-            if(curIndex >= 0) options[curIndex].fill_color = fill_color;
-            curIndex = i;
+        for(int i = 0; i < options.size(); ++i) {
+            options[i].setY(curY);
+            curY += size.y - box_const::thickness;
 
-            selected = false;
-            current.label = options[i].label;
-            current.label.color = text_color;
+            if(bar.currentlyPressed(mouse)) continue;
 
-            options[i].fill_color = hover_color;
-            areaClicked = true;
+            if(options[i].clicked(mouse)){
+                if(curIndex >= 0) options[curIndex].fill_color = fill_color;
+                curIndex = i;
+
+                selected = false;
+                current.label = options[i].label;
+                current.label.color = text_color;
+
+                options[i].fill_color = hover_color;
+                areaClicked = true;
+            }
         }
     }
     else {
         if(arrow.angle) arrow.angle -= 900.0 / app_const::fps;
     }
 
-    if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && !current.clicked(mouse)) selected = false;
-	if(current.clicked(mouse)) selected = !selected;
-
-    bound = Rectangle{size.x, size.y, pos.x, pos.y};
-
+    if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && !current.clicked(mouse) && !bar.currentlyPressed(mouse)) selected = false;
+	if(current.clicked(mouse) && !bar.currentlyPressed(mouse)) selected = !selected;
     bar.process(mouse);
+
     areaClicked = areaClicked || current.clicked(mouse);
     return areaClicked;
 }

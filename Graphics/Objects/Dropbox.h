@@ -9,6 +9,7 @@
 #include "Option.h"
 #include "Equilateral.h"
 #include "Scrollbar.h"
+#include "Scissor.h"
 
 class DropBox {
 private:

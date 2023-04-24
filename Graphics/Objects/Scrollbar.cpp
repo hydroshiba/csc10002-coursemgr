@@ -11,9 +11,11 @@ Scrollbar::Scrollbar() :
 	fill(box_const::border_color),
 	press(button_const::press_color),
 	pos({0, 0}),
-	last_mouse({0, 0}) {}
+	last_mouse({0, 0}) {
+		cur_pos = pos;
+	}
 
-Scrollbar::Scrollbar(float pos_min, float pos_max, float content_len, float content_max_len, float thickness, bool horizontal, Color fill, Color press) :
+Scrollbar::Scrollbar(Vector2 pos, float pos_min, float pos_max, float content_len, float content_max_len, float thickness, bool horizontal, Color fill, Color press) :
 	pos_min(pos_min),
 	pos_max(pos_max),
 	content_len(content_len),
@@ -22,12 +24,21 @@ Scrollbar::Scrollbar(float pos_min, float pos_max, float content_len, float cont
 	horizontal(horizontal),
 	fill(fill),
 	press(press),
-	pos(cur_pos),
-	last_mouse(cur_pos) {}
+	pos(pos),
+	last_mouse(cur_pos) {
+		cur_pos = pos;
+	}
 
 Rectangle Scrollbar::getRect() {
 	if(horizontal) return Rectangle{cur_pos.x, cur_pos.y, len, thickness};
 	return Rectangle{cur_pos.x, cur_pos.y, thickness, len};
+}
+
+void Scrollbar::setPos(Vector2 newPos) {
+	pos = newPos;
+	cur_pos = pos;
+
+	pos_min = (horizontal ? pos.x : pos.y);
 }
 
 float Scrollbar::content_height() {
@@ -43,6 +54,10 @@ bool Scrollbar::clicked(const Vector2 &mouse) {
 bool Scrollbar::pressed(const Vector2 &mouse) {
 	if(!CheckCollisionPointRec(mouse, getRect())) return false;
     return IsMouseButtonDown(MOUSE_BUTTON_LEFT);
+}
+
+bool Scrollbar::currentlyPressed(const Vector2 &mouse) {
+	return pressing;
 }
 
 void Scrollbar::render(const Vector2 &mouse) {
