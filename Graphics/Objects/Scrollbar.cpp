@@ -68,7 +68,20 @@ void Scrollbar::process(const Vector2 &mouse) {
 		float diff = (mouse.x - last_mouse.x) * horizontal + (mouse.y - last_mouse.y) * (!horizontal);
 		float &cur = (horizontal ? cur_pos.x : cur_pos.y);
 
-		if(cur + diff + len <= pos_max && cur + diff >= pos_min) cur += diff;
+		cur += diff;
+		if(cur + len > pos_max) cur = pos_max - len;
+		if(cur < pos_min) cur = pos_min;
+
+		last_mouse = mouse;
+	}
+	else {
+		float diff = GetMouseWheelMove() * -4;
+		float &cur = (horizontal ? cur_pos.x : cur_pos.y);
+
+		cur += diff;
+		if(cur + len > pos_max) cur = pos_max - len;
+		if(cur < pos_min) cur = pos_min;
+
 		last_mouse = mouse;
 	}
 }
