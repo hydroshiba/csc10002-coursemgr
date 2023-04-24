@@ -10,7 +10,11 @@
 
 class SchoolYearScene : public Scene {
 private:
-    TextBox content;
+    TextBox nameScene;
+    TextBox nameViewClass;
+    TextBox nameAddClass;
+    TextBox nameRemoveClass;
+    TextBox nameEditYear;
 public:
     SchoolYearScene();
     void render();
