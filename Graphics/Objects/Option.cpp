@@ -44,7 +44,7 @@ void Option::render(const Vector2 &mouse) const {
     DrawRectangleRounded(border_bound, roundness, box_const::segments, color);
     DrawRectangleRoundedLines(fill_bound, roundness, box_const::segments, box_const::thickness, border_color);
 
-	BeginScissorMode(fill_bound.x + left_padding, fill_bound.y, fill_bound.width - right_padding, fill_bound.height);
+	StartScissor(fill_bound.x + left_padding, fill_bound.y, fill_bound.width - right_padding, fill_bound.height);
     DrawTextEx(label.font, label.text.c_str(), textPos, label.font_size, label.space, label.color);
-	EndScissorMode();
+    EndScissor();
 }

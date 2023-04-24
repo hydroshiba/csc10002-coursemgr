@@ -93,7 +93,7 @@ void InputBox::render(const Vector2 &mouse) const {
 	if((frameCount * 2 / app_const::fps) % 2 && selected) cursor = "|";
 	else cursor = "";
 
-	BeginScissorMode(fill_bound.x + text_const::padding, fill_bound.y, fill_bound.width - text_const::padding, fill_bound.height);
+	StartScissor(fill_bound.x + text_const::padding, fill_bound.y, fill_bound.width - text_const::padding, fill_bound.height);
     
 	if(!content.text.empty() || selected || pressed(mouse)) {
 		if(!selected && !pressed(mouse) && !hovering(mouse)) text_color = text_const::color;
@@ -102,7 +102,7 @@ void InputBox::render(const Vector2 &mouse) const {
 	else
 		DrawTextEx(defaultText.font, defaultText.text.c_str(), textPos, content.font_size, defaultText.space, text_color);
 
-	EndScissorMode(); 
+	EndScissor(); 
 }
 
 void InputBox::setX(float x) {
