@@ -6,9 +6,9 @@
 #include "Scene.h"
 #include "Registry.h"
 
-#include "Objects\TextBox.h"
-#include "Objects\Dropbox.h"
-#include "Objects\InputBox.h"
+#include "Objects/TextBox.h"
+#include "Objects/Dropbox.h"
+#include "Objects/InputBox.h"
 
 class SchoolYearScene : public Scene {
 private:
