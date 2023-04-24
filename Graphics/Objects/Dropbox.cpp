@@ -1,4 +1,5 @@
 #include "DropBox.h"
+#include "Dropbox.h"
 
 DropBox::DropBox() {
     curIndex = -1;
@@ -86,7 +87,7 @@ void DropBox::setSize(Vector2 size) {
     refresh();
 }
 
-void DropBox::add(std::string label) {
+void DropBox::add(const std::string &label) {
     Option* last = nullptr;
     Option option;
 
@@ -111,8 +112,12 @@ void DropBox::add(std::string label) {
     refresh();
 }
 
+void DropBox::add(const Vector<std::string> &labels) {
+    for(int i = 0; i < labels.size(); ++i) add(labels[i]);
+}
+
 int DropBox::getSelected() {
-    return curIndex;
+	return curIndex;
 }
 
 void DropBox::render(const Vector2 &mouse) {

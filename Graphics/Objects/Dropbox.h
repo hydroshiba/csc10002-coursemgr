@@ -46,7 +46,8 @@ public:
     void setPos(Vector2 pos);
     void setSize(Vector2 size);
 
-    void add(std::string label);
+    void add(const std::string &label);
+    void add(const Vector<std::string> &labels);
     int getSelected();
 
     void render(const Vector2 &mouse);

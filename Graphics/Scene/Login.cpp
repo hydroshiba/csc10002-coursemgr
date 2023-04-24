@@ -32,30 +32,7 @@ Login::Login() {
 	test.setPos({200, 200});
 	test.setSize({400, 50});
 
-	test.add("yo wtf bro");
-	test.add("anyone there");
-	test.add("this is a very long text, with the purpose of testing the display of the option box");
-	test.add("please send me hope");
-	test.add("or nudes");
-	test.add("or a rope");
-	test.add("yo wtf bro");
-	test.add("anyone there");
-	test.add("this is a very long text, with the purpose of testing the display of the option box");
-	test.add("please send me hope");
-	test.add("or nudes");
-	test.add("or a rope");
-	test.add("yo wtf bro");
-	test.add("anyone there");
-	test.add("this is a very long text, with the purpose of testing the display of the option box");
-	test.add("please send me hope");
-	test.add("or nudes");
-	test.add("or a rope");
-	test.add("yo wtf bro");
-	test.add("anyone there");
-	test.add("this is a very long text, with the purpose of testing the display of the option box");
-	test.add("please send me hope");
-	test.add("or nudes");
-	test.add("or a rope");
+	for(int i = 1; i <= 50; ++i) test.add(std::to_string(i));
 
 	invalid = "";
 	invalid.setColor(RED);
