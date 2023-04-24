@@ -46,5 +46,10 @@ void SchoolYearScene::render() {
 
 Scene* SchoolYearScene::process() {
     this->mousePoint = GetMousePosition();
+
+    listClass.process(mousePoint);
+    
+    inputClassNameAdded.process(mousePoint);
+    
     return this;
 } 
