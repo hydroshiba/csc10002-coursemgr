@@ -7,14 +7,16 @@
 #include "Registry.h"
 
 #include "Objects\TextBox.h"
+#include "Objects\Dropbox.h"
 
 class SchoolYearScene : public Scene {
 private:
     TextBox nameScene;
-    TextBox nameViewClass;
-    TextBox nameAddClass;
-    TextBox nameRemoveClass;
-    TextBox nameEditYear;
+
+    TextBox viewClass;
+    TextBox addClass;
+    TextBox removeClass;
+    TextBox editYear;
 public:
     SchoolYearScene();
     void render();

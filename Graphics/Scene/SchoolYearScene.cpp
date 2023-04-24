@@ -6,29 +6,29 @@ SchoolYearScene::SchoolYearScene() {
     nameScene.centerX();
     nameScene.setY(100);
 
-    nameViewClass = "View Classes";
-    nameViewClass.setSize(30);
-    nameViewClass.setPos({100, 250});
+    viewClass = "View Classes";
+    viewClass.setSize(30);
+    viewClass.setPos({100, 250});
 
-    nameAddClass = "Add Class";
-    nameAddClass.setSize(30);
-    nameAddClass.setPos({100, 350});
+    addClass = "Add Class";
+    addClass.setSize(30);
+    addClass.setPos({100, 350});
 
-    nameRemoveClass = "Remove Class";
-    nameRemoveClass.setSize(30);
-    nameRemoveClass.setPos({100, 450});
+    removeClass = "Remove Class";
+    removeClass.setSize(30);
+    removeClass.setPos({100, 450});
 
-    nameEditYear = "Edit Year";
-    nameEditYear.setSize(30);
-    nameEditYear.setPos({100, 550});
+    editYear = "Edit Year";
+    editYear.setSize(30);
+    editYear.setPos({100, 550});
 }
 
 void SchoolYearScene::render() {
     nameScene.render();
-    nameViewClass.render();
-    nameAddClass.render();
-    nameRemoveClass.render();
-    nameEditYear.render();
+    viewClass.render();
+    addClass.render();
+    removeClass.render();
+    editYear.render();
 }
 
 Scene* SchoolYearScene::process() {
