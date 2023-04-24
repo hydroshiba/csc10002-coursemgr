@@ -10,6 +10,10 @@ SchoolYearScene::SchoolYearScene() {
     viewClass.setSize(30);
     viewClass.setPos({100, 250});
 
+    listClass.setLabel("List of Classes:");
+    listClass.setPos({400, 240});
+    listClass.setSize({300, 50});
+
     addClass = "Add Class";
     addClass.setSize(30);
     addClass.setPos({100, 350});
@@ -25,7 +29,10 @@ SchoolYearScene::SchoolYearScene() {
 
 void SchoolYearScene::render() {
     nameScene.render();
+
     viewClass.render();
+    listClass.render(mousePoint);
+
     addClass.render();
     removeClass.render();
     editYear.render();
