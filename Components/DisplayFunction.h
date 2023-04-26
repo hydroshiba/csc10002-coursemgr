@@ -8,6 +8,17 @@
 
 /*		Display function	*/
 
+Vector<std::string> getListSchoolYear(Vector<SchoolYear>& schoolYears);
+
+Vector<std::string> getListAcademicYear(Vector<AcademicYear>& academicYears);
+
+Vector<std::string> getListClass(const SchoolYear& schoolYear);
+
+Vector<std::string> getListSemester(const AcademicYear& academicYear);
+
+Vector<std::string> getListCourse(const Semester& semester);
+
+
 // View list of SchoolYear
 void viewListSchoolYear(Vector<SchoolYear>& schoolYears);
 // 15. view list of classes

@@ -14,6 +14,45 @@
 #include "Scoreboard.h"
 
 /*		Display function	*/
+Vector<std::string> getListSchoolYear(Vector<SchoolYear>& schoolYears) {
+	Vector<std::string> listSY(schoolYears.size());
+	for (int i = 0; i < listSY.size(); i++){
+		listSY[i] = std::to_string(schoolYears[i].start);
+	}
+	return listSY;
+}
+
+Vector<std::string> getListAcademicYear(Vector<AcademicYear>& academicYears) {
+	Vector<std::string> listAYs(academicYears.size());
+	for (int i = 0; i < listAYs.size(); i++) {
+		listAYs[i] = std::to_string(academicYears[i].start);
+	}
+	return listAYs;
+}
+
+Vector<std::string> getListClass(const SchoolYear& schoolYear) {
+	Vector<std::string> listClass(schoolYear.classes.size());
+	for (int i = 0; i < schoolYear.classes.size(); i++) {
+		listClass[i] = schoolYear.classes[i].name;
+	}
+	return listClass;
+}
+
+Vector<std::string> getListSemester(const AcademicYear& academicYear) {
+	Vector<std::string> listSemester(academicYear.semesters.size());
+	for (int i = 0; i < academicYear.semesters.size(); i++) {
+		listSemester[i] = academicYear.semesters[i].semesterID;
+	}
+	return listSemester;
+}
+
+Vector<std::string> getListCourse(const Semester& semester) {
+	Vector<std::string> listCourse(semester.courses.size());
+	for (int i = 0; i < semester.courses.size(); i++) {
+		listCourse[i] = semester.courses[i].ID;
+	}
+	return listCourse;
+}
 
 // View list of courses
 void viewCourses(Semester& sem, std::ostream& outDev) {
