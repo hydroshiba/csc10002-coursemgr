@@ -38,4 +38,21 @@ bool operator!=(const Type &typeA, const Type &typeB) {
     return !(typeA == typeB);
 }
 
+extern Vector<SchoolYear> schoolYears;
+extern Vector<AcademicYear> academicYears;
+extern Vector<Student> students;
+extern Vector<Staff> staffs;
+
+extern Staff* ptrStaff;
+extern Student* ptrStudent;
+
+extern SchoolYear* ptrSchoolYear;
+extern Class* ptrClass;
+
+extern AcademicYear* ptrAcademicYear;
+extern Semester* ptrSemester;
+extern Course* ptrCourse;
+extern Scoreboard* ptrScoreboard;
+
+
 #endif

@@ -22,3 +22,19 @@
 #include "DisplayFunction.h"
 #include "DownLoadFunction.h"
 #include "UpLoadFunction.h"
+
+ Vector<SchoolYear> schoolYears;
+ Vector<AcademicYear> academicYears;
+ Vector<Student> students;
+ Vector<Staff> staffs;
+
+ Staff* ptrStaff = nullptr;
+ Student* ptrStudent = nullptr;
+
+ SchoolYear* ptrSchoolYear = nullptr;
+ Class* ptrClass = nullptr;
+
+ AcademicYear* ptrAcademicYear = nullptr;
+ Semester* ptrSemester = nullptr;
+ Course* ptrCourse = nullptr;
+ Scoreboard* ptrScoreboard = nullptr;
