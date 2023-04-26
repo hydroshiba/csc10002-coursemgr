@@ -10,6 +10,7 @@
 #include "Scene/Blank.h"
 #include "Scene/Login.h"
 #include "Scene/StudentScene.h"
+#include "Scene/StaffScene.h"
 #include "Scene/CourseScene.h"
 #include "Scene/EditCourse.h"
 #include "Scene/SchoolYearScene.h"
