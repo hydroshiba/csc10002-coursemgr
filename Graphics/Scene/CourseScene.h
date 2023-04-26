@@ -21,8 +21,8 @@ private:
 
     Button viewStudent, add, remove, viewScore, updateBox, back;
 public:
+    Course* ptrCourse;
     CourseScene();
-    CourseScene(const Course& course);
     Scene* process();
     void render();
 };
