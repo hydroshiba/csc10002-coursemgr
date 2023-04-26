@@ -3,7 +3,7 @@
 const float sceneNameSize = 100;
 const float yPosSceneName = 0;
 //-----------------------------------
-const float dX = 100;
+const float dX = 50;
 const float dY = 50;
 //-----------------------------------
 const float textBoxContentSize = 30;
@@ -11,21 +11,21 @@ const float textBoxWidth = 100;
 const float textBoxHeight = 50;
 const Vector2 textBoxSize = { textBoxWidth, textBoxHeight };
 //-----------------------------------
-const float inputBoxWidth = 100;
+const float inputBoxWidth = 300;
 const float inputBoxHeight = 50;
 const Vector2 inputBoxSize = { inputBoxWidth, inputBoxHeight };
 //-----------------------------------
-const float xEditStaffText = 100;
-const float yEditStaffText = 200;
-const float xAddStaffText = xEditStaffText + 450;
+const float xEditStaffText = 250;
+const float yEditStaffText = 100;
+const float xAddStaffText = xEditStaffText + 600;
 //-----------------------------------
 const float xTextEdit = 50;
 const float xInputEdit = xTextEdit + textBoxWidth + dX;
 //-----------------------------------
-const float xTextAdd = 500;
+const float xTextAdd = 700;
 const float xInputAdd = xTextAdd + textBoxWidth + dX;
 //-----------------------------------
-const float yTextEdit = 100;
+const float yTextEdit = 200;
 const float yInputEdit = yTextEdit;
 
 const float yTextEditID = yTextEdit;
@@ -33,8 +33,8 @@ const float yTextEditFirstName = yTextEditID + textBoxHeight + dY;
 const float yTextEditLastName = yTextEditFirstName + textBoxHeight + dY;
 const float yTextEditPassword = yTextEditLastName + textBoxHeight + dY;
 //-------------------------------------------------------------------
-const float buttonHeight = 50;
-const float buttonWidth = 100;
+const float buttonHeight = 100;
+const float buttonWidth = 200;
 const Vector2 buttonSize = { buttonWidth, buttonHeight };
 
 
@@ -51,7 +51,7 @@ StaffScene::StaffScene() {
 	sceneName.centerX();
 	//-------------------------------------------------------------------
 	editStaff = "Edit Staff";
-	editStaff.setSize(textBoxContentSize);
+	editStaff.setSize(textBoxContentSize + 20);
 	editStaff.setPos({ xEditStaffText, yEditStaffText });
 	//-------------------------------------------------------------------
 	textEditID = "ID";
@@ -72,27 +72,23 @@ StaffScene::StaffScene() {
 	//-------------------------------------------------------------------
 	inputEditID.defaultText = ptrStaff->ID;
 	inputEditID.setSize(inputBoxSize);
-	inputEditID.setPos({ xTextAdd, yTextEditID });
+	inputEditID.setPos({ xInputEdit, yTextEditID });
 	//-------------------------------------------------------------------
 	inputEditFirstName.defaultText = ptrStaff->name.first;
 	inputEditFirstName.setSize(inputBoxSize);
-	inputEditFirstName.setPos({ xTextAdd, yTextEditFirstName });
+	inputEditFirstName.setPos({ xInputEdit, yTextEditFirstName });
 	//-------------------------------------------------------------------
 	inputEditLastName.defaultText = ptrStaff->name.last;
 	inputEditLastName.setSize(inputBoxSize);
-	inputEditLastName.setPos({ xTextAdd, yTextEditLastName });
+	inputEditLastName.setPos({ xInputEdit, yTextEditLastName });
 	//-------------------------------------------------------------------
 	inputEditPassword.defaultText = std::to_string(ptrStaff->getHashedPass());
 	inputEditPassword.setSize(inputBoxSize);
-	inputEditPassword.setPos({ xTextAdd, yTextEditPassword });
-	//-------------------------------------------------------------------
-	change.label = "Change";
-	change.setSize(buttonSize);
-	change.setPos({ 250, 100 });
+	inputEditPassword.setPos({ xInputEdit, yTextEditPassword });
 	//-------------------------------------------------------------------
 	//-------------------------------------------------------------------
 	addStaff = "Add new staff";
-	addStaff.setSize(textBoxContentSize);
+	addStaff.setSize(textBoxContentSize + 20);
 	addStaff.setPos({ xAddStaffText, yEditStaffText });
 	//-------------------------------------------------------------------
 	textAddID = "ID";
@@ -113,36 +109,44 @@ StaffScene::StaffScene() {
 	//-------------------------------------------------------------------
 	inputAddID.defaultText = "Input staff ID";
 	inputAddID.setSize(inputBoxSize);
-	inputAddID.setPos({ xTextAdd, yTextEditID });
+	inputAddID.setPos({ xInputAdd, yTextEditID });
 	//-------------------------------------------------------------------
 	inputAddFirstName.defaultText = "Input firstname";
 	inputAddFirstName.setSize(inputBoxSize);
-	inputAddFirstName.setPos({ xTextAdd, yTextEditFirstName });
+	inputAddFirstName.setPos({ xInputAdd, yTextEditFirstName });
 	//-------------------------------------------------------------------
 	inputAddLastName.defaultText = "Input lastname";
 	inputAddLastName.setSize(inputBoxSize);
-	inputAddLastName.setPos({ xTextAdd, yTextEditLastName });
+	inputAddLastName.setPos({ xInputAdd, yTextEditLastName });
 	//-------------------------------------------------------------------
 	inputAddPassword.defaultText = "Input password";
 	inputAddPassword.setSize(inputBoxSize);
-	inputAddPassword.setPos({ xTextAdd, yTextEditPassword });
+	inputAddPassword.setPos({ xInputAdd, yTextEditPassword });
 	//-------------------------------------------------------------------
-	add.label = "Add";
-	add.setSize(buttonSize);
-	add.setPos({ 550, 100 });
 	//-------------------------------------------------------------------
+	change.label = "Change";
+	change.setSize(buttonSize);
+	change.setPos({ 50, 600 });
+	change.fill_color = YELLOW;
 	//-------------------------------------------------------------------
 	listAYs.label = "List Academic Year";
 	listAYs.setSize(buttonSize);
-	listAYs.setPos({ 100, 600 });
+	listAYs.setPos({ 300, 600 });
 	//-------------------------------------------------------------------
 	listSYs.label = "List School Year";
 	listSYs.setSize(buttonSize);
-	listSYs.setPos({ 300, 600 });
+	listSYs.setPos({ 550, 600 });
 	//-------------------------------------------------------------------
 	logout.label = "Logout";
 	logout.setSize(buttonSize);
-	logout.setPos({ 500, 600 });
+	logout.setPos({ 800, 600 });
+	logout.fill_color = ORANGE;
+	logout.hover_color = MAROON;
+	//-------------------------------------------------------------------
+	add.label = "Add";
+	add.setSize(buttonSize);
+	add.setPos({ 1050, 600 });
+	add.fill_color = YELLOW;
 }
 
 void StaffScene::render() {
