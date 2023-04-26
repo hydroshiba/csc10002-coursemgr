@@ -1,37 +1,38 @@
 #include "CourseScene.h"
 
 CourseScene :: CourseScene(){
+    ptrCourse = new Course();
     title = "Course";
     title.setSize(75);
     title.centerX();
     title.setY(75);
 
-    courseID = "Course ID";
+    courseID = ptrCourse->ID;
     courseID.setSize(40);
     courseID.setPos({100,200});
     courseID.setColor(MAROON);
 
-    classID = "Class ID";
+    classID = ptrCourse->classID;
     classID.setSize(40);
     classID.setPos({100, 275});
     classID.setColor(MAROON);
 
-    name = "Course Name";
+    name = ptrCourse->name;
     name.setSize(40);
     name.setPos({100, 350});
     name.setColor(MAROON);
 
-    teacher = "Teacher";
+    teacher = ptrCourse->teacher;
     teacher.setSize(40);
     teacher.setPos({100, 425});
     teacher.setColor(MAROON);
 
-    weekday = "Day";
+    weekday = weekday_to_string(ptrCourse->weekday);
     weekday.setSize(40);
     weekday.setPos({100, 500});
     weekday.setColor(MAROON);
 
-    session = "Session";
+    session = session_to_string(ptrCourse->session);
     session.setSize(40);
     session.setPos({100, 575});
     session.setColor(MAROON);
