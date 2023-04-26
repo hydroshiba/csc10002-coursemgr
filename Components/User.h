@@ -27,7 +27,8 @@ public:
     uint64_t getHashedPass();
 };
 
-struct Staff : User {
+struct Staff : public User {
+    Staff(const Name& name = { defaultStr, defaultStr }, const std::string& ID = defaultStr, const uint64_t& password = 0) : User(name, defaultStr, password){};
 };
 
 bool operator==(const User& userA, const User& userB);
