@@ -126,7 +126,7 @@ bool isCorrectStaffAccount(Vector<Staff>& staffs, const std::string& staffID, co
 		outStr = "Invalid username or password! Pls try again!";
 		return false;
 	}
-	if (!ptrStaff->isPassword(password)) 
+	if (ptrStaff->isPassword(password) == false) 
 	{
 		outStr = "Invalid username or password! Pls try again!";
 		return false;
@@ -146,6 +146,7 @@ bool isCorrectStudentAccount(Vector<Student>& students, const std::string& stude
 		outStr = "Invalid username or password! Pls try again!";
 		return false;
 	}
+	outStr = "Complete login to student account " + studentID;
 	return true;
 }
 // Check student

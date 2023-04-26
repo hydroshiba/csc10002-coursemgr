@@ -38,8 +38,7 @@ void uploadListStaff(Vector<Staff::User>& staffs){
 		getline(ifs, last, ',');
 		getline(ifs,ID, ',');
 		getline(ifs, pass);
-		uint64_t password = std::stoull(pass);
-		Staff::User newStaff({first, last}, ID, password);
+		Staff newStaff({first, last}, ID, pass);
 		staffs.append(newStaff);
 	}
 	ifs.close();
@@ -63,8 +62,7 @@ void uploadListStudent(Vector<Student>& students){
 		std::getline(ifs, socialId);
 		unsigned short d = static_cast<unsigned short>(std::stoul(day)), m = static_cast<unsigned short>(std::stoul(month));
 		unsigned int y = static_cast<unsigned int>(std::stoul(year));
-		uint64_t password = std::stoull(pass);
-		Student newStudent({ first, last }, ID, password, string_to_gender(gender), { d, m, y }, socialId);
+		Student newStudent({ first, last }, ID, pass, string_to_gender(gender), { d, m, y }, socialId);
 		students.append(newStudent);
 	}
 	ifs.close();

@@ -1,9 +1,9 @@
 #include "User.h"
 
-User::User(const Name& name, const std::string& ID, const uint64_t& password) {
+User::User(const Name& name, const std::string& ID, const std::string& passwordStr) {
     this->name = name;
     this->ID = ID;
-    this->password = password;
+    setPassword(passwordStr);
 }
 
 uint64_t User::hash(uint64_t left, uint64_t right) {
@@ -48,4 +48,10 @@ bool operator==(const User& userA, const User& userB) {
     if (userA.ID != userB.ID) return false;
     if (userA.name != userB.name) return false;
     return true;
+}
+
+Staff::Staff(const Name& name, const std::string& ID, const std::string& password) {
+    this->name = name;
+    this->ID = ID;
+    setPassword(password);
 }

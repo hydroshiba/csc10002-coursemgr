@@ -1,15 +1,16 @@
 #include "Student.h"
 
-Student::Student(const Name& name, const std::string& id, const uint64_t password, const Gender& gender, const Date& birth, const std::string& socialID, Class* ptrClass, const Vector<Scoreboard*>& scoreboards) : User(name, id, password) {
+Student::Student(const Name& name, const std::string& id, const std::string& password, const Gender& gender, const Date& birth, const std::string& socialID, Class* ptrClass, const Vector<Scoreboard*>& scoreboards) : User(name, id, password) {
     this->ID = id;
     this->gender = gender;
     this->birth = birth;
     this->socialID = socialID;
     this->ptrClass = ptrClass;
     this->scoreboards = scoreboards;
+    setPassword(password);
 }
 
-void Student::set(const Name& name, const std::string& id, const uint64_t password, const Gender& gender, const Date& birth, const std::string& socialID, Class* ptrClass, const Vector<Scoreboard*>& scoreboards) {
+void Student::set(const Name& name, const std::string& id, const std::string& password, const Gender& gender, const Date& birth, const std::string& socialID, Class* ptrClass, const Vector<Scoreboard*>& scoreboards) {
     this->name = name;
     this->ID = id;
     this->gender = gender;
@@ -17,6 +18,7 @@ void Student::set(const Name& name, const std::string& id, const uint64_t passwo
     this->socialID = socialID;
     this->ptrClass = ptrClass;
     this->scoreboards = scoreboards;
+    setPassword(password);
 }
 
 void Student::setName(const Name& name) {

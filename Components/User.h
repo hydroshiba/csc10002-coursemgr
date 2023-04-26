@@ -16,7 +16,7 @@ public:
     Name name;
     std::string ID;
 
-    User(const Name& name = {defaultStr, defaultStr}, const std::string& ID = defaultStr, const uint64_t& password = 0);
+    User(const Name& name = { defaultStr, defaultStr }, const std::string& ID = defaultStr, const std::string& passwordStr = "");
 
     void setName(const std::string& first, const std::string& last);
 
@@ -30,7 +30,7 @@ public:
 };
 
 struct Staff : public User {
-    Staff(const Name& name = { defaultStr, defaultStr }, const std::string& ID = defaultStr, const uint64_t& password = 0) : User(name, defaultStr, password){};
+    Staff(const Name& name = { defaultStr, defaultStr }, const std::string& ID = defaultStr, const std::string& password = "");
 };
 
 bool operator==(const User& userA, const User& userB);
