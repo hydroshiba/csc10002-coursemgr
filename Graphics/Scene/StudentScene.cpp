@@ -21,7 +21,7 @@ const float inputBoxWidth = 300;
 const Vector2 inputBoxSize = { inputBoxWidth, inputBoxHeight };
 
 const float xPosTextBox = 50;
-const float yPosTextBox = 100;
+const float yPosTextBox = 150;
 
 const float yPosTextBoxID = yPosTextBox;
 const float yPosTextBoxFirstName = yPosTextBoxID + textBoxHeight + yDis;
@@ -33,16 +33,25 @@ const float yPosTextBoxPassword = yPosTextBoxSocialID + textBoxHeight + yDis;
 
 const float xPosInputBox = xPosTextBox + xDis;
 
-const Vector2 buttonSize = { 200, 100 };
+const float buttonHeigth = 100;
+const float buttonWidth = 200;
+const Vector2 buttonSize = { buttonWidth, buttonHeigth };
+
+const float yDisButton = 50;
+const float xPosButton = 1000;
+const float yPosChange = 150;
+const float yPosViewSBs = yPosChange + buttonHeigth + yDisButton;
+const float yPosBack = yPosViewSBs + buttonHeigth + yDisButton;
+const float yPosLogout = yPosBack + buttonHeigth + yDisButton;
 
 StudentScene::StudentScene() {
 	ptrStudent = new Student();
 	//ptrStaff = nullptr;
 
 	sceneName = "Student";
-	sceneName.centerX();
 	sceneName.setSize(sizeTextSceneName);
 	sceneName.setY(yPosSceneName);
+	sceneName.centerX();
 
 	textID = "ID";
 	textID.setSize(textBoxContentSize);
@@ -102,19 +111,24 @@ StudentScene::StudentScene() {
 
 	change.label = "Change";
 	change.setSize(buttonSize);
-	change.setPos({ 1000, 300 });
+	change.setPos({ xPosButton, yPosChange });
 	
 	viewScoreboard.label = "View scoreboards";
 	viewScoreboard.setSize(buttonSize);
-	viewScoreboard.setPos({ 1000, 400 });
+	viewScoreboard.setPos({ xPosButton, yPosViewSBs });
 
 	logout.label = "Logout";
 	logout.setSize(buttonSize);
-	logout.setPos({ 1000, 500 });
+	logout.setPos({ xPosButton, yPosLogout });
 	
 	back.label = "Back";
 	back.setSize(buttonSize);
-	back.setPos({ 1000, 600 });
+	back.setPos({ xPosButton, yPosBack });
+
+	back.fill_color = ORANGE;
+	back.hover_color = MAROON;
+	logout.fill_color = RED;
+	logout.hover_color = MAROON;
 }
 
 void StudentScene::render() {
