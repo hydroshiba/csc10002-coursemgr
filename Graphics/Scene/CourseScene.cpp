@@ -7,51 +7,51 @@ CourseScene :: CourseScene(){
     title.centerX();
     title.setY(75);
 
-    courseID = ptrCourse->ID;
+    courseID = "CourseID: " + ptrCourse->ID;
     courseID.setSize(40);
     courseID.setPos({100,200});
     courseID.setColor(MAROON);
 
-    classID = ptrCourse->classID;
+    classID = "ClassID: " + ptrCourse->classID;
     classID.setSize(40);
     classID.setPos({100, 275});
     classID.setColor(MAROON);
 
-    name = ptrCourse->name;
+    name = "Course name: " + ptrCourse->name;
     name.setSize(40);
     name.setPos({100, 350});
     name.setColor(MAROON);
 
-    teacher = ptrCourse->teacher;
+    teacher = "Teacher: " + ptrCourse->teacher;
     teacher.setSize(40);
     teacher.setPos({100, 425});
     teacher.setColor(MAROON);
 
-    weekday = weekday_to_string(ptrCourse->weekday);
+    weekday = "Weekday: " + weekday_to_string(ptrCourse->weekday);
     weekday.setSize(40);
     weekday.setPos({100, 500});
     weekday.setColor(MAROON);
 
-    session = session_to_string(ptrCourse->session);
+    session = "Session: " + session_to_string(ptrCourse->session);
     session.setSize(40);
     session.setPos({100, 575});
     session.setColor(MAROON);
 
-    addBox.setSize({200,50});
+    addBox.setSize({250,50});
     addBox.setPos({500, 275});
-    addBox.defaultText = "Student ID";
+    addBox.defaultText = "Input studentID...";
 
     add.label = "Add";
     add.setSize({100,50});
-    add.setPos({700,275});
+    add.setPos({750,275});
 
-    removeBox.setSize({200,50});
+    removeBox.setSize({250,50});
     removeBox.setPos({500, 375});
-    removeBox.defaultText = "Student ID";
+    removeBox.defaultText = "Input studentID...";
 
     remove.label = "Remove";
     remove.setSize({100,50});
-    remove.setPos({700,375});
+    remove.setPos({750,375});
 
     remove.hover_color = RED;
     remove.press_color = MAROON;
