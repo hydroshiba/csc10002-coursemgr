@@ -54,6 +54,32 @@ Vector<std::string> getListCourse(const Semester& semester) {
 	return listCourse;
 }
 
+Vector<Vector<std::string>> getTableContentOfScoreboardsofStudent(const Student& student) {
+	Vector<Vector<std::string>> table(student.scoreboards.size() + 1);
+	for (int i = 0; i < table.size(); i++) {
+		table[i].resize(7);
+	}
+	table[0][0] = "No";
+	table[0][1] = "CourseID";
+	table[0][2] = "SemesterID";
+	table[0][3] = "Midterm";
+	table[0][4] = "Final";
+	table[0][5] = "Other";
+	table[0][6] = "Total";
+	for (int i = 0; i < student.scoreboards.size(); i++) {
+		table[i + 1][0] = std::to_string(i + 1);
+		table[i + 1][1] = student.scoreboards[i]->ptrCourse->ID;
+		table[i + 1][2] = student.scoreboards[i]->ptrCourse->ptrSemester->semesterID;
+		table[i + 1][3] = student.scoreboards[i]->midterm;
+		table[i + 1][4] = student.scoreboards[i]->final;
+		table[i + 1][5] = student.scoreboards[i]->other;
+		table[i + 1][6] = student.scoreboards[i]->total;
+	}
+	return table;
+}
+
+
+
 // View list of courses
 void viewCourses(Semester& sem, std::ostream& outDev) {
 	std::cout << "List of courses: ";

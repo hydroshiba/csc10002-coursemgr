@@ -18,7 +18,7 @@ Vector<std::string> getListSemester(const AcademicYear& academicYear);
 
 Vector<std::string> getListCourse(const Semester& semester);
 
-
+Vector<Vector<std::string>> getTableContentOfScoreboardsofStudent(const Student& student);
 // View list of SchoolYear
 void viewListSchoolYear(Vector<SchoolYear>& schoolYears);
 // 15. view list of classes
