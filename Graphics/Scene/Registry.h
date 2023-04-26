@@ -10,10 +10,11 @@ public:
 	Scene* courseScene;
 	Scene* editScene;
 	Scene* editSchoolYearScene;
-
+	Scene* studentScene;
 	Registry(): 
 	blank(nullptr), 
 	login(nullptr), 
+	studentScene(nullptr),
 	courseScene(nullptr), 
 	editScene(nullptr), 
 	editSchoolYearScene(nullptr) {}

@@ -2,6 +2,8 @@
 #define SCENE_H
 
 #include "raylib.h"
+#include "Components.h"
+#include "Student.h"
 
 class Scene {
 protected:

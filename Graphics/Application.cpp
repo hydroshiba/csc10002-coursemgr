@@ -5,6 +5,7 @@ Application::Application() {
     InitWindow(app_const::width, app_const::height, app_const::title.c_str());
 
     registry.login = new Login();
+    registry.studentScene = new StudentScene();
     registry.blank = new Blank();
     registry.courseScene = new CourseScene();
     registry.editScene = new EditCourse();
