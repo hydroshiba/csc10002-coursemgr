@@ -5,6 +5,8 @@
 
 /*		Update function		*/
 
+bool updateStudentIn4(Student& student, const std::string& ID, const std::string& firstName, const std::string& lastName, const std::string& genderStr, const std::string& birthStr, const std::string& socialID, const std::string& password);
+
 // Update AcademicYear
 void updateAcademicYear(AcademicYear& academicYear, const std::string& newStartYear); // Inputbox
 // Update SchoolYear

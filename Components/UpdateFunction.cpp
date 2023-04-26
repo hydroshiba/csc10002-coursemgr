@@ -19,8 +19,25 @@
 /*		Update function		*/
 
 // Update course informations
-void updateAcademicYear(AcademicYear &academuicYear, const std::string& newStartYear){
-	academuicYear.start = (unsigned int)stoi(newStartYear);
+
+bool updateStudentIn4(Student& student, const std::string& ID, const std::string& firstName, const std::string& lastName, const std::string& genderStr, const std::string& birthStr, const std::string& socialID, const std::string& password) {
+	Gender gender = string_to_gender(genderStr);
+	unsigned short day = static_cast<unsigned short>(std::stoi(birthStr.substr(0, 2)));
+	unsigned short month = static_cast<unsigned short>(std::stoi(birthStr.substr(3, 2)));
+	unsigned int year = static_cast<unsigned int>(std::stoul(birthStr.substr(6, 4)));
+	Date birth(day, month, year);
+	Name name(firstName, lastName);
+	student.setName(name);
+	student.setID(ID);
+	student.setGender(gender);
+	student.setSocialID(socialID);
+	student.setPassword(password);
+	student.setBirth(birth);
+	return true;
+ }
+
+void updateAcademicYear(AcademicYear &academicYear, const std::string& newStartYear){
+	academicYear.start = (unsigned int)stoi(newStartYear);
 }
 
 void updateSchoolYear(SchoolYear &schoolYear, const std::string &newStartYear){

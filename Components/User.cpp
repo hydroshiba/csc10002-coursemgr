@@ -27,6 +27,11 @@ void User::setName(const std::string& first, const std::string& last) {
     name.last = last;
 }
 
+void User::setID(const std::string ID) {
+    this->ID = ID;
+}
+
+
 void User::setPassword(const std::string& str) {
     password = hash(str);
 }

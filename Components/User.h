@@ -24,6 +24,8 @@ public:
 
     bool isPassword(const std::string& str);
 
+    void setID(const std::string ID);
+
     uint64_t getHashedPass();
 };
 

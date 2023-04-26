@@ -22,12 +22,12 @@ struct Student : public User {
 
     void set(const Name& name, const std::string& id, const uint64_t password, const Gender& gender, const Date& birth, const std::string& socialID, Class* ptrClass, const Vector<Scoreboard*>& scoreboards);
 
-    void update(const Name& name);
-    void update(const Gender& gender);
-    void update(const Date& birth);
-    void update(const std::string& socialID);
-    void update(Class* ptrClass);
-    void update(Vector<Scoreboard*>& scoreboards);
+    void setName(const Name& name);
+    void setGender(const Gender& gender);
+    void setBirth(const Date& birth);
+    void setSocialID(const std::string& socialID);
+    void setClass(Class* ptrClass);
+    void setScoreboards(Vector<Scoreboard*>& scoreboards);
 
     float getGPA(); // Overall GPA
     float getGPA(const Semester& semester); // Current semester GPA

@@ -19,27 +19,27 @@ void Student::set(const Name& name, const std::string& id, const uint64_t passwo
     this->scoreboards = scoreboards;
 }
 
-void Student::update(const Name& name) {
+void Student::setName(const Name& name) {
     this->name = name;
 }
 
-void Student::update(const Gender& gender) {
+void Student::setGender(const Gender& gender) {
     this->gender = gender;  
 }
 
-void Student::update(const Date& birth) {
+void Student::setBirth(const Date& birth) {
     this->birth = birth;  
 }
 
-void Student::update(const std::string& socialID) {
+void Student::setSocialID(const std::string& socialID) {
     this->socialID = socialID; 
 }
 
-void Student::update(Class* ptrClass) {
+void Student::setClass(Class* ptrClass) {
     this->ptrClass = ptrClass;
 }
 
-void Student::update(Vector<Scoreboard*>& scoreboards) {
+void Student::setScoreboards(Vector<Scoreboard*>& scoreboards) {
     this->scoreboards = scoreboards;
 }
 
@@ -90,7 +90,8 @@ void Student::setInfoToClass(std::ifstream &ifs){
     getline(ifs, sID);
 
     ID = id;
-    setName(first_name, last_name);
+    Name name(first_name, last_name);
+    setName(name);
     gender = (gender == "Male") ? male : female;
     birth.set(stoi(day), stoi(month), stoi(year));
     socialID = sID;
@@ -104,7 +105,8 @@ void Student::setInfoToCourseCSV(std::ifstream &ifs){
     getline(ifs, last);
 
     ID = id;
-    setName(first, last);
+    Name name(first, last);
+    setName(name);
 }
 
 void Student::setInfoCourseConsole(std::string &actClass){
@@ -112,7 +114,8 @@ void Student::setInfoCourseConsole(std::string &actClass){
     std::cout << "Enter id: "; std::cin >> ID;
     std::cout << "Enter first name: "; std::cin >> first;
     std::cout << "Enter last name: "; std::cin >> last;
-    setName(first, last);
+    Name name(first, last);
+    setName(name);
     std::cout << "Enter student's class: "; std::cin >> actClass;
 }
 
