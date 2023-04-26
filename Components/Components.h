@@ -43,16 +43,16 @@ extern Vector<AcademicYear> academicYears;
 extern Vector<Student> students;
 extern Vector<Staff> staffs;
 
-extern Staff* ptrStaff;
-extern Student* ptrStudent;
+extern Staff* ptrStaff_Global;
+extern Student* ptrStudent_Global;
 
-extern SchoolYear* ptrSchoolYear;
-extern Class* ptrClass;
+extern SchoolYear* ptrSchoolYear_Global;
+extern Class* ptrClass_Global;
 
-extern AcademicYear* ptrAcademicYear;
-extern Semester* ptrSemester;
-extern Course* ptrCourse;
-extern Scoreboard* ptrScoreboard;
+extern AcademicYear* ptrAcademicYear_Global;
+extern Semester* ptrSemester_Global;
+extern Course* ptrCourse_Global;
+extern Scoreboard* ptrScoreboard_Global;
 
 
 #endif

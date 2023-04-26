@@ -61,6 +61,8 @@ public:
     void centerX();
     void centerY();
 
+    std::string getContent();
+
     bool clicked(const Vector2 &mouse) const;
     bool pressed(const Vector2 &mouse) const;
     bool hovering(const Vector2 &mouse) const;

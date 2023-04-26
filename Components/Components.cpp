@@ -28,13 +28,13 @@
  Vector<Student> students;
  Vector<Staff> staffs;
 
- Staff* ptrStaff = nullptr;
- Student* ptrStudent = nullptr;
+ Staff* ptrStaff_Global = nullptr;
+ Student* ptrStudent_Global = nullptr;
 
- SchoolYear* ptrSchoolYear = nullptr;
- Class* ptrClass = nullptr;
+ SchoolYear* ptrSchoolYear_Global = nullptr;
+ Class* ptrClass_Global = nullptr;
 
- AcademicYear* ptrAcademicYear = nullptr;
- Semester* ptrSemester = nullptr;
- Course* ptrCourse = nullptr;
- Scoreboard* ptrScoreboard = nullptr;
+ AcademicYear* ptrAcademicYear_Global = nullptr;
+ Semester* ptrSemester_Global = nullptr;
+ Course* ptrCourse_Global = nullptr;
+ Scoreboard* ptrScoreboard_Global = nullptr;

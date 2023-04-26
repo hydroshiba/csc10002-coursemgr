@@ -11,6 +11,9 @@
 #include "Objects/InputBox.h"
 #include "Objects/DropBox.h"
 
+#include "../Components/Components.h"
+#include "../Components/SearchFunction.h"
+
 class Login : public Scene {
 private:
 	Button login;

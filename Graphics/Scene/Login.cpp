@@ -59,15 +59,27 @@ Scene* Login::process() {
 	if(quit.clicked(mousePoint)) return nullptr;
 
 	if(login.clicked(mousePoint)) {
-		if(username.content.text.empty() || password.content.text.empty()) {
+		std::string outStr = "";
+		std::string usernameStr = username.getContent();
+		std::string passwordStr = password.getContent();
+		if(usernameStr.empty() || passwordStr.empty()) {
 			invalid = "Invalid username/password, please retry";
 			invalid.centerX();
 			return this;
 		}
-		
-		invalid = "";
+		if (isCorrectStaffAccount(staffs, usernameStr, passwordStr, outStr)) {
+			ptrStaff_Global = getStaff(staffs, usernameStr);
+			invalid = outStr;
+			return registry.staffScene;
+		}
+		if (isCorrectStudentAccount(students, usernameStr, passwordStr, outStr)) {
+			ptrStudent_Global = getStudent(students, usernameStr);
+			invalid = outStr;
+			return registry.studentScene;
+		}
+		invalid = "Invalid username/password, please retry";
 		invalid.centerX();
-		return registry.blank;
+		return this;
 	}
 
 	if(!test.process(mousePoint)) {

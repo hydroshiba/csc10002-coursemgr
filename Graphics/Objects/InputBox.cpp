@@ -153,6 +153,10 @@ void InputBox::centerY() {
     refresh();
 }
 
+std::string InputBox::getContent() {
+    return content.text;
+}
+
 bool InputBox::clicked(const Vector2 &mouse) const {
     if(!CheckCollisionPointRec(mouse, border_bound)) return false;
     return IsMouseButtonReleased(MOUSE_BUTTON_LEFT);
