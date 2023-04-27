@@ -16,6 +16,7 @@
 #include "User.h"
 #include "ConvertType.h"
 
+#include <string>
 
 class StudentScene : public Scene {
 private:
@@ -42,14 +43,12 @@ private:
     TextBox textPassword;
     InputBox inputPassword;
 
+    TextBox message;
+
     Button change;
     Button viewScoreboard;
     Button logout;
-    Button back;
 public:
-    Student* ptrStudent;
-    Staff* ptrStaff;
-
     StudentScene();
     void render();
     Scene* process();

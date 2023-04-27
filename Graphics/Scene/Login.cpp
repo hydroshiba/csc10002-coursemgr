@@ -70,11 +70,13 @@ Scene* Login::process() {
 		if (isCorrectStaffAccount(staffs, usernameStr, passwordStr, outStr)) {
 			ptrStaff_Global = getStaff(staffs, usernameStr);
 			invalid = outStr;
+			invalid.centerX();
 			return registry.staffScene;
 		}
 		if (isCorrectStudentAccount(students, usernameStr, passwordStr, outStr)) {
 			ptrStudent_Global = getStudent(students, usernameStr);
 			invalid = outStr;
+			invalid.centerX();
 			return registry.studentScene;
 		}
 		invalid = "Invalid username/password, please retry";

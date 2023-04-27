@@ -1,28 +1,26 @@
 #include "StudentScene.h"
-
-
+//-------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------
 const float yPosSceneName = 10;
 const float sizeTextSceneName = 100;
-
+//-------------------------------------------------------------------------------------
 const float xDis = 150;
 const float yDis = 30;
-
+//-------------------------------------------------------------------------------------
 const float textBoxContentSize = 30;
 const float inputBoxContentSize = textBoxContentSize;
-
+//-------------------------------------------------------------------------------------
 const float textBoxHeight = 50;
 const float textBoxWidth = 100;
-
 const Vector2 textBoxSize = { textBoxHeight, textBoxWidth };
-
+//-------------------------------------------------------------------------------------
 const float inputBoxHeight = 50;
 const float inputBoxWidth = 300;
-
 const Vector2 inputBoxSize = { inputBoxWidth, inputBoxHeight };
-
+//-------------------------------------------------------------------------------------
 const float xPosTextBox = 50;
 const float yPosTextBox = 150;
-
+//-------------------------------------------------------------------------------------
 const float yPosTextBoxID = yPosTextBox;
 const float yPosTextBoxFirstName = yPosTextBoxID + textBoxHeight + yDis;
 const float yPosTextBoxLastName = yPosTextBoxFirstName + textBoxHeight + yDis;
@@ -30,24 +28,22 @@ const float yPosTextBoxGender = yPosTextBoxLastName + textBoxHeight + yDis;
 const float yPosTextBoxBirth = yPosTextBoxGender + textBoxHeight + yDis;
 const float yPosTextBoxSocialID = yPosTextBoxBirth + textBoxHeight + yDis;
 const float yPosTextBoxPassword = yPosTextBoxSocialID + textBoxHeight + yDis;
-
+//-------------------------------------------------------------------------------------
 const float xPosInputBox = xPosTextBox + xDis;
-
+//-------------------------------------------------------------------------------------
 const float buttonHeigth = 100;
 const float buttonWidth = 200;
 const Vector2 buttonSize = { buttonWidth, buttonHeigth };
-
+//-------------------------------------------------------------------------------------
 const float yDisButton = 50;
 const float xPosButton = 1000;
 const float yPosChange = 150;
 const float yPosViewSBs = yPosChange + buttonHeigth + yDisButton;
-const float yPosBack = yPosViewSBs + buttonHeigth + yDisButton;
-const float yPosLogout = yPosBack + buttonHeigth + yDisButton;
-
+const float yPosLogout = yPosViewSBs + buttonHeigth + yDisButton;
+//-------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------
+const std::string defaultInputBoxContent = "Error";
 StudentScene::StudentScene() {
-	ptrStudent = new Student();
-	//ptrStaff = nullptr;
-
 	sceneName = "Student";
 	sceneName.setSize(sizeTextSceneName);
 	sceneName.setY(yPosSceneName);
@@ -81,31 +77,52 @@ StudentScene::StudentScene() {
 	textPassword.setSize(textBoxContentSize);
 	textPassword.setPos({ xPosTextBox, yPosTextBoxPassword });
 
-	inputID.defaultText = ptrStudent->ID;
+	if (ptrStudent_Global != nullptr)
+		inputID.defaultText = ptrStudent_Global->ID;
+	else
+		inputID.defaultText = defaultInputBoxContent;
 	inputID.setSize(inputBoxSize);
 	inputID.setPos({ xPosInputBox, yPosTextBoxID });
 
-	inputFirstName.defaultText = ptrStudent->name.first;
+	if (ptrStudent_Global != nullptr)
+		inputFirstName.defaultText = ptrStudent_Global->name.first;
+	else
+		inputFirstName.defaultText = defaultInputBoxContent;
 	inputFirstName.setSize(inputBoxSize);
 	inputFirstName.setPos({ xPosInputBox, yPosTextBoxFirstName });
 
-	inputLastName.defaultText = ptrStudent->name.last;
+	if (ptrStudent_Global != nullptr)
+		inputLastName.defaultText = ptrStudent_Global->name.last;
+	else
+		inputLastName.defaultText = defaultInputBoxContent;
 	inputLastName.setSize(inputBoxSize);
 	inputLastName.setPos({ xPosInputBox, yPosTextBoxLastName });
 
-	inputGender.defaultText = gender_to_string(ptrStudent->gender);
+	if (ptrStudent_Global != nullptr)
+		inputGender.defaultText = gender_to_string(ptrStudent_Global->gender);
+	else
+		inputGender.defaultText = defaultInputBoxContent;
 	inputGender.setSize(inputBoxSize);
 	inputGender.setPos({ xPosInputBox, yPosTextBoxGender });
 
-	inputBirth.defaultText = ptrStudent->birth.get();
+	if (ptrStudent_Global != nullptr)
+		inputBirth.defaultText = ptrStudent_Global->birth.get();
+	else
+		inputBirth.defaultText = defaultInputBoxContent;
 	inputBirth.setSize(inputBoxSize);
 	inputBirth.setPos({ xPosInputBox, yPosTextBoxBirth });
 
-	inputSocialID.defaultText = ptrStudent->socialID;
+	if (ptrStudent_Global != nullptr)
+		inputSocialID.defaultText = ptrStudent_Global->socialID;
+	else
+		inputSocialID.defaultText = defaultInputBoxContent;
 	inputSocialID.setSize(inputBoxSize);
 	inputSocialID.setPos({ xPosInputBox, yPosTextBoxSocialID });
 
-	inputPassword.defaultText = std::to_string(ptrStudent->getHashedPass());
+	if (ptrStudent_Global != nullptr)
+		inputPassword.defaultText = std::to_string(ptrStudent_Global->getHashedPass());
+	else
+		inputPassword.defaultText = defaultInputBoxContent;
 	inputPassword.setSize(inputBoxSize);
 	inputPassword.setPos({ xPosInputBox, yPosTextBoxPassword });
 
@@ -120,15 +137,14 @@ StudentScene::StudentScene() {
 	logout.label = "Logout";
 	logout.setSize(buttonSize);
 	logout.setPos({ xPosButton, yPosLogout });
-	
-	back.label = "Back";
-	back.setSize(buttonSize);
-	back.setPos({ xPosButton, yPosBack });
 
-	back.fill_color = ORANGE;
-	back.hover_color = MAROON;
-	logout.fill_color = RED;
+	logout.fill_color = ORANGE;
 	logout.hover_color = MAROON;
+
+	message = "Message";
+	message.setColor(RED);
+	message.setSize(30);
+	message.setPos({600, 600});
 }
 
 void StudentScene::render() {
@@ -152,7 +168,8 @@ void StudentScene::render() {
 	change.render(mousePoint);
 	viewScoreboard.render(mousePoint);
 	logout.render(mousePoint);
-	back.render(mousePoint);
+
+	message.render();
 }
 
 Scene* StudentScene::process() {
@@ -165,7 +182,18 @@ Scene* StudentScene::process() {
 	inputSocialID.process(mousePoint);
 	inputPassword.process(mousePoint);
 
-	if (back.clicked(mousePoint))
+	if (change.clicked(mousePoint)) {
+		if (ptrStudent_Global == nullptr) {
+			std::cout << "nullptr\n";
+		}
+		else {
+			std::cout << ptrStudent_Global->name.get();
+			std::cout << "not null\n";
+		}
+	}
+	if (viewScoreboard.clicked(mousePoint))
+		return registry.blank;
+	if (logout.clicked(mousePoint))
 		return registry.login;
 	return this;
 }
