@@ -4,7 +4,7 @@
 const float yPosSceneName = 10;
 const float sizeTextSceneName = 100;
 //-------------------------------------------------------------------------------------
-const float xDis = 150;
+const float xDis = 300;
 const float yDis = 30;
 //-------------------------------------------------------------------------------------
 const float textBoxContentSize = 30;
@@ -29,7 +29,7 @@ const float yPosTextBoxBirth = yPosTextBoxGender + textBoxHeight + yDis;
 const float yPosTextBoxSocialID = yPosTextBoxBirth + textBoxHeight + yDis;
 const float yPosTextBoxPassword = yPosTextBoxSocialID + textBoxHeight + yDis;
 //-------------------------------------------------------------------------------------
-const float xPosInputBox = xPosTextBox + xDis;
+const float xPosInputBox = xPosTextBox + textBoxWidth + xDis;
 //-------------------------------------------------------------------------------------
 const float buttonHeigth = 100;
 const float buttonWidth = 200;
@@ -42,41 +42,60 @@ const float yPosViewSBs = yPosChange + buttonHeigth + yDisButton;
 const float yPosLogout = yPosViewSBs + buttonHeigth + yDisButton;
 //-------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------
-const std::string defaultInputBoxContent = "Error";
+const std::string defaultInputBoxContent = "Error InputBoxContent";
+const std::string defaultTextBoxContent = "Error TextBoxContent";
 StudentScene::StudentScene() {
 	sceneName = "Student";
 	sceneName.setSize(sizeTextSceneName);
 	sceneName.setY(yPosSceneName);
 	sceneName.centerX();
 
-	textID = "ID";
+	textID = "ID: ";
 	textID.setSize(textBoxContentSize);
 	textID.setPos({ xPosTextBox, yPosTextBoxID });
 
-	textFirstName = "First name";
+	textFirstName = "First name: ";
 	textFirstName.setSize(textBoxContentSize);
 	textFirstName.setPos({ xPosTextBox, yPosTextBoxFirstName });
 
-	textLastName = "Last name";
+	textLastName = "Last name: ";
 	textLastName.setSize(textBoxContentSize);
 	textLastName.setPos({ xPosTextBox, yPosTextBoxLastName });
 
-	textGender = "Gender";
+	textGender = "Gender: ";
 	textGender.setSize(textBoxContentSize);
 	textGender.setPos({ xPosTextBox, yPosTextBoxGender });
 
-	textBirth = "Birth";
+	textBirth = "Birth: ";
 	textBirth.setSize(textBoxContentSize);
 	textBirth.setPos({ xPosTextBox, yPosTextBoxBirth });
 
-	textSocialID = "SocialID";
+	textSocialID = "SocialID: ";
 	textSocialID.setSize(textBoxContentSize);
 	textSocialID.setPos({ xPosTextBox, yPosTextBoxSocialID });
 
-	textPassword = "Password";
+	textPassword = "Password: ";
 	textPassword.setSize(textBoxContentSize);
 	textPassword.setPos({ xPosTextBox, yPosTextBoxPassword });
 
+	if (ptrStudent_Global == nullptr) {
+		textID.setContent(textID.getContent() + defaultTextBoxContent);
+		textFirstName.setContent(textFirstName.getContent() + defaultTextBoxContent);
+		textLastName.setContent(textLastName.getContent() + defaultTextBoxContent);
+		textGender.setContent(textGender.getContent() + defaultTextBoxContent);
+		textBirth.setContent(textBirth.getContent() + defaultTextBoxContent);
+		textSocialID.setContent(textSocialID.getContent() + defaultTextBoxContent);
+		textPassword.setContent(textPassword.getContent() + defaultTextBoxContent);
+	}
+	else {
+		textID.setContent(textID.getContent() + ptrStudent_Global->ID);
+		textFirstName.setContent(textFirstName.getContent() + ptrStudent_Global->name.first);
+		textLastName.setContent(textLastName.getContent() + ptrStudent_Global->name.last);
+		textGender.setContent(textGender.getContent() + gender_to_string(ptrStudent_Global->gender));
+		textBirth.setContent(textBirth.getContent() + ptrStudent_Global->birth.get());
+		textSocialID.setContent(textSocialID.getContent() + ptrStudent_Global->socialID);
+		textPassword.setContent(textPassword.getContent() + std::to_string(ptrStudent_Global->getHashedPass()));
+	}
 	if (ptrStudent_Global != nullptr)
 		inputID.defaultText = ptrStudent_Global->ID;
 	else
@@ -92,7 +111,7 @@ StudentScene::StudentScene() {
 	inputFirstName.setPos({ xPosInputBox, yPosTextBoxFirstName });
 
 	if (ptrStudent_Global != nullptr)
-		inputLastName.defaultText = ptrStudent_Global->name.last;
+		inputLastName.defaultText = "Lastname";
 	else
 		inputLastName.defaultText = defaultInputBoxContent;
 	inputLastName.setSize(inputBoxSize);
@@ -141,7 +160,7 @@ StudentScene::StudentScene() {
 	logout.fill_color = ORANGE;
 	logout.hover_color = MAROON;
 
-	message = "Message";
+	message = "";
 	message.setColor(RED);
 	message.setSize(30);
 	message.setPos({600, 600});
@@ -174,6 +193,7 @@ void StudentScene::render() {
 
 Scene* StudentScene::process() {
 	this->mousePoint = GetMousePosition();
+
 	inputID.process(mousePoint);
 	inputFirstName.process(mousePoint);
 	inputLastName.process(mousePoint);
@@ -187,9 +207,11 @@ Scene* StudentScene::process() {
 			std::cout << "nullptr\n";
 		}
 		else {
-			std::cout << ptrStudent_Global->name.get();
+			std::cout << ptrStudent_Global->name.get() << std::endl;
 			std::cout << "not null\n";
+			std::cout << inputID.getContent() << std::endl;
 		}
+		return this;
 	}
 	if (viewScoreboard.clicked(mousePoint))
 		return registry.blank;

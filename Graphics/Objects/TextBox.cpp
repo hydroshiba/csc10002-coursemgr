@@ -47,6 +47,24 @@ TextBox &TextBox::operator=(const char *text) {
     return *this;
 }
 
+TextBox& TextBox::operator + (const std::string& text) {
+    this->content = this->content.text + text;
+    refresh();
+    return *this;
+}
+
+void TextBox::setContent(const std::string& content) {
+    this->content.text = content;
+}
+void TextBox::setContent(const Text& content) {
+    this->content = content;
+}
+
+std::string& TextBox::getContent() {
+    return this->content.text;
+}
+
+
 void TextBox::setX(float x) {
     pos.x = x;
     refresh();

@@ -25,6 +25,13 @@ public:
     TextBox& operator=(Text content);
     TextBox& operator=(std::string text);
     TextBox& operator=(const char* text);
+    TextBox& operator + (const std::string& text);
+
+    void setContent(const std::string& content);
+    void setContent(const Text& content);
+
+    std::string& getContent();
+    
 
     void setX(float x);
     void setY(float y);
