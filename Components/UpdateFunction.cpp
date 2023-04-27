@@ -111,17 +111,19 @@ void updateSemester(Semester &semester, const std::string startDate, const std::
 	semester.endDate = end;
 }
 
-void updateCourse(Course& course, const std::string& courseID, const std::string& classID, const std::string& name, const std::string& teacher, const std::string& cre, const std::string& maxEn, const std::string& day, const std::string& ss) {
-	Weekday weekday = string_to_weekday(day);
-	Session session = string_to_session(ss);
-	course.ID = courseID;
-	course.classID = classID;
-	course.name = name;
-	course.teacher = teacher;
-	course.credits = std::stoi(cre);
-	course.maxEnroll = std::stoi(maxEn);
-	course.weekday = weekday;
-	course.session = session;
+void updateCourse(Course& course, const std::string& courseID, const std::string& classID, const std::string& name, const std::string& teacher, const std::string& cre, const std::string& day, const std::string& ss, std::string &outStr) {
+	if (courseID.empty() && classID.empty() && name.empty() && teacher.empty() && cre.empty() && day.empty() && ss.empty()){
+		outStr = "All input boxes are empty, please try again!";
+	}
+
+	if (!courseID.empty()) course.updateID(courseID);
+	if (!classID.empty()) course.updateClassID(classID);
+	if (!name.empty()) course.updateName(name);
+	if (!teacher.empty()) course.updateTeacher(teacher);
+	if (!cre.empty()) course.updateCredits(std::stoi(cre));
+	if (!day.empty()) course.updateWeekday(string_to_weekday(day));
+	if (!ss.empty()) course.updateSession(string_to_session(ss));
+	outStr = "Successfully update course information!";
 }
 // 22. Update student result
 void updateStudentResult(Course &course, const std::string studentID, const std::string midTerm, const std::string other, const std::string finalScore, const std::string totalScore) {

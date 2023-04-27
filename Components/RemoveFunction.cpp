@@ -190,7 +190,7 @@ bool removeStudFromCourse(Course& course, const std::string& studentID, std::str
 	ptrScoreboard->ptrStudent = nullptr;
 	course.scoreboards.remove(ptrScoreboard);
 	ptrScoreboard->ptrCourse = nullptr;
-	outDev = "Completely remove student with ID " + studentID + " from course " + course.ID;
+	outDev = "Successfully remove student with ID " + studentID + " from course " + course.ID;
 	return true;
 }
 // Remove course from semester
