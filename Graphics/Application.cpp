@@ -12,7 +12,7 @@ Application::Application() {
     registry.editScene = new EditCourse();
     registry.editSchoolYearScene = new SchoolYearScene();
 
-    scene = registry.courseScene;
+    scene = registry.login;
 }
 
 Application::~Application() {
