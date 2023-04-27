@@ -22,12 +22,15 @@
 /*--------------------------------------*/
 
 int main() {
+    Student student({ "Nguyen Van", "A" }, "22120000", "123456", male, {6, 9, 2004}, "only@fans");
+    Staff staff({ "Ho", "Tuan Thanh" }, "ADMIN", "123456");
+    staffs.append(staff);
+    students.append(student);
     Application app;
     
     while(!app.shouldClose()) {
         app.run();
     }
-    
     //Vector<SchoolYear> schoolYears;
     //Vector<AcademicYear> academicYears;
     //uploadAllData(schoolYears, academicYears);

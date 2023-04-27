@@ -12,6 +12,8 @@
 #include "Objects/Button.h"
 
 #include "../../Components/User.h"
+#include "UpdateFunction.h"
+#include "InsertFunction.h"
 
 class StaffScene : public Scene {
 private:
@@ -32,7 +34,7 @@ private:
 	InputBox inputEditPassword;
 	Button change;
 	//----------------------------
-	TextBox addStaff;
+	TextBox textAddStaff;
 	TextBox textAddID;
 	TextBox textAddFirstName;
 	TextBox textAddLastName;
@@ -41,7 +43,10 @@ private:
 	InputBox inputAddFirstName;
 	InputBox inputAddLastName;
 	InputBox inputAddPassword;
+	//-------------------------------------------------------------------
 	Button add;
+	//-------------------------------------------------------------------
+	TextBox message;
 public:
 	Staff* ptrStaff;
 	StaffScene();

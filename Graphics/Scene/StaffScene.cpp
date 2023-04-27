@@ -37,15 +37,10 @@ const float buttonHeight = 100;
 const float buttonWidth = 200;
 const Vector2 buttonSize = { buttonWidth, buttonHeight };
 
-
-
-
-
-
+const string defaultInputBoxContent = "Error";
 StaffScene::StaffScene() {
-	ptrStaff = new Staff();
 	//-------------------------------------------------------------------
-	sceneName = "Welcome staff " + ptrStaff->name.get();
+	sceneName = "Welcome staff ";
 	sceneName.setSize(sceneNameSize);
 	sceneName.setY(yPosSceneName);
 	sceneName.centerX();
@@ -54,56 +49,56 @@ StaffScene::StaffScene() {
 	editStaff.setSize(textBoxContentSize + 20);
 	editStaff.setPos({ xEditStaffText, yEditStaffText });
 	//-------------------------------------------------------------------
-	textEditID = "ID";
+	textEditID = "ID: ";
 	textEditID.setSize(textBoxContentSize);
 	textEditID.setPos({ xTextEdit, yTextEditID });
 	//-------------------------------------------------------------------
-	textEditFirstName = "First name";
+	textEditFirstName = "First name: ";
 	textEditFirstName.setSize(textBoxContentSize);
 	textEditFirstName.setPos({ xTextEdit, yTextEditFirstName });
 	//-------------------------------------------------------------------
-	textEditLastName = "Last name";
+	textEditLastName = "Last name: ";
 	textEditLastName.setSize(textBoxContentSize);
 	textEditLastName.setPos({ xTextEdit, yTextEditLastName });
 	//-------------------------------------------------------------------
-	textEditPassword = "Password";
+	textEditPassword = "Change password: ";
 	textEditPassword.setSize(textBoxContentSize);
 	textEditPassword.setPos({ xTextEdit, yTextEditPassword });
 	//-------------------------------------------------------------------
-	inputEditID.defaultText = ptrStaff->ID;
+	inputEditID.defaultText = defaultInputBoxContent;
 	inputEditID.setSize(inputBoxSize);
 	inputEditID.setPos({ xInputEdit, yTextEditID });
 	//-------------------------------------------------------------------
-	inputEditFirstName.defaultText = ptrStaff->name.first;
+	inputEditFirstName.defaultText = defaultInputBoxContent;
 	inputEditFirstName.setSize(inputBoxSize);
 	inputEditFirstName.setPos({ xInputEdit, yTextEditFirstName });
 	//-------------------------------------------------------------------
-	inputEditLastName.defaultText = ptrStaff->name.last;
+	inputEditLastName.defaultText = defaultInputBoxContent;
 	inputEditLastName.setSize(inputBoxSize);
 	inputEditLastName.setPos({ xInputEdit, yTextEditLastName });
 	//-------------------------------------------------------------------
-	inputEditPassword.defaultText = std::to_string(ptrStaff->getHashedPass());
+	inputEditPassword.defaultText = "Input new password";
 	inputEditPassword.setSize(inputBoxSize);
 	inputEditPassword.setPos({ xInputEdit, yTextEditPassword });
 	//-------------------------------------------------------------------
 	//-------------------------------------------------------------------
-	addStaff = "Add new staff";
-	addStaff.setSize(textBoxContentSize + 20);
-	addStaff.setPos({ xAddStaffText, yEditStaffText });
+	textAddStaff = "Add new staff";
+	textAddStaff.setSize(textBoxContentSize + 20);
+	textAddStaff.setPos({ xAddStaffText, yEditStaffText });
 	//-------------------------------------------------------------------
-	textAddID = "ID";
+	textAddID = "ID: ";
 	textAddID.setSize(textBoxContentSize);
 	textAddID.setPos({ xTextAdd, yTextEditID });
 	//-------------------------------------------------------------------
-	textAddFirstName = "First name";
+	textAddFirstName = "First name: ";
 	textAddFirstName.setSize(textBoxContentSize);
 	textAddFirstName.setPos({ xTextAdd, yTextEditFirstName });
 	//-------------------------------------------------------------------
-	textAddLastName = "Last name";
+	textAddLastName = "Last name: ";
 	textAddLastName.setSize(textBoxContentSize);
 	textAddLastName.setPos({ xTextAdd, yTextEditLastName });
 	//-------------------------------------------------------------------
-	textAddPassword = "Password";
+	textAddPassword = "Password: ";
 	textAddPassword.setSize(textBoxContentSize);
 	textAddPassword.setPos({ xTextAdd, yTextEditPassword });
 	//-------------------------------------------------------------------
@@ -147,6 +142,12 @@ StaffScene::StaffScene() {
 	add.setSize(buttonSize);
 	add.setPos({ 1050, 600 });
 	add.fill_color = YELLOW;
+	//-------------------------------------------------------------------
+	message = "";
+	message.setColor(RED);
+	message.setSize(30);
+	message.setPos({ 800, 560 });
+	//-------------------------------------------------------------------
 }
 
 void StaffScene::render() {
@@ -167,7 +168,7 @@ void StaffScene::render() {
 	inputEditPassword.render(mousePoint);
 	change.render(mousePoint);
 	//----------------------------
-	addStaff.render();
+	textAddStaff.render();
 	textAddID.render();
 	textAddFirstName.render();
 	textAddLastName.render();
@@ -177,27 +178,61 @@ void StaffScene::render() {
 	inputAddLastName.render(mousePoint);
 	inputAddPassword.render(mousePoint);
 	add.render(mousePoint);
+	//-------------------------------------------------------------------
+	message.render();
 }
 
 Scene* StaffScene::process() {
 	this->mousePoint = GetMousePosition();
+	//-------------------------------------------------------------------
 	inputEditID.process(mousePoint);
 	inputEditFirstName.process(mousePoint);
 	inputEditLastName.process(mousePoint);
 	inputEditPassword.process(mousePoint);
+	//-------------------------------------------------------------------
 	inputAddID.process(mousePoint);
 	inputAddFirstName.process(mousePoint);
 	inputAddLastName.process(mousePoint);
 	inputAddPassword.process(mousePoint);
-	if (add.clicked(mousePoint))
-		return registry.blank;
-	if (change.clicked(mousePoint))
-		return registry.blank;
+	//-------------------------------------------------------------------
+	if (ptrStaff_Global != nullptr) {
+		inputEditID.defaultText = ptrStaff_Global->ID;
+		inputEditFirstName.defaultText = ptrStaff_Global->name.first;
+		inputEditLastName.defaultText = ptrStaff_Global->name.last;
+	}
+	//-------------------------------------------------------------------
+	if (add.clicked(mousePoint)) {
+		string ID = inputAddID.getContent();
+		string firstName = inputAddFirstName.getContent();
+		string lastName = inputAddLastName.getContent();
+		string password = inputAddPassword.getContent();
+		string outStr = "";
+		addStaff(staffs, ID, password, firstName, lastName, outStr);
+		message = outStr;
+		message.centerX();
+		return this;
+	}
+	//-------------------------------------------------------------------
+	if (change.clicked(mousePoint) && ptrStaff_Global != nullptr) {
+		string ID = inputEditID.getContent();
+		string firstName = inputEditFirstName.getContent();
+		string lastName = inputEditLastName.getContent();
+		string password = inputEditPassword.getContent();
+		string outStr = "";
+		updateStaffIn4(*ptrStaff_Global, ID, firstName, lastName, password, outStr);
+		message = outStr;
+		message.centerX();
+		return this;
+	}
+	//-------------------------------------------------------------------
 	if (listAYs.clicked(mousePoint))
 		return registry.blank;
+	//-------------------------------------------------------------------
 	if (listSYs.clicked(mousePoint))
 		return registry.blank;
+	//-------------------------------------------------------------------
 	if (logout.clicked(mousePoint))
 		return registry.login;
+	//-------------------------------------------------------------------
 	return this;
 }
