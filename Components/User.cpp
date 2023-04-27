@@ -22,6 +22,15 @@ uint64_t User::hash(std::string str) {
     return hash(left, right);
 }
 
+void User::setFirstName(const std::string& firstName) {
+    this->name.first = firstName;
+}
+
+void User::setLastName(const std::string& lastName) {
+    this->name.last = lastName;
+}
+
+
 void User::setName(const std::string& first, const std::string& last) {
     name.first = first;
     name.last = last;

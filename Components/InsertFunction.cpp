@@ -20,6 +20,10 @@
 /*		Insert function		*/
 // Add new staff
 bool addStaff(Vector<Staff>& staffs, const std::string& ID, const std::string& password, const std::string& firstName, const std::string& lastName, std::string& outStr) {
+	if (ID.empty() || firstName.empty() || lastName.empty() || password.empty()) {
+		outStr = "Please enter all the information of staff in all input box to add new staff";
+		return false;
+	}
 	Staff staff;
 	staff.ID = ID;
 	Staff* ptrStaff = getStaff(staffs, ID);

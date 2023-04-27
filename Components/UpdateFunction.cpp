@@ -20,33 +20,65 @@
 
 // Update course informations
 
-bool updateStudentIn4(Student& student, const std::string& ID, const std::string& firstName, const std::string& lastName, const std::string& genderStr, const std::string& birthStr, const std::string& socialID, const std::string& password) {
-	Gender gender = string_to_gender(genderStr);
-	std::string dayStr, monthStr, yearStr;
-	std::stringstream ss(birthStr);
-	getline(ss, dayStr, '/');
-	getline(ss, monthStr, '/');
-	getline(ss, yearStr);
+bool updateStudentIn4(Student& student, const std::string& ID, const std::string& firstName, const std::string& lastName, const std::string& genderStr, const std::string& birthStr, const std::string& socialID, const std::string& password, std::string& outStr) {
+	if (ID.empty() && firstName.empty() && lastName.empty() && genderStr.empty() && birthStr.empty() && socialID.empty() && password.empty()) {
+		outStr = "Please enter the change information in at least one input box";
+		return false;
+	}
+	if (!ID.empty()) {
+		student.setID(ID);
+	}
+	if (!firstName.empty()) {
+		student.setFirstName(firstName);
+	}
+	if (!lastName.empty()) {
+		student.setLastName(lastName);
+	}
+	if (!genderStr.empty()) {
+		Gender gender = string_to_gender(genderStr);
+		student.setGender(gender);
+	}
+	if (!birthStr.empty()) {
+		std::string dayStr, monthStr, yearStr;
+		std::stringstream ss(birthStr);
+		getline(ss, dayStr, '/');
+		getline(ss, monthStr, '/');
+		getline(ss, yearStr);
 
-	unsigned short day = static_cast<unsigned short>(std::stoi(dayStr));
-	unsigned short month = static_cast<unsigned short>(std::stoi(monthStr));
-	unsigned int year = static_cast<unsigned int>(std::stoul(yearStr));
-	Date birth(day, month, year);
-	Name name(firstName, lastName);
-
-	student.setName(name);
-	student.setID(ID);
-	student.setGender(gender);
-	student.setSocialID(socialID);
-	student.setPassword(password);
-	student.setBirth(birth);
+		unsigned short day = static_cast<unsigned short>(std::stoi(dayStr));
+		unsigned short month = static_cast<unsigned short>(std::stoi(monthStr));
+		unsigned int year = static_cast<unsigned int>(std::stoul(yearStr));
+		Date birth(day, month, year);
+		student.setBirth(birth);
+	}
+	if (!socialID.empty()) {
+		student.setSocialID(socialID);
+	}
+	if (!password.empty()) {
+		student.setPassword(password);
+	}
+	outStr = "Complete change information of student!";
 	return true;
  }
 
-bool updateStaffIn4(Staff& staff, const std::string& ID, const std::string& firstName, const std::string& lastName, const std::string& password) {
-	staff.setName(firstName, lastName);
-	staff.setID(ID);
-	staff.setPassword(password);
+bool updateStaffIn4(Staff& staff, const std::string& ID, const std::string& firstName, const std::string& lastName, const std::string& password, std::string& outStr) {
+	if (ID.empty() && firstName.empty() && lastName.empty() && password.empty()) {
+		outStr = "Please enter the change information in at least one input box";
+		return false;
+	}
+	if (!ID.empty()) {
+		staff.setID(ID);
+	}
+	if (!firstName.empty()) {
+		staff.setFirstName(firstName);
+	}
+	if (!lastName.empty()) {
+		staff.setLastName(lastName);
+	}
+	if (!password.empty()) {
+		staff.setPassword(password);
+	}
+	outStr = "Complete change information of staff!";
 	return true;
 }
 

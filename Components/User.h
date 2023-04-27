@@ -18,6 +18,10 @@ public:
 
     User(const Name& name = { defaultStr, defaultStr }, const std::string& ID = defaultStr, const std::string& passwordStr = "");
 
+    void setFirstName(const std::string& firstName);
+
+    void setLastName(const std::string& lastName);
+
     void setName(const std::string& first, const std::string& last);
 
     void setPassword(const std::string& str);
