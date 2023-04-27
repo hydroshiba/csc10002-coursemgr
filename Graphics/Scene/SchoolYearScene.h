@@ -29,6 +29,9 @@ private:
 
     TextBox editYear;
     InputBox inputYearEditted;
+    Button change;
+
+    Button back;
 public:
     SchoolYearScene();
     void render();

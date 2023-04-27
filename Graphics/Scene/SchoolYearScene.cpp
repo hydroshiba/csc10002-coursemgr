@@ -49,6 +49,14 @@ SchoolYearScene::SchoolYearScene() {
     inputYearEditted.defaultText = "Enter Year";
     inputYearEditted.setPos({400, 540});
     inputYearEditted.setSize({300, 50});
+
+    change.label = "Change";
+    change.setPos({800, 540});
+    change.setSize({150, 50});
+    //--------------------------------------
+    back.label = "Back";
+    back.setPos({1000, 600});
+    back.setSize({200, 50});
 }
 
 void SchoolYearScene::render() {
@@ -68,6 +76,9 @@ void SchoolYearScene::render() {
     //--------------------------------------
     editYear.render();
     inputYearEditted.render(mousePoint);
+    change.render(mousePoint);
+    //--------------------------------------
+    back.render(mousePoint);
 }
 
 Scene* SchoolYearScene::process() {
@@ -89,6 +100,11 @@ Scene* SchoolYearScene::process() {
     }
     //--------------------------------------
     inputYearEditted.process(mousePoint);
-
+    if (change.clicked(mousePoint)) {
+        std::cout << "Change button clicked\n";
+    }
+    if (back.clicked(mousePoint)) {
+        std::cout << "Back to previous scene clicked\n";
+    }
     return this;
 } 
