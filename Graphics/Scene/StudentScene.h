@@ -15,7 +15,7 @@
 #include "Student.h"
 #include "User.h"
 #include "ConvertType.h"
-
+#include "UpdateFunction.h"
 #include <string>
 
 class StudentScene : public Scene {

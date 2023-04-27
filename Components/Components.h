@@ -7,6 +7,8 @@
 #include <filesystem>
 #include <sstream>
 
+using std::string;
+
 const std::string defaultStr = "Error";
 /* Enumerators */
 

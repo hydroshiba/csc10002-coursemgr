@@ -96,6 +96,7 @@ StudentScene::StudentScene() {
 		textSocialID.setContent(textSocialID.getContent() + ptrStudent_Global->socialID);
 		textPassword.setContent(textPassword.getContent() + std::to_string(ptrStudent_Global->getHashedPass()));
 	}
+
 	if (ptrStudent_Global != nullptr)
 		inputID.defaultText = ptrStudent_Global->ID;
 	else
@@ -163,7 +164,7 @@ StudentScene::StudentScene() {
 	message = "";
 	message.setColor(RED);
 	message.setSize(30);
-	message.setPos({600, 600});
+	message.setPos({800, 680});
 }
 
 void StudentScene::render() {
@@ -203,6 +204,17 @@ Scene* StudentScene::process() {
 	inputPassword.process(mousePoint);
 
 	if (change.clicked(mousePoint)) {
+		string ID = inputID.getContent();
+		string firstName = inputFirstName.getContent();
+		string lastName = inputLastName.getContent();
+		string genderStr = inputGender.getContent();
+		string birthStr = inputBirth.getContent();
+		string socialID = inputSocialID.getContent();
+		string password = inputPassword.getContent();
+		string outStr = "";
+		updateStudentIn4(*ptrStudent_Global, ID, firstName, lastName, genderStr, birthStr, socialID, password, outStr);
+		message = outStr;
+		message.centerX();
 		if (ptrStudent_Global == nullptr) {
 			std::cout << "nullptr\n";
 		}
