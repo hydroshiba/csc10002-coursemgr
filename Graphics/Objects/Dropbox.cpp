@@ -128,6 +128,8 @@ void DropBox::render(const Vector2 &mouse) {
         StartScissor(bound);
 
         for(int i = options.size() - 1; i > -1; --i) {
+            if(!CheckCollisionRecs(bound, options[i].getRect())) continue;
+
             if(bar.currentlyPressed(mouse)) options[i].render({0, 0});
             else options[i].render(mouse);
         }
