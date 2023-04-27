@@ -53,6 +53,7 @@ public:
 
     Vector2 getPos();
     Vector2 getSize();
+    Rectangle getRect();
 
     void centerX();
     void centerY();

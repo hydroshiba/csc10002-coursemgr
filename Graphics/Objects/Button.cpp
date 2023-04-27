@@ -104,6 +104,10 @@ Vector2 Button::getSize() {
     return size;
 }
 
+Rectangle Button::getRect() {
+	return border_bound;
+}
+
 void Button::centerX() {
     pos.x = (GetScreenWidth() - size.x) / 2.0f;
     refresh();

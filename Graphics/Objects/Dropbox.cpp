@@ -155,6 +155,7 @@ bool DropBox::process(const Vector2 &mouse) {
             curY += size.y - box_const::thickness;
 
             if(bar.currentlyPressed(mouse)) continue;
+            if(!CheckCollisionRecs(bound, options[i].getRect())) continue;
 
             if(options[i].clicked(mouse)){
                 if(curIndex >= 0) options[curIndex].fill_color = fill_color;
