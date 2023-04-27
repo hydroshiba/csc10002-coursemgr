@@ -25,6 +25,7 @@ private:
 
     TextBox removeClass;
     InputBox inputClassNameRemoved;
+    Button remove;
 
     TextBox editYear;
     InputBox inputYearEditted;

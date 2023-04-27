@@ -37,6 +37,10 @@ SchoolYearScene::SchoolYearScene() {
     inputClassNameRemoved.defaultText = "Enter Class Name";
     inputClassNameRemoved.setPos({400, 440});
     inputClassNameRemoved.setSize({300, 50});
+
+    remove.label = "Remove";
+    remove.setPos({800, 440});
+    remove.setSize({150, 50});
     //--------------------------------------
     editYear = "Edit Year";
     editYear.setSize(30);
@@ -60,6 +64,7 @@ void SchoolYearScene::render() {
     //--------------------------------------
     removeClass.render();
     inputClassNameRemoved.render(mousePoint);
+    remove.render(mousePoint);
     //--------------------------------------
     editYear.render();
     inputYearEditted.render(mousePoint);
@@ -79,6 +84,9 @@ Scene* SchoolYearScene::process() {
     }
     //--------------------------------------
     inputClassNameRemoved.process(mousePoint);
+    if (remove.clicked(mousePoint)) {
+        std::cout << "Remove button clicked\n";
+    }
     //--------------------------------------
     inputYearEditted.process(mousePoint);
 
