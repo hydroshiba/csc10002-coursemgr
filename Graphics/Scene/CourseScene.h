@@ -2,6 +2,7 @@
 #define COURSESCENE_H
 
 #include "raylib.h"
+#include <string>
  
 #include "Registry.h"
 #include "Scene.h"
@@ -10,6 +11,7 @@
 #include "Objects/TextBox.h"
 #include "Objects/InputBox.h"
 
+#include "Components.h"
 #include "../Components/ConvertType.h"
 #include "../Components/Course.h"
 
@@ -21,7 +23,6 @@ private:
 
     Button viewStudent, add, remove, viewScore, updateBox, back;
 public:
-    Course* ptrCourse;
     CourseScene();
     Scene* process();
     void render();
