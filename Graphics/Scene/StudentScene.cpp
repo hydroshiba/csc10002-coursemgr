@@ -85,7 +85,6 @@ StudentScene::StudentScene() {
 		textGender.setContent(textGender.getContent() + defaultTextBoxContent);
 		textBirth.setContent(textBirth.getContent() + defaultTextBoxContent);
 		textSocialID.setContent(textSocialID.getContent() + defaultTextBoxContent);
-		textPassword.setContent(textPassword.getContent() + defaultTextBoxContent);
 	}
 	else {
 		textID.setContent(textID.getContent() + ptrStudent_Global->ID);
@@ -203,6 +202,15 @@ Scene* StudentScene::process() {
 	inputSocialID.process(mousePoint);
 	inputPassword.process(mousePoint);
 
+	if (ptrStudent_Global != nullptr) {
+		textID.setContent("ID: " + ptrStudent_Global->ID);
+		textFirstName.setContent("First name: " + ptrStudent_Global->name.first);
+		textLastName.setContent("Last name: " + ptrStudent_Global->name.last);
+		textGender.setContent("Gender: " + gender_to_string(ptrStudent_Global->gender));
+		textBirth.setContent("Birth: " + ptrStudent_Global->birth.get());
+		textSocialID.setContent("SocialID: " + ptrStudent_Global->socialID);
+	}
+
 	if (change.clicked(mousePoint)) {
 		string ID = inputID.getContent();
 		string firstName = inputFirstName.getContent();
@@ -215,14 +223,6 @@ Scene* StudentScene::process() {
 		updateStudentIn4(*ptrStudent_Global, ID, firstName, lastName, genderStr, birthStr, socialID, password, outStr);
 		message = outStr;
 		message.centerX();
-		if (ptrStudent_Global == nullptr) {
-			std::cout << "nullptr\n";
-		}
-		else {
-			std::cout << ptrStudent_Global->name.get() << std::endl;
-			std::cout << "not null\n";
-			std::cout << inputID.getContent() << std::endl;
-		}
 		return this;
 	}
 	if (viewScoreboard.clicked(mousePoint))
