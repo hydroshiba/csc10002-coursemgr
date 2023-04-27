@@ -5,7 +5,7 @@ SchoolYearScene::SchoolYearScene() {
     nameScene.setSize(50);
     nameScene.centerX();
     nameScene.setY(100);
-
+    //--------------------------------------
     viewClass = "View Classes";
     viewClass.setSize(30);
     viewClass.setPos({100, 250});
@@ -17,7 +17,7 @@ SchoolYearScene::SchoolYearScene() {
     view.label = "View";
     view.setPos({800, 240});
     view.setSize({150, 50});
-
+    //--------------------------------------
     addClass = "Add Class";
     addClass.setSize(30);
     addClass.setPos({100, 350});
@@ -26,6 +26,10 @@ SchoolYearScene::SchoolYearScene() {
     inputClassNameAdded.setPos({400, 340});
     inputClassNameAdded.setSize({300, 50});
 
+    add.label = "Add";
+    add.setPos({800, 340});
+    add.setSize({150, 50});
+    //--------------------------------------
     removeClass = "Remove Class";
     removeClass.setSize(30);
     removeClass.setPos({100, 450});
@@ -33,7 +37,7 @@ SchoolYearScene::SchoolYearScene() {
     inputClassNameRemoved.defaultText = "Enter Class Name";
     inputClassNameRemoved.setPos({400, 440});
     inputClassNameRemoved.setSize({300, 50});
-
+    //--------------------------------------
     editYear = "Edit Year";
     editYear.setSize(30);
     editYear.setPos({100, 550});
@@ -45,33 +49,37 @@ SchoolYearScene::SchoolYearScene() {
 
 void SchoolYearScene::render() {
     nameScene.render();
-
+    //--------------------------------------
     viewClass.render();
     listClass.render(mousePoint);
     view.render(mousePoint);
-
+    //--------------------------------------
     addClass.render();
     inputClassNameAdded.render(mousePoint);
-
+    add.render(mousePoint);
+    //--------------------------------------
     removeClass.render();
     inputClassNameRemoved.render(mousePoint);
-
+    //--------------------------------------
     editYear.render();
     inputYearEditted.render(mousePoint);
 }
 
 Scene* SchoolYearScene::process() {
     this->mousePoint = GetMousePosition();
-
+    //--------------------------------------
     listClass.process(mousePoint);
     if (view.clicked(mousePoint)) {
         std::cout << "View button clicked\n";
     }
-    
+    //--------------------------------------
     inputClassNameAdded.process(mousePoint);
-
+    if (add.clicked(mousePoint)) {
+        std::cout << "Add button clicked\n";
+    }
+    //--------------------------------------
     inputClassNameRemoved.process(mousePoint);
-    
+    //--------------------------------------
     inputYearEditted.process(mousePoint);
 
     return this;
