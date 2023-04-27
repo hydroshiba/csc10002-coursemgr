@@ -178,11 +178,11 @@ bool removeListStudents(Class& thisClass) {
 	return true;
 }
 // Remove student from course
-bool removeStudFromCourse(Course& course, const std::string& studentID) {
+bool removeStudFromCourse(Course& course, const std::string& studentID, std::string &outDev) {
 	Student* ptrStudent = course.getStudent(studentID);
 	if (ptrStudent == nullptr)
 	{
-		std::cout << "Student with ID " << studentID << " is not exist in this Course " << course.ID << std::endl;
+		outDev = "Student with ID " + studentID + " is not exist in this Course " + course.ID;
 		return false;
 	}
 	Scoreboard* ptrScoreboard = course.getScoreboard(studentID);
@@ -190,6 +190,7 @@ bool removeStudFromCourse(Course& course, const std::string& studentID) {
 	ptrScoreboard->ptrStudent = nullptr;
 	course.scoreboards.remove(ptrScoreboard);
 	ptrScoreboard->ptrCourse = nullptr;
+	outDev = "Completely remove student with ID " + studentID + " from course " + course.ID;
 	return true;
 }
 // Remove course from semester

@@ -15,6 +15,8 @@
 #include "../Components/ConvertType.h"
 #include "../Components/Course.h"
 
+#include "InsertFunction.h"
+#include "RemoveFunction.h"
 class CourseScene : public Scene {
 private:
     TextBox title, courseID, classID, name, teacher, weekday, session, invalid;

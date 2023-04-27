@@ -107,6 +107,7 @@ void CourseScene :: render(){
 }
 
 Scene* CourseScene::process(){
+    std::string notif;
     this->mousePoint = GetMousePosition();
     addBox.process(mousePoint);
     removeBox.process(mousePoint);
@@ -124,7 +125,9 @@ Scene* CourseScene::process(){
 
             return this;
         }
-        invalid = "";
+        else if (!addBox.content.text.empty()) addAStudentToCourse(students, *ptrCourse_Global, addBox.content.text, notif);
+        else removeStudFromCourse(*ptrCourse_Global, removeBox.content.text, notif);
+        invalid = notif;
         invalid.centerX();  
         return registry.blank;
     }

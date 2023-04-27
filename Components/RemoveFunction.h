@@ -34,7 +34,7 @@ bool removeCourse(Vector<AcademicYear>& academicYears, const std::string& course
 
 bool removeListCourses(Semester& semester);
 // Remove student from course
-bool removeStudFromCourse(Course& course, const std::string& studentID); // Inputbox
+bool removeStudFromCourse(Course& course, const std::string& studentID, std::string& outStr); // Inputbox
 // Remove course from semester
 bool deleteCourse(Semester& semester, const std::string& courseID); // Inputbox
 
