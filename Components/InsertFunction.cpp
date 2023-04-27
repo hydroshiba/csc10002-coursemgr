@@ -19,7 +19,7 @@
 
 /*		Insert function		*/
 // Add new staff
-bool addStaff(Vector<Staff>& staffs, const std::string& ID, const std::string& password, const std::string& firstName, const std::string& lastName, std::string& outStr) {
+bool addStaff(std::string curStaffID, Vector<Staff>& staffs, const std::string& ID, const std::string& password, const std::string& firstName, const std::string& lastName, std::string& outStr) {
 	if (ID.empty() || firstName.empty() || lastName.empty() || password.empty()) {
 		outStr = "Please enter all the information of staff in all input box to add new staff";
 		return false;
@@ -35,6 +35,7 @@ bool addStaff(Vector<Staff>& staffs, const std::string& ID, const std::string& p
 	staff.setName(firstName, lastName);
 	staff.setPassword(password);
 	staffs.append(staff);
+	ptrStaff_Global = getStaff(staffs, curStaffID);
 	outStr = "Complete add new staff with ID " + ID;
 	return true;
 }

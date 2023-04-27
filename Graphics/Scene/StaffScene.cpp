@@ -196,7 +196,6 @@ Scene* StaffScene::process() {
 	inputAddPassword.process(mousePoint);
 	//-------------------------------------------------------------------
 	if (ptrStaff_Global != nullptr) {
-		//std::cout << ptrStaff_Global->ID << std::endl;
 		inputEditID.defaultText = ptrStaff_Global->ID;
 		inputEditFirstName.defaultText = ptrStaff_Global->name.first;
 		inputEditLastName.defaultText = ptrStaff_Global->name.last;
@@ -208,7 +207,7 @@ Scene* StaffScene::process() {
 		string lastName = inputAddLastName.getContent();
 		string password = inputAddPassword.getContent();
 		string outStr = "";
-		addStaff(staffs, ID, password, firstName, lastName, outStr);
+		addStaff(ptrStaff_Global->ID, staffs, ID, password, firstName, lastName, outStr);
 		std::cout << ptrStaff_Global->ID << std::endl;
 		message = outStr;
 		message.centerX();
