@@ -1,38 +1,37 @@
 #include "CourseScene.h"
 
 CourseScene :: CourseScene(){
-    ptrCourse = new Course();
     title = "Course";
     title.setSize(75);
     title.centerX();
     title.setY(75);
 
-    courseID = "CourseID: " + ptrCourse->ID;
+    courseID = (ptrCourse_Global) ? "CourseID: " + ptrCourse_Global->ID : "CourseID: " + defaultStr;
     courseID.setSize(40);
     courseID.setPos({100,200});
     courseID.setColor(MAROON);
 
-    classID = "ClassID: " + ptrCourse->classID;
+    classID = (ptrCourse_Global) ? "ClassID: " + ptrCourse_Global->classID : "ClassID: " + defaultStr;
     classID.setSize(40);
     classID.setPos({100, 275});
     classID.setColor(MAROON);
 
-    name = "Course name: " + ptrCourse->name;
+    name = (ptrCourse_Global) ? "Course Name: " + ptrCourse_Global->name : "Course Name: " + defaultStr;
     name.setSize(40);
     name.setPos({100, 350});
     name.setColor(MAROON);
 
-    teacher = "Teacher: " + ptrCourse->teacher;
+    teacher = (ptrCourse_Global) ? "Teacher: " + ptrCourse_Global->teacher : "Teacher: " + defaultStr;
     teacher.setSize(40);
     teacher.setPos({100, 425});
     teacher.setColor(MAROON);
 
-    weekday = "Weekday: " + weekday_to_string(ptrCourse->weekday);
+    weekday = (ptrCourse_Global) ? "Weekday: " + weekday_to_string(ptrCourse_Global->weekday) : "Weekday: " + defaultStr;
     weekday.setSize(40);
     weekday.setPos({100, 500});
     weekday.setColor(MAROON);
 
-    session = "Session: " + session_to_string(ptrCourse->session);
+    session = (ptrCourse_Global) ? "Session: " + session_to_string(ptrCourse_Global->session) : "Session: " + defaultStr;
     session.setSize(40);
     session.setPos({100, 575});
     session.setColor(MAROON);
@@ -114,13 +113,17 @@ Scene* CourseScene::process(){
 
 
     if (add.clicked(mousePoint)||remove.clicked(mousePoint)){
+        if (ptrCourse_Global == nullptr){
+            invalid = "Access nullptr error!";
+            invalid.centerX();
+            return this;
+        }
         if (addBox.content.text.empty() && removeBox.content.text.empty()){
             invalid = "Invalid student ID, please retry!";
             invalid.centerX();
 
             return this;
         }
-
         invalid = "";
         invalid.centerX();  
         return registry.blank;
