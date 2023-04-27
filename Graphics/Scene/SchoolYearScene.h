@@ -10,12 +10,14 @@
 #include "Objects/Dropbox.h"
 #include "Objects/InputBox.h"
 
+#include <iostream>
 class SchoolYearScene : public Scene {
 private:
     TextBox nameScene;
 
     TextBox viewClass;
     DropBox listClass;
+    Button view;
 
     TextBox addClass;
     InputBox inputClassNameAdded;

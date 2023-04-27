@@ -14,6 +14,10 @@ SchoolYearScene::SchoolYearScene() {
     listClass.setPos({400, 240});
     listClass.setSize({300, 50});
 
+    view.label = "View";
+    view.setPos({800, 240});
+    view.setSize({150, 50});
+
     addClass = "Add Class";
     addClass.setSize(30);
     addClass.setPos({100, 350});
@@ -44,6 +48,7 @@ void SchoolYearScene::render() {
 
     viewClass.render();
     listClass.render(mousePoint);
+    view.render(mousePoint);
 
     addClass.render();
     inputClassNameAdded.render(mousePoint);
@@ -59,6 +64,9 @@ Scene* SchoolYearScene::process() {
     this->mousePoint = GetMousePosition();
 
     listClass.process(mousePoint);
+    if (view.clicked(mousePoint)) {
+        std::cout << "View button clicked\n";
+    }
     
     inputClassNameAdded.process(mousePoint);
 
