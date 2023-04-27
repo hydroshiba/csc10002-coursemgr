@@ -58,6 +58,8 @@ public:
     Vector2 getPos();
     Vector2 getSize();
 
+    void clearContent();
+
     void centerX();
     void centerY();
 

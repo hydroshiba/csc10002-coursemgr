@@ -196,6 +196,7 @@ Scene* StaffScene::process() {
 	inputAddPassword.process(mousePoint);
 	//-------------------------------------------------------------------
 	if (ptrStaff_Global != nullptr) {
+		//std::cout << ptrStaff_Global->ID << std::endl;
 		inputEditID.defaultText = ptrStaff_Global->ID;
 		inputEditFirstName.defaultText = ptrStaff_Global->name.first;
 		inputEditLastName.defaultText = ptrStaff_Global->name.last;
@@ -208,12 +209,17 @@ Scene* StaffScene::process() {
 		string password = inputAddPassword.getContent();
 		string outStr = "";
 		addStaff(staffs, ID, password, firstName, lastName, outStr);
+		std::cout << ptrStaff_Global->ID << std::endl;
 		message = outStr;
 		message.centerX();
+		inputAddID.clearContent();
+		inputAddFirstName.clearContent();
+		inputAddLastName.clearContent();
+		inputAddPassword.clearContent();
 		return this;
 	}
 	//-------------------------------------------------------------------
-	if (change.clicked(mousePoint) && ptrStaff_Global != nullptr) {
+	else if (change.clicked(mousePoint) && ptrStaff_Global != nullptr) {
 		string ID = inputEditID.getContent();
 		string firstName = inputEditFirstName.getContent();
 		string lastName = inputEditLastName.getContent();
@@ -222,16 +228,20 @@ Scene* StaffScene::process() {
 		updateStaffIn4(*ptrStaff_Global, ID, firstName, lastName, password, outStr);
 		message = outStr;
 		message.centerX();
+		inputEditID.clearContent();
+		inputEditFirstName.clearContent();
+		inputEditLastName.clearContent();
+		inputEditPassword.clearContent();
 		return this;
 	}
 	//-------------------------------------------------------------------
-	if (listAYs.clicked(mousePoint))
+	else if (listAYs.clicked(mousePoint))
 		return registry.blank;
 	//-------------------------------------------------------------------
-	if (listSYs.clicked(mousePoint))
+	else if (listSYs.clicked(mousePoint))
 		return registry.blank;
 	//-------------------------------------------------------------------
-	if (logout.clicked(mousePoint))
+	else if (logout.clicked(mousePoint))
 		return registry.login;
 	//-------------------------------------------------------------------
 	return this;

@@ -143,6 +143,10 @@ Vector2 InputBox::getSize() {
     return size;
 }
 
+void InputBox::clearContent() {
+    this->content = "";
+}
+
 void InputBox::centerX() {
     pos.x = (GetScreenWidth() - size.x) / 2.0f;
     refresh();
