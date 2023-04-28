@@ -4,32 +4,37 @@ EditCourse :: EditCourse(){
     title = "Edit Course";
     title.setSize(75);
     title.centerX();
-    title.setY(50);
+    title.setY(25);
 
     courseID = (ptrCourse_Global) ? "CourseID: " + ptrCourse_Global->ID : "CourseID: " + defaultStr;
     courseID.setSize(40);
-    courseID.setPos({50,175});
+    courseID.setPos({50,100});
     courseID.setColor(MAROON);
 
     classID = (ptrCourse_Global) ? "ClassID: " + ptrCourse_Global->classID : "ClassID: " + defaultStr;
     classID.setSize(40);
-    classID.setPos({50, 250});
+    classID.setPos({50, 175});
     classID.setColor(MAROON);
 
     name = (ptrCourse_Global) ? "Course Name: " + ptrCourse_Global->name : "Course Name: " + defaultStr;
     name.setSize(40);
-    name.setPos({50, 325});
+    name.setPos({50, 250});
     name.setColor(MAROON);
 
     teacher = (ptrCourse_Global) ? "Teacher: " + ptrCourse_Global->teacher : "Teacher: " + defaultStr;
     teacher.setSize(40);
-    teacher.setPos({50, 400});
+    teacher.setPos({50, 325});
     teacher.setColor(MAROON);
 
     credit = (ptrCourse_Global) ? "Credits: " + ptrCourse_Global->credits : "Credits: " + defaultStr;
     credit.setSize(40);
-    credit.setPos({50, 475});
-    credit.setColor(MAROON);
+    credit.setPos({50, 400});
+    credit.setColor(MAROON);    
+
+    maxEnroll = (ptrCourse_Global) ? "Max Enroll: " + ptrCourse_Global->maxEnroll : "Max Enroll: " + defaultStr;
+    maxEnroll.setSize(40);
+    maxEnroll.setPos({50, 475});
+    maxEnroll.setColor(MAROON);
 
     weekday = (ptrCourse_Global) ? "Weekday: " + weekday_to_string(ptrCourse_Global->weekday) : "Weekday: " + defaultStr;
     weekday.setSize(40);
@@ -42,24 +47,28 @@ EditCourse :: EditCourse(){
     session.setColor(MAROON);
 
     courseBox.setSize({300,50});
-    courseBox.setPos({500,175});
+    courseBox.setPos({500,100});
     courseBox.defaultText = "Input Course ID";
 
     classBox.setSize({300,50});
-    classBox.setPos({500,250});
+    classBox.setPos({500,175});
     classBox.defaultText = "Input Class ID";
 
     nameBox.setSize({300,50});
-    nameBox.setPos({500,325});
+    nameBox.setPos({500,250});
     nameBox.defaultText = "Input Course Name";
 
     teacherBox.setSize({300,50});
-    teacherBox.setPos({500,400});
+    teacherBox.setPos({500,325});
     teacherBox.defaultText = "Input Teacher";
 
     creditBox.setSize({300,50});
-    creditBox.setPos({500,475});
+    creditBox.setPos({500,400});
     creditBox.defaultText = "Input Credits";    
+
+    enrollBox.setSize({300,50});
+    enrollBox.setPos({500,475});
+    enrollBox.defaultText = "Input Number Enrolled";   
 
     dayBox.setSize({300,50});
     dayBox.setPos({500,550});
@@ -81,11 +90,11 @@ EditCourse :: EditCourse(){
     back.hover_color = RED;
     back.press_color = MAROON;
 
-    invalid = "";
-	invalid.setColor(RED);
-	invalid.setSize(24);
-	invalid.centerX();
-	invalid.setY(475);
+    result = "";
+	result.setColor(RED);
+	result.setSize(24);
+	result.centerX();
+	result.setY(475);
 }
 
 void EditCourse::render(){
@@ -95,6 +104,7 @@ void EditCourse::render(){
     name.render();
     teacher.render();
     credit.render();
+    maxEnroll.render();
     weekday.render();
     session.render();
 
@@ -103,13 +113,14 @@ void EditCourse::render(){
     nameBox.render(mousePoint);
     teacherBox.render(mousePoint);
     creditBox.render(mousePoint);
+    enrollBox.render(mousePoint);
     dayBox.render(mousePoint);
     sessionBox.render(mousePoint);
 
     change.render(mousePoint);
     back.render(mousePoint);
 
-    invalid.render();
+    result.render();
 }
 
 Scene* EditCourse::process(){
@@ -121,18 +132,19 @@ Scene* EditCourse::process(){
     nameBox.process(mousePoint);
     teacherBox.process(mousePoint);
     creditBox.process(mousePoint);
+    enrollBox.process(mousePoint);
     dayBox.process(mousePoint);
     sessionBox.process(mousePoint);
 
     if (change.clicked(mousePoint)){
         if (ptrCourse_Global == nullptr){
-            invalid = "Access nullptr error!";
-            invalid.setX(865);
+            result = "Access nullptr error!";
+            result.setX(865);
             return this;
         }
-        updateCourse(*ptrCourse_Global,courseBox.content.text, classBox.content.text, nameBox.content.text, teacherBox.content.text, creditBox.content.text, dayBox.content.text, sessionBox.content.text, notif);
-        invalid = notif;
-        invalid.setX(865);
+        updateCourse(*ptrCourse_Global,courseBox.content.text, classBox.content.text, nameBox.content.text, teacherBox.content.text, creditBox.content.text, enrollBox.content.text, dayBox.content.text, sessionBox.content.text, notif);
+        result = notif;
+        result.setX(865);
         return registry.courseScene;
     }
     if (back.clicked(mousePoint)) return registry.courseScene;
