@@ -86,22 +86,38 @@ Scene* SchoolYearScene::process() {
     //--------------------------------------
     listClass.process(mousePoint);
     if (view.clicked(mousePoint)) {
-        std::cout << "View button clicked\n";
+        if (listClass.getSelected() == -1) 
+            std::cout << "A class must be selected\n";
+        else 
+            std::cout << "View button clicked\n";
+            //switch to the class scene of the class selected
     }
     //--------------------------------------
     inputClassNameAdded.process(mousePoint);
     if (add.clicked(mousePoint)) {
-        std::cout << "Add button clicked\n";
+        if(inputClassNameAdded.getContent() == "")
+            std::cout << "Class Name must not be empty\n";
+        else 
+            std::cout << "Class added\n";
+            //add class
     }
     //--------------------------------------
     inputClassNameRemoved.process(mousePoint);
     if (remove.clicked(mousePoint)) {
-        std::cout << "Remove button clicked\n";
+        if(inputClassNameRemoved.getContent() == "")
+            std::cout << "Class Name must not be empty\n";
+        else 
+            std::cout << "Class removed\n";
+            //remove class
     }
     //--------------------------------------
     inputYearEditted.process(mousePoint);
     if (change.clicked(mousePoint)) {
-        std::cout << "Change button clicked\n";
+        if (inputYearEditted.getContent() == "")
+            std::cout << "Start year must not be empty\n";
+        else 
+            std::cout << "Start year changed\n";
+            //change start year
     }
     if (back.clicked(mousePoint)) {
         std::cout << "Back to previous scene clicked\n";
