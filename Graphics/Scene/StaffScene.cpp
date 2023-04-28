@@ -246,8 +246,10 @@ Scene* StaffScene::process() {
 	else if (listSYs.clicked(mousePoint))
 		return registry.blank;
 	//-------------------------------------------------------------------
-	else if (logout.clicked(mousePoint))
+	else if (logout.clicked(mousePoint)) {
+		ptrStaff_Global = nullptr;
 		return registry.login;
+	}
 	//-------------------------------------------------------------------
 	else if (next.clicked(mousePoint))
 		return registry.addStudentScene;

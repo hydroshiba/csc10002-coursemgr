@@ -308,30 +308,53 @@ Scene* AddStudentScene::process() {
 		return this;
 	}
 	//-----------------------------------------------------------------------------------
-	if (removeStudentButton.clicked(mousePoint)) {
+	else if (removeStudentButton.clicked(mousePoint)) {
 		string studentID = inputStudentID.getContent();
 		string outStr = "";
 		removeStudent(students, studentID, outStr);
 		message = outStr;
 		message.centerX();
+		inputID.clearContent();
+		inputFirstName.clearContent();
+		inputLastName.clearContent();
+		inputGender.clearContent();
+		inputBirth.clearContent();
+		inputSocialID.clearContent();
+		inputPassword.clearContent();
 		inputStudentID.clearContent();
 		return this;
 	}
 		
 	//-----------------------------------------------------------------------------------
-	if (removeStaffButton.clicked(mousePoint)) {
+	else if (removeStaffButton.clicked(mousePoint)) {
 		string staffID = inputStaffID.getContent();
 		string outStr = "";
 		removeStaff(ptrStaff_Global->ID, staffs, staffID, outStr);
 		message = outStr;
 		message.centerX();
+		inputID.clearContent();
+		inputFirstName.clearContent();
+		inputLastName.clearContent();
+		inputGender.clearContent();
+		inputBirth.clearContent();
+		inputSocialID.clearContent();
+		inputPassword.clearContent();
 		inputStaffID.clearContent();
 		return this;
 	}
 		
 	//-----------------------------------------------------------------------------------
-	if (back.clicked(mousePoint))
+	else if (back.clicked(mousePoint)) {
+		inputID.clearContent();
+		inputFirstName.clearContent();
+		inputLastName.clearContent();
+		inputGender.clearContent();
+		inputBirth.clearContent();
+		inputSocialID.clearContent();
+		inputPassword.clearContent();
 		return registry.staffScene;
+	}
+		
 	//-----------------------------------------------------------------------------------
 	return this;
 }

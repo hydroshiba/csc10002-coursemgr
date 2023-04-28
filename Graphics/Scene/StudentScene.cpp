@@ -246,14 +246,40 @@ Scene* StudentScene::process() {
 		updateStudentIn4(*ptrStudent_Global, ID, firstName, lastName, genderStr, birthStr, socialID, password, outStr);
 		message = outStr;
 		message.centerX();
+		inputID.clearContent();
+		inputFirstName.clearContent();
+		inputLastName.clearContent();
+		inputGender.clearContent();
+		inputBirth.clearContent();
+		inputSocialID.clearContent();
+		inputPassword.clearContent();
 		return this;
 	}
 	//-----------------------------------------------------------------------------------
-	if (viewScoreboard.clicked(mousePoint))
+	else if (viewScoreboard.clicked(mousePoint)) {
+		inputID.clearContent();
+		inputFirstName.clearContent();
+		inputLastName.clearContent();
+		inputGender.clearContent();
+		inputBirth.clearContent();
+		inputSocialID.clearContent();
+		inputPassword.clearContent();
 		return registry.blank;
+	}
+		
 	//-----------------------------------------------------------------------------------
-	if (logout.clicked(mousePoint))
+	else if (logout.clicked(mousePoint)) {
+		inputID.clearContent();
+		inputFirstName.clearContent();
+		inputLastName.clearContent();
+		inputGender.clearContent();
+		inputBirth.clearContent();
+		inputSocialID.clearContent();
+		inputPassword.clearContent();
+		ptrStudent_Global = nullptr;
 		return registry.login;
+	}
+		
 	//-----------------------------------------------------------------------------------
 	return this;
 }
