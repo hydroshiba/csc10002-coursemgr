@@ -17,6 +17,13 @@ SchoolYearScene::SchoolYearScene() {
     view.label = "View";
     view.setPos({800, 240});
     view.setSize({150, 50});
+    
+    warningViewClass = "A class must be selected";
+    warningViewClass.setColor(RED); 
+    warningViewClass.setSize(30);
+    warningViewClass.setPos({400, 290});
+
+    isAnyClassChosen = true;
     //--------------------------------------
     addClass = "Add Class";
     addClass.setSize(30);
@@ -29,6 +36,13 @@ SchoolYearScene::SchoolYearScene() {
     add.label = "Add";
     add.setPos({800, 340});
     add.setSize({150, 50});
+
+    warningClassNameAdded = "Class name must not be empty";
+    warningClassNameAdded.setColor(RED);
+    warningClassNameAdded.setSize(30);
+    warningClassNameAdded.setPos({400, 390});
+
+    isClassNameNotEmpty = true;
     //--------------------------------------
     removeClass = "Remove Class";
     removeClass.setSize(30);
@@ -65,10 +79,12 @@ void SchoolYearScene::render() {
     viewClass.render();
     listClass.render(mousePoint);
     view.render(mousePoint);
+    if (!isAnyClassChosen) warningViewClass.render();
     //--------------------------------------
     addClass.render();
     inputClassNameAdded.render(mousePoint);
     add.render(mousePoint);
+    if (!isClassNameNotEmpty) warningClassNameAdded.render();
     //--------------------------------------
     removeClass.render();
     inputClassNameRemoved.render(mousePoint);
@@ -86,26 +102,27 @@ Scene* SchoolYearScene::process() {
     //--------------------------------------
     listClass.process(mousePoint);
     if (view.clicked(mousePoint)) {
-        if (listClass.getSelected() == -1) 
-            std::cout << "A class must be selected\n";
+        if (listClass.getSelected() == -1)
+            isAnyClassChosen = false;
         else 
-            std::cout << "View button clicked\n";
+            isAnyClassChosen = true;
             //switch to the class scene of the class selected
     }
     //--------------------------------------
     inputClassNameAdded.process(mousePoint);
     if (add.clicked(mousePoint)) {
         if(inputClassNameAdded.getContent() == "")
-            std::cout << "Class Name must not be empty\n";
+            isClassNameNotEmpty = false;
         else 
-            std::cout << "Class added\n";
+            isClassNameNotEmpty = true;
             //add class
     }
     //--------------------------------------
     inputClassNameRemoved.process(mousePoint);
     if (remove.clicked(mousePoint)) {
-        if(inputClassNameRemoved.getContent() == "")
+        if(inputClassNameRemoved.getContent() == "") {
             std::cout << "Class Name must not be empty\n";
+        }
         else 
             std::cout << "Class removed\n";
             //remove class
