@@ -18,6 +18,8 @@ private:
     TextBox viewClass;
     DropBox listClass;
     Button view;
+    TextBox warningViewClass;
+    bool isAnyClassChosen;
 
     TextBox addClass;
     InputBox inputClassNameAdded;

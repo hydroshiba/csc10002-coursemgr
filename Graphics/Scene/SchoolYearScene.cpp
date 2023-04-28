@@ -17,6 +17,13 @@ SchoolYearScene::SchoolYearScene() {
     view.label = "View";
     view.setPos({800, 240});
     view.setSize({150, 50});
+    
+    warningViewClass = "A class must be selected";
+    warningViewClass.setColor(RED); 
+    warningViewClass.setSize(30);
+    warningViewClass.setPos({400, 290});
+
+    isAnyClassChosen = true;
     //--------------------------------------
     addClass = "Add Class";
     addClass.setSize(30);
@@ -65,6 +72,7 @@ void SchoolYearScene::render() {
     viewClass.render();
     listClass.render(mousePoint);
     view.render(mousePoint);
+    if (!isAnyClassChosen) warningViewClass.render();
     //--------------------------------------
     addClass.render();
     inputClassNameAdded.render(mousePoint);
@@ -86,10 +94,10 @@ Scene* SchoolYearScene::process() {
     //--------------------------------------
     listClass.process(mousePoint);
     if (view.clicked(mousePoint)) {
-        if (listClass.getSelected() == -1) 
-            std::cout << "A class must be selected\n";
+        if (listClass.getSelected() == -1)
+            isAnyClassChosen = false;
         else 
-            std::cout << "View button clicked\n";
+            isAnyClassChosen = true;
             //switch to the class scene of the class selected
     }
     //--------------------------------------
@@ -104,8 +112,9 @@ Scene* SchoolYearScene::process() {
     //--------------------------------------
     inputClassNameRemoved.process(mousePoint);
     if (remove.clicked(mousePoint)) {
-        if(inputClassNameRemoved.getContent() == "")
+        if(inputClassNameRemoved.getContent() == "") {
             std::cout << "Class Name must not be empty\n";
+        }
         else 
             std::cout << "Class removed\n";
             //remove class
