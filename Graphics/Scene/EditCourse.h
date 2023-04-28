@@ -17,11 +17,11 @@
 
 class EditCourse : public Scene{
 private: 
-    TextBox title, courseID, classID, name, teacher, credit, weekday, session;
-    InputBox courseBox, classBox, nameBox, teacherBox, creditBox, dayBox, sessionBox;
+    TextBox title, courseID, classID, name, teacher, credit, maxEnroll, weekday, session;
+    InputBox courseBox, classBox, nameBox, teacherBox, creditBox, enrollBox, dayBox, sessionBox;
     Button change, back;
 
-    TextBox invalid;
+    TextBox result;
 public:
     EditCourse();
     Scene *process();
