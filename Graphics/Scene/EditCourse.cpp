@@ -6,42 +6,42 @@ EditCourse :: EditCourse(){
     title.centerX();
     title.setY(25);
 
-    courseID = (ptrCourse_Global) ? "CourseID: " + ptrCourse_Global->ID : "CourseID: " + defaultStr;
+    courseID = "CourseID: " + defaultStr;
     courseID.setSize(40);
     courseID.setPos({50,100});
     courseID.setColor(MAROON);
 
-    classID = (ptrCourse_Global) ? "ClassID: " + ptrCourse_Global->classID : "ClassID: " + defaultStr;
+    classID = "ClassID: " + defaultStr;
     classID.setSize(40);
     classID.setPos({50, 175});
     classID.setColor(MAROON);
 
-    name = (ptrCourse_Global) ? "Course Name: " + ptrCourse_Global->name : "Course Name: " + defaultStr;
+    name = "Course Name: " + defaultStr;
     name.setSize(40);
     name.setPos({50, 250});
     name.setColor(MAROON);
 
-    teacher = (ptrCourse_Global) ? "Teacher: " + ptrCourse_Global->teacher : "Teacher: " + defaultStr;
+    teacher = "Teacher: " + defaultStr;
     teacher.setSize(40);
     teacher.setPos({50, 325});
     teacher.setColor(MAROON);
 
-    credit = (ptrCourse_Global) ? "Credits: " + std::to_string(ptrCourse_Global->credits) : "Credits: " + defaultStr;
+    credit = "Credits: " + defaultStr;
     credit.setSize(40);
     credit.setPos({50, 400});
     credit.setColor(MAROON);    
 
-    maxEnroll = (ptrCourse_Global) ? "Max Enroll: " + std::to_string(ptrCourse_Global->maxEnroll) : "Max Enroll: " + defaultStr;
+    maxEnroll = "Max Enroll: " + defaultStr;
     maxEnroll.setSize(40);
     maxEnroll.setPos({50, 475});
     maxEnroll.setColor(MAROON);
 
-    weekday = (ptrCourse_Global) ? "Weekday: " + weekday_to_string(ptrCourse_Global->weekday) : "Weekday: " + defaultStr;
+    weekday = "Weekday: " + defaultStr;
     weekday.setSize(40);
     weekday.setPos({50, 550});
     weekday.setColor(MAROON);
 
-    session = (ptrCourse_Global) ? "Session: " + session_to_string(ptrCourse_Global->session) : "Session: " + defaultStr;
+    session = "Session: " + defaultStr;
     session.setSize(40);
     session.setPos({50, 625});
     session.setColor(MAROON);
@@ -136,16 +136,39 @@ Scene* EditCourse::process(){
     dayBox.process(mousePoint);
     sessionBox.process(mousePoint);
 
+    if (ptrCourse_Global){
+        courseID = "CourseID: " + ptrCourse_Global->ID;
+        classID = "ClassID: " + ptrCourse_Global->classID;
+        name = "Course Name: " + ptrCourse_Global->name;
+        teacher = "Teacher: " + ptrCourse_Global->teacher;
+        credit = "Credits: " + std::to_string(ptrCourse_Global->credits);
+        maxEnroll = "Max Enroll: " + std::to_string(ptrCourse_Global->maxEnroll);
+        weekday = "Weekday: " + weekday_to_string(ptrCourse_Global->weekday);
+        session = "Session: " + session_to_string(ptrCourse_Global->session);
+    }    
+
     if (change.clicked(mousePoint)){
         if (ptrCourse_Global == nullptr){
             result = "Access nullptr error!";
             result.setX(865);
             return this;
         }
-        updateCourse(*ptrCourse_Global,courseBox.content.text, classBox.content.text, nameBox.content.text, teacherBox.content.text, creditBox.content.text, enrollBox.content.text, dayBox.content.text, sessionBox.content.text, notif);
-        result = notif;
-        result.setX(865);
-        return registry.courseScene;
+        if(updateCourse(*ptrCourse_Global,courseBox.content.text, classBox.content.text, nameBox.content.text, teacherBox.content.text, creditBox.content.text, enrollBox.content.text, dayBox.content.text, sessionBox.content.text, notif)){
+            courseBox.content.text.clear();
+            classBox.content.text.clear();
+            nameBox.content.text.clear();
+            teacherBox.content.text.clear();
+            creditBox.content.text.clear();
+            enrollBox.content.text.clear();
+            dayBox.content.text.clear();
+            sessionBox.content.text.clear();
+            return registry.courseScene;
+        }
+        else{
+            result = notif;
+            result.setX(865);
+            return this;
+        }
     }
     if (back.clicked(mousePoint)) return registry.courseScene;
     return this;

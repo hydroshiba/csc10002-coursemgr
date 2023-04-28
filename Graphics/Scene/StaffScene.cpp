@@ -146,7 +146,7 @@ StaffScene::StaffScene() {
 	next.label = "Next";
 	next.setSize(buttonSize);
 	next.setPos({ 1025, 600 });
-	next.fill_color = 
+	// next.fill_color = 
 	message = "";
 	message.setColor(RED);
 	message.setSize(30);

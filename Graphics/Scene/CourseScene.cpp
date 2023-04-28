@@ -6,42 +6,42 @@ CourseScene :: CourseScene(){
     title.centerX();
     title.setY(75);
 
-    courseID = (ptrCourse_Global) ? "CourseID: " + ptrCourse_Global->ID : "CourseID: " + defaultStr;
+    courseID = "CourseID: " + defaultStr;
     courseID.setSize(40);
     courseID.setPos({50,75});
     courseID.setColor(MAROON);
 
-    classID = (ptrCourse_Global) ? "ClassID: " + ptrCourse_Global->classID : "ClassID: " + defaultStr;
+    classID = "ClassID: " + defaultStr;
     classID.setSize(40);
     classID.setPos({50, 150});
     classID.setColor(MAROON);
 
-    name = (ptrCourse_Global) ? "Course Name: " + ptrCourse_Global->name : "Course Name: " + defaultStr;
+    name = "Course Name: " + defaultStr;
     name.setSize(40);
     name.setPos({50, 225});
     name.setColor(MAROON);
 
-    teacher = (ptrCourse_Global) ? "Teacher: " + ptrCourse_Global->teacher : "Teacher: " + defaultStr;
+    teacher = "Teacher: " + defaultStr;
     teacher.setSize(40);
     teacher.setPos({50, 300});
     teacher.setColor(MAROON);
 
-    credit = (ptrCourse_Global) ? "Credits: " + std::to_string(ptrCourse_Global->credits) : "Credits: " + defaultStr;
+    credit = "Credits: " + defaultStr;
     credit.setSize(40);
     credit.setPos({50, 375});
     credit.setColor(MAROON);    
 
-    maxEnroll = (ptrCourse_Global) ? "Max Enroll: " + std::to_string(ptrCourse_Global->maxEnroll) : "Max Enroll: " + defaultStr;
+    maxEnroll = "Max Enroll: " + defaultStr;
     maxEnroll.setSize(40);
     maxEnroll.setPos({50, 450});
     maxEnroll.setColor(MAROON);
 
-    weekday = (ptrCourse_Global) ? "Weekday: " + weekday_to_string(ptrCourse_Global->weekday) : "Weekday: " + defaultStr;
+    weekday = "Weekday: " + defaultStr;
     weekday.setSize(40);
     weekday.setPos({50, 525});
     weekday.setColor(MAROON);
 
-    session = (ptrCourse_Global) ? "Session: " + session_to_string(ptrCourse_Global->session) : "Session: " + defaultStr;
+    session = "Session: " + defaultStr;
     session.setSize(40);
     session.setPos({50, 600});
     session.setColor(MAROON);
@@ -130,6 +130,17 @@ Scene* CourseScene::process(){
     addBox.process(mousePoint);
     removeBox.process(mousePoint);
 
+    if (ptrCourse_Global){
+        courseID = "CourseID: " + ptrCourse_Global->ID;
+        classID = "ClassID: " + ptrCourse_Global->classID;
+        name = "Course Name: " + ptrCourse_Global->name;
+        teacher = "Teacher: " + ptrCourse_Global->teacher;
+        credit = "Credits: " + std::to_string(ptrCourse_Global->credits);
+        maxEnroll = "Max Enroll: " + std::to_string(ptrCourse_Global->maxEnroll);
+        weekday = "Weekday: " + weekday_to_string(ptrCourse_Global->weekday);
+        session = "Session: " + session_to_string(ptrCourse_Global->session);
+    }
+
     if (add.clicked(mousePoint)||remove.clicked(mousePoint)){
         if (ptrCourse_Global == nullptr){
             result = "Access nullptr error!";
@@ -145,8 +156,10 @@ Scene* CourseScene::process(){
         else if (!addBox.content.text.empty()) addAStudentToCourse(students, *ptrCourse_Global, addBox.content.text, notif);
         else removeStudFromCourse(*ptrCourse_Global, removeBox.content.text, notif);
         result = notif;
-        result.centerX();  
-        return registry.blank;
+        result.centerX();
+        addBox.content.text.clear();
+        removeBox.content.text.clear();
+        return this;
     }
 
     if (fileButton.clicked(mousePoint)){
