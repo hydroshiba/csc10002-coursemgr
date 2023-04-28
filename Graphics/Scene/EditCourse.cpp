@@ -26,12 +26,12 @@ EditCourse :: EditCourse(){
     teacher.setPos({50, 325});
     teacher.setColor(MAROON);
 
-    credit = (ptrCourse_Global) ? "Credits: " + ptrCourse_Global->credits : "Credits: " + defaultStr;
+    credit = (ptrCourse_Global) ? "Credits: " + std::to_string(ptrCourse_Global->credits) : "Credits: " + defaultStr;
     credit.setSize(40);
     credit.setPos({50, 400});
     credit.setColor(MAROON);    
 
-    maxEnroll = (ptrCourse_Global) ? "Max Enroll: " + ptrCourse_Global->maxEnroll : "Max Enroll: " + defaultStr;
+    maxEnroll = (ptrCourse_Global) ? "Max Enroll: " + std::to_string(ptrCourse_Global->maxEnroll) : "Max Enroll: " + defaultStr;
     maxEnroll.setSize(40);
     maxEnroll.setPos({50, 475});
     maxEnroll.setColor(MAROON);
