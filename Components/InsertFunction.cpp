@@ -18,6 +18,56 @@
 
 
 /*		Insert function		*/
+// Add new student
+bool addStudent(Vector<Student>& students, const std::string& ID, const std::string& firstName, const std::string& lastName, const std::string& genderStr, const std::string& birthStr, const std::string& socialID, const std::string& password, std::string& outStr) {
+	if (ID.empty() || firstName.empty() || lastName.empty() || password.empty() || birthStr.empty() || genderStr.empty() || socialID.empty()) {
+		outStr = "Please enter all the information of student in all input box to add new student";
+		return false;
+	}
+	Student* ptrStudent = getStudent(students, ID);
+	if (ptrStudent != nullptr) {
+		outStr = "Student with ID " + ID + " have been already existed in school!";
+		return false;
+	}
+	Student student;
+	if (!ID.empty()) {
+		student.setID(ID);
+	}
+	if (!firstName.empty()) {
+		student.setFirstName(firstName);
+	}
+	if (!lastName.empty()) {
+		student.setLastName(lastName);
+	}
+	if (!genderStr.empty()) {
+		Gender gender = string_to_gender(genderStr);
+		student.setGender(gender);
+	}
+	if (!birthStr.empty()) {
+		std::string dayStr, monthStr, yearStr;
+		std::stringstream ss(birthStr);
+		getline(ss, dayStr, '/');
+		getline(ss, monthStr, '/');
+		getline(ss, yearStr);
+
+		unsigned short day = static_cast<unsigned short>(std::stoi(dayStr));
+		unsigned short month = static_cast<unsigned short>(std::stoi(monthStr));
+		unsigned int year = static_cast<unsigned int>(std::stoul(yearStr));
+		Date birth(day, month, year);
+		student.setBirth(birth);
+	}
+	if (!socialID.empty()) {
+		student.setSocialID(socialID);
+	}
+	if (!password.empty()) {
+		student.setPassword(password);
+	}
+	students.append(student);
+	outStr = "Complete add new student with ID " + ID + " to school";
+	return true;
+}
+
+
 // Add new staff
 bool addStaff(std::string curStaffID, Vector<Staff>& staffs, const std::string& ID, const std::string& password, const std::string& firstName, const std::string& lastName, std::string& outStr) {
 	if (ID.empty() || firstName.empty() || lastName.empty() || password.empty()) {
