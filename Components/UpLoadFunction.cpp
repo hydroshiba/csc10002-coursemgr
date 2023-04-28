@@ -54,10 +54,11 @@ void uploadListStudent(Vector<Student>& students){
 	std::getline (ifs, ignore, ',');
 	std::getline(ifs, nStudents);
 	if (nStudents == "0") return;
+	size_t n = static_cast<size_t>(std::stoul(nStudents));
 	//students.resize(static_cast<size_t>(std::stoul(nStudents))); 
 	std::getline(ifs, ignore);
 	//int i = 0;
-	while (!ifs.eof()){
+	for (int i = 0; i < n; i++) {
 		std::getline(ifs, ignore, ',');
 		std::getline(ifs, ID, ',');
 		std::getline(ifs, pass, ',');

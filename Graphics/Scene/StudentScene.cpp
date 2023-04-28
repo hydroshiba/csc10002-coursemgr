@@ -234,7 +234,7 @@ Scene* StudentScene::process() {
 		inputSocialID.defaultText = ptrStudent_Global->socialID;
 	}
 	//-----------------------------------------------------------------------------------
-	if (change.clicked(mousePoint)) {
+	if (change.clicked(mousePoint) && ptrStudent_Global != nullptr) {
 		string ID = inputID.getContent();
 		string firstName = inputFirstName.getContent();
 		string lastName = inputLastName.getContent();
