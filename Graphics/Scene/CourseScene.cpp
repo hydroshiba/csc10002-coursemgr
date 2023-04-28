@@ -8,49 +8,67 @@ CourseScene :: CourseScene(){
 
     courseID = (ptrCourse_Global) ? "CourseID: " + ptrCourse_Global->ID : "CourseID: " + defaultStr;
     courseID.setSize(40);
-    courseID.setPos({100,200});
+    courseID.setPos({50,125});
     courseID.setColor(MAROON);
 
     classID = (ptrCourse_Global) ? "ClassID: " + ptrCourse_Global->classID : "ClassID: " + defaultStr;
     classID.setSize(40);
-    classID.setPos({100, 275});
+    classID.setPos({50, 200});
     classID.setColor(MAROON);
 
     name = (ptrCourse_Global) ? "Course Name: " + ptrCourse_Global->name : "Course Name: " + defaultStr;
     name.setSize(40);
-    name.setPos({100, 350});
+    name.setPos({50, 275});
     name.setColor(MAROON);
 
     teacher = (ptrCourse_Global) ? "Teacher: " + ptrCourse_Global->teacher : "Teacher: " + defaultStr;
     teacher.setSize(40);
-    teacher.setPos({100, 425});
+    teacher.setPos({50, 350});
     teacher.setColor(MAROON);
+
+    credit = (ptrCourse_Global) ? "Credits: " + ptrCourse_Global->credits : "Credits: " + defaultStr;
+    credit.setSize(40);
+    credit.setPos({50, 425});
+    credit.setColor(MAROON);    
+
+    maxEnroll = (ptrCourse_Global) ? "Max Enroll: " + ptrCourse_Global->maxEnroll : "Max Enroll: " + defaultStr;
+    maxEnroll.setSize(40);
+    maxEnroll.setPos({50, 500});
+    maxEnroll.setColor(MAROON);
 
     weekday = (ptrCourse_Global) ? "Weekday: " + weekday_to_string(ptrCourse_Global->weekday) : "Weekday: " + defaultStr;
     weekday.setSize(40);
-    weekday.setPos({100, 500});
+    weekday.setPos({50, 575});
     weekday.setColor(MAROON);
 
     session = (ptrCourse_Global) ? "Session: " + session_to_string(ptrCourse_Global->session) : "Session: " + defaultStr;
     session.setSize(40);
-    session.setPos({100, 575});
+    session.setPos({50, 650});
     session.setColor(MAROON);
 
+    fileBox.setSize({250,50});
+    fileBox.setPos({500, 275});
+    fileBox.defaultText = "Input students file...";
+
+    fileButton.label = "Load";
+    fileButton.setSize({100,50});
+    fileButton.setPos({750,275}); 
+
     addBox.setSize({250,50});
-    addBox.setPos({500, 275});
+    addBox.setPos({500, 375});
     addBox.defaultText = "Input studentID...";
 
     add.label = "Add";
     add.setSize({100,50});
-    add.setPos({750,275});
+    add.setPos({750,375});
 
     removeBox.setSize({250,50});
-    removeBox.setPos({500, 375});
+    removeBox.setPos({500, 475});
     removeBox.defaultText = "Input studentID...";
 
     remove.label = "Remove";
     remove.setSize({100,50});
-    remove.setPos({750,375});
+    remove.setPos({750,475});
 
     remove.hover_color = RED;
     remove.press_color = MAROON;
@@ -89,8 +107,13 @@ void CourseScene :: render(){
     classID.render();
     name.render();
     teacher.render();
+    credit.render();
+    maxEnroll.render();
     weekday.render();
     session.render();
+
+    fileBox.render(mousePoint);
+    fileButton.render(mousePoint);
 
     addBox.render(mousePoint);
     add.render(mousePoint);
@@ -109,9 +132,9 @@ void CourseScene :: render(){
 Scene* CourseScene::process(){
     std::string notif;
     this->mousePoint = GetMousePosition();
+    fileBox.process(mousePoint);
     addBox.process(mousePoint);
     removeBox.process(mousePoint);
-
 
     if (add.clicked(mousePoint)||remove.clicked(mousePoint)){
         if (ptrCourse_Global == nullptr){

@@ -19,11 +19,11 @@
 #include "RemoveFunction.h"
 class CourseScene : public Scene {
 private:
-    TextBox title, courseID, classID, name, teacher, weekday, session, invalid;
+    TextBox title, courseID, classID, name, teacher, credit, maxEnroll, weekday, session, invalid;
 
-    InputBox addBox, removeBox;
+    InputBox addBox, removeBox, fileBox;
 
-    Button viewStudent, add, remove, viewScore, updateBox, back;
+    Button viewStudent, add, remove, fileButton, viewScore, updateBox, back;
 public:
     CourseScene();
     Scene* process();
