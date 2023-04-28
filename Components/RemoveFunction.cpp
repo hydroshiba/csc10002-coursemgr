@@ -15,6 +15,30 @@
 #include "Scoreboard.h"
 
 /*		Remove function		*/
+// Remove student from School
+bool removeStudent(Vector<Student>& students, const string& studentID, string& outStr) {
+	Student* ptrStudent = getStudent(students, studentID);
+	if (ptrStudent == nullptr) {
+		outStr = "Student with ID " + studentID + " can't be found in school! Pls try another";
+		return false;
+	}
+	students.remove(ptrStudent);
+	outStr = "Student with ID " + studentID + " is removed from school!";
+	return true;
+}
+
+// Remove staff from school
+bool removeStaff(Vector<Staff>&staffs, const string & staffID, string & outStr) {
+	Staff* ptrStaff = getStaff(staffs, staffID);
+	if (ptrStaff == nullptr) {
+		outStr = "Staff with ID " + staffID + " can't be found in school! Pls try another";
+		return false;
+	}
+	staffs.remove(ptrStaff);
+	outStr = "Staff with ID " + staffID + " is removed from school!";
+	return true;
+}
+
 // Remove list SchoolYear
 bool removeListSchoolYear(Vector<SchoolYear>& schoolYears) {
 	for (int i = 0; i < schoolYears.size(); ++i) {
