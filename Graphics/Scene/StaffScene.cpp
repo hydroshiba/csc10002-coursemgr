@@ -121,28 +121,32 @@ StaffScene::StaffScene() {
 	//-------------------------------------------------------------------
 	change.label = "Change";
 	change.setSize(buttonSize);
-	change.setPos({ 50, 600 });
+	change.setPos({ 25, 600 });
 	change.fill_color = YELLOW;
 	//-------------------------------------------------------------------
 	listAYs.label = "List Academic Year";
 	listAYs.setSize(buttonSize);
-	listAYs.setPos({ 300, 600 });
+	listAYs.setPos({ 225, 600 });
 	//-------------------------------------------------------------------
 	listSYs.label = "List School Year";
 	listSYs.setSize(buttonSize);
-	listSYs.setPos({ 550, 600 });
+	listSYs.setPos({ 425, 600 });
 	//-------------------------------------------------------------------
 	logout.label = "Logout";
 	logout.setSize(buttonSize);
-	logout.setPos({ 800, 600 });
-	logout.fill_color = ORANGE;
+	logout.setPos({ 625, 600 });
+	logout.fill_color = RED;
 	logout.hover_color = MAROON;
 	//-------------------------------------------------------------------
 	add.label = "Add";
 	add.setSize(buttonSize);
-	add.setPos({ 1050, 600 });
-	add.fill_color = YELLOW;
+	add.setPos({ 825, 600 });
+	add.fill_color = GREEN;
 	//-------------------------------------------------------------------
+	next.label = "Next";
+	next.setSize(buttonSize);
+	next.setPos({ 1025, 600 });
+	next.fill_color = 
 	message = "";
 	message.setColor(RED);
 	message.setSize(30);

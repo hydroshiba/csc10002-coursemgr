@@ -45,6 +45,7 @@ private:
 	InputBox inputAddPassword;
 	//-------------------------------------------------------------------
 	Button add;
+	Button next;
 	//-------------------------------------------------------------------
 	TextBox message;
 public:
