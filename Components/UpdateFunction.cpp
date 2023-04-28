@@ -111,9 +111,10 @@ void updateSemester(Semester &semester, const std::string startDate, const std::
 	semester.endDate = end;
 }
 
-void updateCourse(Course& course, const std::string& courseID, const std::string& classID, const std::string& name, const std::string& teacher, const std::string& cre,const std::string& maxEnroll, const std::string& day, const std::string& ss, std::string &outStr) {
+bool updateCourse(Course& course, const std::string& courseID, const std::string& classID, const std::string& name, const std::string& teacher, const std::string& cre,const std::string& maxEnroll, const std::string& day, const std::string& ss, std::string &outStr) {
 	if (courseID.empty() && classID.empty() && name.empty() && teacher.empty() && cre.empty() && day.empty() && ss.empty()){
 		outStr = "All input boxes are empty, please try again!";
+		return false;
 	}
 
 	if (!courseID.empty()) course.updateID(courseID);
@@ -125,6 +126,7 @@ void updateCourse(Course& course, const std::string& courseID, const std::string
 	if (!day.empty()) course.updateWeekday(string_to_weekday(day));
 	if (!ss.empty()) course.updateSession(string_to_session(ss));
 	outStr = "Successfully update course information!";
+	return true;
 }
 // 22. Update student result
 void updateStudentResult(Course &course, const std::string studentID, const std::string midTerm, const std::string other, const std::string finalScore, const std::string totalScore) {
