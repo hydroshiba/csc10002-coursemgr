@@ -17,6 +17,10 @@
 /*		Remove function		*/
 // Remove student from School
 bool removeStudent(Vector<Student>& students, const string& studentID, string& outStr) {
+	if (studentID.empty()) {
+		outStr = "Please enter student ID to input box to remove";
+		return false;
+	}
 	Student* ptrStudent = getStudent(students, studentID);
 	if (ptrStudent == nullptr) {
 		outStr = "Student with ID " + studentID + " can't be found in school! Pls try another";
@@ -29,6 +33,10 @@ bool removeStudent(Vector<Student>& students, const string& studentID, string& o
 
 // Remove staff from school
 bool removeStaff(string curStaffID, Vector<Staff>&staffs, const string & staffID, string & outStr) {
+	if (staffID.empty()) {
+		outStr = "Please enter staff ID to input box to remove";
+		return false;
+	}
 	Staff* ptrStaff = getStaff(staffs, staffID);
 	if (ptrStaff == nullptr) {
 		outStr = "Staff with ID " + staffID + " can't be found in school! Pls try another";

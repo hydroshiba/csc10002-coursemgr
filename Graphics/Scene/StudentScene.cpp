@@ -11,7 +11,7 @@ const float textBoxContentSize = 30;
 const float inputBoxContentSize = textBoxContentSize;
 //-------------------------------------------------------------------------------------
 const float textBoxHeight = 50;
-const float textBoxWidth = 100;
+const float textBoxWidth = 150;
 const Vector2 textBoxSize = { textBoxHeight, textBoxWidth };
 //-------------------------------------------------------------------------------------
 const float inputBoxHeight = 50;

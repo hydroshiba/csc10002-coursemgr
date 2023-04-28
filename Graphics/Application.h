@@ -11,6 +11,7 @@
 #include "Scene/Login.h"
 #include "Scene/StudentScene.h"
 #include "Scene/StaffScene.h"
+#include "Scene/AddStudentScene.h"
 #include "Scene/CourseScene.h"
 #include "Scene/EditCourse.h"
 #include "Scene/SchoolYearScene.h"

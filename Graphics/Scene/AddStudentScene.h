@@ -18,6 +18,8 @@
 #include "UpdateFunction.h"
 #include <string>
 #include "InsertFunction.h"
+#include "RemoveFunction.h"
+
 class AddStudentScene : public Scene {
 private:
     TextBox sceneName;
@@ -45,11 +47,11 @@ private:
     //-----------------------------------------------------------------------------------
     TextBox textStudentID;
     InputBox inputStudentID;
-    Button removeStudent;
+    Button removeStudentButton;
     //-----------------------------------------------------------------------------------
     TextBox textStaffID;
     InputBox inputStaffID;
-    Button removeStaff;
+    Button removeStaffButton;
     //-----------------------------------------------------------------------------------
     TextBox message;
     //-----------------------------------------------------------------------------------

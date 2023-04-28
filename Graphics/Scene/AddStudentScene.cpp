@@ -208,17 +208,17 @@ AddStudentScene::AddStudentScene() {
 	inputStaffID.setSize(removeInputBoxSize);
 	inputStaffID.setPos({ xPosInputRemoveStudentID, yPosTextRemoveStaffID });
 
-	removeStudent.label = "Remove";
-	removeStudent.fill_color = RED;
-	removeStudent.hover_color = ORANGE;
-	removeStudent.setSize(removeButtonSize);
-	removeStudent.setPos(removeStudentButtonPos);
+	removeStudentButton.label = "Remove";
+	removeStudentButton.fill_color = RED;
+	removeStudentButton.hover_color = ORANGE;
+	removeStudentButton.setSize(removeButtonSize);
+	removeStudentButton.setPos(removeStudentButtonPos);
 
-	removeStaff.label = "Remove";
-	removeStaff.fill_color = RED;
-	removeStaff.hover_color = ORANGE;
-	removeStaff.setSize(removeButtonSize);
-	removeStaff.setPos(removeStaffButtonPos);
+	removeStaffButton.label = "Remove";
+	removeStaffButton.fill_color = RED;
+	removeStaffButton.hover_color = ORANGE;
+	removeStaffButton.setSize(removeButtonSize);
+	removeStaffButton.setPos(removeStaffButtonPos);
 }
 
 void AddStudentScene::render() {
@@ -247,11 +247,11 @@ void AddStudentScene::render() {
 	//-----------------------------------------------------------------------------------
 	textStaffID.render();
 	inputStaffID.render(mousePoint);
-	removeStaff.render(mousePoint);
+	removeStaffButton.render(mousePoint);
 	//-----------------------------------------------------------------------------------
 	textStudentID.render();
 	inputStudentID.render(mousePoint);
-	removeStudent.render(mousePoint);
+	removeStudentButton.render(mousePoint);
 	//-----------------------------------------------------------------------------------
 }
 
@@ -295,16 +295,39 @@ Scene* AddStudentScene::process() {
 		string socialID = inputSocialID.getContent();
 		string password = inputPassword.getContent();
 		string outStr = "";
+		addStudent(students, ID, firstName, lastName, genderStr, birthStr, socialID, password, outStr);
 		message = outStr;
 		message.centerX();
+		inputID.clearContent();
+		inputFirstName.clearContent();
+		inputLastName.clearContent();
+		inputGender.clearContent();
+		inputSocialID.clearContent();
+		inputPassword.clearContent();
 		return this;
 	}
 	//-----------------------------------------------------------------------------------
-	if (removeStudent.clicked(mousePoint))
-		return registry.blank;
+	if (removeStudentButton.clicked(mousePoint)) {
+		string studentID = inputStudentID.getContent();
+		string outStr = "";
+		removeStudent(students, studentID, outStr);
+		message = outStr;
+		message.centerX();
+		inputStudentID.clearContent();
+		return this;
+	}
+		
 	//-----------------------------------------------------------------------------------
-	if (removeStaff.clicked(mousePoint))
-		return registry.blank;
+	if (removeStaffButton.clicked(mousePoint)) {
+		string staffID = inputStaffID.getContent();
+		string outStr = "";
+		removeStaff(ptrStaff_Global->ID, staffs, staffID, outStr);
+		message = outStr;
+		message.centerX();
+		inputStaffID.clearContent();
+		return this;
+	}
+		
 	//-----------------------------------------------------------------------------------
 	if (back.clicked(mousePoint))
 		return registry.staffScene;
