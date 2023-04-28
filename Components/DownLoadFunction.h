@@ -8,7 +8,7 @@ void downloadListSchoolYearFolder(Vector<SchoolYear>& schoolYears);
 
 void downloadSchoolYearFolder(SchoolYear& schoolYear);
 
-void downloadListStaff(Vector<Staff::User>& staffs);
+void downloadListStaff(const Vector<Staff>& staffs);
 
 void downloadListStudent(Vector<Student>& students);
 

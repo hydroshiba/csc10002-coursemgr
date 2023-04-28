@@ -1,15 +1,15 @@
 #include "Name.h"
 
-Name::Name(const std::string& nameLast, const std::string& nameFirst) :
+Name::Name(const std::string& nameFirst, const std::string& nameLast) :
     last{ nameLast }, first{ nameFirst } {}
 
-void Name::set(const std::string& nameLast, const std::string& nameFirst) {
+void Name::set(const std::string& nameFirst, const std::string& nameLast) {
     last = nameLast;
     first = nameFirst;
 }
 
 std::string Name::get() {
-    return last + " " + first;
+    return first + " " + last;
 }
 
 bool operator==(const Name& nameA, const Name& nameB) {

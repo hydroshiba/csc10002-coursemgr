@@ -15,7 +15,7 @@
 #include "Course.h"
 #include "Scoreboard.h"
 
-void downloadAllData(Vector<Staff::User>& staffs, Vector <Student>& students, Vector <SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears) {
+void downloadAllData(const Vector<Staff>& staffs, Vector <Student>& students, Vector <SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears) {
 	downloadListStudent(students);
 	downloadListStaff(staffs);
 	downloadListSchoolYearFolder(schoolYears);
@@ -38,14 +38,15 @@ void downloadListStudent(Vector<Student>& students){
 	ofs.close();
 }
 
-void downloadListStaff(Vector<Staff::User>& staffs){
+void downloadListStaff(const Vector<Staff>& staffs){
 	std::string list_staff_dir = getListStaffFilePath();
 	std::ofstream ofs(list_staff_dir);
 	ofs << "Number of staffs,";
 	size_t nStaffs = staffs.size();
 	ofs << nStaffs << std::endl;
+	ofs << "No,First name,Last name,Staff ID,Password\n";
 	for (int i = 0; i<nStaffs; ++i){
-		ofs << staffs[i].ID << "," << staffs[i].getHashedPass() << std::endl;
+		ofs << (i + 1) << "," <<  staffs[i].name.first << "," << staffs[i].name.last << ","  << staffs[i].ID << "," << staffs[i].getHashedPass() << std::endl;
 	}
 	ofs.close();
 }

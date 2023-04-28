@@ -6,9 +6,9 @@
 struct Name {
     std::string first, last;
 
-    Name(const std::string& nameLast = defaultStr, const std::string& nameFirst = defaultStr);
+    Name(const std::string& nameFirst = defaultStr, const std::string& nameLast = defaultStr);
 
-    void set(const std::string& nameLast, const std::string& nameFirst);
+    void set(const std::string& nameFirst, const std::string& nameLast);
 
     std::string get();
 };

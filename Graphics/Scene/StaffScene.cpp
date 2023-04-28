@@ -208,7 +208,6 @@ Scene* StaffScene::process() {
 		string password = inputAddPassword.getContent();
 		string outStr = "";
 		addStaff(ptrStaff_Global->ID, staffs, ID, password, firstName, lastName, outStr);
-		std::cout << ptrStaff_Global->ID << std::endl;
 		message = outStr;
 		message.centerX();
 		inputAddID.clearContent();

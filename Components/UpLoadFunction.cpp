@@ -16,14 +16,14 @@
 #include "Course.h"
 #include "Scoreboard.h"
 
-void uploadAllData(Vector<Staff::User>& staffs, Vector<Student> &students, Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears) {
+void uploadAllData(Vector<Staff>& staffs, Vector<Student> &students, Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears) {
 	uploadListStudent(students);
 	uploadListStaff(staffs);
 	uploadListSchoolYearFolder(students, schoolYears);
 	uploadListAcademicYearFolder(schoolYears, academicYears);
 }
 
-void uploadListStaff(Vector<Staff::User>& staffs){
+void uploadListStaff(Vector<Staff>& staffs){
 	std::string list_staff_dir = getListStaffFilePath();
 	std::ifstream ifs (list_staff_dir);
 	std::string first, last, ID, pass, ignore;
@@ -38,7 +38,8 @@ void uploadListStaff(Vector<Staff::User>& staffs){
 		getline(ifs, last, ',');
 		getline(ifs,ID, ',');
 		getline(ifs, pass);
-		Staff newStaff({first, last}, ID, pass);
+		Staff newStaff({first, last}, ID);
+		newStaff.setPassWordUpLoad(pass);
 		staffs.append(newStaff);
 	}
 	ifs.close();

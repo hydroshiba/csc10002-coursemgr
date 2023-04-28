@@ -59,6 +59,10 @@ bool operator==(const User& userA, const User& userB) {
     return true;
 }
 
+void User::setPassWordUpLoad(const std::string& passwordInFile) {
+    this->password = std::stoull(passwordInFile);
+}
+
 Staff::Staff(const Name& name, const std::string& ID, const std::string& password) {
     this->name = name;
     this->ID = ID;

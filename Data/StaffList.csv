@@ -1,6 +1,5 @@
-Number of staff,4
+Number of staffs,3
 No,First name,Last name,Staff ID,Password
-1,Nguyen,Van A,IT1001,7.77E+18
-2,Ho,Tuan Thanh,PHY10002,7.77E+18
-3,Tran,Thi B,MTH10003,7.77E+18
-4,Nguyen,Phuoc Loc,CHE1004,7.77E+18
+1,Ho,Tuan Thanh,ADMIN1,7773365008706674556
+2,Nguyen Le,Hoang Dung,ADMIN2,7773365008706674556
+3,Truong ,Phuoc Loc,ADMIN3,7773365008706674556

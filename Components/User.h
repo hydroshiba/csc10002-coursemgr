@@ -16,7 +16,7 @@ public:
     Name name;
     std::string ID;
 
-    User(const Name& name = { defaultStr, defaultStr }, const std::string& ID = defaultStr, const std::string& passwordStr = "");
+    User(const Name& name = { defaultStr, defaultStr }, const std::string& ID = defaultStr, const std::string& passwordStr = "123456");
 
     void setFirstName(const std::string& firstName);
 
@@ -26,6 +26,8 @@ public:
 
     void setPassword(const std::string& str);
 
+    void setPassWordUpLoad(const std::string& passwordInFile);
+
     bool isPassword(const std::string& str);
 
     void setID(const std::string ID);
@@ -34,7 +36,7 @@ public:
 };
 
 struct Staff : public User {
-    Staff(const Name& name = { defaultStr, defaultStr }, const std::string& ID = defaultStr, const std::string& password = "");
+    Staff(const Name& name = { defaultStr, defaultStr }, const std::string& ID = defaultStr, const std::string& password = "123456");
 };
 
 bool operator==(const User& userA, const User& userB);

@@ -4,9 +4,9 @@
 #include "Components.h"
 #include "User.h"
 
-void uploadAllData(Vector<Staff::User>& staffs, Vector<Student> &students, Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears);
+void uploadAllData(Vector<Staff>& staffs, Vector<Student> &students, Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears);
 
-void uploadListStaff(Vector<Staff::User>& staffs);
+void uploadListStaff(Vector<Staff>& staffs);
 
 void uploadListStudent(Vector<Student>& students);
 
