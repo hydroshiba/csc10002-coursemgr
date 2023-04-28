@@ -24,6 +24,8 @@ private:
     TextBox addClass;
     InputBox inputClassNameAdded;
     Button add;
+    TextBox warningClassNameAdded;
+    bool isClassNameNotEmpty;
 
     TextBox removeClass;
     InputBox inputClassNameRemoved;

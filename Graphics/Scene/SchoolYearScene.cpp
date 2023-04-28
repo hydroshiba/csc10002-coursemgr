@@ -36,6 +36,13 @@ SchoolYearScene::SchoolYearScene() {
     add.label = "Add";
     add.setPos({800, 340});
     add.setSize({150, 50});
+
+    warningClassNameAdded = "Class name must not be empty";
+    warningClassNameAdded.setColor(RED);
+    warningClassNameAdded.setSize(30);
+    warningClassNameAdded.setPos({400, 390});
+
+    isClassNameNotEmpty = true;
     //--------------------------------------
     removeClass = "Remove Class";
     removeClass.setSize(30);
@@ -77,6 +84,7 @@ void SchoolYearScene::render() {
     addClass.render();
     inputClassNameAdded.render(mousePoint);
     add.render(mousePoint);
+    if (!isClassNameNotEmpty) warningClassNameAdded.render();
     //--------------------------------------
     removeClass.render();
     inputClassNameRemoved.render(mousePoint);
@@ -104,9 +112,9 @@ Scene* SchoolYearScene::process() {
     inputClassNameAdded.process(mousePoint);
     if (add.clicked(mousePoint)) {
         if(inputClassNameAdded.getContent() == "")
-            std::cout << "Class Name must not be empty\n";
+            isClassNameNotEmpty = false;
         else 
-            std::cout << "Class added\n";
+            isClassNameNotEmpty = true;
             //add class
     }
     //--------------------------------------
