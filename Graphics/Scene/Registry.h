@@ -12,11 +12,13 @@ public:
 	Scene* editSchoolYearScene;
 	Scene* studentScene;
 	Scene* staffScene;
+	Scene* addStudentScene;
 	Registry(): 
 	blank(nullptr), 
 	login(nullptr), 
 	studentScene(nullptr),
 	staffScene(nullptr),
+	addStudentScene(nullptr),
 	courseScene(nullptr), 
 	editScene(nullptr), 
 	editSchoolYearScene(nullptr) {}
