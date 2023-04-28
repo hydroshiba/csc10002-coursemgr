@@ -8,7 +8,7 @@
 // Remove student from School
 bool removeStudent(Vector<Student>& students, const string& studentID, string& outStr);
 // Remove staff from school
-bool removeStaff(Vector<Staff>& staffs, const string& staffID, string& outStr);
+bool removeStaff(string curStaffID, Vector<Staff>& staffs, const string& staffID, string& outStr);
 // Remove list SchoolYear
 bool removeListSchoolYear(Vector<SchoolYear>& schoolYears); // Button
 // Remove list AcademicYear

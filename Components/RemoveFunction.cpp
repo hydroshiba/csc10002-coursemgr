@@ -28,13 +28,14 @@ bool removeStudent(Vector<Student>& students, const string& studentID, string& o
 }
 
 // Remove staff from school
-bool removeStaff(Vector<Staff>&staffs, const string & staffID, string & outStr) {
+bool removeStaff(string curStaffID, Vector<Staff>&staffs, const string & staffID, string & outStr) {
 	Staff* ptrStaff = getStaff(staffs, staffID);
 	if (ptrStaff == nullptr) {
 		outStr = "Staff with ID " + staffID + " can't be found in school! Pls try another";
 		return false;
 	}
 	staffs.remove(ptrStaff);
+	ptrStaff_Global = getStaff(staffs, curStaffID);
 	outStr = "Staff with ID " + staffID + " is removed from school!";
 	return true;
 }
