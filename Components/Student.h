@@ -36,6 +36,7 @@ struct Student : public User {
     void setInfoToCourseCSV(std::ifstream &ifs);
     void setInfoCourseConsole(std::string &actClass);
 
+    //Student& operator = (const Student& student);
 };
 
 bool operator==(const Student& studentA, const Student& studentB);

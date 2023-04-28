@@ -53,8 +53,10 @@ void uploadListStudent(Vector<Student>& students){
 	std::string ignore;
 	std::getline (ifs, ignore, ',');
 	std::getline(ifs, nStudents);
-	students.resize(static_cast<size_t>(std::stoul(nStudents))); 
-	int i = 0;
+	if (nStudents == "0") return;
+	//students.resize(static_cast<size_t>(std::stoul(nStudents))); 
+	std::getline(ifs, ignore);
+	//int i = 0;
 	while (!ifs.eof()){
 		std::getline(ifs, ignore, ',');
 		std::getline(ifs, ID, ',');
@@ -69,8 +71,10 @@ void uploadListStudent(Vector<Student>& students){
 		unsigned short d = static_cast<unsigned short>(std::stoul(day)), m = static_cast<unsigned short>(std::stoul(month));
 		unsigned int y = static_cast<unsigned int>(std::stoul(year));
 		Student newStudent({ first, last }, ID, pass, string_to_gender(gender), { d, m, y }, socialId);
-		students[i] = newStudent;
-		i++;
+		newStudent.setPassWordUpLoad(pass);
+		//students[i] = newStudent;
+		//i++;
+		students.append(newStudent);
 	}
 	ifs.close();
 }

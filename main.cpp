@@ -25,14 +25,13 @@
 /*--------------------------------------*/
 
 int main() {
+    uploadListStudent(students);
     uploadListStaff(staffs);
-    Student student({ "Nguyen Van", "A" }, "22120000", "123456", male, {6, 9, 2004}, "only@fans");
-    students.append(student);
     Application app;
     
     while(!app.shouldClose()) {
         app.run();
     }
-
+    downloadListStudent(students);
     downloadListStaff(staffs);
 }

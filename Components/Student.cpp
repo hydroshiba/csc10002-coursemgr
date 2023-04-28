@@ -121,6 +121,12 @@ void Student::setInfoCourseConsole(std::string &actClass){
     std::cout << "Enter student's class: "; std::cin >> actClass;
 }
 
+
+//Student& Student::operator = (const Student& student) {
+//    this->ID = student.ID;
+//    this->setPassWordUpLoad()
+//}
+
 bool operator==(const Student& studentA, const Student& studentB) {
     if (studentA.ID != studentB.ID) return false;
     if (studentA.name != studentB.name) return false;

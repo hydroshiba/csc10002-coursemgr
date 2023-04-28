@@ -60,7 +60,7 @@ bool operator==(const User& userA, const User& userB) {
 }
 
 void User::setPassWordUpLoad(const std::string& passwordInFile) {
-    this->password = std::stoull(passwordInFile);
+    this->password = static_cast<uint64_t>(std::stoull(passwordInFile));
 }
 
 Staff::Staff(const Name& name, const std::string& ID, const std::string& password) {
