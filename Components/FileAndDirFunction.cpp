@@ -25,23 +25,23 @@ void createDirectoryIfNotExists(const std::string& dirPath)
 }
 
 std::string getListStaffFilePath(){
-	return "Data\\StaffList.csv";
+	return "Data/StaffList.csv";
 }
 
 std::string getListStudentFilePath(){
-	return "Data\\StudentList.csv";
+	return "Data/StudentList.csv";
 }
 
 std::string getListSchoolYearFilePath() {
-	return "Data\\SchoolYear\\ListSchoolYear.txt";
+	return "Data/SchoolYear/ListSchoolYear.txt";
 }
 
 std::string getListAcademicYearFilePath() {
-	return "Data\\AcademicYear\\ListAcademicYear.txt";
+	return "Data/AcademicYear/ListAcademicYear.txt";
 }
 
 std::string getSchoolYearFolderPath(const SchoolYear& schoolyear) {
-	std::string schoolYearDirPath = "Data\\SchoolYear\\HCMUS_" + std::to_string(schoolyear.start) + "\\";
+	std::string schoolYearDirPath = "Data/SchoolYear/HCMUS_" + std::to_string(schoolyear.start) + "/";
 	createDirectoryIfNotExists(schoolYearDirPath);
 	return schoolYearDirPath;
 }
@@ -53,7 +53,7 @@ std::string getInputSchoolYearFilePath(const SchoolYear& schoolyear) {
 
 std::string getClassFolderPath(const Class& CLASS) {
 	std::string schoolYearFolderPath = getSchoolYearFolderPath(*(CLASS.ptrSchoolYear));
-	std::string classFolderPath = schoolYearFolderPath + CLASS.name + "\\";
+	std::string classFolderPath = schoolYearFolderPath + CLASS.name + "/";
 	createDirectoryIfNotExists(classFolderPath);
 	return classFolderPath;
 }
@@ -75,7 +75,7 @@ std::string getInputScoreClassFilePath(const Class& CLASS) {
 
 std::string getStudentFolderPath(const Student& student) {
 	std::string classFolderPath = getClassFolderPath(*(student.ptrClass));
-	std::string studentFolderPath = classFolderPath + "Students\\" + student.ID + "\\";
+	std::string studentFolderPath = classFolderPath + "Students/" + student.ID + "/";
 	createDirectoryIfNotExists(studentFolderPath);
 	return studentFolderPath;
 }
@@ -91,7 +91,7 @@ std::string getInputStandardIn4StudentFilePath(const Student& student) {
 }
 
 std::string getAcademicYearFolderPath(const AcademicYear& academicYear) {
-	std::string academicYearFolderPath = "Data\\AcademicYear\\" + std::to_string(academicYear.start) + "_" + std::to_string(academicYear.start + 1) + "\\";
+	std::string academicYearFolderPath = "Data/AcademicYear/" + std::to_string(academicYear.start) + "_" + std::to_string(academicYear.start + 1) + "/";
 	createDirectoryIfNotExists(academicYearFolderPath);
 	return academicYearFolderPath;
 }
@@ -103,7 +103,7 @@ std::string getAcademicYearFilePath(const AcademicYear& academicYear) {
 
 std::string getSemesterFolderPath(const Semester& semester) {
 	std::string academicYearFolderPath = getAcademicYearFolderPath(*(semester.ptrAcademicYear));
-	std::string semesterFolderPath = academicYearFolderPath + semester.semesterID + "\\";
+	std::string semesterFolderPath = academicYearFolderPath + semester.semesterID + "/";
 	return semesterFolderPath;
 }
 
@@ -114,7 +114,7 @@ std::string getSemesterFilePath(const Semester& semester) {
 
 std::string getCourseFolderPath(const Course& course) {
 	std::string semesterFolderPath = getSemesterFolderPath(*(course.ptrSemester));
-	std::string courseFolderPath = semesterFolderPath + course.ID + "\\";
+	std::string courseFolderPath = semesterFolderPath + course.ID + "/";
 	return courseFolderPath;
 }
 

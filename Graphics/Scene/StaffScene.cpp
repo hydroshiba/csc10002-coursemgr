@@ -7,7 +7,7 @@ const float dX = 50;
 const float dY = 50;
 //-----------------------------------
 const float textBoxContentSize = 30;
-const float textBoxWidth = 100;
+const float textBoxWidth = 150;
 const float textBoxHeight = 50;
 const Vector2 textBoxSize = { textBoxWidth, textBoxHeight };
 //-----------------------------------
