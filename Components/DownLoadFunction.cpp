@@ -22,11 +22,13 @@ void downloadAllData(const Vector<Staff>& staffs, Vector <Student>& students, Ve
 	downloadListAcademicYearFolder(academicYears);
 }
 
-void downloadListStudent(Vector<Student>& students){
+void downloadListStudent(const Vector<Student>& students){
 	std::string list_stud_dir = getListStudentFilePath();
 	std::ofstream ofs(list_stud_dir);
-	ofs << "ID,Password,First name,Last name,Gender,Dob,SocialID\n";
+	ofs << "Number of students," << std::to_string(students.size()) << std::endl;
+	ofs << "No,ID,Password,First name,Last name,Gender,Dob,SocialID\n";
 	for (int i = 0; i < students.size(); ++i){
+		ofs << i + 1 << ",";
 		ofs << students[i].ID << ",";
 		ofs << students[i].getHashedPass() << ",";
 		ofs << students[i].name.first << ",";

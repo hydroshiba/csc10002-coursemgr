@@ -10,7 +10,7 @@ void downloadSchoolYearFolder(SchoolYear& schoolYear);
 
 void downloadListStaff(const Vector<Staff>& staffs);
 
-void downloadListStudent(Vector<Student>& students);
+void downloadListStudent(const Vector<Student>& students);
 
 void downloadOutputStudClassFile(Class& actClass);
 

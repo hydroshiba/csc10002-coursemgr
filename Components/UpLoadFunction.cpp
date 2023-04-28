@@ -48,10 +48,15 @@ void uploadListStaff(Vector<Staff>& staffs){
 void uploadListStudent(Vector<Student>& students){
 	std::string list_stud_dir = getListStudentFilePath();
 	std::ifstream ifs (list_stud_dir);
+	string nStudents;
 	std::string ID, pass, first, last, gender, socialId, className, day, month, year;
 	std::string ignore;
-	std::getline (ifs, ignore);
+	std::getline (ifs, ignore, ',');
+	std::getline(ifs, nStudents);
+	students.resize(static_cast<size_t>(std::stoul(nStudents))); 
+	int i = 0;
 	while (!ifs.eof()){
+		std::getline(ifs, ignore, ',');
 		std::getline(ifs, ID, ',');
 		std::getline(ifs, pass, ',');
 		std::getline(ifs, first, ',');
@@ -64,7 +69,8 @@ void uploadListStudent(Vector<Student>& students){
 		unsigned short d = static_cast<unsigned short>(std::stoul(day)), m = static_cast<unsigned short>(std::stoul(month));
 		unsigned int y = static_cast<unsigned int>(std::stoul(year));
 		Student newStudent({ first, last }, ID, pass, string_to_gender(gender), { d, m, y }, socialId);
-		students.append(newStudent);
+		students[i] = newStudent;
+		i++;
 	}
 	ifs.close();
 }
