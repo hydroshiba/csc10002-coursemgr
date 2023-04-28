@@ -190,7 +190,7 @@ AddStudentScene::AddStudentScene() {
 	message = "";
 	message.setColor(RED);
 	message.setSize(30);
-	message.setPos({ 800, 680 });
+	message.setPos({ 800, 690 });
 	//-----------------------------------------------------------------------------------
 	textStudentID = "StudentID: ";
 	textStudentID.setSize(textBoxContentSize);
@@ -302,6 +302,7 @@ Scene* AddStudentScene::process() {
 		inputFirstName.clearContent();
 		inputLastName.clearContent();
 		inputGender.clearContent();
+		inputBirth.clearContent();
 		inputSocialID.clearContent();
 		inputPassword.clearContent();
 		return this;

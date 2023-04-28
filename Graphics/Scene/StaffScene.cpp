@@ -1,7 +1,7 @@
 #include "StaffScene.h"
 
-const float sceneNameSize = 100;
-const float yPosSceneName = 0;
+const float sceneNameSize = 60;
+const float yPosSceneName = 20;
 //-----------------------------------
 const float dX = 50;
 const float dY = 50;
@@ -124,11 +124,11 @@ StaffScene::StaffScene() {
 	change.setPos({ 25, 600 });
 	change.fill_color = YELLOW;
 	//-------------------------------------------------------------------
-	listAYs.label = "List Academic Year";
+	listAYs.label = "AcademicYears";
 	listAYs.setSize(buttonSize);
 	listAYs.setPos({ 225, 600 });
 	//-------------------------------------------------------------------
-	listSYs.label = "List School Year";
+	listSYs.label = "SchoolYears";
 	listSYs.setSize(buttonSize);
 	listSYs.setPos({ 425, 600 });
 	//-------------------------------------------------------------------
@@ -146,7 +146,7 @@ StaffScene::StaffScene() {
 	next.label = "Next";
 	next.setSize(buttonSize);
 	next.setPos({ 1025, 600 });
-	// next.fill_color = 
+	next.fill_color = YELLOW;
 	message = "";
 	message.setColor(RED);
 	message.setSize(30);
@@ -182,6 +182,7 @@ void StaffScene::render() {
 	inputAddLastName.render(mousePoint);
 	inputAddPassword.render(mousePoint);
 	add.render(mousePoint);
+	next.render(mousePoint);
 	//-------------------------------------------------------------------
 	message.render();
 }
@@ -200,6 +201,8 @@ Scene* StaffScene::process() {
 	inputAddPassword.process(mousePoint);
 	//-------------------------------------------------------------------
 	if (ptrStaff_Global != nullptr) {
+		sceneName = "Welcome staff " + ptrStaff_Global->name.get();
+		sceneName.centerX();
 		inputEditID.defaultText = ptrStaff_Global->ID;
 		inputEditFirstName.defaultText = ptrStaff_Global->name.first;
 		inputEditLastName.defaultText = ptrStaff_Global->name.last;
@@ -246,5 +249,7 @@ Scene* StaffScene::process() {
 	else if (logout.clicked(mousePoint))
 		return registry.login;
 	//-------------------------------------------------------------------
+	else if (next.clicked(mousePoint))
+		return registry.addStudentScene;
 	return this;
 }
