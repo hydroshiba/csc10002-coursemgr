@@ -172,6 +172,7 @@ Scene* StudentScene::process() {
 	inputPassword.process(mousePoint);
 	//----------------------------------------------------------------------------------
 	if (ptrStudent_Global != nullptr) {
+		sceneName = "Welcome student " + ptrStudent_Global->name.get();
 		inputID.defaultText = ptrStudent_Global->ID;
 		inputFirstName.defaultText = ptrStudent_Global->name.first;
 		inputLastName.defaultText = ptrStudent_Global->name.last;
