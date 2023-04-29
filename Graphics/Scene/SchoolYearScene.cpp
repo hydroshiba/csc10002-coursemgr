@@ -67,13 +67,20 @@ SchoolYearScene::SchoolYearScene() {
     editYear.setSize(30);
     editYear.setPos({100, 550});
 
-    inputYearEditted.defaultText = "Enter Year";
-    inputYearEditted.setPos({400, 540});
-    inputYearEditted.setSize({300, 50});
+    inputStartYear.defaultText = "Enter Year";
+    inputStartYear.setPos({400, 540});
+    inputStartYear.setSize({300, 50});
 
     change.label = "Change";
     change.setPos({800, 540});
     change.setSize({150, 50});
+
+    warningStartYear.setSize(30);
+    warningStartYear.setPos({400, 590});
+
+    isStartYearEmpty = false;
+    isChangeClicked = false;
+    frameCounterChangeWarning = 0;
     //--------------------------------------
     back.label = "Back";
     back.setPos({1000, 600});
@@ -129,8 +136,24 @@ void SchoolYearScene::render() {
     }
     //--------------------------------------
     editYear.render();
-    inputYearEditted.render(mousePoint);
+    inputStartYear.render(mousePoint);
     change.render(mousePoint);
+    if (isChangeClicked) {
+        if (isStartYearEmpty) {
+            warningStartYear = "Start year must not be empty";
+            warningStartYear.setColor(RED);
+        }
+        else {
+            warningStartYear = "Start year changed";
+            warningStartYear.setColor(BLUE);
+        }
+        warningStartYear.render();
+        frameCounterChangeWarning++;
+        if (frameCounterChangeWarning == 600) {
+            frameCounterChangeWarning = 0;
+            isChangeClicked = false;
+        }
+    }
     //--------------------------------------
     back.render(mousePoint);
 }
@@ -171,13 +194,16 @@ Scene* SchoolYearScene::process() {
         }
     }
     //--------------------------------------
-    inputYearEditted.process(mousePoint);
+    inputStartYear.process(mousePoint);
     if (change.clicked(mousePoint)) {
-        if (inputYearEditted.getContent() == "")
-            std::cout << "Start year must not be empty\n";
-        else 
-            std::cout << "Start year changed\n";
+        isChangeClicked = true;
+        if (inputStartYear.getContent() == "") {
+            isStartYearEmpty = true;
+        }
+        else {
+            isStartYearEmpty = false;
             //change start year
+        }
     }
     if (back.clicked(mousePoint)) {
         std::cout << "Back to previous scene clicked\n";

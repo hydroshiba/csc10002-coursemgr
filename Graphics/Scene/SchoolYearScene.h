@@ -38,8 +38,12 @@ private:
     int frameCounterRemoveWarning;
 
     TextBox editYear;
-    InputBox inputYearEditted;
+    InputBox inputStartYear;
     Button change;
+    TextBox warningStartYear;
+    bool isStartYearEmpty;
+    bool isChangeClicked;
+    int frameCounterChangeWarning;
 
     Button back;
 
