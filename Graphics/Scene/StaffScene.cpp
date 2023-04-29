@@ -252,8 +252,10 @@ Scene* StaffScene::process() {
 	else if (listAYs.clicked(mousePoint))
 		return registry.blank;
 	//-------------------------------------------------------------------
-	else if (listSYs.clicked(mousePoint))
-		return registry.blank;
+	else if (listSYs.clicked(mousePoint)) {
+		return registry.editListSchoolYearScene;
+	}
+		
 	//-------------------------------------------------------------------
 	else if (logout.clicked(mousePoint)) {
 		ptrStaff_Global = nullptr;
