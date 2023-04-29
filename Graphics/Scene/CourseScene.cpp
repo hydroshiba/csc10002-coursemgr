@@ -180,7 +180,9 @@ Scene* CourseScene::process(){
 
     if (updateBox.clicked(mousePoint)) return registry.editScene;
 
-    if (back.clicked(mousePoint)) return registry.blank;
-
+    if (back.clicked(mousePoint)) {
+        ptrCourse_Global = nullptr;
+        return registry.blank;
+    }
     return this;
 }
