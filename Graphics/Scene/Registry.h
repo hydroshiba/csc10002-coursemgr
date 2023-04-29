@@ -9,6 +9,7 @@ public:
 	Scene* login;
 	Scene* courseScene;
 	Scene* editScene;
+	Scene* editListSchoolYearScene;
 	Scene* editSchoolYearScene;
 	Scene* studentScene;
 	Scene* staffScene;
@@ -21,7 +22,8 @@ public:
 	addStudentScene(nullptr),
 	courseScene(nullptr), 
 	editScene(nullptr), 
-	editSchoolYearScene(nullptr) {}
+	editSchoolYearScene(nullptr),
+	editListSchoolYearScene(nullptr) {}
 };
 
 extern Registry registry;

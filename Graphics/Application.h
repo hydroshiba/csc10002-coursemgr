@@ -15,6 +15,7 @@
 #include "Scene/CourseScene.h"
 #include "Scene/EditCourse.h"
 #include "Scene/SchoolYearScene.h"
+#include "Scene/ListSchoolYearScene.h"
 
 class Application {
 private:
