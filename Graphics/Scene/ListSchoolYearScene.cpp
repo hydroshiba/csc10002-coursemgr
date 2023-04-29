@@ -6,6 +6,10 @@ ListSchoolYearScene::ListSchoolYearScene() {
     sceneTitle.centerX();
     sceneTitle.setY(100);
 
+    viewYear = "View Year";
+    viewYear.setSize(30);
+    viewYear.setPos({100, 250});
+
     back.label = "Back";
     back.setPos({1000, 600});
     back.setSize({200, 50});
@@ -13,6 +17,7 @@ ListSchoolYearScene::ListSchoolYearScene() {
 
 void ListSchoolYearScene::render() {
     sceneTitle.render();
+    viewYear.render();
     back.render(mousePoint);
 }
 

@@ -15,6 +15,8 @@ class ListSchoolYearScene : public Scene {
 private:
     TextBox sceneTitle;
     
+    TextBox viewYear;
+
     Button back;
 public:
     ListSchoolYearScene();
