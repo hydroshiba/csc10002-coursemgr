@@ -42,6 +42,7 @@ SchoolYearScene::SchoolYearScene() {
 
     isClassAddedEmpty = false;
     isAddClicked = false;
+    frameCounterAddWarning = 0;
     //--------------------------------------
     removeClass = "Remove Class";
     removeClass.setSize(30);
@@ -99,6 +100,11 @@ void SchoolYearScene::render() {
             warningClassAdded.setColor(BLUE);
         }
         warningClassAdded.render();
+        frameCounterAddWarning++;
+        if (frameCounterAddWarning == 600) {
+            frameCounterAddWarning = 0;
+            isAddClicked = false;
+        }
     }
     //--------------------------------------
     removeClass.render();

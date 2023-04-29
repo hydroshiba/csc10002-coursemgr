@@ -27,6 +27,7 @@ private:
     TextBox warningClassAdded;
     bool isClassAddedEmpty;
     bool isAddClicked;
+    int frameCounterAddWarning;
 
     TextBox removeClass;
     InputBox inputClassRemoved;
@@ -40,6 +41,7 @@ private:
     Button change;
 
     Button back;
+
 public:
     SchoolYearScene();
     void render();
