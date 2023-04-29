@@ -15,7 +15,7 @@
 #include <iostream>
 class SchoolYearScene : public Scene {
 private:
-    TextBox nameScene;
+    TextBox sceneTitle;
 
     TextBox viewClass;
     DropBox listClass;

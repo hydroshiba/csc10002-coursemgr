@@ -1,10 +1,10 @@
 #include "SchoolYearScene.h"
 
 SchoolYearScene::SchoolYearScene() {
-    nameScene = "School Year";
-    nameScene.setSize(50);
-    nameScene.centerX();
-    nameScene.setY(100);
+    sceneTitle = "School Year";
+    sceneTitle.setSize(50);
+    sceneTitle.centerX();
+    sceneTitle.setY(100);
     //--------------------------------------
     viewClass = "View Classes";
     viewClass.setSize(30);
@@ -89,7 +89,7 @@ SchoolYearScene::SchoolYearScene() {
 }
 
 void SchoolYearScene::render() {
-    nameScene.render();
+    sceneTitle.render();
     //--------------------------------------
     viewClass.render();
     listClass.render(mousePoint);
@@ -213,6 +213,6 @@ Scene* SchoolYearScene::process() {
             //change start year
         }
     }
-    if (back.clicked(mousePoint)) return registry.blank;
+    if (back.clicked(mousePoint)) return registry.editListSchoolYearScene;
     return this;
 } 

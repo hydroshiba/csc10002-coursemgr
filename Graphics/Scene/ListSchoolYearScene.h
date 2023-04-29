@@ -7,12 +7,15 @@
 #include "Registry.h"
 
 #include "Objects/TextBox.h"
+#include "Objects/Button.h"
 
 #include <iostream>
 
 class ListSchoolYearScene : public Scene {
 private:
     TextBox sceneTitle;
+    
+    Button back;
 public:
     ListSchoolYearScene();
     void render();
