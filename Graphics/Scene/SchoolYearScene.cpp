@@ -213,8 +213,6 @@ Scene* SchoolYearScene::process() {
             //change start year
         }
     }
-    if (back.clicked(mousePoint)) {
-        std::cout << "Back to previous scene clicked\n";
-    }
+    if (back.clicked(mousePoint)) return registry.blank;
     return this;
 } 

@@ -10,6 +10,8 @@
 #include "Objects/Dropbox.h"
 #include "Objects/InputBox.h"
 
+#include "Scene/Blank.h"
+
 #include <iostream>
 class SchoolYearScene : public Scene {
 private:
