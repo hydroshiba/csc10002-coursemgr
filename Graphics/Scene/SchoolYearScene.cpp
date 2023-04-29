@@ -61,6 +61,7 @@ SchoolYearScene::SchoolYearScene() {
 
     isClassRemovedEmpty = false;
     isRemoveClicked = false;
+    frameCounterRemoveWarning = 0;
     //--------------------------------------
     editYear = "Edit Year";
     editYear.setSize(30);
@@ -120,6 +121,11 @@ void SchoolYearScene::render() {
             warningClassRemoved.setColor(BLUE);
         }
         warningClassRemoved.render();
+        frameCounterRemoveWarning++;
+        if (frameCounterRemoveWarning == 600) {
+            frameCounterRemoveWarning = 0;
+            isRemoveClicked = false;
+        }
     }
     //--------------------------------------
     editYear.render();

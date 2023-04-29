@@ -35,6 +35,7 @@ private:
     TextBox warningClassRemoved;
     bool isClassRemovedEmpty;
     bool isRemoveClicked;
+    int frameCounterRemoveWarning;
 
     TextBox editYear;
     InputBox inputYearEditted;
