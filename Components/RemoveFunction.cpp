@@ -26,6 +26,10 @@ bool removeStudent(Vector<Student>& students, const string& studentID, string& o
 		outStr = "Student with ID " + studentID + " can't be found in school! Pls try another";
 		return false;
 	}
+	if (ptrStudent == ptrStudent_Global) {
+		outStr = "Student with ID " + studentID + " can't be removed from school! Pls try another";
+		return false;
+	}
 	students.remove(ptrStudent);
 	outStr = "Student with ID " + studentID + " is removed from school!";
 	return true;
@@ -40,6 +44,10 @@ bool removeStaff(string curStaffID, Vector<Staff>&staffs, const string & staffID
 	Staff* ptrStaff = getStaff(staffs, staffID);
 	if (ptrStaff == nullptr) {
 		outStr = "Staff with ID " + staffID + " can't be found in school! Pls try another";
+		return false;
+	}
+	if (ptrStaff == ptrStaff_Global) {
+		outStr = "Staff with ID " + staffID + " can't be removed from school! Pls try another";
 		return false;
 	}
 	staffs.remove(ptrStaff);
