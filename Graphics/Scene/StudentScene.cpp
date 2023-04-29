@@ -162,16 +162,22 @@ StudentScene::StudentScene() {
 	change.label = "Change";
 	change.setSize(buttonSize);
 	change.setPos({ xPosButton, yPosChange });
+	change.fill_color = GREEN;
+	change.hover_color = YELLOW;
+	change.press_color = GOLD;
 	//-----------------------------------------------------------------------------------
 	viewScoreboard.label = "View scoreboards";
 	viewScoreboard.setSize(buttonSize);
 	viewScoreboard.setPos({ xPosButton, yPosViewSBs });
+	viewScoreboard.hover_color = YELLOW;
+	viewScoreboard.press_color = GOLD;
 	//-----------------------------------------------------------------------------------
 	logout.label = "Logout";
 	logout.setSize(buttonSize);
 	logout.setPos({ xPosButton, yPosLogout });
 	logout.fill_color = ORANGE;
 	logout.hover_color = MAROON;
+	logout.press_color = RED;
 	//-----------------------------------------------------------------------------------
 	message = "";
 	message.setColor(RED);

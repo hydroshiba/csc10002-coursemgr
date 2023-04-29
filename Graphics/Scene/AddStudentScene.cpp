@@ -174,6 +174,7 @@ AddStudentScene::AddStudentScene() {
 	add.label = "Add";
 	add.setSize(buttonSize);
 	add.setPos({ xPosAdd, yPosAdd});
+	add.press_color = GRAY;
 	add.hover_color = DARKGREEN;
 	add.fill_color = GREEN;
 	//-----------------------------------------------------------------------------------
@@ -185,7 +186,8 @@ AddStudentScene::AddStudentScene() {
 	back.setSize(buttonSize);
 	back.setPos({ xPosBack, yPosAdd});
 	back.fill_color = ORANGE;
-	back.hover_color = RED;
+	back.hover_color = MAROON;
+	back.press_color = RED;
 	//-----------------------------------------------------------------------------------
 	message = "";
 	message.setColor(RED);
@@ -210,12 +212,14 @@ AddStudentScene::AddStudentScene() {
 
 	removeStudentButton.label = "Remove";
 	removeStudentButton.fill_color = RED;
+	removeStudentButton.press_color = MAROON;
 	removeStudentButton.hover_color = ORANGE;
 	removeStudentButton.setSize(removeButtonSize);
 	removeStudentButton.setPos(removeStudentButtonPos);
 
 	removeStaffButton.label = "Remove";
 	removeStaffButton.fill_color = RED;
+	removeStaffButton.press_color = MAROON;
 	removeStaffButton.hover_color = ORANGE;
 	removeStaffButton.setSize(removeButtonSize);
 	removeStaffButton.setPos(removeStaffButtonPos);
@@ -268,6 +272,10 @@ Scene* AddStudentScene::process() {
 	//-----------------------------------------------------------------------------------
 	inputStudentID.process(mousePoint);
 	inputStaffID.process(mousePoint);
+	if (ptrStaff_Global != nullptr) {
+		sceneName = "Welcome staff " + ptrStaff_Global->name.get();
+		sceneName.centerX();
+	}
 	/*if (ptrStudent_Global != nullptr) {
 		textID.setContent("ID: " + ptrStudent_Global->ID);
 		textFirstName.setContent("First name: " + ptrStudent_Global->name.first);
