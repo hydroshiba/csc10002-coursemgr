@@ -144,7 +144,7 @@ Vector2 InputBox::getSize() {
 }
 
 void InputBox::clearContent() {
-    this->content = "";
+    this->content.text.clear();
 }
 
 void InputBox::centerX() {
