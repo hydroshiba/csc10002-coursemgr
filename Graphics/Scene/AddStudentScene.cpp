@@ -118,56 +118,27 @@ AddStudentScene::AddStudentScene() {
 	inputID.setSize(inputBoxSize);
 	inputID.setPos({ xPosInputBox, yPosTextBoxID });
 	//-----------------------------------------------------------------------------------
-	/*if (ptrStudent_Global != nullptr)
-		inputFirstName.defaultText = ptrStudent_Global->name.first;
-	else
-		inputFirstName.defaultText = defaultInputBoxContent;*/
 	inputFirstName.defaultText = "Input first name";
 	inputFirstName.setSize(inputBoxSize);
 	inputFirstName.setPos({ xPosInputBox, yPosTextBoxFirstName });
 	//-----------------------------------------------------------------------------------
-	/*if (ptrStudent_Global != nullptr)
-		inputLastName.defaultText = "Lastname";
-	else
-		inputLastName.defaultText = defaultInputBoxContent;*/
 	inputLastName.defaultText = "Input last name";
-	//-----------------------------------------------------------------------------------
 	inputLastName.setSize(inputBoxSize);
 	inputLastName.setPos({ xPosInputBox, yPosTextBoxLastName });
 	//-----------------------------------------------------------------------------------
-	/*if (ptrStudent_Global != nullptr)
-		inputGender.defaultText = gender_to_string(ptrStudent_Global->gender);
-	else
-		inputGender.defaultText = defaultInputBoxContent;*/
 	inputGender.defaultText = "Input gender (male/female)";
-	//-----------------------------------------------------------------------------------
 	inputGender.setSize(inputBoxSize);
 	inputGender.setPos({ xPosInputBox, yPosTextBoxGender });
 	//-----------------------------------------------------------------------------------
-	/*if (ptrStudent_Global != nullptr)
-		inputBirth.defaultText = ptrStudent_Global->birth.get();
-	else
-		inputBirth.defaultText = defaultInputBoxContent;*/
 	inputBirth.defaultText = "Input birth (dd/mm/yyyy)";
-	//-----------------------------------------------------------------------------------
 	inputBirth.setSize(inputBoxSize);
 	inputBirth.setPos({ xPosInputBox, yPosTextBoxBirth });
 	//-----------------------------------------------------------------------------------
-	/*if (ptrStudent_Global != nullptr)
-		inputSocialID.defaultText = ptrStudent_Global->socialID;
-	else
-		inputSocialID.defaultText = defaultInputBoxContent;*/
 	inputSocialID.defaultText = "Input socialID";
-	//-----------------------------------------------------------------------------------
 	inputSocialID.setSize(inputBoxSize);
 	inputSocialID.setPos({ xPosInputBox, yPosTextBoxSocialID });
 	//-----------------------------------------------------------------------------------
-	/*if (ptrStudent_Global != nullptr)
-		inputPassword.defaultText = std::to_string(ptrStudent_Global->getHashedPass());
-	else
-		inputPassword.defaultText = defaultInputBoxContent;*/
 	inputPassword.defaultText = "Input password";
-	//-----------------------------------------------------------------------------------
 	inputPassword.setSize(inputBoxSize);
 	inputPassword.setPos({ xPosInputBox, yPosTextBoxPassword });
 	//-----------------------------------------------------------------------------------
@@ -178,10 +149,6 @@ AddStudentScene::AddStudentScene() {
 	add.hover_color = DARKGREEN;
 	add.fill_color = GREEN;
 	//-----------------------------------------------------------------------------------
-	//viewScoreboard.label = "View scoreboards";
-	//viewScoreboard.setSize(buttonSize);
-	//viewScoreboard.setPos({ xPosButton, yPosViewSBs });
-	////-----------------------------------------------------------------------------------
 	back.label = "Back";
 	back.setSize(buttonSize);
 	back.setPos({ xPosBack, yPosAdd});
@@ -197,32 +164,33 @@ AddStudentScene::AddStudentScene() {
 	textStudentID = "StudentID: ";
 	textStudentID.setSize(textBoxContentSize);
 	textStudentID.setPos(removeStudentTextBoxPos);
-
+	//-----------------------------------------------------------------------------------
 	textStaffID = "StaffID: ";
 	textStaffID.setSize(textBoxContentSize);
 	textStaffID.setPos(removeStaffTextBoxPos);
-
+	//-----------------------------------------------------------------------------------
 	inputStudentID.defaultText = "Input StudentID";
 	inputStudentID.setSize(removeInputBoxSize);
 	inputStudentID.setPos({ xPosInputRemoveStudentID, yPosTextRemoveStudentID });
-
+	//-----------------------------------------------------------------------------------
 	inputStaffID.defaultText = "Input StaffID";
 	inputStaffID.setSize(removeInputBoxSize);
 	inputStaffID.setPos({ xPosInputRemoveStudentID, yPosTextRemoveStaffID });
-
+	//-----------------------------------------------------------------------------------
 	removeStudentButton.label = "Remove";
 	removeStudentButton.fill_color = RED;
 	removeStudentButton.press_color = MAROON;
 	removeStudentButton.hover_color = ORANGE;
 	removeStudentButton.setSize(removeButtonSize);
 	removeStudentButton.setPos(removeStudentButtonPos);
-
+	//-----------------------------------------------------------------------------------
 	removeStaffButton.label = "Remove";
 	removeStaffButton.fill_color = RED;
 	removeStaffButton.press_color = MAROON;
 	removeStaffButton.hover_color = ORANGE;
 	removeStaffButton.setSize(removeButtonSize);
 	removeStaffButton.setPos(removeStaffButtonPos);
+	//-----------------------------------------------------------------------------------
 }
 
 void AddStudentScene::render() {
@@ -244,7 +212,6 @@ void AddStudentScene::render() {
 	inputPassword.render(mousePoint);
 	//-----------------------------------------------------------------------------------
 	add.render(mousePoint);
-	//viewScoreboard.render(mousePoint);
 	back.render(mousePoint);
 	//-----------------------------------------------------------------------------------
 	message.render();
@@ -276,23 +243,6 @@ Scene* AddStudentScene::process() {
 		sceneName = "Welcome staff " + ptrStaff_Global->name.get();
 		sceneName.centerX();
 	}
-	/*if (ptrStudent_Global != nullptr) {
-		textID.setContent("ID: " + ptrStudent_Global->ID);
-		textFirstName.setContent("First name: " + ptrStudent_Global->name.first);
-		textLastName.setContent("Last name: " + ptrStudent_Global->name.last);
-		textGender.setContent("Gender: " + gender_to_string(ptrStudent_Global->gender));
-		textBirth.setContent("Birth: " + ptrStudent_Global->birth.get());
-		textSocialID.setContent("SocialID: " + ptrStudent_Global->socialID);
-	}*/
-	//-----------------------------------------------------------------------------------
-	/*if (ptrStudent_Global != nullptr) {
-		inputID.defaultText = ptrStudent_Global->ID;
-		inputFirstName.defaultText = ptrStudent_Global->name.first;
-		inputLastName.defaultText = ptrStudent_Global->name.last;
-		inputGender.defaultText = gender_to_string(ptrStudent_Global->gender);
-		inputBirth.defaultText = ptrStudent_Global->birth.get();
-		inputSocialID.defaultText = ptrStudent_Global->socialID;
-	}*/
 	//-----------------------------------------------------------------------------------
 	if (add.clicked(mousePoint)) {
 		string ID = inputID.getContent();
