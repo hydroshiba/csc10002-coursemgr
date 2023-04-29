@@ -20,6 +20,7 @@ private:
     Button view;
     TextBox warningViewClass;
     bool isAnyClassChosen;
+    int frameCounterViewClass;
 
     TextBox addClass;
     InputBox inputClassAdded;

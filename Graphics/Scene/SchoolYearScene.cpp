@@ -24,6 +24,7 @@ SchoolYearScene::SchoolYearScene() {
     warningViewClass.setPos({400, 290});
 
     isAnyClassChosen = true;
+    frameCounterViewClass = 0;
     //--------------------------------------
     addClass = "Add Class";
     addClass.setSize(30);
@@ -93,7 +94,14 @@ void SchoolYearScene::render() {
     viewClass.render();
     listClass.render(mousePoint);
     view.render(mousePoint);
-    if (!isAnyClassChosen) warningViewClass.render();
+    if (!isAnyClassChosen) {
+        frameCounterViewClass++;
+        warningViewClass.render();
+        if (frameCounterViewClass == 600) {
+            isAnyClassChosen = true;
+            frameCounterViewClass = 0;
+        }
+    }
     //--------------------------------------
     addClass.render();
     inputClassAdded.render(mousePoint);
