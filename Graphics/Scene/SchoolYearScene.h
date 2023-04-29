@@ -22,13 +22,14 @@ private:
     bool isAnyClassChosen;
 
     TextBox addClass;
-    InputBox inputClassNameAdded;
+    InputBox inputClassAdded;
     Button add;
-    TextBox warningClassNameAdded;
-    bool isClassNameNotEmpty;
+    TextBox warningClassAdded;
+    bool isClassAddedEmpty;
+    bool isAddClicked;
 
     TextBox removeClass;
-    InputBox inputClassNameRemoved;
+    InputBox inputClassRemoved;
     Button remove;
 
     TextBox editYear;
