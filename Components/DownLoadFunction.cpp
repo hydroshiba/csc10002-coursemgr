@@ -30,7 +30,7 @@ void downloadListStudent(const Vector<Student>& students){
 	for (int i = 0; i < students.size(); ++i){
 		ofs << i + 1 << ",";
 		ofs << students[i].ID << ",";
-		ofs << students[i].getHashedPass() << ",";
+		ofs << std::to_string(students[i].getHashedPass()) << ",";
 		ofs << students[i].name.first << ",";
 		ofs << students[i].name.last << ",";
 		ofs << gender_to_string(students[i].gender) << ",";
@@ -48,7 +48,7 @@ void downloadListStaff(const Vector<Staff>& staffs){
 	ofs << nStaffs << std::endl;
 	ofs << "No,First name,Last name,Staff ID,Password\n";
 	for (int i = 0; i<nStaffs; ++i){
-		ofs << (i + 1) << "," <<  staffs[i].name.first << "," << staffs[i].name.last << ","  << staffs[i].ID << "," << staffs[i].getHashedPass() << std::endl;
+		ofs << (i + 1) << "," <<  staffs[i].name.first << "," << staffs[i].name.last << ","  << staffs[i].ID << "," << std::to_string(staffs[i].getHashedPass()) << std::endl;
 	}
 	ofs.close();
 }
