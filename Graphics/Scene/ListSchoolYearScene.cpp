@@ -31,6 +31,6 @@ void ListSchoolYearScene::render() {
 Scene* ListSchoolYearScene::process() {
     this->mousePoint = GetMousePosition();
     chooseSchoolYear.process(mousePoint);
-    if (back.clicked(mousePoint)) return registry.blank;
+    if (back.clicked(mousePoint)) return registry.staffScene;
     return this;
 }
