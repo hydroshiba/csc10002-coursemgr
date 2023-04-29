@@ -8,6 +8,7 @@
 
 #include "Objects/TextBox.h"
 #include "Objects/Button.h"
+#include "Objects/Dropbox.h"
 
 #include <iostream>
 
@@ -16,6 +17,7 @@ private:
     TextBox sceneTitle;
     
     TextBox viewYear;
+    DropBox chooseSchoolYear;
 
     Button back;
 public:
