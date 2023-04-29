@@ -31,6 +31,9 @@ private:
     TextBox removeClass;
     InputBox inputClassRemoved;
     Button remove;
+    TextBox warningClassRemoved;
+    bool isClassRemovedEmpty;
+    bool isRemoveClicked;
 
     TextBox editYear;
     InputBox inputYearEditted;

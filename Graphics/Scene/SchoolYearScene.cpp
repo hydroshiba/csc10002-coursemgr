@@ -54,6 +54,12 @@ SchoolYearScene::SchoolYearScene() {
     remove.label = "Remove";
     remove.setPos({800, 440});
     remove.setSize({150, 50});
+
+    warningClassRemoved.setSize(30);
+    warningClassRemoved.setPos({400, 490});
+
+    isClassRemovedEmpty = false;
+    isRemoveClicked = false;
     //--------------------------------------
     editYear = "Edit Year";
     editYear.setSize(30);
@@ -98,6 +104,17 @@ void SchoolYearScene::render() {
     removeClass.render();
     inputClassRemoved.render(mousePoint);
     remove.render(mousePoint);
+    if (isRemoveClicked) {
+        if (isClassRemovedEmpty) {
+            warningClassRemoved = "Class name must not be empty";
+            warningClassRemoved.setColor(RED);
+        }
+        else {
+            warningClassRemoved = "Class removed";
+            warningClassRemoved.setColor(BLUE);
+        }
+        warningClassRemoved.render();
+    }
     //--------------------------------------
     editYear.render();
     inputYearEditted.render(mousePoint);
@@ -126,18 +143,20 @@ Scene* SchoolYearScene::process() {
         }
         else {
             isClassAddedEmpty = false;
-            listClass.add(inputClassAdded.getContent());
+            //add class
         }
     }
     //--------------------------------------
     inputClassRemoved.process(mousePoint);
     if (remove.clicked(mousePoint)) {
+        isRemoveClicked = true;
         if(inputClassRemoved.getContent() == "") {
-            std::cout << "Class Name must not be empty\n";
+            isClassRemovedEmpty = true;
         }
-        else 
-            std::cout << "Class removed\n";
+        else {
+            isClassRemovedEmpty = false;
             //remove class
+        }
     }
     //--------------------------------------
     inputYearEditted.process(mousePoint);
