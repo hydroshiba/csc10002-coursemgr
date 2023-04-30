@@ -13,7 +13,10 @@
 #include "Course.h"
 #include "Scoreboard.h"
 
+#include "FileAndDirFunction.h"
 /*		Display function	*/
+
+// DropBox
 Vector<std::string> getListSchoolYear(Vector<SchoolYear>& schoolYears) {
 	Vector<std::string> listSY(schoolYears.size());
 	for (int i = 0; i < listSY.size(); i++){
@@ -22,6 +25,7 @@ Vector<std::string> getListSchoolYear(Vector<SchoolYear>& schoolYears) {
 	return listSY;
 }
 
+// DropBox
 Vector<std::string> getListAcademicYear(Vector<AcademicYear>& academicYears) {
 	Vector<std::string> listAYs(academicYears.size());
 	for (int i = 0; i < listAYs.size(); i++) {
@@ -30,6 +34,7 @@ Vector<std::string> getListAcademicYear(Vector<AcademicYear>& academicYears) {
 	return listAYs;
 }
 
+// DropBox
 Vector<std::string> getListClass(const SchoolYear& schoolYear) {
 	Vector<std::string> listClass(schoolYear.classes.size());
 	for (int i = 0; i < schoolYear.classes.size(); i++) {
@@ -38,6 +43,7 @@ Vector<std::string> getListClass(const SchoolYear& schoolYear) {
 	return listClass;
 }
 
+// DropBox
 Vector<std::string> getListSemester(const AcademicYear& academicYear) {
 	Vector<std::string> listSemester(academicYear.semesters.size());
 	for (int i = 0; i < academicYear.semesters.size(); i++) {
@@ -46,6 +52,7 @@ Vector<std::string> getListSemester(const AcademicYear& academicYear) {
 	return listSemester;
 }
 
+// DropBox
 Vector<std::string> getListCourse(const Semester& semester) {
 	Vector<std::string> listCourse(semester.courses.size());
 	for (int i = 0; i < semester.courses.size(); i++) {
@@ -54,6 +61,7 @@ Vector<std::string> getListCourse(const Semester& semester) {
 	return listCourse;
 }
 
+// Table
 Vector<Vector<std::string>> getTableContentOfScoreboardsofStudent(const Student& student) {
 	Vector<Vector<std::string>> table(student.scoreboards.size() + 1);
 	for (int i = 0; i < table.size(); i++) {
@@ -76,6 +84,36 @@ Vector<Vector<std::string>> getTableContentOfScoreboardsofStudent(const Student&
 		table[i + 1][6] = student.scoreboards[i]->total;
 	}
 	return table;
+}
+
+// 19. export list of students in course to csv file
+bool exportListOfStudent(Course& course) {
+	string inputStudCouseFilePath = getInputListStudCourseFilePath(course);
+	std::ofstream ofs(inputStudCouseFilePath, std::ios::out);
+	course.displayInfo(ofs);
+	ofs << "No,ID,Fullname" << std::endl;
+	for (int i = 0; i < course.scoreboards.size(); i++)
+	{
+		Student* student = course.scoreboards[i]->ptrStudent;
+		ofs << i + 1 << "," << student->ID << "," << student->name.get() << std::endl;
+	}
+	ofs.close();
+	return true;
+}
+
+// 20. import scoreboard of course
+bool importScoreBoardOfCourse(Course& course) {
+	string inputScoreCourseFilePath = getInputScoreCourseFilePath(course);
+	std::ifstream ifs(inputScoreCourseFilePath);
+	if (!ifs.is_open())
+	{
+		std::cout << "Can't find file with path " << inputScoreCourseFilePath << std::endl;
+		return false;
+	}
+	course.importScoreBoards(ifs);
+	std::cout << "Complete importion!" << std::endl;
+	ifs.close();
+	return true;
 }
 
 //----------------------------------------------------------------------------------------------//

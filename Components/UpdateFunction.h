@@ -29,11 +29,6 @@ bool updateCourse(Course& course, const string& courseID, const string& classID,
 // Update student result
 bool updateScoreboard(Course& course, const string& studentID, const string& midTerm, const string& other, const string& final, const string& total, string& outStr); // Inputbox
 
-// 19. export list of students in course to csv file
-bool exportListOfStudent(Course& course);
-// 20. import scoreboard of course
-bool importScoreBoardOfCourse(Course& course);
-
 
 //----------------------------------------------------------------------------------------------//
 
