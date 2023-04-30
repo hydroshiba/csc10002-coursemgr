@@ -81,19 +81,19 @@ bool updateStaffIn4(Staff& staff, const string& ID, const string& firstName, con
 	return true;
 }
 
-void updateAcademicYear(AcademicYear &academicYear, const string& newStartYear){
-	academicYear.start = (unsigned int)stoi(newStartYear);
-}
-
-void updateSchoolYear(SchoolYear &schoolYear, const string &newStartYear){
+void updateSchoolYear(SchoolYear &schoolYear, const string &newStartYear, string& outStr){
 	schoolYear.start = (unsigned int)stoi(newStartYear);
 }
 
-void updateClass(Class &CLASS, const string &newClassName){
+void updateClass(Class &CLASS, const string &newClassName, string& outStr){
 	CLASS.name = newClassName;
 }
 
-void updateSemester(Semester &semester, const string startDate, const string endDate){
+void updateAcademicYear(AcademicYear& academicYear, const string& newStartYear, string& outStr) {
+	academicYear.start = (unsigned int)stoi(newStartYear);
+}
+
+void updateSemester(Semester &semester, const string startDate, const string endDate, string& outStr){
 	Date start, end;
 	string day, month, year;
 	std::stringstream ss(startDate);
@@ -127,8 +127,8 @@ bool updateCourse(Course& course, const string& courseID, const string& classID,
 	outStr = "Successfully update course information!";
 	return true;
 }
-// 22. Update student result
-void updateStudentResult(Course &course, const string studentID, const string midTerm, const string other, const string finalScore, const string totalScore) {
+
+void updateScoreboard(Course &course, const string& studentID, const string& midTerm, const string& other, const string& finalScore, const string& totalScore, string& outStr) {
 	Scoreboard *ptrScoreboard = course.getScoreboard(studentID);
 	float mid, others, final, total;
 	mid = std::stof(midTerm);
@@ -140,6 +140,8 @@ void updateStudentResult(Course &course, const string studentID, const string mi
 	ptrScoreboard->other = others;
 	ptrScoreboard->total = total;
 }
+
+
 // 19. export list of students in course to csv file
 void exportListOfStudent(Course& course) {
 	string inputStudCouseFilePath = getInputListStudCourseFilePath(course);

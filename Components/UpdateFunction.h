@@ -5,29 +5,35 @@
 
 /*		Update function		*/
 
-bool updateStudentIn4(Student& student, const std::string& ID, const std::string& firstName, const std::string& lastName, const std::string& genderStr, const std::string& birthStr, const std::string& socialID, const std::string& password, std::string& outStr);
+// Update student in4
+bool updateStudentIn4(Student& student, const string& ID, const string& firstName, const string& lastName, const string& genderStr, const string& birthStr, const string& socialID, const string& password, string& outStr);
 
-bool updateStaffIn4(Staff& staff, const std::string& ID, const std::string& firstName, const std::string& lastName, const std::string& password, std::string& outStr);
-// Update AcademicYear
-void updateAcademicYear(AcademicYear& academicYear, const std::string& newStartYear); // Inputbox
+// Update staff in4
+bool updateStaffIn4(Staff& staff, const string& ID, const string& firstName, const string& lastName, const string& password, string& outStr);
+
 // Update SchoolYear
-void updateSchoolYear(SchoolYear& schoolYear, const std::string& newStartYear); // Inputbox
+void updateSchoolYear(SchoolYear& schoolYear, const string& newStartYear, string& outStr); // Inputbox
+
 // Update Class
-void updateClass(Class& CLASS, const std::string& newClassName); // Inputbox
-// Update Student
-void updateStudent(Student& student, const int& option); // Inputbox
+void updateClass(Class& CLASS, const string& newClassName, string& outStr); // Inputbox
+
+// Update AcademicYear 
+void updateAcademicYear(AcademicYear& academicYear, const string& newStartYear, string& outStr); // Inputbox
+
 // Update Semester
-void updateSemester(Semester& semester, const string startDate, const string endDate); // Inputbox
+void updateSemester(Semester& semester, const string startDate, const string endDate, string& outStr); // Inputbox
+
 // Update Course
-bool updateCourse(Course& course, const string& courseID, const string& classID, const string& name, const string& teacher, const std::string& cre, const std::string& maxEnroll, const std::string& day, const std::string& ss, std::string &outStr); // Inputbox
-// Update Scoreboard
-void updateScoreboard(Scoreboard& scoreboard, const int& option); // Inputbox
+bool updateCourse(Course& course, const string& courseID, const string& classID, const string& name, const string& teacher, const string& cre, const string& maxEnroll, const string& day, const string& ss, string &outStr); // Inputbox
+
+// Update student result
+void updateScoreboard(Course& course, const string& studentID, const string& midTerm, const string& other, const string& final, const string& total, string& outStr); // Inputbox
+
 // 19. export list of students in course to csv file
 void exportListOfStudent(Course& course);
 // 20. import scoreboard of course
 void importScoreBoardOfCourse(Course& course);
-// 22. Update student result
-void updateStudentResult(Course &course, const std::string studentID, const std::string midTerm, const std::string other, const std::string final, const std::string total); // Inputbox
+
 
 //----------------------------------------------------------------------------------------------//
 
