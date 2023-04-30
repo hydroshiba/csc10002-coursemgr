@@ -77,26 +77,34 @@ bool removeSchoolYear(Vector<SchoolYear>& schoolYears, const string& start, stri
 		outStr = "Please enter the starting year in InputBox!";
 		return false;
 	}
-	unsigned int startYear = static_cast<unsigned int>(stoul(start));
 	SchoolYear* ptrSchoolYear = getSchoolYear(schoolYears, start);
-	if (ptrSchoolYear == nullptr)
+	if (ptrSchoolYear == nullptr){
+		outStr = "SchoolYear with start year " + start + " is not existed!";
 		return false;
+	}	
 	schoolYears.remove(ptrSchoolYear);
+	outStr = "Successfully deleted the school year with start year " + start;
 	return true;
 }
 
 // Remove AcademicYear
-bool removeAcademicYear(Vector<AcademicYear>& academicYears, const string& start) {
-	unsigned int startYear = static_cast<unsigned int>(stoul(start));
-	AcademicYear* ptrAcademicYear = getAcademicYear(academicYears, start);
-	if (ptrAcademicYear == nullptr)
+bool removeAcademicYear(Vector<AcademicYear>& academicYears, const string& start, string& outStr) {
+	if (start.empty()) {
+		outStr = "Please enter the starting year in InputBox!";
 		return false;
+	}
+	AcademicYear* ptrAcademicYear = getAcademicYear(academicYears, start);
+	if (ptrAcademicYear == nullptr) {
+		outStr = "AcademicYear with start year " + start + " is not existed!";
+		return false;
+	}
 	academicYears.remove(ptrAcademicYear);
+	outStr = "Successfully deleted the academic year with start year " + start;
 	return true;
 }
 
 // Remove Class from School
-bool removeClass(Vector<SchoolYear>& schoolYears, const string& className) {
+bool removeClass(Vector<SchoolYear>& schoolYears, const string& className, string& outStr) {
 	Class* ptrClass = nullptr;
 	for (int i = 0; i < schoolYears.size(); ++i) {
 		ptrClass = schoolYears[i].getClass(className);
@@ -111,7 +119,7 @@ bool removeClass(Vector<SchoolYear>& schoolYears, const string& className) {
 }
 
 // Remove List Classes
-bool removeListClasses(SchoolYear& schoolYear) {
+bool removeListClasses(SchoolYear& schoolYear, string& outStr) {
 	for (int i = 0; i < schoolYear.classes.size(); ++i) {
 		removeListStudents(schoolYear.classes[i]);
 		schoolYear.classes.remove(&schoolYear.classes[i]);
@@ -120,7 +128,7 @@ bool removeListClasses(SchoolYear& schoolYear) {
 }
 
 // Remove Semester
-bool removeSemester(Vector<AcademicYear>& academicYears, const string& semesterID) {
+bool removeSemester(AcademicYear& academicYear, const string& semesterID, string& outStr) {
 	Semester semester;
 	semester.semesterID = semesterID;
 	Semester* ptrSemester = nullptr;
@@ -136,7 +144,7 @@ bool removeSemester(Vector<AcademicYear>& academicYears, const string& semesterI
 }
 
 // Remove List Semesters
-bool removeListSemesters(AcademicYear& academicYear) {
+bool removeListSemesters(AcademicYear& academicYear, string& outStr) {
 	for (int i = 0; i < academicYear.semesters.size(); ++i) {
 		removeListCourses(academicYear.semesters[i]);
 		academicYear.semesters.remove(&academicYear.semesters[i]);
@@ -145,7 +153,7 @@ bool removeListSemesters(AcademicYear& academicYear) {
 }
 
 // Remove Course
-bool removeCourse(Vector<AcademicYear>& academicYears, const string& courseID) {
+bool removeCourse(Vector<AcademicYear>& academicYears, const string& courseID, string& outStr) {
 	Course* ptrCourse = nullptr;
 	Course course;
 	course.ID = courseID;
@@ -170,7 +178,7 @@ bool removeCourse(Vector<AcademicYear>& academicYears, const string& courseID) {
 }
 
 // Remove List Courses
-bool removeListCourses(Semester& semester) {
+bool removeListCourses(Semester& semester, string& outStr) {
 	for (int i = 0; i < semester.courses.size(); ++i) {
 		for (int j = 0; j < semester.courses[i].scoreboards.size(); ++j)
 			delete semester.courses[i].scoreboards[j]; // delete scoreboard
@@ -181,7 +189,7 @@ bool removeListCourses(Semester& semester) {
 }
 
 // Remove Student from School
-bool removeStudent(Vector<SchoolYear>& schoolYears, const string& studentID) {
+bool removeStudent(Vector<SchoolYear>& schoolYears, const string& studentID, string& outStr) {
 	Student* ptrStudent = nullptr;
 	for (int i = 0; i < schoolYears.size(); ++i)
 		for (int j = 0; j < schoolYears[i].classes.size(); ++j) {
@@ -201,7 +209,7 @@ bool removeStudent(Vector<SchoolYear>& schoolYears, const string& studentID) {
 }
 
 // Remove List Students
-bool removeListStudents(Class& thisClass) {
+bool removeListStudents(Class& thisClass, string& outStr) {
 	for (int i = 0; i < thisClass.students.size(); ++i) {
 		thisClass.students[i]->scoreboards.~Vector(); // delete a student's scoreboard pointers
 		thisClass.students.remove(&thisClass.students[i]);
@@ -210,7 +218,7 @@ bool removeListStudents(Class& thisClass) {
 }
 
 // Remove student from course
-bool removeStudFromCourse(Course& course, const string& studentID, string &outDev) {
+bool removeStudFromCourse(Course& course, const string& studentID, string &outDev, string& outStr) {
 	Student* ptrStudent = course.getStudent(studentID);
 	if (ptrStudent == nullptr)
 	{
@@ -227,7 +235,7 @@ bool removeStudFromCourse(Course& course, const string& studentID, string &outDe
 }
 
 // Remove course from semester
-bool deleteCourse(Semester& semester, const string& courseID) {
+bool deleteCourse(Semester& semester, const string& courseID, string& outStr) {
 	Course* ptrCourse = semester.getCourse(courseID);
 	if (ptrCourse == nullptr) {
 		std::cout << "Can't find a course with ID " << courseID;
