@@ -26,6 +26,9 @@ bool removeClass(Vector<SchoolYear>& schoolYears, const string& className, strin
 //
 bool removeListStudents(Class& thisClass, string& outStr);
 
+// Remove a student from class
+bool removeStudentFromClass(Class& CLASS, const string& studentID, string& outStr);
+
 // Remove list AcademicYear
 bool removeListAcademicYear(Vector<AcademicYear>& academicYears, string& outStr); // Button
 

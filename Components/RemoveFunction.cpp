@@ -103,6 +103,23 @@ bool removeClass(SchoolYear& schoolYear, const string& className, string& outStr
 	return true;
 }
 
+// Remove a student from class
+bool removeStudentFromClass(Class& CLASS, const string& studentID, string& outStr) {
+	if (studentID.empty()) {
+		outStr = "Please enter the student ID in InputBox!";
+		return false;
+	}
+	Student* ptrStudent = CLASS.getStudent(studentID);
+	if (ptrStudent == nullptr) {
+		outStr = "Student with ID " + studentID + " is not existed in class " + CLASS.name;
+		return false;
+	}
+	ptrStudent->ptrClass = nullptr;
+	CLASS.students.remove(ptrStudent);
+	outStr = "Student with ID " + studentID + " is removed from class " + CLASS.name;
+	return true;
+}
+
 // Remove List Students
 bool removeListStudents(Class& thisClass, string& outStr) {
 	for (int i = 0; i < thisClass.students.size(); ++i) {
@@ -190,11 +207,14 @@ bool removeCourse(Semester& semester, const string& courseID, string& outStr) {
 }
 
 // Remove student from course
-bool removeStudFromCourse(Course& course, const string& studentID, string &outDev, string& outStr) {
+bool removeStudFromCourse(Course& course, const string& studentID, string& outStr) {
+	if (studentID.empty()) {
+		outStr = "Please enter the student ID in InputBox!";
+		return false;
+	}
 	Student* ptrStudent = course.getStudent(studentID);
-	if (ptrStudent == nullptr)
-	{
-		outDev = "Student with ID " + studentID + " is not exist in this Course " + course.ID;
+	if (ptrStudent == nullptr){
+		outStr = "Student with ID " + studentID + " is not exist in this Course " + course.ID;
 		return false;
 	}
 	Scoreboard* ptrScoreboard = course.getScoreboard(studentID);
@@ -202,7 +222,7 @@ bool removeStudFromCourse(Course& course, const string& studentID, string &outDe
 	ptrScoreboard->ptrStudent = nullptr;
 	course.scoreboards.remove(ptrScoreboard);
 	ptrScoreboard->ptrCourse = nullptr;
-	outDev = "Successfully remove student with ID " + studentID + " from course " + course.ID;
+	outStr = "Successfully remove student with ID " + studentID + " from course " + course.ID;
 	return true;
 }
 
