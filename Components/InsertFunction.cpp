@@ -187,7 +187,6 @@ bool addStudentToClass(Vector<Student>& students, Class& actClass, const std::st
 
 // Add a new academic year
 bool addAcademicYear(Vector<AcademicYear>& academicYears, const std::string& start, std::string& outStr) {
-	unsigned int startYear = static_cast<unsigned int>(stoul(start));
 	if (start.empty()) {
 		outStr = "Please enter the starting year in InputBox!";
 		return false;
@@ -206,7 +205,7 @@ bool addAcademicYear(Vector<AcademicYear>& academicYears, const std::string& sta
 }
 
 // Add a semester to an academic year
-bool addSemester(AcademicYear& academicYear, const std::string& semesterID, /*const std::string& startDay, const std::string& startMonth, const std::string& startYear, const std::string& endDay, const std::string& endMonth, const std::string& endYear,*/ std::string& outStr) {
+bool addSemester(AcademicYear& academicYear, const std::string& semesterID, std::string& outStr) {
 	if (semesterID.empty()) {
 		outStr = "Please enter the semester ID in InputBox!";
 		return false;
@@ -215,26 +214,6 @@ bool addSemester(AcademicYear& academicYear, const std::string& semesterID, /*co
 		outStr = "This SemesterID " + semesterID + " have been already existed in this AcademicYear " + academicYear.getPeriod();
 		return false;
 	}
-	/*unsigned short d = static_cast<unsigned short>(std::stoul(startDay));
-	unsigned short m = static_cast<unsigned short>(std::stoul(startMonth));
-	unsigned int y = static_cast<unsigned int>(std::stoul(startYear));
-	Date startDate;
-	outStr = "Enter start date for the semester:\n";
-	startDate.set(d, m, y);
-
-	d = static_cast<unsigned short>(std::stoul(endDay));
-	m = static_cast<unsigned short>(std::stoul(endMonth));
-	y = static_cast<unsigned int>(std::stoul(endYear));
-	Date endDate;
-	outStr = "Enter end date for the semester:\n";
-	endDate.set(d, m, y);*/
-
-	/*Semester newSem;
-	newSem.semesterID = semesterID;
-	newSem.startDate = startDate;
-	newSem.endDate = endDate;
-	newSem.ptrAcademicYear = &newYear;*/
-
 	Semester semester;
 	semester.semesterID = semesterID;
 	academicYear.addSemester(semester);
@@ -243,70 +222,62 @@ bool addSemester(AcademicYear& academicYear, const std::string& semesterID, /*co
 }
 
 // Add a new course
-bool addCourse(Semester& semester, const std::string& courseID, const std::string& classID, const std::string& name, const std::string& teacher, const std::string& cre, const std::string& maxEn, const std::string& day, const std::string& ss, std::string& outStr) {
-	Weekday weekday = string_to_weekday(day);
-	Session session = string_to_session(ss);
-
-	if (semester.getCourse(courseID) != nullptr)
-	{
-		//std::cout << "Course with ID " << ID << " have been already existed in this semester!";
+bool addCourse(Semester& semester, const std::string& courseID, std::string& outStr) {
+	if (courseID.empty()) {
+		outStr = "Please enter the course ID in InputBox!";
+		return false;
+	}
+	if (semester.getCourse(courseID) != nullptr){
 		outStr = "Course with ID " + courseID + " have been already existed in this semester!";
 		return false;
 	}
-	// std::cout << "Enter Course Name: "; std::cin >> name;
-	// std::cout << "Enter Teacher's Name: "; std::cin >> teacher;
-	// std::cout << "Enter Class ID: "; std::cin >> classID;
-	// std::cout << "Enter Number of Credits: "; std::cin >> cre;
-	// std::cout << "Enter Maximun students enrolled: "; std::cin >> maxEn;
-
-	// std::cout << "Day of week: "; std::cin >> day;
-	// std::cout << "Session performed: "; std::cin >> ss;
-
 	Course newCourse;
 	newCourse.ID = courseID;
-	newCourse.classID = classID;
-	newCourse.name = name;
-	newCourse.teacher = teacher;
-	newCourse.credits = std::stoi(cre);
-	newCourse.maxEnroll = std::stoi(maxEn);
-	newCourse.weekday = weekday;
-	newCourse.session = session;
-	//Course newCourse(ID, classID, name, teacher, cre, maxEn, weekday, session);
+	newCourse.ptrSemester = &semester;
 	semester.addCourse(newCourse);
 	outStr = "Complete add new course " + courseID + " to list of course in Semester " + semester.semesterID;
 	return true;
 }
+
 // Add list student to course (from file)
-bool getStudentToCourse(Vector <Student> &students, Course& course, std::string& outStr) {
+bool importStudentListOfCourseFromFile(Vector<Student> &students, Course& course, std::string& outStr) {
 	std::string inputStudCourseFilePath = getInputListStudCourseFilePath(course);
 	std::ifstream inF(inputStudCourseFilePath);
 	if (!inF.is_open()) {
-		//std::cout << "Cannot open file path " << inputStudCourseFilePath << std::endl;
 		outStr = "Cannot open file path " + inputStudCourseFilePath;
 		return false;
 	}
 	std::string ignore;
-	getline(inF, ignore);
-	getline(inF, ignore);
-	getline(inF, ignore);
-	getline(inF, ignore);
-	getline(inF, ignore);
-	getline(inF, ignore);
-	getline(inF, ignore);
-	getline(inF, ignore);
-	getline(inF, ignore);
-	Student student;
+	string nStudents;
+	getline(inF, ignore, ',');
+	getline(inF, nStudents);
+	size_t n = stoull(nStudents);
+	if (n == 0) {
+		outStr = "Student list file is empty!";
+		return false;
+	}
 	Student* ptrStudent = nullptr;
-	while (!inF.eof()) {
-		student.setInfoToCourseCSV(inF);
-		ptrStudent = getStudent(students, student.ID);
-		if (ptrStudent != nullptr)
-			course.addStudent(*ptrStudent);
+	getline(inF, ignore);
+	for (size_t i = 0; i < n; i++) {
+		string studentID;
+		getline(inF, ignore, ',');
+		getline(inF, studentID);
+		ptrStudent = getStudent(students, studentID);
+		if (ptrStudent == nullptr) {
+			outStr = "Student with ID " + studentID + " is not existed in school!";
+			return false;
+		}
+		if (ptrStudent->getScoreboard(course) != nullptr) {
+			outStr = "Student with ID " + studentID + " have been already existed in course " + course.ID;
+			return false;
+		}
+		course.addStudent(*ptrStudent);
 	}
 	inF.close();
 	outStr = "Complete add list of student to Course " + course.ID;
 	return true;
 }
+
 // Add list student to course (from file)
 bool getStudentToCourse(Vector<AcademicYear>& academicYears, Vector<Student>& students, const std::string& courseID, std::string& outStr) {
 	Course *ptrCourse = getCourse(academicYears, courseID);
