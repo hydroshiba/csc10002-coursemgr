@@ -81,19 +81,31 @@ bool updateStaffIn4(Staff& staff, const string& ID, const string& firstName, con
 	return true;
 }
 
-void updateSchoolYear(SchoolYear &schoolYear, const string &newStartYear, string& outStr){
-	schoolYear.start = (unsigned int)stoi(newStartYear);
+bool updateSchoolYear(SchoolYear &schoolYear, const string &newStartYear, string& outStr){
+	if (newStartYear.empty()) {
+		outStr = "Please enter the starting year in InputBox!";
+		return false;
+	}
+	outStr = "Successfully changed start year of schoolyear from " + std::to_string(schoolYear.start) + " to " + newStartYear;
+	schoolYear.start = static_cast<unsigned int>(std::stoul(newStartYear));
+	return true;
 }
 
-void updateClass(Class &CLASS, const string &newClassName, string& outStr){
+bool updateClass(Class &CLASS, const string &newClassName, string& outStr){
+	if (newClassName.empty()) {
+		outStr = "Please enter the new class name in InputBox!";
+		return false;
+	}
+	outStr = "Successfully changed class name of class from " + CLASS.name + " to " + newClassName;
 	CLASS.name = newClassName;
+	return true;
 }
 
-void updateAcademicYear(AcademicYear& academicYear, const string& newStartYear, string& outStr) {
+bool updateAcademicYear(AcademicYear& academicYear, const string& newStartYear, string& outStr) {
 	academicYear.start = (unsigned int)stoi(newStartYear);
 }
 
-void updateSemester(Semester &semester, const string startDate, const string endDate, string& outStr){
+bool updateSemester(Semester &semester, const string startDate, const string endDate, string& outStr){
 	Date start, end;
 	string day, month, year;
 	std::stringstream ss(startDate);
@@ -128,7 +140,7 @@ bool updateCourse(Course& course, const string& courseID, const string& classID,
 	return true;
 }
 
-void updateScoreboard(Course &course, const string& studentID, const string& midTerm, const string& other, const string& finalScore, const string& totalScore, string& outStr) {
+bool updateScoreboard(Course &course, const string& studentID, const string& midTerm, const string& other, const string& finalScore, const string& totalScore, string& outStr) {
 	Scoreboard *ptrScoreboard = course.getScoreboard(studentID);
 	float mid, others, final, total;
 	mid = std::stof(midTerm);
@@ -143,7 +155,7 @@ void updateScoreboard(Course &course, const string& studentID, const string& mid
 
 
 // 19. export list of students in course to csv file
-void exportListOfStudent(Course& course) {
+bool exportListOfStudent(Course& course) {
 	string inputStudCouseFilePath = getInputListStudCourseFilePath(course);
 	std::ofstream ofs(inputStudCouseFilePath, std::ios::out);
 	course.displayInfo(ofs);
@@ -156,7 +168,7 @@ void exportListOfStudent(Course& course) {
 	ofs.close();
 }
 // 20. import scoreboard of course
-void importScoreBoardOfCourse(Course& course) {
+bool importScoreBoardOfCourse(Course& course) {
 	string inputScoreCourseFilePath = getInputScoreCourseFilePath(course);
 	std::ifstream ifs(inputScoreCourseFilePath);
 	if (!ifs.is_open())

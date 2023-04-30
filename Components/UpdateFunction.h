@@ -12,27 +12,27 @@ bool updateStudentIn4(Student& student, const string& ID, const string& firstNam
 bool updateStaffIn4(Staff& staff, const string& ID, const string& firstName, const string& lastName, const string& password, string& outStr);
 
 // Update SchoolYear
-void updateSchoolYear(SchoolYear& schoolYear, const string& newStartYear, string& outStr); // Inputbox
+bool updateSchoolYear(SchoolYear& schoolYear, const string& newStartYear, string& outStr); // Inputbox
 
 // Update Class
-void updateClass(Class& CLASS, const string& newClassName, string& outStr); // Inputbox
+bool updateClass(Class& CLASS, const string& newClassName, string& outStr); // Inputbox
 
 // Update AcademicYear 
-void updateAcademicYear(AcademicYear& academicYear, const string& newStartYear, string& outStr); // Inputbox
+bool updateAcademicYear(AcademicYear& academicYear, const string& newStartYear, string& outStr); // Inputbox
 
 // Update Semester
-void updateSemester(Semester& semester, const string startDate, const string endDate, string& outStr); // Inputbox
+bool updateSemester(Semester& semester, const string startDate, const string endDate, string& outStr); // Inputbox
 
 // Update Course
 bool updateCourse(Course& course, const string& courseID, const string& classID, const string& name, const string& teacher, const string& cre, const string& maxEnroll, const string& day, const string& ss, string &outStr); // Inputbox
 
 // Update student result
-void updateScoreboard(Course& course, const string& studentID, const string& midTerm, const string& other, const string& final, const string& total, string& outStr); // Inputbox
+bool updateScoreboard(Course& course, const string& studentID, const string& midTerm, const string& other, const string& final, const string& total, string& outStr); // Inputbox
 
 // 19. export list of students in course to csv file
-void exportListOfStudent(Course& course);
+bool exportListOfStudent(Course& course);
 // 20. import scoreboard of course
-void importScoreBoardOfCourse(Course& course);
+bool importScoreBoardOfCourse(Course& course);
 
 
 //----------------------------------------------------------------------------------------------//
