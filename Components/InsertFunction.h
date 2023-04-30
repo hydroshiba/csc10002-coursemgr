@@ -5,7 +5,6 @@
 
 /*		Insert function		*/
 
-
 // Add new Student
 bool addStudent(Vector<Student>& students, const std::string& ID, const std::string& firstName, const std::string& lastName, const std::string& genderStr, const std::string& birthStr, const std::string& socialID, const std::string& password, std::string& outStr);
 
