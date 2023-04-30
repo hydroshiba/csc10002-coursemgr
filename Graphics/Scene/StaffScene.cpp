@@ -263,6 +263,6 @@ Scene* StaffScene::process() {
 	}
 	//-------------------------------------------------------------------
 	else if (next.clicked(mousePoint))
-		return registry.addStudentScene;
+		return registry.staffScene2;
 	return this;
 }

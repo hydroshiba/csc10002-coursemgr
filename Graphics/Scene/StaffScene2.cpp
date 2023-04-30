@@ -1,4 +1,4 @@
-#include "AddStudentScene.h"
+#include "StaffScene2.h"
 //-------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------
 const float yPosSceneName = 10;
@@ -58,7 +58,7 @@ const Vector2 removeStudentButtonPos = { xPosInputRemoveStudentID + removeInputB
 const Vector2 removeStaffButtonPos = { xPosInputRemoveStudentID + removeInputBoxSize.x, yPosTextRemoveStaffID };
 //-----------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------
-AddStudentScene::AddStudentScene() {
+StaffScene2::StaffScene2() {
 	sceneName = "Wellcome staff";
 	sceneName.setSize(sizeTextSceneName);
 	sceneName.setY(yPosSceneName);
@@ -193,7 +193,7 @@ AddStudentScene::AddStudentScene() {
 	//-----------------------------------------------------------------------------------
 }
 
-void AddStudentScene::render() {
+void StaffScene2::render() {
 	sceneName.render();
 	textID.render();
 	textFirstName.render();
@@ -226,7 +226,7 @@ void AddStudentScene::render() {
 	//-----------------------------------------------------------------------------------
 }
 
-Scene* AddStudentScene::process() {
+Scene* StaffScene2::process() {
 	this->mousePoint = GetMousePosition();
 	//-----------------------------------------------------------------------------------
 	inputID.process(mousePoint);

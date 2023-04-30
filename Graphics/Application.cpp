@@ -7,7 +7,7 @@ Application::Application() {
     registry.login = new Login();
     registry.studentScene = new StudentScene();
     registry.staffScene = new StaffScene();
-    registry.addStudentScene = new AddStudentScene();
+    registry.staffScene2 = new StaffScene2();
     registry.studentScoreboardsScene = new StudentScoreBoardsScene();
     registry.blank = new Blank();
     registry.courseScene = new CourseScene();

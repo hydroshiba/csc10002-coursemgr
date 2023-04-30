@@ -1,5 +1,5 @@
-#ifndef ADDSTUDENTSCENE_H
-#define ADDSTUDENTSCENE_H
+#ifndef STAFFSCENE_2_H
+#define STAFFSCENE_2_H
 
 #include "raylib.h"
 
@@ -20,7 +20,7 @@
 #include "InsertFunction.h"
 #include "RemoveFunction.h"
 
-class AddStudentScene : public Scene {
+class StaffScene2 : public Scene {
 private:
     TextBox sceneName;
     //-----------------------------------------------------------------------------------
@@ -59,10 +59,10 @@ private:
     Button back;
     
 public:
-    AddStudentScene();
+    StaffScene2();
     void render();
     Scene* process();
 };
 
 
-#endif // ADDSTUDENT_SCENE
+#endif // STAFFSCENE_2_H
