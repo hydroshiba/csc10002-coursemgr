@@ -184,62 +184,38 @@ bool addStudentToClass(Vector<Student>& students, Class& actClass, const std::st
 	outStr = "Complete add new student with ID " + studentID + " to class " + actClass.name;
 	return true;
 }
+
 // Add a new academic year
 bool addAcademicYear(Vector<AcademicYear>& academicYears, const std::string& start, std::string& outStr) {
 	unsigned int startYear = static_cast<unsigned int>(stoul(start));
-	if (getAcademicYear(academicYears, startYear) != nullptr)
-	{
-		//std::cout << "Academic Year " << startYear << " have been already existed! Pls input another start year!" << std::endl;
-		outStr = "Academic Year " + start + " have been already existed! Pls input another start year!";
+	if (start.empty()) {
+		outStr = "Please enter the starting year in InputBox!";
 		return false;
 	}
-	else
-	{
-		AcademicYear newYear;
-		newYear.start = startYear;
-		academicYears.append(newYear);
-		outStr = "Complete add new AcademicYear with start year " + start + " to the list of AcademicYear!";
-		return true;
+	unsigned int startYear = static_cast<unsigned int>(stoul(start));
+	AcademicYear* ptrAcademicYear = getAcademicYear(academicYears, startYear);
+	if (ptrAcademicYear != nullptr) {
+		outStr = "AcademicYear with start year " + start + " have been already existed!";
+		return false;
 	}
-}
-// Add a new academic year
-bool addAcademicYear(Vector<AcademicYear>& academicYears, const unsigned int& start, std::string& outStr) {
-	/*unsigned int startyear;
 	AcademicYear newYear;
-	bool found = false;
-	std::cout << "Enter a new year: ";
-	std::cin >> startyear;
-	for (int i = 0; i < academicYears.size(); i++)
-		if (academicYears[i].start == startyear)
-		{
-			found = true;
-			break;
-		}*/
-	if (getAcademicYear(academicYears, start) != nullptr)
-	{
-		//std::cout << "Academic Year " << start << " have been already existed! Pls input another start year!" << std::endl;
-		outStr = "Academic Year " + std::to_string(start) + " have been already existed! Pls input another start year!";
-		return false;
-	}
-	else
-	{
-		AcademicYear newYear;
-		newYear.start = start;
-		academicYears.append(newYear);
-		outStr = "Complete add new AcademicYear with start year " + std::to_string(start) + " to the list of AcademicYear!";
-		return true;
-	}
-
+	newYear.start = startYear;
+	academicYears.append(newYear);
+	outStr = "Complete add new SchoolYear with start year " + start + " to the list of SchoolYear!";
+	return true;
 }
+
 // Add a semester to an academic year
-bool addSemester(AcademicYear& newYear, const std::string& semesterID, const std::string& startDay, const std::string &startMonth, const std::string& startYear, const std::string &endDay, const std::string &endMonth, const std::string &endYear, std::string& outStr) {
-	if (newYear.getSemester(semesterID) != nullptr)
-	{
-		//std::cout << "This SemesterID have been already existed in this AcademicYear! Pls input another semesterID";
-		outStr = "This SemesterID have been already existed in this AcademicYear! Pls input another semesterID";
+bool addSemester(AcademicYear& academicYear, const std::string& semesterID, /*const std::string& startDay, const std::string& startMonth, const std::string& startYear, const std::string& endDay, const std::string& endMonth, const std::string& endYear,*/ std::string& outStr) {
+	if (semesterID.empty()) {
+		outStr = "Please enter the semester ID in InputBox!";
 		return false;
 	}
-	unsigned short d = static_cast<unsigned short>(std::stoul(startDay));
+	if (academicYear.getSemester(semesterID) != nullptr){
+		outStr = "This SemesterID " + semesterID + " have been already existed in this AcademicYear " + academicYear.getPeriod();
+		return false;
+	}
+	/*unsigned short d = static_cast<unsigned short>(std::stoul(startDay));
 	unsigned short m = static_cast<unsigned short>(std::stoul(startMonth));
 	unsigned int y = static_cast<unsigned int>(std::stoul(startYear));
 	Date startDate;
@@ -251,18 +227,21 @@ bool addSemester(AcademicYear& newYear, const std::string& semesterID, const std
 	y = static_cast<unsigned int>(std::stoul(endYear));
 	Date endDate;
 	outStr = "Enter end date for the semester:\n";
-	endDate.set(d, m, y);
+	endDate.set(d, m, y);*/
 
-	Semester newSem;
+	/*Semester newSem;
 	newSem.semesterID = semesterID;
 	newSem.startDate = startDate;
 	newSem.endDate = endDate;
-	newSem.ptrAcademicYear = &newYear;
+	newSem.ptrAcademicYear = &newYear;*/
 
-	newYear.addSemester(newSem);
-	outStr = "Complete add new Semester " + semesterID + " to AcademicYear " + std::to_string(newYear.start) + "!";
+	Semester semester;
+	semester.semesterID = semesterID;
+	academicYear.addSemester(semester);
+	outStr = "Complete add new Semester " + semesterID + " to AcademicYear " + academicYear.getPeriod();
 	return true;
 }
+
 // Add a new course
 bool addCourse(Semester& semester, const std::string& courseID, const std::string& classID, const std::string& name, const std::string& teacher, const std::string& cre, const std::string& maxEn, const std::string& day, const std::string& ss, std::string& outStr) {
 	Weekday weekday = string_to_weekday(day);
