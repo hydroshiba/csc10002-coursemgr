@@ -22,7 +22,8 @@ void downloadAllData(const Vector<Staff>& staffs, Vector <Student>& students, Ve
 	downloadListAcademicYearFolder(academicYears);
 }
 
-void downloadListStudent(const Vector<Student>& students){
+void downloadListStudent(Vector<Student>& students){
+	sortStudentList(students, 0, students.size() - 1);
 	std::string list_stud_dir = getListStudentFilePath();
 	std::ofstream ofs(list_stud_dir);
 	ofs << "Number of students," << std::to_string(students.size()) << std::endl;
@@ -178,4 +179,25 @@ void dowdloadScoreboardFile(Course& course) {
 	std::ofstream ofs(scoreBoardFilePath);
 	course.displayScoreBoardFile(ofs);
 	ofs.close();
+}
+
+void sortStudentList(Vector<Student>& students, const int& left, const int& right) {
+	int i = left;
+	int j = right;
+	string pivot = students[left + (right - left) / 2].ID;
+	while (i < j) {
+		while (students[i].ID < pivot) i++;
+		while (students[j].ID > pivot) j--;
+		if (i <= j) {
+			std::swap(students[i], students[j]);
+			i++;
+			j--;
+		}
+	}
+	if (i < right) {
+		sortStudentList(students, i, right);
+	}
+	if (left < j) {
+		sortStudentList(students, left, j);
+	}
 }

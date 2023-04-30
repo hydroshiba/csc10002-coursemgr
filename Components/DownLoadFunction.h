@@ -10,7 +10,7 @@ void downloadSchoolYearFolder(SchoolYear& schoolYear);
 
 void downloadListStaff(const Vector<Staff>& staffs);
 
-void downloadListStudent(const Vector<Student>& students);
+void downloadListStudent(Vector<Student>& students);
 
 void downloadOutputStudClassFile(Class& actClass);
 
@@ -28,6 +28,6 @@ void downloadCourseFolder(Course& course);
 
 void dowdloadScoreboardFile(Course& course);
 
-
+void sortStudentList(Vector<Student>& students, const int& left, const int& right);
 
 #endif // !DOWNLOAD_FUNCTION_H
