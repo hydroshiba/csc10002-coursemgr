@@ -15,7 +15,7 @@
 #include "Course.h"
 #include "Scoreboard.h"
 
-void downloadAllData(const Vector<Staff>& staffs, Vector <Student>& students, Vector <SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears) {
+void downloadAllData(Vector<Staff>& staffs, Vector <Student>& students, Vector <SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears) {
 	downloadListStudent(students);
 	downloadListStaff(staffs);
 	downloadListSchoolYearFolder(schoolYears);
@@ -41,7 +41,8 @@ void downloadListStudent(Vector<Student>& students){
 	ofs.close();
 }
 
-void downloadListStaff(const Vector<Staff>& staffs){
+void downloadListStaff(Vector<Staff>& staffs){
+	sortStaffList(staffs, 0, staffs.size() - 1);
 	std::string list_staff_dir = getListStaffFilePath();
 	std::ofstream ofs(list_staff_dir);
 	ofs << "Number of staffs,";
@@ -199,5 +200,26 @@ void sortStudentList(Vector<Student>& students, const int& left, const int& righ
 	}
 	if (left < j) {
 		sortStudentList(students, left, j);
+	}
+}
+
+void sortStaffList(Vector<Staff>& staffs, const int& left, const int& right) {
+	int i = left;
+	int j = right;
+	string pivot = staffs[left + (right - left) / 2].ID;
+	while (i < j) {
+		while (staffs[i].ID < pivot) i++;
+		while (staffs[j].ID > pivot) j--;
+		if (i <= j) {
+			std::swap(staffs[i], staffs[j]);
+			i++;
+			j--;
+		}
+	}
+	if (i < right) {
+		sortStaffList(staffs, i, right);
+	}
+	if (left < j) {
+		sortStaffList(staffs, left, j);
 	}
 }
