@@ -8,12 +8,12 @@ Application::Application() {
     registry.studentScene = new StudentScene();
     registry.staffScene = new StaffScene();
     registry.addStudentScene = new AddStudentScene();
+    registry.studentScoreboardsScene = new StudentScoreBoardsScene();
     registry.blank = new Blank();
     registry.courseScene = new CourseScene();
     registry.editScene = new EditCourse();
     registry.editSchoolYearScene = new SchoolYearScene();
     registry.editListSchoolYearScene = new ListSchoolYearScene();
-
     scene = registry.login;
 }
 

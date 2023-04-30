@@ -14,12 +14,14 @@ public:
 	Scene* studentScene;
 	Scene* staffScene;
 	Scene* addStudentScene;
+	Scene* studentScoreboardsScene;
 	Registry(): 
 	blank(nullptr), 
 	login(nullptr), 
 	studentScene(nullptr),
 	staffScene(nullptr),
 	addStudentScene(nullptr),
+	studentScoreboardsScene(nullptr),
 	courseScene(nullptr), 
 	editScene(nullptr), 
 	editSchoolYearScene(nullptr),

@@ -16,6 +16,7 @@
 #include "Scene/EditCourse.h"
 #include "Scene/SchoolYearScene.h"
 #include "Scene/ListSchoolYearScene.h"
+#include "Scene/StudentScoreboardsScene.h"
 
 class Application {
 private:

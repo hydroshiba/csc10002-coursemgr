@@ -14,7 +14,7 @@
 #include "../../Components/User.h"
 #include "UpdateFunction.h"
 #include "InsertFunction.h"
-#include <iostream>
+
 class StaffScene : public Scene {
 private:
 	TextBox sceneName;
@@ -49,7 +49,6 @@ private:
 	//-------------------------------------------------------------------
 	TextBox message;
 public:
-	Staff* ptrStaff;
 	StaffScene();
 	void render();
 	Scene* process();

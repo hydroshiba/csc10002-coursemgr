@@ -173,6 +173,7 @@ Scene* StudentScene::process() {
 	//----------------------------------------------------------------------------------
 	if (ptrStudent_Global != nullptr) {
 		sceneName = "Welcome student " + ptrStudent_Global->name.get();
+		sceneName.centerX();
 		inputID.defaultText = ptrStudent_Global->ID;
 		inputFirstName.defaultText = ptrStudent_Global->name.first;
 		inputLastName.defaultText = ptrStudent_Global->name.last;
@@ -211,7 +212,7 @@ Scene* StudentScene::process() {
 		inputBirth.clearContent();
 		inputSocialID.clearContent();
 		inputPassword.clearContent();
-		return registry.blank;
+		return registry.studentScoreboardsScene;
 	}
 		
 	//-----------------------------------------------------------------------------------
