@@ -102,24 +102,41 @@ bool updateClass(Class &CLASS, const string &newClassName, string& outStr){
 }
 
 bool updateAcademicYear(AcademicYear& academicYear, const string& newStartYear, string& outStr) {
-	academicYear.start = (unsigned int)stoi(newStartYear);
+	if (newStartYear.empty()) {
+		outStr = "Please enter the new starting year in InputBox!";
+		return false;
+	}
+	outStr = "Successfully changed start year of academicyear from " + std::to_string(academicYear.start) + " to " + newStartYear;
+	academicYear.start = static_cast<unsigned int>(std::stoul(newStartYear));
+	return true;
 }
 
 bool updateSemester(Semester &semester, const string startDate, const string endDate, string& outStr){
+	if (startDate.empty() && endDate.empty()) {
+		outStr = "Please input new date in at least one InputBox!";
+		return false;
+	}
 	Date start, end;
 	string day, month, year;
-	std::stringstream ss(startDate);
-	getline(ss, day, '/');
-	getline(ss, month, '/');
-	getline(ss, year);
-	start.set((unsigned short)std::stoi(day), (unsigned short)std::stoi(month), (unsigned int)std::stoi(year));
-	std::stringstream sstring(endDate);
-	getline(sstring, day, '/');
-	getline(sstring, month, '/');
-	getline(sstring, year);
-	end.set((unsigned short)std::stoi(day), (unsigned short)std::stoi(month), (unsigned int)std::stoi(year));
+	if (!startDate.empty()) {
+		std::stringstream ss(startDate);
+		getline(ss, day, '/');
+		getline(ss, month, '/');
+		getline(ss, year);
+		start.set((unsigned short)std::stoi(day), (unsigned short)std::stoi(month), (unsigned int)std::stoi(year));
+
+	}	
+	if (!endDate.empty()) {	
+		std::stringstream sstring(endDate);
+		getline(sstring, day, '/');
+		getline(sstring, month, '/');
+		getline(sstring, year);
+		end.set((unsigned short)std::stoi(day), (unsigned short)std::stoi(month), (unsigned int)std::stoi(year));
+	}
 	semester.startDate = start;
 	semester.endDate = end;
+	outStr = "Successfully changed start date and end date of semester " + semester.semesterID;
+	return true;
 }
 
 bool updateCourse(Course& course, const string& courseID, const string& classID, const string& name, const string& teacher, const string& cre,const string& maxEnroll, const string& day, const string& ss, string &outStr) {
@@ -127,7 +144,6 @@ bool updateCourse(Course& course, const string& courseID, const string& classID,
 		outStr = "All input boxes are empty, please try again!";
 		return false;
 	}
-
 	if (!courseID.empty()) course.updateID(courseID);
 	if (!classID.empty()) course.updateClassID(classID);
 	if (!name.empty()) course.updateName(name);
@@ -141,16 +157,34 @@ bool updateCourse(Course& course, const string& courseID, const string& classID,
 }
 
 bool updateScoreboard(Course &course, const string& studentID, const string& midTerm, const string& other, const string& finalScore, const string& totalScore, string& outStr) {
+	if (studentID.empty()) {
+		outStr = "Pls input studentID to update result";
+		return false;
+	}
+	if (midTerm.empty() && other.empty() && finalScore.empty() && totalScore.empty()) {
+		outStr = "All input boxes of new score are empty, please try again!";
+		return false;
+	}
 	Scoreboard *ptrScoreboard = course.getScoreboard(studentID);
 	float mid, others, final, total;
-	mid = std::stof(midTerm);
-	others = std::stof(other);
-	final = std::stof(finalScore);
-	total = std::stof(totalScore);
-	ptrScoreboard->midterm = mid;
-	ptrScoreboard->final = final;
-	ptrScoreboard->other = others;
-	ptrScoreboard->total = total;
+	if (!midTerm.empty()) {
+		mid = std::stof(midTerm);
+		ptrScoreboard->midterm = mid;
+	}
+	if (!other.empty()) {
+		others = std::stof(other);
+		ptrScoreboard->final = final;
+	}
+	if (!finalScore.empty()) {
+		final = std::stof(finalScore);
+		ptrScoreboard->other = others;
+	}
+	if (!totalScore.empty()) {
+		total = std::stof(totalScore);
+		ptrScoreboard->total = total;
+	}
+	outStr = "Successfully update result of student " + studentID + " in course " + course.ID;
+	return true;
 }
 
 
