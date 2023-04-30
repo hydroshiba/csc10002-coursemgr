@@ -96,7 +96,7 @@ bool addSchoolYear(Vector<SchoolYear>& yearList, const std::string& start, std::
 		return false;
 	}
 	unsigned int startYear = static_cast<unsigned int>(stoul(start));
-	SchoolYear* ptrSchoolYear = getSchoolYear(yearList, startYear);
+	SchoolYear* ptrSchoolYear = getSchoolYear(yearList, start);
 	if (ptrSchoolYear != nullptr){
 		outStr = "SchoolYear with start year " + start + " have been already existed!";
 		return false;
@@ -192,7 +192,7 @@ bool addAcademicYear(Vector<AcademicYear>& academicYears, const std::string& sta
 		return false;
 	}
 	unsigned int startYear = static_cast<unsigned int>(stoul(start));
-	AcademicYear* ptrAcademicYear = getAcademicYear(academicYears, startYear);
+	AcademicYear* ptrAcademicYear = getAcademicYear(academicYears, start);
 	if (ptrAcademicYear != nullptr) {
 		outStr = "AcademicYear with start year " + start + " have been already existed!";
 		return false;

@@ -17,9 +17,9 @@ void updateClass(Class& CLASS, const std::string& newClassName); // Inputbox
 // Update Student
 void updateStudent(Student& student, const int& option); // Inputbox
 // Update Semester
-void updateSemester(Semester& semester, const std::string startDate, const std::string endDate); // Inputbox
+void updateSemester(Semester& semester, const string startDate, const string endDate); // Inputbox
 // Update Course
-bool updateCourse(Course& course, const std::string& courseID, const std::string& classID, const std::string& name, const std::string& teacher, const std::string& cre, const std::string& maxEnroll, const std::string& day, const std::string& ss, std::string &outStr); // Inputbox
+bool updateCourse(Course& course, const string& courseID, const string& classID, const string& name, const string& teacher, const std::string& cre, const std::string& maxEnroll, const std::string& day, const std::string& ss, std::string &outStr); // Inputbox
 // Update Scoreboard
 void updateScoreboard(Scoreboard& scoreboard, const int& option); // Inputbox
 // 19. export list of students in course to csv file
