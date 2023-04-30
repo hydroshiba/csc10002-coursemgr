@@ -66,6 +66,7 @@ bool addStudent(Vector<Student>& students, const std::string& ID, const std::str
 	outStr = "Complete add new student with ID " + ID + " to school";
 	return true;
 }
+
 // Add new staff
 bool addStaff(std::string curStaffID, Vector<Staff>& staffs, const std::string& ID, const std::string& password, const std::string& firstName, const std::string& lastName, std::string& outStr) {
 	if (ID.empty() || firstName.empty() || lastName.empty() || password.empty()) {
@@ -87,6 +88,7 @@ bool addStaff(std::string curStaffID, Vector<Staff>& staffs, const std::string& 
 	outStr = "Complete add new staff with ID " + ID;
 	return true;
 }
+
 // Add a new SchoolYear
 bool addSchoolYear(Vector<SchoolYear>& yearList, const std::string& start, std::string& outStr) {
 	if (start.empty()) {
@@ -105,8 +107,9 @@ bool addSchoolYear(Vector<SchoolYear>& yearList, const std::string& start, std::
 	outStr = "Complete add new SchoolYear with start year " + start + " to the list of SchoolYear!";
 	return true;
 }
+
 // Add new class for SchoolYear
-bool addClass(string curClassName, SchoolYear& schoolYear, const std::string& className, std::string& outStr) {
+bool addClass(SchoolYear& schoolYear, const std::string& className, std::string& outStr) {
 	if (className.empty()) {
 		outStr = "Please enter the class name in InputBox!";
 		return false;
@@ -122,6 +125,7 @@ bool addClass(string curClassName, SchoolYear& schoolYear, const std::string& cl
 	outStr = "Complete add class " + className + " to SchoolYear " + std::to_string(schoolYear.start) + "!";
 	return true;
 }
+
 // Add students into a specific class (from File)
 bool importStudentListOfClassFromFile(Vector<Student> &students, Class& actClass, std::string& outStr) {	
 	std::string inputStudClassFilePath = getInputStudClassFilePath(actClass);
@@ -160,14 +164,25 @@ bool importStudentListOfClassFromFile(Vector<Student> &students, Class& actClass
 	outStr = "Complete add list of student to class " + actClass.name + "!";
 	return true;
 }
+
 // Add a new students to class
 bool addStudentToClass(Vector<Student>& students, Class& actClass, const std::string& studentID, std::string& outStr) { 
+	if (studentID.empty()) {
+		outStr = "Please enter the student ID in InputBox!";
+		return false;
+	}
 	Student *ptrStudent = getStudent(students, studentID);
-	if (ptrStudent){
-		actClass.addStudent(*ptrStudent);
-		return true;
-	}	
-	return false;
+	if (ptrStudent == nullptr) {
+		outStr = "Student with ID " + studentID + " is not existed in school!";
+		return false;
+	}
+	if (ptrStudent->ptrClass != nullptr) {
+		outStr = "Student with ID " + studentID + " have been already existed in class " + ptrStudent->ptrClass->name;
+		return false;
+	}
+	actClass.students.append(ptrStudent);
+	outStr = "Complete add new student with ID " + studentID + " to class " + actClass.name;
+	return true;
 }
 // Add a new academic year
 bool addAcademicYear(Vector<AcademicYear>& academicYears, const std::string& start, std::string& outStr) {
