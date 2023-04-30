@@ -66,8 +66,6 @@ bool addStudent(Vector<Student>& students, const std::string& ID, const std::str
 	outStr = "Complete add new student with ID " + ID + " to school";
 	return true;
 }
-
-
 // Add new staff
 bool addStaff(std::string curStaffID, Vector<Staff>& staffs, const std::string& ID, const std::string& password, const std::string& firstName, const std::string& lastName, std::string& outStr) {
 	if (ID.empty() || firstName.empty() || lastName.empty() || password.empty()) {
@@ -90,36 +88,18 @@ bool addStaff(std::string curStaffID, Vector<Staff>& staffs, const std::string& 
 	return true;
 }
 // Add a new SchoolYear
-bool addSchoolYear(Vector<SchoolYear>& yearList, const std::string& start, std::string& outStr) {
+bool addSchoolYear(unsigned int curStartYear, Vector<SchoolYear>& yearList, const std::string& start, std::string& outStr) {
 	unsigned int startYear = static_cast<unsigned int>(stoul(start));
 	SchoolYear* ptrSchoolYear = getSchoolYear(yearList, startYear);
-	if (ptrSchoolYear != nullptr)
-	{
-		//std::cout << "SchoolYear with start year " << startYear << " have been already existed!" << std::endl;
+	if (ptrSchoolYear != nullptr){
 		outStr = "SchoolYear with start year " + start + " have been already existed!";
 		return false;
 	}
 	SchoolYear newYear;
 	newYear.start = startYear;
 	yearList.append(newYear);
+	ptrSchoolYear_Global = getSchoolYear(yearList, curStartYear);
 	outStr = "Complete add new SchoolYear with start year " + start + " to the list of SchoolYear!";
-	return true;
-}
-// Add a new SchoolYear
-bool addSchoolYear(Vector<SchoolYear>& yearList, const unsigned int& start, std::string& outStr) {
-	/*unsigned int startYear;
-	std::cout << "Enter the school year: "; std::cin >> startYear;*/
-	SchoolYear* ptrSchoolYear = getSchoolYear(yearList, start);
-	if (ptrSchoolYear != nullptr)
-	{
-		//std::cout << "SchoolYear with start year " << start << " have been already existed!" << std::endl;
-		outStr = "SchoolYear with start year " + std::to_string(start) + " have been already existed!";
-		return false;
-	}
-	SchoolYear newYear;
-	newYear.start = start;
-	yearList.append(newYear);
-	outStr = "Complete add new SchoolYear with start year " + std::to_string(start) + " to the list of SchoolYear!";
 	return true;
 }
 // Add new class for SchoolYear

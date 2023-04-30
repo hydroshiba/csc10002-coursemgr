@@ -213,6 +213,6 @@ Scene* SchoolYearScene::process() {
             //change start year
         }
     }
-    if (back.clicked(mousePoint)) return registry.editListSchoolYearScene;
+    if (back.clicked(mousePoint)) return registry.listSchoolYearScene;
     return this;
 } 

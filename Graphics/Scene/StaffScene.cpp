@@ -253,7 +253,7 @@ Scene* StaffScene::process() {
 		return registry.blank;
 	//-------------------------------------------------------------------
 	else if (listSYs.clicked(mousePoint)) {
-		return registry.editListSchoolYearScene;
+		return registry.listSchoolYearScene;
 	}
 		
 	//-------------------------------------------------------------------

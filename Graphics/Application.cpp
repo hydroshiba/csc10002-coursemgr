@@ -12,9 +12,9 @@ Application::Application() {
     registry.blank = new Blank();
     registry.courseScene = new CourseScene();
     registry.editScene = new EditCourse();
-    registry.editSchoolYearScene = new SchoolYearScene();
-    registry.editListSchoolYearScene = new ListSchoolYearScene();
-    scene = registry.login;
+    registry.schoolYearScene = new SchoolYearScene();
+    registry.listSchoolYearScene = new ListSchoolYearScene();
+    scene = registry.schoolYearScene;
 }
 
 Application::~Application() {
