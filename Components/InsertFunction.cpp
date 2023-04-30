@@ -88,7 +88,11 @@ bool addStaff(std::string curStaffID, Vector<Staff>& staffs, const std::string& 
 	return true;
 }
 // Add a new SchoolYear
-bool addSchoolYear(unsigned int curStartYear, Vector<SchoolYear>& yearList, const std::string& start, std::string& outStr) {
+bool addSchoolYear(Vector<SchoolYear>& yearList, const std::string& start, std::string& outStr) {
+	if (start.empty()) {
+		outStr = "Please enter the starting year in InputBox!";
+		return false;
+	}
 	unsigned int startYear = static_cast<unsigned int>(stoul(start));
 	SchoolYear* ptrSchoolYear = getSchoolYear(yearList, startYear);
 	if (ptrSchoolYear != nullptr){
@@ -98,58 +102,66 @@ bool addSchoolYear(unsigned int curStartYear, Vector<SchoolYear>& yearList, cons
 	SchoolYear newYear;
 	newYear.start = startYear;
 	yearList.append(newYear);
-	ptrSchoolYear_Global = getSchoolYear(yearList, curStartYear);
 	outStr = "Complete add new SchoolYear with start year " + start + " to the list of SchoolYear!";
 	return true;
 }
 // Add new class for SchoolYear
-bool addClass(SchoolYear& schoolYear, const std::string& className, std::string& outStr) {
-	/*std::string className;
-	do {
-		std::cout << "Enter class name (enter 0 when done): ";
-		std::getline(std::cin,className);
-		if (className == "0") break;*/
+bool addClass(string curClassName, SchoolYear& schoolYear, const std::string& className, std::string& outStr) {
+	if (className.empty()) {
+		outStr = "Please enter the class name in InputBox!";
+		return false;
+	}
 	Class* ptrClass = schoolYear.getClass(className);
-	if (ptrClass != nullptr)
-	{
-		//std::cout << "Class " << className << " have been already existed!" << std::endl;
+	if (ptrClass != nullptr){
 		outStr = "Class " + className + " have been already existed!";
 		return false;
 	}
-	else
-	{
-		Class newClass;
-		newClass.name = className;
-		schoolYear.addClass(newClass);
-		outStr = "Complete add class " + className + " to SchoolYear " + std::to_string(schoolYear.start) + "!";
-		return true;
-	}
-	//} /*while (className != "0");*/
+	Class newClass;
+	newClass.name = className;
+	schoolYear.addClass(newClass);
+	outStr = "Complete add class " + className + " to SchoolYear " + std::to_string(schoolYear.start) + "!";
+	return true;
 }
 // Add students into a specific class (from File)
-bool addStudToClass(Vector<Student> &students, Class& actClass, std::string& outStr) {
-	Student newStud;
-	Student *ptrStudent;
+bool importStudentListOfClassFromFile(Vector<Student> &students, Class& actClass, std::string& outStr) {	
 	std::string inputStudClassFilePath = getInputStudClassFilePath(actClass);
 	std::ifstream inF(inputStudClassFilePath);
 	if (!inF.is_open()) {
-		//std::cout << "Cannot open file path " << inputStudClassFilePath << std::endl;
 		outStr = "Cannot open file path " + inputStudClassFilePath;
 		return false;
 	}
+	Student* ptrStudent = nullptr;
 	std::string ignore;
+	string nStudents;
+	getline(inF, ignore, ',');
+	getline(inF, nStudents);
+	size_t n = stoull(nStudents);
+	if (n == 0) {
+		outStr = "Student list file is empty!";
+		return false;
+	}
 	getline(inF, ignore);
-	while (!inF.eof()) {
-		newStud.setInfoToClass(inF);
-		ptrStudent = getStudent(students, newStud.ID);
-		actClass.addStudent(*ptrStudent);
+	for (size_t i = 0; i < n; i++) {
+		string studentID;
+		getline(inF, ignore, ',');
+		getline(inF, studentID);
+		ptrStudent = getStudent(students, studentID);
+		if (ptrStudent == nullptr) {
+			outStr = "Student with ID " + studentID + " is not existed in school!";
+			return false;
+		}
+		if (ptrStudent->ptrClass != nullptr) {
+			outStr = "Student with ID " + studentID + " have been already existed in class " + ptrStudent->ptrClass->name;
+			return false;
+		}
+		actClass.students.append(ptrStudent);
 	}
 	inF.close();
 	outStr = "Complete add list of student to class " + actClass.name + "!";
 	return true;
 }
 // Add a new students to class
-bool addStudToClass(Vector<Student>& students, Class& actClass, const std::string& studentID, std::string& outStr) { 
+bool addStudentToClass(Vector<Student>& students, Class& actClass, const std::string& studentID, std::string& outStr) { 
 	Student *ptrStudent = getStudent(students, studentID);
 	if (ptrStudent){
 		actClass.addStudent(*ptrStudent);
