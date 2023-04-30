@@ -104,17 +104,18 @@ bool removeAcademicYear(Vector<AcademicYear>& academicYears, const string& start
 }
 
 // Remove Class from School
-bool removeClass(Vector<SchoolYear>& schoolYears, const string& className, string& outStr) {
-	Class* ptrClass = nullptr;
-	for (int i = 0; i < schoolYears.size(); ++i) {
-		ptrClass = schoolYears[i].getClass(className);
-		if (ptrClass == nullptr) {
-			return false;
-		}
-		else {
-			schoolYears[i].classes.remove(ptrClass);
-		}
+bool removeClass(SchoolYear& schoolYear, const string& className, string& outStr) {
+	if (className.empty()) {
+		outStr = "Please enter the class name in InputBox!";
+		return false;
 	}
+	Class* ptrClass = schoolYear.getClass(className);
+	if (ptrClass == nullptr) {
+		outStr = "Class " + className + " have not been already existed!";
+		return false;
+	}
+	schoolYear.removeClass(*ptrClass);
+	outStr = "Successfully removed class " + className + " from school year " + schoolYear.getPeriod();
 	return true;
 }
 
@@ -129,17 +130,17 @@ bool removeListClasses(SchoolYear& schoolYear, string& outStr) {
 
 // Remove Semester
 bool removeSemester(AcademicYear& academicYear, const string& semesterID, string& outStr) {
-	Semester semester;
-	semester.semesterID = semesterID;
-	Semester* ptrSemester = nullptr;
-	for (int i = 0; i < academicYears.size(); ++i) {
-		ptrSemester = academicYears[i].semesters.find(semester);
-		if (ptrSemester == nullptr)
-			return false;
-		else {
-			academicYears[i].semesters.remove(ptrSemester);
-		}
+	if (semesterID.empty()) {
+		outStr = "Please enter the semester ID in InputBox!";
+		return false;
 	}
+	Semester* ptrSemester = academicYear.getSemester(semesterID);
+	if (ptrSemester == nullptr) {
+		outStr = "This SemesterID " + semesterID + " have not been already existed in this AcademicYear " + academicYear.getPeriod();
+		return false;
+	}
+	academicYear.removeSemester(*ptrSemester);
+	outStr = "Successfully removed semester " + semesterID + " from academic year " + academicYear.getPeriod();
 	return true;
 }
 
