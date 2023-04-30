@@ -16,7 +16,7 @@
 
 /*		Remove function		*/
 
-// Remove student from School
+// Remove student from School - Button
 bool removeStudent(Vector<Student>& students, const string& studentID, string& outStr) {
 	if (studentID.empty()) {
 		outStr = "Please enter student ID to input box to remove";
@@ -32,7 +32,7 @@ bool removeStudent(Vector<Student>& students, const string& studentID, string& o
 	return true;
 }
 
-// Remove staff from school
+// Remove staff from school - Button
 bool removeStaff(string curStaffID, Vector<Staff>&staffs, const string & staffID, string & outStr) {
 	if (staffID.empty()) {
 		outStr = "Please enter staff ID to input box to remove";
@@ -53,7 +53,7 @@ bool removeStaff(string curStaffID, Vector<Staff>&staffs, const string & staffID
 	return true;
 }
 
-// Remove list SchoolYear
+// Remove list SchoolYear - Free memory
 bool removeListSchoolYear(Vector<SchoolYear>& schoolYears) {
 	for (int i = 0; i < schoolYears.size(); ++i) {
 		removeListClasses(schoolYears[i]);
@@ -62,7 +62,7 @@ bool removeListSchoolYear(Vector<SchoolYear>& schoolYears) {
 	return true;
 }
 
-// Remove SchoolYear
+// Remove SchoolYear - Button
 bool removeSchoolYear(Vector<SchoolYear>& schoolYears, const string& start, string& outStr) {
 	if (start.empty()) {
 		outStr = "Please enter the starting year in InputBox!";
@@ -78,8 +78,8 @@ bool removeSchoolYear(Vector<SchoolYear>& schoolYears, const string& start, stri
 	return true;
 }
 
-// Remove List Classes
-bool removeListClasses(SchoolYear& schoolYear, string& outStr) {
+// Remove List Classes - Free memory
+bool removeListClasses(SchoolYear& schoolYear) {
 	for (int i = 0; i < schoolYear.classes.size(); ++i) {
 		removeListStudents(schoolYear.classes[i]);
 		schoolYear.classes.remove(&schoolYear.classes[i]);
@@ -87,7 +87,7 @@ bool removeListClasses(SchoolYear& schoolYear, string& outStr) {
 	return true;
 }
 
-// Remove Class from School
+// Remove Class from School - Button
 bool removeClass(SchoolYear& schoolYear, const string& className, string& outStr) {
 	if (className.empty()) {
 		outStr = "Please enter the class name in InputBox!";
@@ -103,7 +103,7 @@ bool removeClass(SchoolYear& schoolYear, const string& className, string& outStr
 	return true;
 }
 
-// Remove a student from class
+// Remove a student from class - Button
 bool removeStudentFromClass(Class& CLASS, const string& studentID, string& outStr) {
 	if (studentID.empty()) {
 		outStr = "Please enter the student ID in InputBox!";
@@ -116,12 +116,12 @@ bool removeStudentFromClass(Class& CLASS, const string& studentID, string& outSt
 	}
 	ptrStudent->ptrClass = nullptr;
 	CLASS.students.remove(ptrStudent);
-	outStr = "Student with ID " + studentID + " is removed from class " + CLASS.name;
+	outStr = "Student with ID " + studentID + " is removed from  class " + CLASS.name;
 	return true;
 }
 
-// Remove List Students
-bool removeListStudents(Class& thisClass, string& outStr) {
+// Remove List Students - Free memory
+bool removeListStudents(Class& thisClass) {
 	for (int i = 0; i < thisClass.students.size(); ++i) {
 		thisClass.students[i]->scoreboards.~Vector(); // delete a student's scoreboard pointers
 		thisClass.students.remove(&thisClass.students[i]);
@@ -129,7 +129,7 @@ bool removeListStudents(Class& thisClass, string& outStr) {
 	return true;
 }
 
-// Remove list AcademicYear
+// Remove list AcademicYear - Free memory
 bool removeListAcademicYear(Vector<AcademicYear>& academicYears) {
 	for (int i = 0; i < academicYears.size(); ++i) {
 		removeListSemesters(academicYears[i]);
@@ -138,7 +138,7 @@ bool removeListAcademicYear(Vector<AcademicYear>& academicYears) {
 	return true;
 }
 
-// Remove AcademicYear
+// Remove AcademicYear - Button
 bool removeAcademicYear(Vector<AcademicYear>& academicYears, const string& start, string& outStr) {
 	if (start.empty()) {
 		outStr = "Please enter the starting year in InputBox!";
@@ -154,8 +154,8 @@ bool removeAcademicYear(Vector<AcademicYear>& academicYears, const string& start
 	return true;
 }
 
-// Remove List Semesters
-bool removeListSemesters(AcademicYear& academicYear, string& outStr) {
+// Remove List Semesters - Free memory
+bool removeListSemesters(AcademicYear& academicYear) {
 	for (int i = 0; i < academicYear.semesters.size(); ++i) {
 		removeListCourses(academicYear.semesters[i]);
 		academicYear.semesters.remove(&academicYear.semesters[i]);
@@ -163,7 +163,7 @@ bool removeListSemesters(AcademicYear& academicYear, string& outStr) {
 	return true;
 }
 
-// Remove Semester
+// Remove Semester - Button
 bool removeSemester(AcademicYear& academicYear, const string& semesterID, string& outStr) {
 	if (semesterID.empty()) {
 		outStr = "Please enter the semester ID in InputBox!";
@@ -179,8 +179,8 @@ bool removeSemester(AcademicYear& academicYear, const string& semesterID, string
 	return true;
 }
 
-// Remove List Courses
-bool removeListCourses(Semester & semester, string & outStr) {
+// Remove List Courses - Free memory
+bool removeListCourses(Semester & semester) {
 	for (int i = 0; i < semester.courses.size(); ++i) {
 		for (int j = 0; j < semester.courses[i].scoreboards.size(); ++j)
 			delete semester.courses[i].scoreboards[j]; // delete scoreboard
@@ -190,7 +190,7 @@ bool removeListCourses(Semester & semester, string & outStr) {
 	return true;
 }
 
-// Remove Course
+// Remove Course - Button
 bool removeCourse(Semester& semester, const string& courseID, string& outStr) {
 	if (courseID.empty()) {
 		outStr = "Please enter the course ID in InputBox!";
@@ -206,7 +206,7 @@ bool removeCourse(Semester& semester, const string& courseID, string& outStr) {
 	return true;
 }
 
-// Remove student from course
+// Remove student from course - Button
 bool removeStudFromCourse(Course& course, const string& studentID, string& outStr) {
 	if (studentID.empty()) {
 		outStr = "Please enter the student ID in InputBox!";
