@@ -18,7 +18,7 @@ bool addSchoolYear(Vector<SchoolYear>& yearList, const std::string& start, std::
 // Add new class for SchoolYear
 bool addClass(SchoolYear& schoolYear, const std::string& className, std::string& outStr); // Inputbox
 
-// Add students into a specific class (from File)
+// Add list student to class (from file)
 bool importStudentListOfClassFromFile(Vector<Student> &students, Class& actClass, std::string& outStr); // By file
 
 // Add a new students to class
@@ -28,16 +28,16 @@ bool addStudentToClass(Vector<Student>& students, Class& actClass, const std::st
 bool addAcademicYear(Vector <AcademicYear>& newYear, const std::string& start, std::string& outStr); // Inputbox
 
 // Add a semester to an academic year
-bool addSemester(AcademicYear& newYear, const std::string& semesterID, const std::string& startDay, const std::string &startMonth, const std::string& startYear, const std::string &endDay, const std::string &endMonth, const std::string &endYear, std::string& outStr); // Inputbox
+bool addSemester(AcademicYear& newYear, const std::string& semesterID, std::string& outStr); // Inputbox
 
 // Add a new course
-bool addCourse(Semester& semester, const std::string& courseID, const std::string& classID, const std::string& name, const std::string& teacher, const std::string& cre, const std::string& maxEn, const std::string& day, const std::string& ss, std::string& outStr); // Inputbox
+bool addCourse(Semester& semester, const std::string& courseID, std::string& outStr); // Inputbox
 
 // Add list student to course (from file)
 bool importStudentListOfCourseFromFile(Vector<Student> &students, Course& course, std::string& outStr); // By file
 
 // Add a student to course
-bool addAStudentToCourse(Vector<Student>& students, Course& course, const std::string& studentID, std::string& outStr); // Inputbox 
+bool addStudentToCourse(Vector<Student>& students, Course& course, const std::string& studentID, std::string& outStr); // Inputbox 
 
 // ----------------------------------------------------------------------------------------------//
 
