@@ -26,6 +26,13 @@ void AcademicYear::removeSemester(Semester& semester) {
     semester.ptrAcademicYear = nullptr;
 }
 
+void AcademicYear::removeAllSemester() {
+    for (int i = 0; i < semesters.size(); i++) {
+        semesters[i].removeAllCourse();
+    }
+    semesters.~Vector();
+}
+
 std::string AcademicYear::getPeriod() {
     return std::to_string(start) + " - " + std::to_string(start + 1);
 }

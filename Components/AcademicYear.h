@@ -16,6 +16,8 @@ struct AcademicYear {
 
     void removeSemester(Semester& semester);
 
+    void removeAllSemester();
+
     std::string getPeriod();
 };
 
