@@ -31,6 +31,8 @@ void uploadListStaff(Vector<Staff>& staffs){
 	getline(ifs, ignore, ',');
 	getline(ifs, nStaffs);
 	size_t n = stoull(nStaffs);
+	if (n == 0) return;
+	staffs.resize(n);
 	getline(ifs, ignore);
 	for (int i = 0; i<n; ++i){
 		getline(ifs, ignore, ',');
@@ -40,7 +42,7 @@ void uploadListStaff(Vector<Staff>& staffs){
 		getline(ifs, pass);
 		Staff newStaff({first, last}, ID);
 		newStaff.setPassWordUpLoad(pass);
-		staffs.append(newStaff);
+		staffs[i] = newStaff;
 	}
 	ifs.close();
 }
@@ -55,9 +57,9 @@ void uploadListStudent(Vector<Student>& students){
 	std::getline(ifs, nStudents);
 	if (nStudents == "0") return;
 	size_t n = static_cast<size_t>(std::stoul(nStudents));
-	//students.resize(static_cast<size_t>(std::stoul(nStudents))); 
+	if (n == 0) return;
+	students.resize(n); 
 	std::getline(ifs, ignore);
-	//int i = 0;
 	for (int i = 0; i < n; i++) {
 		std::getline(ifs, ignore, ',');
 		std::getline(ifs, ID, ',');
@@ -73,9 +75,7 @@ void uploadListStudent(Vector<Student>& students){
 		unsigned int y = static_cast<unsigned int>(std::stoul(year));
 		Student newStudent({ first, last }, ID, pass, string_to_gender(gender), { d, m, y }, socialId);
 		newStudent.setPassWordUpLoad(pass);
-		//students[i] = newStudent;
-		//i++;
-		students.append(newStudent);
+		students[i] = newStudent;
 	}
 	ifs.close();
 }
