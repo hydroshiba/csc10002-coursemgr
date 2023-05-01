@@ -5,6 +5,12 @@
 
 /*		Remove function		*/
 
+// Remove student list
+bool removeListStudent();
+
+// Remove staff list
+bool removeListStaff();
+
 // Remove student from School
 bool removeStudent(Vector<Student>& students, const string& studentID, string& outStr);
 

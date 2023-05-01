@@ -16,6 +16,20 @@
 
 /*		Remove function		*/
 
+// Remove student list
+bool removeListStudent() {
+	students.~Vector();
+	if (students.size() != 0) return false;
+	return true;
+}
+
+// Remove staff list
+bool removeListStaff() {
+	staffs.~Vector();
+	if (staffs.size() != 0) return false;
+	return true;
+}
+
 // Remove student from School - Button
 bool removeStudent(Vector<Student>& students, const string& studentID, string& outStr) {
 	if (studentID.empty()) {
