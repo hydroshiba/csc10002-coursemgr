@@ -9,6 +9,7 @@
 #include "Objects/TextBox.h"
 #include "Objects/Button.h"
 #include "Objects/Dropbox.h"
+#include "Objects/InputBox.h"
 
 #include <iostream>
 
@@ -19,6 +20,10 @@ private:
     TextBox viewYear;
     DropBox chooseSchoolYear;
     Button view;
+
+    TextBox addYear;
+    InputBox inputSchoolYearAdded;
+    Button add;
 
     Button back;
 public:
