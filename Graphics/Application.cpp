@@ -14,12 +14,24 @@ Application::Application() {
     registry.editScene = new EditCourse();
     registry.schoolYearScene = new SchoolYearScene();
     registry.listSchoolYearScene = new ListSchoolYearScene();
-    scene = registry.listSchoolYearScene;
+
+    scene = registry.login;
 }
 
 Application::~Application() {
     if(GetWindowHandle() == nullptr) return;
     CloseWindow();
+
+    delete registry.login;
+    delete registry.studentScene;
+    delete registry.staffScene;
+    delete registry.staffScene2;
+    delete registry.studentScoreboardsScene;
+    delete registry.blank;
+    delete registry.courseScene;
+    delete registry.editScene;
+    delete registry.schoolYearScene;
+    delete registry.listSchoolYearScene;
 }
 
 bool Application::shouldClose() const {
