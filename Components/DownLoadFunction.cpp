@@ -179,6 +179,7 @@ void dowdloadScoreboardFile(Course& course) {
 	ofs << "Course name," << course.name << std::endl;
 	ofs << "Teacher," << course.teacher << std::endl;
 	ofs << "Number of credits," << course.credits << std::endl;
+	ofs << "Max enrolled," << course.maxEnroll << std::endl;
 	ofs << "Weekday," << weekday_to_string(course.weekday) << std::endl;
 	ofs << "Session," << session_to_string(course.session) << std::endl;
 	ofs << "Students," << course.scoreboards.size() << std::endl;

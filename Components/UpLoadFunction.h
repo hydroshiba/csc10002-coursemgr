@@ -20,13 +20,13 @@ void get_students_priority(Vector<Student> &students, Class& actClass);
 
 // AcademicYear
 
-void uploadListAcademicYearFolder(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears);
+void uploadListAcademicYearFolder(Vector<Student>& students, Vector<AcademicYear>& academicYears);
 
-void uploadAcademicYearFolder(Vector<SchoolYear>& schoolYears, AcademicYear& academicYear);
+void uploadAcademicYearFolder(Vector<Student>& students, AcademicYear& academicYear);
 
-void uploadSemesterFolder(Vector<SchoolYear>& schoolYears, Semester& semester);
+void uploadSemesterFolder(Vector<Student>& students, Semester& semester);
 
-void uploadCourseFolder(Course& course);
+void uploadScoreboardFile(Vector<Student>& students, Course& course);
 
 #endif // !UPLOAD_FUNCTION_H
 
