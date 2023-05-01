@@ -173,11 +173,11 @@ bool updateScoreboard(Course &course, const string& studentID, const string& mid
 	}
 	if (!other.empty()) {
 		others = std::stof(other);
-		ptrScoreboard->final = final;
+		ptrScoreboard->other = others;
 	}
 	if (!finalScore.empty()) {
 		final = std::stof(finalScore);
-		ptrScoreboard->other = others;
+		ptrScoreboard->final = final;
 	}
 	if (!totalScore.empty()) {
 		total = std::stof(totalScore);

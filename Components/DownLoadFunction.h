@@ -28,7 +28,4 @@ void downloadCourseFolder(Course& course);
 
 void dowdloadScoreboardFile(Course& course);
 
-void sortStudentList(Vector<Student>& students, const int& left, const int& right);
-
-void sortStaffList(Vector<Staff>& staffs, const int& left, const int& right);
 #endif // !DOWNLOAD_FUNCTION_H
