@@ -165,35 +165,31 @@ void uploadStudentFolder(Class& actClass, Student& student, std::string id) {
 	Student studInfo({ first, last }, id, password, string_to_gender(gender), { d, m, y }, socialId, &actClass);
 }
 */
+
+// Upload student id
 void get_students_priority(Vector<Student> &students, Class& actClass) {
-	std::string oFile = getOutputStudClassFilePath(actClass);
+	std::string oFile = getDataStudClassFilePath(actClass);
 	std::ifstream ifs(oFile);
 	if (!ifs.is_open()) {
 		std::cout << "Cannot open " << oFile;
 		return;
 	}
-	std::string ignore;
 	std::string className;
-	std::getline(ifs, ignore, ',');
-	std::getline(ifs, className);
+	ifs >> className;
 	if (className != actClass.name) {
-		std::cout << "Incorrect file!";
+		std::cout << "Incorrect Class!";
 		return;
 	}
-	std::getline(ifs, ignore, ',');
-	size_t nStud;
+	int nStud;
 	ifs >> nStud;
 	actClass.students.resize(nStud);
 	std::string id;
-	Student *ptrStudent;
-	std::getline(ifs, ignore);
-	for (int i = 0; i < actClass.students.size(); ++i) {
-		std::getline(ifs, ignore, ',');
-		std::getline(ifs, id, ',');
-		std::getline(ifs, ignore);
+	for (int i = 0; i<nStud; ++i){
+		Student *ptrStudent;
+		ifs >> id; 
 		ptrStudent = getStudent(students, id);
 		actClass.students[i] = ptrStudent;
-		actClass.students[i]->ptrClass = &actClass;
+		ptrStudent->ptrClass = &actClass;
 	}
 	ifs.close();
 }
