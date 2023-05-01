@@ -44,6 +44,8 @@ struct Course {
 
     void removeStudent(Student& student);
     
+    void removeAllStudent();
+
     void displayInfo(std::ostream& outDev);
 
     void displayInfoScreen();

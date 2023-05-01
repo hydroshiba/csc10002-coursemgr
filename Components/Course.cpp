@@ -215,6 +215,16 @@ void Course::displayScoreBoardScreen() {
     }
 }
 
+void Course::removeAllStudent() {
+    if (scoreboards.size() == 0)
+        return;
+    for (int i = 0; i < scoreboards.size(); i++) {
+        scoreboards[i]->ptrStudent->scoreboards.remove(&scoreboards[i]);
+        delete scoreboards[i];
+    }
+    scoreboards.~Vector();
+}
+
 bool operator==(const Course& courseA, const Course& courseB) {
     if (courseA.ID != courseB.ID) return false;
     if (courseA.classID != courseB.classID) return false;
