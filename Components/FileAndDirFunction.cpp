@@ -63,10 +63,11 @@ std::string getInputStudClassFilePath(const Class& CLASS) {
 	return classFolderPath + CLASS.name + "_InputStud.csv";
 }
 
-std::string getOutputStudClassFilePath(const Class& CLASS) {
+std::string getDataStudClassFilePath(const Class& CLASS) {
 	std::string classFolderPath = getClassFolderPath(CLASS);
-	return classFolderPath + CLASS.name + "_OutputStud.csv";
+	return classFolderPath + CLASS.name + "_StudData.txt";
 }
+
 
 std::string getInputScoreClassFilePath(const Class& CLASS) {
 	std::string classFolderPath = getClassFolderPath(CLASS);
