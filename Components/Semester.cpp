@@ -57,6 +57,14 @@ void Semester::removeCourse(Course& course) {
     course.ptrSemester = nullptr;
 }
 
+void Semester::removeAllCourse() {
+    if (courses.size() == 0)
+        return;
+    for (int i = 0; i < courses.size(); i++) {
+        courses[i].removeAllStudent();
+    }
+    courses.~Vector();
+}
 bool operator==(const Semester& semA, const Semester& semB) {
     if (semA.semesterID != semB.semesterID) return false;
     if (semA.startDate != semB.startDate) return false;

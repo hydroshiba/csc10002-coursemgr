@@ -27,6 +27,8 @@ struct Semester {
     void addCourse(Course& course);
 
     void removeCourse(Course& course);
+
+    void removeAllCourse();
 };
 
 bool operator==(const Semester& semA, const Semester& semB);
