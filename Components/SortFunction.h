@@ -12,5 +12,7 @@ void sortSchoolYearList(Vector<SchoolYear>& schoolYears, const int& left, const 
 void sortAcademicYearList(Vector<AcademicYear>& academicYears, const int& left, const int& right);
 
 void sortSemesters(Vector<Semester>& semesters, const int& left, const int& right);
+
+void sortClasses(Vector<Class>& classes, const int& left, const int& right);
 #endif // !SORT_FUNCTION_H
 

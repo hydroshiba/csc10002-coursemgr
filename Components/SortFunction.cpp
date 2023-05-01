@@ -99,3 +99,18 @@ void sortSemesters(Vector<Semester>& semesters, const int& left, const int& righ
 	sortSemesters(semesters, left, i);
 	sortSemesters(semesters, i+1, right);
 }
+
+void sortClasses(Vector<Class>& classes, const int& left, const int& right){
+	if (left >= right) return;
+	int i = left, j = right;
+	std::string pivot = classes[i].name;
+	while (i > j){
+		while (classes[i].name < pivot) ++i;
+		while (classes[i].name > pivot) --j;
+		std::swap(classes[i], classes[j]);
+		++i;
+		--j;
+	}
+	sortClasses(classes, left, i);
+	sortClasses(classes, i+1, right);	
+}
