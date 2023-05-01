@@ -20,7 +20,7 @@ void uploadAllData(Vector<Staff>& staffs, Vector<Student> &students, Vector<Scho
 	uploadListStudent(students);
 	uploadListStaff(staffs);
 	uploadListSchoolYearFolder(students, schoolYears);
-	uploadListAcademicYearFolder(schoolYears, academicYears);
+	uploadListAcademicYearFolder(students, academicYears);
 }
 
 void uploadListStaff(Vector<Staff>& staffs){
@@ -199,7 +199,7 @@ void get_students_priority(Vector<Student> &students, Class& actClass) {
 
 
 
-void uploadListAcademicYearFolder(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears) {
+void uploadListAcademicYearFolder(Vector<Student>& students, Vector<AcademicYear>& academicYears) {
 	std::string listAcademicYearFilePath = getListAcademicYearFilePath();
 	std::ifstream ifs(listAcademicYearFilePath);
 	if (!ifs.is_open())
@@ -217,12 +217,12 @@ void uploadListAcademicYearFolder(Vector<SchoolYear>& schoolYears, Vector<Academ
 		AcademicYear academicYear;
 		academicYear.start = startOfAcademicYear;
 		academicYears[i] = academicYear;
-		uploadAcademicYearFolder(schoolYears, academicYears[i]);
+		uploadAcademicYearFolder(students, academicYears[i]);
 	}
 	ifs.close();
 }
 
-void uploadAcademicYearFolder(Vector<SchoolYear>& schoolYears, AcademicYear& academicYear) {
+void uploadAcademicYearFolder(Vector<Student>& students, AcademicYear& academicYear) {
 	std::string academicYearFilePath = getAcademicYearFilePath(academicYear);
 	std::ifstream ifs(academicYearFilePath);
 	if (!ifs.is_open())
@@ -249,12 +249,12 @@ void uploadAcademicYearFolder(Vector<SchoolYear>& schoolYears, AcademicYear& aca
 		semester.semesterID = semesterID;
 		academicYear.semesters[i] = semester;
 		academicYear.semesters[i].ptrAcademicYear = &academicYear;
-		uploadSemesterFolder(schoolYears, academicYear.semesters[i]);
+		uploadSemesterFolder(students, academicYear.semesters[i]);
 	}
 	ifs.close();
 }
 
-void uploadSemesterFolder(Vector<SchoolYear>& schoolYears, Semester& semester) {
+void uploadSemesterFolder(Vector<Student>& students, Semester& semester) {
 	std::string semesterFilePath = getSemesterFilePath(semester);
 	std::ifstream ifs(semesterFilePath);
 	if (!ifs.is_open())
@@ -293,37 +293,45 @@ void uploadSemesterFolder(Vector<SchoolYear>& schoolYears, Semester& semester) {
 		course.ID = courseID;
 		semester.courses[i] = course;
 		semester.courses[i].ptrSemester = &semester;
-		uploadCourseFolder(semester.courses[i]);
+		uploadScoreboardFile(students, semester.courses[i]);
 	}
 	ifs.close();
 }
 
-void uploadCourseFolder(Course& course) {
-	std::string courseFilePath = getCourseFilePath(course);
+void uploadScoreboardFile(Vector<Student>& students, Course& course) {
+	std::string courseFilePath = getOutputScoreStudCourseFilePath(course);
 	std::ifstream ifs(courseFilePath);
 	if (!ifs.is_open())
 	{
 		std::cout << "Can't open " << courseFilePath << std::endl;
 		return;
 	}
-	std::string courseID;
+	std::string courseID, ignore;
+	std::getline(ifs, ignore, ',');
 	std::getline(ifs, courseID);
 	if (course.ID != courseID)
 	{
 		std::cout << "Incorrect file path " << courseFilePath << std::endl;
 		return;
 	}
-	std::string classID, name, teacher, weekdayStr, sessionStr, sTemp;
+	std::string classID, name, teacher, weekdayStr, sessionStr;
 	Weekday weekday;
 	Session session;
 	int credits, maxEnroll;
+	std::getline(ifs, ignore, ',');
 	std::getline(ifs, classID);
+	std::getline(ifs, ignore, ',');
 	std::getline(ifs, name);
+	std::getline(ifs, ignore, ',');
 	std::getline(ifs, teacher);
-	ifs >> credits >> maxEnroll;
-	std::getline(ifs, sTemp);
+	std::getline(ifs, ignore, ',');
+	ifs >> credits;
+	std::getline(ifs, ignore, ',');
+	ifs >> maxEnroll;
+	std::getline(ifs, ignore, ',');
 	std::getline(ifs, weekdayStr);
 	weekday = string_to_weekday(weekdayStr);
+	std::getline(ifs, ignore, ',');
 	std::getline(ifs, sessionStr);
 	session = string_to_session(sessionStr);
 	course.classID = classID;
@@ -333,6 +341,28 @@ void uploadCourseFolder(Course& course) {
 	course.maxEnroll = maxEnroll;
 	course.weekday = weekday;
 	course.session = session;
+
+	std::getline(ifs, ignore, ',');
+	int nStud;
+	std::string studentID;
+	std::string midTerm, final, other, total;
+	Student *ptrStudent;
+	ifs >> nStud;
+	course.scoreboards.resize(nStud);
+	getline(ifs, ignore);
+	for (int i = 0; i<nStud; ++i){
+		getline(ifs, ignore, ',');
+		getline(ifs, studentID,',');
+		ptrStudent = getStudent(students, studentID);
+		getline(ifs, midTerm, ',');
+		getline(ifs, final, ',');
+		getline(ifs, other,',');
+		getline(ifs, total,',');
+		course.scoreboards[i]->setScore(std::stof(midTerm), std::stof(final), std::stof(other), std::stof(total));
+		course.scoreboards[i]->ptrCourse = &course;
+		course.scoreboards[i]->ptrStudent = ptrStudent;
+		ptrStudent->scoreboards.append(course.scoreboards[i]);
+	}	
 	ifs.close();
 }
 

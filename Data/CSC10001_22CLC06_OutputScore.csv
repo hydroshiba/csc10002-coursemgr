@@ -1,0 +1,14 @@
+Course ID,CSC10001_22CLC06
+Class ID,NMLT_22CLC06
+Course name,Introduction to Programming
+Teacher,Le Ngoc Thanh
+Number of credits,4
+Max Enrolled,50
+Weekday,MON
+Session,7:30
+Students,4
+No,ID,Midterm,Final,Other,Total
+1,0001, 1, 2, 3, 4
+2,0002, 5, 6, 7, 8
+3,0003, 6, 7, 8, 9
+4,0004, 5, 6, 7, 8
