@@ -26,6 +26,8 @@ struct SchoolYear {
 
     void removeClass(Class& CLASS);
 
+    void removeAllClass();
+
     std::string getPeriod();
 };
 

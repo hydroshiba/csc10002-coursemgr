@@ -26,6 +26,9 @@ struct Class {
 
     Vector<std::string> getListCourse();
 
+    void removeAllStudent();
+
+
     Student* getStudent(const std::string& studentID);
 
     void displayScoreboardScreen(const Semester& semester);

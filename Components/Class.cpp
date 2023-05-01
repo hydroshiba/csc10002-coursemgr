@@ -19,11 +19,7 @@ void Class::update(SchoolYear* ptrSchoolYear) {
 void Class::update(const std::string& name) {
     this->name = name;
 }
-/*
-void Class::update(Vector<Student>& students) {
-    this->students = students;
-}
-*/
+
 void Class::addStudent(Student& student){
     Student *ptrStudent = &student;
     students.append(ptrStudent);
@@ -35,6 +31,13 @@ void Class::removeStudent(Student& student){
         if (*students[i] == student)
             students.remove(&students[i]);
     student.ptrClass = nullptr;
+}
+
+void Class::removeAllStudent() {
+    for (int i = 0; i < students.size(); i++) {
+        students[i]->ptrClass = nullptr;
+    }
+    students.~Vector();
 }
 
 Student* Class::getStudent(const std::string& studentID) {

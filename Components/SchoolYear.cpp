@@ -57,6 +57,13 @@ void SchoolYear::removeClass(Class& CLASS) {
     CLASS.ptrSchoolYear = nullptr;
 }
 
+void SchoolYear::removeAllClass() {
+    for (int i = 0; i < classes.size(); i++) {
+        classes[i].removeAllStudent();
+    }
+    classes.~Vector();
+}
+
 std::string SchoolYear::getPeriod() {
     return std::to_string(start) + " - " + std::to_string(start + 4);
 }
