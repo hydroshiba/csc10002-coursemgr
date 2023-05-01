@@ -69,3 +69,18 @@ void sortSchoolYearList (Vector<SchoolYear>& schoolYears, const int& left, const
 	sortSchoolYearList (schoolYears, left, i);
 	sortSchoolYearList (schoolYears, i+1, right);
 }
+
+void sortAcademicYearList(Vector<AcademicYear>& academicYears, const int& left, const int& right){
+	if (left >= right) return;
+	int i = left, j = right;
+	unsigned int pivot = academicYears[i].start;
+	while (i < j){
+		while (academicYears[i].start < pivot) ++i;
+		while (academicYears[j].start > pivot) --j;
+		std::swap(academicYears[i], academicYears[j]);
+		++i;
+		--j;
+	}
+	sortAcademicYearList (academicYears, left, i);
+	sortAcademicYearList (academicYears, i+1, right);
+}
