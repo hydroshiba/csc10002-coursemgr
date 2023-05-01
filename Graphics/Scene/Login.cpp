@@ -29,11 +29,6 @@ Login::Login() {
 	password.centerX();
 	password.defaultText = "Password";
 
-	test.setPos({200, 200});
-	test.setSize({400, 50});
-
-	for(int i = 1; i <= 50; ++i) test.add(std::to_string(i));
-
 	invalid = "";
 	invalid.setColor(RED);
 	invalid.setSize(24);
@@ -49,8 +44,6 @@ void Login::render() {
 	username.render(mousePoint);
 	password.render(mousePoint);
 	invalid.render();
-
-	test.render(mousePoint);
 }
 
 Scene* Login::process() {
@@ -91,10 +84,8 @@ Scene* Login::process() {
 		return this;
 	}
 
-	if(!test.process(mousePoint)) {
-		username.process(mousePoint);
-		password.process(mousePoint);
-	}
+	username.process(mousePoint);
+	password.process(mousePoint);
 
 	return this;
 }

@@ -22,8 +22,6 @@ private:
 	TextBox title, invalid;
 	InputBox username, password;
 
-	DropBox test;
-
 public: 
 	Login();
 	Scene* process();
