@@ -19,15 +19,40 @@
 // Remove student list
 bool removeListStudent() {
 	students.~Vector();
-	if (students.size() != 0) return false;
-	return true;
+	return (students.size() != 0);
 }
 
 // Remove staff list
 bool removeListStaff() {
 	staffs.~Vector();
-	if (staffs.size() != 0) return false;
-	return true;
+	return (staffs.size() == 0);
+}
+
+// Remove list SchoolYear - Free memory
+bool removeListSchoolYear() {
+	for (int i = 0; i < schoolYears.size(); i++) {
+		schoolYears[i].removeAllClass();
+	}
+	schoolYears.~Vector();
+	return (schoolYears.size() == 0);
+}
+
+// Remove list AcademicYear - Free memory
+bool removeListAcademicYear() {
+	for (int i = 0; i < academicYears.size(); i++) {
+		academicYears[i].removeAllSemester();
+	}
+	academicYears.~Vector();
+	return (academicYears.size() == 0);
+}
+
+// Free memory
+bool freeMemory() {
+	bool b1 = removeListSchoolYear();
+	bool b2 = removeListAcademicYear();
+	bool b3 = removeListStaff();
+	bool b4 = removeListStudent();
+	return (b1 && b2 && b3 && b4);
 }
 
 // Remove student from School - Button
@@ -67,15 +92,6 @@ bool removeStaff(string curStaffID, Vector<Staff>&staffs, const string & staffID
 	return true;
 }
 
-// Remove list SchoolYear - Free memory
-bool removeListSchoolYear(Vector<SchoolYear>& schoolYears) {
-	for (int i = 0; i < schoolYears.size(); ++i) {
-		removeListClasses(schoolYears[i]);
-		schoolYears.remove(&schoolYears[i]);
-	}
-	return true;
-}
-
 // Remove SchoolYear - Button
 bool removeSchoolYear(Vector<SchoolYear>& schoolYears, const string& start, string& outStr) {
 	if (start.empty()) {
@@ -90,15 +106,6 @@ bool removeSchoolYear(Vector<SchoolYear>& schoolYears, const string& start, stri
 	ptrSchoolYear->removeAllClass();
 	schoolYears.remove(ptrSchoolYear);
 	outStr = "Successfully deleted the school year with start year " + start;
-	return true;
-}
-
-// Remove List Classes - Free memory
-bool removeListClasses(SchoolYear& schoolYear) {
-	for (int i = 0; i < schoolYear.classes.size(); ++i) {
-		removeListStudents(schoolYear.classes[i]);
-		schoolYear.classes.remove(&schoolYear.classes[i]);
-	}
 	return true;
 }
 
@@ -136,24 +143,6 @@ bool removeStudentFromClass(Class& CLASS, const string& studentID, string& outSt
 	return true;
 }
 
-// Remove List Students - Free memory
-bool removeListStudents(Class& thisClass) {
-	for (int i = 0; i < thisClass.students.size(); ++i) {
-		thisClass.students[i]->scoreboards.~Vector(); // delete a student's scoreboard pointers
-		thisClass.students.remove(&thisClass.students[i]);
-	}
-	return true;
-}
-
-// Remove list AcademicYear - Free memory
-bool removeListAcademicYear(Vector<AcademicYear>& academicYears) {
-	for (int i = 0; i < academicYears.size(); ++i) {
-		removeListSemesters(academicYears[i]);
-		academicYears.remove(&academicYears[i]);
-	}
-	return true;
-}
-
 // Remove AcademicYear - Button
 bool removeAcademicYear(Vector<AcademicYear>& academicYears, const string& start, string& outStr) {
 	if (start.empty()) {
@@ -168,15 +157,6 @@ bool removeAcademicYear(Vector<AcademicYear>& academicYears, const string& start
 	ptrAcademicYear->removeAllSemester();
 	academicYears.remove(ptrAcademicYear);
 	outStr = "Successfully deleted the academic year with start year " + start;
-	return true;
-}
-
-// Remove List Semesters - Free memory
-bool removeListSemesters(AcademicYear& academicYear) {
-	for (int i = 0; i < academicYear.semesters.size(); ++i) {
-		removeListCourses(academicYear.semesters[i]);
-		academicYear.semesters.remove(&academicYear.semesters[i]);
-	}
 	return true;
 }
 
@@ -196,17 +176,6 @@ bool removeSemester(AcademicYear& academicYear, const string& semesterID, string
 	}
 	academicYear.removeSemester(*ptrSemester);
 	outStr = "Successfully removed semester " + semesterID + " from academic year " + academicYear.getPeriod();
-	return true;
-}
-
-// Remove List Courses - Free memory
-bool removeListCourses(Semester & semester) {
-	for (int i = 0; i < semester.courses.size(); ++i) {
-		for (int j = 0; j < semester.courses[i].scoreboards.size(); ++j)
-			delete semester.courses[i].scoreboards[j]; // delete scoreboard
-		semester.courses[i].scoreboards.~Vector(); // delete Vector pointer of Scoreboards
-		semester.courses.remove(&semester.courses[i]); // delete course
-	}
 	return true;
 }
 
@@ -247,10 +216,4 @@ bool removeStudFromCourse(Course& course, const string& studentID, string& outSt
 	return true;
 }
 
-// Free memory
-bool freeMemory(Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears) {
-	bool b1 = removeListSchoolYear(schoolYears);
-	bool b2 = removeListAcademicYear(academicYears);
-	return (b1 && b2);
-}
 //----------------------------------------------------------------------------------------------//
