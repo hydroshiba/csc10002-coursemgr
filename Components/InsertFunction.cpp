@@ -144,6 +144,7 @@ bool importStudentListOfClassFromFile(Vector<Student> &students, Class& actClass
 		outStr = "Student list file is empty!";
 		return false;
 	}
+	actClass.students.resize(n);
 	getline(inF, ignore);
 	for (size_t i = 0; i < n; i++) {
 		string studentID;
@@ -158,7 +159,7 @@ bool importStudentListOfClassFromFile(Vector<Student> &students, Class& actClass
 			outStr = "Student with ID " + studentID + " have been already existed in class " + ptrStudent->ptrClass->name;
 			return false;
 		}
-		actClass.students.append(ptrStudent);
+		actClass.students[i] = ptrStudent;
 	}
 	inF.close();
 	outStr = "Complete add list of student to class " + actClass.name + "!";

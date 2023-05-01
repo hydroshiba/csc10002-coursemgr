@@ -29,7 +29,7 @@ Vector<std::string> getListSchoolYear(Vector<SchoolYear>& schoolYears) {
 Vector<std::string> getListAcademicYear(Vector<AcademicYear>& academicYears) {
 	Vector<std::string> listAYs(academicYears.size());
 	for (int i = 0; i < listAYs.size(); i++) {
-		listAYs[i] = std::to_string(academicYears[i].start);
+		listAYs[i] = academicYears[i].getPeriod();
 	}
 	return listAYs;
 }

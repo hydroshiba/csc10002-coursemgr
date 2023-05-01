@@ -73,6 +73,7 @@ bool removeSchoolYear(Vector<SchoolYear>& schoolYears, const string& start, stri
 		outStr = "SchoolYear with start year " + start + " is not existed!";
 		return false;
 	}
+	ptrSchoolYear->removeAllClass();
 	schoolYears.remove(ptrSchoolYear);
 	outStr = "Successfully deleted the school year with start year " + start;
 	return true;
@@ -98,6 +99,7 @@ bool removeClass(SchoolYear& schoolYear, const string& className, string& outStr
 		outStr = "Class " + className + " have not been already existed!";
 		return false;
 	}
+	ptrClass->removeAllStudent();
 	schoolYear.removeClass(*ptrClass);
 	outStr = "Successfully removed class " + className + " from school year " + schoolYear.getPeriod();
 	return true;
@@ -149,6 +151,7 @@ bool removeAcademicYear(Vector<AcademicYear>& academicYears, const string& start
 		outStr = "AcademicYear with start year " + start + " is not existed!";
 		return false;
 	}
+	ptrAcademicYear->removeAllSemester();
 	academicYears.remove(ptrAcademicYear);
 	outStr = "Successfully deleted the academic year with start year " + start;
 	return true;
@@ -173,6 +176,9 @@ bool removeSemester(AcademicYear& academicYear, const string& semesterID, string
 	if (ptrSemester == nullptr) {
 		outStr = "This SemesterID " + semesterID + " have not been already existed in this AcademicYear " + academicYear.getPeriod();
 		return false;
+	}
+	for (int i = 0; i < ptrSemester->courses.size(); i++) {
+		ptrSemester->removeAllCourse();
 	}
 	academicYear.removeSemester(*ptrSemester);
 	outStr = "Successfully removed semester " + semesterID + " from academic year " + academicYear.getPeriod();
@@ -201,6 +207,7 @@ bool removeCourse(Semester& semester, const string& courseID, string& outStr) {
 		outStr = "Course with ID " + courseID + " have not been already existed in this semester!";
 		return false;
 	}
+	ptrCourse->removeAllStudent();
 	semester.removeCourse(*ptrCourse);
 	outStr = "Successfully removed course " + courseID + " from semester " + semester.semesterID;
 	return true;
