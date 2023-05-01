@@ -13,6 +13,10 @@ ListSchoolYearScene::ListSchoolYearScene() {
     chooseSchoolYear.setLabel("List of School Year");
     chooseSchoolYear.setPos({400, 240});
     chooseSchoolYear.setSize({300, 50});
+
+    view.label = "View";
+    view.setPos({800, 240});
+    view.setSize({150, 50});
     //--------------------------------------
     back.label = "Back";
     back.setPos({1000, 600});
@@ -24,6 +28,7 @@ void ListSchoolYearScene::render() {
     //--------------------------------------
     viewYear.render();
     chooseSchoolYear.render(mousePoint);
+    view.render(mousePoint);
     //--------------------------------------
     back.render(mousePoint);
 }
@@ -31,6 +36,9 @@ void ListSchoolYearScene::render() {
 Scene* ListSchoolYearScene::process() {
     this->mousePoint = GetMousePosition();
     chooseSchoolYear.process(mousePoint);
+    if (view.clicked(mousePoint)) {
+        std::cout << "View clicked\n";
+    }
     if (back.clicked(mousePoint)) return registry.staffScene;
     return this;
 }

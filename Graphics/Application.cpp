@@ -14,7 +14,7 @@ Application::Application() {
     registry.editScene = new EditCourse();
     registry.schoolYearScene = new SchoolYearScene();
     registry.listSchoolYearScene = new ListSchoolYearScene();
-    scene = registry.schoolYearScene;
+    scene = registry.listSchoolYearScene;
 }
 
 Application::~Application() {

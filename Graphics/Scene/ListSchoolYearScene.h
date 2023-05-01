@@ -18,6 +18,7 @@ private:
     
     TextBox viewYear;
     DropBox chooseSchoolYear;
+    Button view;
 
     Button back;
 public:
