@@ -5,10 +5,10 @@
 
 /*		Remove function		*/
 
-// Remove student list
+// Remove student list - Free memory
 bool removeListStudent();
 
-// Remove staff list
+// Remove staff list - Free memory
 bool removeListStaff();
 
 // Remove list SchoolYear - Free memory
@@ -45,7 +45,7 @@ bool removeSemester(AcademicYear& academicYear, const string& semesterID, string
 bool removeCourse(Semester& semester, const string& courseID, string& outStr); 
 
 // Remove student from course
-bool removeStudFromCourse(Course& course, const string& studentID, string& outStr); // Inputbox
+bool removeStudFromCourse(Course& course, const string& studentID, string& outStr); 
 
 //----------------------------------------------------------------------------------------------//
 

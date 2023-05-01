@@ -16,13 +16,13 @@
 
 /*		Remove function		*/
 
-// Remove student list
+// Remove student list - Free memory
 bool removeListStudent() {
 	students.~Vector();
-	return (students.size() != 0);
+	return (students.size() == 0);
 }
 
-// Remove staff list
+// Remove staff list - Free memory
 bool removeListStaff() {
 	staffs.~Vector();
 	return (staffs.size() == 0);

@@ -26,10 +26,4 @@ Vector<std::string> getListCourse(const Semester& semester);
 // Table
 Vector<Vector<std::string>> getTableContentOfScoreboardsofStudent(const Student& student);
 
-// 19. export list of students in course to csv file
-bool exportListOfStudent(Course& course);
-
-// 20. import scoreboard of course
-bool importScoreBoardOfCourse(Course& course);
-
 #endif // !DISPLAY_FUNCTION_H

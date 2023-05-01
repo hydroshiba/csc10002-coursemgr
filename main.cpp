@@ -28,10 +28,10 @@ int main() {
     uploadListStudent(students);
     uploadListStaff(staffs);
     Application app;
-    
     while(!app.shouldClose()) {
         app.run();
     }
     downloadListStudent(students);
     downloadListStaff(staffs);
+    freeMemory();
 }
