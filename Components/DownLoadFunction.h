@@ -11,7 +11,7 @@ void downloadSchoolYearFolder(SchoolYear& schoolYear);
 void downloadListStaff(Vector<Staff>& staffs);
 
 void downloadListStudent(Vector<Student>& students);
-// Download Student ID
+// Download Student ID In Class
 void downloadDataStudClassFile(Class& actClass);
 
 void downloadStudentFolder(Student& student);

@@ -151,7 +151,7 @@ void downloadSemesterFolder(Semester& semester) {
 		ofs << semester.courses[i].ID << std::endl;
 	for (int i = 0; i < semester.courses.size(); i++)
 	{
-		downloadCourseFolder(semester.courses[i]);
+		// downloadCourseFolder(semester.courses[i]);
 		dowdloadScoreboardFile(semester.courses[i]);
 	}
 	ofs.close();
@@ -174,6 +174,14 @@ void downloadCourseFolder(Course& course) {
 void dowdloadScoreboardFile(Course& course) {
 	std::string scoreBoardFilePath = getOutputScoreStudCourseFilePath(course);
 	std::ofstream ofs(scoreBoardFilePath);
+	ofs << "Course ID," << course.ID << std::endl;
+	ofs << "Class ID," << course.classID << std::endl;
+	ofs << "Course name," << course.name << std::endl;
+	ofs << "Teacher," << course.teacher << std::endl;
+	ofs << "Number of credits," << course.credits << std::endl;
+	ofs << "Weekday," << weekday_to_string(course.weekday) << std::endl;
+	ofs << "Session," << session_to_string(course.session) << std::endl;
+	ofs << "Students," << course.scoreboards.size() << std::endl;
 	course.displayScoreBoardFile(ofs);
 	ofs.close();
 }

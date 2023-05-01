@@ -175,11 +175,10 @@ void Course::displayScoreBoards(std::ostream& outDev) {
 
 void Course::displayScoreBoardFile(std::ostream& outDev) {
     displayInfoFile(outDev);
-    outDev << "No,ID,Fullname,Class,Midterm,Final,Other,Total" << std::endl;
+    outDev << "No,ID,Midterm,Final,Other,Total" << std::endl;
     for (int i = 0; i < scoreboards.size(); i++)
     {
-        outDev << i + 1 << "," << scoreboards[i]->ptrStudent->ID << "," << scoreboards[i]->ptrStudent->name.get() << ",";
-        outDev << scoreboards[i]->ptrStudent->ptrClass->name << ",";
+        outDev << i + 1 << "," << scoreboards[i]->ptrStudent->ID << ",";
         outDev << scoreboards[i]->midterm << "," << scoreboards[i]->final << "," << scoreboards[i]->other << ",";
         outDev << scoreboards[i]->total << std::endl;
     }
