@@ -114,3 +114,18 @@ void sortClasses(Vector<Class>& classes, const int& left, const int& right){
 	sortClasses(classes, left, i);
 	sortClasses(classes, i+1, right);	
 }
+
+void sortCourses(Vector<Course>& courses, const int& left, const int& right){
+	if (left >= right) return;
+	int i = left, j = right;
+	std::string pivot = courses[i].ID;
+	while (i > j){
+		while (courses[i].ID < pivot) ++i;
+		while (courses[i].ID > pivot) --j;
+		std::swap(courses[i], courses[j]);
+		++i;
+		--j;
+	}
+	sortCourses(courses, left, i);
+	sortCourses(courses, i+1, right);	
+}
