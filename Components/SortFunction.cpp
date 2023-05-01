@@ -144,3 +144,18 @@ void sortStudentsInClass(Class& CLASS, const int& left, const int& right){
 	sortStudentsInClass(CLASS, left, i);
 	sortStudentsInClass(CLASS, i+1, right);
 }
+
+void sortStudentsInCourse(Course& course, const int& left, const int& right){
+	if (left >= right) return;
+	int i = left, j = right;
+	std::string pivot = course.scoreboards[i]->ptrStudent->ID;
+	while (i < j){
+		while (course.scoreboards[i]->ptrStudent->ID < pivot) ++i;
+		while (course.scoreboards[j]->ptrStudent->ID > pivot) --j;
+		std::swap(course.scoreboards[i]->ptrStudent, course.scoreboards[j]->ptrStudent);
+		++i;
+		--j;
+	}
+	sortStudentsInCourse(course, left, i);
+	sortStudentsInCourse(course, i+1, right);
+}

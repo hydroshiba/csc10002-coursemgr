@@ -18,5 +18,7 @@ void sortClasses(Vector<Class>& classes, const int& left, const int& right);
 void sortCourses(Vector<Course>& courses, const int& left, const int& right);
 
 void sortStudentsInClass(Class& CLASS, const int& left, const int& right);
+
+void sortStudentsInCourse(Course& course, const int& left, const int& right);
 #endif // !SORT_FUNCTION_H
 
