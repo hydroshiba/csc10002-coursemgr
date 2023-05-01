@@ -89,7 +89,7 @@ void sortSemesters(Vector<Semester>& semesters, const int& left, const int& righ
 	if (left >= right) return;
 	int i = left, j = right;
 	std::string pivot = semesters[i].semesterID;
-	while (i > j){
+	while (i < j){
 		while (semesters[i].semesterID < pivot) ++i;
 		while (semesters[i].semesterID > pivot) --j;
 		std::swap(semesters[i], semesters[j]);
@@ -104,7 +104,7 @@ void sortClasses(Vector<Class>& classes, const int& left, const int& right){
 	if (left >= right) return;
 	int i = left, j = right;
 	std::string pivot = classes[i].name;
-	while (i > j){
+	while (i < j){
 		while (classes[i].name < pivot) ++i;
 		while (classes[i].name > pivot) --j;
 		std::swap(classes[i], classes[j]);
@@ -119,7 +119,7 @@ void sortCourses(Vector<Course>& courses, const int& left, const int& right){
 	if (left >= right) return;
 	int i = left, j = right;
 	std::string pivot = courses[i].ID;
-	while (i > j){
+	while (i < j){
 		while (courses[i].ID < pivot) ++i;
 		while (courses[i].ID > pivot) --j;
 		std::swap(courses[i], courses[j]);
@@ -128,4 +128,19 @@ void sortCourses(Vector<Course>& courses, const int& left, const int& right){
 	}
 	sortCourses(courses, left, i);
 	sortCourses(courses, i+1, right);	
+}
+
+void sortStudentsInClass(Class& CLASS, const int& left, const int& right){
+	if (left >= right) return;
+	int i = left, j = right;
+	std::string pivot = CLASS.students[i]->ID;
+	while (i < j){
+		while (CLASS.students[i]->ID < pivot) ++i;
+		while (CLASS.students[j]->ID > pivot) --j;
+		std::swap(CLASS.students[i], CLASS.students[j]);
+		++i;
+		--j;
+	}
+	sortStudentsInClass(CLASS, left, i);
+	sortStudentsInClass(CLASS, i+1, right);
 }
