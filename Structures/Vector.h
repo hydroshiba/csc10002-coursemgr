@@ -119,6 +119,9 @@ public:
 
     ~Vector() {
         delete[] array;
+        array = nullptr;
+        length = 0;
+        capacity = 1;
     }
 };
 
