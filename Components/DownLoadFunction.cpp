@@ -17,7 +17,7 @@
 
 #include "SortFunction.h"
 
-void downloadAllData(Vector<Staff>& staffs, Vector <Student>& students, Vector <SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears) {
+void downloadAllData() {
 	downloadListStudent(students);
 	downloadListStaff(staffs);
 	downloadListSchoolYearFolder(schoolYears);
@@ -60,14 +60,11 @@ void downloadListStaff(Vector<Staff>& staffs){
 void downloadListSchoolYearFolder(Vector <SchoolYear>& schoolYears) {
 	std::string listSchoolYearDir = getListSchoolYearFilePath();
 	std::ofstream ofs(listSchoolYearDir);
-	/*if (!ofs.is_open()){
-		std::cout << "Cannot open " << listSchoolYearDir << '\n';
-		return;
-	}*/
-	ofs << schoolYears.size() << '\n';
+	ofs << "Number of SchoolYears, " << schoolYears.size() << '\n';
+	ofs << "No, SchoolYear\n";
 	for (int i = 0; i < schoolYears.size(); ++i) {
-		ofs << schoolYears[i].start << '\n';
-		downloadSchoolYearFolder(schoolYears[i]);
+		ofs << std::to_string(i + 1) << ", " << std::to_string(schoolYears[i].start) << '\n';
+		//downloadSchoolYearFolder(schoolYears[i]);
 	}
 	ofs.close();
 }

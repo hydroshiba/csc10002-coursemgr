@@ -33,11 +33,11 @@ std::string getListStudentFilePath(){
 }
 
 std::string getListSchoolYearFilePath() {
-	return "Data/SchoolYear/ListSchoolYear.txt";
+	return "Data/SchoolYear/ListSchoolYear.csv";
 }
 
 std::string getListAcademicYearFilePath() {
-	return "Data/AcademicYear/ListAcademicYear.txt";
+	return "Data/AcademicYear/ListAcademicYear.csv";
 }
 
 std::string getSchoolYearFolderPath(const SchoolYear& schoolyear) {
@@ -48,7 +48,7 @@ std::string getSchoolYearFolderPath(const SchoolYear& schoolyear) {
 
 std::string getInputSchoolYearFilePath(const SchoolYear& schoolyear) {
 	std::string schoolYearFolderPath = getSchoolYearFolderPath(schoolyear);
-	return schoolYearFolderPath + "HCMUS_" + std::to_string(schoolyear.start) + ".txt";
+	return schoolYearFolderPath + "HCMUS_" + std::to_string(schoolyear.start) + ".csv";
 }
 
 std::string getClassFolderPath(const Class& CLASS) {
@@ -65,7 +65,7 @@ std::string getInputStudClassFilePath(const Class& CLASS) {
 
 std::string getDataStudClassFilePath(const Class& CLASS) {
 	std::string classFolderPath = getClassFolderPath(CLASS);
-	return classFolderPath + CLASS.name + "_StudData.txt";
+	return classFolderPath + CLASS.name + "_StudData.csv";
 }
 
 
@@ -99,7 +99,7 @@ std::string getAcademicYearFolderPath(const AcademicYear& academicYear) {
 
 std::string getAcademicYearFilePath(const AcademicYear& academicYear) {
 	std::string academicYearFolderPath = getAcademicYearFolderPath(academicYear);
-	return academicYearFolderPath + std::to_string(academicYear.start) + "_" + std::to_string(academicYear.start + 1) + ".txt";
+	return academicYearFolderPath + std::to_string(academicYear.start) + "_" + std::to_string(academicYear.start + 1) + ".csv";
 }
 
 std::string getSemesterFolderPath(const Semester& semester) {
@@ -110,7 +110,7 @@ std::string getSemesterFolderPath(const Semester& semester) {
 
 std::string getSemesterFilePath(const Semester& semester) {
 	std::string semesterFolderPath = getSemesterFolderPath(semester);
-	return semesterFolderPath + semester.semesterID + ".txt";
+	return semesterFolderPath + semester.semesterID + ".csv";
 }
 
 std::string getCourseFolderPath(const Course& course) {
@@ -121,7 +121,7 @@ std::string getCourseFolderPath(const Course& course) {
 
 std::string getCourseFilePath(const Course& course) {
 	std::string courseFolderPath = getCourseFolderPath(course);
-	return courseFolderPath + course.ID + ".txt";
+	return courseFolderPath + course.ID + ".csv";
 }
 
 std::string getInputListStudCourseFilePath(const Course& course) {
