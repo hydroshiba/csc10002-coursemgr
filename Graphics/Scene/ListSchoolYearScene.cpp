@@ -50,7 +50,7 @@ void ListSchoolYearScene::render() {
 }
 
 Scene* ListSchoolYearScene::process() {
-    this->mousePoint = GetMousePosition();
+    mousePoint = GetMousePosition();
     chooseSchoolYear.process(mousePoint);
     if (view.clicked(mousePoint)) {
         std::cout << "View clicked\n";
@@ -58,6 +58,13 @@ Scene* ListSchoolYearScene::process() {
     inputSchoolYearAdded.process(mousePoint);
     if (add.clicked(mousePoint)) {
         std::cout << "Add clicked\n";
+        std::string content = inputSchoolYearAdded.getContent();
+        std::string warning;
+        if (content != "") {
+            chooseSchoolYear.add(content);
+            // addSchoolYear(schoolYears, content, warning);
+        }
+        std::cout << warning << '\n';
     }
     if (back.clicked(mousePoint)) return registry.staffScene;
     return this;

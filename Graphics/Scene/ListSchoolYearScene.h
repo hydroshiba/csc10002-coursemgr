@@ -11,6 +11,9 @@
 #include "Objects/Dropbox.h"
 #include "Objects/InputBox.h"
 
+#include "C:/Users/User/Documents/GitHub/CSC10002-Course-Management/Components/Components.h"
+#include "C:/Users/User/Documents/GitHub/CSC10002-Course-Management/Components/InsertFunction.h"
+
 #include <iostream>
 
 class ListSchoolYearScene : public Scene {
