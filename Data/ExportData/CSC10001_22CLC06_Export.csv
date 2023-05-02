@@ -1,0 +1,13 @@
+CourseID, CSC10001_22CLC06
+ClassID, KTLT_22CLC06
+Classname, KTLT
+Teacher Le Ngoc Thanh
+Number of credits, 4
+Max enroll, 50
+Weekday, MON
+Session, 7:30
+Number of students, 3
+No, StudentID, Midterm, Final, Other, Total
+1, 22120001, 3, 4, 5, 6
+2, 22120002, 3, 4, 5, 6
+3, 22120003, 3, 4, 5, 6
