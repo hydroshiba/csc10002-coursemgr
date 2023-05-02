@@ -22,7 +22,7 @@ ListSchoolYearScene::ListSchoolYearScene() {
     addYear.setSize(30);
     addYear.setPos({100, 350});
 
-    inputSchoolYearAdded.defaultText = "Enter new School Year";
+    inputSchoolYearAdded.defaultText = "Enter School Year";
     inputSchoolYearAdded.setPos({400, 340});
     inputSchoolYearAdded.setSize({300, 50});
 
@@ -33,6 +33,10 @@ ListSchoolYearScene::ListSchoolYearScene() {
     removeYear = "Remove Year";
     removeYear.setSize(30);
     removeYear.setPos({100, 450});
+
+    inputSchoolYearRemoved.defaultText = "Enter School Year";
+    inputSchoolYearRemoved.setPos({400, 440});
+    inputSchoolYearRemoved.setSize({300, 50});
     //--------------------------------------
     back.label = "Back";
     back.setPos({1000, 600});
@@ -49,6 +53,9 @@ void ListSchoolYearScene::render() {
     addYear.render();
     inputSchoolYearAdded.render(mousePoint);
     add.render(mousePoint);
+    //--------------------------------------
+    removeYear.render();
+    inputSchoolYearRemoved.render(mousePoint);
     //--------------------------------------
     back.render(mousePoint);
 }
@@ -70,6 +77,7 @@ Scene* ListSchoolYearScene::process() {
         }
         std::cout << warning << '\n';
     }
+    inputSchoolYearRemoved.process(mousePoint);
     if (back.clicked(mousePoint)) return registry.staffScene;
     return this;
 }
