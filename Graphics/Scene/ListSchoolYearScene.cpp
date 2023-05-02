@@ -30,6 +30,10 @@ ListSchoolYearScene::ListSchoolYearScene() {
     add.setPos({800, 340});
     add.setSize({150, 50});
     //--------------------------------------
+    removeYear = "Remove Year";
+    removeYear.setSize(30);
+    removeYear.setPos({100, 450});
+    //--------------------------------------
     back.label = "Back";
     back.setPos({1000, 600});
     back.setSize({200, 50});

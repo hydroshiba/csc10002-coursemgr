@@ -28,6 +28,10 @@ private:
     InputBox inputSchoolYearAdded;
     Button add;
 
+    TextBox removeYear;
+    InputBox inputSchoolYearRemoved;
+    Button remove;
+
     Button back;
 public:
     ListSchoolYearScene();
