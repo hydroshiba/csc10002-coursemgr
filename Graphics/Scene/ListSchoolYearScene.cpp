@@ -37,6 +37,10 @@ ListSchoolYearScene::ListSchoolYearScene() {
     inputSchoolYearRemoved.defaultText = "Enter School Year";
     inputSchoolYearRemoved.setPos({400, 440});
     inputSchoolYearRemoved.setSize({300, 50});
+
+    remove.label = "Remove";
+    remove.setPos({800, 440});
+    remove.setSize({150, 50});
     //--------------------------------------
     back.label = "Back";
     back.setPos({1000, 600});
@@ -56,6 +60,7 @@ void ListSchoolYearScene::render() {
     //--------------------------------------
     removeYear.render();
     inputSchoolYearRemoved.render(mousePoint);
+    remove.render(mousePoint);
     //--------------------------------------
     back.render(mousePoint);
 }
@@ -78,6 +83,9 @@ Scene* ListSchoolYearScene::process() {
         std::cout << warning << '\n';
     }
     inputSchoolYearRemoved.process(mousePoint);
+    if (remove.clicked(mousePoint)) {
+        std::cout << "Remove clicked\n";
+    }
     if (back.clicked(mousePoint)) return registry.staffScene;
     return this;
 }
