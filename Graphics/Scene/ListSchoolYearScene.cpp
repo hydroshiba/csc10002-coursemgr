@@ -22,13 +22,25 @@ ListSchoolYearScene::ListSchoolYearScene() {
     addYear.setSize(30);
     addYear.setPos({100, 350});
 
-    inputSchoolYearAdded.defaultText = "Enter new School Year";
+    inputSchoolYearAdded.defaultText = "Enter School Year";
     inputSchoolYearAdded.setPos({400, 340});
     inputSchoolYearAdded.setSize({300, 50});
 
     add.label = "Add";
     add.setPos({800, 340});
     add.setSize({150, 50});
+    //--------------------------------------
+    removeYear = "Remove Year";
+    removeYear.setSize(30);
+    removeYear.setPos({100, 450});
+
+    inputSchoolYearRemoved.defaultText = "Enter School Year";
+    inputSchoolYearRemoved.setPos({400, 440});
+    inputSchoolYearRemoved.setSize({300, 50});
+
+    remove.label = "Remove";
+    remove.setPos({800, 440});
+    remove.setSize({150, 50});
     //--------------------------------------
     back.label = "Back";
     back.setPos({1000, 600});
@@ -46,11 +58,15 @@ void ListSchoolYearScene::render() {
     inputSchoolYearAdded.render(mousePoint);
     add.render(mousePoint);
     //--------------------------------------
+    removeYear.render();
+    inputSchoolYearRemoved.render(mousePoint);
+    remove.render(mousePoint);
+    //--------------------------------------
     back.render(mousePoint);
 }
 
 Scene* ListSchoolYearScene::process() {
-    this->mousePoint = GetMousePosition();
+    mousePoint = GetMousePosition();
     chooseSchoolYear.process(mousePoint);
     if (view.clicked(mousePoint)) {
         std::cout << "View clicked\n";
@@ -58,6 +74,17 @@ Scene* ListSchoolYearScene::process() {
     inputSchoolYearAdded.process(mousePoint);
     if (add.clicked(mousePoint)) {
         std::cout << "Add clicked\n";
+        std::string content = inputSchoolYearAdded.getContent();
+        std::string warning;
+        if (content != "") {
+            chooseSchoolYear.add(content);
+            // addSchoolYear(schoolYears, content, warning);
+        }
+        std::cout << warning << '\n';
+    }
+    inputSchoolYearRemoved.process(mousePoint);
+    if (remove.clicked(mousePoint)) {
+        std::cout << "Remove clicked\n";
     }
     if (back.clicked(mousePoint)) return registry.staffScene;
     return this;
