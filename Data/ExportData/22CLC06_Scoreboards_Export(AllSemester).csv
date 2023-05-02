@@ -1,7 +1,7 @@
-Classname, 22CLC06
-Number of students, 4
-No, StudentID
-1, 22120001
-2, 22120002
-3, 22120003
-4, 22120004
+Class,22CLC06
+Number of students,4
+No, Student ID, Fullname, CSC10001_22CLC06, CSC10002_22CLC06, CSC10004_22CLC06, MTH22_22CLC04, PHY_22CLC05, Overall GPA
+1, 0001, Nguyen Gia Huy, 1, 2, 3, x, 5, 6
+2, 0002, Dao Viet Hoang, 2, x, 3, x, 4, 5
+3, 0003, Phan Hai Minh, x, x, 3, 4, x, 5
+4, 0004, Quach Tran Quan Vinh, 3, x, x, x, 5, 6
