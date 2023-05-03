@@ -216,6 +216,12 @@ Scene* SchoolYearScene::process() {
             //change start year
         }
     }
-    if (back.clicked(mousePoint)) return registry.listSchoolYearScene;
+    if (back.clicked(mousePoint)) {
+        ptrSchoolYear_Global = nullptr;
+        inputClassAdded.clearContent();
+        inputClassRemoved.clearContent();
+        inputStartYear.clearContent();
+        return registry.listSchoolYearScene;
+    }
     return this;
 } 

@@ -92,28 +92,6 @@ StaffScene2::StaffScene2() {
 	textPassword.setSize(textBoxContentSize);
 	textPassword.setPos({ xPosTextBox, yPosTextBoxPassword });
 	//-----------------------------------------------------------------------------------
-	/*if (ptrStudent_Global == nullptr) {
-		textID.setContent(textID.getContent() + defaultTextBoxContent);
-		textFirstName.setContent(textFirstName.getContent() + defaultTextBoxContent);
-		textLastName.setContent(textLastName.getContent() + defaultTextBoxContent);
-		textGender.setContent(textGender.getContent() + defaultTextBoxContent);
-		textBirth.setContent(textBirth.getContent() + defaultTextBoxContent);
-		textSocialID.setContent(textSocialID.getContent() + defaultTextBoxContent);
-	}
-	else {
-		textID.setContent(textID.getContent() + ptrStudent_Global->ID);
-		textFirstName.setContent(textFirstName.getContent() + ptrStudent_Global->name.first);
-		textLastName.setContent(textLastName.getContent() + ptrStudent_Global->name.last);
-		textGender.setContent(textGender.getContent() + gender_to_string(ptrStudent_Global->gender));
-		textBirth.setContent(textBirth.getContent() + ptrStudent_Global->birth.get());
-		textSocialID.setContent(textSocialID.getContent() + ptrStudent_Global->socialID);
-		textPassword.setContent(textPassword.getContent() + std::to_string(ptrStudent_Global->getHashedPass()));
-	}*/
-	//-----------------------------------------------------------------------------------
-	/*if (ptrStudent_Global != nullptr)
-		inputID.defaultText = ptrStudent_Global->ID;
-	else
-		inputID.defaultText = defaultInputBoxContent;*/
 	inputID.defaultText = "Input StudentID";
 	inputID.setSize(inputBoxSize);
 	inputID.setPos({ xPosInputBox, yPosTextBoxID });
@@ -310,6 +288,8 @@ Scene* StaffScene2::process() {
 		inputBirth.clearContent();
 		inputSocialID.clearContent();
 		inputPassword.clearContent();
+		inputStudentID.clearContent();
+		inputStaffID.clearContent();
 		return registry.staffScene;
 	}
 		
