@@ -81,7 +81,6 @@ Scene* ListSchoolYearScene::process() {
     }
     inputSchoolYearAdded.process(mousePoint);
     if (add.clicked(mousePoint)) {
-        std::cout << "Add clicked\n";
         std::string content = inputSchoolYearAdded.getContent();
         std::string outStr;
         if (addSchoolYear(schoolYears, content, outStr)){
@@ -93,7 +92,14 @@ Scene* ListSchoolYearScene::process() {
     }
     inputSchoolYearRemoved.process(mousePoint);
     if (remove.clicked(mousePoint)) {
-        std::cout << "Remove clicked\n";
+        string startYear = inputSchoolYearRemoved.getContent();
+        string outStr;
+        if (removeSchoolYear(schoolYears, startYear, outStr)) {
+            // remove label in DropBox
+        }
+        ms = outStr;
+        ms.centerX();
+        inputSchoolYearRemoved.clearContent();
     }
     if (back.clicked(mousePoint)) return registry.staffScene;
     return this;

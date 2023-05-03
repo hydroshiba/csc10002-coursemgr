@@ -14,6 +14,7 @@
 #include "Components.h"
 #include "InsertFunction.h"
 #include "DisplayFunction.h"
+#include "RemoveFunction.h"
 
 #include <iostream>
 
