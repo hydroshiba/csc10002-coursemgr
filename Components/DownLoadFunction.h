@@ -4,6 +4,9 @@
 #include "Components.h"
 #include "User.h"
 
+
+bool downloadAllData();
+
 bool downloadListSchoolYearFolder();
 
 bool downloadSchoolYearFolder(SchoolYear& schoolYear);
@@ -15,8 +18,6 @@ bool downloadListStudent();
 bool downloadDataStudClassFile(Class& actClass);
 
 bool downloadStudentFolder(Student& student);
-
-bool downloadAllData(Vector<Staff::User>& staffs, Vector<Student>& students, Vector <SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears);
 
 bool downloadListAcademicYearFolder(Vector<AcademicYear>& academicYears);
 

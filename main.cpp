@@ -25,13 +25,11 @@
 /*--------------------------------------*/
 
 int main() {
-    uploadListStudent(students);
-    uploadListStaff(staffs);
+    if (!uploadAllData()) return 0;
     Application app;
     while(!app.shouldClose()) {
         app.run();
     }
-    downloadListStudent(students);
-    downloadListStaff(staffs);
+    if (!downloadAllData()) return 0;
     freeMemory();
 }

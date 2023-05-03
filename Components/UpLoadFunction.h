@@ -4,13 +4,13 @@
 #include "Components.h"
 #include "User.h"
 
-bool uploadAllData(Vector<Staff>& staffs, Vector<Student> &students, Vector<SchoolYear>& schoolYears, Vector<AcademicYear>& academicYears);
+bool uploadAllData();
 
-bool uploadListStaff(Vector<Staff>& staffs);
+bool uploadListStaff();
 
-bool uploadListStudent(Vector<Student>& students);
+bool uploadListStudent();
 
-bool uploadListSchoolYearFolder(Vector<Student> &students, Vector <SchoolYear>& schoolYears);
+bool uploadListSchoolYearFolder();
 
 bool uploadSchoolYearFolder(Vector<Student> &students, SchoolYear& schoolYear);
 

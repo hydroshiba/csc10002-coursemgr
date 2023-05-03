@@ -179,7 +179,7 @@ bool downloadCourseFolder(Course& course) {
 	return true;
 }
 
-bool dowdloadScoreboardFile(Course& course) {
+bool downloadScoreboardFile(Course& course) {
 	std::string scoreBoardFilePath = getOutputScoreStudCourseFilePath(course);
 	std::ofstream ofs(scoreBoardFilePath);
 	ofs << "Course ID," << course.ID << std::endl;
