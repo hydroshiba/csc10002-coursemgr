@@ -158,7 +158,7 @@ bool downloadSemesterFolder(Semester& semester) {
 	for (int i = 0; i < semester.courses.size(); i++)
 	{
 		// downloadCourseFolder(semester.courses[i]);
-		dowdloadScoreboardFile(semester.courses[i]);
+		downloadScoreboardFile(semester.courses[i]);
 	}
 	ofs.close();
 	return true;
