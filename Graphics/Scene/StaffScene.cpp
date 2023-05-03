@@ -249,20 +249,60 @@ Scene* StaffScene::process() {
 		return this;
 	}
 	//-------------------------------------------------------------------
-	else if (listAYs.clicked(mousePoint))
+	else if (listAYs.clicked(mousePoint)) {
+		inputAddID.clearContent();
+		inputAddFirstName.clearContent();
+		inputAddLastName.clearContent();
+		inputAddPassword.clearContent();
+		inputEditID.clearContent();
+		inputEditFirstName.clearContent();
+		inputEditLastName.clearContent();
+		inputEditPassword.clearContent();
+		message = "";
 		return registry.blank;
+	}
+		
 	//-------------------------------------------------------------------
 	else if (listSYs.clicked(mousePoint)) {
+		inputAddID.clearContent();
+		inputAddFirstName.clearContent();
+		inputAddLastName.clearContent();
+		inputAddPassword.clearContent();
+		inputEditID.clearContent();
+		inputEditFirstName.clearContent();
+		inputEditLastName.clearContent();
+		inputEditPassword.clearContent();
+		message = "";
 		return registry.listSchoolYearScene;
 	}
 		
 	//-------------------------------------------------------------------
 	else if (logout.clicked(mousePoint)) {
+		inputAddID.clearContent();
+		inputAddFirstName.clearContent();
+		inputAddLastName.clearContent();
+		inputAddPassword.clearContent();
+		inputEditID.clearContent();
+		inputEditFirstName.clearContent();
+		inputEditLastName.clearContent();
+		inputEditPassword.clearContent();
+		message = "";
 		ptrStaff_Global = nullptr;
 		return registry.login;
 	}
 	//-------------------------------------------------------------------
-	else if (next.clicked(mousePoint))
+	else if (next.clicked(mousePoint)) {
+		inputAddID.clearContent();
+		inputAddFirstName.clearContent();
+		inputAddLastName.clearContent();
+		inputAddPassword.clearContent();
+		inputEditID.clearContent();
+		inputEditFirstName.clearContent();
+		inputEditLastName.clearContent();
+		inputEditPassword.clearContent();
+		message = "";
 		return registry.staffScene2;
+	}
+		
 	return this;
 }

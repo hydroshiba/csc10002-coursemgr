@@ -104,6 +104,8 @@ Scene* ListSchoolYearScene::process() {
         ms.centerX();
         inputSchoolYearRemoved.clearContent();
     }
-    if (back.clicked(mousePoint)) return registry.staffScene;
+    if (back.clicked(mousePoint)) {
+        return registry.staffScene;
+    }
     return this;
 }
