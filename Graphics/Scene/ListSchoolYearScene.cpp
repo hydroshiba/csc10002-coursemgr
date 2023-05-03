@@ -80,6 +80,8 @@ Scene* ListSchoolYearScene::process() {
         const size_t i = static_cast<const size_t>(chooseSchoolYear.getSelected());
         if (i >= 0)
             ptrSchoolYear_Global = &schoolYears[i];
+        inputSchoolYearAdded.clearContent();
+        inputSchoolYearRemoved.clearContent();
         return registry.schoolYearScene;
     }
     inputSchoolYearAdded.process(mousePoint);
