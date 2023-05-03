@@ -78,11 +78,12 @@ Scene* ListSchoolYearScene::process() {
 
     if (view.clicked(mousePoint)) {
         const size_t i = static_cast<const size_t>(chooseSchoolYear.getSelected());
-        if (i >= 0)
+        if (i >= 0) {
             ptrSchoolYear_Global = &schoolYears[i];
-        inputSchoolYearAdded.clearContent();
-        inputSchoolYearRemoved.clearContent();
-        return registry.schoolYearScene;
+            inputSchoolYearAdded.clearContent();
+            inputSchoolYearRemoved.clearContent();
+            return registry.schoolYearScene;
+        }  
     }
     inputSchoolYearAdded.process(mousePoint);
     if (add.clicked(mousePoint)) {
@@ -100,13 +101,16 @@ Scene* ListSchoolYearScene::process() {
         string startYear = inputSchoolYearRemoved.getContent();
         string outStr;
         if (removeSchoolYear(schoolYears, startYear, outStr)) {
-            // remove label in DropBox
+            chooseSchoolYear.clear();
+            chooseSchoolYear.add(getListSchoolYear(schoolYears));
         }
         ms = outStr;
         ms.centerX();
         inputSchoolYearRemoved.clearContent();
     }
     if (back.clicked(mousePoint)) {
+        chooseSchoolYear.clear();
+        chooseSchoolYear.add(getListSchoolYear(schoolYears));
         inputSchoolYearAdded.clearContent();
         inputSchoolYearRemoved.clearContent();
         return registry.staffScene;
