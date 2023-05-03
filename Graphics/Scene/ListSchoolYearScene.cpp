@@ -11,6 +11,7 @@ ListSchoolYearScene::ListSchoolYearScene() {
     viewYear.setPos({100, 250});
 
     chooseSchoolYear.setLabel("List of School Year");
+    chooseSchoolYear.add(getListSchoolYear(schoolYears));
     chooseSchoolYear.setPos({400, 240});
     chooseSchoolYear.setSize({300, 50});
 
@@ -45,6 +46,10 @@ ListSchoolYearScene::ListSchoolYearScene() {
     back.label = "Back";
     back.setPos({1000, 600});
     back.setSize({200, 50});
+
+    ms = "";
+    ms.setSize(24);
+    ms.setY(680);
 }
 
 void ListSchoolYearScene::render() {
@@ -63,11 +68,14 @@ void ListSchoolYearScene::render() {
     remove.render(mousePoint);
     //--------------------------------------
     back.render(mousePoint);
+    //--------------------------------------
+    ms.render();
 }
 
 Scene* ListSchoolYearScene::process() {
     mousePoint = GetMousePosition();
     chooseSchoolYear.process(mousePoint);
+
     if (view.clicked(mousePoint)) {
         std::cout << "View clicked\n";
     }
@@ -75,12 +83,13 @@ Scene* ListSchoolYearScene::process() {
     if (add.clicked(mousePoint)) {
         std::cout << "Add clicked\n";
         std::string content = inputSchoolYearAdded.getContent();
-        std::string warning;
-        if (content != "") {
-            chooseSchoolYear.add(content);
-            // addSchoolYear(schoolYears, content, warning);
+        std::string outStr;
+        if (addSchoolYear(schoolYears, content, outStr)){
+            chooseSchoolYear.add(content);    
         }
-        std::cout << warning << '\n';
+        ms = outStr;
+        ms.centerX();
+        inputSchoolYearAdded.clearContent();
     }
     inputSchoolYearRemoved.process(mousePoint);
     if (remove.clicked(mousePoint)) {

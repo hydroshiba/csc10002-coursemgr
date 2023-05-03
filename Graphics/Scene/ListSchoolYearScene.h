@@ -13,6 +13,7 @@
 
 #include "Components.h"
 #include "InsertFunction.h"
+#include "DisplayFunction.h"
 
 #include <iostream>
 
@@ -31,6 +32,8 @@ private:
     TextBox removeYear;
     InputBox inputSchoolYearRemoved;
     Button remove;
+
+    TextBox ms;
 
     Button back;
 public:
