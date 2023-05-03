@@ -11,6 +11,9 @@
 #include "Objects/InputBox.h"
 
 #include "Scene/Blank.h"
+#include "Components.h"
+#include "SchoolYear.h"
+#include "Class.h"
 
 #include <iostream>
 class SchoolYearScene : public Scene {

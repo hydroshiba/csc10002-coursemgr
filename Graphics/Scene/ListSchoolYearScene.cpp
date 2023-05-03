@@ -77,7 +77,10 @@ Scene* ListSchoolYearScene::process() {
     chooseSchoolYear.process(mousePoint);
 
     if (view.clicked(mousePoint)) {
-        std::cout << "View clicked\n";
+        const size_t i = static_cast<const size_t>(chooseSchoolYear.getSelected());
+        if (i >= 0)
+            ptrSchoolYear_Global = &schoolYears[i];
+        return registry.schoolYearScene;
     }
     inputSchoolYearAdded.process(mousePoint);
     if (add.clicked(mousePoint)) {

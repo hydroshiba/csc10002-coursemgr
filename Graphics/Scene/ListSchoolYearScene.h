@@ -16,6 +16,7 @@
 #include "DisplayFunction.h"
 #include "RemoveFunction.h"
 
+#include "SchoolYear.h"
 #include <iostream>
 
 class ListSchoolYearScene : public Scene {

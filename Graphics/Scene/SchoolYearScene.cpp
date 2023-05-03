@@ -1,7 +1,7 @@
 #include "SchoolYearScene.h"
 
 SchoolYearScene::SchoolYearScene() {
-    sceneTitle = "School Year";
+    sceneTitle = "School Year Error";
     sceneTitle.setSize(50);
     sceneTitle.centerX();
     sceneTitle.setY(100);
@@ -169,6 +169,9 @@ void SchoolYearScene::render() {
 Scene* SchoolYearScene::process() {
     this->mousePoint = GetMousePosition();
     //--------------------------------------
+    if (ptrSchoolYear_Global != nullptr) {
+        sceneTitle = "School Year " + std::to_string(ptrSchoolYear_Global->start);
+    }
     listClass.process(mousePoint);
     if (view.clicked(mousePoint)) {
         if (listClass.getSelected() == -1)
