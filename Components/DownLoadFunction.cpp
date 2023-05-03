@@ -17,14 +17,15 @@
 
 #include "SortFunction.h"
 
-void downloadAllData() {
-	downloadListStudent(students);
-	downloadListStaff(staffs);
-	downloadListSchoolYearFolder(schoolYears);
-	downloadListAcademicYearFolder(academicYears);
+bool downloadAllData() {
+	bool b1 = downloadListStudent();
+	bool b2 = downloadListStaff();
+	bool b3 = downloadListSchoolYearFolder();
+	//bool b4 = downloadListAcademicYearFolder(academicYears);
+	return (b1 && b2 && b3);
 }
 
-void downloadListStudent(Vector<Student>& students){
+bool downloadListStudent(){
 	sortStudentList(students, 0, students.size() - 1);
 	std::string list_stud_dir = getListStudentFilePath();
 	std::ofstream ofs(list_stud_dir);
@@ -41,9 +42,10 @@ void downloadListStudent(Vector<Student>& students){
 		ofs << students[i].socialID << '\n';
 	}
 	ofs.close();
+	return true;
 }
 
-void downloadListStaff(Vector<Staff>& staffs){
+bool downloadListStaff(){
 	sortStaffList(staffs, 0, staffs.size() - 1);
 	std::string list_staff_dir = getListStaffFilePath();
 	std::ofstream ofs(list_staff_dir);
@@ -55,9 +57,10 @@ void downloadListStaff(Vector<Staff>& staffs){
 		ofs << (i + 1) << "," <<  staffs[i].name.first << "," << staffs[i].name.last << ","  << staffs[i].ID << "," << std::to_string(staffs[i].getHashedPass()) << std::endl;
 	}
 	ofs.close();
+	return true;
 }
 
-void downloadListSchoolYearFolder(Vector <SchoolYear>& schoolYears) {
+bool downloadListSchoolYearFolder() {
 	std::string listSchoolYearDir = getListSchoolYearFilePath();
 	std::ofstream ofs(listSchoolYearDir);
 	ofs << "Number of SchoolYears, " << schoolYears.size() << '\n';
@@ -67,9 +70,10 @@ void downloadListSchoolYearFolder(Vector <SchoolYear>& schoolYears) {
 		//downloadSchoolYearFolder(schoolYears[i]);
 	}
 	ofs.close();
+	return true;
 }
 
-void downloadSchoolYearFolder(SchoolYear& schoolYear) {
+bool downloadSchoolYearFolder(SchoolYear& schoolYear) {
 	std::string schoolYearDir = getInputSchoolYearFilePath(schoolYear);
 	std::ofstream ofs(schoolYearDir);
 	/*if (!ofs.is_open()){
@@ -83,9 +87,10 @@ void downloadSchoolYearFolder(SchoolYear& schoolYear) {
 		downloadDataStudClassFile(schoolYear.classes[i]);
 	}
 	ofs.close();
+	return true;
 }
 // Download student id
-void downloadDataStudClassFile(Class& actClass) {
+bool downloadDataStudClassFile(Class& actClass) {
 	std::string outputStudentDir = getDataStudClassFilePath(actClass);
 	std::ofstream ofs(outputStudentDir);
 	ofs << actClass.name << std::endl;
@@ -94,9 +99,10 @@ void downloadDataStudClassFile(Class& actClass) {
 		ofs << actClass.students[i]->ID << std::endl;
 	}
 	ofs.close();
+	return true;
 }
 
-void downloadStudentFolder(Student& student) {
+bool downloadStudentFolder(Student& student) {
 	std::string studentDir = getInputStandardIn4StudentFilePath(student);
 	std::ofstream ofs(studentDir);
 	/*if (!ofs.is_open()){
@@ -110,9 +116,10 @@ void downloadStudentFolder(Student& student) {
 	ofs << "SocialID," << student.socialID << std::endl;
 	ofs << "Class," << student.ptrClass->name << std::endl;
 	ofs.close();
+	return true;
 }
 
-void downloadListAcademicYearFolder(Vector<AcademicYear>& academicYears) {
+bool downloadListAcademicYearFolder(Vector<AcademicYear>& academicYears) {
 	std::string listAcademicYearFilePath = getListAcademicYearFilePath();
 	std::ofstream ofs(listAcademicYearFilePath);
 	ofs << academicYears.size() << std::endl;
@@ -122,9 +129,10 @@ void downloadListAcademicYearFolder(Vector<AcademicYear>& academicYears) {
 		downloadAcademicYearFolder(academicYears[i]);
 	}
 	ofs.close();
+	return true;
 }
 
-void downloadAcademicYearFolder(AcademicYear& academicYear) {
+bool downloadAcademicYearFolder(AcademicYear& academicYear) {
 	std::string academicYearFilePath = getAcademicYearFilePath(academicYear);
 	std::ofstream ofs(academicYearFilePath);
 	ofs << academicYear.start << std::endl;
@@ -135,9 +143,10 @@ void downloadAcademicYearFolder(AcademicYear& academicYear) {
 		downloadSemesterFolder(academicYear.semesters[i]);
 	}
 	ofs.close();
+	return true;
 }
 
-void downloadSemesterFolder(Semester& semester) {
+bool downloadSemesterFolder(Semester& semester) {
 	std::string semesterFilePath = getSemesterFilePath(semester);
 	std::ofstream ofs(semesterFilePath);
 	ofs << semester.semesterID << std::endl;
@@ -152,9 +161,10 @@ void downloadSemesterFolder(Semester& semester) {
 		dowdloadScoreboardFile(semester.courses[i]);
 	}
 	ofs.close();
+	return true;
 }
 
-void downloadCourseFolder(Course& course) {
+bool downloadCourseFolder(Course& course) {
 	std::string courseFilePath = getCourseFilePath(course);
 	std::ofstream ofs(courseFilePath);
 	ofs << course.ID << std::endl;
@@ -166,9 +176,10 @@ void downloadCourseFolder(Course& course) {
 	ofs << course.weekday << std::endl;
 	ofs << course.session << std::endl;
 	ofs.close();
+	return true;
 }
 
-void dowdloadScoreboardFile(Course& course) {
+bool dowdloadScoreboardFile(Course& course) {
 	std::string scoreBoardFilePath = getOutputScoreStudCourseFilePath(course);
 	std::ofstream ofs(scoreBoardFilePath);
 	ofs << "Course ID," << course.ID << std::endl;
@@ -182,4 +193,5 @@ void dowdloadScoreboardFile(Course& course) {
 	ofs << "Students," << course.scoreboards.size() << std::endl;
 	course.displayScoreBoardFile(ofs);
 	ofs.close();
+	return true;
 }
