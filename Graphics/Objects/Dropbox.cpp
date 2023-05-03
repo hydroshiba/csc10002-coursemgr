@@ -112,15 +112,26 @@ void DropBox::add(const std::string &label) {
     refresh();
 }
 
-
-
-
 void DropBox::add(const Vector<std::string> &labels) {
     for(int i = 0; i < labels.size(); ++i) add(labels[i]);
 }
 
+void DropBox::remove(const std::string label) {
+    int pos = 0;
+
+    for(int i = 0; i < options.size(); ++i) {
+        if(options[i].label.text == label) {
+            pos = i;
+            break;
+        }
+    }
+
+    options.remove(options.begin() + pos);
+    refresh();
+}
+
 void DropBox::clear() {
-    options.~Vector();
+	options.resize(0);
 }
 
 int DropBox::getSelected() {

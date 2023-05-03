@@ -48,7 +48,10 @@ public:
 
     void add(const std::string &label);
     void add(const Vector<std::string> &labels);
+    
+    void remove(const std::string label);
     void clear();
+    
     int getSelected();
 
     void render(const Vector2 &mouse);
