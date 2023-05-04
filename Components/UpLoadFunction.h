@@ -20,13 +20,13 @@ bool uploadClasses(Class& actClass);
 
 // AcademicYear
 
-bool uploadListAcademicYearFolder(Vector<Student>& students, Vector<AcademicYear>& academicYears);
+bool uploadListAcademicYearFolder();
 
-bool uploadAcademicYearFolder(Vector<Student>& students, AcademicYear& academicYear);
+bool uploadAcademicYears(AcademicYear& academicYear);
 
-bool uploadSemesterFolder(Vector<Student>& students, Semester& semester);
+bool uploadSemesters(Semester& semester);
 
-bool uploadScoreboardFile(Vector<Student>& students, Course& course);
+bool uploadScoreboardFile(Course& course);
 
 #endif // !UPLOAD_FUNCTION_H
 

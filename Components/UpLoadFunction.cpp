@@ -131,6 +131,7 @@ bool uploadSchoolYears(SchoolYear& schoolYear) {
 	getline(ifs, ignore, ',');
 	ifs >> nClasses;
 	schoolYear.classes.resize(nClasses);
+	getline(ifs, ignore);
 	for (int i = 0; i < nClasses; ++i) {
 		std::string className;
 		getline(ifs, ignore, ',');
@@ -202,6 +203,7 @@ bool uploadClasses(Class& actClass) {
 	ifs >> nStud;
 	actClass.students.resize(nStud);
 	std::string id;
+	getline(ifs, ignore);
 	for (int i = 0; i<nStud; ++i){
 	 	getline(ifs, ignore, ',');
 		Student *ptrStudent;
@@ -219,7 +221,7 @@ bool uploadClasses(Class& actClass) {
 
 
 
-bool uploadListAcademicYearFolder(Vector<Student>& students, Vector<AcademicYear>& academicYears) {
+bool uploadListAcademicYearFolder() {
 	std::string listAcademicYearFilePath = getListAcademicYearFilePath();
 	std::ifstream ifs(listAcademicYearFilePath);
 	if (!ifs.is_open())
@@ -228,22 +230,26 @@ bool uploadListAcademicYearFolder(Vector<Student>& students, Vector<AcademicYear
 		return false;
 	}
 	int nAcademicYear;
+	string ignore;
+	getline(ifs, ignore, ',');
 	ifs >> nAcademicYear;
 	academicYears.resize(nAcademicYear);
 	unsigned int startOfAcademicYear;
+	getline(ifs, ignore);
 	for (int i = 0; i < academicYears.size(); i++)
 	{
+		getline(ifs, ignore, ',');
 		ifs >> startOfAcademicYear;
 		AcademicYear academicYear;
 		academicYear.start = startOfAcademicYear;
 		academicYears[i] = academicYear;
-		uploadAcademicYearFolder(students, academicYears[i]);
+		uploadAcademicYears(academicYears[i]);
 	}
 	ifs.close();
 	return true;
 }
 
-bool uploadAcademicYearFolder(Vector<Student>& students, AcademicYear& academicYear) {
+bool uploadAcademicYears(AcademicYear& academicYear) {
 	std::string academicYearFilePath = getAcademicYearFilePath(academicYear);
 	std::ifstream ifs(academicYearFilePath);
 	if (!ifs.is_open())
@@ -252,6 +258,8 @@ bool uploadAcademicYearFolder(Vector<Student>& students, AcademicYear& academicY
 		return false;
 	}
 	unsigned int startOfAcademicYear;
+	string ignore;
+	getline(ifs, ignore, ',');
 	ifs >> startOfAcademicYear;
 	if (startOfAcademicYear != academicYear.start)
 	{
@@ -259,24 +267,26 @@ bool uploadAcademicYearFolder(Vector<Student>& students, AcademicYear& academicY
 		return false;
 	}
 	int nSemester;
+	getline(ifs, ignore, ',');
 	ifs >> nSemester;
 	academicYear.semesters.resize(nSemester);
 	std::string semesterID = "";
 	std::getline(ifs, semesterID);
 	for (int i = 0; i < academicYear.semesters.size(); i++)
 	{
+		getline(ifs, ignore, ',');
 		std::getline(ifs, semesterID);
 		Semester semester;
 		semester.semesterID = semesterID;
 		academicYear.semesters[i] = semester;
 		academicYear.semesters[i].ptrAcademicYear = &academicYear;
-		uploadSemesterFolder(students, academicYear.semesters[i]);
+		uploadSemesters(academicYear.semesters[i]);
 	}
 	ifs.close();
 	return true;
 }
 
-bool uploadSemesterFolder(Vector<Student>& students, Semester& semester) {
+bool uploadSemesters(Semester& semester) {
 	std::string semesterFilePath = getSemesterFilePath(semester);
 	std::ifstream ifs(semesterFilePath);
 	if (!ifs.is_open())
@@ -284,7 +294,8 @@ bool uploadSemesterFolder(Vector<Student>& students, Semester& semester) {
 		std::cout << "Can't open " << semesterFilePath << std::endl;
 		return false;
 	}
-	std::string semesterID;
+	std::string semesterID, ignore;
+	getline(ifs, ignore, ',');
 	std::getline(ifs, semesterID);
 	if (semester.semesterID != semesterID)
 	{
@@ -293,10 +304,12 @@ bool uploadSemesterFolder(Vector<Student>& students, Semester& semester) {
 	}
 	Date startDate, endDate;
 	std::string day, month, year;
+	getline(ifs, ignore, ',');
 	getline(ifs, day, '/');
 	getline(ifs, month, '/');
 	getline(ifs, year);
 	startDate.set(std::stoi(day), std::stoi(month), std::stoi(year));
+	getline(ifs, ignore, ',');
 	getline(ifs, day, '/');
 	getline(ifs, month, '/');
 	getline(ifs, year);
@@ -305,23 +318,25 @@ bool uploadSemesterFolder(Vector<Student>& students, Semester& semester) {
 	semester.endDate = endDate;
 	int nCourse;
 	std::string courseID = "";
+	getline(ifs, ignore, ',');
 	ifs >> nCourse;
 	semester.courses.resize(nCourse);
 	std::getline(ifs, courseID);
 	for (int i = 0; i < semester.courses.size(); i++)
 	{
+		getline(ifs, ignore, ',');
 		std::getline(ifs, courseID);
 		Course course;
 		course.ID = courseID;
 		semester.courses[i] = course;
 		semester.courses[i].ptrSemester = &semester;
-		uploadScoreboardFile(students, semester.courses[i]);
+		uploadScoreboardFile(semester.courses[i]);
 	}
 	ifs.close();
 	return true;
 }
 
-bool uploadScoreboardFile(Vector<Student>& students, Course& course) {
+bool uploadScoreboardFile(Course& course) {
 	std::string courseFilePath = getOutputScoreStudCourseFilePath(course);
 	std::ifstream ifs(courseFilePath);
 	if (!ifs.is_open())
