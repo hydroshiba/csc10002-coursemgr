@@ -17,15 +17,15 @@
 #include "SearchFunction.h"
 
 // Add students into a specific class (from File)
-bool importStudentListOfClassFromFile(Vector<Student> &students, Class& actClass, std::string& outStr) {	
-	std::string inputStudClassFilePath = getImportStudClassFilePath(actClass);
+bool importStudentListOfClassFromFile(const string& filename, Vector<Student> &students, Class& actClass, string& outStr) {
+	string inputStudClassFilePath = getImportStudClassFilePath(actClass);
 	std::ifstream inF(inputStudClassFilePath);
 	if (!inF.is_open()) {
 		outStr = "Cannot open file path " + inputStudClassFilePath;
 		return false;
 	}
 	Student* ptrStudent = nullptr;
-	std::string ignore;
+	string ignore;
 	string nStudents;
 	getline(inF, ignore, ',');
 	getline(inF, nStudents);
@@ -57,14 +57,14 @@ bool importStudentListOfClassFromFile(Vector<Student> &students, Class& actClass
 }
 
 // Add list student to course (from file)
-bool importStudentListOfCourseFromFile(Vector<Student> &students, Course& course, std::string& outStr) {
-	std::string inputStudCourseFilePath = getInputListStudCourseFilePath(course);
+bool importStudentListOfCourseFromFile(const string& filename, Vector<Student> &students, Course& course, string& outStr) {
+	string inputStudCourseFilePath = getInputListStudCourseFilePath(course);
 	std::ifstream inF(inputStudCourseFilePath);
 	if (!inF.is_open()) {
 		outStr = "Cannot open file path " + inputStudCourseFilePath;
 		return false;
 	}
-	std::string ignore;
+	string ignore;
 	string nStudents;
 	getline(inF, ignore, ',');
 	getline(inF, nStudents);
@@ -96,7 +96,7 @@ bool importStudentListOfCourseFromFile(Vector<Student> &students, Course& course
 }
 
 // 19. export list of students in course to csv file
-bool exportListOfStudent(Course& course) {
+bool exportListOfStudentCourse(const string& filename, Course& course) {
 	string inputStudCouseFilePath = getInputListStudCourseFilePath(course);
 	std::ofstream ofs(inputStudCouseFilePath, std::ios::out);
 	course.displayInfo(ofs);
@@ -111,7 +111,7 @@ bool exportListOfStudent(Course& course) {
 }
 
 // 20. import scoreboard of course
-bool importScoreBoardOfCourse(Course& course) {
+bool importScoreBoardOfCourse(const string& filename, Course& course) {
 	string inputScoreCourseFilePath = getInputScoreCourseFilePath(course);
 	std::ifstream ifs(inputScoreCourseFilePath);
 	if (!ifs.is_open())

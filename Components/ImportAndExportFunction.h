@@ -4,16 +4,34 @@
 #include "Components.h"
 
 // Add list student to class (from file)
-bool importStudentListOfClassFromFile(Vector<Student> &students, Class& actClass, std::string& outStr); // By file
+bool importStudentListOfClassFromFile(const string& filename, Vector<Student> &students, Class& actClass, string& outStr); // By file
 
 // Add list student to course (from file)
-bool importStudentListOfCourseFromFile(Vector<Student> &students, Course& course, std::string& outStr); // By file
+bool importStudentListOfCourseFromFile(const string& filename, Vector<Student> &students, Course& course, string& outStr); // By file
 
 // 19. export list of students in course to csv file
-bool exportListOfStudent(Course& course);
+bool exportListOfStudentInCourse(const string& filename, Course& course);
 
 // 20. import scoreboard of course
-bool importScoreBoardOfCourse(Course& course);
+bool importScoreBoardOfCourse(const string& filename, Course& course);
 
+// Optional
+bool exportListSchoolYear(const string& filename, string& outStr);
+
+bool exportListClassInSchoolYear(const string& filename, SchoolYear& schoolYear, string& outStr);
+
+bool exportListStudentInClass(const string& filename, Class& CLASS, string& outStr);
+
+bool exportListScoreboardInSemesterOfClass(const string& filename, Class& CLASS, Semester& semester, string& outStr);
+
+bool exportListScoreboardOfClass(const string& filename, Class& CLASS, string& outStr);
+
+bool exportListAcademicYear(const string& filename, string& outStr);
+
+bool exportListSemesterInAcademicYear(const string& filename, AcademicYear& academicYear, string& outStr);
+
+bool exportListCourseInSemester(const string& filename, Semester& semester, string& outStr);
+
+bool exportListScoreboardOfCourse(const string& filename, Course& course, string& outStr);
 
 #endif // ! IMPORT_EXPORT_FUNCTION_H
