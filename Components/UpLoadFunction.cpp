@@ -148,47 +148,7 @@ bool uploadSchoolYear(SchoolYear& schoolYear) {
 	ifs.close();
 	return true;
 }
-/*
-bool uploadStudent(Class& actClass, Student& student, std::string id) {
-	std::string studentDir = "Students\\" + id + "\\" + id + "_OutputStdIn4.csv";
-	std::ifstream ifs(studentDir);
-	if (!ifs.is_open()) {
-		std::cout << "Cannot open " << studentDir;
-		return;
-	}
-	std::string ignore;
-	std::string ID, first, last, gender, socialId, className, day, month, year;
-	uint64_t password;
-	std::getline(ifs, ignore, ',');
-	ifs >> id;
-	std::getline(ifs, ignore, ',');
-	ifs >> password;
-	std::getline(ifs, ignore, ',');
-	std::getline(ifs, first);
-	std::getline(ifs, ignore, ',');
-	std::getline(ifs, last);
-	std::getline(ifs, ignore, ',');
-	ifs >> gender;
-	std::getline(ifs, ignore, ',');
-	std::getline(ifs, day, '/');
-	std::getline(ifs, month, '/');
-	std::getline(ifs, year);
-	std::getline(ifs, ignore, ',');
-	ifs >> socialId;
-	std::getline(ifs, ignore, ',');
-	ifs >> className;
-	if (actClass.name != className) {
-		std::cout << "Incorrect class directory";
-		return;
-	}
-	unsigned short d = static_cast<unsigned short>(std::stoul(day)), m = static_cast<unsigned short>(std::stoul(month));
-	unsigned int y = static_cast<unsigned int>(std::stoul(year));
 
-	Student studInfo({ first, last }, id, password, string_to_gender(gender), { d, m, y }, socialId, &actClass);
-}
-*/
-
-// Upload student id
 bool uploadClass(Class& actClass) {
 	std::string oFile = getClassFilePath(actClass);
 	std::ifstream ifs(oFile);
@@ -221,11 +181,7 @@ bool uploadClass(Class& actClass) {
 	return true;
 }
 
-
 // AcademicYear
-
-
-
 bool uploadListAcademicYear() {
 	std::string listAcademicYearFilePath = getListAcademicYearFilePath();
 	std::ifstream ifs(listAcademicYearFilePath);
