@@ -2,6 +2,7 @@
 #include "ConvertType.h"
 #include "FileAndDirFunction.h"
 #include "SearchFunction.h"
+#include "RemoveFunction.h"
 
 #include "Date.h"
 #include "Name.h"
@@ -19,9 +20,13 @@
 bool uploadAllData() {
 	bool b1 = uploadListStudent();
 	bool b2 = uploadListStaff();
-	bool b3 = uploadListSchoolYearFolder();
-	bool b4 = uploadListAcademicYearFolder();
-	return (b1 && b2 && b3 && b4);
+	bool b3 = uploadListSchoolYear();
+	bool b4 = uploadListAcademicYear();
+	if (b1 && b2 && b3 && b4 == false) {
+		freeMemory();
+		return false;
+	}
+	return true;
 }
 
 bool uploadListStaff(){
@@ -85,7 +90,7 @@ bool uploadListStudent(){
 	return true;
 }
 
-bool uploadListSchoolYearFolder() {
+bool uploadListSchoolYear() {
 	std::string listSchoolYearDir = getListSchoolYearFilePath();
 	std::ifstream ifs(listSchoolYearDir);
 	if (!ifs.is_open()) {
@@ -106,13 +111,13 @@ bool uploadListSchoolYearFolder() {
 		unsigned int startYear = static_cast<unsigned int>(std::stoul(ignore));
 		school_year.start = startYear;
 		schoolYears[i] = school_year;
-		uploadSchoolYears(schoolYears[i]);
+		uploadSchoolYear(schoolYears[i]);
 	}
 	ifs.close();
 	return true;
 }
 
-bool uploadSchoolYears(SchoolYear& schoolYear) {
+bool uploadSchoolYear(SchoolYear& schoolYear) {
 	std::string schoolYearDir = getSchoolYearFilePath(schoolYear);
 	std::ifstream ifs(schoolYearDir);
 	if (!ifs.is_open()) {
@@ -138,13 +143,13 @@ bool uploadSchoolYears(SchoolYear& schoolYear) {
 		ifs >> className;
 		schoolYear.classes[i].name = className;
 		schoolYear.classes[i].ptrSchoolYear = &schoolYear;
-		uploadClasses(schoolYear.classes[i]);
+		uploadClass(schoolYear.classes[i]);
 	}
 	ifs.close();
 	return true;
 }
 /*
-bool uploadStudentFolder(Class& actClass, Student& student, std::string id) {
+bool uploadStudent(Class& actClass, Student& student, std::string id) {
 	std::string studentDir = "Students\\" + id + "\\" + id + "_OutputStdIn4.csv";
 	std::ifstream ifs(studentDir);
 	if (!ifs.is_open()) {
@@ -184,7 +189,7 @@ bool uploadStudentFolder(Class& actClass, Student& student, std::string id) {
 */
 
 // Upload student id
-bool uploadClasses(Class& actClass) {
+bool uploadClass(Class& actClass) {
 	std::string oFile = getClassFilePath(actClass);
 	std::ifstream ifs(oFile);
 	if (!ifs.is_open()) {
@@ -221,11 +226,10 @@ bool uploadClasses(Class& actClass) {
 
 
 
-bool uploadListAcademicYearFolder() {
+bool uploadListAcademicYear() {
 	std::string listAcademicYearFilePath = getListAcademicYearFilePath();
 	std::ifstream ifs(listAcademicYearFilePath);
-	if (!ifs.is_open())
-	{
+	if (!ifs.is_open()){
 		std::cout << "Can't open " << listAcademicYearFilePath << std::endl;
 		return false;
 	}
@@ -243,17 +247,16 @@ bool uploadListAcademicYearFolder() {
 		AcademicYear academicYear;
 		academicYear.start = startOfAcademicYear;
 		academicYears[i] = academicYear;
-		uploadAcademicYears(academicYears[i]);
+		uploadAcademicYear(academicYears[i]);
 	}
 	ifs.close();
 	return true;
 }
 
-bool uploadAcademicYears(AcademicYear& academicYear) {
+bool uploadAcademicYear(AcademicYear& academicYear) {
 	std::string academicYearFilePath = getAcademicYearFilePath(academicYear);
 	std::ifstream ifs(academicYearFilePath);
-	if (!ifs.is_open())
-	{
+	if (!ifs.is_open()){
 		std::cout << "Can't open " << academicYearFilePath << std::endl;
 		return false;
 	}
@@ -280,13 +283,13 @@ bool uploadAcademicYears(AcademicYear& academicYear) {
 		semester.semesterID = semesterID;
 		academicYear.semesters[i] = semester;
 		academicYear.semesters[i].ptrAcademicYear = &academicYear;
-		uploadSemesters(academicYear.semesters[i]);
+		uploadSemester(academicYear.semesters[i]);
 	}
 	ifs.close();
 	return true;
 }
 
-bool uploadSemesters(Semester& semester) {
+bool uploadSemester(Semester& semester) {
 	std::string semesterFilePath = getSemesterFilePath(semester);
 	std::ifstream ifs(semesterFilePath);
 	if (!ifs.is_open())
@@ -330,17 +333,16 @@ bool uploadSemesters(Semester& semester) {
 		course.ID = courseID;
 		semester.courses[i] = course;
 		semester.courses[i].ptrSemester = &semester;
-		uploadCourses(semester.courses[i]);
+		uploadCourse(semester.courses[i]);
 	}
 	ifs.close();
 	return true;
 }
 
-bool uploadCourses(Course& course) {
+bool uploadCourse(Course& course) {
 	std::string courseFilePath = getCourseFilePath(course);
 	std::ifstream ifs(courseFilePath);
-	if (!ifs.is_open())
-	{
+	if (!ifs.is_open()){
 		std::cout << "Can't open " << courseFilePath << std::endl;
 		return false;
 	}

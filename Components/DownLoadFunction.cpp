@@ -16,13 +16,18 @@
 #include "Scoreboard.h"
 
 #include "SortFunction.h"
+#include "RemoveFunction.h"
 
 bool downloadAllData() {
 	bool b1 = downloadListStudent();
 	bool b2 = downloadListStaff();
 	bool b3 = downloadListSchoolYear();
-	//bool b4 = downloadListAcademicYear();
-	return (b1 && b2 && b3);
+	bool b4 = downloadListAcademicYear();
+	if (b1 && b2 && b3 && b4 == false) {
+		freeMemory();
+		return false;
+	}
+	return true;
 }
 
 bool downloadListStudent(){

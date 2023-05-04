@@ -10,23 +10,23 @@ bool uploadListStaff();
 
 bool uploadListStudent();
 
-bool uploadListSchoolYearFolder();
+bool uploadListSchoolYear();
 
-bool uploadSchoolYears(SchoolYear& schoolYear);
+bool uploadSchoolYear(SchoolYear& schoolYear);
 
-bool uploadStudentFolder(Class& actClass, Student& student, std::string id);
+bool uploadStudent(Class& actClass, Student& student, std::string id);
 
-bool uploadClasses(Class& actClass);
+bool uploadClass(Class& actClass);
 
 // AcademicYear
 
-bool uploadListAcademicYearFolder();
+bool uploadListAcademicYear();
 
-bool uploadAcademicYears(AcademicYear& academicYear);
+bool uploadAcademicYear(AcademicYear& academicYear);
 
-bool uploadSemesters(Semester& semester);
+bool uploadSemester(Semester& semester);
 
-bool uploadCourses(Course& course);
+bool uploadCourse(Course& course);
 
 #endif // !UPLOAD_FUNCTION_H
 

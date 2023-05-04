@@ -30,6 +30,6 @@ int main() {
     while(!app.shouldClose()) {
         app.run();
     }
-    if (!downloadAllData()) return 0;
-    freeMemory();
+    if (downloadAllData())  
+        freeMemory();
 }
