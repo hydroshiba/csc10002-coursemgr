@@ -17,6 +17,7 @@
 
 #include "InsertFunction.h"
 #include "RemoveFunction.h"
+#include "ImportAndExportFunction.h"
 class CourseScene : public Scene {
 private:
     TextBox title, courseID, classID, name, teacher, credit, maxEnroll, weekday, session, result;
