@@ -7,6 +7,7 @@
 
 void createDirectoryIfNotExists(const string& dirPath);
 
+// Download and upload
 string getListStaffFilePath();
 
 string getListStudentFilePath();
@@ -34,6 +35,11 @@ string getSemesterFilePath(const Semester& semester);
 string getCourseFolderPath(const Course& course);
 
 string getCourseFilePath(const Course& course);
+
+// Import and export
+string getExportFolderPath();
+
+string getImportFolderPath();
 
 //----------------------------------------------------------------------------------------------//
 

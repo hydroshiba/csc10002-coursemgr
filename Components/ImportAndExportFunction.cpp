@@ -18,7 +18,7 @@
 
 // Add students into a specific class (from File)
 bool importStudentListOfClassFromFile(const string& filename, Vector<Student> &students, Class& actClass, string& outStr) {
-	string inputStudClassFilePath = getImportStudClassFilePath(actClass);
+	string inputStudClassFilePath = getImportFolderPath() + filename;
 	std::ifstream inF(inputStudClassFilePath);
 	if (!inF.is_open()) {
 		outStr = "Cannot open file path " + inputStudClassFilePath;
@@ -58,7 +58,7 @@ bool importStudentListOfClassFromFile(const string& filename, Vector<Student> &s
 
 // Add list student to course (from file)
 bool importStudentListOfCourseFromFile(const string& filename, Vector<Student> &students, Course& course, string& outStr) {
-	string inputStudCourseFilePath = getInputListStudCourseFilePath(course);
+	string inputStudCourseFilePath = getImportFolderPath() + filename;
 	std::ifstream inF(inputStudCourseFilePath);
 	if (!inF.is_open()) {
 		outStr = "Cannot open file path " + inputStudCourseFilePath;
@@ -97,7 +97,7 @@ bool importStudentListOfCourseFromFile(const string& filename, Vector<Student> &
 
 // 19. export list of students in course to csv file
 bool exportListOfStudentCourse(const string& filename, Course& course) {
-	string inputStudCouseFilePath = getInputListStudCourseFilePath(course);
+	string inputStudCouseFilePath = getExportFolderPath() + filename;
 	std::ofstream ofs(inputStudCouseFilePath, std::ios::out);
 	course.displayInfo(ofs);
 	ofs << "No,ID,Fullname" << std::endl;
@@ -112,7 +112,7 @@ bool exportListOfStudentCourse(const string& filename, Course& course) {
 
 // 20. import scoreboard of course
 bool importScoreBoardOfCourse(const string& filename, Course& course) {
-	string inputScoreCourseFilePath = getInputScoreCourseFilePath(course);
+	string inputScoreCourseFilePath = getImportFolderPath() + filename;
 	std::ifstream ifs(inputScoreCourseFilePath);
 	if (!ifs.is_open())
 	{

@@ -96,5 +96,13 @@ string getCourseFilePath(const Course& course) {
 	return courseFolderPath + course.ID + ".csv";
 }
 
+// Import and export
+string getExportFolderPath() {
+	return "Data/ExportData/";
+}
+
+string getImportFolderPath() {
+	return "Data/ImportData/";
+}
 //----------------------------------------------------------------------------------------------//
 
