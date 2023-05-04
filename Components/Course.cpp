@@ -160,9 +160,10 @@ void Course::importScoreBoards(std::ifstream& ifs) {
         final = std::stof(s);
         std::getline(ifs, s, delimiter);
         other = std::stof(s);
-        std::getline(ifs, s, delimiter);
+        std::getline(ifs, s);
         total = std::stof(s);
         scoreboards[No]->setScore(midterm, final, other, total);
+        No++;
     }
 }
 

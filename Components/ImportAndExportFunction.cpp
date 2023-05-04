@@ -43,12 +43,12 @@ bool importStudentListOfClassFromFile(const string& filename, Vector<Student> &s
 		ptrStudent = getStudent(students, studentID);
 		if (ptrStudent == nullptr) {
 			outStr = "Student with ID " + studentID + " is not existed in school!";
-			actClass.students.resize(0);
+			actClass.removeAllStudent();
 			return false;
 		}
 		if (ptrStudent->ptrClass != nullptr) {
 			outStr = "Student with ID " + studentID + " have been already existed in class " + ptrStudent->ptrClass->name;
-			actClass.students.resize(0);
+			actClass.removeAllStudent();
 			return false;
 		}
 		actClass.students[i] = ptrStudent;
@@ -89,6 +89,7 @@ bool importStudentListOfCourseFromFile(const string& filename, Vector<Student> &
 		}
 		if (ptrStudent->getScoreboard(course) != nullptr) {
 			outStr = "Student with ID " + studentID + " have been already existed in course " + course.ID;
+			course.removeAllStudent();
 			return false;
 		}
 		course.addStudent(*ptrStudent);
