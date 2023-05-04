@@ -111,21 +111,6 @@ bool importStudentListOfCourseFromFile(const string& filename, Vector<Student> &
 	return true;
 }
 
-// 19. export list of students in course to csv file
-bool exportListOfStudentInCourse(const string& filename, Course& course) {
-	string inputStudCouseFilePath = getExportFolderPath() + filename;
-	std::ofstream ofs(inputStudCouseFilePath, std::ios::out);
-	course.displayInfo(ofs);
-	ofs << "No,ID,Fullname" << std::endl;
-	for (int i = 0; i < course.scoreboards.size(); i++)
-	{
-		Student* student = course.scoreboards[i]->ptrStudent;
-		ofs << i + 1 << "," << student->ID << "," << student->name.get() << std::endl;
-	}
-	ofs.close();
-	return true;
-}
-
 // 20. import scoreboard of course
 bool importScoreBoardOfCourse(const string& filename, Course& course) {
 	string inputScoreCourseFilePath = getImportFolderPath() + filename;
@@ -138,5 +123,29 @@ bool importScoreBoardOfCourse(const string& filename, Course& course) {
 	course.importScoreBoards(ifs);
 	std::cout << "Complete importion!" << std::endl;
 	ifs.close();
+	return true;
+}
+
+// 19. export list of students in course to csv file
+bool exportListOfStudentInCourse(const string& filename, Course& course) {
+	Vector<Vector<string>> table;
+	string inputStudCouseFilePath = getExportFolderPath() + filename;
+	std::ofstream ofs(inputStudCouseFilePath, std::ios::out);
+	course.displayInfo(ofs);
+	course.displayInfoTable(table);
+	ofs << "No,ID,Fullname" << std::endl;
+	Vector<string> str;
+	str.append("No"); str.append("StudentID"); str.append("FullName");
+	table.append(str);
+	str.resize(0);
+	for (int i = 0; i < course.scoreboards.size(); i++)
+	{
+		Student* student = course.scoreboards[i]->ptrStudent;
+		ofs << i + 1 << "," << student->ID << "," << student->name.get() << std::endl;
+		str.append(std::to_string(i+1)); str.append(student->ID); str.append(student->name.get());
+		table.append(str);
+		str.resize(0);
+	}
+	ofs.close();
 	return true;
 }
