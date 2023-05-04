@@ -63,40 +63,6 @@ string getClassFilePath(const Class& CLASS) {
 	return classFolderPath + CLASS.name + ".csv";
 }
 
-
-string getImportStudClassFilePath(const Class& CLASS, const string& fileName) {
-	string classFolderPath = getClassFolderPath(CLASS);
-	return classFolderPath + fileName;
-}
-
-string getDataStudClassFilePath(const Class& CLASS) {
-	string classFolderPath = getClassFolderPath(CLASS);
-	return classFolderPath + CLASS.name + "_StudData.csv";
-}
-
-
-string getInputScoreClassFilePath(const Class& CLASS) {
-	string classFolderPath = getClassFolderPath(CLASS);
-	return classFolderPath + CLASS.name + "_OutputScore.csv";
-}
-
-string getStudentFolderPath(const Student& student) {
-	string classFolderPath = getClassFolderPath(*(student.ptrClass));
-	string studentFolderPath = classFolderPath + "Students/" + student.ID + "/";
-	createDirectoryIfNotExists(studentFolderPath);
-	return studentFolderPath;
-}
-
-string getOutputScoreStudentFilePath(const Student& student) {
-	string studentFolderPath = getStudentFolderPath(student);
-	return studentFolderPath + student.ID + "_OutputScore.csv";
-}
-
-string getInputStandardIn4StudentFilePath(const Student& student) {
-	string studentFolderPath = getStudentFolderPath(student);
-	return studentFolderPath + student.ID + "_OutputStdIn4.csv";
-}
-
 string getAcademicYearFolderPath(const AcademicYear& academicYear) {
 	string academicYearFolderPath = "Data/AcademicYear/" + std::to_string(academicYear.start) + "_" + std::to_string(academicYear.start + 1) + "/";
 	createDirectoryIfNotExists(academicYearFolderPath);
@@ -128,26 +94,6 @@ string getCourseFolderPath(const Course& course) {
 string getCourseFilePath(const Course& course) {
 	string courseFolderPath = getCourseFolderPath(course);
 	return courseFolderPath + course.ID + ".csv";
-}
-
-string getInputListStudCourseFilePath(const Course& course) {
-	string courseFolderPath = getCourseFolderPath(course);
-	return courseFolderPath + course.ID + "_InputStud.csv";
-}
-
-string getOutputListStudCourseFilePath(const Course& course) {
-	string courseFolderPath = getCourseFolderPath(course);
-	return courseFolderPath + course.ID + "_OutputStud.csv";
-}
-
-string getInputScoreCourseFilePath(const Course& course) {
-	string courseFolderPath = getCourseFolderPath(course);
-	return courseFolderPath + course.ID + "_InputScore.csv";
-}
-
-string getOutputScoreStudCourseFilePath(const Course& course) {
-	string courseFolderPath = getCourseFolderPath(course);
-	return courseFolderPath + course.ID + "_OutputScore.csv";
 }
 
 //----------------------------------------------------------------------------------------------//
