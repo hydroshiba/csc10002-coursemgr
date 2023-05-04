@@ -64,7 +64,7 @@ string getClassFolderPath(const Class& CLASS) {
 }
 
 string getClassFilePath(const Class& CLASS) {
-	return getLoadedFilePath() + CLASS.name + ".csv";
+	return getLoadedFilePath() + CLASS.name + "(Class).csv";
 }
 
 
@@ -108,7 +108,7 @@ string getAcademicYearFolderPath(const AcademicYear& academicYear) {
 }
 
 string getAcademicYearFilePath(const AcademicYear& academicYear) {
-	return getLoadedFilePath() + std::to_string(academicYear.start) + "_" + std::to_string(academicYear.start + 1) + ".csv";
+	return getLoadedFilePath() + std::to_string(academicYear.start) + "_" + std::to_string(academicYear.start + 1) + "(AcademicYear).csv";
 }
 
 string getSemesterFolderPath(const Semester& semester) {
@@ -118,7 +118,7 @@ string getSemesterFolderPath(const Semester& semester) {
 }
 
 string getSemesterFilePath(const Semester& semester) {
-	return getLoadedFilePath() + semester.semesterID + ".csv";
+	return getLoadedFilePath() + semester.semesterID + "(Semester).csv";
 }
 
 string getCourseFolderPath(const Course& course) {
@@ -128,7 +128,7 @@ string getCourseFolderPath(const Course& course) {
 }
 
 string getCourseFilePath(const Course& course) {
-	return getLoadedFilePath() + course.ID + ".csv";
+	return getLoadedFilePath() + course.ID + "(Course & Scoreboard).csv";
 }
 
 string getInputListStudCourseFilePath(const Course& course) {
