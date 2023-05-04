@@ -144,11 +144,12 @@ void Course::displayInfoFile(std::ostream& ofs) {
 void Course::importScoreBoards(std::ifstream& ifs) {
     const char delimiter = ',';
     const int nSkipLine = 9;
-    const int nSkipInfo = 4;
+    const int nSkipInfo = 2;
     std::string s = "";
     for (int i = 0; i < nSkipLine; i++)
         std::getline(ifs, s);
     int No = 0;
+    getline(ifs, s);
     while (!ifs.eof())
     {
         float midterm, final, other, total;
@@ -222,7 +223,7 @@ void Course::removeAllStudent() {
         scoreboards[i]->ptrStudent->scoreboards.remove(&scoreboards[i]);
         delete scoreboards[i];
     }
-    scoreboards.resize(0);;
+    scoreboards.resize(0);
 }
 
 bool operator==(const Course& courseA, const Course& courseB) {

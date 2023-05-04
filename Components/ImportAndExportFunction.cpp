@@ -25,7 +25,13 @@ bool importStudentListOfClassFromFile(const string& filename, Vector<Student> &s
 		return false;
 	}
 	Student* ptrStudent = nullptr;
-	string ignore;
+	string ignore, className;
+	getline(inF, ignore,',');
+	getline(inF, className);
+	if (className != actClass.name){
+		outStr = "Imported students to wrong class " + className + ", please try again";
+		return false;
+	}
 	string nStudents;
 	getline(inF, ignore, ',');
 	getline(inF, nStudents);
@@ -66,7 +72,13 @@ bool importStudentListOfCourseFromFile(const string& filename, Vector<Student> &
 		outStr = "Cannot open file path " + inputStudCourseFilePath;
 		return false;
 	}
-	string ignore;
+	string ignore, courseID;
+	getline(inF, ignore, ',');
+	getline(inF, courseID);
+	if (courseID != course.ID){
+		outStr = "Imported students to wrong course " + courseID + ", please try again!";
+		return false;
+	}
 	string nStudents;
 	getline(inF, ignore, ',');
 	getline(inF, nStudents);
