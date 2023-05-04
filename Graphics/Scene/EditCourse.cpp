@@ -170,6 +170,16 @@ Scene* EditCourse::process(){
             return this;
         }
     }
-    if (back.clicked(mousePoint)) return registry.courseScene;
+    if (back.clicked(mousePoint)) {
+        courseBox.content.text.clear();
+        classBox.content.text.clear();
+        nameBox.content.text.clear();
+        teacherBox.content.text.clear();
+        creditBox.content.text.clear();
+        enrollBox.content.text.clear();
+        dayBox.content.text.clear();
+        sessionBox.content.text.clear();
+        return registry.courseScene;
+    }
     return this;
 }
