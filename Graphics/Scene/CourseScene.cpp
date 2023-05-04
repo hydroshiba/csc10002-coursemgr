@@ -150,7 +150,6 @@ Scene* CourseScene::process(){
         if (addBox.content.text.empty() && removeBox.content.text.empty()){
             result = "Invalid student ID, please retry!";
             result.centerX();
-
             return this;
         }
         else if (!addBox.content.text.empty()) addStudentToCourse(students, *ptrCourse_Global, addBox.content.text, notif);
@@ -162,7 +161,7 @@ Scene* CourseScene::process(){
         return this;
     }
 
-    if (fileButton.clicked(mousePoint)){
+    else if (fileButton.clicked(mousePoint)){
         if (ptrCourse_Global == nullptr){
             result = "Access nullptr error!";
             result.centerX();
@@ -174,13 +173,25 @@ Scene* CourseScene::process(){
         return this;
     }
     
-    if (viewScore.clicked(mousePoint)) return registry.blank;
+    else if (viewScore.clicked(mousePoint)) {
+        addBox.clearContent();
+        removeBox.clearContent();
+        return registry.blank;
+    }
+    else if (viewStudent.clicked(mousePoint)) {
+        addBox.clearContent();
+        removeBox.clearContent();
+        return registry.blank;
+    }
+    else if (updateBox.clicked(mousePoint)) {
+        addBox.clearContent();
+        removeBox.clearContent();
+        return registry.editScene;
+    }
 
-    if (viewStudent.clicked(mousePoint)) return registry.blank;
-
-    if (updateBox.clicked(mousePoint)) return registry.editScene;
-
-    if (back.clicked(mousePoint)) {
+    else if (back.clicked(mousePoint)) {
+        addBox.clearContent();
+        removeBox.clearContent();
         ptrCourse_Global = nullptr;
         return registry.blank;
     }
