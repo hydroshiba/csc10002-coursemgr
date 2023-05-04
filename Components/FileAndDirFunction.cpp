@@ -24,26 +24,20 @@ void createDirectoryIfNotExists(const string& dirPath)
 	}
 }
 
-string getLoadedFilePath(){
-	string dirPath = "Data/LoadedFile/";
-	createDirectoryIfNotExists(dirPath);
-	return dirPath;
-}
-
 string getListStaffFilePath(){
-	return getLoadedFilePath() + "StaffList.csv";
+	return "Data/StaffList.csv";
 }
 
 string getListStudentFilePath(){
-	return getLoadedFilePath() + "StudentList.csv";
+	return "Data/StudentList.csv";
 }
 
 string getListSchoolYearFilePath() {
-	return getLoadedFilePath() + "ListSchoolYear.csv";
+	return "Data/SchoolYear/ListSchoolYear.csv";
 }
 
 string getListAcademicYearFilePath() {
-	return getLoadedFilePath() + "ListAcademicYear.csv";
+	return "Data/AcademicYear/ListAcademicYear.csv";
 }
 
 string getSchoolYearFolderPath(const SchoolYear& schoolyear) {
@@ -53,7 +47,8 @@ string getSchoolYearFolderPath(const SchoolYear& schoolyear) {
 }
 
 string getSchoolYearFilePath(const SchoolYear& schoolyear) {
-	return getLoadedFilePath() + "HCMUS_" + std::to_string(schoolyear.start) + ".csv";
+	string schoolYearFolderPath = getSchoolYearFolderPath(schoolyear);
+	return schoolYearFolderPath + "HCMUS_" + std::to_string(schoolyear.start) + ".csv";
 }
 
 string getClassFolderPath(const Class& CLASS) {
@@ -64,7 +59,8 @@ string getClassFolderPath(const Class& CLASS) {
 }
 
 string getClassFilePath(const Class& CLASS) {
-	return getLoadedFilePath() + CLASS.name + "(Class).csv";
+	string classFolderPath = getClassFolderPath(CLASS);
+	return classFolderPath + CLASS.name + ".csv";
 }
 
 
@@ -108,7 +104,8 @@ string getAcademicYearFolderPath(const AcademicYear& academicYear) {
 }
 
 string getAcademicYearFilePath(const AcademicYear& academicYear) {
-	return getLoadedFilePath() + std::to_string(academicYear.start) + "_" + std::to_string(academicYear.start + 1) + "(AcademicYear).csv";
+	string academicYearFolderPath = getAcademicYearFolderPath(academicYear);
+	return academicYearFolderPath + std::to_string(academicYear.start) + "_" + std::to_string(academicYear.start + 1) + ".csv";
 }
 
 string getSemesterFolderPath(const Semester& semester) {
@@ -118,7 +115,8 @@ string getSemesterFolderPath(const Semester& semester) {
 }
 
 string getSemesterFilePath(const Semester& semester) {
-	return getLoadedFilePath() + semester.semesterID + "(Semester).csv";
+	string semesterFolderPath = getSemesterFolderPath(semester);
+	return semesterFolderPath + semester.semesterID + ".csv";
 }
 
 string getCourseFolderPath(const Course& course) {
@@ -128,7 +126,8 @@ string getCourseFolderPath(const Course& course) {
 }
 
 string getCourseFilePath(const Course& course) {
-	return getLoadedFilePath() + course.ID + "(Course & Scoreboard).csv";
+	string courseFolderPath = getCourseFolderPath(course);
+	return courseFolderPath + course.ID + ".csv";
 }
 
 string getInputListStudCourseFilePath(const Course& course) {
