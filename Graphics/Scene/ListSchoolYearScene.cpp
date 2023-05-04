@@ -91,6 +91,7 @@ Scene* ListSchoolYearScene::process() {
         std::string outStr;
         if (addSchoolYear(schoolYears, content, outStr)){
             chooseSchoolYear.add(content);    
+            chooseSchoolYear.process(mousePoint);
         }
         ms = outStr;
         ms.centerX();
@@ -101,16 +102,15 @@ Scene* ListSchoolYearScene::process() {
         string startYear = inputSchoolYearRemoved.getContent();
         string outStr;
         if (removeSchoolYear(schoolYears, startYear, outStr)) {
-            chooseSchoolYear.clear();
-            chooseSchoolYear.add(getListSchoolYear(schoolYears));
+            chooseSchoolYear.remove(startYear);
+            chooseSchoolYear.process(mousePoint);
         }
         ms = outStr;
         ms.centerX();
         inputSchoolYearRemoved.clearContent();
     }
     if (back.clicked(mousePoint)) {
-        chooseSchoolYear.clear();
-        chooseSchoolYear.add(getListSchoolYear(schoolYears));
+        chooseSchoolYear.process(mousePoint);
         inputSchoolYearAdded.clearContent();
         inputSchoolYearRemoved.clearContent();
         return registry.staffScene;
