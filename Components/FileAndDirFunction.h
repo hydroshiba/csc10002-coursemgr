@@ -7,6 +7,8 @@
 
 void createDirectoryIfNotExists(const string& dirPath);
 
+string getLoadedFilePath();
+
 string getListStaffFilePath();
 
 string getListStudentFilePath();

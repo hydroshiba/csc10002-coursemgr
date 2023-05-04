@@ -26,7 +26,7 @@ bool uploadAcademicYears(AcademicYear& academicYear);
 
 bool uploadSemesters(Semester& semester);
 
-bool uploadScoreboardFile(Course& course);
+bool uploadCourses(Course& course);
 
 #endif // !UPLOAD_FUNCTION_H
 

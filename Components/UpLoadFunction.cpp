@@ -185,7 +185,7 @@ bool uploadStudentFolder(Class& actClass, Student& student, std::string id) {
 
 // Upload student id
 bool uploadClasses(Class& actClass) {
-	std::string oFile = getDataStudClassFilePath(actClass);
+	std::string oFile = getClassFilePath(actClass);
 	std::ifstream ifs(oFile);
 	if (!ifs.is_open()) {
 		std::cout << "Cannot open " << oFile;
@@ -330,14 +330,14 @@ bool uploadSemesters(Semester& semester) {
 		course.ID = courseID;
 		semester.courses[i] = course;
 		semester.courses[i].ptrSemester = &semester;
-		uploadScoreboardFile(semester.courses[i]);
+		uploadCourses(semester.courses[i]);
 	}
 	ifs.close();
 	return true;
 }
 
-bool uploadScoreboardFile(Course& course) {
-	std::string courseFilePath = getOutputScoreStudCourseFilePath(course);
+bool uploadCourses(Course& course) {
+	std::string courseFilePath = getCourseFilePath(course);
 	std::ifstream ifs(courseFilePath);
 	if (!ifs.is_open())
 	{
