@@ -113,7 +113,7 @@ bool uploadListSchoolYearFolder() {
 }
 
 bool uploadSchoolYearFolder(Vector <Student>& students, SchoolYear& schoolYear) {
-	std::string schoolYearDir = getInputSchoolYearFilePath(schoolYear);
+	std::string schoolYearDir = getSchoolYearFilePath(schoolYear);
 	std::ifstream ifs(schoolYearDir);
 	if (!ifs.is_open()) {
 		std::cout << "Cannot open " << schoolYearDir << '\n';

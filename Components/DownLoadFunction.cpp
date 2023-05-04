@@ -74,7 +74,7 @@ bool downloadListSchoolYearFolder() {
 }
 
 bool downloadSchoolYearFolder(SchoolYear& schoolYear) {
-	std::string schoolYearDir = getInputSchoolYearFilePath(schoolYear);
+	std::string schoolYearDir = getSchoolYearFilePath(schoolYear);
 	std::ofstream ofs(schoolYearDir);
 	/*if (!ofs.is_open()){
 		std::cout << "Cannot open " << schoolYearDir;
