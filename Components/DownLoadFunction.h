@@ -7,26 +7,30 @@
 
 bool downloadAllData();
 
-bool downloadListSchoolYearFolder();
-
-bool downloadSchoolYearFolder(SchoolYear& schoolYear);
-
 bool downloadListStaff();
 
 bool downloadListStudent();
-// Download Student ID In Class
-bool downloadDataStudClassFile(Class& actClass);
 
-bool downloadStudentFolder(Student& student);
+bool downloadListSchoolYear();
 
-bool downloadListAcademicYearFolder(Vector<AcademicYear>& academicYears);
+bool downloadSchoolYear(SchoolYear& schoolYear);
 
-bool downloadAcademicYearFolder(AcademicYear& academicYear);
+bool downloadClass(Class& CLASS);
 
-bool downloadSemesterFolder(Semester& semester);
 
-bool downloadCourseFolder(Course& course);
+//// Download Student ID In Class
+//bool downloadDataStudClassFile(Class& actClass);
+//
+//bool downloadStudent(Student& student);
 
-bool downloadScoreboardFile(Course& course);
+bool downloadListAcademicYear();
+
+bool downloadAcademicYear(AcademicYear& academicYear);
+
+bool downloadSemester(Semester& semester);
+
+bool downloadCourse(Course& course);
+
+//bool downloadScoreboardFile(Course& course);
 
 #endif // !DOWNLOAD_FUNCTION_H
