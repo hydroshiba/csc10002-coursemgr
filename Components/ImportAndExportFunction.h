@@ -10,7 +10,7 @@ bool importStudentListOfClassFromFile(const string& filename, Vector<Student> &s
 bool importStudentListOfCourseFromFile(const string& filename, Vector<Student> &students, Course& course, string& outStr); // By file
 
 // 19. export list of students in course to csv file
-bool exportListOfStudentInCourse(const string& filename, Course& course);
+bool exportListOfStudentInCourse(const string& filename, Course& course, string& outStr);
 
 // 20. import scoreboard of course
 bool importScoreBoardOfCourse(const string& filename, Course& course);

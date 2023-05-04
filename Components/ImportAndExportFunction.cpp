@@ -127,10 +127,14 @@ bool importScoreBoardOfCourse(const string& filename, Course& course) {
 }
 
 // 19. export list of students in course to csv file
-bool exportListOfStudentInCourse(const string& filename, Course& course) {
+bool exportListOfStudentInCourse(const string& filename, Course& course, string &outStr) {
 	Vector<Vector<string>> table;
 	string inputStudCouseFilePath = getExportFolderPath() + filename;
 	std::ofstream ofs(inputStudCouseFilePath, std::ios::out);
+	if (!ofs.is_open()){
+		outStr = "Cannot open file!";
+		return false;
+	}
 	course.displayInfo(ofs);
 	course.displayInfoTable(table);
 	ofs << "No,ID,Fullname" << std::endl;
@@ -147,5 +151,39 @@ bool exportListOfStudentInCourse(const string& filename, Course& course) {
 		str.resize(0);
 	}
 	ofs.close();
+	outStr = "Completely exported students list from course!";
+	return true;
+}
+
+bool exportListScoreboardOfCourse(const string& filename, Course& course, string& outStr){
+	string getCourseScoreboardFile = getExportFolderPath() + filename;
+	std::ofstream fout(getCourseScoreboardFile, std::ios::out);
+	if (!fout.is_open()){
+		outStr = "Cannot open file!";
+		return false;
+	}
+	course.displayInfoFile(fout);
+	Vector<Vector<string>> table;
+	course.displayInfoTable(table);
+	fout << "No,StudentID,Midterm,Final,Other,Total";
+	Vector<string> str;
+	str.append("No"); str.append("StudentID"); str.append("Midterm"); str.append("Final"); str.append("Other"); str.append("Total");
+	table.append(str);
+	str.resize(0);
+	for (int i = 0; i < course.scoreboards.size(); i++)
+	{
+		Student* student = course.scoreboards[i]->ptrStudent;
+		fout << i + 1 << "," << student->ID << "," << course.scoreboards[i]->midterm << ',' << course.scoreboards[i]->final << ',' << course.scoreboards[i]->other << ',' << course.scoreboards[i]->total << std::endl;
+		str.append(std::to_string(i+1)); 
+		str.append(student->ID); 
+		str.append(std::to_string(course.scoreboards[i]->midterm)); 
+		str.append(std::to_string(course.scoreboards[i]->final)); 
+		str.append(std::to_string(course.scoreboards[i]->other));
+		str.append(std::to_string(course.scoreboards[i]->total));
+		table.append(str);
+		str.resize(0);
+	}
+	fout.close();
+	outStr = "Completely exported scoreboard of course!";
 	return true;
 }
