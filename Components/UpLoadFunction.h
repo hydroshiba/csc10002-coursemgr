@@ -12,11 +12,11 @@ bool uploadListStudent();
 
 bool uploadListSchoolYearFolder();
 
-bool uploadSchoolYearFolder(Vector<Student> &students, SchoolYear& schoolYear);
+bool uploadSchoolYears(SchoolYear& schoolYear);
 
 bool uploadStudentFolder(Class& actClass, Student& student, std::string id);
 
-bool get_students_priority(Vector<Student> &students, Class& actClass);
+bool uploadClasses(Class& actClass);
 
 // AcademicYear
 

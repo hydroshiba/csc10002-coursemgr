@@ -106,13 +106,13 @@ bool uploadListSchoolYearFolder() {
 		unsigned int startYear = static_cast<unsigned int>(std::stoul(ignore));
 		school_year.start = startYear;
 		schoolYears[i] = school_year;
-		//uploadSchoolYearFolder(students, schoolYears[i]);
+		uploadSchoolYears(schoolYears[i]);
 	}
 	ifs.close();
 	return true;
 }
 
-bool uploadSchoolYearFolder(Vector <Student>& students, SchoolYear& schoolYear) {
+bool uploadSchoolYears(SchoolYear& schoolYear) {
 	std::string schoolYearDir = getSchoolYearFilePath(schoolYear);
 	std::ifstream ifs(schoolYearDir);
 	if (!ifs.is_open()) {
@@ -120,20 +120,24 @@ bool uploadSchoolYearFolder(Vector <Student>& students, SchoolYear& schoolYear) 
 		return false;
 	}
 	unsigned int start;
+	string ignore;
+	getline(ifs, ignore, ',');
 	ifs >> start;
 	if (start == schoolYear.start) {
 		std::cout << "Incorrect directory\n";
 		return false;
 	}
 	size_t nClasses;
+	getline(ifs, ignore, ',');
 	ifs >> nClasses;
 	schoolYear.classes.resize(nClasses);
 	for (int i = 0; i < nClasses; ++i) {
 		std::string className;
+		getline(ifs, ignore, ',');
 		ifs >> className;
 		schoolYear.classes[i].name = className;
 		schoolYear.classes[i].ptrSchoolYear = &schoolYear;
-		get_students_priority(students, schoolYear.classes[i]);
+		uploadClasses(schoolYear.classes[i]);
 	}
 	ifs.close();
 	return true;
@@ -179,24 +183,27 @@ bool uploadStudentFolder(Class& actClass, Student& student, std::string id) {
 */
 
 // Upload student id
-bool get_students_priority(Vector<Student> &students, Class& actClass) {
+bool uploadClasses(Class& actClass) {
 	std::string oFile = getDataStudClassFilePath(actClass);
 	std::ifstream ifs(oFile);
 	if (!ifs.is_open()) {
 		std::cout << "Cannot open " << oFile;
 		return false;
 	}
-	std::string className;
+	std::string className, ignore;
+	getline(ifs, ignore, ',');
 	ifs >> className;
 	if (className != actClass.name) {
 		std::cout << "Incorrect Class!";
 		return false;
 	}
 	int nStud;
+	getline(ifs, ignore, ',');
 	ifs >> nStud;
 	actClass.students.resize(nStud);
 	std::string id;
 	for (int i = 0; i<nStud; ++i){
+	 	getline(ifs, ignore, ',');
 		Student *ptrStudent;
 		ifs >> id; 
 		ptrStudent = getStudent(students, id);
