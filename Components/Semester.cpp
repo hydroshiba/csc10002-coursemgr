@@ -63,7 +63,7 @@ void Semester::removeAllCourse() {
     for (int i = 0; i < courses.size(); i++) {
         courses[i].removeAllStudent();
     }
-    courses.~Vector();
+    courses.resize(0);
 }
 bool operator==(const Semester& semA, const Semester& semB) {
     if (semA.semesterID != semB.semesterID) return false;

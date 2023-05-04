@@ -43,10 +43,12 @@ bool importStudentListOfClassFromFile(const string& filename, Vector<Student> &s
 		ptrStudent = getStudent(students, studentID);
 		if (ptrStudent == nullptr) {
 			outStr = "Student with ID " + studentID + " is not existed in school!";
+			actClass.students.resize(0);
 			return false;
 		}
 		if (ptrStudent->ptrClass != nullptr) {
 			outStr = "Student with ID " + studentID + " have been already existed in class " + ptrStudent->ptrClass->name;
+			actClass.students.resize(0);
 			return false;
 		}
 		actClass.students[i] = ptrStudent;
@@ -82,6 +84,7 @@ bool importStudentListOfCourseFromFile(const string& filename, Vector<Student> &
 		ptrStudent = getStudent(students, studentID);
 		if (ptrStudent == nullptr) {
 			outStr = "Student with ID " + studentID + " is not existed in school!";
+			course.removeAllStudent();
 			return false;
 		}
 		if (ptrStudent->getScoreboard(course) != nullptr) {
@@ -96,7 +99,7 @@ bool importStudentListOfCourseFromFile(const string& filename, Vector<Student> &
 }
 
 // 19. export list of students in course to csv file
-bool exportListOfStudentCourse(const string& filename, Course& course) {
+bool exportListOfStudentInCourse(const string& filename, Course& course) {
 	string inputStudCouseFilePath = getExportFolderPath() + filename;
 	std::ofstream ofs(inputStudCouseFilePath, std::ios::out);
 	course.displayInfo(ofs);

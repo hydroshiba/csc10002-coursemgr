@@ -221,7 +221,7 @@ void Course::removeAllStudent() {
         scoreboards[i]->ptrStudent->scoreboards.remove(&scoreboards[i]);
         delete scoreboards[i];
     }
-    scoreboards.~Vector();
+    scoreboards.resize(0);;
 }
 
 bool operator==(const Course& courseA, const Course& courseB) {

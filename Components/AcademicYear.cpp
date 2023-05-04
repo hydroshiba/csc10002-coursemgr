@@ -30,7 +30,7 @@ void AcademicYear::removeAllSemester() {
     for (int i = 0; i < semesters.size(); i++) {
         semesters[i].removeAllCourse();
     }
-    semesters.~Vector();
+    semesters.resize(0);
 }
 
 std::string AcademicYear::getPeriod() {

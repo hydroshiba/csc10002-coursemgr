@@ -37,7 +37,7 @@ void Class::removeAllStudent() {
     for (int i = 0; i < students.size(); i++) {
         students[i]->ptrClass = nullptr;
     }
-    students.~Vector();
+    students.resize(0);
 }
 
 Student* Class::getStudent(const std::string& studentID) {

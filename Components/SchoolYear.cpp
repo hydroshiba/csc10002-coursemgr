@@ -61,7 +61,7 @@ void SchoolYear::removeAllClass() {
     for (int i = 0; i < classes.size(); i++) {
         classes[i].removeAllStudent();
     }
-    classes.~Vector();
+    classes.resize(0);
 }
 
 std::string SchoolYear::getPeriod() {
