@@ -20,8 +20,8 @@ bool uploadAllData() {
 	bool b1 = uploadListStudent();
 	bool b2 = uploadListStaff();
 	bool b3 = uploadListSchoolYearFolder();
-	//bool b4 = uploadListAcademicYearFolder(students, academicYears);
-	return (b1 && b2 && b3);
+	bool b4 = uploadListAcademicYearFolder();
+	return (b1 && b2 && b3 && b4);
 }
 
 bool uploadListStaff(){
