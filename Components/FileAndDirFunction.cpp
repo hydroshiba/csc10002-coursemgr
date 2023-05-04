@@ -64,9 +64,9 @@ string getClassFilePath(const Class& CLASS) {
 }
 
 
-string getInputStudClassFilePath(const Class& CLASS) {
+string getImportStudClassFilePath(const Class& CLASS, const string& fileName) {
 	string classFolderPath = getClassFolderPath(CLASS);
-	return classFolderPath + CLASS.name + "_InputStud.csv";
+	return classFolderPath + fileName;
 }
 
 string getDataStudClassFilePath(const Class& CLASS) {

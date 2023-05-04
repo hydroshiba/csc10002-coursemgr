@@ -17,9 +17,6 @@ bool addSchoolYear(Vector<SchoolYear>& yearList, const std::string& start, std::
 // Add new class for SchoolYear
 bool addClass(SchoolYear& schoolYear, const std::string& className, std::string& outStr); // Inputbox
 
-// Add list student to class (from file)
-bool importStudentListOfClassFromFile(Vector<Student> &students, Class& actClass, std::string& outStr); // By file
-
 // Add a new students to class
 bool addStudentToClass(Vector<Student>& students, Class& actClass, const std::string& studentID, std::string& outStr); // Only one student by InputBox
 
@@ -31,9 +28,6 @@ bool addSemester(AcademicYear& newYear, const std::string& semesterID, std::stri
 
 // Add a new course
 bool addCourse(Semester& semester, const std::string& courseID, std::string& outStr); // Inputbox
-
-// Add list student to course (from file)
-bool importStudentListOfCourseFromFile(Vector<Student> &students, Course& course, std::string& outStr); // By file
 
 // Add a student to course
 bool addStudentToCourse(Vector<Student>& students, Course& course, const std::string& studentID, std::string& outStr); // Inputbox 

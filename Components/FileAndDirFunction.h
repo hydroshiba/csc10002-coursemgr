@@ -23,7 +23,7 @@ string getClassFolderPath(const Class& CLASS);
 
 string getClassFilePath(const Class& CLASS);
 
-string getInputStudClassFilePath(const Class& CLASS);
+string getImportStudClassFilePath(const Class& CLASS);
 
 string getDataStudClassFilePath(const Class& CLASS);
 
