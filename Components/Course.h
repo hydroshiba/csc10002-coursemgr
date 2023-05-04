@@ -10,6 +10,8 @@
 #include "Student.h"
 #include "Semester.h"
 
+#include "ConvertType.h"
+
 struct Course {
     std::string ID, classID;
     std::string name, teacher;
@@ -48,7 +50,7 @@ struct Course {
 
     void displayInfo(std::ostream& outDev);
 
-    void displayInfoScreen();
+    void displayInfoTable(Vector<Vector<string>>& table);
 
     void displayInfoFile(std::ostream& ofs);
 
