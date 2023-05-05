@@ -131,6 +131,7 @@ StaffScene2::StaffScene2() {
 	add.press_color = GRAY;
 	add.hover_color = DARKGREEN;
 	add.fill_color = GREEN;
+	add.setInsertColor();
 	//-----------------------------------------------------------------------------------
 	back.label = "Back";
 	back.setSize(buttonSize);
@@ -138,6 +139,7 @@ StaffScene2::StaffScene2() {
 	back.fill_color = ORANGE;
 	back.hover_color = MAROON;
 	back.press_color = RED;
+	back.setRemoveColor();
 	//-----------------------------------------------------------------------------------
 	message = "";
 	message.setColor(RED);
@@ -182,6 +184,7 @@ StaffScene2::StaffScene2() {
 	exportLSYs.fill_color = YELLOW;
 	exportLSYs.hover_color = GOLD;
 	exportLSYs.press_color = ORANGE;
+	exportLSYs.setViewColor();
 	//-----------------------------------------------------------------------------------
 	exportLAYs.label = "Export";
 	exportLAYs.setSize(removeButtonSize);
@@ -189,6 +192,7 @@ StaffScene2::StaffScene2() {
 	exportLAYs.fill_color = YELLOW;
 	exportLAYs.hover_color = GOLD;
 	exportLAYs.press_color = ORANGE;
+	exportLAYs.setViewColor();
 	//-----------------------------------------------------------------------------------
 	removeStudentButton.label = "Remove";
 	removeStudentButton.fill_color = RED;
@@ -196,6 +200,7 @@ StaffScene2::StaffScene2() {
 	removeStudentButton.hover_color = ORANGE;
 	removeStudentButton.setSize(removeButtonSize);
 	removeStudentButton.setPos(removeStudentButtonPos);
+	removeStudentButton.setRemoveColor();
 	//-----------------------------------------------------------------------------------
 	viewStudentButton.label = "View";
 	viewStudentButton.fill_color = YELLOW;
@@ -203,6 +208,7 @@ StaffScene2::StaffScene2() {
 	viewStudentButton.hover_color = ORANGE;
 	viewStudentButton.setSize(removeButtonSize);
 	viewStudentButton.setPos(viewStudentButtonPos);
+	viewStudentButton.setViewColor();
 	//-----------------------------------------------------------------------------------
 	removeStaffButton.label = "Remove";
 	removeStaffButton.fill_color = RED;
@@ -210,6 +216,7 @@ StaffScene2::StaffScene2() {
 	removeStaffButton.hover_color = ORANGE;
 	removeStaffButton.setSize(removeButtonSize);
 	removeStaffButton.setPos(removeStaffButtonPos);
+	removeStaffButton.setRemoveColor();
 	//-----------------------------------------------------------------------------------
 }
 

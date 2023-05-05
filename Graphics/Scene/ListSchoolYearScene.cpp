@@ -18,6 +18,7 @@ ListSchoolYearScene::ListSchoolYearScene() {
     view.label = "View";
     view.setPos({400, 300});
     view.setSize({150, 50});
+    view.setViewColor();
     //--------------------------------------
     addYear = "Add Year";
     addYear.setSize(30);
@@ -30,6 +31,7 @@ ListSchoolYearScene::ListSchoolYearScene() {
     add.label = "Add";
     add.setPos({1050, 250});
     add.setSize({150, 50});
+    add.setInsertColor();
     //--------------------------------------
     removeYear = "Remove Year";
     removeYear.setSize(30);
@@ -42,10 +44,12 @@ ListSchoolYearScene::ListSchoolYearScene() {
     remove.label = "Remove";
     remove.setPos({1050, 350});
     remove.setSize({150, 50});
+    remove.setRemoveColor();
     //--------------------------------------
     back.label = "Back";
     back.setPos({1000, 600});
     back.setSize({200, 50});
+    back.setRemoveColor();
 
     ms = "";
     ms.setSize(24);

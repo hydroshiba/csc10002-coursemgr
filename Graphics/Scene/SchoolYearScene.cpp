@@ -17,6 +17,7 @@ SchoolYearScene::SchoolYearScene() {
     view.label = "View";
     view.setPos({350, 300});
     view.setSize({150, 50});
+    view.setViewColor();
     //--------------------------------------
     addClass = "Add Class";
     addClass.setSize(30);
@@ -29,6 +30,7 @@ SchoolYearScene::SchoolYearScene() {
     add.label = "Add";
     add.setPos({1050, 250});
     add.setSize({150, 50});
+    add.setInsertColor();
     //--------------------------------------
     removeClass = "Remove Class";
     removeClass.setSize(30);
@@ -41,6 +43,7 @@ SchoolYearScene::SchoolYearScene() {
     remove.label = "Remove";
     remove.setPos({1050, 350});
     remove.setSize({150, 50});
+    remove.setRemoveColor();
     //--------------------------------------
     editYear = "Edit Year";
     editYear.setSize(30);
@@ -53,6 +56,7 @@ SchoolYearScene::SchoolYearScene() {
     change.label = "Change";
     change.setPos({1050, 450});
     change.setSize({150, 50});
+    change.setViewColor();
     //--------------------------------------
     exportOption = "Choose a location to export file";
     exportOption.setSize(30);
@@ -61,6 +65,7 @@ SchoolYearScene::SchoolYearScene() {
     Export.label = "Export";
     Export.setPos({400, 600});
     Export.setSize({200, 50});
+    Export.setViewColor();
 
     exportPath.defaultText = "Location";
     exportPath.setPos({50, 600});
@@ -69,6 +74,7 @@ SchoolYearScene::SchoolYearScene() {
     back.label = "Back";
     back.setPos({1000, 600});
     back.setSize({200, 50});
+    back.setRemoveColor();
 }
 
 void SchoolYearScene::render() {

@@ -124,18 +124,21 @@ StaffScene::StaffScene() {
 	change.setPos({ 25, 600 });
 	change.hover_color = GOLD;
 	change.press_color = YELLOW;
+	change.setViewColor();
 	//-------------------------------------------------------------------
 	listAYs.label = "AcademicYears";
 	listAYs.setSize(buttonSize);
 	listAYs.setPos({ 625, 600 });
 	listAYs.hover_color = GOLD;
 	listAYs.press_color = YELLOW;
+	listAYs.setViewColor();
 	//-------------------------------------------------------------------
 	listSYs.label = "SchoolYears";
 	listSYs.setSize(buttonSize);
 	listSYs.setPos({ 825, 600 });
 	listSYs.hover_color = GOLD;
 	listSYs.press_color = YELLOW;
+	listSYs.setViewColor();
 	//-------------------------------------------------------------------
 	logout.label = "Logout";
 	logout.setSize(buttonSize);
@@ -143,6 +146,7 @@ StaffScene::StaffScene() {
 	logout.fill_color = ORANGE;
 	logout.press_color = RED;
 	logout.hover_color = MAROON;
+	logout.setRemoveColor();
 	//-------------------------------------------------------------------
 	add.label = "Add";
 	add.setSize(buttonSize);
@@ -150,12 +154,14 @@ StaffScene::StaffScene() {
 	add.fill_color = GREEN;
 	add.hover_color = DARKGREEN;
 	add.press_color = GRAY;
+	add.setInsertColor();
 	//-------------------------------------------------------------------
 	next.label = "Next";
 	next.setSize(buttonSize);
 	next.setPos({ 425, 600 });
 	next.press_color = YELLOW;
 	next.hover_color = GOLD;
+	next.setViewColor();
 	message = "";
 	message.setColor(RED);
 	message.setSize(30);

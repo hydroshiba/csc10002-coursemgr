@@ -11,8 +11,7 @@ Login::Login() {
 	quit.setY(600);
 	quit.centerX();
 
-	quit.hover_color = RED;
-	quit.press_color = MAROON;
+	quit.setRemoveColor();
 
 	title = app_const::title;
 	title.setSize(75);
