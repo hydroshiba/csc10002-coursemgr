@@ -190,6 +190,33 @@ Vector<Vector<string>> getTableContentOfListAcademicYear() {
 
 Vector<Vector<string>> getTableContentOfAcademicYear(const AcademicYear& academicYear) {
 	Vector<Vector<string>> table;
+	size_t n = academicYear.semesters.size();
+	table.resize(3 + n);
+	for (int i = 0; i < 2; i++) {
+		table[i].resize(2);
+	}
+	for (int i = 2; i < table.size(); i++) {
+		table[i].resize(5);
+	}
+	table[0][0] = "AcademicYear";
+	table[0][1] = academicYear.getPeriod();
+
+	table[1][0] = "Number of semesters";
+	table[1][1] = to_string(n);
+
+	table[2][0] = "No";
+	table[2][1] = "SemesterID";
+	table[2][2] = "Start date";
+	table[2][3] = "End date";
+	table[2][4] = "Number of courses";
+
+	for (int i = 0; i < n; i++) {
+		table[i + 3][0] = to_string(i + 1);
+		table[i + 3][1] = academicYear.semesters[i].semesterID;
+		table[i + 3][2] = academicYear.semesters[i].startDate.get();
+		table[i + 3][3] = academicYear.semesters[i].endDate.get();
+		table[i + 3][4] = to_string(academicYear.semesters[i].courses.size());
+	}
 	return table;
 }
 

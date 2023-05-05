@@ -18,7 +18,7 @@ struct AcademicYear {
 
     void removeAllSemester();
 
-    std::string getPeriod();
+    std::string getPeriod() const;
 };
 
 bool operator==(const AcademicYear& yearA, const AcademicYear& yearB);

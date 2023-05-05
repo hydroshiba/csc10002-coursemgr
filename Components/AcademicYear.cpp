@@ -33,7 +33,7 @@ void AcademicYear::removeAllSemester() {
     semesters.resize(0);
 }
 
-std::string AcademicYear::getPeriod() {
+std::string AcademicYear::getPeriod() const{
     return std::to_string(start) + " - " + std::to_string(start + 1);
 }
 
