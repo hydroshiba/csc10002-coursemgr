@@ -68,7 +68,7 @@ Scoreboard* Student::getScoreboard(Course& course) {
     return cur;
 }
 
-float Student::getGPA() {
+float Student::getGPA() const {
     int nCredits = 0;
     float totalMark = 0;
     for (int i = 0; i < scoreboards.size(); i++)
@@ -79,7 +79,7 @@ float Student::getGPA() {
     return totalMark;
 }
 
-float Student::getGPA(const Semester& semester) {
+float Student::getGPA(const Semester& semester) const{
     int nCredits = 0;
     float totalMark = 0;
     for (int i = 0; i < scoreboards.size(); i++)

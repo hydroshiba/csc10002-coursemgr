@@ -30,8 +30,8 @@ struct Student : public User {
     void setClass(Class* ptrClass);
     void setScoreboards(Vector<Scoreboard*>& scoreboards);
 
-    float getGPA(); // Overall GPA
-    float getGPA(const Semester& semester); // Current semester GPA
+    float getGPA() const; // Overall GPA
+    float getGPA(const Semester& semester) const; // Current semester GPA
 
     void setInfoToClass(std::ifstream &ifs);
     void setInfoToCourseCSV(std::ifstream &ifs);

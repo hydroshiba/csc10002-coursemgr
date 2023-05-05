@@ -26,11 +26,13 @@ Vector<Vector<string>> getTableContentOfSchoolYear(const SchoolYear& schoolYear)
 
 Vector<Vector<string>> getTableContentOfListStudentInClass(const Class& CLASS); // Done
 
-Vector<Vector<string>> getTableContentOfListScoreboardInSemesterInClass(const Class& CLASS, const Semester& semester);
+Vector<Vector<string>> getTableContentOfListScoreboardInSemesterInClass(const Class& CLASS, const string& semesterID);
 
 Vector<Vector<string>> getTableContentOfListScoreboardInClass(const Class& CLASS);
 
 Vector<Vector<string>> getTableContentOfScoreboardOfStudent(const Student& student); // Done
+
+Vector<Vector<string>> getTableContentOfScoreboardInSemesterOfStudent(const Student& student, const string& semesterID);
 
 Vector<Vector<string>> getTableContentOfListAcademicYear(); // Done
 
