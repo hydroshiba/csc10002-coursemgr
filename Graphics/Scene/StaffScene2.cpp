@@ -4,7 +4,7 @@
 const float yPosSceneName = 10;
 const float sizeTextSceneName = 100;
 //-------------------------------------------------------------------------------------
-const float xDis = 50;
+const float xDis = 70;
 const float yDis = 30;
 //-------------------------------------------------------------------------------------
 const float textBoxContentSize = 30;
@@ -160,11 +160,11 @@ StaffScene2::StaffScene2() {
 	inputStaffID.setSize(removeInputBoxSize);
 	inputStaffID.setPos({ xPosInputRemoveStudentID, yPosTextRemoveStaffID });
 	//-----------------------------------------------------------------------------------
-	textExportLSYs = "LSYs filepath: ";
+	textExportLSYs = "LSYs filename: ";
 	textExportLSYs.setSize(textBoxContentSize);
 	textExportLSYs.setPos({ removeStudentTextBoxPos.x, yPosTextExportLSYs });
 	//-----------------------------------------------------------------------------------
-	textExportLAYs = "LAYs filepath: ";
+	textExportLAYs = "LAYs filename: ";
 	textExportLAYs.setSize(textBoxContentSize);
 	textExportLAYs.setPos({ removeStudentTextBoxPos.x, yPosTextExportLAYs });
 	//-----------------------------------------------------------------------------------
