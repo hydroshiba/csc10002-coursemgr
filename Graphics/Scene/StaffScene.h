@@ -11,7 +11,7 @@
 #include "Objects/InputBox.h"
 #include "Objects/Button.h"
 
-#include "../../Components/User.h"
+#include "User.h"
 #include "UpdateFunction.h"
 #include "InsertFunction.h"
 

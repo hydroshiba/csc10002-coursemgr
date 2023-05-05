@@ -19,6 +19,7 @@
 #include "Scene/StudentScoreboardsScene.h"
 #include "Scene/ListAcademicYearScene.h"
 #include "Scene/AcademicYearScene.h"
+#include "Scene/SemesterScene.h"
 
 class Application {
 private:
