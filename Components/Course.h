@@ -48,19 +48,11 @@ struct Course {
     
     void removeAllStudent();
 
-    void displayInfo(std::ostream& outDev);
+    void Course::displayInfoFile(std::ostream& ofs);
 
     void displayInfoTable(Vector<Vector<string>>& table);
 
-    void displayInfoFile(std::ostream& ofs);
-
     void importScoreBoards(std::ifstream& ifs);
-
-    void displayScoreBoards(std::ostream& outDev = std::cout);
-
-    void displayScoreBoardFile(std::ostream& outDev);
-
-    void displayScoreBoardScreen();
 };
 
 bool operator==(const Course& courseA, const Course& courseB);

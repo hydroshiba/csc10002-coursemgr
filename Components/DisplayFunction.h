@@ -9,21 +9,35 @@
 /*		Display function	*/
 
 // DropBox
-Vector<std::string> getListSchoolYear(Vector<SchoolYear>& schoolYears);
+Vector<string> getListSchoolYear(Vector<SchoolYear>& schoolYears);
 
-// DropBox
-Vector<std::string> getListAcademicYear(Vector<AcademicYear>& academicYears);
+Vector<string> getListAcademicYear(Vector<AcademicYear>& academicYears);
 
-// DropBox
-Vector<std::string> getListClass(const SchoolYear& schoolYear);
+Vector<string> getListClass(const SchoolYear& schoolYear);
 
-// DropBox
-Vector<std::string> getListSemester(const AcademicYear& academicYear);
+Vector<string> getListSemester(const AcademicYear& academicYear);
 
-// DropBox
-Vector<std::string> getListCourse(const Semester& semester);
+Vector<string> getListCourse(const Semester& semester);
 
 // Table
-Vector<Vector<std::string>> getTableContentOfScoreboardsofStudent(const Student& student);
+Vector<Vector<string>> getTableContentOfListSchoolYear(const SchoolYear& schoolYear);
+
+Vector<Vector<string>> getTableContentOfListClass(const Class& CLASS);
+
+Vector<Vector<string>> getTableContentOfListStudentInClass(const Class& CLASS);
+
+Vector<Vector<string>> getTableContentOfListScoreboardInSemesterInClass(const Class& CLASS, const Semester& semester);
+
+Vector<Vector<string>> getTableContentOfListScoreboardInClass(const Class& CLASS);
+
+Vector<Vector<string>> getTableContentOfScoreboardOfStudent(const Student& student);
+
+Vector<Vector<string>> getTableContentOfListAcademicYear(const AcademicYear& academicYear);
+
+Vector<Vector<string>> getTableContentOfListSemester(const Semester& semester);
+
+Vector<Vector<string>> getTableContentOfListCourse(const Course& course);
+
+Vector<Vector<string>> getTableContentOfListStudentInCourse(const Course& course); // Student and scoreboards
 
 #endif // !DISPLAY_FUNCTION_H

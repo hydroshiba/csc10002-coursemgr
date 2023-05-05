@@ -167,7 +167,7 @@ Scene* CourseScene::process(){
             result.centerX();
             return this;            
         }
-        importStudentListOfCourseFromFile(students, *ptrCourse_Global, notif);
+        //importStudentListOfCourseFromFile(students, *ptrCourse_Global, notif);
         result = notif;
         result.centerX();
         return this;

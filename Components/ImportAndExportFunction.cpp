@@ -135,7 +135,7 @@ bool exportListOfStudentInCourse(const string& filename, Course& course, string 
 		outStr = "Cannot open file!";
 		return false;
 	}
-	course.displayInfo(ofs);
+	course.displayInfoFile(ofs);
 	course.displayInfoTable(table);
 	ofs << "No,ID,Fullname" << std::endl;
 	Vector<string> str;

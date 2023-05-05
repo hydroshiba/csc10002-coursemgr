@@ -15,6 +15,8 @@ bool exportListOfStudentInCourse(const string& filename, Course& course, string&
 // 20. import scoreboard of course
 bool importScoreBoardOfCourse(const string& filename, Course& course);
 
+bool exportListScoreboardOfStudent(const string& filename, Student& student, string& outStr);
+
 // Optional
 bool exportListSchoolYear(const string& filename, string& outStr);
 

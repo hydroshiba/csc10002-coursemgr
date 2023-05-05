@@ -112,20 +112,14 @@ Scoreboard* Course::getScoreboard(const std::string& studentID) {
     return ptrScoreboard;
 }
 
-// void Course::displayInfo(std::ostream& outDev) {
-//     if (&outDev == &std::cout)
-//         displayInfoScreen();
-//     else
-//         displayInfoFile(outDev);
-// }
 
 void Course::displayInfoTable(Vector<Vector<string>>& table) {
     table.resize(9);
     for (int i = 0; i<9; ++i)
         table[i].resize(2);
-    table[0][0] = "Course ID"; table[0][1] = ID;
-    table[1][0] = "Class ID"; table[1][1] = classID;
-    table[2][0] = "Course name"; table[2][1] = name;
+    table[0][0] = "Course ID"; table[0][1] = this->ID;
+    table[1][0] = "Class ID"; table[1][1] = this->classID;
+    table[2][0] = "Course name"; table[2][1] = this->name;
     table[3][0] = "Teacher"; table[3][1] = teacher;
     table[4][0] = "Number of credits"; table[4][1] = std::to_string(credits);
     table[5][0] = "Max enroll"; table[5][1] = std::to_string(maxEnroll);
@@ -171,54 +165,6 @@ void Course::importScoreBoards(std::ifstream& ifs) {
         No++;
     }
 }
-
-void Course::displayScoreBoards(std::ostream& outDev) {
-    if (&outDev == &std::cout)
-        displayScoreBoardScreen();
-    else
-        displayScoreBoardFile(outDev);
-}
-
-void Course::displayScoreBoardFile(std::ostream& outDev) {
-    displayInfoFile(outDev);
-    outDev << "No,ID,Midterm,Final,Other,Total" << std::endl;
-    for (int i = 0; i < scoreboards.size(); i++)
-    {
-        outDev << i + 1 << "," << scoreboards[i]->ptrStudent->ID << ",";
-        outDev << scoreboards[i]->midterm << "," << scoreboards[i]->final << "," << scoreboards[i]->other << ",";
-        outDev << scoreboards[i]->total << std::endl;
-    }
-}
-
-// void Course::displayScoreBoardScreen() {
-//     displayInfoScreen();
-//     const int noMaxLength = 3;
-//     const int idMaxLength = 10;
-//     const int fullNameMaxLength = 20;
-//     const int midtermMaxLength = 10;
-//     const int finalMaxLength = 8;
-//     const int totalMaxLength = 8;
-//     const int otherMaxLength = 8;
-//     std::cout << std::setw(noMaxLength) << std::left << "No";
-//     std::cout << std::setw(idMaxLength) << std::left << "ID";
-//     std::cout << std::setw(fullNameMaxLength) << std::left << "Fullname";
-//     std::cout << std::setw(midtermMaxLength) << std::left << "Midterm";
-//     std::cout << std::setw(finalMaxLength) << std::left << "Final";
-//     std::cout << std::setw(otherMaxLength) << std::left << "Other";
-//     std::cout << std::setw(totalMaxLength) << std::left << "Total";
-//     std::cout << std::endl;
-//     for (int i = 0; i < scoreboards.size(); i++)
-//     {
-//         std::cout << std::setw(noMaxLength) << std::left << i + 1;
-//         std::cout << std::setw(idMaxLength) << std::left << scoreboards[i]->ptrStudent->ID;
-//         std::cout << std::setw(fullNameMaxLength) << std::left << scoreboards[i]->ptrStudent->name.get();
-//         std::cout << std::setw(midtermMaxLength) << std::left << scoreboards[i]->midterm;
-//         std::cout << std::setw(finalMaxLength) << std::left << scoreboards[i]->final;
-//         std::cout << std::setw(otherMaxLength) << std::left << scoreboards[i]->other;
-//         std::cout << std::setw(totalMaxLength) << std::left << scoreboards[i]->total;
-//         std::cout << std::endl;
-//     }
-// }
 
 void Course::removeAllStudent() {
     if (scoreboards.size() == 0)
