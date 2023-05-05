@@ -284,7 +284,7 @@ bool exportListAcademicYear(const string& filename, string& outStr){
 }
 
 bool exportListSemesterInAcademicYear(const string& filename, AcademicYear& academicYear, string& outStr){
-		string getListSemesterFile = getExportFolderPath() + filename + ".csv";
+	string getListSemesterFile = getExportFolderPath() + filename + ".csv";
 	if (filename.empty()){
 		outStr = "Empty InputBox error, please input something!";
 		return false;
@@ -305,6 +305,32 @@ bool exportListSemesterInAcademicYear(const string& filename, AcademicYear& acad
 	}
 	fout.close();
 	outStr = "Completely exported list semester from academic year " + std::to_string(academicYear.start) + " to " + getListSemesterFile;
+	removeTable(table);
+	return true;
+}
+
+bool exportListCourseInSemester(const string& filename, Semester& semester, string& outStr){
+	string getListCourseFile = getExportFolderPath() + filename + ".csv";
+	if (filename.empty()){
+		outStr = "Empty InputBox error, please input something!";
+		return false;
+	}
+	std::ofstream fout (getListCourseFile, std::ios::out);
+	if (!fout.is_open()){
+		outStr = "Cannot open file " + getListCourseFile +'!';
+		return false;
+	}
+	Vector<Vector<string>> table = getTableContentOfSemester(semester);
+	for (int i = 0; i<table.size(); ++i){
+		for (int j = 0; j<table[i].size(); ++j){
+			fout << table[i][j];
+			if (j != table[i].size()-1)
+				fout << ',';
+		}
+		fout << std::endl;
+	}
+	fout.close();
+	outStr = "Completely exported list course from semester " + semester.semesterID + " to " + getListCourseFile;
 	removeTable(table);
 	return true;
 }
