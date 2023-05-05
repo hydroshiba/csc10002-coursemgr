@@ -195,7 +195,7 @@ bool exportListStudentInClass(const string& filename, Class& CLASS, string& outS
 		for (int j = 0; j<table[i].size(); ++j){
 			fout << table[i][j];
 			if (j != table[i].size()-1)
-				fout << '\n';
+				fout << ',';
 		}
 		fout << std::endl;
 	}
@@ -221,7 +221,7 @@ bool exportListAcademicYear(const string& filename, string& outStr){
 		for (int j = 0; j<table[i].size(); ++j){
 			fout << table[i][j];
 			if (j != table[i].size()-1)
-				fout << '\n';
+				fout << ',';
 		}
 		fout << std::endl;
 	}
