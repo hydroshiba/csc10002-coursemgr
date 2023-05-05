@@ -54,9 +54,17 @@ SchoolYearScene::SchoolYearScene() {
     change.setPos({1050, 450});
     change.setSize({150, 50});
     //--------------------------------------
+    exportOption = "Choose a location to export file";
+    exportOption.setSize(30);
+    exportOption.setPos({50, 550});
+
     Export.label = "Export";
-    Export.setPos({50, 600});
+    Export.setPos({400, 600});
     Export.setSize({200, 50});
+
+    exportPath.defaultText = "Location";
+    exportPath.setPos({50, 600});
+    exportPath.setSize({300, 50});
 
     back.label = "Back";
     back.setPos({1000, 600});
@@ -82,7 +90,9 @@ void SchoolYearScene::render() {
     inputStartYear.render(mousePoint);
     change.render(mousePoint);
     //--------------------------------------
+    exportOption.render();
     Export.render(mousePoint);
+    exportPath.render(mousePoint);
     back.render(mousePoint);
 }
 
@@ -118,8 +128,9 @@ Scene* SchoolYearScene::process() {
         //change start year
     }
     //--------------------------------------
+    exportPath.process(mousePoint);
     if (Export.clicked(mousePoint)) {
-        //export
+        //export school year to path
     }
     if (back.clicked(mousePoint)) {
         ptrSchoolYear_Global = nullptr;

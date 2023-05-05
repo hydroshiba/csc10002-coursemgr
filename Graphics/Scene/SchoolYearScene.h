@@ -36,7 +36,9 @@ private:
     InputBox inputStartYear;
     Button change;
 
+    TextBox exportOption;
     Button Export;
+    InputBox exportPath;
     Button back;
 
 public:
