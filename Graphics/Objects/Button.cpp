@@ -108,6 +108,21 @@ Rectangle Button::getRect() {
 	return border_bound;
 }
 
+void Button::setViewColor() {
+    fill_color = GOLD;
+    hover_color = YELLOW;
+    press_color = ORANGE;
+}
+void Button::setInsertColor() {
+    fill_color = GREEN;
+    hover_color = LIME;
+    press_color = DARKGREEN;
+}
+void Button::setRemoveColor(){
+    fill_color = RED;
+    hover_color = MAROON;
+    press_color = ORANGE;
+}
 void Button::centerX() {
     pos.x = (GetScreenWidth() - size.x) / 2.0f;
     refresh();

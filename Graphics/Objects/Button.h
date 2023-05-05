@@ -55,6 +55,10 @@ public:
     Vector2 getSize();
     Rectangle getRect();
 
+    void setViewColor();
+    void setInsertColor();
+    void setRemoveColor();
+
     void centerX();
     void centerY();
 
