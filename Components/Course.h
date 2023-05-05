@@ -48,9 +48,9 @@ struct Course {
     
     void removeAllStudent();
 
-    void Course::displayInfoFile(std::ostream& ofs);
+    void displayInfoFile(std::ostream& ofs);
 
-    void displayInfoTable(Vector<Vector<string>>& table);
+    void displayInfoTable(Vector<Vector<string>>& table) const;
 
     void importScoreBoards(std::ifstream& ifs);
 };

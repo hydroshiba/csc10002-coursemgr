@@ -128,7 +128,6 @@ bool importScoreBoardOfCourse(const string& filename, Course& course) {
 
 // 19. export list of students in course to csv file
 bool exportListOfStudentInCourse(const string& filename, Course& course, string &outStr) {
-	Vector<Vector<string>> table;
 	string inputStudCouseFilePath = getExportFolderPath() + filename;
 	std::ofstream ofs(inputStudCouseFilePath, std::ios::out);
 	if (!ofs.is_open()){
@@ -136,19 +135,11 @@ bool exportListOfStudentInCourse(const string& filename, Course& course, string 
 		return false;
 	}
 	course.displayInfoFile(ofs);
-	course.displayInfoTable(table);
 	ofs << "No,ID,Fullname" << std::endl;
-	Vector<string> str;
-	str.append("No"); str.append("StudentID"); str.append("FullName");
-	table.append(str);
-	str.resize(0);
 	for (int i = 0; i < course.scoreboards.size(); i++)
 	{
 		Student* student = course.scoreboards[i]->ptrStudent;
 		ofs << i + 1 << "," << student->ID << "," << student->name.get() << std::endl;
-		str.append(std::to_string(i+1)); str.append(student->ID); str.append(student->name.get());
-		table.append(str);
-		str.resize(0);
 	}
 	ofs.close();
 	outStr = "Completely exported students list from course!";
