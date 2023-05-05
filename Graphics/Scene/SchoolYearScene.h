@@ -36,7 +36,6 @@ private:
     InputBox inputStartYear;
     Button change;
 
-    Button Import;
     Button Export;
     Button back;
 

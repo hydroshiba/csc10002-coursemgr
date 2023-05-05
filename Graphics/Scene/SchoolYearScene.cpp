@@ -54,12 +54,8 @@ SchoolYearScene::SchoolYearScene() {
     change.setPos({1050, 450});
     change.setSize({150, 50});
     //--------------------------------------
-    Import.label = "Import";
-    Import.setPos({50, 600});
-    Import.setSize({200, 50});
-
     Export.label = "Export";
-    Export.setPos({300, 600});
+    Export.setPos({50, 600});
     Export.setSize({200, 50});
 
     back.label = "Back";
@@ -86,7 +82,6 @@ void SchoolYearScene::render() {
     inputStartYear.render(mousePoint);
     change.render(mousePoint);
     //--------------------------------------
-    Import.render(mousePoint);
     Export.render(mousePoint);
     back.render(mousePoint);
 }
@@ -123,9 +118,6 @@ Scene* SchoolYearScene::process() {
         //change start year
     }
     //--------------------------------------
-    if (Import.clicked(mousePoint)) {
-        //import
-    }
     if (Export.clicked(mousePoint)) {
         //export
     }
