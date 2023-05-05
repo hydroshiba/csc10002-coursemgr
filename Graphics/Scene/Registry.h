@@ -15,6 +15,7 @@ public:
 	Scene* staffScene;
 	Scene* staffScene2;
 	Scene* studentScoreboardsScene;
+	Scene* listAcademicYearScene;
 	Registry(): 
 	blank(nullptr), 
 	login(nullptr), 
@@ -25,7 +26,8 @@ public:
 	courseScene(nullptr), 
 	editScene(nullptr), 
 	schoolYearScene(nullptr),
-	listSchoolYearScene(nullptr) {}
+	listSchoolYearScene(nullptr),
+	listAcademicYearScene(nullptr) {}
 };
 
 extern Registry registry;
