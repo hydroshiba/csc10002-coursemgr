@@ -135,6 +135,35 @@ Vector<Vector<string>> getTableContentOfListClass(const SchoolYear& schoolYear) 
 	return table;
 }
 
+Vector<Vector<string>> getTableContentOfListStudentInClass(const Class& CLASS) {
+	size_t n = CLASS.students.size();
+	Vector<Vector<string>> table;
+	table.resize(3 + n);
+	for (int i = 0; i < 2; i++)
+		table[i].resize(2);
+	for (int i = 2; i < table.size(); i++)
+		table[i].resize(6);
+	table[0][0] = "Class";
+	table[0][1] = CLASS.name;
+	table[1][0] = "Number of students";
+	table[1][1] = to_string(n);
+	table[2][0] = "No";
+	table[2][1] = "StudentID";
+	table[2][2] = "Fullnam";
+	table[2][3] = "Gender";
+	table[2][4] = "Dob";
+	table[2][5] = "SocialID";
+	for (int i = 0; i < n; i++) {
+		table[i + 3][0] = to_string(i + 1);
+		table[i + 3][1] = CLASS.students[i]->ID;
+		table[i + 3][2] = CLASS.students[i]->name.get();
+		table[i + 3][3] = gender_to_string(CLASS.students[i]->gender);
+		table[i + 3][4] = CLASS.students[i]->birth.get();
+		table[i + 3][5] = CLASS.students[i]->socialID;
+	}
+	return table;
+}
+
 Vector<Vector<string>> getTableContentOfListAcademicYear() {
 	Vector<Vector<string>> table;
 	table.resize(2 + academicYears.size());
