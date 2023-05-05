@@ -116,6 +116,22 @@ Vector<Vector<string>> getTableContentOfListSchoolYear() {
 	return table;
 }
 
+Vector<Vector<string>> getTableContentOfListAcademicYear() {
+	Vector<Vector<string>> table;
+	table.resize(2 + academicYears.size());
+	for (int i = 0; i < table.size(); i++) {
+		table[i].resize(2);
+	}
+	table[0][0] = "Number of academicYears";
+	table[0][1] = std::to_string(academicYears.size());
+	table[1][0] = "No";
+	table[1][1] = "AcademicYear";
+	for (int i = 0; i < academicYears.size(); i++) {
+		table[i + 2][0] = std::to_string(i + 1);
+		table[i + 2][1] = std::to_string(academicYears[i].start);
+	}
+	return table;
+}
 // Student and scoreboards
 Vector<Vector<string>> getTableContentOfListStudentInCourse(const Course& course){
 	Vector<Vector<string>> table(course.scoreboards.size()+10);
