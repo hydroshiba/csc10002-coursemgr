@@ -10,7 +10,7 @@ struct Name {
 
     void set(const std::string& nameFirst, const std::string& nameLast);
 
-    std::string get();
+    std::string get() const;
 };
 
 bool operator==(const Name& nameA, const Name& nameB);

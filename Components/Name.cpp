@@ -8,7 +8,7 @@ void Name::set(const std::string& nameFirst, const std::string& nameLast) {
     first = nameFirst;
 }
 
-std::string Name::get() {
+std::string Name::get() const {
     return first + " " + last;
 }
 
