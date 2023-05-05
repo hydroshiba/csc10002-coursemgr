@@ -58,7 +58,7 @@ Vector<string> getListCourse(const Semester& semester) {
 }
 
 // Table
-Vector<Vector<string>> getTableContentOfScoreboardsofStudent(const Student& student) {
+Vector<Vector<string>> getTableContentOfScoreboardOfStudent(const Student& student) {
 	Vector<Vector<string>> table(student.scoreboards.size() + 1);
 	for (int i = 0; i < table.size(); i++) {
 		table[i].resize(7);
@@ -78,6 +78,23 @@ Vector<Vector<string>> getTableContentOfScoreboardsofStudent(const Student& stud
 		table[i + 1][4] = student.scoreboards[i]->final;
 		table[i + 1][5] = student.scoreboards[i]->other;
 		table[i + 1][6] = student.scoreboards[i]->total;
+	}
+	return table;
+}
+
+Vector<Vector<string>> getTableContentOfListCourse(const Course& course){
+	Vector<Vector<string>> table;
+	course.displayInfoTable(table);
+	table.resize(course.scoreboards.size()+9+1);
+	for (int i = 0; i<course.scoreboards.size()+1; ++i)
+		table[i+9].resize(3);
+	table[9][0] = "No";
+	table[9][1] = "StudnetID";
+	table[9][2] = "Fullname";
+	for (int i = 0; i < course.scoreboards.size(); ++i){
+		table[i+10][0] = std::to_string(i+1);
+		table[i+10][1] = course.scoreboards[i]->ptrStudent->ID;
+		table[i+10][2] = course.scoreboards[i]->ptrStudent->name.get();
 	}
 	return table;
 }

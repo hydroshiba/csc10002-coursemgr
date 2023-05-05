@@ -113,7 +113,7 @@ Scoreboard* Course::getScoreboard(const std::string& studentID) {
 }
 
 
-void Course::displayInfoTable(Vector<Vector<string>>& table) {
+void Course::displayInfoTable(Vector<Vector<string>>& table) const{
     table.resize(9);
     for (int i = 0; i<9; ++i)
         table[i].resize(2);
