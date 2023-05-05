@@ -75,6 +75,11 @@ SchoolYearScene::SchoolYearScene() {
     back.setPos({1000, 600});
     back.setSize({200, 50});
     back.setRemoveColor();
+
+    ms = "";
+    ms.setSize(30);
+    ms.setColor(RED);
+    ms.setY(670);
 }
 
 void SchoolYearScene::render() {
@@ -115,9 +120,8 @@ Scene* SchoolYearScene::process() {
     //--------------------------------------
     inputClassAdded.process(mousePoint);
     if (add.clicked(mousePoint)) {
-        std::string content = inputClassAdded.getContent();
-        if (content != "") listClass.add(content);
-        //add class
+        string content = inputClassAdded.getContent();
+        string outStr;
     }
     //--------------------------------------
     inputClassRemoved.process(mousePoint);

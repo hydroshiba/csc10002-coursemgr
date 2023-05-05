@@ -41,6 +41,8 @@ private:
     InputBox exportPath;
     Button back;
 
+    TextBox ms;
+
 public:
     SchoolYearScene();
     void render();
