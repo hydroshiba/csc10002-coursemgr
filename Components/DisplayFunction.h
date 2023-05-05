@@ -32,7 +32,7 @@ Vector<Vector<string>> getTableContentOfListScoreboardInClass(const Class& CLASS
 
 Vector<Vector<string>> getTableContentOfScoreboardOfStudent(const Student& student); // Done
 
-Vector<Vector<string>> getTableContentOfScoreboardInSemesterOfStudent(const Student& student, const Semester& semester);
+Vector<Vector<string>> getTableContentOfScoreboardInSemesterOfStudent(const Student& student, const Semester& semester); // Done
 
 Vector<Vector<string>> getTableContentOfListAcademicYear(); // Done
 

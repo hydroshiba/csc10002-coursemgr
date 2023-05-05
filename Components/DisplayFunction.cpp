@@ -237,6 +237,38 @@ Vector<Vector<string>> getTableContentOfScoreboardOfStudent(const Student& stude
 
 Vector<Vector<string>> getTableContentOfScoreboardInSemesterOfStudent(const Student& student, const Semester& semester) {
 	Vector<Vector<string>> table;
+	Vector<Scoreboard*> scoreboards	= student.getScoreboards(semester);
+	size_t nCourses = scoreboards.size();
+	table.resize(nCourses + 10);
+	for (int i = 0; i < 9; i++) {
+		table[i].resize(2);
+	}
+	table[0][0] = "StudentID"; table[0][1] = student.ID;
+	table[1][0] = "Fullname"; table[1][1] = student.name.get();
+	table[2][0] = "Gender"; table[2][1] = gender_to_string(student.gender);
+	table[3][0] = "Dob"; table[3][1] = student.birth.get();
+	table[4][0] = "SocialID"; table[4][1] = student.socialID;
+	table[5][0] = "Class"; table[5][1] = student.ptrClass->name;
+	table[6][0] = "Number of courses"; table[6][1] = to_string(nCourses);
+	table[7][0] = "Overall GPA"; table[7][1] = to_string(student.getGPA());
+	table[8][0] = "Semester GPA"; table[8][1] = to_string(student.getGPA(semester));
+	for (int i = 9; i < table.size(); i++)
+		table[i].resize(6);
+	table[9][0] = "No";
+	table[9][1] = "CourseID";
+	table[9][2] = "Midterm";
+	table[9][3] = "Final";
+	table[9][4] = "Other";
+	table[9][5] = "Total";
+	for (int i = 0; i < student.scoreboards.size(); i++) {
+		table[i + 1][0] = std::to_string(i + 1);
+		table[i + 1][1] = student.scoreboards[i]->ptrCourse->ID;
+		table[i + 1][2] = student.scoreboards[i]->midterm;
+		table[i + 1][3] = student.scoreboards[i]->final;
+		table[i + 1][4] = student.scoreboards[i]->other;
+		table[i + 1][5] = student.scoreboards[i]->total;
+	}
+	scoreboards.~Vector();
 	return table;
 }
 

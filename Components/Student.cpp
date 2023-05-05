@@ -45,7 +45,7 @@ void Student::setScoreboards(Vector<Scoreboard*>& scoreboards) {
     this->scoreboards = scoreboards;
 }
 
-Vector<Scoreboard*> Student::getScoreboards(const Semester& semester) {
+Vector<Scoreboard*> Student::getScoreboards(const Semester& semester) const{
     Vector<Scoreboard*> scoreboards;
     for (int i = 0; i < this->scoreboards.size(); i++) {
         if (this->scoreboards[i]->ptrCourse->ptrSemester == &semester)
@@ -54,7 +54,7 @@ Vector<Scoreboard*> Student::getScoreboards(const Semester& semester) {
     return scoreboards;
 }
 
-Scoreboard* Student::getScoreboard(const string& courseID) {
+Scoreboard* Student::getScoreboard(const string& courseID) const {
     Scoreboard* ptrScoreboard = nullptr;
     for (int i = 0; i < scoreboards.size(); i++) {
         if (scoreboards[i]->ptrCourse->ID == courseID) {
@@ -66,7 +66,7 @@ Scoreboard* Student::getScoreboard(const string& courseID) {
 }
 
 
-Scoreboard* Student::getScoreboard(Course& course) {
+Scoreboard* Student::getScoreboard(Course& course) const {
     Scoreboard* cur = nullptr;
 
     for (int i = 0; i < scoreboards.size(); ++i)

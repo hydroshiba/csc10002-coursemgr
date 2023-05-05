@@ -19,10 +19,10 @@ struct Student : public User {
 
     Student(const Name& name = { defaultStr, defaultStr }, const std::string& id = defaultStr, const std::string& password = "", const Gender& gender = male, const Date& birth = {0, 0, 0}, const std::string& socialID = defaultStr, Class* ptrClass = nullptr, const Vector<Scoreboard*>& scoreboards = Vector<Scoreboard*>());
     
-    Vector<Scoreboard*> getScoreboards(const Semester& semester);
+    Vector<Scoreboard*> getScoreboards(const Semester& semester) const;
 
-    Scoreboard* getScoreboard(const string& courseID);
-    Scoreboard* getScoreboard(Course& course);
+    Scoreboard* getScoreboard(const string& courseID) const;
+    Scoreboard* getScoreboard(Course& course) const;
 
     void set(const Name& name, const std::string& id, const std::string& password, const Gender& gender, const Date& birth, const std::string& socialID, Class* ptrClass, const Vector<Scoreboard*>& scoreboards);
 
