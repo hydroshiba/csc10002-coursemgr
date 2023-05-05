@@ -126,6 +126,22 @@ bool importScoreBoardOfCourse(const string& filename, Course& course) {
 	return true;
 }
 
+bool exportListSchoolYear(const string& filename, string& outStr){
+	string getListSchoolYearFile = getExportFolderPath() + filename;
+	std::ofstream fout (getListSchoolYearFile, std::ios::out);
+	if (!fout.is_open()){
+		outStr = "Cannot open file!";
+		return false;
+	}
+	fout << "Number of SchoolYears," << schoolYears.size() << std::endl;
+	fout << "No,SchoolYear\n";
+	for (int i = 0; i<schoolYears.size(); ++i)
+		fout << i+1 << schoolYears[i].start << std::endl;
+	fout.close();
+	outStr = "Completely exported list school years!";
+	return true;
+}
+
 // 19. export list of students in course to csv file
 bool exportListOfStudentInCourse(const string& filename, Course& course, string &outStr) {
 	string inputStudCouseFilePath = getExportFolderPath() + filename;
