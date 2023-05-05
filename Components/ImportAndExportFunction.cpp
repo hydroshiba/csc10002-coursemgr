@@ -174,7 +174,7 @@ bool exportListClassInSchoolYear(const string& filename, SchoolYear& schoolYear,
 		fout << std::endl;
 	}
 	fout.close();
-	outStr = "Completely exported list classes from school year " + std::to_string(schoolYear.start);
+	outStr = "Completely exported list classes from school year " + std::to_string(schoolYear.start) + " to " + getListClassFile;
 	removeTable(table);
 	return true;
 }
@@ -200,7 +200,7 @@ bool exportListStudentInClass(const string& filename, Class& CLASS, string& outS
 		fout << std::endl;
 	}
 	fout.close();
-	outStr = "Completely exported list students from class " + CLASS.name;
+	outStr = "Completely exported list students from class " + CLASS.name + " to " + getListStudClassFile;
 	removeTable(table);
 	return true;
 }
@@ -226,7 +226,7 @@ bool exportListScoreboardInSemesterOfClass(const string& filename, Class& CLASS,
 		fout << std::endl;
 	}
 	fout.close();
-	outStr = "Completely exported scoreboard in a semester " + semester.semesterID + " from class " + CLASS.name;
+	outStr = "Completely exported scoreboard in a semester " + semester.semesterID + " from class " + CLASS.name + " to " + getListScoreInSemesterOfCLassFile;
 	removeTable(table);
 	return true;
 }
@@ -252,7 +252,7 @@ bool exportListScoreboardOfClass(const string& filename, Class& CLASS, string& o
 		fout << std::endl;
 	}
 	fout.close();
-	outStr = "Completely exported scoreboards of students from class " + CLASS.name;
+	outStr = "Completely exported scoreboards of students from class " + CLASS.name + " to " + getListScoreboardOfCLassFile;
 	removeTable(table);
 	return true;
 }
@@ -278,7 +278,7 @@ bool exportListAcademicYear(const string& filename, string& outStr){
 		fout << std::endl;
 	}
 	fout.close();
-	outStr = "Completely exported list academic years " + getListAcademicYearFile;
+	outStr = "Completely exported list academic years to " + getListAcademicYearFile;
 	removeTable(table);
 	return true;
 }
@@ -304,7 +304,7 @@ bool exportListSemesterInAcademicYear(const string& filename, AcademicYear& acad
 		fout << std::endl;
 	}
 	fout.close();
-	outStr = "Completely exported list semester from academic year " + std::to_string(academicYear.start);
+	outStr = "Completely exported list semester from academic year " + std::to_string(academicYear.start) + " to " + getListSemesterFile;
 	removeTable(table);
 	return true;
 }
@@ -329,7 +329,7 @@ bool exportListOfStudentInCourse(const string& filename, Course& course, string 
 		ofs << i + 1 << "," << student->ID << "," << student->name.get() << std::endl;
 	}
 	ofs.close();
-	outStr = "Completely exported students list from course!";
+	outStr = "Completely exported students list from course to " + inputStudCouseFilePath;
 	return true;
 }
 
@@ -354,7 +354,7 @@ bool exportListScoreboardOfCourse(const string& filename, Course& course, string
 		fout << std::endl;
 	}
 	fout.close();
-	outStr = "Completely exported scoreboard of course!";
+	outStr = "Completely exported scoreboard of course to " + getCourseScoreboardFile;
 	removeTable(table);
 	return true;
 }
