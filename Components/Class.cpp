@@ -47,7 +47,7 @@ Student* Class::getStudent(const std::string& studentID) {
     return nullptr;
 }
 
-Vector<std::string> Class::getListCourse() {
+Vector<std::string> Class::getListCourse() const{
     Vector<std::string> listCourse(0);
     for (int i = 0; i < students.size(); i++)
         for (int j = 0; j < students[i]->scoreboards.size(); j++)

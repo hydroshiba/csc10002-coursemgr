@@ -45,6 +45,18 @@ void Student::setScoreboards(Vector<Scoreboard*>& scoreboards) {
     this->scoreboards = scoreboards;
 }
 
+Scoreboard* Student::getScoreboard(const string& courseID) {
+    Scoreboard* ptrScoreboard = nullptr;
+    for (int i = 0; i < scoreboards.size(); i++) {
+        if (scoreboards[i]->ptrCourse->ID == courseID) {
+            ptrScoreboard = scoreboards[i];
+            break;
+        }
+    }
+    return ptrScoreboard;
+}
+
+
 Scoreboard* Student::getScoreboard(Course& course) {
     Scoreboard* cur = nullptr;
 
@@ -121,11 +133,6 @@ void Student::setInfoCourseConsole(std::string &actClass){
     std::cout << "Enter student's class: "; std::cin >> actClass;
 }
 
-
-//Student& Student::operator = (const Student& student) {
-//    this->ID = student.ID;
-//    this->setPassWordUpLoad()
-//}
 
 bool operator==(const Student& studentA, const Student& studentB) {
     if (studentA.ID != studentB.ID) return false;

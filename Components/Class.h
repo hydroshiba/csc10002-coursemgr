@@ -24,7 +24,7 @@ struct Class {
 
     void removeStudent(Student& student);
 
-    Vector<std::string> getListCourse();
+    Vector<std::string> getListCourse() const;
 
     void removeAllStudent();
 
