@@ -148,7 +148,7 @@ bool exportListSchoolYear(const string& filename, string& outStr){
 		fout << std::endl;
 	}
 	fout.close();
-	outStr = "Completely exported list school years!";
+	outStr = "Completely exported list school years to " + getListSchoolYearFile;
 	removeTable(table);
 	return true;
 }
@@ -252,7 +252,7 @@ bool exportListAcademicYear(const string& filename, string& outStr){
 		fout << std::endl;
 	}
 	fout.close();
-	outStr = "Completely exported list academic years!";
+	outStr = "Completely exported list academic years " + getListAcademicYearFile;
 	removeTable(table);
 	return true;
 }
