@@ -48,6 +48,7 @@ private:
     TextBox textStudentID;
     InputBox inputStudentID;
     Button removeStudentButton;
+    Button viewStudenButton;
     //-----------------------------------------------------------------------------------
     TextBox textStaffID;
     InputBox inputStaffID;
@@ -55,8 +56,17 @@ private:
     //-----------------------------------------------------------------------------------
     TextBox message;
     //-----------------------------------------------------------------------------------
+    TextBox textExportLSYs;
+    InputBox inputLSYsFilePath;
+    Button exportLSYs;
+    //-----------------------------------------------------------------------------------
+    TextBox textExportLAYs;
+    InputBox inputLAYsFilePath;
+    Button exportLAYs;
+    //-----------------------------------------------------------------------------------
     Button add;
     Button back;
+    
     
 public:
     StaffScene2();
