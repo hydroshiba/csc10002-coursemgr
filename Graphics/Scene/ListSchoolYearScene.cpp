@@ -1,46 +1,46 @@
 #include "ListSchoolYearScene.h"
 
 ListSchoolYearScene::ListSchoolYearScene() {
-    sceneTitle = "List Of School Year";
+    sceneTitle = "List Of School Years";
     sceneTitle.setSize(50);
     sceneTitle.centerX();
     sceneTitle.setY(100);
     //--------------------------------------
     viewYear = "View Year";
     viewYear.setSize(30);
-    viewYear.setPos({100, 250});
+    viewYear.setPos({50, 250});
 
-    chooseSchoolYear.setLabel("List of School Year");
+    chooseSchoolYear.setLabel("Choose School Year");
     chooseSchoolYear.add(getListSchoolYear(schoolYears));
-    chooseSchoolYear.setPos({400, 240});
+    chooseSchoolYear.setPos({50, 300});
     chooseSchoolYear.setSize({300, 50});
 
     view.label = "View";
-    view.setPos({800, 240});
+    view.setPos({400, 300});
     view.setSize({150, 50});
     //--------------------------------------
     addYear = "Add Year";
     addYear.setSize(30);
-    addYear.setPos({100, 350});
+    addYear.setPos({600, 250});
 
     inputSchoolYearAdded.defaultText = "Enter School Year";
-    inputSchoolYearAdded.setPos({400, 340});
-    inputSchoolYearAdded.setSize({300, 50});
+    inputSchoolYearAdded.setPos({750, 250});
+    inputSchoolYearAdded.setSize({250, 50});
 
     add.label = "Add";
-    add.setPos({800, 340});
+    add.setPos({1050, 250});
     add.setSize({150, 50});
     //--------------------------------------
     removeYear = "Remove Year";
     removeYear.setSize(30);
-    removeYear.setPos({100, 450});
+    removeYear.setPos({600, 350});
 
     inputSchoolYearRemoved.defaultText = "Enter School Year";
-    inputSchoolYearRemoved.setPos({400, 440});
-    inputSchoolYearRemoved.setSize({300, 50});
+    inputSchoolYearRemoved.setPos({750, 350});
+    inputSchoolYearRemoved.setSize({250, 50});
 
     remove.label = "Remove";
-    remove.setPos({800, 440});
+    remove.setPos({1050, 350});
     remove.setSize({150, 50});
     //--------------------------------------
     back.label = "Back";
