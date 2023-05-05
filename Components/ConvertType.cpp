@@ -1,7 +1,8 @@
 #include "ConvertType.h"
+#include "Date.h"
 
 /*			Convert enum to string function			*/
-std::string weekday_to_string(const Weekday& weekday) {
+string weekday_to_string(const Weekday& weekday) {
 	switch (weekday)
 	{
 	case MON:
@@ -21,7 +22,8 @@ std::string weekday_to_string(const Weekday& weekday) {
 	}
 	return "\n";
 }
-Weekday string_to_weekday(const std::string& str) {
+
+Weekday string_to_weekday(const string& str) {
 	if (str == "MON")
 		return MON;
 	else if (str == "TUE")
@@ -37,7 +39,8 @@ Weekday string_to_weekday(const std::string& str) {
 	else
 		return SUN;
 }
-std::string session_to_string(const Session& session) {
+
+string session_to_string(const Session& session) {
 	switch (session) {
 	case S1:
 		return "7:30";
@@ -50,7 +53,8 @@ std::string session_to_string(const Session& session) {
 	}
 	return "\n";
 }
-Session string_to_session(const std::string& str) {
+
+Session string_to_session(const string& str) {
 	if (str == "7:30")
 		return S1;
 	else if (str == "9:30")
@@ -59,15 +63,31 @@ Session string_to_session(const std::string& str) {
 		return S3;
 	return S4;
 }
-std::string gender_to_string(const Gender& gender) {
+
+string gender_to_string(const Gender& gender) {
 	if (gender == male)
 		return "Male";
 	else if (gender == female)
 		return "Female";
 	return "\n";
 }
-Gender string_to_gender(const std::string& str) {
+
+Gender string_to_gender(const string& str) {
 	if (str == "Male")
 		return male;
 	return female;
+}
+
+Date string_to_date(const string& str) {
+	string dayStr, monthStr, yearStr;
+	std::stringstream ss(str);
+	getline(ss, dayStr, '/');
+	getline(ss, monthStr, '/');
+	getline(ss, yearStr);
+
+	unsigned short day = static_cast<unsigned short>(std::stoi(dayStr));
+	unsigned short month = static_cast<unsigned short>(std::stoi(monthStr));
+	unsigned int year = static_cast<unsigned int>(std::stoul(yearStr));
+	Date date(day, month, year);
+	return date;
 }
