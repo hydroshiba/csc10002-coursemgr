@@ -46,7 +46,7 @@ const std::string defaultInputBoxContent = "Error InputBoxContent";
 const std::string defaultTextBoxContent = "Error TextBoxContent";
 //-----------------------------------------------------------------------------------
 const float removeTextBoxWidth = 100;
-const float xPosTextRemoveStudentID = 700;
+const float xPosTextRemoveStudentID = 600;
 const float yPosTextRemoveStudentID = 150;
 const float yPosTextRemoveStaffID = yPosTextRemoveStudentID + textBoxHeight + yDis;
 const float xPosInputRemoveStudentID = xPosTextRemoveStudentID + removeTextBoxWidth + xDis;
@@ -55,6 +55,7 @@ const Vector2 removeStaffTextBoxPos = { xPosTextRemoveStudentID, yPosTextRemoveS
 const Vector2 removeInputBoxSize = { 250, 50 };
 const Vector2 removeButtonSize = { 100, 50 };
 const Vector2 removeStudentButtonPos = { xPosInputRemoveStudentID + removeInputBoxSize.x, yPosTextRemoveStudentID };
+const Vector2 viewStudentButtonPos = { removeStudentButtonPos.x + removeButtonSize.x , yPosTextRemoveStudentID };
 const Vector2 removeStaffButtonPos = { xPosInputRemoveStudentID + removeInputBoxSize.x, yPosTextRemoveStaffID };
 //-----------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------
@@ -162,6 +163,13 @@ StaffScene2::StaffScene2() {
 	removeStudentButton.setSize(removeButtonSize);
 	removeStudentButton.setPos(removeStudentButtonPos);
 	//-----------------------------------------------------------------------------------
+	viewStudentButton.label = "View";
+	viewStudentButton.fill_color = YELLOW;
+	viewStudentButton.press_color = GOLD;
+	viewStudentButton.hover_color = ORANGE;
+	viewStudentButton.setSize(removeButtonSize);
+	viewStudentButton.setPos(viewStudentButtonPos);
+	//-----------------------------------------------------------------------------------
 	removeStaffButton.label = "Remove";
 	removeStaffButton.fill_color = RED;
 	removeStaffButton.press_color = MAROON;
@@ -201,6 +209,7 @@ void StaffScene2::render() {
 	textStudentID.render();
 	inputStudentID.render(mousePoint);
 	removeStudentButton.render(mousePoint);
+	viewStudentButton.render(mousePoint);
 	//-----------------------------------------------------------------------------------
 }
 

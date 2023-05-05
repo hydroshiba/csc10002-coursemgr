@@ -48,7 +48,7 @@ private:
     TextBox textStudentID;
     InputBox inputStudentID;
     Button removeStudentButton;
-    Button viewStudenButton;
+    Button viewStudentButton;
     //-----------------------------------------------------------------------------------
     TextBox textStaffID;
     InputBox inputStaffID;
