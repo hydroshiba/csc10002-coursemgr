@@ -14,26 +14,27 @@ bool exportListOfStudentInCourse(const string& filename, Course& course, string&
 
 // 20. import scoreboard of course
 bool importScoreBoardOfCourse(const string& filename, Course& course);
-
+// Student Scene
 bool exportListScoreboardOfStudent(const string& filename, Student& student, string& outStr);
 
 // Optional
+// Staff scene
 bool exportListSchoolYear(const string& filename, string& outStr);
-
+// SchoolYear Scene
 bool exportListClassInSchoolYear(const string& filename, SchoolYear& schoolYear, string& outStr);
-
+// Class scene
 bool exportListStudentInClass(const string& filename, Class& CLASS, string& outStr);
-
+// Class scene
 bool exportListScoreboardInSemesterOfClass(const string& filename, Class& CLASS, Semester& semester, string& outStr);
-
+// class scene
 bool exportListScoreboardOfClass(const string& filename, Class& CLASS, string& outStr);
-
+// Staff Scene
 bool exportListAcademicYear(const string& filename, string& outStr);
-
+// AcademicYear scene
 bool exportListSemesterInAcademicYear(const string& filename, AcademicYear& academicYear, string& outStr);
-
+// Semester scene
 bool exportListCourseInSemester(const string& filename, Semester& semester, string& outStr);
-
+// Course scene
 bool exportListScoreboardOfCourse(const string& filename, Course& course, string& outStr);
 
 #endif // ! IMPORT_EXPORT_FUNCTION_H
