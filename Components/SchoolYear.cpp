@@ -64,7 +64,7 @@ void SchoolYear::removeAllClass() {
     classes.resize(0);
 }
 
-std::string SchoolYear::getPeriod() {
+std::string SchoolYear::getPeriod() const{
     return std::to_string(start) + " - " + std::to_string(start + 4);
 }
 

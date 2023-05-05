@@ -28,7 +28,7 @@ struct SchoolYear {
 
     void removeAllClass();
 
-    std::string getPeriod();
+    std::string getPeriod() const;
 };
 
 bool operator==(const SchoolYear& yearA, const SchoolYear& yearB);
