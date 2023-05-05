@@ -102,16 +102,19 @@ Vector<Vector<string>> getTableContentOfListCourse(const Course& course){
 Vector<Vector<string>> getTableContentOfListSchoolYear() {
 	Vector<Vector<string>> table;
 	table.resize(2 + schoolYears.size());
-	for (int i = 0; i < table.size(); i++) {
-		table[i].resize(2);
+	table[0].resize(2);
+	for (int i = 1; i < table.size(); i++) {
+		table[i].resize(3);
 	}
 	table[0][0] = "Number of SchoolYears";
 	table[0][1] = std::to_string(schoolYears.size());
 	table[1][0] = "No";
 	table[1][1] = "SchoolYear";
+	table[1][2] = "Number of classes";
 	for (int i = 0; i < schoolYears.size(); i++) {
 		table[i + 2][0] = std::to_string(i + 1);
 		table[i + 2][1] = std::to_string(schoolYears[i].start);
+		table[i + 2][2] = to_string(schoolYears[i].classes.size());
 	}
 	return table;
 }
@@ -164,6 +167,12 @@ Vector<Vector<string>> getTableContentOfListStudentInClass(const Class& CLASS) {
 	return table;
 }
 
+Vector<Vector<string>> getTableContentOfListScoreboardInSemesterInClass(const Class& CLASS, const Semester& semester){}
+
+Vector<Vector<string>> getTableContentOfListScoreboardInClass(const Class& CLASS){}
+
+Vector<Vector<string>> getTableContentOfScoreboardOfStudent(const Student& student){}
+
 Vector<Vector<string>> getTableContentOfListAcademicYear() {
 	Vector<Vector<string>> table;
 	table.resize(2 + academicYears.size());
@@ -204,7 +213,7 @@ Vector<Vector<string>> getTableContentOfListStudentInCourse(const Course& course
 	return table;
 }
 
-//
+
 bool removeTable(Vector<Vector<string>>& table) {
 	for (int i = 0; i < table.size(); i++)
 		table[i].~Vector();

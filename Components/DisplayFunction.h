@@ -38,6 +38,10 @@ Vector<Vector<string>> getTableContentOfListSemester(const AcademicYear& academi
 
 Vector<Vector<string>> getTableContentOfListCourse(const Semester& semester);
 
+Vector<Vector<string>> getTableContentOfListSemester(const AcademicYear& academicYear);
+
+Vector<Vector<string>> getTableContentOfListCourse(const Semester& semester);
+
 Vector<Vector<string>> getTableContentOfListStudentInCourse(const Course& course); // Student and scoreboards
 
 // 
