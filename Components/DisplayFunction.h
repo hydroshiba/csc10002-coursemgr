@@ -20,9 +20,9 @@ Vector<string> getListSemester(const AcademicYear& academicYear);
 Vector<string> getListCourse(const Semester& semester);
 
 // Table
-Vector<Vector<string>> getTableContentOfListSchoolYear(const SchoolYear& schoolYear);
+Vector<Vector<string>> getTableContentOfListSchoolYear();
 
-Vector<Vector<string>> getTableContentOfListClass(const Class& CLASS);
+Vector<Vector<string>> getTableContentOfListClass(const SchoolYear& schoolYear);
 
 Vector<Vector<string>> getTableContentOfListStudentInClass(const Class& CLASS);
 
@@ -32,11 +32,11 @@ Vector<Vector<string>> getTableContentOfListScoreboardInClass(const Class& CLASS
 
 Vector<Vector<string>> getTableContentOfScoreboardOfStudent(const Student& student);
 
-Vector<Vector<string>> getTableContentOfListAcademicYear(const AcademicYear& academicYear);
+Vector<Vector<string>> getTableContentOfListAcademicYear();
 
-Vector<Vector<string>> getTableContentOfListSemester(const Semester& semester);
+Vector<Vector<string>> getTableContentOfListSemester(const AcademicYear& academicYear);
 
-Vector<Vector<string>> getTableContentOfListCourse(const Course& course);
+Vector<Vector<string>> getTableContentOfListCourse(const Semester& semester);
 
 Vector<Vector<string>> getTableContentOfListStudentInCourse(const Course& course); // Student and scoreboards
 
