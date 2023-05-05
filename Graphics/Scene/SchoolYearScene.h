@@ -23,33 +23,18 @@ private:
     TextBox viewClass;
     DropBox listClass;
     Button view;
-    TextBox warningViewClass;
-    bool isAnyClassChosen;
-    int frameCounterViewClass;
 
     TextBox addClass;
     InputBox inputClassAdded;
     Button add;
-    TextBox warningClassAdded;
-    bool isClassAddedEmpty;
-    bool isAddClicked;
-    int frameCounterAddWarning;
 
     TextBox removeClass;
     InputBox inputClassRemoved;
     Button remove;
-    TextBox warningClassRemoved;
-    bool isClassRemovedEmpty;
-    bool isRemoveClicked;
-    int frameCounterRemoveWarning;
 
     TextBox editYear;
     InputBox inputStartYear;
     Button change;
-    TextBox warningStartYear;
-    bool isStartYearEmpty;
-    bool isChangeClicked;
-    int frameCounterChangeWarning;
 
     Button back;
 

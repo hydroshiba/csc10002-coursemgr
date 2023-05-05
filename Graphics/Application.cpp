@@ -14,12 +14,11 @@ Application::Application() {
     registry.editScene = new EditCourse();
     registry.schoolYearScene = new SchoolYearScene();
     registry.listSchoolYearScene = new ListSchoolYearScene();
-    registry.listSchoolYearScene = new ListSchoolYearScene();
     registry.academicYearScene = new AcademicYearScene();
     registry.semesterScene = new SemesterScene();
     registry.classScene = new ClassScene();
 
-    scene = registry.login;
+    scene = registry.schoolYearScene;
 }
 
 Application::~Application() {
