@@ -127,7 +127,7 @@ bool downloadListAcademicYear() {
 	ofs << "Number of AcademicYears, " << academicYears.size() << std::endl;
 	ofs << "No, AcademicYear\n";
 	for (int i = 0; i < academicYears.size(); i++){
-		ofs << std::to_string(i + 1) << academicYears[i].start << std::endl;
+		ofs << std::to_string(i + 1) << ", " << academicYears[i].start << std::endl;
 		downloadAcademicYear(academicYears[i]);
 	}
 	ofs.close();

@@ -17,44 +17,40 @@
 /*		Display function	*/
 
 // DropBox
-Vector<std::string> getListSchoolYear(Vector<SchoolYear>& schoolYears) {
-	Vector<std::string> listSY(schoolYears.size());
+Vector<string> getListSchoolYear(Vector<SchoolYear>& schoolYears) {
+	Vector<string> listSY(schoolYears.size());
 	for (int i = 0; i < listSY.size(); i++){
 		listSY[i] = std::to_string(schoolYears[i].start);
 	}
 	return listSY;
 }
 
-// DropBox
-Vector<std::string> getListAcademicYear(Vector<AcademicYear>& academicYears) {
-	Vector<std::string> listAYs(academicYears.size());
+Vector<string> getListAcademicYear(Vector<AcademicYear>& academicYears) {
+	Vector<string> listAYs(academicYears.size());
 	for (int i = 0; i < listAYs.size(); i++) {
 		listAYs[i] = academicYears[i].getPeriod();
 	}
 	return listAYs;
 }
 
-// DropBox
-Vector<std::string> getListClass(const SchoolYear& schoolYear) {
-	Vector<std::string> listClass(schoolYear.classes.size());
+Vector<string> getListClass(const SchoolYear& schoolYear) {
+	Vector<string> listClass(schoolYear.classes.size());
 	for (int i = 0; i < schoolYear.classes.size(); i++) {
 		listClass[i] = schoolYear.classes[i].name;
 	}
 	return listClass;
 }
 
-// DropBox
-Vector<std::string> getListSemester(const AcademicYear& academicYear) {
-	Vector<std::string> listSemester(academicYear.semesters.size());
+Vector<string> getListSemester(const AcademicYear& academicYear) {
+	Vector<string> listSemester(academicYear.semesters.size());
 	for (int i = 0; i < academicYear.semesters.size(); i++) {
 		listSemester[i] = academicYear.semesters[i].semesterID;
 	}
 	return listSemester;
 }
 
-// DropBox
-Vector<std::string> getListCourse(const Semester& semester) {
-	Vector<std::string> listCourse(semester.courses.size());
+Vector<string> getListCourse(const Semester& semester) {
+	Vector<string> listCourse(semester.courses.size());
 	for (int i = 0; i < semester.courses.size(); i++) {
 		listCourse[i] = semester.courses[i].ID;
 	}
@@ -62,8 +58,8 @@ Vector<std::string> getListCourse(const Semester& semester) {
 }
 
 // Table
-Vector<Vector<std::string>> getTableContentOfScoreboardsofStudent(const Student& student) {
-	Vector<Vector<std::string>> table(student.scoreboards.size() + 1);
+Vector<Vector<string>> getTableContentOfScoreboardsofStudent(const Student& student) {
+	Vector<Vector<string>> table(student.scoreboards.size() + 1);
 	for (int i = 0; i < table.size(); i++) {
 		table[i].resize(7);
 	}
