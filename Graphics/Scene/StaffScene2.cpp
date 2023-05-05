@@ -50,6 +50,8 @@ const float xPosTextRemoveStudentID = 600;
 const float yPosTextRemoveStudentID = 150;
 const float yPosTextRemoveStaffID = yPosTextRemoveStudentID + textBoxHeight + yDis;
 const float xPosInputRemoveStudentID = xPosTextRemoveStudentID + removeTextBoxWidth + xDis;
+const float yPosTextExportLSYs = yPosTextRemoveStaffID + textBoxHeight + yDis;
+const float yPosTextExportLAYs = yPosTextExportLSYs + textBoxHeight + yDis;
 const Vector2 removeStudentTextBoxPos = { xPosTextRemoveStudentID, yPosTextRemoveStudentID };
 const Vector2 removeStaffTextBoxPos = { xPosTextRemoveStudentID, yPosTextRemoveStaffID };
 const Vector2 removeInputBoxSize = { 250, 50 };
@@ -57,6 +59,8 @@ const Vector2 removeButtonSize = { 100, 50 };
 const Vector2 removeStudentButtonPos = { xPosInputRemoveStudentID + removeInputBoxSize.x, yPosTextRemoveStudentID };
 const Vector2 viewStudentButtonPos = { removeStudentButtonPos.x + removeButtonSize.x , yPosTextRemoveStudentID };
 const Vector2 removeStaffButtonPos = { xPosInputRemoveStudentID + removeInputBoxSize.x, yPosTextRemoveStaffID };
+const Vector2 exportLSYsButtonPos = { xPosInputRemoveStudentID + removeInputBoxSize.x, yPosTextExportLSYs };
+const Vector2 exportLAYsButtonPos = { xPosInputRemoveStudentID + removeInputBoxSize.x, yPosTextExportLAYs };
 //-----------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------
 StaffScene2::StaffScene2() {
@@ -156,6 +160,30 @@ StaffScene2::StaffScene2() {
 	inputStaffID.setSize(removeInputBoxSize);
 	inputStaffID.setPos({ xPosInputRemoveStudentID, yPosTextRemoveStaffID });
 	//-----------------------------------------------------------------------------------
+	textExportLSYs = "Filepath: ";
+	textExportLSYs.setSize(textBoxContentSize);
+	textExportLSYs.setPos({ removeStudentTextBoxPos.x, yPosTextExportLSYs });
+	//-----------------------------------------------------------------------------------
+	textExportLAYs = "Filepath: ";
+	textExportLAYs.setSize(textBoxContentSize);
+	textExportLAYs.setPos({ removeStudentTextBoxPos.x, yPosTextExportLAYs });
+	//-----------------------------------------------------------------------------------
+	inputLSYsFilePath.defaultText = "Input filepath...";
+	inputLSYsFilePath.setSize(removeInputBoxSize);
+	inputLSYsFilePath.setPos({ inputStaffID.getPos().x, yPosTextExportLSYs });
+	//-----------------------------------------------------------------------------------
+	inputLAYsFilePath.defaultText = "Input filepath...";
+	inputLAYsFilePath.setSize(removeInputBoxSize);
+	inputLAYsFilePath.setPos({ inputStaffID.getPos().x, yPosTextExportLAYs });
+	//-----------------------------------------------------------------------------------
+	exportLSYs.label = "Export";
+	exportLSYs.setSize(removeButtonSize);
+	exportLSYs.setPos(exportLSYsButtonPos);
+	//-----------------------------------------------------------------------------------
+	exportLAYs.label = "Export";
+	exportLAYs.setSize(removeButtonSize);
+	exportLAYs.setPos(exportLAYsButtonPos);
+	//-----------------------------------------------------------------------------------
 	removeStudentButton.label = "Remove";
 	removeStudentButton.fill_color = RED;
 	removeStudentButton.press_color = MAROON;
@@ -211,6 +239,12 @@ void StaffScene2::render() {
 	removeStudentButton.render(mousePoint);
 	viewStudentButton.render(mousePoint);
 	//-----------------------------------------------------------------------------------
+	textExportLSYs.render();
+	textExportLAYs.render();
+	inputLSYsFilePath.render(mousePoint);
+	exportLSYs.render(mousePoint);
+	inputLAYsFilePath.render(mousePoint);
+	exportLAYs.render(mousePoint);
 }
 
 Scene* StaffScene2::process() {
