@@ -7,6 +7,7 @@
 #include "Scoreboard.h"
 #include "User.h"
 #include "Course.h"
+#include "Semester.h"
 
 struct Student : public User {
     Gender gender;
@@ -18,6 +19,8 @@ struct Student : public User {
 
     Student(const Name& name = { defaultStr, defaultStr }, const std::string& id = defaultStr, const std::string& password = "", const Gender& gender = male, const Date& birth = {0, 0, 0}, const std::string& socialID = defaultStr, Class* ptrClass = nullptr, const Vector<Scoreboard*>& scoreboards = Vector<Scoreboard*>());
     
+    Vector<Scoreboard*> getScoreboards(const Semester& semester);
+
     Scoreboard* getScoreboard(const string& courseID);
     Scoreboard* getScoreboard(Course& course);
 
