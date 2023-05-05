@@ -128,7 +128,11 @@ bool importScoreBoardOfCourse(const string& filename, Course& course) {
 }
 
 bool exportListSchoolYear(const string& filename, string& outStr){
-	string getListSchoolYearFile = getExportFolderPath() + filename ;
+	string getListSchoolYearFile = getExportFolderPath() + filename + ".csv";
+	if (filename.empty()){
+		outStr = "Empty InputBox error, please input something!";
+		return false;
+	}
 	std::ofstream fout (getListSchoolYearFile, std::ios::out);
 	if (!fout.is_open()){
 		outStr = "Cannot open file " + getListSchoolYearFile + '!';
@@ -145,6 +149,7 @@ bool exportListSchoolYear(const string& filename, string& outStr){
 	}
 	fout.close();
 	outStr = "Completely exported list school years!";
+	removeTable(table);
 	return true;
 }
 
@@ -155,11 +160,7 @@ bool exportListClassInSchoolYear(const string& filename, SchoolYear& schoolYear,
 		outStr = "Cannot open file " + getListClassFile + '!';
 		return false;
 	}
-	fout << "Start year," << schoolYear.start << std::endl;
-	fout << "Number of classes," << schoolYear.classes.size() << std::endl;
-	fout << "No,Class Name\n";
-	for (int i = 0; i<schoolYear.classes.size(); ++i)
-		fout << i+1 << ',' << schoolYear.classes[i].name << std::endl;
+	
 	fout.close();
 	outStr = "Completely exported list classes from school year " + schoolYear.start;
 	return true;
@@ -172,7 +173,7 @@ bool exportListStudentInClass(const string& filename, Class& CLASS, string& outS
 		outStr = "Cannot open file " + getListStudClassFile + "!";
 		return false;
 	}
-	
+
 	fout.close();
 	outStr = "Completely exported list students from class " + CLASS.name;
 	return true;
@@ -180,7 +181,11 @@ bool exportListStudentInClass(const string& filename, Class& CLASS, string& outS
 
 // 19. export list of students in course to csv file
 bool exportListOfStudentInCourse(const string& filename, Course& course, string &outStr) {
-	string inputStudCouseFilePath = getExportFolderPath() + filename;
+	string inputStudCouseFilePath = getExportFolderPath() + filename + ".csv";
+	if (filename.empty()){
+		outStr = "Empty InputBox error, please input something!";
+		return false;
+	}
 	std::ofstream ofs(inputStudCouseFilePath, std::ios::out);
 	if (!ofs.is_open()){
 		outStr = "Cannot open file " + inputStudCouseFilePath + "!";
@@ -199,20 +204,27 @@ bool exportListOfStudentInCourse(const string& filename, Course& course, string 
 }
 
 bool exportListScoreboardOfCourse(const string& filename, Course& course, string& outStr){
-	string getCourseScoreboardFile = getExportFolderPath() + filename;
+	string getCourseScoreboardFile = getExportFolderPath() + filename + ".csv";
+	if (filename.empty()){
+		outStr = "Empty InputBox error, please input something!";
+		return false;
+	}
 	std::ofstream fout(getCourseScoreboardFile, std::ios::out);
 	if (!fout.is_open()){
 		outStr = "Cannot open file " + getCourseScoreboardFile + '!';
 		return false;
 	}
-	course.displayInfoFile(fout);
-	fout << "No,StudentID,Midterm,Final,Other,Total";
-	for (int i = 0; i < course.scoreboards.size(); i++)
-	{
-		Student* student = course.scoreboards[i]->ptrStudent;
-		fout << i + 1 << "," << student->ID << "," << course.scoreboards[i]->midterm << ',' << course.scoreboards[i]->final << ',' << course.scoreboards[i]->other << ',' << course.scoreboards[i]->total << std::endl;
+	Vector<Vector<string>> table = getTableContentOfListStudentInCourse(course);
+	for (int i = 0; i < table.size(); ++i){
+		for (int j = 0; j < table.size(); ++j){
+			fout << table[i][j];
+			if (j != table[i].size()-1)
+				fout << ',';
+		}
+		fout << std::endl;
 	}
 	fout.close();
 	outStr = "Completely exported scoreboard of course!";
+	removeTable(table);
 	return true;
 }
