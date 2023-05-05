@@ -9,40 +9,36 @@
 /*		Display function	*/
 
 // DropBox
-Vector<string> getListSchoolYear(Vector<SchoolYear>& schoolYears);
+Vector<string> getListSchoolYear(Vector<SchoolYear>& schoolYears); // Done
 
-Vector<string> getListAcademicYear(Vector<AcademicYear>& academicYears);
+Vector<string> getListAcademicYear(Vector<AcademicYear>& academicYears); // Done
 
-Vector<string> getListClass(const SchoolYear& schoolYear);
+Vector<string> getListClass(const SchoolYear& schoolYear); // Done
 
-Vector<string> getListSemester(const AcademicYear& academicYear);
+Vector<string> getListSemester(const AcademicYear& academicYear); // Done
 
-Vector<string> getListCourse(const Semester& semester);
+Vector<string> getListCourse(const Semester& semester); // Done
 
 // Table
-Vector<Vector<string>> getTableContentOfListSchoolYear();
+Vector<Vector<string>> getTableContentOfListSchoolYear(); // Done
 
-Vector<Vector<string>> getTableContentOfSchoolYear(const SchoolYear& schoolYear);
+Vector<Vector<string>> getTableContentOfSchoolYear(const SchoolYear& schoolYear); // Done
 
-Vector<Vector<string>> getTableContentOfListStudentInClass(const Class& CLASS);
+Vector<Vector<string>> getTableContentOfListStudentInClass(const Class& CLASS); // Done
 
 Vector<Vector<string>> getTableContentOfListScoreboardInSemesterInClass(const Class& CLASS, const Semester& semester);
 
 Vector<Vector<string>> getTableContentOfListScoreboardInClass(const Class& CLASS);
 
-Vector<Vector<string>> getTableContentOfScoreboardOfStudent(const Student& student);
+Vector<Vector<string>> getTableContentOfScoreboardOfStudent(const Student& student); // Done
 
-Vector<Vector<string>> getTableContentOfListAcademicYear();
+Vector<Vector<string>> getTableContentOfListAcademicYear(); // Done
 
-Vector<Vector<string>> getTableContentOfListSemester(const AcademicYear& academicYear);
+Vector<Vector<string>> getTableContentOfAcademicYear(const AcademicYear& academicYear);
 
-Vector<Vector<string>> getTableContentOfListCourse(const Semester& semester);
+Vector<Vector<string>> getTableContentOfSemester(const Semester& semester);
 
-Vector<Vector<string>> getTableContentOfListSemester(const AcademicYear& academicYear);
-
-Vector<Vector<string>> getTableContentOfListCourse(const Semester& semester);
-
-Vector<Vector<string>> getTableContentOfListStudentInCourse(const Course& course); // Student and scoreboards
+Vector<Vector<string>> getTableContentOfListStudentInCourse(const Course& course); // Student and scoreboards // Done
 
 // 
 

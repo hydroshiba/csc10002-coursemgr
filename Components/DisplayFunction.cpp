@@ -58,46 +58,6 @@ Vector<string> getListCourse(const Semester& semester) {
 }
 
 // Table
-Vector<Vector<string>> getTableContentOfScoreboardOfStudent(const Student& student) {
-	Vector<Vector<string>> table(student.scoreboards.size() + 1);
-	for (int i = 0; i < table.size(); i++) {
-		table[i].resize(7);
-	}
-	table[0][0] = "No";
-	table[0][1] = "CourseID";
-	table[0][2] = "SemesterID";
-	table[0][3] = "Midterm";
-	table[0][4] = "Final";
-	table[0][5] = "Other";
-	table[0][6] = "Total";
-	for (int i = 0; i < student.scoreboards.size(); i++) {
-		table[i + 1][0] = std::to_string(i + 1);
-		table[i + 1][1] = student.scoreboards[i]->ptrCourse->ID;
-		table[i + 1][2] = student.scoreboards[i]->ptrCourse->ptrSemester->semesterID;
-		table[i + 1][3] = student.scoreboards[i]->midterm;
-		table[i + 1][4] = student.scoreboards[i]->final;
-		table[i + 1][5] = student.scoreboards[i]->other;
-		table[i + 1][6] = student.scoreboards[i]->total;
-	}
-	return table;
-}
-
-Vector<Vector<string>> getTableContentOfListCourse(const Course& course){
-	Vector<Vector<string>> table;
-	course.displayInfoTable(table);
-	table.resize(course.scoreboards.size()+9+1);
-	for (int i = 0; i<course.scoreboards.size()+1; ++i)
-		table[i+9].resize(3);
-	table[9][0] = "No";
-	table[9][1] = "StudnetID";
-	table[9][2] = "Fullname";
-	for (int i = 0; i < course.scoreboards.size(); ++i){
-		table[i+10][0] = std::to_string(i+1);
-		table[i+10][1] = course.scoreboards[i]->ptrStudent->ID;
-		table[i+10][2] = course.scoreboards[i]->ptrStudent->name.get();
-	}
-	return table;
-}
 
 Vector<Vector<string>> getTableContentOfListSchoolYear() {
 	Vector<Vector<string>> table;
@@ -117,7 +77,7 @@ Vector<Vector<string>> getTableContentOfListSchoolYear() {
 		table[i + 2][2] = to_string(schoolYears[i].classes.size());
 	}
 	return table;
-}
+} 
 
 Vector<Vector<string>> getTableContentOfSchoolYear(const SchoolYear& schoolYear) {
 	Vector<Vector<string>> table;
@@ -141,7 +101,7 @@ Vector<Vector<string>> getTableContentOfSchoolYear(const SchoolYear& schoolYear)
 		table[i + 3][2] = to_string(schoolYear.classes[i].students.size());
 	}
 	return table;
-}
+} 
 
 Vector<Vector<string>> getTableContentOfListStudentInClass(const Class& CLASS) {
 	size_t n = CLASS.students.size();
@@ -172,7 +132,7 @@ Vector<Vector<string>> getTableContentOfListStudentInClass(const Class& CLASS) {
 		table[i + 3][5] = CLASS.students[i]->socialID;
 	}
 	return table;
-}
+} 
 
 Vector<Vector<string>> getTableContentOfListScoreboardInSemesterInClass(const Class& CLASS, const Semester& semester){
 	Vector<Vector<string>> table;
@@ -181,6 +141,30 @@ Vector<Vector<string>> getTableContentOfListScoreboardInSemesterInClass(const Cl
 
 Vector<Vector<string>> getTableContentOfListScoreboardInClass(const Class& CLASS){
 	Vector<Vector<string>> table;
+	return table;
+}
+
+Vector<Vector<string>> getTableContentOfScoreboardOfStudent(const Student& student) {
+	Vector<Vector<string>> table(student.scoreboards.size() + 1);
+	for (int i = 0; i < table.size(); i++) {
+		table[i].resize(7);
+	}
+	table[0][0] = "No";
+	table[0][1] = "CourseID";
+	table[0][2] = "SemesterID";
+	table[0][3] = "Midterm";
+	table[0][4] = "Final";
+	table[0][5] = "Other";
+	table[0][6] = "Total";
+	for (int i = 0; i < student.scoreboards.size(); i++) {
+		table[i + 1][0] = std::to_string(i + 1);
+		table[i + 1][1] = student.scoreboards[i]->ptrCourse->ID;
+		table[i + 1][2] = student.scoreboards[i]->ptrCourse->ptrSemester->semesterID;
+		table[i + 1][3] = student.scoreboards[i]->midterm;
+		table[i + 1][4] = student.scoreboards[i]->final;
+		table[i + 1][5] = student.scoreboards[i]->other;
+		table[i + 1][6] = student.scoreboards[i]->total;
+	}
 	return table;
 }
 
@@ -204,14 +188,23 @@ Vector<Vector<string>> getTableContentOfListAcademicYear() {
 	return table;
 }
 
-// Student and scoreboards
+Vector<Vector<string>> getTableContentOfAcademicYear(const AcademicYear& academicYear) {
+	Vector<Vector<string>> table;
+	return table;
+}
+
+Vector<Vector<string>> getTableContentOfSemester(const Semester& semester) {
+	Vector<Vector<string>> table;
+	return table;
+}
+
 Vector<Vector<string>> getTableContentOfListStudentInCourse(const Course& course){
 	Vector<Vector<string>> table(course.scoreboards.size()+10);
 	course.displayInfoTable(table);
 	for (int i = 0; i<course.scoreboards.size()+1;++i)
 		table[i+9].resize(6);
 	table[9][0] = "No";
-	table[9][1] = "StudnetID";
+	table[9][1] = "StudentID";
 	table[9][2] = "Midterm";
 	table[9][3] = "Final";
 	table[9][4] = "Other";
@@ -226,7 +219,6 @@ Vector<Vector<string>> getTableContentOfListStudentInCourse(const Course& course
 	}
 	return table;
 }
-
 
 bool removeTable(Vector<Vector<string>>& table) {
 	for (int i = 0; i < table.size(); i++)
