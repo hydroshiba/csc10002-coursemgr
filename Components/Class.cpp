@@ -47,6 +47,15 @@ Student* Class::getStudent(const std::string& studentID) {
     return nullptr;
 }
 
+Vector<string> Class::getListCourse(const Semester& semester) const {
+    Vector<std::string> listCourse(0);
+    for (int i = 0; i < students.size(); i++)
+        for (int j = 0; j < students[i]->scoreboards.size(); j++)
+            if (listCourse.find(students[i]->scoreboards[j]->ptrCourse->ID) == nullptr && students[i]->scoreboards[j]->ptrCourse->ptrSemester == &semester)
+                listCourse.append(students[i]->scoreboards[j]->ptrCourse->ID);
+    return listCourse;
+}
+
 Vector<std::string> Class::getListCourse() const{
     Vector<std::string> listCourse(0);
     for (int i = 0; i < students.size(); i++)

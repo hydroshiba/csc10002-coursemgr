@@ -24,6 +24,8 @@ struct Class {
 
     void removeStudent(Student& student);
 
+    Vector<string> getListCourse(const Semester& semester) const;
+
     Vector<std::string> getListCourse() const;
 
     void removeAllStudent();
