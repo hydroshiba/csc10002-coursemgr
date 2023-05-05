@@ -15,6 +15,7 @@
 
 #include "FileAndDirFunction.h"
 #include "SearchFunction.h"
+#include "DisplayFunction.h"
 
 // Add students into a specific class (from File)
 bool importStudentListOfClassFromFile(const string& filename, Vector<Student> &students, Class& actClass, string& outStr) {
@@ -130,13 +131,18 @@ bool exportListSchoolYear(const string& filename, string& outStr){
 	string getListSchoolYearFile = getExportFolderPath() + filename ;
 	std::ofstream fout (getListSchoolYearFile, std::ios::out);
 	if (!fout.is_open()){
-		outStr = "Cannot open file!";
+		outStr = "Cannot open file " + getListSchoolYearFile + '!';
 		return false;
 	}
-	fout << "Number of SchoolYears," << schoolYears.size() << std::endl;
-	fout << "No,SchoolYear\n";
-	for (int i = 0; i<schoolYears.size(); ++i)
-		fout << i+1 << schoolYears[i].start << std::endl;
+	Vector<Vector<string>> table = getTableContentOfListSchoolYear();
+	for (int i = 0; i<table.size(); ++i){
+		for (int j = 0; j <table[i].size(); ++j){
+			fout << table[i][j];
+			if (j != table[i].size()-1)
+				fout << ',';
+		}
+		fout << std::endl;
+	}
 	fout.close();
 	outStr = "Completely exported list school years!";
 	return true;
@@ -146,16 +152,29 @@ bool exportListClassInSchoolYear(const string& filename, SchoolYear& schoolYear,
 	string getListClassFile = getExportFolderPath() + filename;
 	std::ofstream fout (getListClassFile, std::ios::out);
 	if (!fout.is_open()){
-		outStr = "Cannot open file!";
+		outStr = "Cannot open file " + getListClassFile + '!';
 		return false;
 	}
 	fout << "Start year," << schoolYear.start << std::endl;
 	fout << "Number of classes," << schoolYear.classes.size() << std::endl;
 	fout << "No,Class Name\n";
 	for (int i = 0; i<schoolYear.classes.size(); ++i)
-		fout << i+1 << schoolYear.classes[i].name << std::endl;
+		fout << i+1 << ',' << schoolYear.classes[i].name << std::endl;
 	fout.close();
 	outStr = "Completely exported list classes from school year " + schoolYear.start;
+	return true;
+}
+
+bool exportListStudentInClass(const string& filename, Class& CLASS, string& outStr){
+	string getListStudClassFile = getExportFolderPath() + filename;
+	std::ofstream fout(getListStudClassFile, std::ios::out);
+	if (!fout.is_open()){
+		outStr = "Cannot open file " + getListStudClassFile + "!";
+		return false;
+	}
+	
+	fout.close();
+	outStr = "Completely exported list students from class " + CLASS.name;
 	return true;
 }
 
@@ -164,7 +183,7 @@ bool exportListOfStudentInCourse(const string& filename, Course& course, string 
 	string inputStudCouseFilePath = getExportFolderPath() + filename;
 	std::ofstream ofs(inputStudCouseFilePath, std::ios::out);
 	if (!ofs.is_open()){
-		outStr = "Cannot open file!";
+		outStr = "Cannot open file " + inputStudCouseFilePath + "!";
 		return false;
 	}
 	course.displayInfoFile(ofs);
@@ -183,7 +202,7 @@ bool exportListScoreboardOfCourse(const string& filename, Course& course, string
 	string getCourseScoreboardFile = getExportFolderPath() + filename;
 	std::ofstream fout(getCourseScoreboardFile, std::ios::out);
 	if (!fout.is_open()){
-		outStr = "Cannot open file!";
+		outStr = "Cannot open file " + getCourseScoreboardFile + '!';
 		return false;
 	}
 	course.displayInfoFile(fout);
