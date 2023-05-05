@@ -153,8 +153,10 @@ Vector<Vector<string>> getTableContentOfListStudentInClass(const Class& CLASS) {
 		table[i].resize(6);
 	table[0][0] = "Class";
 	table[0][1] = CLASS.name;
+
 	table[1][0] = "Number of students";
 	table[1][1] = to_string(n);
+
 	table[2][0] = "No";
 	table[2][1] = "StudentID";
 	table[2][2] = "Fullnam";
@@ -172,11 +174,15 @@ Vector<Vector<string>> getTableContentOfListStudentInClass(const Class& CLASS) {
 	return table;
 }
 
-Vector<Vector<string>> getTableContentOfListScoreboardInSemesterInClass(const Class& CLASS, const Semester& semester){}
+Vector<Vector<string>> getTableContentOfListScoreboardInSemesterInClass(const Class& CLASS, const Semester& semester){
+	Vector<Vector<string>> table;
+	return table;
+}
 
-Vector<Vector<string>> getTableContentOfListScoreboardInClass(const Class& CLASS){}
-
-Vector<Vector<string>> getTableContentOfScoreboardOfStudent(const Student& student){}
+Vector<Vector<string>> getTableContentOfListScoreboardInClass(const Class& CLASS){
+	Vector<Vector<string>> table;
+	return table;
+}
 
 Vector<Vector<string>> getTableContentOfListAcademicYear() {
 	Vector<Vector<string>> table;

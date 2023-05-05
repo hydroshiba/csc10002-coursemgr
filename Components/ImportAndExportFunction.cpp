@@ -164,7 +164,7 @@ bool exportListClassInSchoolYear(const string& filename, SchoolYear& schoolYear,
 		outStr = "Cannot open file " + getListClassFile + '!';
 		return false;
 	}
-	Vector<Vector<string>> table = getTableContentOfListClass(schoolYear);
+	Vector<Vector<string>> table = getTableContentOfSchoolYear(schoolYear);
 	for (int i = 0; i<table.size(); ++i){
 		for (int j = 0; j<table[i].size(); ++j){
 			fout << table[i][j];
