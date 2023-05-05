@@ -345,5 +345,42 @@ Scene* StaffScene2::process() {
 	}
 		
 	//-----------------------------------------------------------------------------------
+	else if (viewStudentButton.clicked(mousePoint)) {
+		string studentID = inputStudentID.getContent();
+		string outStr = "";
+		ptrStudent_Global = getStudent(students, studentID);
+		if (ptrStudent_Global == nullptr) {
+			outStr = "Student with ID " + studentID + " can't be found in school! Pls try another";
+			message = outStr;
+			message.centerX();
+			inputStudentID.clearContent();
+		}
+		else {
+			inputLAYsFilePath.clearContent();
+			inputLSYsFilePath.clearContent();
+			inputID.clearContent();
+			inputFirstName.clearContent();
+			inputLastName.clearContent();
+			inputGender.clearContent();
+			inputBirth.clearContent();
+			inputSocialID.clearContent();
+			inputPassword.clearContent();
+			inputStudentID.clearContent();
+			return registry.studentScene;
+		}
+		return this;
+	}
+	else if (exportLSYs.clicked(mousePoint)) {
+		string filename = inputLSYsFilePath.getContent();
+		string outStr;
+		exportListSchoolYear(filename, outStr);
+		message = outStr;
+		message.centerX();
+		inputLSYsFilePath.clearContent();
+		return this;
+	}
+	else if (exportLAYs.clicked(mousePoint)) {
+
+	}
 	return this;
 }

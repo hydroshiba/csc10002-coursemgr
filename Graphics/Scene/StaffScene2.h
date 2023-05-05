@@ -19,6 +19,8 @@
 #include <string>
 #include "InsertFunction.h"
 #include "RemoveFunction.h"
+#include "SearchFunction.h"
+#include "ImportAndExportFunction.h"
 
 class StaffScene2 : public Scene {
 private:
