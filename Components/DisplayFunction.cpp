@@ -265,23 +265,41 @@ Vector<Vector<string>> getTableContentOfSemester(const Semester& semester) {
 }
 
 Vector<Vector<string>> getTableContentOfListStudentInCourse(const Course& course){
-	Vector<Vector<string>> table(course.scoreboards.size()+10);
+	Vector<Vector<string>> table;
+	size_t n = course.scoreboards.size();
+	table.resize(n + 10);
 	course.displayInfoTable(table);
-	for (int i = 0; i<course.scoreboards.size()+1;++i)
-		table[i+9].resize(6);
+	for (int i = 0; i < 9; i++) {
+		table[i].resize(2);
+	}
+
+	table[0][0] = "Course ID"; table[0][1] = course.ID;
+	table[1][0] = "Class ID"; table[1][1] = course.classID;
+	table[2][0] = "Course name"; table[2][1] = course.name;
+	table[3][0] = "Teacher"; table[3][1] = course.teacher;
+	table[4][0] = "Number of credits"; table[4][1] = std::to_string(course.credits);
+	table[5][0] = "Max enroll"; table[5][1] = std::to_string(course.maxEnroll);
+	table[6][0] = "Weekday"; table[6][1] = weekday_to_string(course.weekday);
+	table[7][0] = "Session"; table[7][1] = session_to_string(course.session);
+	table[8][0] = "Number of students"; table[8][1] = std::to_string(course.scoreboards.size());
+	for (int i = 9 ; i < table.size(); ++i)
+		table[i].resize(7);
 	table[9][0] = "No";
 	table[9][1] = "StudentID";
-	table[9][2] = "Midterm";
-	table[9][3] = "Final";
-	table[9][4] = "Other";
-	table[9][5] = "Total";
+	table[9][2] = "Fullname";
+	table[9][3] = "Midterm";
+	table[9][4] = "Final";
+	table[9][5] = "Other";
+	table[9][6] = "Total";
+
 	for (int i = 0; i<course.scoreboards.size();++i){
 		table[i+10][0] = std::to_string(i+1);
 		table[i+10][1] = course.scoreboards[i]->ptrStudent->ID;
-		table[i+10][2] = std::to_string(course.scoreboards[i]->midterm);
-		table[i+10][3] = std::to_string(course.scoreboards[i]->final);
-		table[i+10][4] = std::to_string(course.scoreboards[i]->other);
-		table[i+10][5] = std::to_string(course.scoreboards[i]->total);
+		table[i + 10][2] = course.scoreboards[i]->ptrStudent->name.get();
+		table[i+10][3] = std::to_string(course.scoreboards[i]->midterm);
+		table[i+10][4] = std::to_string(course.scoreboards[i]->final);
+		table[i+10][5] = std::to_string(course.scoreboards[i]->other);
+		table[i+10][6] = std::to_string(course.scoreboards[i]->total);
 	}
 	return table;
 }

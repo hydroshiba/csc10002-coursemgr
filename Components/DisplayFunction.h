@@ -34,9 +34,9 @@ Vector<Vector<string>> getTableContentOfScoreboardOfStudent(const Student& stude
 
 Vector<Vector<string>> getTableContentOfListAcademicYear(); // Done
 
-Vector<Vector<string>> getTableContentOfAcademicYear(const AcademicYear& academicYear);
+Vector<Vector<string>> getTableContentOfAcademicYear(const AcademicYear& academicYear); // Done
 
-Vector<Vector<string>> getTableContentOfSemester(const Semester& semester);
+Vector<Vector<string>> getTableContentOfSemester(const Semester& semester); // Done
 
 Vector<Vector<string>> getTableContentOfListStudentInCourse(const Course& course); // Student and scoreboards // Done
 
