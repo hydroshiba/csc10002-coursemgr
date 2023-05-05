@@ -160,11 +160,11 @@ StaffScene2::StaffScene2() {
 	inputStaffID.setSize(removeInputBoxSize);
 	inputStaffID.setPos({ xPosInputRemoveStudentID, yPosTextRemoveStaffID });
 	//-----------------------------------------------------------------------------------
-	textExportLSYs = "Filepath: ";
+	textExportLSYs = "LSYs filepath: ";
 	textExportLSYs.setSize(textBoxContentSize);
 	textExportLSYs.setPos({ removeStudentTextBoxPos.x, yPosTextExportLSYs });
 	//-----------------------------------------------------------------------------------
-	textExportLAYs = "Filepath: ";
+	textExportLAYs = "LAYs filepath: ";
 	textExportLAYs.setSize(textBoxContentSize);
 	textExportLAYs.setPos({ removeStudentTextBoxPos.x, yPosTextExportLAYs });
 	//-----------------------------------------------------------------------------------
@@ -179,10 +179,16 @@ StaffScene2::StaffScene2() {
 	exportLSYs.label = "Export";
 	exportLSYs.setSize(removeButtonSize);
 	exportLSYs.setPos(exportLSYsButtonPos);
+	exportLSYs.fill_color = YELLOW;
+	exportLSYs.hover_color = GOLD;
+	exportLSYs.press_color = ORANGE;
 	//-----------------------------------------------------------------------------------
 	exportLAYs.label = "Export";
 	exportLAYs.setSize(removeButtonSize);
 	exportLAYs.setPos(exportLAYsButtonPos);
+	exportLAYs.fill_color = YELLOW;
+	exportLAYs.hover_color = GOLD;
+	exportLAYs.press_color = ORANGE;
 	//-----------------------------------------------------------------------------------
 	removeStudentButton.label = "Remove";
 	removeStudentButton.fill_color = RED;
@@ -260,6 +266,8 @@ Scene* StaffScene2::process() {
 	//-----------------------------------------------------------------------------------
 	inputStudentID.process(mousePoint);
 	inputStaffID.process(mousePoint);
+	inputLSYsFilePath.process(mousePoint);
+	inputLAYsFilePath.process(mousePoint);
 	if (ptrStaff_Global != nullptr) {
 		sceneName = "Welcome staff " + ptrStaff_Global->name.get();
 		sceneName.centerX();
