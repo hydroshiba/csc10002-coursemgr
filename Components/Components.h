@@ -8,6 +8,7 @@
 #include <sstream>
 
 using std::string;
+using std::to_string;
 
 const std::string defaultStr = "Error";
 /* Enumerators */
