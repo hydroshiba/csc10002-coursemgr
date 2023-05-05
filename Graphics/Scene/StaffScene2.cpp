@@ -380,7 +380,13 @@ Scene* StaffScene2::process() {
 		return this;
 	}
 	else if (exportLAYs.clicked(mousePoint)) {
-
+		string filename = inputLAYsFilePath.getContent();
+		string outStr;
+		exportListAcademicYear(filename, outStr);
+		message = outStr;
+		message.centerX();
+		inputLAYsFilePath.clearContent();
+		return this;
 	}
 	return this;
 }
