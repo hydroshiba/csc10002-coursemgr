@@ -73,7 +73,7 @@ Vector<Vector<string>> getTableContentOfListSchoolYear() {
 	table[1][2] = "Number of classes";
 	for (int i = 0; i < schoolYears.size(); i++) {
 		table[i + 2][0] = std::to_string(i + 1);
-		table[i + 2][1] = std::to_string(schoolYears[i].start);
+		table[i + 2][1] = schoolYears[i].getPeriod();
 		table[i + 2][2] = to_string(schoolYears[i].classes.size());
 	}
 	return table;
@@ -182,7 +182,7 @@ Vector<Vector<string>> getTableContentOfListAcademicYear() {
 	table[1][2] = "Number of semesters";
 	for (int i = 0; i < academicYears.size(); i++) {
 		table[i + 2][0] = std::to_string(i + 1);
-		table[i + 2][1] = std::to_string(academicYears[i].start);
+		table[i + 2][1] = academicYears[i].getPeriod();
 		table[i + 2][2] = to_string(academicYears[i].semesters.size());
 	}
 	return table;
