@@ -94,12 +94,18 @@ Scene* SchoolYearScene::process() {
     //--------------------------------------
     inputClassAdded.process(mousePoint);
     if (add.clicked(mousePoint)) {
+        std::string content = inputClassAdded.getContent();
+        if (content != "") listClass.add(content);
         //add class
     }
     //--------------------------------------
     inputClassRemoved.process(mousePoint);
     if (remove.clicked(mousePoint)) {
-        //remove class
+        if (remove.clicked(mousePoint)) {
+            std::string content = inputClassRemoved.getContent();
+            if (content != "") listClass.remove(content);
+            //remove class
+        }
     }
     //--------------------------------------
     inputStartYear.process(mousePoint);
