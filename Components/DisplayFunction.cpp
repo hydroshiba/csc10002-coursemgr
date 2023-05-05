@@ -222,6 +222,45 @@ Vector<Vector<string>> getTableContentOfAcademicYear(const AcademicYear& academi
 
 Vector<Vector<string>> getTableContentOfSemester(const Semester& semester) {
 	Vector<Vector<string>> table;
+	size_t n = semester.courses.size();
+	table.resize(5 + n);
+	for (int i = 0; i < 4; i++) {
+		table[i].resize(2);
+	}
+	for (int i = 4; i < table.size(); i++) {
+		table.resize(10);
+	}
+	table[0][0] = "SemesterID";
+	table[0][1] = semester.semesterID;
+	table[1][0] = "Start date";
+	table[1][1] = semester.startDate.get();
+	table[2][0] = "End date";
+	table[2][1] = semester.endDate.get();
+	table[3][0] = "Number of courses";
+	table[3][1] = to_string(n);
+	table[4][0] = "No";
+	table[4][1] = "CourseID";
+	table[4][2] = "ClassID";
+	table[4][3] = "Course name";
+	table[4][4] = "Teacher";
+	table[4][5] = "Number of credits";
+	table[4][6] = "Max enroll";
+	table[4][7] = "Weekday";
+	table[4][8] = "Session";
+	table[4][9] = "Number of students";
+	for (int i = 0; i < n; i++) {
+		table[i + 5][0] = to_string(i + 1);
+		table[i + 5][1] = semester.courses[i].ID;
+		table[i + 5][2] = semester.courses[i].classID;
+		table[i + 5][3] = semester.courses[i].name;
+		table[i + 5][4] = semester.courses[i].teacher;
+		table[i + 5][5] = to_string(semester.courses[i].credits);
+		table[i + 5][6] = to_string(semester.courses[i].maxEnroll);
+		table[i + 5][7] = weekday_to_string(semester.courses[i].weekday);
+		table[i + 5][8] = session_to_string(semester.courses[i].session);
+		table[i + 5][9] = to_string(semester.courses[i].scoreboards.size());
+
+	}
 	return table;
 }
 

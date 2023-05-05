@@ -11,7 +11,7 @@ struct Date {
 
     void set(const unsigned short& newDay, const unsigned short& newMonth, const unsigned int& newYear);
 
-    std::string get();
+    std::string get() const;
 };
 
 bool operator==(const Date& dateA, const Date& dateB);

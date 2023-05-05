@@ -9,7 +9,7 @@ void Date::set(const unsigned short& newDay, const unsigned short& newMonth, con
     year = newYear;
 }
 
-std::string Date::get() {
+std::string Date::get() const{
     std::string strDay = std::to_string(day);
     if (day < 10) strDay = '0' + strDay;
 
