@@ -205,6 +205,32 @@ bool exportListStudentInClass(const string& filename, Class& CLASS, string& outS
 	return true;
 }
 
+bool exportListScoreboardInSemesterOfClass(const string& filename, Class& CLASS, Semester& semester, string& outStr){
+	string getListScoreInSemesterOfCLassFile = getExportFolderPath() + filename + ".csv";
+	if (filename.empty()){
+		outStr = "Empty InputBox error, please input something!";
+		return false;
+	}
+	std::ofstream fout (getListScoreInSemesterOfCLassFile, std::ios::out);
+	if (!fout.is_open()){
+		outStr = "Cannot open file " + getListScoreInSemesterOfCLassFile + '!';
+		return false;
+	}
+	Vector<Vector<string>> table = getTableContentOfListScoreboardInSemesterInClass(CLASS, semester);
+	for (int i = 0; i<table.size(); ++i){
+		for (int j = 0; j<table[i].size(); ++j){
+			fout << table[i][j];
+			if (j != table[i].size()-1)
+				fout << ',';
+		}
+		fout << std::endl;
+	}
+	fout.close();
+	outStr = "Completely exported scoreboard in a semester " + semester.semesterID + " from class " + CLASS.name;
+	removeTable(table);
+	return true;
+}
+
 bool exportListAcademicYear(const string& filename, string& outStr){
 	string getListAcademicYearFile = getExportFolderPath() + filename + ".csv";
 	if (filename.empty()){
