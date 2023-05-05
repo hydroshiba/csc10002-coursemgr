@@ -205,6 +205,32 @@ bool exportListStudentInClass(const string& filename, Class& CLASS, string& outS
 	return true;
 }
 
+bool exportListAcademicYear(const string& filename, string& outStr){
+	string getListAcademicYearFile = getExportFolderPath() + filename + ".csv";
+	if (filename.empty()){
+		outStr = "Empty InputBox error, please input something!";
+		return false;
+	}
+	std::ofstream fout (getListAcademicYearFile, std::ios::out);
+	if (!fout.is_open()){
+		outStr = "Cannot open file " + getListAcademicYearFile +'!';
+		return false;
+	}
+	Vector<Vector<string>> table = getTableContentOfListAcademicYear();
+	for (int i = 0; i<table.size(); ++i){
+		for (int j = 0; j<table[i].size(); ++j){
+			fout << table[i][j];
+			if (j != table[i].size()-1)
+				fout << '\n';
+		}
+		fout << std::endl;
+	}
+	fout.close();
+	outStr = "Completely exported list academic years!";
+	removeTable(table);
+	return true;
+}
+
 // 19. export list of students in course to csv file
 bool exportListOfStudentInCourse(const string& filename, Course& course, string &outStr) {
 	string inputStudCouseFilePath = getExportFolderPath() + filename + ".csv";
