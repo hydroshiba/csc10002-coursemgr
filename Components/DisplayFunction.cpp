@@ -119,21 +119,26 @@ Vector<Vector<string>> getTableContentOfListSchoolYear() {
 	return table;
 }
 
-Vector<Vector<string>> getTableContentOfListClass(const SchoolYear& schoolYear) {
+Vector<Vector<string>> getTableContentOfSchoolYear(const SchoolYear& schoolYear) {
 	Vector<Vector<string>> table;
 	size_t n = schoolYear.classes.size();
 	table.resize(n + 3);
-	for (int i = 0; i < table.size(); i++)
+	for (int i = 0; i < 2; i++)
 		table[i].resize(2);
+	for (int i = 2; i < table.size(); i++)
+		table[i].resize(3);
 	table[0][0] = "SchoolYear";
 	table[0][1] = schoolYear.getPeriod();
 	table[1][0] = "Number of classes";
 	table[1][1] = std::to_string(n);
+	table[1][2] = "Number of classes";
 	table[2][0] = "No";
 	table[2][1] = "Class";
+	table[2][2] = "Number of students";
 	for (int i = 0; i < n; i++) {
 		table[i + 3][0] = std::to_string(i + 1);
 		table[i + 3][1] = schoolYear.classes[i].name;
+		table[i + 3][2] = to_string(schoolYear.classes[i].students.size());
 	}
 	return table;
 }

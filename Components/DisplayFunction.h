@@ -22,7 +22,7 @@ Vector<string> getListCourse(const Semester& semester);
 // Table
 Vector<Vector<string>> getTableContentOfListSchoolYear();
 
-Vector<Vector<string>> getTableContentOfListClass(const SchoolYear& schoolYear);
+Vector<Vector<string>> getTableContentOfSchoolYear(const SchoolYear& schoolYear);
 
 Vector<Vector<string>> getTableContentOfListStudentInClass(const Class& CLASS);
 
