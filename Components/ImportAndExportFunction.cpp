@@ -126,6 +126,39 @@ bool importScoreBoardOfCourse(const string& filename, Course& course) {
 	return true;
 }
 
+bool exportListSchoolYear(const string& filename, string& outStr){
+	string getListSchoolYearFile = getExportFolderPath() + filename ;
+	std::ofstream fout (getListSchoolYearFile, std::ios::out);
+	if (!fout.is_open()){
+		outStr = "Cannot open file!";
+		return false;
+	}
+	fout << "Number of SchoolYears," << schoolYears.size() << std::endl;
+	fout << "No,SchoolYear\n";
+	for (int i = 0; i<schoolYears.size(); ++i)
+		fout << i+1 << schoolYears[i].start << std::endl;
+	fout.close();
+	outStr = "Completely exported list school years!";
+	return true;
+}
+
+bool exportListClassInSchoolYear(const string& filename, SchoolYear& schoolYear, string& outStr){
+	string getListClassFile = getExportFolderPath() + filename;
+	std::ofstream fout (getListClassFile, std::ios::out);
+	if (!fout.is_open()){
+		outStr = "Cannot open file!";
+		return false;
+	}
+	fout << "Start year," << schoolYear.start << std::endl;
+	fout << "Number of classes," << schoolYear.classes.size() << std::endl;
+	fout << "No,Class Name\n";
+	for (int i = 0; i<schoolYear.classes.size(); ++i)
+		fout << i+1 << schoolYear.classes[i].name << std::endl;
+	fout.close();
+	outStr = "Completely exported list classes from school year " + schoolYear.start;
+	return true;
+}
+
 // 19. export list of students in course to csv file
 bool exportListOfStudentInCourse(const string& filename, Course& course, string &outStr) {
 	string inputStudCouseFilePath = getExportFolderPath() + filename;
@@ -154,25 +187,11 @@ bool exportListScoreboardOfCourse(const string& filename, Course& course, string
 		return false;
 	}
 	course.displayInfoFile(fout);
-	Vector<Vector<string>> table;
-	course.displayInfoTable(table);
 	fout << "No,StudentID,Midterm,Final,Other,Total";
-	Vector<string> str;
-	str.append("No"); str.append("StudentID"); str.append("Midterm"); str.append("Final"); str.append("Other"); str.append("Total");
-	table.append(str);
-	str.resize(0);
 	for (int i = 0; i < course.scoreboards.size(); i++)
 	{
 		Student* student = course.scoreboards[i]->ptrStudent;
 		fout << i + 1 << "," << student->ID << "," << course.scoreboards[i]->midterm << ',' << course.scoreboards[i]->final << ',' << course.scoreboards[i]->other << ',' << course.scoreboards[i]->total << std::endl;
-		str.append(std::to_string(i+1)); 
-		str.append(student->ID); 
-		str.append(std::to_string(course.scoreboards[i]->midterm)); 
-		str.append(std::to_string(course.scoreboards[i]->final)); 
-		str.append(std::to_string(course.scoreboards[i]->other));
-		str.append(std::to_string(course.scoreboards[i]->total));
-		table.append(str);
-		str.resize(0);
 	}
 	fout.close();
 	outStr = "Completely exported scoreboard of course!";
