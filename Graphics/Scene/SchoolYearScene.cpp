@@ -1,5 +1,7 @@
 #include "SchoolYearScene.h"
 
+bool isAdded = false;
+
 SchoolYearScene::SchoolYearScene() {
     sceneTitle = "School Year Error";
     sceneTitle.setSize(50);
@@ -109,13 +111,21 @@ void SchoolYearScene::render() {
 
 Scene* SchoolYearScene::process() {
     this->mousePoint = GetMousePosition();
+    inputStartYear.process(mousePoint);
+    inputClassAdded.process(mousePoint);
+    inputClassRemoved.process(mousePoint);
+    exportPath.process(mousePoint);
     //--------------------------------------
     if (ptrSchoolYear_Global != nullptr) {
-        sceneTitle = "School Year " + std::to_string(ptrSchoolYear_Global->start);
+        sceneTitle = "School Year " + ptrSchoolYear_Global->getPeriod();
+        if (!isAdded) {
+            listClass.add(getListClass(*ptrSchoolYear_Global));
+            isAdded = true;
+        }
     }
     listClass.process(mousePoint);
     if (view.clicked(mousePoint)) {
-        //switch to the class scene of the class selected
+        
     }
     //--------------------------------------
     inputClassAdded.process(mousePoint);

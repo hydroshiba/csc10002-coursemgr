@@ -15,7 +15,12 @@
 #include "SchoolYear.h"
 #include "Class.h"
 
+#include "InsertFunction.h"
+#include "RemoveFunction.h"
+#include "DisplayFunction.h"
+#include "ImportAndExportFunction.h"
 #include <iostream>
+
 class SchoolYearScene : public Scene {
 private:
     TextBox sceneTitle;
