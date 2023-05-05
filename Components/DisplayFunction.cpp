@@ -99,4 +99,28 @@ Vector<Vector<string>> getTableContentOfListCourse(const Course& course){
 	return table;
 }
 
+// Student and scoreboards
+Vector<Vector<string>> getTableContentOfListStudentInCourse(const Course& course){
+	Vector<Vector<string>> table(course.scoreboards.size()+10);
+	course.displayInfoTable(table);
+	for (int i = 0; i<course.scoreboards.size()+1;++i)
+		table[i+9].resize(6);
+	table[9][0] = "No";
+	table[9][1] = "StudnetID";
+	table[9][2] = "Midterm";
+	table[9][3] = "Final";
+	table[9][4] = "Other";
+	table[9][5] = "Total";
+	for (int i = 0; i<course.scoreboards.size();++i){
+		table[i+10][0] = std::to_string(i+1);
+		table[i+10][1] = course.scoreboards[i]->ptrStudent->ID;
+		table[i+10][2] = std::to_string(course.scoreboards[i]->midterm);
+		table[i+10][3] = std::to_string(course.scoreboards[i]->final);
+		table[i+10][4] = std::to_string(course.scoreboards[i]->other);
+		table[i+10][5] = std::to_string(course.scoreboards[i]->total);
+	}
+	return table;
+}
+
+
 //----------------------------------------------------------------------------------------------//
