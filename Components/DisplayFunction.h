@@ -40,4 +40,8 @@ Vector<Vector<string>> getTableContentOfListCourse(const Semester& semester);
 
 Vector<Vector<string>> getTableContentOfListStudentInCourse(const Course& course); // Student and scoreboards
 
+// 
+
+bool removeTable(Vector<Vector<string>>& table);
+
 #endif // !DISPLAY_FUNCTION_H

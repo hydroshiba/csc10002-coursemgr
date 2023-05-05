@@ -132,6 +132,7 @@ Vector<Vector<string>> getTableContentOfListAcademicYear() {
 	}
 	return table;
 }
+
 // Student and scoreboards
 Vector<Vector<string>> getTableContentOfListStudentInCourse(const Course& course){
 	Vector<Vector<string>> table(course.scoreboards.size()+10);
@@ -155,4 +156,11 @@ Vector<Vector<string>> getTableContentOfListStudentInCourse(const Course& course
 	return table;
 }
 
+//
+bool removeTable(Vector<Vector<string>>& table) {
+	for (int i = 0; i < table.size(); i++)
+		table[i].~Vector();
+	table.~Vector();
+	return true;
+}
 //----------------------------------------------------------------------------------------------//
