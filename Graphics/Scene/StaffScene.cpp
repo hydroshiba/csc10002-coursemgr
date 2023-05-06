@@ -265,7 +265,7 @@ Scene* StaffScene::process() {
 		inputEditLastName.clearContent();
 		inputEditPassword.clearContent();
 		message = "";
-		return registry.blank;
+		return registry.listAcademicYearScene;
 	}
 		
 	//-------------------------------------------------------------------
