@@ -127,13 +127,10 @@ Scene* SchoolYearScene::process() {
     }
     listClass.process(mousePoint);
     if (view.clicked(mousePoint)) {
-        const size_t i = static_cast<const size_t>(listClass.getSelected());
-        if (i >= 0) {
-            ptrSchoolYear_Global = &schoolYears[i];
-            inputClassAdded.clearContent();
-            inputClassRemoved.clearContent();
-            return registry.classScene;
-        }
+        ptrClass_Global = getClass(*ptrSchoolYear_Global, listClass.getCurLabel());
+        inputClassAdded.clearContent();
+        inputClassRemoved.clearContent();
+        return registry.classScene;
     }
     //--------------------------------------
     else if (add.clicked(mousePoint)) {
@@ -187,6 +184,8 @@ Scene* SchoolYearScene::process() {
         inputClassAdded.clearContent();
         inputClassRemoved.clearContent();
         inputStartYear.clearContent();
+        isAdded = false;
+        listClass.clear();
         isAdded = false;
         return registry.listSchoolYearScene;
     }
