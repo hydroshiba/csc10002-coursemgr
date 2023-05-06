@@ -9,9 +9,9 @@
 /*		Display function	*/
 
 // DropBox
-Vector<string> getListSchoolYear(Vector<SchoolYear>& schoolYears); // Done
+Vector<string> getListSchoolYear(); // Done
 
-Vector<string> getListAcademicYear(Vector<AcademicYear>& academicYears); // Done
+Vector<string> getListAcademicYear(); // Done
 
 Vector<string> getListClass(const SchoolYear& schoolYear); // Done
 

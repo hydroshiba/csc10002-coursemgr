@@ -17,7 +17,7 @@
 /*		Display function	*/
 
 // DropBox
-Vector<string> getListSchoolYear(Vector<SchoolYear>& schoolYears) {
+Vector<string> getListSchoolYear() {
 	Vector<string> listSY(schoolYears.size());
 	for (int i = 0; i < listSY.size(); i++){
 		listSY[i] = std::to_string(schoolYears[i].start);
@@ -25,7 +25,7 @@ Vector<string> getListSchoolYear(Vector<SchoolYear>& schoolYears) {
 	return listSY;
 }
 
-Vector<string> getListAcademicYear(Vector<AcademicYear>& academicYears) {
+Vector<string> getListAcademicYear() {
 	Vector<string> listAYs(academicYears.size());
 	for (int i = 0; i < listAYs.size(); i++) {
 		listAYs[i] = academicYears[i].getPeriod();
