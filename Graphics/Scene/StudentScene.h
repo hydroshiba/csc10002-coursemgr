@@ -50,6 +50,8 @@ private:
     InputBox inputSemesterID;
     InputBox inputFilename;
 
+    TextBox textExport;
+
     Button exportButton;
 
     TextBox message;

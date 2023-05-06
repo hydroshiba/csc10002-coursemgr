@@ -2,7 +2,7 @@
 //-------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------
 const float yPosSceneName = 10;
-const float sizeTextSceneName = 100;
+const float sizeTextSceneName = 50;
 //-------------------------------------------------------------------------------------
 const float xDis = 50;
 const float yDis = 30;
@@ -113,18 +113,22 @@ StudentScene::StudentScene() {
 	change.setPos({ xPosInputBox + inputBoxWidth, yPosTextBoxPassword });
 	change.setViewColor();
 	//-----------------------------------------------------------------------------------
+	textExport = "Export scoreboards to file";
+	textExport.setSize(textBoxContentSize);
+	textExport.setPos({ change.getPos().x + change.getSize().x + xDis, textID.getPos().y - 40 });
+	//-----------------------------------------------------------------------------------
 	textSemester = "SemesterID";
 	textSemester.setSize(textBoxContentSize);
 	textSemester.setPos({ change.getPos().x + change.getSize().x + xDis, textID.getPos().y });
-	//
+	////-----------------------------------------------------------------------------------
 	textFileName = "Filename";
 	textFileName.setSize(textBoxContentSize);
 	textFileName.setPos({ textSemester.getPos().x, textFirstName.getPos().y });
-	//
+	////-----------------------------------------------------------------------------------
 	inputSemesterID.defaultText = "All semester";
 	inputSemesterID.setSize(inputBoxSize);
 	inputSemesterID.setPos({ textSemester.getPos().x + textBoxWidth, textSemester.getPos().y });
-	//
+	////-----------------------------------------------------------------------------------
 	inputFilename.defaultText = "Input filename...";
 	inputFilename.setPos({ textSemester.getPos().x + textBoxWidth, textFirstName.getPos().y });
 	inputFilename.setSize(inputBoxSize);
@@ -174,9 +178,11 @@ void StudentScene::render() {
 	//-----------------------------------------------------------------------------------
 	message.render();
 	//
+	textExport.render();
 	textSemester.render();
 	textFileName.render();
-	back.render(mousePoint);
+	if (ptrStaff_Global != nullptr)	
+		back.render(mousePoint);
 	inputSemesterID.render(mousePoint);
 	inputFilename.render(mousePoint);
 }
@@ -252,6 +258,11 @@ Scene* StudentScene::process() {
 	}
 	//-----------------------------------------------------------------------------------
 	else if (back.clicked(mousePoint)) {
+		if (ptrStaff_Global == nullptr) {
+			message = "You don't have permission to use this button!";
+			message.centerX();
+			return this;
+		}
 		inputID.clearContent();
 		inputFirstName.clearContent();
 		inputLastName.clearContent();
