@@ -193,10 +193,11 @@ bool uploadListAcademicYear() {
 		std::cout << "Can't open " << listAcademicYearFilePath << std::endl;
 		return false;
 	}
-	int nAcademicYear;
 	string ignore;
 	getline(ifs, ignore, ',');
-	ifs >> nAcademicYear;
+	getline(ifs, ignore);
+	size_t nAcademicYear = static_cast<size_t>(std::stoull(ignore));
+	if (nAcademicYear == 0) return true;
 	academicYears.resize(nAcademicYear);
 	unsigned int startOfAcademicYear;
 	getline(ifs, ignore);
@@ -224,14 +225,14 @@ bool uploadAcademicYear(AcademicYear& academicYear) {
 	string ignore;
 	getline(ifs, ignore, ',');
 	ifs >> startOfAcademicYear;
-	if (startOfAcademicYear != academicYear.start)
-	{
+	if (startOfAcademicYear != academicYear.start){
 		std::cout << "Incorrect file path " << academicYearFilePath << std::endl;
 		return false;
 	}
-	int nSemester;
 	getline(ifs, ignore, ',');
-	ifs >> nSemester;
+	getline(ifs, ignore);
+	size_t nSemester = static_cast<size_t>(std::stoull(ignore));
+	if (nSemester == 0) return 0;
 	academicYear.semesters.resize(nSemester);
 	std::string semesterID = "";
 	std::getline(ifs, semesterID);
