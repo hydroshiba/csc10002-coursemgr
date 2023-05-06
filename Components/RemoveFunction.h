@@ -21,13 +21,13 @@ bool removeListAcademicYear();
 bool freeMemory();
 
 // Remove student from School
-bool removeStudent(Vector<Student>& students, const string& studentID, string& outStr);
+bool removeStudent(const string& studentID, string& outStr);
 
 // Remove staff from school
-bool removeStaff(string curStaffID, Vector<Staff>& staffs, const string& staffID, string& outStr);
+bool removeStaff(string curStaffID, const string& staffID, string& outStr);
 
 // Remove SchoolYear
-bool removeSchoolYear(Vector<SchoolYear>& schoolYears, const string& start, string& outStr); 
+bool removeSchoolYear(const string& start, string& outStr); 
 
 // Remove Class from School
 bool removeClass(SchoolYear& schoolYears, const string& className, string& outStr); 
@@ -36,7 +36,7 @@ bool removeClass(SchoolYear& schoolYears, const string& className, string& outSt
 bool removeStudentFromClass(Class& CLASS, const string& studentID, string& outStr);
 
 // Remove AcademicYear
-bool removeAcademicYear(Vector<AcademicYear>& academicYears, const string& start, string& outStr);
+bool removeAcademicYear(const string& start, string& outStr);
 
 // Remove Semester
 bool removeSemester(AcademicYear& academicYear, const string& semesterID, string& outStr);

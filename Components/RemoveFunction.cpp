@@ -56,7 +56,7 @@ bool freeMemory() {
 }
 
 // Remove student from School - Button
-bool removeStudent(Vector<Student>& students, const string& studentID, string& outStr) {
+bool removeStudent(const string& studentID, string& outStr) {
 	if (studentID.empty()) {
 		outStr = "Please enter student ID to input box to remove";
 		return false;
@@ -72,7 +72,7 @@ bool removeStudent(Vector<Student>& students, const string& studentID, string& o
 }
 
 // Remove staff from school - Button
-bool removeStaff(string curStaffID, Vector<Staff>&staffs, const string & staffID, string & outStr) {
+bool removeStaff(string curStaffID, const string & staffID, string & outStr) {
 	if (staffID.empty()) {
 		outStr = "Please enter staff ID to input box to remove";
 		return false;
@@ -93,7 +93,7 @@ bool removeStaff(string curStaffID, Vector<Staff>&staffs, const string & staffID
 }
 
 // Remove SchoolYear - Button
-bool removeSchoolYear(Vector<SchoolYear>& schoolYears, const string& start, string& outStr) {
+bool removeSchoolYear(const string& start, string& outStr) {
 	if (start.empty()) {
 		outStr = "Please enter the starting year in InputBox!";
 		return false;
@@ -144,7 +144,7 @@ bool removeStudentFromClass(Class& CLASS, const string& studentID, string& outSt
 }
 
 // Remove AcademicYear - Button
-bool removeAcademicYear(Vector<AcademicYear>& academicYears, const string& start, string& outStr) {
+bool removeAcademicYear(const string& start, string& outStr) {
 	if (start.empty()) {
 		outStr = "Please enter the starting year in InputBox!";
 		return false;

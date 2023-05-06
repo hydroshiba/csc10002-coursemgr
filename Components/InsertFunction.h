@@ -6,31 +6,31 @@
 /*		Insert function		*/
 
 // Add new Student
-bool addStudent(const std::string& ID, const std::string& firstName, const std::string& lastName, const std::string& genderStr, const std::string& birthStr, const std::string& socialID, const std::string& password, std::string& outStr);
+bool addStudent(const string& ID, const string& firstName, const string& lastName, const string& genderStr, const string& birthStr, const string& socialID, const string& password, string& outStr);
 
 // Add new staff
-bool addStaff(std::string curStaffID, const std::string& ID, const std::string& password, const std::string& firstName, const std::string& lastName, std::string& outStr);
+bool addStaff(string curStaffID, const string& ID, const string& password, const string& firstName, const string& lastName, string& outStr);
 
 // Add a new SchoolYear
-bool addSchoolYear(const std::string& start, std::string& outStr); // Inputbox
+bool addSchoolYear(const string& start, string& outStr); // Inputbox
 
 // Add new class for SchoolYear
-bool addClass(SchoolYear& schoolYear, const std::string& className, std::string& outStr); // Inputbox
+bool addClass(SchoolYear& schoolYear, const string& className, string& outStr); // Inputbox
 
 // Add a new students to class
-bool addStudentToClass(Class& actClass, const std::string& studentID, std::string& outStr); // Only one student by InputBox
+bool addStudentToClass(Class& actClass, const string& studentID, string& outStr); // Only one student by InputBox
 
 // Add a new academic year
-bool addAcademicYear(const std::string& start, std::string& outStr); // Inputbox
+bool addAcademicYear(const string& start, string& outStr); // Inputbox
 
 // Add a semester to an academic year
-bool addSemester(AcademicYear& newYear, const std::string& semesterID, std::string& outStr); // Inputbox
+bool addSemester(AcademicYear& newYear, const string& semesterID, string& outStr); // Inputbox
 
 // Add a new course
-bool addCourse(Semester& semester, const std::string& courseID, std::string& outStr); // Inputbox
+bool addCourse(Semester& semester, const string& courseID, string& outStr); // Inputbox
 
 // Add a student to course
-bool addStudentToCourse(Course& course, const std::string& studentID, std::string& outStr); // Inputbox 
+bool addStudentToCourse(Course& course, const string& studentID, string& outStr); // Inputbox 
 
 // ----------------------------------------------------------------------------------------------//
 
