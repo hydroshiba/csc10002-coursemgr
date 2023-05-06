@@ -62,7 +62,7 @@ public:
     }
 
     void resize(size_t size) {
-        if (size > capacity) reallocate(size);
+        if (size > capacity || array == nullptr) reallocate(size);
         else if (size > length) {
             Type* init = new Type();
 

@@ -18,6 +18,7 @@
 
 #include "UpLoadFunction.h"
 #include "DownLoadFunction.h"
+
 /*---------- GRAPHICS INCLUDE ----------*/
 
 #include "Application.h"
@@ -26,10 +27,12 @@
 
 int main() {
     if (!uploadAllData()) return 0;
+    
     Application app;
     while(!app.shouldClose()) {
         app.run();
     }
+    
     if (downloadAllData())  
         freeMemory();
 }
