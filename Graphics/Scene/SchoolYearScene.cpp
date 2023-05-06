@@ -21,9 +21,9 @@ SchoolYearScene::SchoolYearScene() {
     view.setSize({150, 50});
     view.setViewColor();
     //--------------------------------------
-    addClass = "Add Class";
-    addClass.setSize(30);
-    addClass.setPos({550, 250});
+    textAddClass = "Add Class";
+    textAddClass.setSize(30);
+    textAddClass.setPos({550, 250});
 
     inputClassAdded.defaultText = "Enter Class Name";
     inputClassAdded.setPos({750, 250});
@@ -125,13 +125,27 @@ Scene* SchoolYearScene::process() {
     }
     listClass.process(mousePoint);
     if (view.clicked(mousePoint)) {
-        
+        const size_t i = static_cast<const size_t>(listClass.getSelected());
+        if (i >= 0) {
+            ptrSchoolYear_Global = &schoolYears[i];
+            inputClassAdded.clearContent();
+            inputClassRemoved.clearContent();
+            return registry.classScene;
+        }
     }
     //--------------------------------------
     inputClassAdded.process(mousePoint);
     if (add.clicked(mousePoint)) {
-        string content = inputClassAdded.getContent();
+        string className = inputClassAdded.getContent();
         string outStr;
+        if (addClass(*ptrSchoolYear_Global, className, outStr)) {
+            listClass.add(className);
+            listClass.process(mousePoint);
+        }
+        ms = outStr;
+        ms.centerX();
+        inputClassAdded.clearContent();
+        return this;
     }
     //--------------------------------------
     inputClassRemoved.process(mousePoint);

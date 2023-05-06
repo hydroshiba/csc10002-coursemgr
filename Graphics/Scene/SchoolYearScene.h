@@ -29,7 +29,7 @@ private:
     DropBox listClass;
     Button view;
 
-    TextBox addClass;
+    TextBox textAddClass;
     InputBox inputClassAdded;
     Button add;
 
