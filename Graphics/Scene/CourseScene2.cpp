@@ -353,7 +353,7 @@ Scene* CourseScene2::process(){
         fileBox.content.text.clear(); 
         impBox.clearContent();
         expBox.clearContent();  
-        return registry.blank;
+        return registry.editScoreboardCourse;
     }
 
     if (viewStudent.clicked(mousePoint)) {

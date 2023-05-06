@@ -18,6 +18,7 @@ Application::Application() {
     registry.academicYearScene = new AcademicYearScene();
     registry.semesterScene = new SemesterScene();
     registry.classScene = new ClassScene();
+    registry.editScoreboardCourse = new EditScoreboardScene();
 
     scene = registry.login;
 }

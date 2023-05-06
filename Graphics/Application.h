@@ -21,6 +21,7 @@
 #include "Scene/AcademicYearScene.h"
 #include "Scene/SemesterScene.h"
 #include "Scene/ClassScene.h"
+#include "Scene/EditScoreboardScene.h"
 class Application {
 private:
 	Vector2 mousePoint = { 0.0f, 0.0f };
