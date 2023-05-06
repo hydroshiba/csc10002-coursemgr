@@ -115,15 +115,15 @@ SemesterScene::SemesterScene() {
     //-----------------------------------------------------------
     textImport = "Export list of courses to file:";
     textImport.setSize(textSize);
-    textImport.setPos({ xPos4, yPos4 + yMid });
+    textImport.setPos({ xPos4, yPos3 + yMid });
 
     inputImport.defaultText = "Enter filename...";
-    inputImport.setPos({ xPos4, yPos4 });
+    inputImport.setPos({ xPos4, yPos3 });
     inputImport.setSize(inputSize);
 
     importBut.label = "Export";
     importBut.setSize(buttonSize);
-    importBut.setPos({ xPos5, yPos4 });
+    importBut.setPos({ xPos5, yPos3 });
     importBut.setViewColor();
     //-----------------------------------------------------------
     //-----------------------------------------------------------
