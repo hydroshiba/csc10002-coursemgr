@@ -116,6 +116,9 @@ void DropBox::add(const Vector<std::string> &labels) {
     for(int i = 0; i < labels.size(); ++i) add(labels[i]);
 }
 
+string DropBox::getCurLabel() const {
+    return current.label.text;
+}
 void DropBox::remove(const std::string label) {
     int pos = 0;
 
