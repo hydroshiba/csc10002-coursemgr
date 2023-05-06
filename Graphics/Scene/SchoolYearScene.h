@@ -33,7 +33,7 @@ private:
     InputBox inputClassAdded;
     Button add;
 
-    TextBox removeClass;
+    TextBox textRemoveClass;
     InputBox inputClassRemoved;
     Button remove;
 

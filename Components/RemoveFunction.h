@@ -30,7 +30,7 @@ bool removeStaff(string curStaffID, Vector<Staff>& staffs, const string& staffID
 bool removeSchoolYear(Vector<SchoolYear>& schoolYears, const string& start, string& outStr); 
 
 // Remove Class from School
-bool removeClass(Vector<SchoolYear>& schoolYears, const string& className, string& outStr); 
+bool removeClass(SchoolYear& schoolYears, const string& className, string& outStr); 
 
 // Remove a student from class
 bool removeStudentFromClass(Class& CLASS, const string& studentID, string& outStr);

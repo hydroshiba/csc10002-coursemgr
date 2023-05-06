@@ -34,9 +34,9 @@ SchoolYearScene::SchoolYearScene() {
     add.setSize({150, 50});
     add.setInsertColor();
     //--------------------------------------
-    removeClass = "Remove Class";
-    removeClass.setSize(30);
-    removeClass.setPos({550, 350});
+    textRemoveClass = "Remove Class";
+    textRemoveClass.setSize(30);
+    textRemoveClass.setPos({550, 350});
 
     inputClassRemoved.defaultText = "Enter Class Name";
     inputClassRemoved.setPos({750, 350});
@@ -151,9 +151,16 @@ Scene* SchoolYearScene::process() {
     inputClassRemoved.process(mousePoint);
     if (remove.clicked(mousePoint)) {
         if (remove.clicked(mousePoint)) {
-            std::string content = inputClassRemoved.getContent();
-            if (content != "") listClass.remove(content);
-            //remove class
+            string className = inputClassRemoved.getContent();
+            string outStr;
+            if (removeClass(*ptrSchoolYear_Global, className, outStr)) {
+                listClass.remove(className);
+                listClass.process(mousePoint);
+            }
+            ms = outStr;
+            ms.centerX();
+            inputClassRemoved.clearContent();
+            return this;
         }
     }
     //--------------------------------------
