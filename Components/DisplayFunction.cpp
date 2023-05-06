@@ -28,7 +28,7 @@ Vector<string> getListSchoolYear() {
 Vector<string> getListAcademicYear() {
 	Vector<string> listAYs(academicYears.size());
 	for (int i = 0; i < listAYs.size(); i++) {	
-		listAYs[i] = academicYears[i].start;
+		listAYs[i] = to_string(academicYears[i].start);
 	}
 	return listAYs;
 }
