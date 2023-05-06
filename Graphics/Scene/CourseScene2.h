@@ -14,6 +14,9 @@
 #include "Course.h"
 #include "ConvertType.h"
 #include "UpdateFunction.h"
+#include "InsertFunction.h"
+#include "RemoveFunction.h"
+#include "ImportAndExportFunction.h"
 
 class CourseScene2 : public Scene{
 private: 

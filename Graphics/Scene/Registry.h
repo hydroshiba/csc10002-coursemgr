@@ -8,7 +8,7 @@ public:
 	Scene* blank;
 	Scene* login;
 	Scene* courseScene;
-	Scene* editScene;
+	Scene* courseScene2;
 	Scene* listSchoolYearScene;
 	Scene* schoolYearScene;
 	Scene* studentScene;
@@ -27,7 +27,7 @@ public:
 	staffScene2(nullptr),
 	studentScoreboardsScene(nullptr),
 	courseScene(nullptr), 
-	editScene(nullptr), 
+	courseScene2(nullptr), 
 	schoolYearScene(nullptr),
 	listSchoolYearScene(nullptr),
 	listAcademicYearScene(nullptr),

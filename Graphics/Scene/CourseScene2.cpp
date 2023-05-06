@@ -1,4 +1,4 @@
-#include "EditCourse.h"
+#include "CourseScene2.h"
 
 CourseScene2 :: CourseScene2(){
     title = defaultStr;
@@ -121,7 +121,7 @@ CourseScene2 :: CourseScene2(){
     viewScore.setSize({250, 100});
     viewScore.setPos({650, 400});
 
-    fileButton.label = "Add by file";
+    fileButton.label = "Import students";
     fileButton.setSize({250,100});
     fileButton.setPos({950,400});
 
@@ -219,6 +219,9 @@ Scene* CourseScene2::process(){
             result.setX(865);
             return this;
         }
+        addBox.content.text.clear();
+        removeBox.content.text.clear();
+        fileBox.content.text.clear();           
         if(updateCourse(*ptrCourse_Global,courseBox.content.text, classBox.content.text, nameBox.content.text, teacherBox.content.text, creditBox.content.text, enrollBox.content.text, dayBox.content.text, sessionBox.content.text, notif)){
             courseBox.content.text.clear();
             classBox.content.text.clear();
@@ -228,14 +231,108 @@ Scene* CourseScene2::process(){
             enrollBox.content.text.clear();
             dayBox.content.text.clear();
             sessionBox.content.text.clear();
-            addBox.content.text.clear();
-            removeBox.content.text.clear();
-            fileBox.content.text.clear();   
         }
         result = notif;
         result.setX(865);
         return this;
     }
+
+    if (add.clicked(mousePoint)||remove.clicked(mousePoint)){
+        if (ptrCourse_Global == nullptr){
+            result = "Access nullptr error!";
+            result.centerX();
+            return this;
+        }
+        courseBox.content.text.clear();
+        classBox.content.text.clear();
+        nameBox.content.text.clear();
+        teacherBox.content.text.clear();
+        creditBox.content.text.clear();
+        enrollBox.content.text.clear();
+        dayBox.content.text.clear();
+        sessionBox.content.text.clear();
+        fileBox.content.text.clear(); 
+        if (addBox.content.text.empty() && removeBox.content.text.empty()){
+            result = "Invalid student ID, please retry!";
+            result.centerX();
+            return this;
+        }
+        else if (!addBox.content.text.empty()) addStudentToCourse(*ptrCourse_Global, addBox.content.text, notif);
+        else removeStudFromCourse(*ptrCourse_Global, removeBox.content.text, notif);
+        result = notif;
+        result.centerX();
+        addBox.content.text.clear();
+        removeBox.content.text.clear();
+        return this;
+    }
+
+    if (fileButton.clicked(mousePoint)){
+        if (ptrCourse_Global == nullptr){
+            result = "Access nullptr error!";
+            result.centerX();
+            return this;            
+        }
+        courseBox.content.text.clear();
+        classBox.content.text.clear();
+        nameBox.content.text.clear();
+        teacherBox.content.text.clear();
+        creditBox.content.text.clear();
+        enrollBox.content.text.clear();
+        dayBox.content.text.clear();
+        sessionBox.content.text.clear();
+        addBox.content.text.clear();
+        removeBox.content.text.clear();
+        fileBox.content.text.clear(); 
+        //importStudentListOfCourseFromFile(students, *ptrCourse_Global, notif);
+        result = notif;
+        result.centerX();
+        return this;
+    }
+
+    if (viewScore.clicked(mousePoint)) {
+        if (ptrCourse_Global == nullptr){
+            result = "Access nullptr error!";
+            result.centerX();
+            return this;            
+        }
+        courseBox.content.text.clear();
+        classBox.content.text.clear();
+        nameBox.content.text.clear();
+        teacherBox.content.text.clear();
+        creditBox.content.text.clear();
+        enrollBox.content.text.clear();
+        dayBox.content.text.clear();
+        sessionBox.content.text.clear();        
+        addBox.content.text.clear();
+        removeBox.content.text.clear();
+        fileBox.content.text.clear(); 
+        return registry.blank;
+    }
+
+    if (viewStudent.clicked(mousePoint)) {
+        if (ptrCourse_Global == nullptr){
+            result = "Access nullptr error!";
+            result.centerX();
+            return this;            
+        }
+        courseBox.content.text.clear();
+        classBox.content.text.clear();
+        nameBox.content.text.clear();
+        teacherBox.content.text.clear();
+        creditBox.content.text.clear();
+        enrollBox.content.text.clear();
+        dayBox.content.text.clear();
+        sessionBox.content.text.clear();        
+        addBox.content.text.clear();
+        removeBox.content.text.clear();
+        if (exportListOfStudentInCourse(fileBox.content.text, *ptrCourse_Global, notif)){
+            fileBox.content.text.clear();
+        }    
+        result = notif;
+        result.setX(865);
+        return this;
+    }
+
     if (back.clicked(mousePoint)) {
         courseBox.content.text.clear();
         classBox.content.text.clear();
@@ -248,7 +345,8 @@ Scene* CourseScene2::process(){
         addBox.content.text.clear();
         removeBox.content.text.clear();
         fileBox.content.text.clear();
-        return registry.blank;
+        ptrCourse_Global = nullptr;
+        return registry.semesterScene;
     }
     return this;
 }

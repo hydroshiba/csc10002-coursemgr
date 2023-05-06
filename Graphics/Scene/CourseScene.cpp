@@ -190,7 +190,7 @@ Scene* CourseScene::process(){
     else if (updateBox.clicked(mousePoint)) {
         addBox.clearContent();
         removeBox.clearContent();
-        return registry.editScene;
+        return this;
     }
 
     else if (back.clicked(mousePoint)) {
