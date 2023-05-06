@@ -48,8 +48,9 @@ Class* SchoolYear::getClass(const std::string& className) {
 }
 
 void SchoolYear::addClass(Class& CLASS) {
-    classes.append(CLASS);
     CLASS.ptrSchoolYear = this;
+    classes.append(CLASS);
+    
 }
 
 void SchoolYear::removeClass(Class& CLASS) {
