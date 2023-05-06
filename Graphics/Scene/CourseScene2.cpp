@@ -6,6 +6,7 @@ CourseScene2 :: CourseScene2(){
     title.centerX();
     title.setY(25);
 
+// Course Infor
     courseID = "CourseID";
     courseID.setSize(40);
     courseID.setPos({50,100});
@@ -78,6 +79,8 @@ CourseScene2 :: CourseScene2(){
     sessionBox.setPos({250,625});
     sessionBox.defaultText = defaultStr;
 
+// ------------------------------------------------------
+// Add student
     addText = "Add Student";
     addText.setSize(40);
     addText.setPos({700,100});
@@ -90,7 +93,8 @@ CourseScene2 :: CourseScene2(){
     add.setSize({100,50});
     add.setPos({1150,100});
     add.setInsertColor();
-
+// -------------------------------------------------------
+// Remove student
     removeText = "Remove Student";
     removeText.setSize(40);
     removeText.setPos({650,175});
@@ -103,7 +107,8 @@ CourseScene2 :: CourseScene2(){
     remove.setSize({100,50});
     remove.setPos({1150,175});
     remove.setRemoveColor();
-
+// -------------------------------------------------------
+// Export students
     fileText = "Export students";
     fileText.setSize(40);
     fileText.setPos({650,250});
@@ -116,15 +121,41 @@ CourseScene2 :: CourseScene2(){
     viewStudent.setSize({100,50});
     viewStudent.setPos({1150,250});
     viewStudent.setViewColor();
+// -------------------------------------------------------
+// Export scoreboards
+    expText = "Export scoreboards";
+    expText.setSize(40);
+    expText.setPos({620,325});
 
+    expBox.setSize({250,50});
+    expBox.setPos({900, 325});
+    expBox.defaultText = "Input file name...";
+
+    expButton.label = "Export";
+    expButton.setSize({100,50});
+    expButton.setPos({1150,325});
+    expButton.setViewColor();
+// --------------------------------------------------------
+// Update Scoreboard Scene
     viewScore.label = "Update Scoreboards";
     viewScore.setSize({250, 100});
-    viewScore.setPos({650, 400});
+    viewScore.setPos({850, 475});
+// --------------------------------------------------------
 
-    fileButton.label = "Import students";
-    fileButton.setSize({250,100});
-    fileButton.setPos({950,400});
+// Import students
+    impText = "Import students";
+    impText.setSize(40);
+    impText.setPos({650,400});
 
+    impBox.setSize({250,50});
+    impBox.setPos({900, 400});
+    impBox.defaultText = "Input file name...";
+
+    fileButton.label = "Import";
+    fileButton.setSize({100,50});
+    fileButton.setPos({1150,400});
+    fileButton.setViewColor();
+// ------------------------------------------------------
     change.label = "Change";
     change.setSize({150, 50});
     change.setPos({550,625});
@@ -139,9 +170,9 @@ CourseScene2 :: CourseScene2(){
 
     result = "";
 	result.setColor(RED);
-	result.setSize(24);
+	result.setSize(30);
 	result.centerX();
-	result.setY(475);
+	result.setY(675);
 }
 
 void CourseScene2::render(){
@@ -176,7 +207,14 @@ void CourseScene2::render(){
     fileBox.render(mousePoint);
     viewStudent.render(mousePoint);
 
+    expText.render();
+    expBox.render(mousePoint);
+    expButton.render(mousePoint);
+
     viewScore.render(mousePoint);
+
+    impText.render();
+    impBox.render(mousePoint);
     fileButton.render(mousePoint);
 
     change.render(mousePoint);
@@ -200,6 +238,8 @@ Scene* CourseScene2::process(){
     addBox.process(mousePoint);
     removeBox.process(mousePoint);
     fileBox.process(mousePoint);
+    expBox.process(mousePoint);
+    impBox.process(mousePoint);
 
     if (ptrCourse_Global){
         title = ptrCourse_Global->ID;
@@ -216,12 +256,14 @@ Scene* CourseScene2::process(){
     if (change.clicked(mousePoint)){
         if (ptrCourse_Global == nullptr){
             result = "Access nullptr error!";
-            result.setX(865);
+            result.centerX();
             return this;
         }
         addBox.content.text.clear();
         removeBox.content.text.clear();
-        fileBox.content.text.clear();           
+        fileBox.content.text.clear();    
+        impBox.clearContent();
+        expBox.clearContent();       
         if(updateCourse(*ptrCourse_Global,courseBox.content.text, classBox.content.text, nameBox.content.text, teacherBox.content.text, creditBox.content.text, enrollBox.content.text, dayBox.content.text, sessionBox.content.text, notif)){
             courseBox.content.text.clear();
             classBox.content.text.clear();
@@ -252,6 +294,8 @@ Scene* CourseScene2::process(){
         dayBox.content.text.clear();
         sessionBox.content.text.clear();
         fileBox.content.text.clear(); 
+        impBox.clearContent();
+        expBox.clearContent();          
         if (addBox.content.text.empty() && removeBox.content.text.empty()){
             result = "Invalid student ID, please retry!";
             result.centerX();
@@ -283,7 +327,8 @@ Scene* CourseScene2::process(){
         addBox.content.text.clear();
         removeBox.content.text.clear();
         fileBox.content.text.clear(); 
-        //importStudentListOfCourseFromFile(students, *ptrCourse_Global, notif);
+        expBox.clearContent();  
+        if (importStudentListOfCourseFromFile(impBox.content.text, *ptrCourse_Global, notif)) impBox.clearContent();
         result = notif;
         result.centerX();
         return this;
@@ -306,6 +351,8 @@ Scene* CourseScene2::process(){
         addBox.content.text.clear();
         removeBox.content.text.clear();
         fileBox.content.text.clear(); 
+        impBox.clearContent();
+        expBox.clearContent();  
         return registry.blank;
     }
 
@@ -325,9 +372,34 @@ Scene* CourseScene2::process(){
         sessionBox.content.text.clear();        
         addBox.content.text.clear();
         removeBox.content.text.clear();
+        impBox.clearContent();
+        expBox.clearContent();  
         if (exportListOfStudentInCourse(fileBox.content.text, *ptrCourse_Global, notif)){
             fileBox.content.text.clear();
         }    
+        result = notif;
+        result.setX(865);
+        return this;
+    }
+
+    if (expButton.clicked(mousePoint)){
+        if (ptrCourse_Global == nullptr){
+            result = "Access nullptr error!";
+            result.centerX();
+            return this;            
+        }
+        courseBox.content.text.clear();
+        classBox.content.text.clear();
+        nameBox.content.text.clear();
+        teacherBox.content.text.clear();
+        creditBox.content.text.clear();
+        enrollBox.content.text.clear();
+        dayBox.content.text.clear();
+        sessionBox.content.text.clear();        
+        addBox.content.text.clear();
+        removeBox.content.text.clear();
+        impBox.clearContent();
+        if (exportListScoreboardOfCourse(expBox.getContent(), *ptrCourse_Global, notif)) expBox.clearContent();
         result = notif;
         result.setX(865);
         return this;
@@ -346,6 +418,7 @@ Scene* CourseScene2::process(){
         removeBox.content.text.clear();
         fileBox.content.text.clear();
         ptrCourse_Global = nullptr;
+        result.clear();
         return registry.semesterScene;
     }
     return this;

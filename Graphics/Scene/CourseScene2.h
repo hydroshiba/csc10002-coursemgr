@@ -22,10 +22,10 @@ class CourseScene2 : public Scene{
 private: 
     TextBox title, courseID, classID, name, teacher, credit, maxEnroll, weekday, session;
     InputBox courseBox, classBox, nameBox, teacherBox, creditBox, enrollBox, dayBox, sessionBox;
-    Button viewStudent, add, remove, fileButton, viewScore, change, back;
+    Button viewStudent, add, remove, fileButton, viewScore, change, expButton, back;
 
-    InputBox addBox, removeBox, fileBox;
-    TextBox addText, removeText, fileText;
+    InputBox addBox, removeBox, fileBox, impBox, expBox;
+    TextBox addText, removeText, fileText, impText, expText;
 
     TextBox result;
 public:
