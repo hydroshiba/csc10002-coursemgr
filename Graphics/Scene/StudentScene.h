@@ -53,6 +53,7 @@ private:
     Button exportButton;
 
     TextBox message;
+    Button back;
     Button logout;
 public:
     StudentScene();
