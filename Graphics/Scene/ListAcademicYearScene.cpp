@@ -99,8 +99,8 @@ Scene* ListAcademicYearScene::process() {
         return registry.academicYearScene;
     }
     else if (add.clicked(mousePoint)) {
-        std::string content = inputSchoolYearAdded.getContent();
-        std::string outStr;
+        string content = inputSchoolYearAdded.getContent();
+        string outStr;
         if (addAcademicYear(content, outStr)) {
             chooseSchoolYear.add(content);
             chooseSchoolYear.process(mousePoint);

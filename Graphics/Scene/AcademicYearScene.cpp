@@ -146,70 +146,70 @@ Scene* AcademicYearScene::process() {
     inputClassRemoved.process(mousePoint);
     exportPath.process(mousePoint);
     //--------------------------------------
-    //if (ptrAcademicYear_Global != nullptr) {
-    //    sceneTitle = "Academic Year " + ptrAcademicYear_Global->getPeriod();
-    //    if (!isAddedSemester) {
-    //        Vector<string> ls = getListClass(*ptrAcademicYear_Global);
-    //        listClass.add(ls);
-    //        isAddedSemester = true;
-    //    }
-    //}
-    //listClass.process(mousePoint);
-    //if (view.clicked(mousePoint)) {
-    //    ptrClass_Global = getClass(*ptrAcademicYear_Global, listClass.getCurLabel());
-    //    inputClassAdded.clearContent();
-    //    inputClassRemoved.clearContent();
-    //    inputStartYear.clearContent();
-    //    exportPath.clearContent();
-    //    return registry.classScene;
-    //}
-    ////--------------------------------------
-    //else if (add.clicked(mousePoint)) {
-    //    string className = inputClassAdded.getContent();
-    //    string outStr;
-    //    if (addClass(*ptrAcademicYear_Global, className, outStr)) {
-    //        listClass.add(className);
-    //        listClass.process(mousePoint);
-    //    }
-    //    ms = outStr;
-    //    ms.centerX();
-    //    inputClassAdded.clearContent();
-    //    return this;
-    //}
-    ////--------------------------------------
-    //else if (remove.clicked(mousePoint)) {
-    //    if (remove.clicked(mousePoint)) {
-    //        string className = inputClassRemoved.getContent();
-    //        string outStr;
-    //        if (removeClass(*ptrAcademicYear_Global, className, outStr)) {
-    //            listClass.remove(className);
-    //            listClass.process(mousePoint);
-    //        }
-    //        ms = outStr;
-    //        ms.centerX();
-    //        inputClassRemoved.clearContent();
-    //        return this;
-    //    }
-    //}
-    ////--------------------------------------
-    //else if (change.clicked(mousePoint)) {
-    //    string startYear = inputStartYear.getContent();
-    //    string outStr;
-    //    updateAcademicYear(*ptrAcademicYear_Global, startYear, outStr);
-    //    ms = outStr;
-    //    ms.centerX();
-    //    inputStartYear.clearContent();
-    //    return this;
-    //}
-    ////--------------------------------------
-    //else if (Export.clicked(mousePoint)) {
-    //    string filename = exportPath.getContent();
-    //    string outStr;
-    //    exportListClassInAcademicYear(filename, *ptrAcademicYear_Global, outStr);
-    //    ms = outStr;
-    //    ms.centerX();
-    //    exportPath.clearContent();
-    //}
+    if (ptrAcademicYear_Global != nullptr) {
+        sceneTitle = "Academic Year " + ptrAcademicYear_Global->getPeriod();
+        if (!isAddedSemester) {
+            Vector<string> ls = getListSemester(*ptrAcademicYear_Global);
+            listClass.add(ls);
+            isAddedSemester = true;
+        }
+    }
+    listClass.process(mousePoint);
+    if (view.clicked(mousePoint)) {
+        ptrSemester_Global = getSemester(*ptrAcademicYear_Global, listClass.getCurLabel());
+        inputClassAdded.clearContent();
+        inputClassRemoved.clearContent();
+        inputStartYear.clearContent();
+        exportPath.clearContent();
+        return registry.semesterScene;
+    }
+    //--------------------------------------
+    else if (add.clicked(mousePoint)) {
+        string className = inputClassAdded.getContent();
+        string outStr;
+        if (addSemester(*ptrAcademicYear_Global, className, outStr)) {
+            listClass.add(className);
+            listClass.process(mousePoint);
+        }
+        ms = outStr;
+        ms.centerX();
+        inputClassAdded.clearContent();
+        return this;
+    }
+    //--------------------------------------
+    else if (remove.clicked(mousePoint)) {
+        if (remove.clicked(mousePoint)) {
+            string className = inputClassRemoved.getContent();
+            string outStr;
+            if (removeSemester(*ptrAcademicYear_Global, className, outStr)) {
+                listClass.remove(className);
+                listClass.process(mousePoint);
+            }
+            ms = outStr;
+            ms.centerX();
+            inputClassRemoved.clearContent();
+            return this;
+        }
+    }
+    //--------------------------------------
+    else if (change.clicked(mousePoint)) {
+        string startYear = inputStartYear.getContent();
+        string outStr;
+        updateAcademicYear(*ptrAcademicYear_Global, startYear, outStr);
+        ms = outStr;
+        ms.centerX();
+        inputStartYear.clearContent();
+        return this;
+    }
+    //--------------------------------------
+    else if (Export.clicked(mousePoint)) {
+        string filename = exportPath.getContent();
+        string outStr;
+        exportListSemesterInAcademicYear(filename, *ptrAcademicYear_Global, outStr);
+        ms = outStr;
+        ms.centerX();
+        exportPath.clearContent();
+    }
     if (back.clicked(mousePoint)) {
         ptrAcademicYear_Global = nullptr;
         inputClassAdded.clearContent();
@@ -218,7 +218,6 @@ Scene* AcademicYearScene::process() {
         exportPath.clearContent();
         listClass.clear();
         isAddedSemester = false;
-
         return registry.listAcademicYearScene;
     }
     return this;

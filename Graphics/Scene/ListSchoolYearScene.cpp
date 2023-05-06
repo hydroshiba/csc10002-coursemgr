@@ -88,7 +88,7 @@ Scene* ListSchoolYearScene::process() {
     chooseSchoolYear.process(mousePoint);
     inputSchoolYearAdded.process(mousePoint);
     inputSchoolYearRemoved.process(mousePoint);
-    /*if (!isAddedListSchoolYear) {
+    if (!isAddedListSchoolYear) {
         chooseSchoolYear.add(getListSchoolYear());
         isAddedListSchoolYear = true;
     }
@@ -119,7 +119,7 @@ Scene* ListSchoolYearScene::process() {
         ms = outStr;
         ms.centerX();
         inputSchoolYearRemoved.clearContent();
-    }*/
+    }
     if (back.clicked(mousePoint)) {
         chooseSchoolYear.process(mousePoint);
         inputSchoolYearAdded.clearContent();
