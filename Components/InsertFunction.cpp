@@ -161,7 +161,7 @@ bool addAcademicYear(const string& start, string& outStr) {
 	AcademicYear newYear;
 	newYear.start = startYear;
 	academicYears.append(newYear);
-	outStr = "Complete add new SchoolYear with start year " + start + " to the list of SchoolYear!";
+	outStr = "Complete add new AcademicYear with start year " + start + " to the list of AcademicYear!";
 	return true;
 }
 
