@@ -17,6 +17,9 @@ bool exportListOfStudentInCourse(const string& filename, Course& course, string&
 bool importScoreBoardOfCourse(const string& filename, Course& course);
 // Student Scene
 bool exportListScoreboardOfStudent(const string& filename, Student& student, string& outStr);
+// StudentScene
+bool exportListScoreboardInSemesterOfStudent(const string& filename, Student& student, Semester& semester, string& outStr);
+
 
 // Optional
 // Staff scene

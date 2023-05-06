@@ -410,3 +410,30 @@ bool exportListScoreboardOfStudent(const string& filename, Student& student, str
 	removeTable(table);
 	return true;	
 }
+
+// StudentScene
+bool exportListScoreboardInSemesterOfStudent(const string& filename, Student& student, Semester& semester, string& outStr) {
+	string getStudentScoreboardListFile = getExportFolderPath() + filename + ".csv";
+	if (filename.empty()) {
+		outStr = "Empty InputBox error, please input something!";
+		return false;
+	}
+	std::ofstream fout(getStudentScoreboardListFile, std::ios::out);
+	if (!fout.is_open()) {
+		outStr = "Cannot open file " + getStudentScoreboardListFile + '!';
+		return false;
+	}
+	Vector<Vector<string>> table = getTableContentOfScoreboardInSemesterOfStudent(student, semester);
+	for (int i = 0; i < table.size(); ++i) {
+		for (int j = 0; j < table.size(); ++j) {
+			fout << table[i][j];
+			if (j != table[i].size() - 1)
+				fout << ',';
+		}
+		fout << std::endl;
+	}
+	fout.close();
+	outStr = "Completely exported scoreboard in semester " + semester.semesterID + " of student to " + getStudentScoreboardListFile;
+	removeTable(table);
+	return true;
+}
