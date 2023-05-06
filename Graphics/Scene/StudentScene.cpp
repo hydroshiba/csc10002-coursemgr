@@ -251,5 +251,18 @@ Scene* StudentScene::process() {
 		return registry.login;
 	}
 	//-----------------------------------------------------------------------------------
+	else if (back.clicked(mousePoint)) {
+		inputID.clearContent();
+		inputFirstName.clearContent();
+		inputLastName.clearContent();
+		inputGender.clearContent();
+		inputBirth.clearContent();
+		inputSocialID.clearContent();
+		inputPassword.clearContent();
+		inputSemesterID.clearContent();
+		inputFilename.clearContent();
+		ptrStudent_Global = nullptr;
+		return registry.staffScene2;
+	}
 	return this;
 }
