@@ -15,15 +15,18 @@
 #include "ConvertType.h"
 #include "UpdateFunction.h"
 
-class EditCourse : public Scene{
+class CourseScene2 : public Scene{
 private: 
     TextBox title, courseID, classID, name, teacher, credit, maxEnroll, weekday, session;
     InputBox courseBox, classBox, nameBox, teacherBox, creditBox, enrollBox, dayBox, sessionBox;
-    Button change, back;
+    Button viewStudent, add, remove, fileButton, viewScore, change, back;
+
+    InputBox addBox, removeBox, fileBox;
+    TextBox addText, removeText, fileText;
 
     TextBox result;
 public:
-    EditCourse();
+    CourseScene2();
     Scene *process();
     void render();
 };

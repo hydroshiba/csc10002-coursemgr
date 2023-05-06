@@ -21,7 +21,7 @@
 class CourseScene : public Scene {
 private:
     TextBox title, courseID, classID, name, teacher, credit, maxEnroll, weekday, session, result;
-
+    TextBox addText, removeText, fileText;
     InputBox addBox, removeBox;
 
     Button viewStudent, add, remove, fileButton, viewScore, updateBox, back;
