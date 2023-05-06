@@ -11,8 +11,36 @@
 #include "Objects/InputBox.h"
 #include "Objects/Button.h"
 
-class ListAcademicYearScene : public Scene {
+#include "Components.h"
+#include "InsertFunction.h"
+#include "DisplayFunction.h"
+#include "RemoveFunction.h"
+#include "SearchFunction.h"
+#include "SchoolYear.h"
 
+class ListAcademicYearScene : public Scene {
+private:
+    TextBox sceneTitle;
+
+    TextBox viewYear;
+    DropBox chooseSchoolYear;
+    Button view;
+
+    TextBox addYear;
+    InputBox inputSchoolYearAdded;
+    Button add;
+
+    TextBox removeYear;
+    InputBox inputSchoolYearRemoved;
+    Button remove;
+
+    TextBox ms;
+
+    Button back;
+public:
+    ListAcademicYearScene();
+    void render();
+    Scene* process();
 };
 
 #endif

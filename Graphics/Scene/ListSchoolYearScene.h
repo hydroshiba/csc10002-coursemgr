@@ -17,7 +17,6 @@
 #include "RemoveFunction.h"
 #include "SearchFunction.h"
 #include "SchoolYear.h"
-#include <iostream>
 
 class ListSchoolYearScene : public Scene {
 private:
