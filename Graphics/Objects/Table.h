@@ -11,7 +11,7 @@
 
 class Table {
 private:
-	Vector2 pos;
+	Vector2 pos, size;
 	Scrollbar bar;
 
 	Vector<Vector<std::string>> table;
