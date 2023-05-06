@@ -46,6 +46,30 @@ ClassScene::ClassScene() {
     changeClassnameButton.setPos({525, 500});
     changeClassnameButton.setSize({150, 50});
     //-----------------------------------------------------------
+    viewStudentListLabel = "Export student list to a location:";
+    viewStudentListLabel.setSize(30);
+    viewStudentListLabel.setPos({750, 200});
+
+    pathExportStudentList.defaultText = "Location";
+    pathExportStudentList.setPos({750, 250});
+    pathExportStudentList.setSize({300, 50});
+
+    viewStudentListButton.label = "Export";
+    viewStudentListButton.setPos({1075, 250});
+    viewStudentListButton.setSize({150, 50});
+    //-----------------------------------------------------------
+    viewScoreboardLabel = "Export scoreboard to a location:";
+    viewScoreboardLabel.setSize(30);
+    viewScoreboardLabel.setPos({750, 375});
+
+    pathExportScoreboard.defaultText = "Location";
+    pathExportScoreboard.setPos({750, 425});
+    pathExportScoreboard.setSize({300, 50});
+
+    viewScoreboardButton.label = "Export";
+    viewScoreboardButton.setPos({1075, 425});
+    viewScoreboardButton.setSize({150, 50});
+    //-----------------------------------------------------------
     back.label = "Back";
     back.setPos({1050, 600});
     back.setSize({150, 50});
@@ -66,6 +90,14 @@ void ClassScene::render() {
     changeClassnameLabel.render();
     changeClassnameInput.render(mousePoint);
     changeClassnameButton.render(mousePoint);
+
+    viewStudentListLabel.render();
+    pathExportStudentList.render(mousePoint);
+    viewStudentListButton.render(mousePoint);
+
+    viewScoreboardLabel.render();
+    pathExportScoreboard.render(mousePoint);
+    viewScoreboardButton.render(mousePoint);
 
     back.render(mousePoint);
 }
@@ -91,6 +123,16 @@ Scene* ClassScene::process() {
         //change class name
     }
     
+    pathExportStudentList.process(mousePoint);
+    if (viewStudentListButton.clicked(mousePoint)) {
+        //export student list
+    }
+
+    pathExportScoreboard.process(mousePoint);
+    if (viewScoreboardButton.clicked(mousePoint)) {
+        //export scoreboard
+    }
+
     if (back.clicked(mousePoint)) return registry.schoolYearScene;
     return this;
 }

@@ -28,6 +28,14 @@ private:
     InputBox changeClassnameInput;
     Button changeClassnameButton;
 
+    TextBox viewStudentListLabel;
+    InputBox pathExportStudentList;
+    Button viewStudentListButton;
+
+    TextBox viewScoreboardLabel;
+    InputBox pathExportScoreboard;
+    Button viewScoreboardButton;
+
     Button back;
 
 public:
