@@ -91,11 +91,11 @@ void SchoolYearScene::render() {
     listClass.render(mousePoint);
     view.render(mousePoint);
     //--------------------------------------
-    addClass.render();
+    textAddClass.render();
     inputClassAdded.render(mousePoint);
     add.render(mousePoint);
     //--------------------------------------
-    removeClass.render();
+    textRemoveClass.render();
     inputClassRemoved.render(mousePoint);
     remove.render(mousePoint);
     //--------------------------------------
@@ -177,7 +177,12 @@ Scene* SchoolYearScene::process() {
     //--------------------------------------
     exportPath.process(mousePoint);
     if (Export.clicked(mousePoint)) {
-        //export school year to path
+        string filename = exportPath.getContent();
+        string outStr;
+        exportListClassInSchoolYear(filename, *ptrSchoolYear_Global, outStr);
+        ms = outStr;
+        ms.centerX();
+        exportPath.clearContent();
     }
     if (back.clicked(mousePoint)) {
         ptrSchoolYear_Global = nullptr;
