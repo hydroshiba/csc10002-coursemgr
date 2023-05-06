@@ -10,67 +10,67 @@ SchoolYearScene::SchoolYearScene() {
     //--------------------------------------
     viewClass = "View Classes";
     viewClass.setSize(30);
-    viewClass.setPos({50, 250});
+    viewClass.setPos({50, 200});
 
     listClass.setLabel("List of Classes:");
-    listClass.setPos({50, 300});
+    listClass.setPos({50, 250});
     listClass.setSize({250, 50});
 
     view.label = "View";
-    view.setPos({350, 300});
+    view.setPos({350, 250});
     view.setSize({150, 50});
     view.setViewColor();
     //--------------------------------------
     textAddClass = "Add Class";
     textAddClass.setSize(30);
-    textAddClass.setPos({550, 250});
+    textAddClass.setPos({550, 200});
 
     inputClassAdded.defaultText = "Enter Class Name";
-    inputClassAdded.setPos({750, 250});
+    inputClassAdded.setPos({750, 200});
     inputClassAdded.setSize({250, 50});
 
     add.label = "Add";
-    add.setPos({1050, 250});
+    add.setPos({1050, 200});
     add.setSize({150, 50});
     add.setInsertColor();
     //--------------------------------------
     textRemoveClass = "Remove Class";
     textRemoveClass.setSize(30);
-    textRemoveClass.setPos({550, 350});
+    textRemoveClass.setPos({550, 275});
 
     inputClassRemoved.defaultText = "Enter Class Name";
-    inputClassRemoved.setPos({750, 350});
+    inputClassRemoved.setPos({750, 275});
     inputClassRemoved.setSize({250, 50});
 
     remove.label = "Remove";
-    remove.setPos({1050, 350});
+    remove.setPos({1050, 275});
     remove.setSize({150, 50});
     remove.setRemoveColor();
     //--------------------------------------
     editYear = "Edit Year";
     editYear.setSize(30);
-    editYear.setPos({550, 450});
+    editYear.setPos({550, 350});
 
     inputStartYear.defaultText = "Enter Year";
-    inputStartYear.setPos({750, 450});
+    inputStartYear.setPos({750, 350});
     inputStartYear.setSize({250, 50});
 
     change.label = "Change";
-    change.setPos({1050, 450});
+    change.setPos({1050, 350});
     change.setSize({150, 50});
     change.setViewColor();
     //--------------------------------------
     exportOption = "Choose a location to export file";
     exportOption.setSize(30);
-    exportOption.setPos({50, 550});
+    exportOption.setPos({550, 450});
 
     Export.label = "Export";
-    Export.setPos({400, 600});
+    Export.setPos({875, 500});
     Export.setSize({200, 50});
     Export.setViewColor();
 
     exportPath.defaultText = "Location";
-    exportPath.setPos({50, 600});
+    exportPath.setPos({550, 500});
     exportPath.setSize({300, 50});
 
     back.label = "Back";
