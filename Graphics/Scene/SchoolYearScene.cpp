@@ -166,7 +166,13 @@ Scene* SchoolYearScene::process() {
     //--------------------------------------
     inputStartYear.process(mousePoint);
     if (change.clicked(mousePoint)) {
-        //change start year
+        string startYear = inputStartYear.getContent();
+        string outStr;
+        updateSchoolYear(*ptrSchoolYear_Global, startYear, outStr);
+        ms = outStr;
+        ms.centerX();
+        inputStartYear.clearContent();
+        return this;
     }
     //--------------------------------------
     exportPath.process(mousePoint);

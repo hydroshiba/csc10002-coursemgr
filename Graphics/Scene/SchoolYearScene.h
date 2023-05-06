@@ -19,6 +19,7 @@
 #include "RemoveFunction.h"
 #include "DisplayFunction.h"
 #include "ImportAndExportFunction.h"
+#include "UpdateFunction.h"
 #include <iostream>
 
 class SchoolYearScene : public Scene {
