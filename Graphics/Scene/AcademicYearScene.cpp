@@ -178,7 +178,6 @@ Scene* AcademicYearScene::process() {
     }
     //--------------------------------------
     else if (remove.clicked(mousePoint)) {
-        if (remove.clicked(mousePoint)) {
             string className = inputClassRemoved.getContent();
             string outStr;
             if (removeSemester(*ptrAcademicYear_Global, className, outStr)) {
@@ -190,7 +189,6 @@ Scene* AcademicYearScene::process() {
             inputClassRemoved.clearContent();
             return this;
         }
-    }
     //--------------------------------------
     else if (change.clicked(mousePoint)) {
         string startYear = inputStartYear.getContent();

@@ -168,7 +168,7 @@ bool removeSemester(AcademicYear& academicYear, const string& semesterID, string
 	}
 	Semester* ptrSemester = academicYear.getSemester(semesterID);
 	if (ptrSemester == nullptr) {
-		outStr = "This SemesterID " + semesterID + " have not been already existed in this AcademicYear " + academicYear.getPeriod();
+		outStr = "Semester " + semesterID + " have not been already existed in this AcademicYear " + academicYear.getPeriod();
 		return false;
 	}
 	for (int i = 0; i < ptrSemester->courses.size(); i++) {

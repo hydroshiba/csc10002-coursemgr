@@ -13,7 +13,7 @@ Semester* AcademicYear::getSemester(const std::string& semesterID) {
             ptrSemester = &semesters[i];
             break;
         }
-    return nullptr;
+    return ptrSemester;
 }
 
 void AcademicYear::addSemester(Semester& semester) {
