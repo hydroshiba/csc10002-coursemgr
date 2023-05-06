@@ -143,7 +143,7 @@ bool downloadAcademicYear(AcademicYear& academicYear) {
 	}
 	ofs << "Start year," << academicYear.start << std::endl;
 	ofs << "Number of semesters," << academicYear.semesters.size() << std::endl;
-	ofs << "No, SemesterID\n";
+	ofs << "No,SemesterID\n";
 	for (int i = 0; i < academicYear.semesters.size(); i++){
 		ofs << std::to_string(i + 1) << "," << academicYear.semesters[i].semesterID << std::endl;
 		downloadSemester(academicYear.semesters[i]);

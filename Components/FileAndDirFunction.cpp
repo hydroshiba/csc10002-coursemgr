@@ -77,6 +77,7 @@ string getAcademicYearFilePath(const AcademicYear& academicYear) {
 string getSemesterFolderPath(const Semester& semester) {
 	string academicYearFolderPath = getAcademicYearFolderPath(*(semester.ptrAcademicYear));
 	string semesterFolderPath = academicYearFolderPath + semester.semesterID + "/";
+	createDirectoryIfNotExists(semesterFolderPath);
 	return semesterFolderPath;
 }
 
@@ -88,6 +89,7 @@ string getSemesterFilePath(const Semester& semester) {
 string getCourseFolderPath(const Course& course) {
 	string semesterFolderPath = getSemesterFolderPath(*(course.ptrSemester));
 	string courseFolderPath = semesterFolderPath + course.ID + "/";
+	createDirectoryIfNotExists(courseFolderPath);
 	return courseFolderPath;
 }
 
