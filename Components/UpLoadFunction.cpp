@@ -30,11 +30,11 @@ bool uploadAllData() {
 }
 
 bool uploadListStaff(){
-	std::string list_staff_dir = getListStaffFilePath();
+	string list_staff_dir = getListStaffFilePath();
 	std::ifstream ifs (list_staff_dir);
 	if (!ifs) return false;
-	std::string first, last, ID, pass, ignore;
-	std::string nStaffs;
+	string first, last, ID, pass, ignore;
+	string nStaffs;
 	getline(ifs, ignore, ',');
 	getline(ifs, nStaffs);
 	size_t n = stoull(nStaffs);
@@ -56,12 +56,12 @@ bool uploadListStaff(){
 }
 
 bool uploadListStudent(){
-	std::string list_stud_dir = getListStudentFilePath();
+	string list_stud_dir = getListStudentFilePath();
 	std::ifstream ifs (list_stud_dir);
 	if (!ifs) return false;
 	string nStudents;
-	std::string ID, pass, first, last, gender, socialId, className, day, month, year;
-	std::string ignore;
+	string ID, pass, first, last, gender, socialId, className, day, month, year;
+	string ignore;
 	std::getline (ifs, ignore, ',');
 	std::getline(ifs, nStudents);
 	if (nStudents == "0") return true;
@@ -91,7 +91,7 @@ bool uploadListStudent(){
 }
 
 bool uploadListSchoolYear() {
-	std::string listSchoolYearDir = getListSchoolYearFilePath();
+	string listSchoolYearDir = getListSchoolYearFilePath();
 	std::ifstream ifs(listSchoolYearDir);
 	if (!ifs.is_open()) {
 		std::cout << "Cannot open " << listSchoolYearDir;
@@ -118,7 +118,7 @@ bool uploadListSchoolYear() {
 }
 
 bool uploadSchoolYear(SchoolYear& schoolYear) {
-	std::string schoolYearDir = getSchoolYearFilePath(schoolYear);
+	string schoolYearDir = getSchoolYearFilePath(schoolYear);
 	std::ifstream ifs(schoolYearDir);
 	if (!ifs.is_open()) {
 		std::cout << "Cannot open " << schoolYearDir << '\n';
@@ -140,7 +140,7 @@ bool uploadSchoolYear(SchoolYear& schoolYear) {
 	schoolYear.classes.resize(nClasses);
 	getline(ifs, ignore);
 	for (int i = 0; i < nClasses; ++i) {
-		std::string className;
+		string className;
 		getline(ifs, ignore, ',');
 		ifs >> className;
 		schoolYear.classes[i].name = className;
@@ -152,13 +152,13 @@ bool uploadSchoolYear(SchoolYear& schoolYear) {
 }
 
 bool uploadClass(Class& actClass) {
-	std::string oFile = getClassFilePath(actClass);
+	string oFile = getClassFilePath(actClass);
 	std::ifstream ifs(oFile);
 	if (!ifs.is_open()) {
 		std::cout << "Cannot open " << oFile;
 		return false;
 	}
-	std::string className, ignore;
+	string className, ignore;
 	getline(ifs, ignore, ',');
 	ifs >> className;
 	if (className != actClass.name) {
@@ -171,7 +171,7 @@ bool uploadClass(Class& actClass) {
 	size_t nStud = static_cast<size_t>(std::stoull(ignore));
 	if (nStud == 0) return true;
 	actClass.students.resize(nStud);
-	std::string id;
+	string id;
 	getline(ifs, ignore);
 	for (int i = 0; i<nStud; ++i){
 	 	getline(ifs, ignore, ',');
@@ -187,7 +187,7 @@ bool uploadClass(Class& actClass) {
 
 // AcademicYear
 bool uploadListAcademicYear() {
-	std::string listAcademicYearFilePath = getListAcademicYearFilePath();
+	string listAcademicYearFilePath = getListAcademicYearFilePath();
 	std::ifstream ifs(listAcademicYearFilePath);
 	if (!ifs.is_open()){
 		std::cout << "Can't open " << listAcademicYearFilePath << std::endl;
@@ -196,8 +196,11 @@ bool uploadListAcademicYear() {
 	string ignore;
 	getline(ifs, ignore, ',');
 	getline(ifs, ignore);
+
 	size_t nAcademicYear = static_cast<size_t>(std::stoull(ignore));
+
 	if (nAcademicYear == 0) return true;
+
 	academicYears.resize(nAcademicYear);
 	unsigned int startOfAcademicYear;
 	getline(ifs, ignore);
@@ -215,7 +218,7 @@ bool uploadListAcademicYear() {
 }
 
 bool uploadAcademicYear(AcademicYear& academicYear) {
-	std::string academicYearFilePath = getAcademicYearFilePath(academicYear);
+	string academicYearFilePath = getAcademicYearFilePath(academicYear);
 	std::ifstream ifs(academicYearFilePath);
 	if (!ifs.is_open()){
 		std::cout << "Can't open " << academicYearFilePath << std::endl;
@@ -233,8 +236,9 @@ bool uploadAcademicYear(AcademicYear& academicYear) {
 	getline(ifs, ignore);
 	size_t nSemester = static_cast<size_t>(std::stoull(ignore));
 	if (nSemester == 0) return 0;
+
 	academicYear.semesters.resize(nSemester);
-	std::string semesterID = "";
+	string semesterID = "";
 	std::getline(ifs, semesterID);
 	for (int i = 0; i < academicYear.semesters.size(); i++)
 	{
@@ -251,14 +255,13 @@ bool uploadAcademicYear(AcademicYear& academicYear) {
 }
 
 bool uploadSemester(Semester& semester) {
-	std::string semesterFilePath = getSemesterFilePath(semester);
+	string semesterFilePath = getSemesterFilePath(semester);
 	std::ifstream ifs(semesterFilePath);
-	if (!ifs.is_open())
-	{
+	if (!ifs.is_open()){
 		std::cout << "Can't open " << semesterFilePath << std::endl;
 		return false;
 	}
-	std::string semesterID, ignore;
+	string semesterID, ignore;
 	getline(ifs, ignore, ',');
 	std::getline(ifs, semesterID);
 	if (semester.semesterID != semesterID)
@@ -267,7 +270,7 @@ bool uploadSemester(Semester& semester) {
 		return false;
 	}
 	Date startDate, endDate;
-	std::string day, month, year;
+	string day, month, year;
 	getline(ifs, ignore, ',');
 	getline(ifs, day, '/');
 	getline(ifs, month, '/');
@@ -281,7 +284,7 @@ bool uploadSemester(Semester& semester) {
 	semester.startDate = startDate;
 	semester.endDate = endDate;
 	int nCourse;
-	std::string courseID = "";
+	string courseID = "";
 	getline(ifs, ignore, ',');
 	ifs >> nCourse;
 	semester.courses.resize(nCourse);
@@ -301,13 +304,13 @@ bool uploadSemester(Semester& semester) {
 }
 
 bool uploadCourse(Course& course) {
-	std::string courseFilePath = getCourseFilePath(course);
+	string courseFilePath = getCourseFilePath(course);
 	std::ifstream ifs(courseFilePath);
 	if (!ifs.is_open()){
 		std::cout << "Can't open " << courseFilePath << std::endl;
 		return false;
 	}
-	std::string courseID, ignore;
+	string courseID, ignore;
 	std::getline(ifs, ignore, ',');
 	std::getline(ifs, courseID);
 	if (course.ID != courseID)
@@ -315,7 +318,7 @@ bool uploadCourse(Course& course) {
 		std::cout << "Incorrect file path " << courseFilePath << std::endl;
 		return false;
 	}
-	std::string classID, name, teacher, weekdayStr, sessionStr;
+	string classID, name, teacher, weekdayStr, sessionStr;
 	Weekday weekday;
 	Session session;
 	int credits, maxEnroll;
@@ -345,8 +348,8 @@ bool uploadCourse(Course& course) {
 
 	std::getline(ifs, ignore, ',');
 	int nStud;
-	std::string studentID;
-	std::string midTerm, final, other, total;
+	string studentID;
+	string midTerm, final, other, total;
 	Student *ptrStudent;
 	ifs >> nStud;
 	course.scoreboards.resize(nStud);
