@@ -17,7 +17,8 @@
 #include "ConvertType.h"
 #include "UpdateFunction.h"
 #include <string>
-
+#include "ImportAndExportFunction.h"
+#include "SearchFunction.h"
 class StudentScene : public Scene {
 private:
     TextBox sceneName;

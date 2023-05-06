@@ -234,16 +234,38 @@ Scene* StudentScene::process() {
 	}
 	//-----------------------------------------------------------------------------------
 	else if (exportButton.clicked(mousePoint)) {
-		inputID.clearContent();
-		inputFirstName.clearContent();
-		inputLastName.clearContent();
-		inputGender.clearContent();
-		inputBirth.clearContent();
-		inputSocialID.clearContent();
-		inputPassword.clearContent();
-		return registry.studentScoreboardsScene;
+		string semesterID = inputSemesterID.getContent();
+		string filename = inputFilename.getContent();
+		string outStr;
+		if (semesterID.empty()) {
+			exportListScoreboardOfStudent(filename, *ptrStudent_Global, outStr);
+			message = outStr;
+			message.centerX();
+			inputSemesterID.clearContent();
+			inputFilename.clearContent();
+			return this;
+		}
+		else {
+			Semester* ptrSemester = getSemester(semesterID);
+			if (ptrSemester == nullptr) {
+				outStr = "Semester with ID " + semesterID + " is not existed!";
+				message = outStr;
+				message.centerX();
+				inputSemesterID.clearContent();
+				inputFilename.clearContent();
+				return this;
+			}
+			else
+			{
+				exportListScoreboardInSemesterOfStudent(filename, *ptrStudent_Global, *ptrSemester, outStr);
+				message = outStr;
+				message.centerX();
+				inputSemesterID.clearContent();
+				inputFilename.clearContent();
+				return this;
+			}
+		}
 	}
-		
 	//-----------------------------------------------------------------------------------
 	else if (logout.clicked(mousePoint)) {
 		inputID.clearContent();
