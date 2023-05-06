@@ -6,7 +6,7 @@ const Vector2 buttonSize = { 150, 50 };
 const Vector2 inputSize = { 250, 50 };
 const float yDis = 50;
 const float textSize = 30;
-const float textBoxWidth = 200;
+const float textBoxWidth = 250;
 
 ListAcademicYearScene::ListAcademicYearScene() {
     sceneTitle = "List Of Academic Years";
