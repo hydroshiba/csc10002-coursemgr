@@ -5,10 +5,10 @@
 
 // Add list student to class (from file) 
 // ClassScene
-bool importStudentListOfClassFromFile(const string& filename, Vector<Student> &students, Class& actClass, string& outStr); // By file
+bool importStudentListOfClassFromFile(const string& filename, Class& actClass, string& outStr); // By file
 // Add list student to course (from file)
 // CourseScene
-bool importStudentListOfCourseFromFile(const string& filename, Vector<Student> &students, Course& course, string& outStr); // By file
+bool importStudentListOfCourseFromFile(const string& filename, Course& course, string& outStr); // By file
 // 19. export list of students in course to csv file
 // CourseScene
 bool exportListOfStudentInCourse(const string& filename, Course& course, string& outStr);

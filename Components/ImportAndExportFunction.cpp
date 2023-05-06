@@ -18,7 +18,7 @@
 #include "DisplayFunction.h"
 
 // Add students into a specific class (from File)
-bool importStudentListOfClassFromFile(const string& filename, Vector<Student> &students, Class& actClass, string& outStr) {
+bool importStudentListOfClassFromFile(const string& filename, Class& actClass, string& outStr) {
 	string inputStudClassFilePath = getImportFolderPath() + filename;
 	std::ifstream inF(inputStudClassFilePath);
 	if (!inF.is_open()) {
@@ -66,7 +66,7 @@ bool importStudentListOfClassFromFile(const string& filename, Vector<Student> &s
 }
 
 // Add list student to course (from file)
-bool importStudentListOfCourseFromFile(const string& filename, Vector<Student> &students, Course& course, string& outStr) {
+bool importStudentListOfCourseFromFile(const string& filename, Course& course, string& outStr) {
 	string inputStudCourseFilePath = getImportFolderPath() + filename;
 	std::ifstream inF(inputStudCourseFilePath);
 	if (!inF.is_open()) {
