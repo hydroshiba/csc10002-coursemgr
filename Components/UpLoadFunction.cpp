@@ -339,12 +339,16 @@ bool uploadCourse(Course& course) {
 	course.session = session;
 
 	std::getline(ifs, ignore, ',');
-	int nStud;
+	size_t nStud;
+	ifs >> nStud;
+	if (nStud == 0) return true;
+
+	course.scoreboards.resize(nStud);
+
 	string studentID;
 	string midTerm, final, other, total;
 	Student *ptrStudent;
-	ifs >> nStud;
-	course.scoreboards.resize(nStud);
+
 	getline(ifs, ignore);
 	for (int i = 0; i<nStud; ++i){
 		getline(ifs, ignore, ',');
