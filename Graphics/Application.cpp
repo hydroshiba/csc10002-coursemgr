@@ -11,7 +11,7 @@ Application::Application() {
     registry.studentScoreboardsScene = new StudentScoreBoardsScene();
     registry.blank = new Blank();
     registry.courseScene = new CourseScene();
-    registry.editScene = new EditCourse();
+    registry.editScene = new CourseScene2();
     registry.schoolYearScene = new SchoolYearScene();
     registry.listSchoolYearScene = new ListSchoolYearScene();
     registry.academicYearScene = new AcademicYearScene();
