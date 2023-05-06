@@ -2,86 +2,115 @@
 
 bool isAdded = false;
 
+const float buttonWidth = 150;
+const float buttonHeight = 50;
+const float inputWidth = 250;
+const float inputHeight = 50;
+
+const Vector2 buttonSize = { buttonWidth, buttonHeight };
+const Vector2 inputSize = { inputWidth, inputHeight };
+
+const float xDis = 180;
+const float yDis = 50;
+const float textSize = 30;
+
+const float xPos1 = 550;
+const float xPos2 = xPos1 + xDis;
+const float xPos3 = xPos2 + inputSize.x;
+
+const float yPos1 = 250;
+const float yPos2 = yPos1 + inputSize.y + yDis;
+const float yPos3 = yPos2 + inputSize.y + yDis;
+const float yPos4 = yPos3 + inputSize.y + yDis;
+
 SchoolYearScene::SchoolYearScene() {
-    sceneTitle = "School Year Error";
+    //---------------------------------------------------------------------------------------------------------------
+    sceneTitle = "School Year";
     sceneTitle.setSize(50);
     sceneTitle.centerX();
-    sceneTitle.setY(100);
-    //--------------------------------------
+    sceneTitle.setY(50);
+    //---------------------------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------------------------------
     viewClass = "View Classes";
-    viewClass.setSize(30);
+    viewClass.setSize(textSize);
     viewClass.setPos({50, 200});
-
+    //---------------------------------------------------------------------------------------------------------------
     listClass.setLabel("List of Classes:");
-    listClass.setPos({50, 250});
+    listClass.setPos({50, yPos1});
     listClass.setSize({250, 50});
-
+    //---------------------------------------------------------------------------------------------------------------
     view.label = "View";
-    view.setPos({350, 250});
-    view.setSize({150, 50});
+    view.setPos({300, 250});
+    view.setSize(buttonSize);
     view.setViewColor();
-    //--------------------------------------
+    //---------------------------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------------------------------
     textAddClass = "Add Class";
-    textAddClass.setSize(30);
-    textAddClass.setPos({550, 200});
-
-    inputClassAdded.defaultText = "Enter Class Name";
-    inputClassAdded.setPos({750, 200});
-    inputClassAdded.setSize({250, 50});
-
+    textAddClass.setSize(textSize);
+    textAddClass.setPos({xPos1, yPos1});
+    //---------------------------------------------------------------------------------------------------------------
+    inputClassAdded.defaultText = "Enter Class Name...";
+    inputClassAdded.setPos({ xPos2, yPos1 });
+    inputClassAdded.setSize(inputSize);
+    //---------------------------------------------------------------------------------------------------------------
     add.label = "Add";
-    add.setPos({1050, 200});
-    add.setSize({150, 50});
+    add.setPos({ xPos3, yPos1 });
+    add.setSize(buttonSize);
     add.setInsertColor();
-    //--------------------------------------
+    //---------------------------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------------------------------
     textRemoveClass = "Remove Class";
-    textRemoveClass.setSize(30);
-    textRemoveClass.setPos({550, 275});
-
-    inputClassRemoved.defaultText = "Enter Class Name";
-    inputClassRemoved.setPos({750, 275});
-    inputClassRemoved.setSize({250, 50});
-
+    textRemoveClass.setSize(textSize);
+    textRemoveClass.setPos({xPos1, yPos2});
+    //---------------------------------------------------------------------------------------------------------------
+    inputClassRemoved.defaultText = "Enter Class Name...";
+    inputClassRemoved.setPos({xPos2, yPos2});
+    inputClassRemoved.setSize(inputSize);
+    //---------------------------------------------------------------------------------------------------------------
     remove.label = "Remove";
-    remove.setPos({1050, 275});
-    remove.setSize({150, 50});
+    remove.setPos({xPos3, yPos2});
+    remove.setSize(buttonSize);
     remove.setRemoveColor();
-    //--------------------------------------
+    //---------------------------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------------------------------
     editYear = "Edit Year";
-    editYear.setSize(30);
-    editYear.setPos({550, 350});
-
-    inputStartYear.defaultText = "Enter Year";
-    inputStartYear.setPos({750, 350});
-    inputStartYear.setSize({250, 50});
-
+    editYear.setSize(textSize);
+    editYear.setPos({xPos1, yPos3});
+    //---------------------------------------------------------------------------------------------------------------
+    inputStartYear.defaultText = "Enter startYear...";
+    inputStartYear.setPos({xPos2, yPos3});
+    inputStartYear.setSize(inputSize);
+    //---------------------------------------------------------------------------------------------------------------
     change.label = "Change";
-    change.setPos({1050, 350});
-    change.setSize({150, 50});
+    change.setPos({ xPos3, yPos3 });
+    change.setSize(buttonSize);
     change.setViewColor();
-    //--------------------------------------
-    exportOption = "Choose a location to export file";
-    exportOption.setSize(30);
-    exportOption.setPos({550, 450});
-
+    //---------------------------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------------------------------
+    exportOption = "Filename";
+    exportOption.setSize(textSize);
+    exportOption.setPos({ xPos1, yPos4 });
+    //---------------------------------------------------------------------------------------------------------------
     Export.label = "Export";
-    Export.setPos({875, 500});
-    Export.setSize({200, 50});
+    Export.setPos({xPos3, yPos4});
+    Export.setSize(buttonSize);
     Export.setViewColor();
-
-    exportPath.defaultText = "Location";
-    exportPath.setPos({550, 500});
-    exportPath.setSize({300, 50});
-
+    //---------------------------------------------------------------------------------------------------------------
+    exportPath.defaultText = "Enter filename...";
+    exportPath.setPos({ xPos2, yPos4 });
+    exportPath.setSize(inputSize);
+    //---------------------------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------------------------------
     back.label = "Back";
-    back.setPos({1000, 600});
-    back.setSize({200, 50});
+    back.setPos({xPos3 + xDis - 30, 650});
+    back.setSize(buttonSize);
     back.setRemoveColor();
-
+    //---------------------------------------------------------------------------------------------------------------
     ms = "";
-    ms.setSize(30);
+    ms.setSize(textSize);
     ms.setColor(RED);
     ms.setY(670);
+    //---------------------------------------------------------------------------------------------------------------
 }
 
 void SchoolYearScene::render() {
