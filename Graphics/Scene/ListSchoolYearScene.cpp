@@ -2,58 +2,63 @@
 
 bool isAddedListSchoolYear = false;
 
+const Vector2 buttonSize = { 100, 50 };
+const Vector2 inputSize = { 250, 50 };
+const float yDis = 50;
+const float textSize = 30;
+const float textBoxWidth = 200;
 ListSchoolYearScene::ListSchoolYearScene() {
     sceneTitle = "List Of School Years";
     sceneTitle.setSize(50);
     sceneTitle.centerX();
-    sceneTitle.setY(100);
+    sceneTitle.setY(30);
     //--------------------------------------
-    viewYear = "View Year";
-    viewYear.setSize(30);
-    viewYear.setPos({50, 250});
+    viewYear = "View list of SchoolYears";
+    viewYear.setSize(textSize);
+    viewYear.setPos({100, 200});
 
     chooseSchoolYear.setLabel("Choose School Year");
-    chooseSchoolYear.setPos({50, 300});
-    chooseSchoolYear.setSize({300, 50});
+    chooseSchoolYear.setPos({100, 250});
+    chooseSchoolYear.setSize({350, 50});
 
     view.label = "View";
-    view.setPos({400, 300});
-    view.setSize({150, 50});
+    view.setPos({450, 250});
+    view.setSize(buttonSize);
     view.setViewColor();
     //--------------------------------------
-    addYear = "Add Year";
-    addYear.setSize(30);
+    addYear = "Add SchoolYear";
+    addYear.setSize(textSize);
     addYear.setPos({600, 250});
 
-    inputSchoolYearAdded.defaultText = "Enter School Year";
-    inputSchoolYearAdded.setPos({750, 250});
-    inputSchoolYearAdded.setSize({250, 50});
+    inputSchoolYearAdded.defaultText = "Enter start year";
+    inputSchoolYearAdded.setPos({addYear.getPos().x + textBoxWidth, addYear.getPos().y});
+    inputSchoolYearAdded.setSize(inputSize);
 
     add.label = "Add";
-    add.setPos({1050, 250});
-    add.setSize({150, 50});
+    add.setPos({ inputSchoolYearAdded.getPos().x + inputSchoolYearAdded.getSize().x, inputSchoolYearAdded.getPos().y });
+    add.setSize(buttonSize);
     add.setInsertColor();
     //--------------------------------------
     removeYear = "Remove Year";
-    removeYear.setSize(30);
-    removeYear.setPos({600, 350});
+    removeYear.setSize(textSize);
+    removeYear.setPos({addYear.getPos().x, addYear.getPos().y + yDis + add.getSize().y});
 
-    inputSchoolYearRemoved.defaultText = "Enter School Year";
-    inputSchoolYearRemoved.setPos({750, 350});
-    inputSchoolYearRemoved.setSize({250, 50});
+    inputSchoolYearRemoved.defaultText = "Enter start year";
+    inputSchoolYearRemoved.setPos({inputSchoolYearAdded.getPos().x, removeYear.getPos().y});
+    inputSchoolYearRemoved.setSize(inputSchoolYearAdded.getSize());
 
     remove.label = "Remove";
-    remove.setPos({1050, 350});
-    remove.setSize({150, 50});
+    remove.setPos({add.getPos().x, inputSchoolYearRemoved.getPos().y});
+    remove.setSize(buttonSize);
     remove.setRemoveColor();
     //--------------------------------------
     back.label = "Back";
     back.setPos({1000, 600});
-    back.setSize({200, 50});
+    back.setSize(buttonSize);
     back.setRemoveColor();
 
     ms = "";
-    ms.setSize(24);
+    ms.setSize(textSize);
     ms.setY(680);
 }
 
@@ -106,7 +111,7 @@ Scene* ListSchoolYearScene::process() {
     else if (remove.clicked(mousePoint)) {
         string startYear = inputSchoolYearRemoved.getContent();
         string outStr;
-        if (removeSchoolYear(schoolYears, startYear, outStr)) {
+        if (removeSchoolYear(startYear, outStr)) {
             chooseSchoolYear.remove(startYear);
             chooseSchoolYear.process(mousePoint);
         }
