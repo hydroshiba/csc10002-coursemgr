@@ -72,10 +72,10 @@ bool downloadListSchoolYear() {
 		std::cout << "Can't open " << listSchoolYearDir << std::endl;
 		return false;
 	}
-	ofs << "Number of SchoolYears, " << schoolYears.size() << '\n';
-	ofs << "No, SchoolYear\n";
+	ofs << "Number of SchoolYears," << schoolYears.size() << '\n';
+	ofs << "No,SchoolYear\n";
 	for (int i = 0; i < schoolYears.size(); ++i) {
-		ofs << std::to_string(i + 1) << ", " << std::to_string(schoolYears[i].start) << '\n';
+		ofs << std::to_string(i + 1) << "," << std::to_string(schoolYears[i].start) << '\n';
 		downloadSchoolYear(schoolYears[i]);
 	}
 	ofs.close();
@@ -89,11 +89,11 @@ bool downloadSchoolYear(SchoolYear& schoolYear) {
 		std::cout << "Cannot open " << schoolYearDir;
 		return false;
 	}
-	ofs << "Startyear, " << schoolYear.start << '\n';
-	ofs << "Number of classes, " << schoolYear.classes.size() << '\n';
-	ofs << "No, Class\n";
+	ofs << "Startyear," << schoolYear.start << '\n';
+	ofs << "Number of classes," << schoolYear.classes.size() << '\n';
+	ofs << "No,Class\n";
 	for (int i = 0; i < schoolYear.classes.size(); ++i) {
-		ofs << std::to_string(i + 1) << ", " << schoolYear.classes[i].name << "\n";
+		ofs << std::to_string(i + 1) << "," << schoolYear.classes[i].name << "\n";
 		downloadClass(schoolYear.classes[i]);
 	}
 	ofs.close();
@@ -107,11 +107,11 @@ bool downloadClass(Class& CLASS) {
 		std::cout << "Can't open " << classFilePath << std::endl;
 		return false;
 	}
-	ofs << "Classname, " << CLASS.name << std::endl;
-	ofs << "Number of students, " << CLASS.students.size() << std::endl;
-	ofs << "No, StudentID\n";
+	ofs << "Classname," << CLASS.name << std::endl;
+	ofs << "Number of students," << CLASS.students.size() << std::endl;
+	ofs << "No,StudentID\n";
 	for (int i = 0; i < CLASS.students.size(); i++) {
-		ofs << std::to_string(i + 1) << ", " << CLASS.students[i]->ID << std::endl;
+		ofs << std::to_string(i + 1) << "," << CLASS.students[i]->ID << std::endl;
 	}
 	ofs.close();
 	return true;
@@ -124,10 +124,10 @@ bool downloadListAcademicYear() {
 		std::cout << "Can't open " << listAcademicYearFilePath << std::endl;
 		return false;
 	}
-	ofs << "Number of AcademicYears, " << academicYears.size() << std::endl;
-	ofs << "No, AcademicYear\n";
+	ofs << "Number of AcademicYears," << academicYears.size() << std::endl;
+	ofs << "No,AcademicYear\n";
 	for (int i = 0; i < academicYears.size(); i++){
-		ofs << std::to_string(i + 1) << ", " << academicYears[i].start << std::endl;
+		ofs << std::to_string(i + 1) << "," << academicYears[i].start << std::endl;
 		downloadAcademicYear(academicYears[i]);
 	}
 	ofs.close();
@@ -141,11 +141,11 @@ bool downloadAcademicYear(AcademicYear& academicYear) {
 		std::cout << "Can't open " << academicYearFilePath << std::endl;
 		return false;
 	}
-	ofs << "Start year, " << academicYear.start << std::endl;
-	ofs << "Number of semesters, " << academicYear.semesters.size() << std::endl;
+	ofs << "Start year," << academicYear.start << std::endl;
+	ofs << "Number of semesters," << academicYear.semesters.size() << std::endl;
 	ofs << "No, SemesterID\n";
 	for (int i = 0; i < academicYear.semesters.size(); i++){
-		ofs << std::to_string(i + 1) << ", " << academicYear.semesters[i].semesterID << std::endl;
+		ofs << std::to_string(i + 1) << "," << academicYear.semesters[i].semesterID << std::endl;
 		downloadSemester(academicYear.semesters[i]);
 	}
 	ofs.close();
@@ -159,13 +159,13 @@ bool downloadSemester(Semester& semester) {
 		std::cout << "Can't open " << semesterFilePath << std::endl;
 		return false;
 	}
-	ofs << "SemesterID, " << semester.semesterID << std::endl;
-	ofs << "Start date, " << semester.startDate.day << "/" << semester.startDate.month << "/" << semester.startDate.year << std::endl;
-	ofs << "End date, " << semester.endDate.day << "/" << semester.endDate.month << "/" << semester.endDate.year << std::endl;
-	ofs << "Number of couses, " << semester.courses.size() << std::endl;
-	ofs << "No, CourseID\n";
+	ofs << "SemesterID," << semester.semesterID << std::endl;
+	ofs << "Start date," << semester.startDate.day << "/" << semester.startDate.month << "/" << semester.startDate.year << std::endl;
+	ofs << "End date," << semester.endDate.day << "/" << semester.endDate.month << "/" << semester.endDate.year << std::endl;
+	ofs << "Number of couses," << semester.courses.size() << std::endl;
+	ofs << "No,CourseID\n";
 	for (int i = 0; i < semester.courses.size(); i++){
-		ofs << std::to_string(i + 1) << ", " << semester.courses[i].ID << std::endl;
+		ofs << std::to_string(i + 1) << "," << semester.courses[i].ID << std::endl;
 		downloadCourse(semester.courses[i]);
 	}
 	ofs.close();
@@ -188,9 +188,9 @@ bool downloadCourse(Course& course) {
 	ofs << "Weekday," << weekday_to_string(course.weekday) << std::endl;
 	ofs << "Session," << session_to_string(course.session) << std::endl;
 	ofs << "Number of students," << course.scoreboards.size() << std::endl;
-	ofs << "No, StudentID, Midterm, Final, Other, Total" << std::endl;
+	ofs << "No,StudentID,Midterm,Final,Other,Total" << std::endl;
 	for (int i = 0; i < course.scoreboards.size(); i++){
-		ofs << std::to_string(i + 1) << ", " << course.scoreboards[i]->ptrStudent->ID << ",";
+		ofs << std::to_string(i + 1) << "," << course.scoreboards[i]->ptrStudent->ID << ",";
 		ofs << course.scoreboards[i]->midterm << "," << course.scoreboards[i]->final << "," << course.scoreboards[i]->other << ",";
 		ofs << course.scoreboards[i]->total << std::endl;
 	}
