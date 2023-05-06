@@ -128,13 +128,15 @@ bool uploadSchoolYear(SchoolYear& schoolYear) {
 	string ignore;
 	getline(ifs, ignore, ',');
 	ifs >> start;
-	if (start == schoolYear.start) {
+	if (start != schoolYear.start) {
 		std::cout << "Incorrect directory\n";
 		return false;
 	}
-	size_t nClasses;
 	getline(ifs, ignore, ',');
-	ifs >> nClasses;
+	getline(ifs, ignore);
+	size_t nClasses = static_cast<size_t>(std::stoull(ignore));
+	if (nClasses == 0) return true;
+
 	schoolYear.classes.resize(nClasses);
 	getline(ifs, ignore);
 	for (int i = 0; i < nClasses; ++i) {
@@ -163,9 +165,11 @@ bool uploadClass(Class& actClass) {
 		std::cout << "Incorrect Class!";
 		return false;
 	}
-	int nStud;
+
 	getline(ifs, ignore, ',');
-	ifs >> nStud;
+	getline(ifs, ignore);
+	size_t nStud = static_cast<size_t>(std::stoull(ignore));
+	if (nStud == 0) return true;
 	actClass.students.resize(nStud);
 	std::string id;
 	getline(ifs, ignore);
