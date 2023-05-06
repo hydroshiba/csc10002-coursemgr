@@ -386,6 +386,10 @@ bool exportListScoreboardOfCourse(const string& filename, Course& course, string
 }
 
 bool exportListScoreboardOfStudent(const string& filename, Student& student, string& outStr){
+	if (student.ptrClass == nullptr) {
+		outStr = "Student with ID " + student.ID + " is not existed in any class!";
+		return false;
+	}
 	string getStudentScoreboardListFile = getExportFolderPath() + filename + ".csv";
 	if (filename.empty()){
 		outStr = "Empty InputBox error, please input something!";
@@ -413,6 +417,10 @@ bool exportListScoreboardOfStudent(const string& filename, Student& student, str
 
 // StudentScene
 bool exportListScoreboardInSemesterOfStudent(const string& filename, Student& student, Semester& semester, string& outStr) {
+	if (student.ptrClass == nullptr) {
+		outStr = "Student with ID " + student.ID + " is not existed in any class!";
+		return false;
+	}
 	string getStudentScoreboardListFile = getExportFolderPath() + filename + ".csv";
 	if (filename.empty()) {
 		outStr = "Empty InputBox error, please input something!";

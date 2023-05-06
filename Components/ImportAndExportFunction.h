@@ -20,7 +20,6 @@ bool exportListScoreboardOfStudent(const string& filename, Student& student, str
 // StudentScene
 bool exportListScoreboardInSemesterOfStudent(const string& filename, Student& student, Semester& semester, string& outStr);
 
-
 // Optional
 // Staff scene
 bool exportListSchoolYear(const string& filename, string& outStr);
