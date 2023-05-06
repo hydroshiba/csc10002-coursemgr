@@ -7,12 +7,13 @@
 #include "Registry.h"
 
 #include "Objects/Button.h"
+#include "Objects/Dropbox.h"
 #include "Objects/TextBox.h"
 #include "Objects/InputBox.h"
-#include "Objects/DropBox.h"
+#include "Objects/Table.h"
 
-#include "../Components/Components.h"
-#include "../Components/SearchFunction.h"
+#include "Components.h"
+#include "SearchFunction.h"
 
 class Login : public Scene {
 private:
@@ -21,6 +22,8 @@ private:
 
 	TextBox title, invalid;
 	InputBox username, password;
+
+	Table table;
 
 public: 
 	Login();

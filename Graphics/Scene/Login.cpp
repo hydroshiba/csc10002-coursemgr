@@ -43,6 +43,8 @@ void Login::render() {
 	username.render(mousePoint);
 	password.render(mousePoint);
 	invalid.render();
+
+	table.render(mousePoint);
 }
 
 Scene* Login::process() {
@@ -85,6 +87,8 @@ Scene* Login::process() {
 
 	username.process(mousePoint);
 	password.process(mousePoint);
+
+	table.process(mousePoint);
 
 	return this;
 }
