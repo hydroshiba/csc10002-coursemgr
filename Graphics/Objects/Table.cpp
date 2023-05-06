@@ -10,6 +10,7 @@ Vector2 Table::getSize() {
 	Vector2 size;
 
 	size.y = (row_height - box_const::thickness) * table[0].size();
+	return { 0, 0 }; // Build error
 }
 
 void Table::process(const Vector2 &mouse) {

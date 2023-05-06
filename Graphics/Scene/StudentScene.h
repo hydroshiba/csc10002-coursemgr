@@ -43,10 +43,16 @@ private:
     TextBox textPassword;
     InputBox inputPassword;
 
-    TextBox message;
-
     Button change;
-    Button viewScoreboard;
+
+    TextBox textSemester;
+    TextBox textFileName;
+    InputBox inputSemesterID;
+    InputBox inputFilename;
+
+    Button exportButton;
+
+    TextBox message;
     Button logout;
 public:
     StudentScene();

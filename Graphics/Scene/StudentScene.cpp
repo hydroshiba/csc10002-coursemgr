@@ -115,11 +115,11 @@ StudentScene::StudentScene() {
 	change.hover_color = YELLOW;
 	change.press_color = GOLD;
 	//-----------------------------------------------------------------------------------
-	viewScoreboard.label = "View scoreboards";
-	viewScoreboard.setSize(buttonSize);
-	viewScoreboard.setPos({ xPosButton, yPosViewSBs });
-	viewScoreboard.hover_color = YELLOW;
-	viewScoreboard.press_color = GOLD;
+	exportButton.label = "exportButton";
+	exportButton.setSize(buttonSize);
+	exportButton.setPos({ xPosButton, yPosViewSBs });
+	exportButton.hover_color = YELLOW;
+	exportButton.press_color = GOLD;
 	//-----------------------------------------------------------------------------------
 	logout.label = "Logout";
 	logout.setSize(buttonSize);
@@ -154,7 +154,7 @@ void StudentScene::render() {
 	inputPassword.render(mousePoint);
 	//-----------------------------------------------------------------------------------
 	change.render(mousePoint);
-	viewScoreboard.render(mousePoint);
+	exportButton.render(mousePoint);
 	logout.render(mousePoint);
 	//-----------------------------------------------------------------------------------
 	message.render();
@@ -204,7 +204,7 @@ Scene* StudentScene::process() {
 		return this;
 	}
 	//-----------------------------------------------------------------------------------
-	else if (viewScoreboard.clicked(mousePoint)) {
+	else if (exportButton.clicked(mousePoint)) {
 		inputID.clearContent();
 		inputFirstName.clearContent();
 		inputLastName.clearContent();
