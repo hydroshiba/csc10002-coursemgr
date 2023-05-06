@@ -11,7 +11,7 @@ Application::Application() {
     registry.studentScoreboardsScene = new StudentScoreBoardsScene();
     registry.blank = new Blank();
     registry.courseScene = new CourseScene();
-    registry.editScene = new CourseScene2();
+    registry.courseScene2 = new CourseScene2();
     registry.schoolYearScene = new SchoolYearScene();
     registry.listSchoolYearScene = new ListSchoolYearScene();
     registry.listAcademicYearScene = new ListAcademicYearScene();
@@ -33,7 +33,7 @@ Application::~Application() {
     delete registry.studentScoreboardsScene;
     delete registry.blank;
     delete registry.courseScene;
-    delete registry.editScene;
+    delete registry.courseScene2;
     delete registry.schoolYearScene;
     delete registry.listSchoolYearScene;
 }
