@@ -1,5 +1,7 @@
 #include "ListSchoolYearScene.h"
 
+bool isAddedListSchoolYear = false;
+
 ListSchoolYearScene::ListSchoolYearScene() {
     sceneTitle = "List Of School Years";
     sceneTitle.setSize(50);
@@ -11,7 +13,6 @@ ListSchoolYearScene::ListSchoolYearScene() {
     viewYear.setPos({50, 250});
 
     chooseSchoolYear.setLabel("Choose School Year");
-    chooseSchoolYear.add(getListSchoolYear(schoolYears));
     chooseSchoolYear.setPos({50, 300});
     chooseSchoolYear.setSize({300, 50});
 
@@ -81,9 +82,13 @@ Scene* ListSchoolYearScene::process() {
     chooseSchoolYear.process(mousePoint);
     inputSchoolYearAdded.process(mousePoint);
     inputSchoolYearRemoved.process(mousePoint);
+    if (!isAddedListSchoolYear) {
+        chooseSchoolYear.add(getListSchoolYear(schoolYears));
+        isAddedListSchoolYear = true;
+    }
     if (view.clicked(mousePoint)) {
-         ptrSchoolYear_Global = getSchoolYear(schoolYears, chooseSchoolYear.getCurLabel());
-            inputSchoolYearAdded.clearContent();
+          ptrSchoolYear_Global = getSchoolYear(schoolYears, chooseSchoolYear.getCurLabel());
+          inputSchoolYearAdded.clearContent();
           inputSchoolYearRemoved.clearContent();
           return registry.schoolYearScene;
     }  
@@ -113,6 +118,8 @@ Scene* ListSchoolYearScene::process() {
         chooseSchoolYear.process(mousePoint);
         inputSchoolYearAdded.clearContent();
         inputSchoolYearRemoved.clearContent();
+        chooseSchoolYear.clear();
+        isAddedListSchoolYear = false;
         return registry.staffScene;
     }
     return this;
