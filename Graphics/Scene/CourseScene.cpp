@@ -46,13 +46,17 @@ CourseScene :: CourseScene(){
     session.setPos({50, 600});
     session.setColor(MAROON);
 
+    addText = "Add a student to course";
+    addText.setSize(35);
+    addText.setPos({500, 200});
+
     addBox.setSize({250,50});
-    addBox.setPos({500, 275});
+    addBox.setPos({500, 250});
     addBox.defaultText = "Input studentID...";
 
     add.label = "Add";
     add.setSize({100,50});
-    add.setPos({750,275});
+    add.setPos({750,250});
 
     removeBox.setSize({250,50});
     removeBox.setPos({500, 375});
@@ -109,6 +113,7 @@ void CourseScene :: render(){
     weekday.render();
     session.render();
 
+    addText.render(); 
     addBox.render(mousePoint);
     add.render(mousePoint);
 
@@ -129,7 +134,6 @@ Scene* CourseScene::process(){
     this->mousePoint = GetMousePosition();
     addBox.process(mousePoint);
     removeBox.process(mousePoint);
-
     if (ptrCourse_Global){
         courseID = "CourseID: " + ptrCourse_Global->ID;
         classID = "ClassID: " + ptrCourse_Global->classID;

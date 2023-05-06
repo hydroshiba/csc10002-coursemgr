@@ -1,90 +1,137 @@
 #include "EditCourse.h"
 
-EditCourse :: EditCourse(){
-    title = "Edit Course";
+CourseScene2 :: CourseScene2(){
+    title = defaultStr;
     title.setSize(75);
     title.centerX();
     title.setY(25);
 
-    courseID = "CourseID: " + defaultStr;
+    courseID = "CourseID";
     courseID.setSize(40);
     courseID.setPos({50,100});
     courseID.setColor(MAROON);
 
-    classID = "ClassID: " + defaultStr;
+    classID = "ClassID";
     classID.setSize(40);
     classID.setPos({50, 175});
     classID.setColor(MAROON);
 
-    name = "Course Name: " + defaultStr;
+    name = "Course Name";
     name.setSize(40);
     name.setPos({50, 250});
     name.setColor(MAROON);
 
-    teacher = "Teacher: " + defaultStr;
+    teacher = "Teacher";
     teacher.setSize(40);
     teacher.setPos({50, 325});
     teacher.setColor(MAROON);
 
-    credit = "Credits: " + defaultStr;
+    credit = "Credits";
     credit.setSize(40);
     credit.setPos({50, 400});
     credit.setColor(MAROON);    
 
-    maxEnroll = "Max Enroll: " + defaultStr;
+    maxEnroll = "Max Enroll";
     maxEnroll.setSize(40);
     maxEnroll.setPos({50, 475});
     maxEnroll.setColor(MAROON);
 
-    weekday = "Weekday: " + defaultStr;
+    weekday = "Weekday";
     weekday.setSize(40);
     weekday.setPos({50, 550});
     weekday.setColor(MAROON);
 
-    session = "Session: " + defaultStr;
+    session = "Session";
     session.setSize(40);
     session.setPos({50, 625});
     session.setColor(MAROON);
 
     courseBox.setSize({300,50});
-    courseBox.setPos({500,100});
-    courseBox.defaultText = "Input Course ID";
+    courseBox.setPos({250,100});
+    courseBox.defaultText = defaultStr;
 
     classBox.setSize({300,50});
-    classBox.setPos({500,175});
-    classBox.defaultText = "Input Class ID";
+    classBox.setPos({250,175});
+    classBox.defaultText = defaultStr;
 
     nameBox.setSize({300,50});
-    nameBox.setPos({500,250});
-    nameBox.defaultText = "Input Course Name";
+    nameBox.setPos({250,250});
+    nameBox.defaultText = defaultStr;
 
     teacherBox.setSize({300,50});
-    teacherBox.setPos({500,325});
-    teacherBox.defaultText = "Input Teacher";
+    teacherBox.setPos({250,325});
+    teacherBox.defaultText = defaultStr;
 
     creditBox.setSize({300,50});
-    creditBox.setPos({500,400});
-    creditBox.defaultText = "Input Credits";    
+    creditBox.setPos({250,400});
+    creditBox.defaultText = defaultStr;    
 
     enrollBox.setSize({300,50});
-    enrollBox.setPos({500,475});
-    enrollBox.defaultText = "Input Number Enrolled";   
+    enrollBox.setPos({250,475});
+    enrollBox.defaultText = defaultStr;   
 
     dayBox.setSize({300,50});
-    dayBox.setPos({500,550});
-    dayBox.defaultText = "Input Weekday";
+    dayBox.setPos({250,550});
+    dayBox.defaultText = defaultStr;
 
     sessionBox.setSize({300,50});
-    sessionBox.setPos({500,625});
-    sessionBox.defaultText = "Input Session";
+    sessionBox.setPos({250,625});
+    sessionBox.defaultText = defaultStr;
+
+    addText = "Add Student";
+    addText.setSize(40);
+    addText.setPos({700,100});
+
+    addBox.setSize({250,50});
+    addBox.setPos({900, 100});
+    addBox.defaultText = "Input studentID...";
+
+    add.label = "Add";
+    add.setSize({100,50});
+    add.setPos({1150,100});
+    add.setInsertColor();
+
+    removeText = "Remove Student";
+    removeText.setSize(40);
+    removeText.setPos({650,175});
+
+    removeBox.setSize({250,50});
+    removeBox.setPos({900, 175});
+    removeBox.defaultText = "Input studentID...";
+
+    remove.label = "Remove";
+    remove.setSize({100,50});
+    remove.setPos({1150,175});
+    remove.setRemoveColor();
+
+    fileText = "Export students";
+    fileText.setSize(40);
+    fileText.setPos({650,250});
+
+    fileBox.setSize({250,50});
+    fileBox.setPos({900, 250});
+    fileBox.defaultText = "Input file name...";    
+
+    viewStudent.label = "Export";
+    viewStudent.setSize({100,50});
+    viewStudent.setPos({1150,250});
+    viewStudent.setViewColor();
+
+    viewScore.label = "Update Scoreboards";
+    viewScore.setSize({250, 100});
+    viewScore.setPos({650, 400});
+
+    fileButton.label = "Add by file";
+    fileButton.setSize({250,100});
+    fileButton.setPos({950,400});
 
     change.label = "Change";
-    change.setSize({200, 75});
-    change.setPos({850,350});
+    change.setSize({150, 50});
+    change.setPos({550,625});
     change.fill_color = ORANGE;
 
     back.label = "Back";
-    back.setSize({150,50});
+    back.setSize({250,50});
     back.setPos({1000, 600});
     back.fill_color = RED;
     back.hover_color = RED;
@@ -97,7 +144,7 @@ EditCourse :: EditCourse(){
 	result.setY(475);
 }
 
-void EditCourse::render(){
+void CourseScene2::render(){
     title.render();
     courseID.render();
     classID.render();
@@ -117,13 +164,28 @@ void EditCourse::render(){
     dayBox.render(mousePoint);
     sessionBox.render(mousePoint);
 
+    addText.render();
+    addBox.render(mousePoint);
+    add.render(mousePoint);
+
+    removeText.render();
+    removeBox.render(mousePoint);
+    remove.render(mousePoint);
+
+    fileText.render();
+    fileBox.render(mousePoint);
+    viewStudent.render(mousePoint);
+
+    viewScore.render(mousePoint);
+    fileButton.render(mousePoint);
+
     change.render(mousePoint);
     back.render(mousePoint);
 
     result.render();
 }
 
-Scene* EditCourse::process(){
+Scene* CourseScene2::process(){
     std::string notif;
     mousePoint = GetMousePosition();
 
@@ -135,16 +197,20 @@ Scene* EditCourse::process(){
     enrollBox.process(mousePoint);
     dayBox.process(mousePoint);
     sessionBox.process(mousePoint);
+    addBox.process(mousePoint);
+    removeBox.process(mousePoint);
+    fileBox.process(mousePoint);
 
     if (ptrCourse_Global){
-        courseID = "CourseID: " + ptrCourse_Global->ID;
-        classID = "ClassID: " + ptrCourse_Global->classID;
-        name = "Course Name: " + ptrCourse_Global->name;
-        teacher = "Teacher: " + ptrCourse_Global->teacher;
-        credit = "Credits: " + std::to_string(ptrCourse_Global->credits);
-        maxEnroll = "Max Enroll: " + std::to_string(ptrCourse_Global->maxEnroll);
-        weekday = "Weekday: " + weekday_to_string(ptrCourse_Global->weekday);
-        session = "Session: " + session_to_string(ptrCourse_Global->session);
+        title = ptrCourse_Global->ID;
+        courseBox.defaultText = ptrCourse_Global->ID;
+        classBox.defaultText = ptrCourse_Global->classID;
+        nameBox.defaultText = ptrCourse_Global->name;
+        teacherBox.defaultText = ptrCourse_Global->teacher;
+        creditBox.defaultText = to_string(ptrCourse_Global->credits);
+        enrollBox.defaultText = to_string(ptrCourse_Global->maxEnroll);
+        dayBox.defaultText = weekday_to_string(ptrCourse_Global->weekday);
+        sessionBox.defaultText = session_to_string(ptrCourse_Global->session);
     }    
 
     if (change.clicked(mousePoint)){
@@ -162,13 +228,13 @@ Scene* EditCourse::process(){
             enrollBox.content.text.clear();
             dayBox.content.text.clear();
             sessionBox.content.text.clear();
-            return registry.courseScene;
+            addBox.content.text.clear();
+            removeBox.content.text.clear();
+            fileBox.content.text.clear();   
         }
-        else{
-            result = notif;
-            result.setX(865);
-            return this;
-        }
+        result = notif;
+        result.setX(865);
+        return this;
     }
     if (back.clicked(mousePoint)) {
         courseBox.content.text.clear();
@@ -179,7 +245,10 @@ Scene* EditCourse::process(){
         enrollBox.content.text.clear();
         dayBox.content.text.clear();
         sessionBox.content.text.clear();
-        return registry.courseScene;
+        addBox.content.text.clear();
+        removeBox.content.text.clear();
+        fileBox.content.text.clear();
+        return registry.blank;
     }
     return this;
 }
