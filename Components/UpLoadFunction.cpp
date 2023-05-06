@@ -202,12 +202,12 @@ bool uploadListAcademicYear() {
 	if (nAcademicYear == 0) return true;
 
 	academicYears.resize(nAcademicYear);
-	unsigned int startOfAcademicYear;
 	getline(ifs, ignore);
 	for (int i = 0; i < academicYears.size(); i++)
 	{
 		getline(ifs, ignore, ',');
-		ifs >> startOfAcademicYear;
+		getline(ifs, ignore);
+		unsigned int startOfAcademicYear = static_cast<unsigned int>(std::stoull(ignore));
 		AcademicYear academicYear;
 		academicYear.start = startOfAcademicYear;
 		academicYears[i] = academicYear;
@@ -339,8 +339,8 @@ bool uploadCourse(Course& course) {
 	course.session = session;
 
 	std::getline(ifs, ignore, ',');
-	size_t nStud;
-	ifs >> nStud;
+	std::getline(ifs, ignore);
+	size_t nStud = static_cast<size_t>(std::stoull(ignore));
 	if (nStud == 0) return true;
 
 	course.scoreboards.resize(nStud);
