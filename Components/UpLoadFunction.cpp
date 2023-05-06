@@ -264,33 +264,25 @@ bool uploadSemester(Semester& semester) {
 	string semesterID, ignore;
 	getline(ifs, ignore, ',');
 	std::getline(ifs, semesterID);
-	if (semester.semesterID != semesterID)
-	{
+	if (semester.semesterID != semesterID){
 		std::cout << "Incorrect file path " << semesterFilePath << std::endl;
 		return false;
 	}
-	Date startDate, endDate;
-	string day, month, year;
 	getline(ifs, ignore, ',');
-	getline(ifs, day, '/');
-	getline(ifs, month, '/');
-	getline(ifs, year);
-	startDate.set(std::stoi(day), std::stoi(month), std::stoi(year));
+	getline(ifs, ignore);
+	semester.startDate = string_to_date(ignore);
 	getline(ifs, ignore, ',');
-	getline(ifs, day, '/');
-	getline(ifs, month, '/');
-	getline(ifs, year);
-	endDate.set(std::stoi(day), std::stoi(month), std::stoi(year));
-	semester.startDate = startDate;
-	semester.endDate = endDate;
-	int nCourse;
+	getline(ifs, ignore);
+	semester.endDate = string_to_date(ignore);
 	string courseID = "";
+	size_t nCourse;
 	getline(ifs, ignore, ',');
 	ifs >> nCourse;
+	if (nCourse == 0) return true;
+
 	semester.courses.resize(nCourse);
 	std::getline(ifs, courseID);
-	for (int i = 0; i < semester.courses.size(); i++)
-	{
+	for (int i = 0; i < semester.courses.size(); i++){
 		getline(ifs, ignore, ',');
 		std::getline(ifs, courseID);
 		Course course;
