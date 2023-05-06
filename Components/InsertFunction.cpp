@@ -19,7 +19,7 @@
 
 /*		Insert function		*/
 // Add new student
-bool addStudent(const std::string& ID, const std::string& firstName, const std::string& lastName, const std::string& genderStr, const std::string& birthStr, const std::string& socialID, const std::string& password, std::string& outStr) {
+bool addStudent(const string& ID, const string& firstName, const string& lastName, const string& genderStr, const string& birthStr, const string& socialID, const string& password, string& outStr) {
 	if (ID.empty() || firstName.empty() || lastName.empty() || password.empty() || birthStr.empty() || genderStr.empty() || socialID.empty()) {
 		outStr = "Please enter all the information of student in all input box to add new student";
 		return false;
@@ -44,7 +44,7 @@ bool addStudent(const std::string& ID, const std::string& firstName, const std::
 		student.setGender(gender);
 	}
 	if (!birthStr.empty()) {
-		std::string dayStr, monthStr, yearStr;
+		string dayStr, monthStr, yearStr;
 		std::stringstream ss(birthStr);
 		getline(ss, dayStr, '/');
 		getline(ss, monthStr, '/');
@@ -68,7 +68,7 @@ bool addStudent(const std::string& ID, const std::string& firstName, const std::
 }
 
 // Add new staff
-bool addStaff(std::string curStaffID, const std::string& ID, const std::string& password, const std::string& firstName, const std::string& lastName, std::string& outStr) {
+bool addStaff(string curStaffID, const string& ID, const string& password, const string& firstName, const string& lastName, string& outStr) {
 	if (ID.empty() || firstName.empty() || lastName.empty() || password.empty()) {
 		outStr = "Please enter all the information of staff in all input box to add new staff";
 		return false;
@@ -90,7 +90,7 @@ bool addStaff(std::string curStaffID, const std::string& ID, const std::string& 
 }
 
 // Add a new SchoolYear
-bool addSchoolYear(const std::string& start, std::string& outStr) {
+bool addSchoolYear(const string& start, string& outStr) {
 	if (start.empty()) {
 		outStr = "Please enter the starting year in InputBox!";
 		return false;
@@ -109,7 +109,7 @@ bool addSchoolYear(const std::string& start, std::string& outStr) {
 }
 
 // Add new class for SchoolYear
-bool addClass(SchoolYear& schoolYear, const std::string& className, std::string& outStr) {
+bool addClass(SchoolYear& schoolYear, const string& className, string& outStr) {
 	if (className.empty()) {
 		outStr = "Please enter the class name in InputBox!";
 		return false;
@@ -127,7 +127,7 @@ bool addClass(SchoolYear& schoolYear, const std::string& className, std::string&
 }
 
 // Add a new students to class
-bool addStudentToClass(Class& actClass, const std::string& studentID, std::string& outStr) { 
+bool addStudentToClass(Class& actClass, const string& studentID, string& outStr) { 
 	if (studentID.empty()) {
 		outStr = "Please enter the student ID in InputBox!";
 		return false;
@@ -147,7 +147,7 @@ bool addStudentToClass(Class& actClass, const std::string& studentID, std::strin
 }
 
 // Add a new academic year
-bool addAcademicYear(const std::string& start, std::string& outStr) {
+bool addAcademicYear(const string& start, string& outStr) {
 	if (start.empty()) {
 		outStr = "Please enter the starting year in InputBox!";
 		return false;
@@ -166,7 +166,7 @@ bool addAcademicYear(const std::string& start, std::string& outStr) {
 }
 
 // Add a semester to an academic year
-bool addSemester(AcademicYear& academicYear, const std::string& semesterID, std::string& outStr) {
+bool addSemester(AcademicYear& academicYear, const string& semesterID, string& outStr) {
 	if (semesterID.empty()) {
 		outStr = "Please enter the semester ID in InputBox!";
 		return false;
@@ -183,7 +183,7 @@ bool addSemester(AcademicYear& academicYear, const std::string& semesterID, std:
 }
 
 // Add a new course
-bool addCourse(Semester& semester, const std::string& courseID, std::string& outStr) {
+bool addCourse(Semester& semester, const string& courseID, string& outStr) {
 	if (courseID.empty()) {
 		outStr = "Please enter the course ID in InputBox!";
 		return false;
@@ -201,7 +201,7 @@ bool addCourse(Semester& semester, const std::string& courseID, std::string& out
 }
 
 // Add a student to course
-bool addStudentToCourse(Course& course, const std::string& studentID, std::string& outStr) {
+bool addStudentToCourse(Course& course, const string& studentID, string& outStr) {
 	if (studentID.empty()) {
 		outStr = "Please enter the student ID in InputBox!";
 		return false;
