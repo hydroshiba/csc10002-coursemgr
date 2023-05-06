@@ -107,3 +107,7 @@ void TextBox::render() {
 	DrawTextEx(content.font, content.text.c_str(), pos, content.font_size, content.space, content.color);
     DrawRectangleRoundedLines(bound, box_const::roundness, box_const::segments, box_const::thickness, color_box);
 }
+
+void TextBox::clear() {
+    content.text.clear();
+}

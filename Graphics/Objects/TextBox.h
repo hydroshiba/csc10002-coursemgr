@@ -45,6 +45,8 @@ public:
     void setSize(float size);
     void setColor(Color color);
     void render();
+
+    void clear();
 };
 
 #endif // TEXTBOX_H
