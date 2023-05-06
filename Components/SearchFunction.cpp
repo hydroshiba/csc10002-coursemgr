@@ -16,7 +16,7 @@
 /*		Search function		*/
 
 // Find student
-Student* getStudent(Vector<Student>& students, const string& studentID) {
+Student* getStudent(const string& studentID) {
 	for (int i = 0; i < students.size(); i++)
 		if (students[i].ID == studentID)
 			return &students[i];
@@ -24,7 +24,7 @@ Student* getStudent(Vector<Student>& students, const string& studentID) {
 }
 
 // Find staff
-Staff* getStaff(Vector<Staff>& staffs, const string& staffID) {
+Staff* getStaff(const string& staffID) {
 	Staff* ptrStaff = nullptr;
 	for (int i = 0; i < staffs.size(); i++)
 		if (staffs[i].ID == staffID)
@@ -36,7 +36,7 @@ Staff* getStaff(Vector<Staff>& staffs, const string& staffID) {
 }
 
 // Find SchoolYear
-SchoolYear* getSchoolYear(Vector<SchoolYear>& schoolYears, const string& start) {
+SchoolYear* getSchoolYear(const string& start) {
 	const unsigned int startYear = std::stoul(start);
 	SchoolYear* ptrSchoolYear = nullptr;
 	for (int i = 0; i < schoolYears.size(); i++)
@@ -48,7 +48,7 @@ SchoolYear* getSchoolYear(Vector<SchoolYear>& schoolYears, const string& start) 
 }
 
 // Find AcademicYear
-AcademicYear* getAcademicYear(Vector<AcademicYear>& academicYears, const string& start) {
+AcademicYear* getAcademicYear(const string& start) {
 	const unsigned int startYear = std::stoul(start);
 	AcademicYear* ptrAcademicYear = nullptr;
 	for (int i = 0; i < academicYears.size(); i++)
@@ -95,7 +95,7 @@ Scoreboard* getScoreboard(Course& course, const string& studentID) {
 }
 
 // Check student acc
-bool isCorrectStaffAccount(Vector<Staff>& staffs, const string& staffID, const string& password, string& outStr) {
+bool isCorrectStaffAccount(const string& staffID, const string& password, string& outStr) {
 	Staff* ptrStaff = getStaff(staffs, staffID);
 	if (ptrStaff == nullptr) {
 		outStr = "Invalid username or password! Pls try again!";
@@ -109,7 +109,7 @@ bool isCorrectStaffAccount(Vector<Staff>& staffs, const string& staffID, const s
 }
 
 // Check staff acc
-bool isCorrectStudentAccount(Vector<Student>& students, const string& studentID, const string& password, string& outStr) {
+bool isCorrectStudentAccount(const string& studentID, const string& password, string& outStr) {
 	Student* ptrStudent = getStudent(students, studentID);
 	if (ptrStudent == nullptr) {
 		outStr = "Invalid username or password! Pls try again!";
