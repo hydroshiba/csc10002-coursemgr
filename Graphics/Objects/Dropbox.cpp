@@ -135,6 +135,7 @@ void DropBox::remove(const std::string label) {
 
 void DropBox::clear() {
 	options.resize(0);
+    refresh();
 }
 
 int DropBox::getSelected() {
