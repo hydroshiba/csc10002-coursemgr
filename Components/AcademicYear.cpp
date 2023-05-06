@@ -17,8 +17,8 @@ Semester* AcademicYear::getSemester(const std::string& semesterID) {
 }
 
 void AcademicYear::addSemester(Semester& semester) {
-    semesters.append(semester);
     semester.ptrAcademicYear = this;
+    semesters.append(semester);
 }
 
 void AcademicYear::removeSemester(Semester& semester) {
