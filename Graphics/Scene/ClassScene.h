@@ -40,6 +40,17 @@ private:
     InputBox pathExportScoreboard;
     Button viewScoreboardButton;
 
+    TextBox viewScoreboardSemesterLabel;
+    InputBox pathExportScoreboardSemester;
+    Button viewScoreboardSemesterButton;
+
+    TextBox textSemesterID;
+    InputBox inputSemesterID;
+
+    TextBox textImport;
+    InputBox inputImport;
+    Button import;
+
     Button back;
 
 public:
