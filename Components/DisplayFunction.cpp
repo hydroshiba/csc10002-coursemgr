@@ -91,7 +91,6 @@ Vector<Vector<string>> getTableContentOfSchoolYear(const SchoolYear& schoolYear)
 	table[0][1] = schoolYear.getPeriod();
 	table[1][0] = "Number of classes";
 	table[1][1] = std::to_string(n);
-	table[1][2] = "Number of classes";
 	table[2][0] = "No";
 	table[2][1] = "Class";
 	table[2][2] = "Number of students";

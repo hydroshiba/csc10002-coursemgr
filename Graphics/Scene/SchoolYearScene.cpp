@@ -107,6 +107,7 @@ void SchoolYearScene::render() {
     Export.render(mousePoint);
     exportPath.render(mousePoint);
     back.render(mousePoint);
+    ms.render();
 }
 
 Scene* SchoolYearScene::process() {
