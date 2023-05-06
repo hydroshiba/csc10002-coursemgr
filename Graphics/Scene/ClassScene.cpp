@@ -6,7 +6,7 @@ ClassScene::ClassScene() {
     sceneTitle.centerX();
     sceneTitle.setY(100);
     //-----------------------------------------------------------
-    addStudentLabel = "Add student:";
+    addStudentLabel = "Add student";
     addStudentLabel.setSize(30);
     addStudentLabel.setPos({50, 200});
 
@@ -17,6 +17,7 @@ ClassScene::ClassScene() {
     addStudentButton.label = "Add";
     addStudentButton.setPos({525, 200});
     addStudentButton.setSize({150, 50});
+    addStudentButton.setInsertColor();
 
     addStudentByFileButton.label = "Add by file";
     addStudentByFileButton.setPos({275, 275});
@@ -33,18 +34,20 @@ ClassScene::ClassScene() {
     removeStudentButton.label = "Remove";
     removeStudentButton.setPos({525, 375});
     removeStudentButton.setSize({150, 50});
+    removeStudentButton.setRemoveColor();
     //-----------------------------------------------------------
-    changeClassnameLabel = "Change Class name: ";
+    changeClassnameLabel = "Change Class name";
     changeClassnameLabel.setSize(30);
     changeClassnameLabel.setPos({50, 500});
 
-    changeClassnameInput.defaultText = "New Class name";
+    changeClassnameInput.defaultText = "New classname";
     changeClassnameInput.setPos({275, 500});
     changeClassnameInput.setSize({225, 50});
 
     changeClassnameButton.label = "Change";
     changeClassnameButton.setPos({525, 500});
     changeClassnameButton.setSize({150, 50});
+    changeClassnameButton.setViewColor();
     //-----------------------------------------------------------
     viewStudentListLabel = "Export student list to a location:";
     viewStudentListLabel.setSize(30);
@@ -57,6 +60,7 @@ ClassScene::ClassScene() {
     viewStudentListButton.label = "Export";
     viewStudentListButton.setPos({1075, 250});
     viewStudentListButton.setSize({150, 50});
+    viewStudentListButton.setViewColor();
     //-----------------------------------------------------------
     viewScoreboardLabel = "Export scoreboard to a location:";
     viewScoreboardLabel.setSize(30);
@@ -69,10 +73,12 @@ ClassScene::ClassScene() {
     viewScoreboardButton.label = "Export";
     viewScoreboardButton.setPos({1075, 425});
     viewScoreboardButton.setSize({150, 50});
+    viewScoreboardButton.setViewColor();
     //-----------------------------------------------------------
     back.label = "Back";
     back.setPos({1050, 600});
     back.setSize({150, 50});
+    back.setRemoveColor();
 }
 
 void ClassScene::render() {
