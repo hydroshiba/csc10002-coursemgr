@@ -47,7 +47,7 @@ bool importStudentListOfClassFromFile(const string& filename, Class& actClass, s
 		string studentID;
 		getline(inF, ignore, ',');
 		getline(inF, studentID);
-		ptrStudent = getStudent(students, studentID);
+		ptrStudent = getStudent(studentID);
 		if (ptrStudent == nullptr) {
 			outStr = "Student with ID " + studentID + " is not existed in school!";
 			actClass.removeAllStudent();
@@ -94,7 +94,7 @@ bool importStudentListOfCourseFromFile(const string& filename, Course& course, s
 		string studentID;
 		getline(inF, ignore, ',');
 		getline(inF, studentID);
-		ptrStudent = getStudent(students, studentID);
+		ptrStudent = getStudent(studentID);
 		if (ptrStudent == nullptr) {
 			outStr = "Student with ID " + studentID + " is not existed in school!";
 			course.removeAllStudent();

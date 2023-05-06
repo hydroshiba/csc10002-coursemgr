@@ -229,7 +229,7 @@ Scene* StaffScene::process() {
 		string lastName = inputAddLastName.getContent();
 		string password = inputAddPassword.getContent();
 		string outStr = "";
-		addStaff(ptrStaff_Global->ID, staffs, ID, password, firstName, lastName, outStr);
+		addStaff(ptrStaff_Global->ID, ID, password, firstName, lastName, outStr);
 		message = outStr;
 		message.centerX();
 		inputAddID.clearContent();

@@ -83,11 +83,11 @@ Scene* ListSchoolYearScene::process() {
     inputSchoolYearAdded.process(mousePoint);
     inputSchoolYearRemoved.process(mousePoint);
     if (!isAddedListSchoolYear) {
-        chooseSchoolYear.add(getListSchoolYear(schoolYears));
+        chooseSchoolYear.add(getListSchoolYear());
         isAddedListSchoolYear = true;
     }
     if (view.clicked(mousePoint)) {
-          ptrSchoolYear_Global = getSchoolYear(schoolYears, chooseSchoolYear.getCurLabel());
+          ptrSchoolYear_Global = getSchoolYear(chooseSchoolYear.getCurLabel());
           inputSchoolYearAdded.clearContent();
           inputSchoolYearRemoved.clearContent();
           return registry.schoolYearScene;
@@ -95,7 +95,7 @@ Scene* ListSchoolYearScene::process() {
     else if (add.clicked(mousePoint)) {
         std::string content = inputSchoolYearAdded.getContent();
         std::string outStr;
-        if (addSchoolYear(schoolYears, content, outStr)){
+        if (addSchoolYear(content, outStr)){
             chooseSchoolYear.add(content);    
             chooseSchoolYear.process(mousePoint);
         }

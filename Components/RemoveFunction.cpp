@@ -61,7 +61,7 @@ bool removeStudent(Vector<Student>& students, const string& studentID, string& o
 		outStr = "Please enter student ID to input box to remove";
 		return false;
 	}
-	Student* ptrStudent = getStudent(students, studentID);
+	Student* ptrStudent = getStudent(studentID);
 	if (ptrStudent == nullptr) {
 		outStr = "Student with ID " + studentID + " can't be found in school! Pls try another";
 		return false;
@@ -77,7 +77,7 @@ bool removeStaff(string curStaffID, Vector<Staff>&staffs, const string & staffID
 		outStr = "Please enter staff ID to input box to remove";
 		return false;
 	}
-	Staff* ptrStaff = getStaff(staffs, staffID);
+	Staff* ptrStaff = getStaff(staffID);
 	if (ptrStaff == nullptr) {
 		outStr = "Staff with ID " + staffID + " can't be found in school! Pls try another";
 		return false;
@@ -87,7 +87,7 @@ bool removeStaff(string curStaffID, Vector<Staff>&staffs, const string & staffID
 		return false;
 	}
 	staffs.remove(ptrStaff);
-	ptrStaff_Global = getStaff(staffs, curStaffID);
+	ptrStaff_Global = getStaff(curStaffID);
 	outStr = "Staff with ID " + staffID + " is removed from school!";
 	return true;
 }
@@ -98,7 +98,7 @@ bool removeSchoolYear(Vector<SchoolYear>& schoolYears, const string& start, stri
 		outStr = "Please enter the starting year in InputBox!";
 		return false;
 	}
-	SchoolYear* ptrSchoolYear = getSchoolYear(schoolYears, start);
+	SchoolYear* ptrSchoolYear = getSchoolYear(start);
 	if (ptrSchoolYear == nullptr) {
 		outStr = "SchoolYear with start year " + start + " is not existed!";
 		return false;
@@ -149,7 +149,7 @@ bool removeAcademicYear(Vector<AcademicYear>& academicYears, const string& start
 		outStr = "Please enter the starting year in InputBox!";
 		return false;
 	}
-	AcademicYear* ptrAcademicYear = getAcademicYear(academicYears, start);
+	AcademicYear* ptrAcademicYear = getAcademicYear(start);
 	if (ptrAcademicYear == nullptr) {
 		outStr = "AcademicYear with start year " + start + " is not existed!";
 		return false;

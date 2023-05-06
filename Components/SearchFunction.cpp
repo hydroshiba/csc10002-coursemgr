@@ -96,7 +96,7 @@ Scoreboard* getScoreboard(Course& course, const string& studentID) {
 
 // Check student acc
 bool isCorrectStaffAccount(const string& staffID, const string& password, string& outStr) {
-	Staff* ptrStaff = getStaff(staffs, staffID);
+	Staff* ptrStaff = getStaff(staffID);
 	if (ptrStaff == nullptr) {
 		outStr = "Invalid username or password! Pls try again!";
 		return false;
@@ -110,7 +110,7 @@ bool isCorrectStaffAccount(const string& staffID, const string& password, string
 
 // Check staff acc
 bool isCorrectStudentAccount(const string& studentID, const string& password, string& outStr) {
-	Student* ptrStudent = getStudent(students, studentID);
+	Student* ptrStudent = getStudent(studentID);
 	if (ptrStudent == nullptr) {
 		outStr = "Invalid username or password! Pls try again!";
 		return false;

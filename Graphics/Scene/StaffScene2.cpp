@@ -289,7 +289,7 @@ Scene* StaffScene2::process() {
 		string socialID = inputSocialID.getContent();
 		string password = inputPassword.getContent();
 		string outStr = "";
-		addStudent(students, ID, firstName, lastName, genderStr, birthStr, socialID, password, outStr);
+		addStudent(ID, firstName, lastName, genderStr, birthStr, socialID, password, outStr);
 		message = outStr;
 		message.centerX();
 		inputID.clearContent();
@@ -355,7 +355,7 @@ Scene* StaffScene2::process() {
 	else if (viewStudentButton.clicked(mousePoint)) {
 		string studentID = inputStudentID.getContent();
 		string outStr = "";
-		ptrStudent_Global = getStudent(students, studentID);
+		ptrStudent_Global = getStudent(studentID);
 		if (ptrStudent_Global == nullptr) {
 			outStr = "Student with ID " + studentID + " can't be found in school! Pls try another";
 			message = outStr;

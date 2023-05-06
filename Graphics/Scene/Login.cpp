@@ -57,8 +57,8 @@ Scene* Login::process() {
 		std::string usernameStr = username.getContent();
 		std::string passwordStr = password.getContent();
 
-		if (isCorrectStaffAccount(staffs, usernameStr, passwordStr, outStr)) {
-			ptrStaff_Global = getStaff(staffs, usernameStr);
+		if (isCorrectStaffAccount(usernameStr, passwordStr, outStr)) {
+			ptrStaff_Global = getStaff(usernameStr);
 			
 			invalid = "";
 			invalid.centerX();
@@ -68,8 +68,8 @@ Scene* Login::process() {
 
 			return registry.staffScene;
 		}
-		else if (isCorrectStudentAccount(students, usernameStr, passwordStr, outStr)) {
-			ptrStudent_Global = getStudent(students, usernameStr);
+		else if (isCorrectStudentAccount(usernameStr, passwordStr, outStr)) {
+			ptrStudent_Global = getStudent(usernameStr);
 			
 			invalid = "";
 			invalid.centerX();

@@ -19,9 +19,6 @@ ClassScene::ClassScene() {
     addStudentButton.setSize({150, 50});
     addStudentButton.setInsertColor();
 
-    addStudentByFileButton.label = "Add by file";
-    addStudentByFileButton.setPos({275, 275});
-    addStudentByFileButton.setSize({150, 50});
     //-----------------------------------------------------------
     removeStudentLabel = "Remove student:";
     removeStudentLabel.setSize(30);
@@ -87,7 +84,6 @@ void ClassScene::render() {
     addStudentLabel.render();
     addStudentInput.render(mousePoint);
     addStudentButton.render(mousePoint);
-    addStudentByFileButton.render(mousePoint);
 
     removeStudentLabel.render();
     removeStudentInput.render(mousePoint);
@@ -113,11 +109,9 @@ Scene* ClassScene::process() {
 
     addStudentInput.process(mousePoint);
     if (addStudentButton.clicked(mousePoint)) {
-        //add student to class
+        string studentID = addStudentInput.getContent();
     }
-    if (addStudentByFileButton.clicked(mousePoint)) {
-        //add student to class by file
-    }
+  
     
     removeStudentInput.process(mousePoint);
     if (removeStudentButton.clicked(mousePoint)) {

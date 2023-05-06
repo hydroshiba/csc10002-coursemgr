@@ -177,7 +177,7 @@ bool uploadClass(Class& actClass) {
 	 	getline(ifs, ignore, ',');
 		Student *ptrStudent;
 		ifs >> id; 
-		ptrStudent = getStudent(students, id);
+		ptrStudent = getStudent(id);
 		actClass.students[i] = ptrStudent;
 		ptrStudent->ptrClass = &actClass;
 	}
@@ -353,7 +353,7 @@ bool uploadCourse(Course& course) {
 	for (int i = 0; i<nStud; ++i){
 		getline(ifs, ignore, ',');
 		getline(ifs, studentID,',');
-		ptrStudent = getStudent(students, studentID);
+		ptrStudent = getStudent(studentID);
 		getline(ifs, midTerm, ',');
 		getline(ifs, final, ',');
 		getline(ifs, other,',');

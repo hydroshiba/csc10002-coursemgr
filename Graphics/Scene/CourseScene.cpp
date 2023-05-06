@@ -152,7 +152,7 @@ Scene* CourseScene::process(){
             result.centerX();
             return this;
         }
-        else if (!addBox.content.text.empty()) addStudentToCourse(students, *ptrCourse_Global, addBox.content.text, notif);
+        else if (!addBox.content.text.empty()) addStudentToCourse(*ptrCourse_Global, addBox.content.text, notif);
         else removeStudFromCourse(*ptrCourse_Global, removeBox.content.text, notif);
         result = notif;
         result.centerX();

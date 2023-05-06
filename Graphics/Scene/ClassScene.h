@@ -11,6 +11,11 @@
 #include "Objects/InputBox.h"
 #include "Objects/Button.h"
 
+#include "InsertFunction.h"
+#include "RemoveFunction.h"
+#include "SearchFunction.h"
+#include "ImportAndExportFunction.h"
+
 class ClassScene : public Scene {
 private:
     TextBox sceneTitle;
@@ -18,7 +23,6 @@ private:
     TextBox addStudentLabel;
     InputBox addStudentInput;
     Button addStudentButton;
-    Button addStudentByFileButton;
 
     TextBox removeStudentLabel;
     InputBox removeStudentInput;

@@ -19,12 +19,12 @@
 
 /*		Insert function		*/
 // Add new student
-bool addStudent(Vector<Student>& students, const std::string& ID, const std::string& firstName, const std::string& lastName, const std::string& genderStr, const std::string& birthStr, const std::string& socialID, const std::string& password, std::string& outStr) {
+bool addStudent(const std::string& ID, const std::string& firstName, const std::string& lastName, const std::string& genderStr, const std::string& birthStr, const std::string& socialID, const std::string& password, std::string& outStr) {
 	if (ID.empty() || firstName.empty() || lastName.empty() || password.empty() || birthStr.empty() || genderStr.empty() || socialID.empty()) {
 		outStr = "Please enter all the information of student in all input box to add new student";
 		return false;
 	}
-	Student* ptrStudent = getStudent(students, ID);
+	Student* ptrStudent = getStudent(ID);
 	if (ptrStudent != nullptr) {
 		outStr = "Student with ID " + ID + " have been already existed in school!";
 		return false;
@@ -68,14 +68,14 @@ bool addStudent(Vector<Student>& students, const std::string& ID, const std::str
 }
 
 // Add new staff
-bool addStaff(std::string curStaffID, Vector<Staff>& staffs, const std::string& ID, const std::string& password, const std::string& firstName, const std::string& lastName, std::string& outStr) {
+bool addStaff(std::string curStaffID, const std::string& ID, const std::string& password, const std::string& firstName, const std::string& lastName, std::string& outStr) {
 	if (ID.empty() || firstName.empty() || lastName.empty() || password.empty()) {
 		outStr = "Please enter all the information of staff in all input box to add new staff";
 		return false;
 	}
 	Staff staff;
 	staff.ID = ID;
-	Staff* ptrStaff = getStaff(staffs, ID);
+	Staff* ptrStaff = getStaff(ID);
 	if (ptrStaff != nullptr) 
 	{
 		outStr = "Staff with ID " + ID + " have been already existed!";
@@ -84,26 +84,26 @@ bool addStaff(std::string curStaffID, Vector<Staff>& staffs, const std::string& 
 	staff.setName(firstName, lastName);
 	staff.setPassword(password);
 	staffs.append(staff);
-	ptrStaff_Global = getStaff(staffs, curStaffID);
+	ptrStaff_Global = getStaff(curStaffID);
 	outStr = "Complete add new staff with ID " + ID;
 	return true;
 }
 
 // Add a new SchoolYear
-bool addSchoolYear(Vector<SchoolYear>& yearList, const std::string& start, std::string& outStr) {
+bool addSchoolYear(const std::string& start, std::string& outStr) {
 	if (start.empty()) {
 		outStr = "Please enter the starting year in InputBox!";
 		return false;
 	}
 	unsigned int startYear = static_cast<unsigned int>(stoul(start));
-	SchoolYear* ptrSchoolYear = getSchoolYear(yearList, start);
+	SchoolYear* ptrSchoolYear = getSchoolYear(start);
 	if (ptrSchoolYear != nullptr){
 		outStr = "SchoolYear with start year " + start + " have been already existed!";
 		return false;
 	}
 	SchoolYear newYear;
 	newYear.start = startYear;
-	yearList.append(newYear);
+	schoolYears.append(newYear);
 	outStr = "Complete add new SchoolYear with start year " + start + " to the list of SchoolYear!";
 	return true;
 }
@@ -127,12 +127,12 @@ bool addClass(SchoolYear& schoolYear, const std::string& className, std::string&
 }
 
 // Add a new students to class
-bool addStudentToClass(Vector<Student>& students, Class& actClass, const std::string& studentID, std::string& outStr) { 
+bool addStudentToClass(Class& actClass, const std::string& studentID, std::string& outStr) { 
 	if (studentID.empty()) {
 		outStr = "Please enter the student ID in InputBox!";
 		return false;
 	}
-	Student *ptrStudent = getStudent(students, studentID);
+	Student *ptrStudent = getStudent(studentID);
 	if (ptrStudent == nullptr) {
 		outStr = "Student with ID " + studentID + " is not existed in school!";
 		return false;
@@ -147,13 +147,13 @@ bool addStudentToClass(Vector<Student>& students, Class& actClass, const std::st
 }
 
 // Add a new academic year
-bool addAcademicYear(Vector<AcademicYear>& academicYears, const std::string& start, std::string& outStr) {
+bool addAcademicYear(const std::string& start, std::string& outStr) {
 	if (start.empty()) {
 		outStr = "Please enter the starting year in InputBox!";
 		return false;
 	}
 	unsigned int startYear = static_cast<unsigned int>(stoul(start));
-	AcademicYear* ptrAcademicYear = getAcademicYear(academicYears, start);
+	AcademicYear* ptrAcademicYear = getAcademicYear(start);
 	if (ptrAcademicYear != nullptr) {
 		outStr = "AcademicYear with start year " + start + " have been already existed!";
 		return false;
@@ -201,12 +201,12 @@ bool addCourse(Semester& semester, const std::string& courseID, std::string& out
 }
 
 // Add a student to course
-bool addStudentToCourse(Vector<Student>& students, Course& course, const std::string& studentID, std::string& outStr) {
+bool addStudentToCourse(Course& course, const std::string& studentID, std::string& outStr) {
 	if (studentID.empty()) {
 		outStr = "Please enter the student ID in InputBox!";
 		return false;
 	}
-	Student* ptrStudent = getStudent(students, studentID);
+	Student* ptrStudent = getStudent(studentID);
 	if (ptrStudent == nullptr){
 		outStr = "Student with ID " + studentID + " is not exist in school! Pls try another!";
 		return false;
