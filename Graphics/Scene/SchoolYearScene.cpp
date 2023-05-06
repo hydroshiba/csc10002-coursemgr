@@ -130,6 +130,8 @@ Scene* SchoolYearScene::process() {
         ptrClass_Global = getClass(*ptrSchoolYear_Global, listClass.getCurLabel());
         inputClassAdded.clearContent();
         inputClassRemoved.clearContent();
+        inputStartYear.clearContent();
+        exportPath.clearContent();
         return registry.classScene;
     }
     //--------------------------------------
@@ -184,9 +186,10 @@ Scene* SchoolYearScene::process() {
         inputClassAdded.clearContent();
         inputClassRemoved.clearContent();
         inputStartYear.clearContent();
-        isAdded = false;
+        exportPath.clearContent();
         listClass.clear();
         isAdded = false;
+        
         return registry.listSchoolYearScene;
     }
     return this;
