@@ -15,7 +15,7 @@
 #include "InsertFunction.h"
 #include "DisplayFunction.h"
 #include "RemoveFunction.h"
-
+#include "SearchFunction.h"
 #include "SchoolYear.h"
 #include <iostream>
 

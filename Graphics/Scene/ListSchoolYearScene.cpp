@@ -79,18 +79,15 @@ void ListSchoolYearScene::render() {
 Scene* ListSchoolYearScene::process() {
     mousePoint = GetMousePosition();
     chooseSchoolYear.process(mousePoint);
-
-    if (view.clicked(mousePoint)) {
-        const size_t i = static_cast<const size_t>(chooseSchoolYear.getSelected());
-        if (i >= 0) {
-            ptrSchoolYear_Global = &schoolYears[i];
-            inputSchoolYearAdded.clearContent();
-            inputSchoolYearRemoved.clearContent();
-            return registry.schoolYearScene;
-        }  
-    }
     inputSchoolYearAdded.process(mousePoint);
-    if (add.clicked(mousePoint)) {
+    inputSchoolYearRemoved.process(mousePoint);
+    if (view.clicked(mousePoint)) {
+         ptrSchoolYear_Global = getSchoolYear(schoolYears, chooseSchoolYear.getCurLabel());
+            inputSchoolYearAdded.clearContent();
+          inputSchoolYearRemoved.clearContent();
+          return registry.schoolYearScene;
+    }  
+    else if (add.clicked(mousePoint)) {
         std::string content = inputSchoolYearAdded.getContent();
         std::string outStr;
         if (addSchoolYear(schoolYears, content, outStr)){
@@ -101,8 +98,7 @@ Scene* ListSchoolYearScene::process() {
         ms.centerX();
         inputSchoolYearAdded.clearContent();
     }
-    inputSchoolYearRemoved.process(mousePoint);
-    if (remove.clicked(mousePoint)) {
+    else if (remove.clicked(mousePoint)) {
         string startYear = inputSchoolYearRemoved.getContent();
         string outStr;
         if (removeSchoolYear(schoolYears, startYear, outStr)) {
@@ -113,7 +109,7 @@ Scene* ListSchoolYearScene::process() {
         ms.centerX();
         inputSchoolYearRemoved.clearContent();
     }
-    if (back.clicked(mousePoint)) {
+    else if (back.clicked(mousePoint)) {
         chooseSchoolYear.process(mousePoint);
         inputSchoolYearAdded.clearContent();
         inputSchoolYearRemoved.clearContent();

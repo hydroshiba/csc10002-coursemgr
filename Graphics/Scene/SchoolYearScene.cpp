@@ -120,7 +120,8 @@ Scene* SchoolYearScene::process() {
     if (ptrSchoolYear_Global != nullptr) {
         sceneTitle = "School Year " + ptrSchoolYear_Global->getPeriod();
         if (!isAdded) {
-            listClass.add(getListClass(*ptrSchoolYear_Global));
+            Vector<string> ls = getListClass(*ptrSchoolYear_Global);
+            listClass.add(ls);
             isAdded = true;
         }
     }
@@ -135,8 +136,7 @@ Scene* SchoolYearScene::process() {
         }
     }
     //--------------------------------------
-    inputClassAdded.process(mousePoint);
-    if (add.clicked(mousePoint)) {
+    else if (add.clicked(mousePoint)) {
         string className = inputClassAdded.getContent();
         string outStr;
         if (addClass(*ptrSchoolYear_Global, className, outStr)) {
@@ -149,8 +149,7 @@ Scene* SchoolYearScene::process() {
         return this;
     }
     //--------------------------------------
-    inputClassRemoved.process(mousePoint);
-    if (remove.clicked(mousePoint)) {
+    else if (remove.clicked(mousePoint)) {
         if (remove.clicked(mousePoint)) {
             string className = inputClassRemoved.getContent();
             string outStr;
@@ -165,8 +164,7 @@ Scene* SchoolYearScene::process() {
         }
     }
     //--------------------------------------
-    inputStartYear.process(mousePoint);
-    if (change.clicked(mousePoint)) {
+    else if (change.clicked(mousePoint)) {
         string startYear = inputStartYear.getContent();
         string outStr;
         updateSchoolYear(*ptrSchoolYear_Global, startYear, outStr);
@@ -176,8 +174,7 @@ Scene* SchoolYearScene::process() {
         return this;
     }
     //--------------------------------------
-    exportPath.process(mousePoint);
-    if (Export.clicked(mousePoint)) {
+    else if (Export.clicked(mousePoint)) {
         string filename = exportPath.getContent();
         string outStr;
         exportListClassInSchoolYear(filename, *ptrSchoolYear_Global, outStr);
@@ -185,11 +182,12 @@ Scene* SchoolYearScene::process() {
         ms.centerX();
         exportPath.clearContent();
     }
-    if (back.clicked(mousePoint)) {
+    else if (back.clicked(mousePoint)) {
         ptrSchoolYear_Global = nullptr;
         inputClassAdded.clearContent();
         inputClassRemoved.clearContent();
         inputStartYear.clearContent();
+        isAdded = false;
         return registry.listSchoolYearScene;
     }
     return this;
