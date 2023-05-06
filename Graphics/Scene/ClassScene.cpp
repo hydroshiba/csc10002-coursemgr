@@ -104,6 +104,29 @@ ClassScene::ClassScene() {
     viewScoreboardButton.setViewColor();
     //-----------------------------------------------------------
     //-----------------------------------------------------------
+    textSemesterID = "Input semesterID:";
+    textSemesterID.setSize(textSize);
+    textSemesterID.setPos({ xPos4, yPos3 + yMid });
+
+    inputSemesterID.defaultText = "All semester";
+    inputSemesterID.setSize(inputSize);
+    inputSemesterID.setPos({ xPos4, yPos3 });
+    //-----------------------------------------------------------
+    //-----------------------------------------------------------
+    textImport = "Import list of students from file:";
+    textImport.setSize(textSize);
+    textImport.setPos({ xPos4, yPos4 + yMid });
+    
+    inputImport.defaultText = "Enter filename...";
+    inputImport.setPos({ xPos4, yPos4 });
+    inputImport.setSize(inputSize);
+
+    importBut.label = "Import";
+    importBut.setSize(buttonSize);
+    importBut.setPos({ xPos5, yPos4 });
+    importBut.setViewColor();
+    //-----------------------------------------------------------
+    //-----------------------------------------------------------
     back.label = "Back";
     back.setPos({1050, 600});
     back.setSize({150, 50});
@@ -134,6 +157,13 @@ void ClassScene::render() {
     viewScoreboardLabel.render();
     pathExportScoreboard.render(mousePoint);
     viewScoreboardButton.render(mousePoint);
+
+    textSemesterID.render();
+    inputSemesterID.render(mousePoint);
+
+    textImport.render();
+    inputImport.render(mousePoint);
+    importBut.render(mousePoint);
 
     back.render(mousePoint);
 }

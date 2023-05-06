@@ -2,7 +2,7 @@
 
 bool isAddedListSchoolYear = false;
 
-const Vector2 buttonSize = { 100, 50 };
+const Vector2 buttonSize = { 150, 50 };
 const Vector2 inputSize = { 250, 50 };
 const float yDis = 50;
 const float textSize = 30;
@@ -15,14 +15,14 @@ ListSchoolYearScene::ListSchoolYearScene() {
     //--------------------------------------
     viewYear = "View list of SchoolYears";
     viewYear.setSize(textSize);
-    viewYear.setPos({100, 200});
+    viewYear.setPos({50, 200});
 
     chooseSchoolYear.setLabel("Choose School Year");
-    chooseSchoolYear.setPos({100, 250});
+    chooseSchoolYear.setPos({50, 250});
     chooseSchoolYear.setSize({350, 50});
 
     view.label = "View";
-    view.setPos({450, 250});
+    view.setPos({400, 250});
     view.setSize(buttonSize);
     view.setViewColor();
     //--------------------------------------
@@ -53,7 +53,7 @@ ListSchoolYearScene::ListSchoolYearScene() {
     remove.setRemoveColor();
     //--------------------------------------
     back.label = "Back";
-    back.setPos({1000, 600});
+    back.setPos({remove.getPos().x, 600});
     back.setSize(buttonSize);
     back.setRemoveColor();
 

@@ -305,7 +305,7 @@ Scene* StaffScene2::process() {
 	else if (removeStudentButton.clicked(mousePoint)) {
 		string studentID = inputStudentID.getContent();
 		string outStr = "";
-		removeStudent(students, studentID, outStr);
+		removeStudent(studentID, outStr);
 		message = outStr;
 		message.centerX();
 		inputID.clearContent();
@@ -323,7 +323,7 @@ Scene* StaffScene2::process() {
 	else if (removeStaffButton.clicked(mousePoint)) {
 		string staffID = inputStaffID.getContent();
 		string outStr = "";
-		removeStaff(ptrStaff_Global->ID, staffs, staffID, outStr);
+		removeStaff(ptrStaff_Global->ID, staffID, outStr);
 		message = outStr;
 		message.centerX();
 		inputID.clearContent();
