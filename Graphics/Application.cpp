@@ -18,7 +18,7 @@ Application::Application() {
     registry.semesterScene = new SemesterScene();
     registry.classScene = new ClassScene();
 
-    scene = registry.studentScene;
+    scene = registry.schoolYearScene;
 }
 
 Application::~Application() {
