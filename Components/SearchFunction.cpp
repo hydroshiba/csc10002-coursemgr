@@ -66,6 +66,16 @@ Class* getClass(SchoolYear& schoolYear, const string& className) {
 	return ptrClass;
 }
 
+Semester* getSemester(const string& semesterID) {
+	Semester* ptrSemester = nullptr;
+	for (int i = 0; i < academicYears.size(); i++) {
+		if (academicYears[i].getSemester(semesterID) != nullptr) {
+			ptrSemester = academicYears[i].getSemester(semesterID);
+		}
+	}
+	return ptrSemester;
+}
+
 // Find Semester
 Semester* getSemester(AcademicYear& academicYear, const string& semesterID) {
 	Semester* ptrSemester = academicYear.getSemester(semesterID);
