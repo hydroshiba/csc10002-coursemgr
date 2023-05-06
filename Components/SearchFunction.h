@@ -20,6 +20,8 @@ AcademicYear* getAcademicYear(Vector<AcademicYear>& academicYears, const string&
 // Find Class
 Class* getClass(SchoolYear& schoolYear, const string& className);
 
+Semester* getSemester(const string& semesterID); 
+
 // Find Semester
 Semester* getSemester(AcademicYear& academicYear, const string& semesterID);
 

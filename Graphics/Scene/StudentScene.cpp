@@ -2,7 +2,7 @@
 //-------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------
 const float yPosSceneName = 10;
-const float sizeTextSceneName = 100;
+const float sizeTextSceneName = 50;
 //-------------------------------------------------------------------------------------
 const float xDis = 50;
 const float yDis = 30;
@@ -31,8 +31,8 @@ const float yPosTextBoxPassword = yPosTextBoxSocialID + textBoxHeight + yDis;
 //-------------------------------------------------------------------------------------
 const float xPosInputBox = xPosTextBox + textBoxWidth + xDis;
 //-------------------------------------------------------------------------------------
-const float buttonHeigth = 100;
-const float buttonWidth = 200;
+const float buttonHeigth = 50;
+const float buttonWidth = 100;
 const Vector2 buttonSize = { buttonWidth, buttonHeigth };
 //-------------------------------------------------------------------------------------
 const float yDisButton = 50;
@@ -52,31 +52,31 @@ StudentScene::StudentScene() {
 	sceneName.setY(yPosSceneName);
 	sceneName.centerX();
 	//-----------------------------------------------------------------------------------
-	textID = "ID: ";
+	textID = "ID";
 	textID.setSize(textBoxContentSize);
 	textID.setPos({ xPosTextBox, yPosTextBoxID });
 	//-----------------------------------------------------------------------------------
-	textFirstName = "First name: ";
+	textFirstName = "First name";
 	textFirstName.setSize(textBoxContentSize);
 	textFirstName.setPos({ xPosTextBox, yPosTextBoxFirstName });
 	//-----------------------------------------------------------------------------------
-	textLastName = "Last name: ";
+	textLastName = "Last name";
 	textLastName.setSize(textBoxContentSize);
 	textLastName.setPos({ xPosTextBox, yPosTextBoxLastName });
 	//-----------------------------------------------------------------------------------
-	textGender = "Gender: ";
+	textGender = "Gender";
 	textGender.setSize(textBoxContentSize);
 	textGender.setPos({ xPosTextBox, yPosTextBoxGender });
 	//-----------------------------------------------------------------------------------
-	textBirth = "Birth: ";
+	textBirth = "Birth";
 	textBirth.setSize(textBoxContentSize);
 	textBirth.setPos({ xPosTextBox, yPosTextBoxBirth });
 	//-----------------------------------------------------------------------------------
-	textSocialID = "SocialID: ";
+	textSocialID = "SocialID";
 	textSocialID.setSize(textBoxContentSize);
 	textSocialID.setPos({ xPosTextBox, yPosTextBoxSocialID });
 	//-----------------------------------------------------------------------------------
-	textPassword = "Change password: ";
+	textPassword = "Change password";
 	textPassword.setSize(textBoxContentSize);
 	textPassword.setPos({ xPosTextBox, yPosTextBoxPassword });
 	//-----------------------------------------------------------------------------------
@@ -107,26 +107,45 @@ StudentScene::StudentScene() {
 	inputPassword.defaultText = "Input new password";
 	inputPassword.setSize(inputBoxSize);
 	inputPassword.setPos({ xPosInputBox, yPosTextBoxPassword });
-	//-----------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------
 	change.label = "Change";
 	change.setSize(buttonSize);
-	change.setPos({ xPosButton, yPosChange });
-	change.fill_color = GREEN;
-	change.hover_color = YELLOW;
-	change.press_color = GOLD;
+	change.setPos({ xPosInputBox + inputBoxWidth, yPosTextBoxPassword });
+	change.setViewColor();
 	//-----------------------------------------------------------------------------------
-	exportButton.label = "exportButton";
+	textExport = "Export scoreboards to file";
+	textExport.setSize(textBoxContentSize);
+	textExport.setPos({ change.getPos().x + change.getSize().x + xDis, textID.getPos().y - 40 });
+	//-----------------------------------------------------------------------------------
+	textSemester = "SemesterID";
+	textSemester.setSize(textBoxContentSize);
+	textSemester.setPos({ change.getPos().x + change.getSize().x + xDis, textID.getPos().y });
+	////-----------------------------------------------------------------------------------
+	textFileName = "Filename";
+	textFileName.setSize(textBoxContentSize);
+	textFileName.setPos({ textSemester.getPos().x, textFirstName.getPos().y });
+	////-----------------------------------------------------------------------------------
+	inputSemesterID.defaultText = "All semester";
+	inputSemesterID.setSize(inputBoxSize);
+	inputSemesterID.setPos({ textSemester.getPos().x + textBoxWidth, textSemester.getPos().y });
+	////-----------------------------------------------------------------------------------
+	inputFilename.defaultText = "Input filename...";
+	inputFilename.setPos({ textSemester.getPos().x + textBoxWidth, textFirstName.getPos().y });
+	inputFilename.setSize(inputBoxSize);
+	exportButton.label = "Export";
 	exportButton.setSize(buttonSize);
-	exportButton.setPos({ xPosButton, yPosViewSBs });
-	exportButton.hover_color = YELLOW;
-	exportButton.press_color = GOLD;
+	exportButton.setPos({ inputFilename.getPos().x + inputFilename.getSize().x, inputFilename.getPos().y});
+	exportButton.setViewColor();
 	//-----------------------------------------------------------------------------------
 	logout.label = "Logout";
 	logout.setSize(buttonSize);
-	logout.setPos({ xPosButton, yPosLogout });
-	logout.fill_color = ORANGE;
-	logout.hover_color = MAROON;
-	logout.press_color = RED;
+	logout.setPos({ 1100, change.getPos().y});
+	logout.setRemoveColor();
+	//-----------------------------------------------------------------------------------
+	back.label = "Back";
+	back.setSize(buttonSize);
+	back.setPos({ 900, change.getPos().y });
+	back.setRemoveColor();
 	//-----------------------------------------------------------------------------------
 	message = "";
 	message.setColor(RED);
@@ -158,6 +177,14 @@ void StudentScene::render() {
 	logout.render(mousePoint);
 	//-----------------------------------------------------------------------------------
 	message.render();
+	//
+	textExport.render();
+	textSemester.render();
+	textFileName.render();
+	if (ptrStaff_Global != nullptr)	
+		back.render(mousePoint);
+	inputSemesterID.render(mousePoint);
+	inputFilename.render(mousePoint);
 }
 
 Scene* StudentScene::process() {
@@ -170,6 +197,8 @@ Scene* StudentScene::process() {
 	inputBirth.process(mousePoint);
 	inputSocialID.process(mousePoint);
 	inputPassword.process(mousePoint);
+	inputFilename.process(mousePoint);
+	inputSemesterID.process(mousePoint);
 	//----------------------------------------------------------------------------------
 	if (ptrStudent_Global != nullptr) {
 		sceneName = "Welcome student " + ptrStudent_Global->name.get();
@@ -228,5 +257,23 @@ Scene* StudentScene::process() {
 		return registry.login;
 	}
 	//-----------------------------------------------------------------------------------
+	else if (back.clicked(mousePoint)) {
+		if (ptrStaff_Global == nullptr) {
+			message = "You don't have permission to use this button!";
+			message.centerX();
+			return this;
+		}
+		inputID.clearContent();
+		inputFirstName.clearContent();
+		inputLastName.clearContent();
+		inputGender.clearContent();
+		inputBirth.clearContent();
+		inputSocialID.clearContent();
+		inputPassword.clearContent();
+		inputSemesterID.clearContent();
+		inputFilename.clearContent();
+		ptrStudent_Global = nullptr;
+		return registry.staffScene2;
+	}
 	return this;
 }

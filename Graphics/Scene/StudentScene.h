@@ -50,9 +50,12 @@ private:
     InputBox inputSemesterID;
     InputBox inputFilename;
 
+    TextBox textExport;
+
     Button exportButton;
 
     TextBox message;
+    Button back;
     Button logout;
 public:
     StudentScene();
