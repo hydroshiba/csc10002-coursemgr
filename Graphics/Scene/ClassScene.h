@@ -12,7 +12,28 @@
 #include "Objects/Button.h"
 
 class ClassScene : public Scene {
+private:
+    TextBox sceneTitle;
 
+    TextBox addStudentLabel;
+    InputBox addStudentInput;
+    Button addStudentButton;
+    Button addStudentByFileButton;
+
+    TextBox removeStudentLabel;
+    InputBox removeStudentInput;
+    Button removeStudentButton;
+
+    TextBox changeClassnameLabel;
+    InputBox changeClassnameInput;
+    Button changeClassnameButton;
+
+    Button back;
+
+public:
+    ClassScene();
+    void render();
+    Scene* process();
 };
 
 #endif
