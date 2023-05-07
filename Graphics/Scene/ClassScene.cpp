@@ -133,6 +133,10 @@ ClassScene::ClassScene() {
     back.setRemoveColor();
     //-----------------------------------------------------------
     //-----------------------------------------------------------
+    ms = "";
+    ms.setColor(RED);
+    ms.setY(680);
+    ms.setSize(textSize);
 }
 
 void ClassScene::render() {
@@ -166,37 +170,74 @@ void ClassScene::render() {
     importBut.render(mousePoint);
 
     back.render(mousePoint);
+    ms.render();
 }
 
 Scene* ClassScene::process() {
+    string outStr;
     mousePoint = GetMousePosition();
-
     addStudentInput.process(mousePoint);
+    removeStudentInput.process(mousePoint);
+    changeClassnameInput.process(mousePoint);
+    pathExportStudentList.process(mousePoint);
+    pathExportScoreboard.process(mousePoint);
+    inputSemesterID.process(mousePoint);
+    inputImport.process(mousePoint);
+
     if (addStudentButton.clicked(mousePoint)) {
         string studentID = addStudentInput.getContent();
+        addStudentToClass(*ptrClass_Global, studentID, outStr);
+        ms = outStr;
+        ms.centerX();
+        addStudentInput.clearContent();
+        return this;
     }
-  
-    
-    removeStudentInput.process(mousePoint);
-    if (removeStudentButton.clicked(mousePoint)) {
-        //remove student from class
+    else if (removeStudentButton.clicked(mousePoint)) {
+        string studentID = removeStudentInput.getContent();
+        removeStudentFromClass(*ptrClass_Global, studentID, outStr);
+        ms = outStr;
+        ms.centerX();
+        removeStudentInput.clearContent();
+        return this;
     }
-    
-    changeClassnameInput.process(mousePoint);
-    if (changeClassnameButton.clicked(mousePoint)) {
-        //change class name
+    else if (changeClassnameButton.clicked(mousePoint)) {
+        string classname = changeClassnameInput.getContent();
+        updateClass(*ptrClass_Global, classname, outStr);
+        ms = outStr;
+        ms.centerX();
+        changeClassnameInput.clearContent();
+        return this;
     }
-    
-    pathExportStudentList.process(mousePoint);
-    if (viewStudentListButton.clicked(mousePoint)) {
-        //export student list
+    else if (viewStudentListButton.clicked(mousePoint)) {
+        string filename = pathExportStudentList.getContent();
+        exportListStudentInClass(filename, *ptrClass_Global, outStr);
+        ms = outStr;
+        ms.centerX();
+        pathExportStudentList.getContent();
+        return this;
+    }
+    else if (viewScoreboardButton.clicked(mousePoint)) {
+        string filename = pathExportScoreboard.getContent();
+        string semesterID = inputSemesterID.getContent();
+        if (semesterID.empty()) {
+            exportListScoreboardOfClass(filename, *ptrClass_Global, outStr);
+        }
+        else {
+            Semester* ptrSemester = getSemester(semesterID);
+            if (ptrSemester == nullptr) {
+                outStr = "Semester " + semesterID + " is not existed!";
+            }
+            else {
+                exportListScoreboardInSemesterOfClass(filename, *ptrClass_Global, *ptrSemester, outStr);
+            }
+        }
+        ms = outStr;
+        ms.centerX();
+        pathExportScoreboard.clearContent();
+        inputSemesterID.clearContent();
+        return this;
     }
 
-    pathExportScoreboard.process(mousePoint);
-    if (viewScoreboardButton.clicked(mousePoint)) {
-        //export scoreboard
-    }
-
-    if (back.clicked(mousePoint)) return registry.schoolYearScene;
+    else if (back.clicked(mousePoint)) return registry.schoolYearScene;
     return this;
 }

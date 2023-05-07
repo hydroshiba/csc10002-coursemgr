@@ -135,6 +135,12 @@ SemesterScene::SemesterScene() {
     buttonExport.setViewColor();
     //-----------------------------------------------------------
     //-----------------------------------------------------------
+    ms = "";
+    ms.setColor(RED);
+    ms.setY(680);
+    ms.setSize(textSize);
+    //-----------------------------------------------------------
+    //-----------------------------------------------------------
     back.label = "Back";
     back.setPos({ 1050, 600 });
     back.setSize({ 150, 50 });
@@ -174,10 +180,7 @@ void SemesterScene::render() {
     inputExport.render(mousePoint);
     buttonExport.render(mousePoint);
 
-    ms = "";
-    ms.setColor(RED);
-    ms.setY(680);
-    ms.setSize(textSize);
+    ms.render();
 
     back.render(mousePoint);
 }

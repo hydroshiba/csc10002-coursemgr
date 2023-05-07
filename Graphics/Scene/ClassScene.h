@@ -15,7 +15,7 @@
 #include "RemoveFunction.h"
 #include "SearchFunction.h"
 #include "ImportAndExportFunction.h"
-
+#include "UpdateFunction.h"
 class ClassScene : public Scene {
 private:
     TextBox sceneTitle;
@@ -46,6 +46,8 @@ private:
     TextBox textImport;
     InputBox inputImport;
     Button importBut;
+
+    TextBox ms;
 
     Button back;
 
