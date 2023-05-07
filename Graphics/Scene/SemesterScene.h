@@ -16,6 +16,7 @@
 #include "SearchFunction.h"
 #include "ImportAndExportFunction.h"
 #include "DisplayFunction.h"
+#include "UpdateFunction.h"
 #include "Semester.h"
 class SemesterScene : public Scene {
 private:

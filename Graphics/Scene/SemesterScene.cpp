@@ -230,18 +230,28 @@ Scene* SemesterScene::process() {
         return this;
     }
 
-    if (buttonSemesterID.clicked(mousePoint)) {
-        
+    else if (buttonSemesterID.clicked(mousePoint) || buttonStartDate.clicked(mousePoint) || buttonEndDate.clicked(mousePoint)) {
+        string semesterID = inputSemesterID.getContent();
+        string startDate = inputStartDate.getContent();
+        string endDate = inputEndDate.getContent();
+        updateSemester(*ptrSemester_Global, semesterID, startDate, endDate, outStr);
+        ms = outStr;
+        ms.centerX();
+        inputSemesterID.clearContent();
+        inputStartDate.clearContent();
+        inputEndDate.clearContent();
+        return this;
     }
-
-    if (buttonStartDate.clicked(mousePoint)) {
-        //export student list
+    else if (buttonExport.clicked(mousePoint)) {
+        string filename = inputExport.getContent();
+        exportListCourseInSemester(filename, *ptrSemester_Global, outStr);
+        ms = outStr;
+        ms.centerX();
+        inputExport.clearContent();
+        return this;
     }
-
-    if (buttonEndDate.clicked(mousePoint)) {
-        //export scoreboard
+    else if (view.clicked(mousePoint)) {
     }
-
-    if (back.clicked(mousePoint)) return registry.academicYearScene;
+    else if (back.clicked(mousePoint)) return registry.academicYearScene;
     return this;
 }
