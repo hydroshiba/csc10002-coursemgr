@@ -139,7 +139,8 @@ CourseScene2 :: CourseScene2(){
 // Update Scoreboard Scene
     viewScore.label = "Update Scoreboards";
     viewScore.setSize({250, 100});
-    viewScore.setPos({850, 475});
+    viewScore.setPos({950, 475});
+    viewScore.setViewColor();
 // --------------------------------------------------------
 
 // Import students
@@ -159,14 +160,12 @@ CourseScene2 :: CourseScene2(){
     change.label = "Change";
     change.setSize({150, 50});
     change.setPos({550,625});
-    change.fill_color = ORANGE;
+    change.setViewColor();
 
     back.label = "Back";
-    back.setSize({250,50});
-    back.setPos({1000, 600});
-    back.fill_color = RED;
-    back.hover_color = RED;
-    back.press_color = MAROON;
+    back.setSize({150,100});
+    back.setPos({1050, 600});
+    back.setRemoveColor();
 
     result = "";
 	result.setColor(RED);

@@ -113,7 +113,11 @@ Scene* EditScoreboardScene::process(){
             result.centerX();
             return this;
         }
-        if (updateScoreboard(*ptrCourse_Global, IDBox.getContent(), midTermBox.getContent(), otherBox.getContent(), finalBox.getContent(), totalBox.getContent(), notif)){
+        Scoreboard* ptrScoreboard = getScoreboard(*ptrCourse_Global, IDBox.getContent());
+        if (ptrScoreboard == nullptr) {
+            notif = "Student with ID " + IDBox.getContent() + " is not existed in this course";
+        }
+        else if (updateScoreboard(*ptrCourse_Global, IDBox.getContent(), midTermBox.getContent(), otherBox.getContent(), finalBox.getContent(), totalBox.getContent(), notif)){
             midTermBox.clearContent();
             finalBox.clearContent();
             otherBox.clearContent();
@@ -130,7 +134,7 @@ Scene* EditScoreboardScene::process(){
         return this;
     }
 
-    if (view.clicked(mousePoint)){
+    else if (view.clicked(mousePoint)){
         if (ptrCourse_Global == nullptr){
             result = "Access nullptr error!";
             result.centerX();
@@ -164,7 +168,7 @@ Scene* EditScoreboardScene::process(){
         return this; 
     }
 
-    if (back.clicked(mousePoint)){
+    else if (back.clicked(mousePoint)){
         IDBox.clearContent();
         midTermBox.clearContent();
         finalBox.clearContent();
@@ -173,5 +177,6 @@ Scene* EditScoreboardScene::process(){
         result.clear();
         return registry.courseScene2;
     }
+
     return this;
 }
