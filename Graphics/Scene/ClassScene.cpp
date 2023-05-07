@@ -184,6 +184,12 @@ Scene* ClassScene::process() {
     inputSemesterID.process(mousePoint);
     inputImport.process(mousePoint);
 
+    if (ptrClass_Global != nullptr) {
+        sceneTitle = "Class " + ptrClass_Global->name;
+        changeClassnameInput.defaultText = ptrClass_Global->name;
+        sceneTitle.centerX();
+    }
+
     if (addStudentButton.clicked(mousePoint)) {
         string studentID = addStudentInput.getContent();
         addStudentToClass(*ptrClass_Global, studentID, outStr);

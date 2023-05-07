@@ -16,6 +16,7 @@
 #include "SearchFunction.h"
 #include "ImportAndExportFunction.h"
 #include "UpdateFunction.h"
+#include "Class.h"
 class ClassScene : public Scene {
 private:
     TextBox sceneTitle;
