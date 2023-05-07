@@ -21,7 +21,7 @@ bool updateClass(Class& CLASS, const string& newClassName, string& outStr); // I
 bool updateAcademicYear(AcademicYear& academicYear, const string& newStartYear, string& outStr); // Inputbox
 
 // Update Semester
-bool updateSemester(Semester& semester, const string startDate, const string endDate, string& outStr); // Inputbox
+bool updateSemester(Semester& semester, const string& semesterID, const string startDate, const string endDate, string& outStr); // Inputbox
 
 // Update Course
 bool updateCourse(Course& course, const string& courseID, const string& classID, const string& name, const string& teacher, const string& cre, const string& maxEnroll, const string& day, const string& ss, string &outStr); // Inputbox

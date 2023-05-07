@@ -111,31 +111,21 @@ bool updateAcademicYear(AcademicYear& academicYear, const string& newStartYear, 
 	return true;
 }
 
-bool updateSemester(Semester &semester, const string startDate, const string endDate, string& outStr){
-	if (startDate.empty() && endDate.empty()) {
+bool updateSemester(Semester &semester, const string& semesterID, const string startDate, const string endDate, string& outStr){
+	if (startDate.empty() && endDate.empty() && semesterID.empty()) {
 		outStr = "Please input new date in at least one InputBox!";
 		return false;
 	}
-	Date start, end;
-	string day, month, year;
 	if (!startDate.empty()) {
-		std::stringstream ss(startDate);
-		getline(ss, day, '/');
-		getline(ss, month, '/');
-		getline(ss, year);
-		start.set((unsigned short)std::stoi(day), (unsigned short)std::stoi(month), (unsigned int)std::stoi(year));
-
+		semester.startDate = string_to_date(startDate);
 	}	
 	if (!endDate.empty()) {	
-		std::stringstream sstring(endDate);
-		getline(sstring, day, '/');
-		getline(sstring, month, '/');
-		getline(sstring, year);
-		end.set((unsigned short)std::stoi(day), (unsigned short)std::stoi(month), (unsigned int)std::stoi(year));
+		semester.endDate = string_to_date(endDate);
 	}
-	semester.startDate = start;
-	semester.endDate = end;
-	outStr = "Successfully changed start date and end date of semester " + semester.semesterID;
+	if (!semesterID.empty()) {
+		semester.semesterID = semesterID;
+	}
+	outStr = "Successfully changed properties of semester " + semester.semesterID;
 	return true;
 }
 
