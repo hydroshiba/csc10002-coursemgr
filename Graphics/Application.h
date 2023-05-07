@@ -12,7 +12,6 @@
 #include "Scene/StudentScene.h"
 #include "Scene/StaffScene.h"
 #include "Scene/StaffScene2.h"
-#include "Scene/CourseScene.h"
 #include "Scene/CourseScene2.h"
 #include "Scene/SchoolYearScene.h"
 #include "Scene/ListSchoolYearScene.h"

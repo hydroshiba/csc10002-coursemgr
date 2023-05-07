@@ -10,7 +10,6 @@ Application::Application() {
     registry.staffScene2 = new StaffScene2();
     registry.studentScoreboardsScene = new StudentScoreBoardsScene();
     registry.blank = new Blank();
-    registry.courseScene = new CourseScene();
     registry.courseScene2 = new CourseScene2();
     registry.schoolYearScene = new SchoolYearScene();
     registry.listSchoolYearScene = new ListSchoolYearScene();
@@ -33,10 +32,14 @@ Application::~Application() {
     delete registry.staffScene2;
     delete registry.studentScoreboardsScene;
     delete registry.blank;
-    delete registry.courseScene;
     delete registry.courseScene2;
     delete registry.schoolYearScene;
     delete registry.listSchoolYearScene;
+    delete registry.classScene;
+    delete registry.semesterScene;
+    delete registry.academicYearScene;
+    delete registry.listAcademicYearScene;
+    delete registry.editScoreboardCourse;
 }
 
 bool Application::shouldClose() const {
