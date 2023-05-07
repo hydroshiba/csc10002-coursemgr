@@ -190,6 +190,11 @@ Vector<Vector<string>> getTableContentOfListScoreboardInClass(const Class& CLASS
 	for (int i = 2; i < table.size(); i++) {
 		table[i].resize(4 + nCourses);
 	}
+	table[2][0] = "No"; table[2][1] = "StudentID"; table[2][2] = "Fullname";
+	table[2][nCourses + 3] = "Overall GPA";
+	for (int i = 3; i < nCourses + 3; i++) {
+		table[2][i] = courses[i - 3];
+	}
 	for (int i = 0; i < n; i++) {
 		table[i + 3][0] = to_string(i + 1);
 		table[i + 3][1] = CLASS.students[i]->ID;
