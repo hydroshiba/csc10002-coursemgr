@@ -237,7 +237,24 @@ Scene* ClassScene::process() {
         inputSemesterID.clearContent();
         return this;
     }
-
-    else if (back.clicked(mousePoint)) return registry.schoolYearScene;
+    else if (importBut.clicked(mousePoint)) {
+        string filename = inputImport.getContent();
+        importStudentListOfClassFromFile(filename, *ptrClass_Global, outStr);
+        ms = outStr;
+        ms.centerX();
+        return this;
+    }
+    else if (back.clicked(mousePoint)) {
+        addStudentInput.clearContent();
+        removeStudentInput.clearContent();
+        changeClassnameInput.clearContent();
+        pathExportStudentList.clearContent();
+        pathExportScoreboard.clearContent();
+        inputSemesterID.clearContent();
+        inputImport.clearContent();
+        ptrClass_Global = nullptr;
+        ms.clear();
+        return registry.schoolYearScene;
+    }
     return this;
 }
