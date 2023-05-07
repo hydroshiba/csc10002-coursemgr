@@ -251,7 +251,28 @@ Scene* SemesterScene::process() {
         return this;
     }
     else if (view.clicked(mousePoint)) {
+        ptrCourse_Global = getCourse(*ptrSemester_Global, listCourse.getCurLabel());
+        inputAddCourse.clearContent();
+        inputRemoveCourse.clearContent();
+        inputSemesterID.clearContent();
+        inputStartDate.clearContent();
+        inputEndDate.clearContent();
+        inputExport.clearContent();
+        listCourse.clear();
+        isAddCourse = false;
+        return registry.courseScene2;
     }
-    else if (back.clicked(mousePoint)) return registry.academicYearScene;
+    else if (back.clicked(mousePoint)) {
+        ptrSemester_Global = nullptr;
+        inputAddCourse.clearContent();
+        inputRemoveCourse.clearContent();
+        inputSemesterID.clearContent();
+        inputStartDate.clearContent();
+        inputEndDate.clearContent();
+        inputExport.clearContent();
+        listCourse.clear();
+        isAddCourse = false;
+        return registry.academicYearScene;
+    }
     return this;
 }

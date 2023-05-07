@@ -143,19 +143,24 @@ Scene* EditScoreboardScene::process(){
             return this;
         }
         ptrScoreboard = getScoreboard(*ptrCourse_Global, IDBox.getContent());
-        IDBox.defaultText = IDBox.getContent();
-        midTermBox.defaultText = to_string(ptrScoreboard->midterm);
-        finalBox.defaultText = to_string(ptrScoreboard->final);
-        otherBox.defaultText = to_string(ptrScoreboard->other);
-        totalBox.defaultText = to_string(ptrScoreboard->total);
-
+        if (ptrScoreboard == nullptr) {
+            result = "Student with ID " + IDBox.getContent() + " is not existed in this course";
+            result.centerX();
+        }
+        else {
+            IDBox.defaultText = IDBox.getContent();
+            midTermBox.defaultText = to_string(ptrScoreboard->midterm);
+            finalBox.defaultText = to_string(ptrScoreboard->final);
+            otherBox.defaultText = to_string(ptrScoreboard->other);
+            totalBox.defaultText = to_string(ptrScoreboard->total);
+            result = "Successfully change scores of " + IDBox.defaultText.text;
+        }
         IDBox.clearContent();
         midTermBox.clearContent();
         finalBox.clearContent();
         otherBox.clearContent();
         totalBox.clearContent();     
-
-        result = "Successfully change scores of " + IDBox.defaultText.text;
+        result.centerX();
         return this; 
     }
 
