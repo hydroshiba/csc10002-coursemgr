@@ -48,8 +48,8 @@ Course* Semester::getCourse(const std::string& courseID) {
 }
 
 void Semester::addCourse(Course& course) {
-    courses.append(course);
     course.ptrSemester = this;
+    courses.append(course);    
 }
 
 void Semester::removeCourse(Course& course) {
