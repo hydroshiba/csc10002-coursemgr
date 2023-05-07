@@ -275,13 +275,13 @@ bool uploadSemester(Semester& semester) {
 	getline(ifs, ignore);
 	semester.endDate = string_to_date(ignore);
 	string courseID = "";
-	size_t nCourse;
 	getline(ifs, ignore, ',');
-	ifs >> nCourse;
+	getline(ifs, ignore);
+	size_t nCourse = static_cast<size_t>(std::stoull(ignore));
 	if (nCourse == 0) return true;
 
 	semester.courses.resize(nCourse);
-	std::getline(ifs, courseID);
+	std::getline(ifs, ignore);
 	for (int i = 0; i < semester.courses.size(); i++){
 		getline(ifs, ignore, ',');
 		std::getline(ifs, courseID);
