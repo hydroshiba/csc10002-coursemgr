@@ -1,5 +1,7 @@
 #include "SemesterScene.h"
 
+bool isAddCourse = false;
+
 const float buttonWidth = 150;
 const float buttonHeight = 50;
 const float inputWidth = 250;
@@ -33,98 +35,104 @@ SemesterScene::SemesterScene() {
     sceneTitle.setY(50);
     //-----------------------------------------------------------
     //-----------------------------------------------------------
-    addStudentLabel = "Add course";
-    addStudentLabel.setSize(textSize);
-    addStudentLabel.setPos({ xPos1, yPos1 });
+    textAddCourse = "Add course";
+    textAddCourse.setSize(textSize);
+    textAddCourse.setPos({ xPos1, yPos1 });
 
-    addStudentInput.defaultText = "Enter CourseID";
-    addStudentInput.setPos({ xPos2, yPos1 });
-    addStudentInput.setSize(inputSize);
+    inputAddCourse.defaultText = "Enter CourseID";
+    inputAddCourse.setPos({ xPos2, yPos1 });
+    inputAddCourse.setSize(inputSize);
 
-    addStudentButton.label = "Add";
-    addStudentButton.setPos({ xPos3, yPos1 });
-    addStudentButton.setSize(buttonSize);
-    addStudentButton.setInsertColor();
+    buttonAddCourse.label = "Add";
+    buttonAddCourse.setPos({ xPos3, yPos1 });
+    buttonAddCourse.setSize(buttonSize);
+    buttonAddCourse.setInsertColor();
 
     //-----------------------------------------------------------
     //-----------------------------------------------------------
-    removeStudentLabel = "Remove course";
-    removeStudentLabel.setSize(textSize);
-    removeStudentLabel.setPos({ xPos1, yPos2 });
+    textRemoveCourse = "Remove course";
+    textRemoveCourse.setSize(textSize);
+    textRemoveCourse.setPos({ xPos1, yPos2 });
 
-    removeStudentInput.defaultText = "Enter CourseID";
-    removeStudentInput.setPos({ xPos2, yPos2 });
-    removeStudentInput.setSize(inputSize);
+    inputRemoveCourse.defaultText = "Enter CourseID";
+    inputRemoveCourse.setPos({ xPos2, yPos2 });
+    inputRemoveCourse.setSize(inputSize);
 
-    removeStudentButton.label = "Remove";
-    removeStudentButton.setPos({ xPos3, yPos2 });
-    removeStudentButton.setSize(buttonSize);
-    removeStudentButton.setRemoveColor();
+    buttonRemoveCourse.label = "Remove";
+    buttonRemoveCourse.setPos({ xPos3, yPos2 });
+    buttonRemoveCourse.setSize(buttonSize);
+    buttonRemoveCourse.setRemoveColor();
     //-----------------------------------------------------------
     //-----------------------------------------------------------
-    changeClassnameLabel = "SemesterID";
-    changeClassnameLabel.setSize(textSize);
-    changeClassnameLabel.setPos({ xPos1, yPos3 });
-
-    changeClassnameInput.defaultText = "New SemesterID";
-    changeClassnameInput.setPos({ xPos2, yPos3 });
-    changeClassnameInput.setSize(inputSize);
-
-    changeClassnameButton.label = "Change";
-    changeClassnameButton.setPos({ xPos3, yPos3 });
-    changeClassnameButton.setSize(buttonSize);
-    changeClassnameButton.setViewColor();
-    //-----------------------------------------------------------
-    //-----------------------------------------------------------
-    viewStudentListLabel = "Change start date:";
-    viewStudentListLabel.setSize(textSize);
-    viewStudentListLabel.setPos({ xPos4, yPos1 + yMid });
-
-    pathExportStudentList.defaultText = "dd/mm/yyyy";
-    pathExportStudentList.setPos({ xPos4, yPos1 });
-    pathExportStudentList.setSize(inputSize);
-
-    viewStudentListButton.label = "Change";
-    viewStudentListButton.setPos({ xPos5, yPos1 });
-    viewStudentListButton.setSize(buttonSize);
-    viewStudentListButton.setViewColor();
-    //-----------------------------------------------------------
-    //-----------------------------------------------------------
-    viewScoreboardLabel = "Change end date:";
-    viewScoreboardLabel.setSize(textSize);
-    viewScoreboardLabel.setPos({ xPos4, yPos2 + yMid });
-
-    pathExportScoreboard.defaultText = "dd/mm/yyyy";
-    pathExportScoreboard.setPos({ xPos4, yPos2 });
-    pathExportScoreboard.setSize(inputSize);
-
-    viewScoreboardButton.label = "Change";
-    viewScoreboardButton.setPos({ xPos5, yPos2 });
-    viewScoreboardButton.setSize(buttonSize);
-    viewScoreboardButton.setViewColor();
-    //-----------------------------------------------------------
-    //-----------------------------------------------------------
-    /*textSemesterID = "Input semesterID:";
+    textSemesterID = "SemesterID";
     textSemesterID.setSize(textSize);
-    textSemesterID.setPos({ xPos4, yPos3 + yMid });
+    textSemesterID.setPos({ xPos1, yPos3 });
 
-    inputSemesterID.defaultText = "All semester";
+    inputSemesterID.defaultText = "New SemesterID";
+    inputSemesterID.setPos({ xPos2, yPos3 });
     inputSemesterID.setSize(inputSize);
-    inputSemesterID.setPos({ xPos4, yPos3 });*/
+
+    buttonSemesterID.label = "Change";
+    buttonSemesterID.setPos({ xPos3, yPos3 });
+    buttonSemesterID.setSize(buttonSize);
+    buttonSemesterID.setViewColor();
     //-----------------------------------------------------------
     //-----------------------------------------------------------
-    textImport = "Export list of courses to file:";
-    textImport.setSize(textSize);
-    textImport.setPos({ xPos4, yPos3 + yMid });
+    textStartDate = "Change start date:";
+    textStartDate.setSize(textSize);
+    textStartDate.setPos({ xPos4, yPos1 + yMid });
 
-    inputImport.defaultText = "Enter filename...";
-    inputImport.setPos({ xPos4, yPos3 });
-    inputImport.setSize(inputSize);
+    inputStartDate.defaultText = "dd/mm/yyyy";
+    inputStartDate.setPos({ xPos4, yPos1 });
+    inputStartDate.setSize(inputSize);
 
-    importBut.label = "Export";
-    importBut.setSize(buttonSize);
-    importBut.setPos({ xPos5, yPos3 });
-    importBut.setViewColor();
+    buttonStartDate.label = "Change";
+    buttonStartDate.setPos({ xPos5, yPos1 });
+    buttonStartDate.setSize(buttonSize);
+    buttonStartDate.setViewColor();
+    //-----------------------------------------------------------
+    //-----------------------------------------------------------
+    
+    textEndDate = "Change end date:";
+    textEndDate.setSize(textSize);
+    textEndDate.setPos({ xPos4, yPos2 + yMid });
+
+    inputEndDate.defaultText = "dd/mm/yyyy";
+    inputEndDate.setPos({ xPos4, yPos2 });
+    inputEndDate.setSize(inputSize);
+
+    buttonEndDate.label = "Change";
+    buttonEndDate.setPos({ xPos5, yPos2 });
+    buttonEndDate.setSize(buttonSize);
+    buttonEndDate.setViewColor();
+    //-----------------------------------------------------------
+    //-----------------------------------------------------------
+    textView = "List course";
+    textView.setSize(textSize);
+    textView.setPos({ xPos1, yPos4 });
+
+    listCourse.setLabel("Choose course:");
+    listCourse.setSize(inputSize);
+    listCourse.setPos({ xPos2, yPos4 });
+    
+    view.label = "View";
+    view.setSize(buttonSize);
+    view.setPos({ xPos3, yPos4 });
+    view.setViewColor();
+    //-----------------------------------------------------------
+    //-----------------------------------------------------------
+    textExport = "Export list of courses to file:";
+    textExport.setSize(textSize);
+    textExport.setPos({ xPos4, yPos3 + yMid });
+
+    inputExport.defaultText = "Enter filename...";
+    inputExport.setPos({ xPos4, yPos3 });
+    inputExport.setSize(inputSize);
+
+    buttonExport.label = "Export";
+    buttonExport.setSize(buttonSize);
+    buttonExport.setPos({ xPos5, yPos3 });
+    buttonExport.setViewColor();
     //-----------------------------------------------------------
     //-----------------------------------------------------------
     back.label = "Back";
@@ -138,62 +146,99 @@ SemesterScene::SemesterScene() {
 void SemesterScene::render() {
     sceneTitle.render();
 
-    addStudentLabel.render();
-    addStudentInput.render(mousePoint);
-    addStudentButton.render(mousePoint);
+    textAddCourse.render();
+    inputAddCourse.render(mousePoint);
+    buttonAddCourse.render(mousePoint);
 
-    removeStudentLabel.render();
-    removeStudentInput.render(mousePoint);
-    removeStudentButton.render(mousePoint);
+    textRemoveCourse.render();
+    inputRemoveCourse.render(mousePoint);
+    buttonRemoveCourse.render(mousePoint);
 
-    changeClassnameLabel.render();
-    changeClassnameInput.render(mousePoint);
-    changeClassnameButton.render(mousePoint);
+    textSemesterID.render();
+    inputSemesterID.render(mousePoint);
+    buttonSemesterID.render(mousePoint);
 
-    viewStudentListLabel.render();
-    pathExportStudentList.render(mousePoint);
-    viewStudentListButton.render(mousePoint);
+    textStartDate.render();
+    inputStartDate.render(mousePoint);
+    buttonStartDate.render(mousePoint);
 
-    viewScoreboardLabel.render();
-    pathExportScoreboard.render(mousePoint);
-    viewScoreboardButton.render(mousePoint);
+    textEndDate.render();
+    inputEndDate.render(mousePoint);
+    buttonEndDate.render(mousePoint);
 
-    /*textSemesterID.render();
-    inputSemesterID.render(mousePoint);*/
+    textView.render();
+    listCourse.render(mousePoint);
+    view.render(mousePoint);
 
-    textImport.render();
-    inputImport.render(mousePoint);
-    importBut.render(mousePoint);
+    textExport.render();
+    inputExport.render(mousePoint);
+    buttonExport.render(mousePoint);
+
+    ms = "";
+    ms.setColor(RED);
+    ms.setY(680);
+    ms.setSize(textSize);
 
     back.render(mousePoint);
 }
 
 Scene* SemesterScene::process() {
     mousePoint = GetMousePosition();
+    inputAddCourse.process(mousePoint);
+    inputRemoveCourse.process(mousePoint);
+    inputSemesterID.process(mousePoint);
+    inputStartDate.process(mousePoint);
+    inputEndDate.process(mousePoint);
+    inputExport.process(mousePoint);
+    listCourse.process(mousePoint);
 
-    addStudentInput.process(mousePoint);
-    if (addStudentButton.clicked(mousePoint)) {
-        string studentID = addStudentInput.getContent();
+    if (ptrSemester_Global != nullptr) {
+        sceneTitle = "Semester " + ptrSemester_Global->semesterID;
+        inputSemesterID.defaultText = ptrSemester_Global->semesterID;
+        inputStartDate.defaultText = ptrSemester_Global->startDate.get();
+        inputEndDate.defaultText = ptrSemester_Global->endDate.get();
+        if (isAddCourse == false) {
+            listCourse.add(getListCourse(*ptrSemester_Global));
+            isAddCourse = true;
+        }
+    }
+
+    string outStr;
+
+    if (buttonAddCourse.clicked(mousePoint)) {
+        string courseID = inputAddCourse.getContent();
+        if (addCourse(*ptrSemester_Global, courseID, outStr)) {
+            listCourse.add(courseID);
+            listCourse.process(mousePoint);
+        }
+        ms = outStr;
+        ms.centerX();
+        inputAddCourse.clearContent();
+        return this;
     }
 
 
-    removeStudentInput.process(mousePoint);
-    if (removeStudentButton.clicked(mousePoint)) {
-        //remove student from class
+    else if (buttonRemoveCourse.clicked(mousePoint)) {
+        string courseID = inputRemoveCourse.getContent();
+        if (removeCourse(*ptrSemester_Global, courseID, outStr)) {
+            listCourse.remove(courseID);
+            listCourse.process(mousePoint);
+        }
+        ms = outStr;
+        ms.centerX();
+        inputRemoveCourse.clearContent();
+        return this;
     }
 
-    changeClassnameInput.process(mousePoint);
-    if (changeClassnameButton.clicked(mousePoint)) {
-        //change class name
+    if (buttonSemesterID.clicked(mousePoint)) {
+        
     }
 
-    pathExportStudentList.process(mousePoint);
-    if (viewStudentListButton.clicked(mousePoint)) {
+    if (buttonStartDate.clicked(mousePoint)) {
         //export student list
     }
 
-    pathExportScoreboard.process(mousePoint);
-    if (viewScoreboardButton.clicked(mousePoint)) {
+    if (buttonEndDate.clicked(mousePoint)) {
         //export scoreboard
     }
 

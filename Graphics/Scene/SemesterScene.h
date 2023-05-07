@@ -15,37 +15,41 @@
 #include "RemoveFunction.h"
 #include "SearchFunction.h"
 #include "ImportAndExportFunction.h"
-
+#include "DisplayFunction.h"
+#include "Semester.h"
 class SemesterScene : public Scene {
 private:
     TextBox sceneTitle;
 
-    TextBox addStudentLabel;
-    InputBox addStudentInput;
-    Button addStudentButton;
+    TextBox textAddCourse;
+    InputBox inputAddCourse;
+    Button buttonAddCourse;
 
-    TextBox removeStudentLabel;
-    InputBox removeStudentInput;
-    Button removeStudentButton;
-
-    TextBox changeClassnameLabel;
-    InputBox changeClassnameInput;
-    Button changeClassnameButton;
-
-    TextBox viewStudentListLabel;
-    InputBox pathExportStudentList;
-    Button viewStudentListButton;
-
-    TextBox viewScoreboardLabel;
-    InputBox pathExportScoreboard;
-    Button viewScoreboardButton;
+    TextBox textRemoveCourse;
+    InputBox inputRemoveCourse;
+    Button buttonRemoveCourse;
 
     TextBox textSemesterID;
     InputBox inputSemesterID;
+    Button buttonSemesterID;
 
-    TextBox textImport;
-    InputBox inputImport;
-    Button importBut;
+    TextBox textStartDate;
+    InputBox inputStartDate;
+    Button buttonStartDate;
+
+    TextBox textEndDate;
+    InputBox inputEndDate;
+    Button buttonEndDate;
+
+    TextBox textExport;
+    InputBox inputExport;
+    Button buttonExport;
+
+    TextBox textView;
+    DropBox listCourse;
+    Button view;
+
+    TextBox ms;
 
     Button back;
 
