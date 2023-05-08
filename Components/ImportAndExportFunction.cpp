@@ -48,7 +48,6 @@ bool importStudentListOfClassFromFile(const string& filename, Class& actClass, s
 		outStr = "Student list file is empty!";
 		return false;
 	}
-	actClass.students.resize(n);
 	getline(inF, ignore);
 	for (size_t i = 0; i < n; i++) {
 		string studentID;
@@ -65,8 +64,7 @@ bool importStudentListOfClassFromFile(const string& filename, Class& actClass, s
 			actClass.removeAllStudent();
 			return false;
 		}
-		ptrStudent->ptrClass = &actClass;
-		actClass.students[i] = ptrStudent;
+		actClass.addStudent(ptrStudent);
 	}
 	inF.close();
 	outStr = "Complete add list of student to class " + actClass.name + "!";
