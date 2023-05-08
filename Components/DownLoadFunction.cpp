@@ -66,6 +66,7 @@ bool downloadListStaff(){
 }
 
 bool downloadListSchoolYear() {
+	//sortSchoolYearList(schoolYears, 0, schoolYears.size() - 1);
 	std::string listSchoolYearDir = getListSchoolYearFilePath();
 	std::ofstream ofs(listSchoolYearDir);
 	if (!ofs) {
@@ -86,6 +87,7 @@ bool downloadListSchoolYear() {
 }
 
 bool downloadSchoolYear(SchoolYear& schoolYear) {
+	//sortClasses(schoolYear.classes, 0, schoolYear.classes.size() - 1);
 	std::string schoolYearDir = getSchoolYearFilePath(schoolYear);
 	std::ofstream ofs(schoolYearDir);
 	if (!ofs.is_open()){
@@ -107,6 +109,7 @@ bool downloadSchoolYear(SchoolYear& schoolYear) {
 }
 
 bool downloadClass(Class& CLASS) {
+	//sortStudentsInClass(CLASS, 0, CLASS.students.size() - 1);
 	string classFilePath = getClassFilePath(CLASS);
 	std::ofstream ofs(classFilePath);
 	if (!ofs) {
@@ -124,6 +127,7 @@ bool downloadClass(Class& CLASS) {
 }
 
 bool downloadListAcademicYear() {
+	//sortAcademicYearList(academicYears, 0, academicYears.size() - 1);
 	std::string listAcademicYearFilePath = getListAcademicYearFilePath();
 	std::ofstream ofs(listAcademicYearFilePath);
 	if (!ofs) {
@@ -144,6 +148,7 @@ bool downloadListAcademicYear() {
 }
 
 bool downloadAcademicYear(AcademicYear& academicYear) {
+	//sortSemesters(academicYear.semesters, 0, academicYear.semesters.size() - 1);
 	std::string academicYearFilePath = getAcademicYearFilePath(academicYear);
 	std::ofstream ofs(academicYearFilePath);
 	if (!ofs) {
@@ -165,6 +170,7 @@ bool downloadAcademicYear(AcademicYear& academicYear) {
 }
 
 bool downloadSemester(Semester& semester) {
+	//sortCourses(semester.courses, 0, semester.courses.size() - 1);
 	std::string semesterFilePath = getSemesterFilePath(semester);
 	std::ofstream ofs(semesterFilePath);
 	if (!ofs) {
@@ -188,6 +194,7 @@ bool downloadSemester(Semester& semester) {
 }
 
 bool downloadCourse(Course& course) {
+	//sortStudentsInCourse(course, 0, course.scoreboards.size() - 1);
 	std::string courseFilePath = getCourseFilePath(course);
 	std::ofstream ofs(courseFilePath);
 	if (!ofs) {

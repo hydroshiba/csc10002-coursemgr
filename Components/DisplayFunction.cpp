@@ -344,7 +344,7 @@ Vector<Vector<string>> getTableContentOfSemester(const Semester& semester) {
 		table[i].resize(2);
 	}
 	for (int i = 4; i < table.size(); i++) {
-		table.resize(10);
+		table[i].resize(10);
 	}
 	table[0][0] = "SemesterID";
 	table[0][1] = semester.semesterID;

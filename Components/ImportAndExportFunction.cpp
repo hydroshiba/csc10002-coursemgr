@@ -385,10 +385,10 @@ bool exportListOfStudentInCourse(const string& filename, Course& course, string 
 		outStr = "Empty InputBox error, please input something!";
 		return false;
 	}
-	if (course.scoreboards.size() == 0) {
+	/*if (course.scoreboards.size() == 0) {
 		outStr = "This course don't have any students";
 		return false;
-	}
+	}*/
 	string inputStudCouseFilePath = getExportFolderPath() + filename + ".csv";
 	
 	std::ofstream ofs(inputStudCouseFilePath, std::ios::out);
@@ -413,10 +413,10 @@ bool exportListScoreboardOfCourse(const string& filename, Course& course, string
 		outStr = "Empty InputBox error, please input something!";
 		return false;
 	}
-	if (course.scoreboards.size() == 0) {
+	/*if (course.scoreboards.size() == 0) {
 		outStr = "This course don't have any students";
 		return false;
-	}
+	}*/
 	string getCourseScoreboardFile = getExportFolderPath() + filename + ".csv";
 	
 	std::ofstream fout(getCourseScoreboardFile, std::ios::out);
