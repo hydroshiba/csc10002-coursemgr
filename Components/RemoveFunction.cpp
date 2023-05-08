@@ -105,6 +105,11 @@ bool removeSchoolYear(const string& start, string& outStr) {
 	}
 	ptrSchoolYear->removeAllClass();
 	schoolYears.remove(ptrSchoolYear);
+	for (int i = 0; i < schoolYears.size(); i++) {
+		for (int j = 0; j < schoolYears[i].classes.size(); j++) {
+			schoolYears[i].classes[j].ptrSchoolYear = &schoolYears[i];
+		}
+	}
 	outStr = "Successfully deleted the school year with start year " + start;
 	return true;
 }
@@ -122,6 +127,11 @@ bool removeClass(SchoolYear& schoolYear, const string& className, string& outStr
 	}
 	ptrClass->removeAllStudent();
 	schoolYear.removeClass(*ptrClass);
+	for (int i = 0; i < schoolYear.classes.size(); i++) {
+		for (int j = 0; j < schoolYear.classes[i].students.size(); j++) {
+			schoolYear.classes[i].students[j]->ptrClass = &schoolYear.classes[i];
+		}
+	}
 	outStr = "Successfully removed class " + className + " from school year " + schoolYear.getPeriod();
 	return true;
 }
@@ -139,6 +149,9 @@ bool removeStudentFromClass(Class& CLASS, const string& studentID, string& outSt
 	}
 	ptrStudent->ptrClass = nullptr;
 	CLASS.students.remove(ptrStudent);
+	for (int i = 0; i < CLASS.students.size(); i++)
+		for (int j = 0; j < CLASS.students[i]->scoreboards.size(); j++)
+			CLASS.students[i]->scoreboards[j]->ptrStudent = CLASS.students[i];
 	outStr = "Student with ID " + studentID + " is removed from  class " + CLASS.name;
 	return true;
 }
@@ -156,6 +169,10 @@ bool removeAcademicYear(const string& start, string& outStr) {
 	}
 	ptrAcademicYear->removeAllSemester();
 	academicYears.remove(ptrAcademicYear);
+	for (int i = 0; i < academicYears.size(); i++)
+		for (int j = 0; j < academicYears[i].semesters.size(); j++) {
+			academicYears[i].semesters[j].ptrAcademicYear = &academicYears[i];
+		}
 	outStr = "Successfully deleted the academic year with start year " + start;
 	return true;
 }
@@ -175,6 +192,10 @@ bool removeSemester(AcademicYear& academicYear, const string& semesterID, string
 		ptrSemester->removeAllCourse();
 	}
 	academicYear.removeSemester(*ptrSemester);
+	for (int i = 0; i < academicYear.semesters.size(); i++)
+		for (int j = 0; j < academicYear.semesters[i].courses.size(); j++) {
+			academicYear.semesters[i].courses[j].ptrSemester = &academicYear.semesters[i];
+		}
 	outStr = "Successfully removed semester " + semesterID + " from academic year " + academicYear.getPeriod();
 	return true;
 }
@@ -192,6 +213,10 @@ bool removeCourse(Semester& semester, const string& courseID, string& outStr) {
 	}
 	ptrCourse->removeAllStudent();
 	semester.removeCourse(*ptrCourse);
+	for (int i = 0; i < semester.courses.size(); i++)
+		for (int j = 0; j < semester.courses[i].scoreboards.size(); j++) {
+			semester.courses[i].scoreboards[j]->ptrCourse = &semester.courses[i];
+		}
 	outStr = "Successfully removed course " + courseID + " from semester " + semester.semesterID;
 	return true;
 }
@@ -212,6 +237,9 @@ bool removeStudFromCourse(Course& course, const string& studentID, string& outSt
 	ptrScoreboard->ptrStudent = nullptr;
 	course.scoreboards.remove(ptrScoreboard);
 	ptrScoreboard->ptrCourse = nullptr;
+	for (int i = 0; i < course.scoreboards.size(); i++) {
+		course.scoreboards[i]->ptrCourse = &course;
+	}
 	outStr = "Successfully remove student with ID " + studentID + " from course " + course.ID;
 	return true;
 }
