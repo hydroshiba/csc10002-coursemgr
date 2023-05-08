@@ -384,7 +384,7 @@ Vector<Vector<string>> getTableContentOfListStudentInCourse(const Course& course
 	Vector<Vector<string>> table;
 	size_t n = course.scoreboards.size();
 	table.resize(n + 10);
-	course.displayInfoTable(table);
+	//course.displayInfoTable(table);
 	for (int i = 0; i < 9; i++) {
 		table[i].resize(2);
 	}

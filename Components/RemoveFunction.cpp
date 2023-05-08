@@ -108,6 +108,12 @@ bool removeSchoolYear(const string& start, string& outStr) {
 	for (int i = 0; i < schoolYears.size(); i++) {
 		for (int j = 0; j < schoolYears[i].classes.size(); j++) {
 			schoolYears[i].classes[j].ptrSchoolYear = &schoolYears[i];
+			for (int k = 0; k < schoolYears[i].classes[j].students.size(); k++) {
+				schoolYears[i].classes[j].students[k]->ptrClass = &schoolYears[i].classes[j];
+				for (int l = 0; l < schoolYears[i].classes[j].students[k]->scoreboards.size(); i++) {
+					schoolYears[i].classes[j].students[k]->scoreboards[l]->ptrStudent = schoolYears[i].classes[j].students[k];
+				}
+			}
 		}
 	}
 	outStr = "Successfully deleted the school year with start year " + start;
@@ -130,6 +136,8 @@ bool removeClass(SchoolYear& schoolYear, const string& className, string& outStr
 	for (int i = 0; i < schoolYear.classes.size(); i++) {
 		for (int j = 0; j < schoolYear.classes[i].students.size(); j++) {
 			schoolYear.classes[i].students[j]->ptrClass = &schoolYear.classes[i];
+			for (int k = 0; k < schoolYear.classes[i].students[j]->scoreboards.size(); k++)
+				schoolYear.classes[i].students[j]->scoreboards[k]->ptrStudent = schoolYear.classes[i].students[j];
 		}
 	}
 	outStr = "Successfully removed class " + className + " from school year " + schoolYear.getPeriod();
@@ -149,9 +157,11 @@ bool removeStudentFromClass(Class& CLASS, const string& studentID, string& outSt
 	}
 	ptrStudent->ptrClass = nullptr;
 	CLASS.students.remove(ptrStudent);
-	for (int i = 0; i < CLASS.students.size(); i++)
+	for (int i = 0; i < CLASS.students.size(); i++) {
+		CLASS.students[i]->ptrClass = &CLASS;
 		for (int j = 0; j < CLASS.students[i]->scoreboards.size(); j++)
 			CLASS.students[i]->scoreboards[j]->ptrStudent = CLASS.students[i];
+	}
 	outStr = "Student with ID " + studentID + " is removed from  class " + CLASS.name;
 	return true;
 }
@@ -172,6 +182,12 @@ bool removeAcademicYear(const string& start, string& outStr) {
 	for (int i = 0; i < academicYears.size(); i++)
 		for (int j = 0; j < academicYears[i].semesters.size(); j++) {
 			academicYears[i].semesters[j].ptrAcademicYear = &academicYears[i];
+			for (int k = 0; k < academicYears[i].semesters[j].courses.size(); k++) {
+				academicYears[i].semesters[j].courses[k].ptrSemester = &academicYears[i].semesters[j];
+				for (int l = 0; l < academicYears[i].semesters[j].courses[k].scoreboards.size(); l++) {
+					academicYears[i].semesters[j].courses[k].scoreboards[l]->ptrCourse = &academicYears[i].semesters[j].courses[k];
+				}
+			}
 		}
 	outStr = "Successfully deleted the academic year with start year " + start;
 	return true;
@@ -192,10 +208,15 @@ bool removeSemester(AcademicYear& academicYear, const string& semesterID, string
 		ptrSemester->removeAllCourse();
 	}
 	academicYear.removeSemester(*ptrSemester);
-	for (int i = 0; i < academicYear.semesters.size(); i++)
+	for (int i = 0; i < academicYear.semesters.size(); i++) {
+		academicYear.semesters[i].ptrAcademicYear = &academicYear;
 		for (int j = 0; j < academicYear.semesters[i].courses.size(); j++) {
 			academicYear.semesters[i].courses[j].ptrSemester = &academicYear.semesters[i];
+			for (int k = 0; k < academicYear.semesters[i].courses[j].scoreboards.size(); k++) {
+				academicYear.semesters[i].courses[j].scoreboards[k]->ptrCourse = &academicYear.semesters[i].courses[j];
+			}
 		}
+	}
 	outStr = "Successfully removed semester " + semesterID + " from academic year " + academicYear.getPeriod();
 	return true;
 }
@@ -213,10 +234,12 @@ bool removeCourse(Semester& semester, const string& courseID, string& outStr) {
 	}
 	ptrCourse->removeAllStudent();
 	semester.removeCourse(*ptrCourse);
-	for (int i = 0; i < semester.courses.size(); i++)
+	for (int i = 0; i < semester.courses.size(); i++) {
+		semester.courses[i].ptrSemester = &semester;
 		for (int j = 0; j < semester.courses[i].scoreboards.size(); j++) {
 			semester.courses[i].scoreboards[j]->ptrCourse = &semester.courses[i];
 		}
+	}
 	outStr = "Successfully removed course " + courseID + " from semester " + semester.semesterID;
 	return true;
 }

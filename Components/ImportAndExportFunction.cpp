@@ -93,6 +93,9 @@ bool importStudentListOfCourseFromFile(const string& filename, Course& course, s
 		outStr = "Imported students to wrong course " + courseID + ", please try again!";
 		return false;
 	}
+	for (int i = 0; i < 6; i++) {
+		getline(inF, ignore);
+	}
 	string nStudents;
 	getline(inF, ignore, ',');
 	getline(inF, nStudents);
@@ -426,7 +429,7 @@ bool exportListScoreboardOfCourse(const string& filename, Course& course, string
 	}
 	Vector<Vector<string>> table = getTableContentOfListStudentInCourse(course);
 	for (int i = 0; i < table.size(); ++i){
-		for (int j = 0; j < table.size(); ++j){
+		for (int j = 0; j < table[i].size(); ++j) {
 			fout << table[i][j];
 			if (j != table[i].size()-1)
 				fout << ',';

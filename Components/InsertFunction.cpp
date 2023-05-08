@@ -109,6 +109,9 @@ bool addSchoolYear(const string& start, string& outStr) {
 			schoolYears[i].classes[j].ptrSchoolYear = &schoolYears[i];
 			for (int k = 0; k < schoolYears[i].classes[j].students.size(); k++) {
 				schoolYears[i].classes[j].students[k]->ptrClass = &schoolYears[i].classes[j];
+				for (int l = 0; l < schoolYears[i].classes[j].students[k]->scoreboards.size(); i++) {
+					schoolYears[i].classes[j].students[k]->scoreboards[l]->ptrStudent = schoolYears[i].classes[j].students[k];
+				}
 			}
 		}
 	}
@@ -157,9 +160,11 @@ bool addStudentToClass(Class& actClass, const string& studentID, string& outStr)
 		return false;
 	}
 	actClass.addStudent(ptrStudent);
-	for (int i = 0; i < actClass.students.size(); i++)
+	for (int i = 0; i < actClass.students.size(); i++) {
+		actClass.students[i]->ptrClass = &actClass;
 		for (int j = 0; j < actClass.students[i]->scoreboards.size(); j++)
 			actClass.students[i]->scoreboards[j]->ptrStudent = actClass.students[i];
+	}
 	outStr = "Complete add new student with ID " + studentID + " to class " + actClass.name;
 	return true;
 }
