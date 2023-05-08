@@ -214,8 +214,8 @@ Scene* StudentScene::process() {
 		inputBirth.defaultText = ptrStudent_Global->birth.get();
 		inputSocialID.defaultText = ptrStudent_Global->socialID;
 		if (ptrStudent_Global->ptrClass != nullptr)
-			classname = ptrStudent_Global->ptrClass->name;
-		else classname = "None";
+			classname = ptrStudent_Global->ptrClass->name + "," + to_string(ptrStudent_Global->scoreboards.size());
+		else classname = "None, " + to_string(ptrStudent_Global->scoreboards.size());
 	}
 	//-----------------------------------------------------------------------------------
 	if (change.clicked(mousePoint) && ptrStudent_Global != nullptr) {

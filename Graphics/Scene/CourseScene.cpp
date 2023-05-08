@@ -172,6 +172,12 @@ CourseScene :: CourseScene(){
 	result.setSize(30);
 	result.centerX();
 	result.setY(675);
+
+    test = "";
+    test.setColor(RED);
+    test.setSize(20);
+    test.centerX();
+    test.setY(645);
 }
 
 void CourseScene::render(){
@@ -220,6 +226,7 @@ void CourseScene::render(){
     back.render(mousePoint);
 
     result.render();
+    test.render();
 }
 
 Scene* CourseScene::process(){
@@ -245,6 +252,7 @@ Scene* CourseScene::process(){
         if (ptrCourse_Global->ptrSemester != nullptr) {
             title = ptrCourse_Global->ID + "(" + ptrCourse_Global->ptrSemester->semesterID + ")";
             title.centerX();
+            test = "Number of students: " + to_string(ptrCourse_Global->scoreboards.size());
         }
         courseBox.defaultText = ptrCourse_Global->ID;
         classBox.defaultText = ptrCourse_Global->classID;

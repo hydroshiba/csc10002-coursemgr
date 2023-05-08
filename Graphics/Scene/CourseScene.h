@@ -29,6 +29,7 @@ private:
     TextBox addText, removeText, fileText, impText, expText;
 
     TextBox result;
+    TextBox test;
 public:
     CourseScene();
     Scene *process();
