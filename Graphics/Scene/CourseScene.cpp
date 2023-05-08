@@ -240,8 +240,11 @@ Scene* CourseScene::process(){
     expBox.process(mousePoint);
     impBox.process(mousePoint);
 
-    if (ptrCourse_Global){
+    if (ptrCourse_Global != nullptr){
         title = ptrCourse_Global->ID;
+        if (ptrCourse_Global->ptrSemester != nullptr) {
+            title = ptrCourse_Global->ID + "(" + ptrCourse_Global->ptrSemester->semesterID + ")";
+        }
         courseBox.defaultText = ptrCourse_Global->ID;
         classBox.defaultText = ptrCourse_Global->classID;
         nameBox.defaultText = ptrCourse_Global->name;

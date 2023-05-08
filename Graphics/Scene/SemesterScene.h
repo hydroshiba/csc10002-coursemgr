@@ -18,6 +18,7 @@
 #include "DisplayFunction.h"
 #include "UpdateFunction.h"
 #include "Semester.h"
+#include "AcademicYear.h"
 class SemesterScene : public Scene {
 private:
     TextBox sceneTitle;

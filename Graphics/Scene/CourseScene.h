@@ -12,6 +12,7 @@
 
 #include "Components.h"
 #include "Course.h"
+#include "Semester.h"
 #include "ConvertType.h"
 #include "UpdateFunction.h"
 #include "InsertFunction.h"

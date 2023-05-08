@@ -9,7 +9,7 @@ const float textSize = 30;
 const float textBoxWidth = 250;
 
 ListAcademicYearScene::ListAcademicYearScene() {
-    sceneTitle = "List Of Academic Years";
+    sceneTitle = "List Of Academic Years (" + to_string(academicYears.size()) + ")";
     sceneTitle.setSize(50);
     sceneTitle.centerX();
     sceneTitle.setY(30);
