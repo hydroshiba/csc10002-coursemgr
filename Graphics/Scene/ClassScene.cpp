@@ -137,6 +137,9 @@ ClassScene::ClassScene() {
     ms.setColor(RED);
     ms.setY(680);
     ms.setSize(textSize);
+    textNumStudents = "Number of students: 0";
+    textNumStudents.setSize(textSize);
+    textNumStudents.setPos({ xPos1, yPos4 });
 }
 
 void ClassScene::render() {
@@ -171,6 +174,7 @@ void ClassScene::render() {
 
     back.render(mousePoint);
     ms.render();
+    textNumStudents.render();
 }
 
 Scene* ClassScene::process() {
@@ -187,6 +191,7 @@ Scene* ClassScene::process() {
     if (ptrClass_Global != nullptr) {
         sceneTitle = "Class " + ptrClass_Global->name;
         changeClassnameInput.defaultText = ptrClass_Global->name;
+        textNumStudents = "Number of students: " + to_string(ptrClass_Global->students.size());
         sceneTitle.centerX();
     }
 

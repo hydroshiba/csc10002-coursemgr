@@ -65,7 +65,7 @@ bool importStudentListOfClassFromFile(const string& filename, Class& actClass, s
 			actClass.removeAllStudent();
 			return false;
 		}
-		actClass.students[i] = ptrStudent;
+		actClass.addStudent(ptrStudent);
 	}
 	inF.close();
 	outStr = "Complete add list of student to class " + actClass.name + "!";

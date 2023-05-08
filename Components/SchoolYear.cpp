@@ -54,8 +54,8 @@ void SchoolYear::addClass(Class& CLASS) {
 }
 
 void SchoolYear::removeClass(Class& CLASS) {
-    classes.remove(CLASS);
     CLASS.ptrSchoolYear = nullptr;
+    classes.remove(CLASS);
 }
 
 void SchoolYear::removeAllClass() {

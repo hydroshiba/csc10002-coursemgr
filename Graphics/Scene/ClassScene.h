@@ -48,6 +48,8 @@ private:
     InputBox inputImport;
     Button importBut;
 
+    TextBox textNumStudents;
+
     TextBox ms;
 
     Button back;

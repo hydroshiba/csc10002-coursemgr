@@ -3,13 +3,11 @@
 Class::Class(SchoolYear* ptrSchoolYear, const std::string& name, const Vector<Student*>& students) {
     this->ptrSchoolYear = nullptr;
     this->name = name;
-    this->students = students;
 }
 
 void Class::set(SchoolYear* ptrSchoolYear, const std::string& name, const Vector<Student*>& students) {
     this->ptrSchoolYear = ptrSchoolYear;
     this->name = name;
-    this->students = students;
 }
 
 void Class::update(SchoolYear* ptrSchoolYear) {
@@ -22,45 +20,45 @@ void Class::update(const std::string& name) {
 
 void Class::addStudent(Student*& student){
     student->ptrClass = this;
-    students.append(student);
+    this->students.append(student);
 }
 
 void Class::removeStudent(Student*& student){
     for (int i = 0; i < this->students.size(); ++i)
-        if (*students[i] == *student)
-            students.remove(students[i]);
+        if (*(this->students[i]) == *student)
+            this->students.remove(this->students[i]);
     student->ptrClass = nullptr;
 }
 
 void Class::removeAllStudent() {
-    for (int i = 0; i < students.size(); i++) {
-        students[i]->ptrClass = nullptr;
+    for (int i = 0; i < this->students.size(); i++) {
+        this->students[i]->ptrClass = nullptr;
     }
-    students.resize(0);
+    this->students.resize(0);
 }
 
 Student* Class::getStudent(const std::string& studentID) {
-    for (int i = 0; i < students.size(); i++)
-        if (students[i]->ID == studentID)
-            return students[i];
+    for (int i = 0; i < this->students.size(); i++)
+        if (this->students[i]->ID == studentID)
+            return this->students[i];
     return nullptr;
 }
 
 Vector<string> Class::getListCourse(const Semester& semester) const {
     Vector<std::string> listCourse(0);
-    for (int i = 0; i < students.size(); i++)
-        for (int j = 0; j < students[i]->scoreboards.size(); j++)
-            if (listCourse.find(students[i]->scoreboards[j]->ptrCourse->ID) == nullptr && students[i]->scoreboards[j]->ptrCourse->ptrSemester == &semester)
-                listCourse.append(students[i]->scoreboards[j]->ptrCourse->ID);
+    for (int i = 0; i < this->students.size(); i++)
+        for (int j = 0; j < this->students[i]->scoreboards.size(); j++)
+            if (listCourse.find(this->students[i]->scoreboards[j]->ptrCourse->ID) == nullptr && this->students[i]->scoreboards[j]->ptrCourse->ptrSemester == &semester)
+                listCourse.append(this->students[i]->scoreboards[j]->ptrCourse->ID);
     return listCourse;
 }
 
 Vector<std::string> Class::getListCourse() const{
     Vector<std::string> listCourse(0);
-    for (int i = 0; i < students.size(); i++)
-        for (int j = 0; j < students[i]->scoreboards.size(); j++)
-            if (listCourse.find(students[i]->scoreboards[j]->ptrCourse->ID) == nullptr)
-                listCourse.append(students[i]->scoreboards[j]->ptrCourse->ID);
+    for (int i = 0; i < this->students.size(); i++)
+        for (int j = 0; j < this->students[i]->scoreboards.size(); j++)
+            if (listCourse.find(this->students[i]->scoreboards[j]->ptrCourse->ID) == nullptr)
+                listCourse.append(this->students[i]->scoreboards[j]->ptrCourse->ID);
     return listCourse;
 }
 
