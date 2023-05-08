@@ -9,7 +9,6 @@ Application::Application() {
     registry.staffScene = new StaffScene();
     registry.staffScene2 = new StaffScene2();
     registry.studentScoreboardsScene = new StudentScoreBoardsScene();
-    registry.blank = new Blank();
     registry.courseScene2 = new CourseScene2();
     registry.schoolYearScene = new SchoolYearScene();
     registry.listSchoolYearScene = new ListSchoolYearScene();

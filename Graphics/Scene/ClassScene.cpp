@@ -219,7 +219,7 @@ Scene* ClassScene::process() {
         exportListStudentInClass(filename, *ptrClass_Global, outStr);
         ms = outStr;
         ms.centerX();
-        pathExportStudentList.getContent();
+        pathExportStudentList.clearContent();
         return this;
     }
     else if (viewScoreboardButton.clicked(mousePoint)) {
@@ -248,6 +248,7 @@ Scene* ClassScene::process() {
         importStudentListOfClassFromFile(filename, *ptrClass_Global, outStr);
         ms = outStr;
         ms.centerX();
+        inputImport.clearContent();
         return this;
     }
     else if (back.clicked(mousePoint)) {

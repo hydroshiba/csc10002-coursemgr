@@ -10,7 +10,6 @@
 #include "Objects/Dropbox.h"
 #include "Objects/InputBox.h"
 
-#include "Scene/Blank.h"
 #include "Components.h"
 #include "SchoolYear.h"
 #include "Class.h"

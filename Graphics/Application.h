@@ -7,7 +7,6 @@
 #include "Scene/Scene.h"
 #include "Scene/Registry.h"
 
-#include "Scene/Blank.h"
 #include "Scene/Login.h"
 #include "Scene/StudentScene.h"
 #include "Scene/StaffScene.h"
