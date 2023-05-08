@@ -104,6 +104,11 @@ bool addSchoolYear(const string& start, string& outStr) {
 	SchoolYear newYear;
 	newYear.start = startYear;
 	schoolYears.append(newYear);
+	for (int i = 0; i < schoolYears.size(); i++) {
+		for (int j = 0; j < schoolYears[i].classes.size(); j++) {
+			schoolYears[i].classes[j].ptrSchoolYear = &schoolYears[i];
+		}
+	}
 	outStr = "Complete add new SchoolYear with start year " + start + " to the list of SchoolYear!";
 	return true;
 }
@@ -123,6 +128,11 @@ bool addClass(SchoolYear& schoolYear, const string& className, string& outStr) {
 	newClass.name = className;
 	schoolYear.addClass(newClass);
 	outStr = "Complete add class " + className + " to SchoolYear " + std::to_string(schoolYear.start) + "!";
+	for (int i = 0; i < schoolYear.classes.size(); i++) {
+		for (int j = 0; j < schoolYear.classes[i].students.size(); j++) {
+			schoolYear.classes[i].students[j]->ptrClass = &schoolYear.classes[i];
+		}
+	}
 	return true;
 }
 
@@ -142,6 +152,9 @@ bool addStudentToClass(Class& actClass, const string& studentID, string& outStr)
 		return false;
 	}
 	actClass.addStudent(ptrStudent);
+	for (int i = 0; i < actClass.students.size(); i++)
+		for (int j = 0; j < actClass.students[i]->scoreboards.size(); j++)
+			actClass.students[i]->scoreboards[j]->ptrStudent = actClass.students[i];
 	outStr = "Complete add new student with ID " + studentID + " to class " + actClass.name;
 	return true;
 }
@@ -161,6 +174,10 @@ bool addAcademicYear(const string& start, string& outStr) {
 	AcademicYear newYear;
 	newYear.start = startYear;
 	academicYears.append(newYear);
+	for (int i = 0; i < academicYears.size(); i++)
+		for (int j = 0; j < academicYears[i].semesters.size(); j++) {
+			academicYears[i].semesters[j].ptrAcademicYear = &academicYears[i];
+		}
 	outStr = "Complete add new AcademicYear with start year " + start + " to the list of AcademicYear!";
 	return true;
 }
@@ -178,6 +195,10 @@ bool addSemester(AcademicYear& academicYear, const string& semesterID, string& o
 	Semester semester;
 	semester.semesterID = semesterID;
 	academicYear.addSemester(semester);
+	for (int i = 0; i < academicYear.semesters.size(); i++)
+		for (int j = 0; j < academicYear.semesters[i].courses.size(); j++) {
+			academicYear.semesters[i].courses[j].ptrSemester = &academicYear.semesters[i];
+		}
 	outStr = "Complete add new Semester " + semesterID + " to AcademicYear " + academicYear.getPeriod();
 	return true;
 }
@@ -196,6 +217,10 @@ bool addCourse(Semester& semester, const string& courseID, string& outStr) {
 	newCourse.ID = courseID;
 	newCourse.ptrSemester = &semester;
 	semester.addCourse(newCourse);
+	for (int i = 0; i < semester.courses.size(); i++)
+		for (int j = 0; j < semester.courses[i].scoreboards.size(); j++) {
+			semester.courses[i].scoreboards[j]->ptrCourse = &semester.courses[i];
+		}
 	outStr = "Complete add new course " + courseID + " to list of course in Semester " + semester.semesterID;
 	return true;
 }
@@ -216,6 +241,9 @@ bool addStudentToCourse(Course& course, const string& studentID, string& outStr)
 		return false;
 	}
 	course.addStudent(*ptrStudent);
+	for (int i = 0; i < course.scoreboards.size(); i++) {
+		course.scoreboards[i]->ptrCourse = &course;
+	}
 	outStr = "Complete add student with ID " + studentID + " to Course " + course.ID;
 	return true;
 }
