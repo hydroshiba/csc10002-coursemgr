@@ -190,8 +190,10 @@ Scene* ClassScene::process() {
 
     if (ptrClass_Global != nullptr) {
         sceneTitle = "Class " + ptrClass_Global->name;
+        sceneTitle.centerX();
         if (ptrClass_Global->ptrSchoolYear != nullptr) {
             sceneTitle = "Class " + ptrClass_Global->name + "(" + ptrClass_Global->ptrSchoolYear->getPeriod() + ")";
+            sceneTitle.centerX();
         }
         changeClassnameInput.defaultText = ptrClass_Global->name;
         textNumStudents = "Number of students: " + to_string(ptrClass_Global->students.size());

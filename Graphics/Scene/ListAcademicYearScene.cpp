@@ -86,6 +86,7 @@ void ListAcademicYearScene::render() {
 Scene* ListAcademicYearScene::process() {
     mousePoint = GetMousePosition();
     sceneTitle = "List Of Academic Years (" + to_string(academicYears.size()) + ")";
+    sceneTitle.centerX();
     chooseSchoolYear.process(mousePoint);
     inputSchoolYearAdded.process(mousePoint);
     inputSchoolYearRemoved.process(mousePoint);

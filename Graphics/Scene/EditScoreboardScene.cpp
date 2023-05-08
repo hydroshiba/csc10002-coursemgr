@@ -106,7 +106,11 @@ Scene* EditScoreboardScene::process(){
     finalBox.process(mousePoint);
     otherBox.process(mousePoint);
     totalBox.process(mousePoint);
-
+    
+    if (ptrCourse_Global != nullptr) {
+        title = "Edit scoreboard of " + ptrCourse_Global->ID;
+        title.centerX();
+    }
     if (change.clicked(mousePoint)){
         if (ptrCourse_Global == nullptr){
             result = "Access nullptr error!";

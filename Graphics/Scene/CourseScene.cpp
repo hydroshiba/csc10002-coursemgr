@@ -244,6 +244,7 @@ Scene* CourseScene::process(){
         title = ptrCourse_Global->ID;
         if (ptrCourse_Global->ptrSemester != nullptr) {
             title = ptrCourse_Global->ID + "(" + ptrCourse_Global->ptrSemester->semesterID + ")";
+            title.centerX();
         }
         courseBox.defaultText = ptrCourse_Global->ID;
         classBox.defaultText = ptrCourse_Global->classID;

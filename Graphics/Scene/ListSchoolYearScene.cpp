@@ -10,6 +10,7 @@ const float textBoxWidth = 200;
 
 ListSchoolYearScene::ListSchoolYearScene() {
     sceneTitle = "List Of School Years(" + to_string(schoolYears.size()) + ")";
+
     sceneTitle.setSize(50);
     sceneTitle.centerX();
     sceneTitle.setY(30);
@@ -85,6 +86,7 @@ void ListSchoolYearScene::render() {
 
 Scene* ListSchoolYearScene::process() {
     sceneTitle = "List Of School Years(" + to_string(schoolYears.size()) + ")";
+    sceneTitle.centerX();
     mousePoint = GetMousePosition();
     chooseSchoolYear.process(mousePoint);
     inputSchoolYearAdded.process(mousePoint);

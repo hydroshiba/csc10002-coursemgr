@@ -148,6 +148,7 @@ Scene* SchoolYearScene::process() {
     //--------------------------------------
     if (ptrSchoolYear_Global != nullptr) {
         sceneTitle = "School Year " + ptrSchoolYear_Global->getPeriod();
+        sceneTitle.centerX();
         if (!isAdded) {
             Vector<string> ls = getListClass(*ptrSchoolYear_Global);
             listClass.add(ls);

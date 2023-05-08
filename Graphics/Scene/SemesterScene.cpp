@@ -199,6 +199,7 @@ Scene* SemesterScene::process() {
         sceneTitle = "Semester " + ptrSemester_Global->semesterID;
         if (ptrSemester_Global->ptrAcademicYear != nullptr) {
             sceneTitle = "Semester " + ptrSemester_Global->semesterID + "(" + ptrSemester_Global->ptrAcademicYear->getPeriod() + ")";
+            sceneTitle.centerX();
         }
         inputSemesterID.defaultText = ptrSemester_Global->semesterID;
         inputStartDate.defaultText = ptrSemester_Global->startDate.get();
