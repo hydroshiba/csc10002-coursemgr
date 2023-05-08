@@ -263,7 +263,7 @@ Scene* SemesterScene::process() {
         inputExport.clearContent();
         listCourse.clear();
         isAddCourse = false;
-        return registry.courseScene2;
+        return registry.courseScene;
     }
     else if (back.clicked(mousePoint)) {
         ptrSemester_Global = nullptr;

@@ -7,7 +7,7 @@ class Registry {
 public:
 	Scene* blank;
 	Scene* login;
-	Scene* courseScene2;
+	Scene* courseScene;
 	Scene* listSchoolYearScene;
 	Scene* schoolYearScene;
 	Scene* studentScene;
@@ -26,7 +26,7 @@ public:
 	staffScene(nullptr),
 	staffScene2(nullptr),
 	studentScoreboardsScene(nullptr),
-	courseScene2(nullptr), 
+	courseScene(nullptr), 
 	schoolYearScene(nullptr),
 	listSchoolYearScene(nullptr),
 	listAcademicYearScene(nullptr),

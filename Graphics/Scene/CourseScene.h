@@ -18,7 +18,7 @@
 #include "RemoveFunction.h"
 #include "ImportAndExportFunction.h"
 
-class CourseScene2 : public Scene{
+class CourseScene : public Scene{
 private: 
     TextBox title, courseID, classID, name, teacher, credit, maxEnroll, weekday, session;
     InputBox courseBox, classBox, nameBox, teacherBox, creditBox, enrollBox, dayBox, sessionBox;
@@ -29,7 +29,7 @@ private:
 
     TextBox result;
 public:
-    CourseScene2();
+    CourseScene();
     Scene *process();
     void render();
 };

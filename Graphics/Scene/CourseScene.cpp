@@ -1,6 +1,6 @@
-#include "CourseScene2.h"
+#include "CourseScene.h"
 
-CourseScene2 :: CourseScene2(){
+CourseScene :: CourseScene(){
     title = defaultStr;
     title.setSize(75);
     title.centerX();
@@ -174,7 +174,7 @@ CourseScene2 :: CourseScene2(){
 	result.setY(675);
 }
 
-void CourseScene2::render(){
+void CourseScene::render(){
     title.render();
     courseID.render();
     classID.render();
@@ -222,7 +222,7 @@ void CourseScene2::render(){
     result.render();
 }
 
-Scene* CourseScene2::process(){
+Scene* CourseScene::process(){
     std::string notif;
     mousePoint = GetMousePosition();
 

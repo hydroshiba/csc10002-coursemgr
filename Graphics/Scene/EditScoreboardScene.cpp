@@ -175,7 +175,7 @@ Scene* EditScoreboardScene::process(){
         otherBox.clearContent();
         totalBox.clearContent();     
         result.clear();
-        return registry.courseScene2;
+        return registry.courseScene;
     }
 
     return this;
