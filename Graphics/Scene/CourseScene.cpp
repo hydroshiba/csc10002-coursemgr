@@ -139,7 +139,7 @@ CourseScene :: CourseScene(){
 // Update Scoreboard Scene
     viewScore.label = "Update Scoreboards";
     viewScore.setSize({250, 100});
-    viewScore.setPos({750, 600});
+    viewScore.setPos({750, 575});
     viewScore.setViewColor();
 // --------------------------------------------------------
 
@@ -178,7 +178,7 @@ CourseScene :: CourseScene(){
 
     back.label = "Back";
     back.setSize({150,100});
-    back.setPos({1050, 600});
+    back.setPos({1050, 575});
     back.setRemoveColor();
 
     result = "";
@@ -191,7 +191,7 @@ CourseScene :: CourseScene(){
     test.setColor(RED);
     test.setSize(20);
     test.centerX();
-    test.setY(645);
+    test.setY(550);
 }
 
 void CourseScene::render(){
