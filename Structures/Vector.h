@@ -22,7 +22,7 @@ private:
     }
 
 public:
-    Vector() : length{ 0 }, capacity{ 1 }, array{ new Type[1]() } {}
+    Vector() : length{ 0 }, capacity{ 4 }, array{ new Type[4]() } {}
 
     Vector(size_t size) {
         length = size;
@@ -76,7 +76,7 @@ public:
     }
 
     void append(const Type& value) {
-        if (length == capacity) reallocate(length + 1);
+       if (length == capacity) reallocate(length + 1);
         array[length] = value;
         ++length;
     }
