@@ -22,7 +22,11 @@ bool importStudentListOfClassFromFile(const string& filename, Class& actClass, s
 		outStr = "Empty InputBox error, please input something!";
 		return false;
 	}
-	string inputStudClassFilePath = getImportFolderPath() + filename;
+	if (actClass.students.size() != 0) {
+		outStr = "This class has already imported list of student!";
+		return false;
+	}
+	string inputStudClassFilePath = getImportFolderPath() + filename + ".csv";
 	std::ifstream inF(inputStudClassFilePath);
 	if (!inF.is_open()) {
 		outStr = "Cannot open file path " + inputStudClassFilePath;
@@ -73,7 +77,11 @@ bool importStudentListOfCourseFromFile(const string& filename, Course& course, s
 		outStr = "Empty InputBox error, please input something!";
 		return false;
 	}
-	string inputStudCourseFilePath = getImportFolderPath() + filename;
+	if (course.scoreboards.size() != 0) {
+		outStr = "This course has already imported list of student!";
+		return false;
+	}
+	string inputStudCourseFilePath = getImportFolderPath() + filename + ".csv";
 	std::ifstream inF(inputStudCourseFilePath);
 	if (!inF.is_open()) {
 		outStr = "Cannot open file path " + inputStudCourseFilePath;
@@ -123,7 +131,7 @@ bool importScoreBoardOfCourse(const string& filename, Course& course, string& ou
 		outStr = "Empty InputBox error, please input something!";
 		return false;
 	}
-	string inputScoreCourseFilePath = getImportFolderPath() + filename;
+	string inputScoreCourseFilePath = getImportFolderPath() + filename + ".csv";
 	std::ifstream ifs(inputScoreCourseFilePath);
 	if (!ifs.is_open())
 	{
@@ -139,6 +147,10 @@ bool importScoreBoardOfCourse(const string& filename, Course& course, string& ou
 bool exportListSchoolYear(const string& filename, string& outStr){
 	if (filename.empty()) {
 		outStr = "Empty InputBox error, please input something!";
+		return false;
+	}
+	if (schoolYears.size() == 0) {
+		outStr = "List of SchoolYears is empty now!";
 		return false;
 	}
 	string getListSchoolYearFile = getExportFolderPath() + filename + ".csv";
@@ -167,6 +179,10 @@ bool exportListClassInSchoolYear(const string& filename, SchoolYear& schoolYear,
 		outStr = "Empty InputBox error, please input something!";
 		return false;
 	}
+	if (schoolYear.classes.size() == 0) {
+		outStr = "List of classes in schoolYear " + schoolYear.getPeriod() + " is empty now!";
+		return false;
+	}
 	string getListClassFile = getExportFolderPath() + filename + ".csv";
 	std::ofstream fout (getListClassFile, std::ios::out);
 	if (!fout.is_open()){
@@ -191,6 +207,10 @@ bool exportListClassInSchoolYear(const string& filename, SchoolYear& schoolYear,
 bool exportListStudentInClass(const string& filename, Class& CLASS, string& outStr){
 	if (filename.empty()) {
 		outStr = "Empty InputBox error, please input something!";
+		return false;
+	}
+	if (CLASS.students.size() == 0) {
+		outStr = "List students in class " + CLASS.name + " is empty now!";
 		return false;
 	}
 	string getListStudClassFile = getExportFolderPath() + filename + ".csv";
@@ -273,6 +293,10 @@ bool exportListAcademicYear(const string& filename, string& outStr){
 		outStr = "Empty InputBox error, please input something!";
 		return false;
 	}
+	if (academicYears.size() == 0) {
+		outStr = "List of AcademicYear is empty now!";
+		return false;
+	}
 	string getListAcademicYearFile = getExportFolderPath() + filename + ".csv";
 	
 	std::ofstream fout (getListAcademicYearFile, std::ios::out);
@@ -298,6 +322,10 @@ bool exportListAcademicYear(const string& filename, string& outStr){
 bool exportListSemesterInAcademicYear(const string& filename, AcademicYear& academicYear, string& outStr){
 	if (filename.empty()) {
 		outStr = "Empty InputBox error, please input something!";
+		return false;
+	}
+	if (academicYear.semesters.size() == 0) {
+		outStr = "List semester in AcademicYear " + academicYear.getPeriod() + " is empty now!";
 		return false;
 	}
 	string getListSemesterFile = getExportFolderPath() + filename + ".csv";
@@ -327,6 +355,10 @@ bool exportListCourseInSemester(const string& filename, Semester& semester, stri
 		outStr = "Empty InputBox error, please input something!";
 		return false;
 	}
+	if (semester.courses.size() == 0) {
+		outStr = "List course in semester " + semester.semesterID + " is emtpy now!";
+		return false;
+	}
 	string getListCourseFile = getExportFolderPath() + filename + ".csv";
 	
 	std::ofstream fout (getListCourseFile, std::ios::out);
@@ -354,6 +386,10 @@ bool exportListOfStudentInCourse(const string& filename, Course& course, string 
 		outStr = "Empty InputBox error, please input something!";
 		return false;
 	}
+	if (course.scoreboards.size() == 0) {
+		outStr = "This course don't have any students";
+		return false;
+	}
 	string inputStudCouseFilePath = getExportFolderPath() + filename + ".csv";
 	
 	std::ofstream ofs(inputStudCouseFilePath, std::ios::out);
@@ -376,6 +412,10 @@ bool exportListOfStudentInCourse(const string& filename, Course& course, string 
 bool exportListScoreboardOfCourse(const string& filename, Course& course, string& outStr){
 	if (filename.empty()) {
 		outStr = "Empty InputBox error, please input something!";
+		return false;
+	}
+	if (course.scoreboards.size() == 0) {
+		outStr = "This course don't have any students";
 		return false;
 	}
 	string getCourseScoreboardFile = getExportFolderPath() + filename + ".csv";
@@ -409,6 +449,10 @@ bool exportListScoreboardOfStudent(const string& filename, Student& student, str
 		outStr = "Empty InputBox error, please input something!";
 		return false;
 	}
+	if (student.scoreboards.size() == 0) {
+		outStr = "Student don't have any courses in courses list";
+		return false;
+	}
 	string getStudentScoreboardListFile = getExportFolderPath() + filename + ".csv";
 	std::ofstream fout(getStudentScoreboardListFile, std::ios::out);
 	if (!fout.is_open()){
@@ -438,6 +482,10 @@ bool exportListScoreboardInSemesterOfStudent(const string& filename, Student& st
 	}
 	if (filename.empty()) {
 		outStr = "Empty InputBox error, please input something!";
+		return false;
+	}
+	if (student.scoreboards.size() == 0) {
+		outStr = "Student don't have any courses in courses list";
 		return false;
 	}
 	string getStudentScoreboardListFile = getExportFolderPath() + filename + ".csv";
