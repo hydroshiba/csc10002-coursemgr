@@ -139,7 +139,7 @@ CourseScene :: CourseScene(){
 // Update Scoreboard Scene
     viewScore.label = "Update Scoreboards";
     viewScore.setSize({250, 100});
-    viewScore.setPos({950, 475});
+    viewScore.setPos({750, 600});
     viewScore.setViewColor();
 // --------------------------------------------------------
 
@@ -157,6 +157,20 @@ CourseScene :: CourseScene(){
     fileButton.setPos({1150,400});
     fileButton.setViewColor();
 // ------------------------------------------------------
+// Import scoreboard
+    impScoreText = "Import students";
+    impScoreText.setSize(40);
+    impScoreText.setPos({650,475});
+
+    impScoreBox.setSize({250,50});
+    impScoreBox.setPos({900, 475});
+    impScoreBox.defaultText = "Input file name...";
+
+    impScoreButton.label = "Import";
+    impScoreButton.setSize({100,50});
+    impScoreButton.setPos({1150,475});
+    impScoreButton.setViewColor();
+// -------------------------------------------------------
     change.label = "Change";
     change.setSize({150, 50});
     change.setPos({550,625});
@@ -222,6 +236,10 @@ void CourseScene::render(){
     impBox.render(mousePoint);
     fileButton.render(mousePoint);
 
+    impScoreText.render();
+    impScoreBox.render(mousePoint);
+    impScoreButton.render(mousePoint);
+
     change.render(mousePoint);
     back.render(mousePoint);
 
@@ -246,6 +264,7 @@ Scene* CourseScene::process(){
     fileBox.process(mousePoint);
     expBox.process(mousePoint);
     impBox.process(mousePoint);
+    impScoreBox.process(mousePoint);
 
     if (ptrCourse_Global != nullptr){
         title = ptrCourse_Global->ID;
@@ -274,7 +293,8 @@ Scene* CourseScene::process(){
         removeBox.content.text.clear();
         fileBox.content.text.clear();    
         impBox.clearContent();
-        expBox.clearContent();       
+        expBox.clearContent();  
+        impScoreBox.clearContent();     
         if(updateCourse(*ptrCourse_Global,courseBox.content.text, classBox.content.text, nameBox.content.text, teacherBox.content.text, creditBox.content.text, enrollBox.content.text, dayBox.content.text, sessionBox.content.text, notif)){
             courseBox.content.text.clear();
             classBox.content.text.clear();
@@ -306,7 +326,8 @@ Scene* CourseScene::process(){
         sessionBox.content.text.clear();
         fileBox.content.text.clear(); 
         impBox.clearContent();
-        expBox.clearContent();          
+        expBox.clearContent();  
+        impScoreBox.clearContent();
         if (addBox.content.text.empty() && removeBox.content.text.empty()){
             result = "Invalid student ID, please retry!";
             result.centerX();
@@ -339,7 +360,33 @@ Scene* CourseScene::process(){
         removeBox.content.text.clear();
         fileBox.content.text.clear(); 
         expBox.clearContent();  
+        impScoreBox.clearContent();
         if (importStudentListOfCourseFromFile(impBox.content.text, *ptrCourse_Global, notif)) impBox.clearContent();
+        result = notif;
+        result.centerX();
+        return this;
+    }
+
+    if (impScoreButton.clicked(mousePoint)){
+        if (ptrCourse_Global == nullptr){
+            result = "Access nullptr error!";
+            result.centerX();
+            return this;            
+        }
+        courseBox.content.text.clear();
+        classBox.content.text.clear();
+        nameBox.content.text.clear();
+        teacherBox.content.text.clear();
+        creditBox.content.text.clear();
+        enrollBox.content.text.clear();
+        dayBox.content.text.clear();
+        sessionBox.content.text.clear();
+        addBox.content.text.clear();
+        removeBox.content.text.clear();
+        fileBox.content.text.clear(); 
+        expBox.clearContent();  
+        impBox.clearContent();
+        if (importScoreBoardOfCourse(impBox.content.text, *ptrCourse_Global, notif)) impScoreBox.clearContent();
         result = notif;
         result.centerX();
         return this;
@@ -364,6 +411,7 @@ Scene* CourseScene::process(){
         fileBox.content.text.clear(); 
         impBox.clearContent();
         expBox.clearContent();  
+        impScoreBox.clearContent();
         result.clear();
         result.centerX();
         return registry.editScoreboardCourse;
@@ -387,6 +435,7 @@ Scene* CourseScene::process(){
         removeBox.content.text.clear();
         impBox.clearContent();
         expBox.clearContent();  
+        impScoreBox.clearContent();
         if (exportListOfStudentInCourse(fileBox.content.text, *ptrCourse_Global, notif)){
             fileBox.content.text.clear();
         }    
@@ -412,6 +461,7 @@ Scene* CourseScene::process(){
         addBox.content.text.clear();
         removeBox.content.text.clear();
         impBox.clearContent();
+        impScoreBox.clearContent();
         if (exportListScoreboardOfCourse(expBox.getContent(), *ptrCourse_Global, notif)) expBox.clearContent();
         result = notif;
         result.centerX();
@@ -429,7 +479,10 @@ Scene* CourseScene::process(){
         sessionBox.content.text.clear();
         addBox.content.text.clear();
         removeBox.content.text.clear();
+        impBox.clearContent();
+        expBox.clearContent();
         fileBox.content.text.clear();
+        impScoreBox.clearContent();
         ptrCourse_Global = nullptr;
         result.clear();
         ptrCourse_Global = nullptr;
