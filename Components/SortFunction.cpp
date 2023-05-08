@@ -66,8 +66,8 @@ void sortSchoolYearList (Vector<SchoolYear>& schoolYears, const int& left, const
 		++i;
 		--j;
 	}
-	sortSchoolYearList (schoolYears, left, i);
-	sortSchoolYearList (schoolYears, i+1, right);
+	sortSchoolYearList (schoolYears, left, j);
+	sortSchoolYearList (schoolYears, i, right);
 }
 
 void sortAcademicYearList(Vector<AcademicYear>& academicYears, const int& left, const int& right){
@@ -81,8 +81,8 @@ void sortAcademicYearList(Vector<AcademicYear>& academicYears, const int& left, 
 		++i;
 		--j;
 	}
-	sortAcademicYearList (academicYears, left, i);
-	sortAcademicYearList (academicYears, i+1, right);
+	sortAcademicYearList (academicYears, left, j);
+	sortAcademicYearList (academicYears, i, right);
 }
 
 void sortSemesters(Vector<Semester>& semesters, const int& left, const int& right){
@@ -96,8 +96,8 @@ void sortSemesters(Vector<Semester>& semesters, const int& left, const int& righ
 		++i;
 		--j;
 	}
-	sortSemesters(semesters, left, i);
-	sortSemesters(semesters, i+1, right);
+	sortSemesters(semesters, left, j);
+	sortSemesters(semesters, i, right);
 }
 
 void sortClasses(Vector<Class>& classes, const int& left, const int& right){
@@ -111,8 +111,8 @@ void sortClasses(Vector<Class>& classes, const int& left, const int& right){
 		++i;
 		--j;
 	}
-	sortClasses(classes, left, i);
-	sortClasses(classes, i+1, right);	
+	sortClasses(classes, left, j);
+	sortClasses(classes, i, right);	
 }
 
 void sortCourses(Vector<Course>& courses, const int& left, const int& right){
@@ -126,8 +126,8 @@ void sortCourses(Vector<Course>& courses, const int& left, const int& right){
 		++i;
 		--j;
 	}
-	sortCourses(courses, left, i);
-	sortCourses(courses, i+1, right);	
+	sortCourses(courses, left, j);
+	sortCourses(courses, i, right);	
 }
 
 void sortStudentsInClass(Class& CLASS, const int& left, const int& right){
@@ -141,8 +141,8 @@ void sortStudentsInClass(Class& CLASS, const int& left, const int& right){
 		++i;
 		--j;
 	}
-	sortStudentsInClass(CLASS, left, i);
-	sortStudentsInClass(CLASS, i+1, right);
+	sortStudentsInClass(CLASS, left, j);
+	sortStudentsInClass(CLASS, i, right);
 }
 
 void sortStudentsInCourse(Course& course, const int& left, const int& right){
@@ -156,6 +156,6 @@ void sortStudentsInCourse(Course& course, const int& left, const int& right){
 		++i;
 		--j;
 	}
-	sortStudentsInCourse(course, left, i);
-	sortStudentsInCourse(course, i+1, right);
+	sortStudentsInCourse(course, left, j);
+	sortStudentsInCourse(course, i, right);
 }
