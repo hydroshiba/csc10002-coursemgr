@@ -76,7 +76,10 @@ bool downloadListSchoolYear() {
 	ofs << "No,SchoolYear\n";
 	for (int i = 0; i < schoolYears.size(); ++i) {
 		ofs << std::to_string(i + 1) << "," << std::to_string(schoolYears[i].start) << '\n';
-		downloadSchoolYear(schoolYears[i]);
+		if (downloadSchoolYear(schoolYears[i]) == false) {
+			ofs.close();
+			return false;
+		}
 	}
 	ofs.close();
 	return true;
@@ -94,7 +97,10 @@ bool downloadSchoolYear(SchoolYear& schoolYear) {
 	ofs << "No,Class\n";
 	for (int i = 0; i < schoolYear.classes.size(); ++i) {
 		ofs << std::to_string(i + 1) << "," << schoolYear.classes[i].name << "\n";
-		downloadClass(schoolYear.classes[i]);
+		if (!downloadClass(schoolYear.classes[i])) {
+			ofs.close();
+			return false;
+		}
 	}
 	ofs.close();
 	return true;
@@ -128,7 +134,10 @@ bool downloadListAcademicYear() {
 	ofs << "No,AcademicYear\n";
 	for (int i = 0; i < academicYears.size(); i++){
 		ofs << std::to_string(i + 1) << "," << academicYears[i].start << std::endl;
-		downloadAcademicYear(academicYears[i]);
+		if (!downloadAcademicYear(academicYears[i])) {
+			ofs.close();
+			return false;
+		}
 	}
 	ofs.close();
 	return true;
@@ -146,7 +155,10 @@ bool downloadAcademicYear(AcademicYear& academicYear) {
 	ofs << "No,SemesterID\n";
 	for (int i = 0; i < academicYear.semesters.size(); i++){
 		ofs << std::to_string(i + 1) << "," << academicYear.semesters[i].semesterID << std::endl;
-		downloadSemester(academicYear.semesters[i]);
+		if (!downloadSemester(academicYear.semesters[i])) {
+			ofs.close();
+			return false;
+		}
 	}
 	ofs.close();
 	return true;
@@ -166,7 +178,10 @@ bool downloadSemester(Semester& semester) {
 	ofs << "No,CourseID\n";
 	for (int i = 0; i < semester.courses.size(); i++){
 		ofs << std::to_string(i + 1) << "," << semester.courses[i].ID << std::endl;
-		downloadCourse(semester.courses[i]);
+		if (!downloadCourse(semester.courses[i])) {
+			ofs.close();
+			return false;
+		}
 	}
 	ofs.close();
 	return true;
