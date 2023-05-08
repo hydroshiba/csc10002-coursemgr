@@ -404,7 +404,7 @@ bool exportListOfStudentInCourse(const string& filename, Course& course, string 
 	for (int i = 0; i < course.scoreboards.size(); i++)
 	{
 		Student* student = course.scoreboards[i]->ptrStudent;
-		ofs << i + 1 << "," << student->ID << "," << student->name.get() << std::endl;
+		ofs << to_string(i + 1) << "," << student->ID << "," << student->name.get() << std::endl;
 	}
 	ofs.close();
 	outStr = "Completely exported students list from course to " + inputStudCouseFilePath;
@@ -463,7 +463,7 @@ bool exportListScoreboardOfStudent(const string& filename, Student& student, str
 	}
 	Vector<Vector<string>> table = getTableContentOfScoreboardOfStudent(student);
 	for (int i = 0; i < table.size(); ++i){
-		for (int j = 0; j < table.size(); ++j){
+		for (int j = 0; j < table[i].size(); ++j) {
 			fout << table[i][j];
 			if (j != table[i].size()-1)
 				fout << ',';
@@ -499,7 +499,7 @@ bool exportListScoreboardInSemesterOfStudent(const string& filename, Student& st
 	}
 	Vector<Vector<string>> table = getTableContentOfScoreboardInSemesterOfStudent(student, semester);
 	for (int i = 0; i < table.size(); ++i) {
-		for (int j = 0; j < table.size(); ++j) {
+		for (int j = 0; j < table[i].size(); ++j) {
 			fout << table[i][j];
 			if (j != table[i].size() - 1)
 				fout << ',';

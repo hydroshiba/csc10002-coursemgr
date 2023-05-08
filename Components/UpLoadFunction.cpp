@@ -357,7 +357,7 @@ bool uploadCourse(Course& course) {
 		getline(ifs, midTerm, ',');
 		getline(ifs, final, ',');
 		getline(ifs, other,',');
-		getline(ifs, total,',');
+		getline(ifs, total);
 		course.scoreboards[i] = new Scoreboard (&course, ptrStudent);
 		course.scoreboards[i]->setScore(std::stof(midTerm), std::stof(final), std::stof(other), std::stof(total));
 		if (ptrStudent != nullptr)

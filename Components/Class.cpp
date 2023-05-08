@@ -54,7 +54,7 @@ Vector<string> Class::getListCourse(const Semester& semester) const {
 }
 
 Vector<std::string> Class::getListCourse() const{
-    Vector<std::string> listCourse(0);
+    Vector<string> listCourse;
     for (int i = 0; i < this->students.size(); i++)
         for (int j = 0; j < this->students[i]->scoreboards.size(); j++)
             if (listCourse.find(this->students[i]->scoreboards[j]->ptrCourse->ID) == nullptr)
