@@ -423,6 +423,7 @@ Scene* CourseScene::process(){
         fileBox.content.text.clear();
         ptrCourse_Global = nullptr;
         result.clear();
+        ptrCourse_Global = nullptr;
         return registry.semesterScene;
     }
     return this;

@@ -269,6 +269,7 @@ Scene* ClassScene::process() {
         inputImport.clearContent();
         ptrClass_Global = nullptr;
         ms.clear();
+        ptrClass_Global = nullptr;
         return registry.schoolYearScene;
     }
     return this;

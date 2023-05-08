@@ -278,6 +278,7 @@ Scene* SemesterScene::process() {
         inputExport.clearContent();
         listCourse.clear();
         isAddCourse = false;
+        ptrSemester_Global = nullptr;
         return registry.academicYearScene;
     }
     return this;
