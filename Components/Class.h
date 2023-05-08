@@ -20,9 +20,9 @@ struct Class {
 
     void update(Vector<Student>& students);
 
-    void addStudent(Student& student);
+    void addStudent(Student*& student);
 
-    void removeStudent(Student& student);
+    void removeStudent(Student*& student);
 
     Vector<string> getListCourse(const Semester& semester) const;
 

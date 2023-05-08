@@ -53,6 +53,8 @@ private:
 
     TextBox textExport;
 
+    TextBox classname;
+
     Button exportButton;
 
     TextBox message;

@@ -137,6 +137,9 @@ StudentScene::StudentScene() {
 	exportButton.setPos({ inputFilename.getPos().x + inputFilename.getSize().x, inputFilename.getPos().y});
 	exportButton.setViewColor();
 	//-----------------------------------------------------------------------------------
+	classname = "None";
+	classname.setSize(textBoxContentSize);
+	classname.setPos({ textSemester.getPos().x, textFirstName.getPos().y + 80 });
 	logout.label = "Logout";
 	logout.setSize(buttonSize);
 	logout.setPos({ 1100, change.getPos().y});
@@ -185,6 +188,7 @@ void StudentScene::render() {
 		back.render(mousePoint);
 	inputSemesterID.render(mousePoint);
 	inputFilename.render(mousePoint);
+	classname.render();
 }
 
 Scene* StudentScene::process() {
@@ -209,6 +213,9 @@ Scene* StudentScene::process() {
 		inputGender.defaultText = gender_to_string(ptrStudent_Global->gender);
 		inputBirth.defaultText = ptrStudent_Global->birth.get();
 		inputSocialID.defaultText = ptrStudent_Global->socialID;
+		if (ptrStudent_Global->ptrClass != nullptr)
+			classname = ptrStudent_Global->ptrClass->name;
+		else classname = "None";
 	}
 	//-----------------------------------------------------------------------------------
 	if (change.clicked(mousePoint) && ptrStudent_Global != nullptr) {

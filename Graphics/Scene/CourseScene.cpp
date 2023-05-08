@@ -274,7 +274,7 @@ Scene* CourseScene::process(){
             sessionBox.content.text.clear();
         }
         result = notif;
-        result.setX(865);
+        result.centerX();
         return this;
     }
 
@@ -352,6 +352,8 @@ Scene* CourseScene::process(){
         fileBox.content.text.clear(); 
         impBox.clearContent();
         expBox.clearContent();  
+        result.clear();
+        result.centerX();
         return registry.editScoreboardCourse;
     }
 
@@ -377,7 +379,7 @@ Scene* CourseScene::process(){
             fileBox.content.text.clear();
         }    
         result = notif;
-        result.setX(865);
+        result.centerX();
         return this;
     }
 
@@ -400,7 +402,7 @@ Scene* CourseScene::process(){
         impBox.clearContent();
         if (exportListScoreboardOfCourse(expBox.getContent(), *ptrCourse_Global, notif)) expBox.clearContent();
         result = notif;
-        result.setX(865);
+        result.centerX();
         return this;
     }
 

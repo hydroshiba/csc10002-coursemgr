@@ -20,17 +20,16 @@ void Class::update(const std::string& name) {
     this->name = name;
 }
 
-void Class::addStudent(Student& student){
-    Student *ptrStudent = &student;
-    students.append(ptrStudent);
-    student.ptrClass = this;
+void Class::addStudent(Student*& student){
+    student->ptrClass = this;
+    students.append(student);
 }
 
-void Class::removeStudent(Student& student){
+void Class::removeStudent(Student*& student){
     for (int i = 0; i < this->students.size(); ++i)
-        if (*students[i] == student)
-            students.remove(&students[i]);
-    student.ptrClass = nullptr;
+        if (*students[i] == *student)
+            students.remove(students[i]);
+    student->ptrClass = nullptr;
 }
 
 void Class::removeAllStudent() {

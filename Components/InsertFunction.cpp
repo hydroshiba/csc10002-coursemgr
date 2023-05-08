@@ -141,7 +141,7 @@ bool addStudentToClass(Class& actClass, const string& studentID, string& outStr)
 		outStr = "Student with ID " + studentID + " have been already existed in class " + ptrStudent->ptrClass->name;
 		return false;
 	}
-	actClass.students.append(ptrStudent);
+	actClass.addStudent(ptrStudent);
 	outStr = "Complete add new student with ID " + studentID + " to class " + actClass.name;
 	return true;
 }
