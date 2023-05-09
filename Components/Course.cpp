@@ -148,7 +148,7 @@ void Course::importScoreBoards(std::ifstream& ifs) {
         std::getline(ifs, s);
     int No = 0;
     getline(ifs, s);
-    while (!ifs.eof())
+    while (!ifs.eof() && No < this->scoreboards.size())
     {
         float midterm, final, other, total;
         for (int i = 0; i < nSkipInfo; i++)

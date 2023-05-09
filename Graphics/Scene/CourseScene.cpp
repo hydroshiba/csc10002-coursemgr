@@ -83,7 +83,7 @@ CourseScene :: CourseScene(){
 // Add student
     addText = "Add Student";
     addText.setSize(40);
-    addText.setPos({700,100});
+    addText.setPos({620,100});
 
     addBox.setSize({250,50});
     addBox.setPos({900, 100});
@@ -97,7 +97,7 @@ CourseScene :: CourseScene(){
 // Remove student
     removeText = "Remove Student";
     removeText.setSize(40);
-    removeText.setPos({650,175});
+    removeText.setPos({620,175});
 
     removeBox.setSize({250,50});
     removeBox.setPos({900, 175});
@@ -111,7 +111,7 @@ CourseScene :: CourseScene(){
 // Export students
     fileText = "Export students";
     fileText.setSize(40);
-    fileText.setPos({650,250});
+    fileText.setPos({620,250});
 
     fileBox.setSize({250,50});
     fileBox.setPos({900, 250});
@@ -146,7 +146,7 @@ CourseScene :: CourseScene(){
 // Import students
     impText = "Import students";
     impText.setSize(40);
-    impText.setPos({650,400});
+    impText.setPos({620,400});
 
     impBox.setSize({250,50});
     impBox.setPos({900, 400});
@@ -158,7 +158,7 @@ CourseScene :: CourseScene(){
     fileButton.setViewColor();
 // ------------------------------------------------------
 // Import scoreboard
-    impScoreText = "Import students";
+    impScoreText = "Import scoreboards";
     impScoreText.setSize(40);
     impScoreText.setPos({650,475});
 
@@ -386,7 +386,7 @@ Scene* CourseScene::process(){
         fileBox.content.text.clear(); 
         expBox.clearContent();  
         impBox.clearContent();
-        if (importScoreBoardOfCourse(impBox.content.text, *ptrCourse_Global, notif)) impScoreBox.clearContent();
+        if (importScoreBoardOfCourse(impScoreBox.content.text, *ptrCourse_Global, notif)) impScoreBox.clearContent();
         result = notif;
         result.centerX();
         return this;

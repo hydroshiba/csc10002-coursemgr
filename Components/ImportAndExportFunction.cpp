@@ -137,11 +137,11 @@ bool importScoreBoardOfCourse(const string& filename, Course& course, string& ou
 	std::ifstream ifs(inputScoreCourseFilePath);
 	if (!ifs.is_open())
 	{
-		std::cout << "Can't find file with path " << inputScoreCourseFilePath << std::endl;
+		outStr = "Can't find file with path " + inputScoreCourseFilePath;
 		return false;
 	}
 	course.importScoreBoards(ifs);
-	std::cout << "Complete importion!" << std::endl;
+	outStr = "Complete importion scoreboard for course " + course.ID;
 	ifs.close();
 	return true;
 }

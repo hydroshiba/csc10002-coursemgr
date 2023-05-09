@@ -117,11 +117,16 @@ Scene* EditScoreboardScene::process(){
             result.centerX();
             return this;
         }
-        Scoreboard* ptrScoreboard = getScoreboard(*ptrCourse_Global, IDBox.getContent());
+        string studentID = IDBox.getContent();
+        string midterm = midTermBox.getContent();
+        string final = finalBox.getContent();
+        string other = otherBox.getContent();
+        string total = totalBox.getContent();
+        Scoreboard* ptrScoreboard = getScoreboard(*ptrCourse_Global, studentID);
         if (ptrScoreboard == nullptr) {
             notif = "Student with ID " + IDBox.getContent() + " is not existed in this course";
         }
-        else if (updateScoreboard(*ptrCourse_Global, IDBox.getContent(), midTermBox.getContent(), otherBox.getContent(), finalBox.getContent(), totalBox.getContent(), notif)){
+        else if (updateScoreboard(*ptrCourse_Global, studentID, midterm , other, final , total, notif)){
             midTermBox.clearContent();
             finalBox.clearContent();
             otherBox.clearContent();
@@ -142,17 +147,36 @@ Scene* EditScoreboardScene::process(){
         if (ptrCourse_Global == nullptr){
             result = "Access nullptr error!";
             result.centerX();
-            return this;
-        }
-        Scoreboard *ptrScoreboard;
-        if (IDBox.content.text.empty()){
-            result = "Invalid studentID, please try again!";
+            IDBox.clearContent();
+            midTermBox.clearContent();
+            finalBox.clearContent();
+            otherBox.clearContent();
+            totalBox.clearContent();
             result.centerX();
             return this;
         }
-        ptrScoreboard = getScoreboard(*ptrCourse_Global, IDBox.getContent());
+        Scoreboard *ptrScoreboard;
+        string studentID = IDBox.getContent();
+        if (studentID.empty()){
+            result = "Pls enter studentID!";
+            result.centerX();
+            IDBox.clearContent();
+            midTermBox.clearContent();
+            finalBox.clearContent();
+            otherBox.clearContent();
+            totalBox.clearContent();
+            result.centerX();
+            return this;
+        }
+        ptrScoreboard = getScoreboard(*ptrCourse_Global, studentID);
         if (ptrScoreboard == nullptr) {
-            result = "Student with ID " + IDBox.getContent() + " is not existed in this course";
+            result = "Student with ID " + studentID + " is not existed in this course";
+            result.centerX();
+            IDBox.clearContent();
+            midTermBox.clearContent();
+            finalBox.clearContent();
+            otherBox.clearContent();
+            totalBox.clearContent();
             result.centerX();
         }
         else {
@@ -161,14 +185,7 @@ Scene* EditScoreboardScene::process(){
             finalBox.defaultText = to_string(ptrScoreboard->final);
             otherBox.defaultText = to_string(ptrScoreboard->other);
             totalBox.defaultText = to_string(ptrScoreboard->total);
-            result = "Successfully change scores of " + IDBox.defaultText.text;
         }
-        IDBox.clearContent();
-        midTermBox.clearContent();
-        finalBox.clearContent();
-        otherBox.clearContent();
-        totalBox.clearContent();     
-        result.centerX();
         return this; 
     }
 
@@ -181,6 +198,5 @@ Scene* EditScoreboardScene::process(){
         result.clear();
         return registry.courseScene;
     }
-
     return this;
 }
