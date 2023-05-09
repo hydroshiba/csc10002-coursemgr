@@ -17,6 +17,10 @@ Vector<string> getListClass(const SchoolYear& schoolYear); // Done
 
 Vector<string> getListSemester(const AcademicYear& academicYear); // Done
 
+Vector<string> getListSemester(const Class& CLASS); // Done
+
+Vector<string> getListSemester(const Student &student); // Done
+
 Vector<string> getListCourse(const Semester& semester); // Done
 
 // Table

@@ -12,6 +12,7 @@
 #include "Semester.h"
 #include "Course.h"
 #include "Scoreboard.h"
+#include "SearchFunction.h"
 
 #include "FileAndDirFunction.h"
 /*		Display function	*/
@@ -45,6 +46,43 @@ Vector<string> getListSemester(const AcademicYear& academicYear) {
 	Vector<string> listSemester(academicYear.semesters.size());
 	for (int i = 0; i < academicYear.semesters.size(); i++) {
 		listSemester[i] = academicYear.semesters[i].semesterID;
+	}
+	return listSemester;
+}
+
+Vector<string> getListSemester(const Class &CLASS){
+	Vector <string> listSemester;
+	string semesterID;
+	for (int i = 0; i<CLASS.students.size(); ++i)
+		for (int j = 0; j<CLASS.students[i]->scoreboards.size(); ++j){
+			bool exist = false;
+			semesterID = students[i].scoreboards[j]->ptrCourse->ptrSemester->semesterID;
+			for (int k = 0; k<listSemester.size(); ++k){
+				if (semesterID == listSemester[k]){
+					exist = true;
+					break;
+				}
+			}
+			if (!exist)
+				listSemester.append(semesterID);
+		}
+	return listSemester;
+}
+
+Vector <string> getListSemester(const Student &student){
+	Vector <string> listSemester;
+	string semesterID;
+	for (int i = 0; i<student.scoreboards.size(); ++i){
+		bool exist = false;
+		semesterID = student.scoreboards[i]->ptrCourse->ptrSemester->semesterID;
+		for (int j = 0; j < listSemester.size(); ++j){
+			if (semesterID == listSemester[j]){
+				exist = true;
+				break;
+			}
+		}
+		if (!exist)
+			listSemester.append(semesterID);
 	}
 	return listSemester;
 }
