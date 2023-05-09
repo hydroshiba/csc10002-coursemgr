@@ -13,7 +13,7 @@
 #include "Components.h"
 #include "SchoolYear.h"
 #include "Class.h"
-
+#include "ListSchoolYearScene.h"
 #include "InsertFunction.h"
 #include "RemoveFunction.h"
 #include "DisplayFunction.h"

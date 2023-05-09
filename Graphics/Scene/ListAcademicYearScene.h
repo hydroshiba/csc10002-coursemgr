@@ -23,7 +23,7 @@ private:
     TextBox sceneTitle;
 
     TextBox viewYear;
-    DropBox chooseSchoolYear;
+   
     Button view;
 
     TextBox addYear;
@@ -38,6 +38,7 @@ private:
 
     Button back;
 public:
+    DropBox chooseSchoolYear;
     ListAcademicYearScene();
     void render();
     Scene* process();

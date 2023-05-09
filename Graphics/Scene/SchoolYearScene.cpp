@@ -1,6 +1,6 @@
 #include "SchoolYearScene.h"
 
-bool isAdded = false;
+bool isAddedListClasses = false;
 
 const float buttonWidth = 150;
 const float buttonHeight = 50;
@@ -149,10 +149,10 @@ Scene* SchoolYearScene::process() {
     if (ptrSchoolYear_Global != nullptr) {
         sceneTitle = "School Year " + ptrSchoolYear_Global->getPeriod();
         sceneTitle.centerX();
-        if (!isAdded) {
+        if (!isAddedListClasses) {
             Vector<string> ls = getListClass(*ptrSchoolYear_Global);
             listClass.add(ls);
-            isAdded = true;
+            isAddedListClasses = true;
         }
     }
     listClass.process(mousePoint);
@@ -162,6 +162,8 @@ Scene* SchoolYearScene::process() {
         inputClassRemoved.clearContent();
         inputStartYear.clearContent();
         exportPath.clearContent();
+        listClass.clear();
+        isAddedListClasses = false;
         return registry.classScene;
     }
     //--------------------------------------
@@ -218,8 +220,9 @@ Scene* SchoolYearScene::process() {
         inputStartYear.clearContent();
         exportPath.clearContent();
         listClass.clear();
-        isAdded = false;
+        isAddedListClasses = false;
         ms.clear();
+
         return registry.listSchoolYearScene;
     }
     return this;

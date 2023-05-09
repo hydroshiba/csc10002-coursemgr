@@ -99,6 +99,8 @@ Scene* ListSchoolYearScene::process() {
           ptrSchoolYear_Global = getSchoolYear(chooseSchoolYear.getCurLabel());
           inputSchoolYearAdded.clearContent();
           inputSchoolYearRemoved.clearContent();
+          chooseSchoolYear.clear();
+          isAddedListSchoolYear = false;
           return registry.schoolYearScene;
     }  
     else if (add.clicked(mousePoint)) {

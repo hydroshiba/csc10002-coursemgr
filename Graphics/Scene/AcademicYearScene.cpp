@@ -162,6 +162,8 @@ Scene* AcademicYearScene::process() {
         inputClassRemoved.clearContent();
         inputStartYear.clearContent();
         exportPath.clearContent();
+        listClass.clear();
+        isAddedSemester = false;
         return registry.semesterScene;
     }
     //--------------------------------------

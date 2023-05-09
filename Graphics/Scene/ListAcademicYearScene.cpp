@@ -90,6 +90,7 @@ Scene* ListAcademicYearScene::process() {
     chooseSchoolYear.process(mousePoint);
     inputSchoolYearAdded.process(mousePoint);
     inputSchoolYearRemoved.process(mousePoint);
+
     if (!isAddedListAcademicYear) {
         chooseSchoolYear.add(getListAcademicYear());
         isAddedListAcademicYear = true;
@@ -98,6 +99,8 @@ Scene* ListAcademicYearScene::process() {
         ptrAcademicYear_Global = getAcademicYear(chooseSchoolYear.getCurLabel());
         inputSchoolYearAdded.clearContent();
         inputSchoolYearRemoved.clearContent();
+        chooseSchoolYear.clear();
+        isAddedListAcademicYear = false;
         return registry.academicYearScene;
     }
     else if (add.clicked(mousePoint)) {
