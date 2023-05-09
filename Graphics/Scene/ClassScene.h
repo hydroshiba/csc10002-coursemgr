@@ -17,6 +17,7 @@
 #include "ImportAndExportFunction.h"
 #include "UpdateFunction.h"
 #include "Class.h"
+#include "DisplayFunction.h"
 class ClassScene : public Scene {
 private:
     TextBox sceneTitle;
@@ -42,7 +43,7 @@ private:
     Button viewScoreboardButton;
 
     TextBox textSemesterID;
-    InputBox inputSemesterID;
+    DropBox inputSemesterID;
 
     TextBox textImport;
     InputBox inputImport;

@@ -1,4 +1,7 @@
 #include "StudentScene.h"
+
+bool isAddListSemester = false;
+
 //-------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------
 const float yPosSceneName = 10;
@@ -18,28 +21,27 @@ const float inputBoxHeight = 50;
 const float inputBoxWidth = 300;
 const Vector2 inputBoxSize = { inputBoxWidth, inputBoxHeight };
 //-------------------------------------------------------------------------------------
-const float xPosTextBox = 50;
-const float yPosTextBox = 150;
+const float xPos1 = 50;
+const float yPos1 = 150;
 //-------------------------------------------------------------------------------------
-const float yPosTextBoxID = yPosTextBox;
-const float yPosTextBoxFirstName = yPosTextBoxID + textBoxHeight + yDis;
-const float yPosTextBoxLastName = yPosTextBoxFirstName + textBoxHeight + yDis;
-const float yPosTextBoxGender = yPosTextBoxLastName + textBoxHeight + yDis;
-const float yPosTextBoxBirth = yPosTextBoxGender + textBoxHeight + yDis;
-const float yPosTextBoxSocialID = yPosTextBoxBirth + textBoxHeight + yDis;
-const float yPosTextBoxPassword = yPosTextBoxSocialID + textBoxHeight + yDis;
+const float yPos2 = yPos1 + textBoxHeight + yDis;
+const float yPos3 = yPos2 + textBoxHeight + yDis;
+const float yPos4 = yPos3 + textBoxHeight + yDis;
+const float yPos5 = yPos4 + textBoxHeight + yDis;
+const float yPos6 = yPos5 + textBoxHeight + yDis;
+const float yPos7 = yPos6 + textBoxHeight + yDis;
 //-------------------------------------------------------------------------------------
-const float xPosInputBox = xPosTextBox + textBoxWidth + xDis;
+const float xPos2 = xPos1 + textBoxWidth + xDis;
 //-------------------------------------------------------------------------------------
 const float buttonHeigth = 50;
 const float buttonWidth = 100;
 const Vector2 buttonSize = { buttonWidth, buttonHeigth };
 //-------------------------------------------------------------------------------------
-const float yDisButton = 50;
-const float xPosButton = 1000;
-const float yPosChange = 150;
-const float yPosViewSBs = yPosChange + buttonHeigth + yDisButton;
-const float yPosLogout = yPosViewSBs + buttonHeigth + yDisButton;
+const float xPos3 = xPos2 + inputBoxSize.x;
+const float yMid = 30;
+const float xPos4 = xPos3 + 100;
+const float xPos5 = xPos4 + textBoxWidth + xDis;
+const float xPos6 = xPos5 + inputBoxSize.x;
 //-------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------
 const std::string defaultInputBoxContent = "Error InputBoxContent";
@@ -54,104 +56,105 @@ StudentScene::StudentScene() {
 	//-----------------------------------------------------------------------------------
 	textID = "ID";
 	textID.setSize(textBoxContentSize);
-	textID.setPos({ xPosTextBox, yPosTextBoxID });
+	textID.setPos({ xPos1, yPos1 });
 	//-----------------------------------------------------------------------------------
 	textFirstName = "First name";
 	textFirstName.setSize(textBoxContentSize);
-	textFirstName.setPos({ xPosTextBox, yPosTextBoxFirstName });
+	textFirstName.setPos({ xPos1, yPos2 });
 	//-----------------------------------------------------------------------------------
 	textLastName = "Last name";
 	textLastName.setSize(textBoxContentSize);
-	textLastName.setPos({ xPosTextBox, yPosTextBoxLastName });
+	textLastName.setPos({ xPos1, yPos3 });
 	//-----------------------------------------------------------------------------------
 	textGender = "Gender";
 	textGender.setSize(textBoxContentSize);
-	textGender.setPos({ xPosTextBox, yPosTextBoxGender });
+	textGender.setPos({ xPos1, yPos4 });
 	//-----------------------------------------------------------------------------------
 	textBirth = "Birth";
 	textBirth.setSize(textBoxContentSize);
-	textBirth.setPos({ xPosTextBox, yPosTextBoxBirth });
+	textBirth.setPos({ xPos1, yPos5 });
 	//-----------------------------------------------------------------------------------
 	textSocialID = "SocialID";
 	textSocialID.setSize(textBoxContentSize);
-	textSocialID.setPos({ xPosTextBox, yPosTextBoxSocialID });
+	textSocialID.setPos({ xPos1, yPos6 });
 	//-----------------------------------------------------------------------------------
 	textPassword = "Change password";
 	textPassword.setSize(textBoxContentSize);
-	textPassword.setPos({ xPosTextBox, yPosTextBoxPassword });
+	textPassword.setPos({ xPos1, yPos7 });
 	//-----------------------------------------------------------------------------------
 	inputID.defaultText = "";
 	inputID.setSize(inputBoxSize);
-	inputID.setPos({ xPosInputBox, yPosTextBoxID });
+	inputID.setPos({ xPos2, yPos1 });
 	//-----------------------------------------------------------------------------------
 	inputFirstName.defaultText = "";
 	inputFirstName.setSize(inputBoxSize);
-	inputFirstName.setPos({ xPosInputBox, yPosTextBoxFirstName });
+	inputFirstName.setPos({ xPos2, yPos2 });
 	//-----------------------------------------------------------------------------------
 	inputLastName.defaultText = "";
 	inputLastName.setSize(inputBoxSize);
-	inputLastName.setPos({ xPosInputBox, yPosTextBoxLastName });
+	inputLastName.setPos({ xPos2, yPos3 });
 	//-----------------------------------------------------------------------------------
 	inputGender.defaultText = "";
 	inputGender.setSize(inputBoxSize);
-	inputGender.setPos({ xPosInputBox, yPosTextBoxGender });
+	inputGender.setPos({ xPos2, yPos4 });
 	//-----------------------------------------------------------------------------------
 	inputBirth.defaultText = "";
 	inputBirth.setSize(inputBoxSize);
-	inputBirth.setPos({ xPosInputBox, yPosTextBoxBirth });
+	inputBirth.setPos({ xPos2, yPos5 });
 	//-----------------------------------------------------------------------------------
 	inputSocialID.defaultText = "";
 	inputSocialID.setSize(inputBoxSize);
-	inputSocialID.setPos({ xPosInputBox, yPosTextBoxSocialID });
+	inputSocialID.setPos({ xPos2, yPos6 });
 	//-----------------------------------------------------------------------------------
 	inputPassword.defaultText = "Input new password";
 	inputPassword.setSize(inputBoxSize);
-	inputPassword.setPos({ xPosInputBox, yPosTextBoxPassword });
+	inputPassword.setPos({ xPos2, yPos7 });
 	//----------------------------------------------------------------------------------
 	change.label = "Change";
 	change.setSize(buttonSize);
-	change.setPos({ xPosInputBox + inputBoxWidth, yPosTextBoxPassword });
+	change.setPos({ xPos3 , yPos7 });
 	change.setViewColor();
 	//-----------------------------------------------------------------------------------
 	textExport = "Export scoreboards to file";
 	textExport.setSize(textBoxContentSize);
-	textExport.setPos({ change.getPos().x + change.getSize().x + xDis, textID.getPos().y - 40 });
+	textExport.setPos({ xPos4, yPos3 });
 	//-----------------------------------------------------------------------------------
-	textSemester = "SemesterID";
+	textSemester = "Choose semester";
 	textSemester.setSize(textBoxContentSize);
-	textSemester.setPos({ change.getPos().x + change.getSize().x + xDis, textID.getPos().y });
+	textSemester.setPos({ xPos4, yPos5 });
 	////-----------------------------------------------------------------------------------
 	textFileName = "Filename";
 	textFileName.setSize(textBoxContentSize);
-	textFileName.setPos({ textSemester.getPos().x, textFirstName.getPos().y });
+	textFileName.setPos({ xPos4, yPos4 });
 	////-----------------------------------------------------------------------------------
-	inputSemesterID.defaultText = "All semester";
+	inputSemesterID.setLabel("Chooses semester:");
 	inputSemesterID.setSize(inputBoxSize);
-	inputSemesterID.setPos({ textSemester.getPos().x + textBoxWidth, textSemester.getPos().y });
+	inputSemesterID.setPos({ xPos5, yPos5 });
 	////-----------------------------------------------------------------------------------
 	inputFilename.defaultText = "Input filename...";
-	inputFilename.setPos({ textSemester.getPos().x + textBoxWidth, textFirstName.getPos().y });
+	inputFilename.setPos({ xPos5, yPos4 });
 	inputFilename.setSize(inputBoxSize);
 	exportButton.label = "Export";
 	exportButton.setSize(buttonSize);
-	exportButton.setPos({ inputFilename.getPos().x + inputFilename.getSize().x, inputFilename.getPos().y});
+	exportButton.setPos({xPos6, yPos4 });
 	exportButton.setViewColor();
 	//-----------------------------------------------------------------------------------
 	classname = "Class: None";
 	classname.setSize(textBoxContentSize);
-	classname.setPos({ textSemester.getPos().x, textFirstName.getPos().y + 80 });
+	classname.setPos({ xPos4, yPos1 });
 
 	nCourse = "Number of course: 0";
 	nCourse.setSize(textBoxContentSize);
-	nCourse.setPos({ textSemester.getPos().x, textFirstName.getPos().y + 120 });
+	nCourse.setPos({ xPos4, yPos2 });
+
 	logout.label = "Logout";
 	logout.setSize(buttonSize);
-	logout.setPos({ 1100, change.getPos().y});
+	logout.setPos({ xPos6, yPos1});
 	logout.setRemoveColor();
 	//-----------------------------------------------------------------------------------
 	back.label = "Back";
 	back.setSize(buttonSize);
-	back.setPos({ 900, change.getPos().y });
+	back.setPos({ xPos6, yPos2 });
 	back.setRemoveColor();
 	//-----------------------------------------------------------------------------------
 	message = "";
@@ -210,6 +213,12 @@ Scene* StudentScene::process() {
 	inputSemesterID.process(mousePoint);
 	//----------------------------------------------------------------------------------
 	if (ptrStudent_Global != nullptr) {
+		if (!isAddListSemester) {
+			inputSemesterID.add("All semester");
+			Vector<string> listSemester = getListSemester(*ptrStudent_Global);
+			inputSemesterID.add(listSemester);
+			isAddListSemester = true;
+		}
 		sceneName = "Welcome student " + ptrStudent_Global->name.get();
 		sceneName.centerX();
 		inputID.defaultText = ptrStudent_Global->ID;
@@ -247,24 +256,22 @@ Scene* StudentScene::process() {
 	}
 	//-----------------------------------------------------------------------------------
 	else if (exportButton.clicked(mousePoint)) {
-		string semesterID = inputSemesterID.getContent();
+		string semesterID = inputSemesterID.getCurLabel();
 		string filename = inputFilename.getContent();
 		string outStr;
-		if (semesterID.empty()) {
-			exportListScoreboardOfStudent(filename, *ptrStudent_Global, outStr);
+		if (semesterID == "All semester") {
+			exportListScoreboardOfClass(filename, *ptrClass_Global, outStr);
 			message = outStr;
 			message.centerX();
-			inputSemesterID.clearContent();
-			inputFilename.clearContent();
 			return this;
 		}
-		else {
+		else
+		{
 			Semester* ptrSemester = getSemester(semesterID);
 			if (ptrSemester == nullptr) {
 				outStr = "Semester with ID " + semesterID + " is not existed!";
 				message = outStr;
 				message.centerX();
-				inputSemesterID.clearContent();
 				inputFilename.clearContent();
 				return this;
 			}
@@ -273,7 +280,6 @@ Scene* StudentScene::process() {
 				exportListScoreboardInSemesterOfStudent(filename, *ptrStudent_Global, *ptrSemester, outStr);
 				message = outStr;
 				message.centerX();
-				inputSemesterID.clearContent();
 				inputFilename.clearContent();
 				return this;
 			}
@@ -305,10 +311,11 @@ Scene* StudentScene::process() {
 		inputBirth.clearContent();
 		inputSocialID.clearContent();
 		inputPassword.clearContent();
-		inputSemesterID.clearContent();
 		inputFilename.clearContent();
 		ptrStudent_Global = nullptr;
 		message.clear();
+		inputSemesterID.clear();
+		isAddListSemester = false;
 		return registry.staffScene2;
 	}
 	return this;

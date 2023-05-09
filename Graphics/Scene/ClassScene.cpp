@@ -1,5 +1,7 @@
 #include "ClassScene.h"
 
+bool isAddListSemesterClass = false;
+
 const float buttonWidth = 150;
 const float buttonHeight = 50;
 const float inputWidth = 250;
@@ -92,38 +94,38 @@ ClassScene::ClassScene() {
     //-----------------------------------------------------------
     viewScoreboardLabel = "Export scoreboard to a location:";
     viewScoreboardLabel.setSize(textSize);
-    viewScoreboardLabel.setPos({xPos4, yPos2 + yMid});
+    viewScoreboardLabel.setPos({xPos4, yPos3 + yMid});
 
     pathExportScoreboard.defaultText = "Location";
-    pathExportScoreboard.setPos({xPos4, yPos2});
+    pathExportScoreboard.setPos({xPos4, yPos3});
     pathExportScoreboard.setSize(inputSize);
 
     viewScoreboardButton.label = "Export";
-    viewScoreboardButton.setPos({xPos5, yPos2});
+    viewScoreboardButton.setPos({xPos5, yPos3});
     viewScoreboardButton.setSize(buttonSize);
     viewScoreboardButton.setViewColor();
     //-----------------------------------------------------------
     //-----------------------------------------------------------
-    textSemesterID = "Input semesterID:";
+    textSemesterID = "Chooss semester:";
     textSemesterID.setSize(textSize);
-    textSemesterID.setPos({ xPos4, yPos3 + yMid });
+    textSemesterID.setPos({ xPos4, yPos4 + yMid });
 
-    inputSemesterID.defaultText = "All semester";
-    inputSemesterID.setSize(inputSize);
-    inputSemesterID.setPos({ xPos4, yPos3 });
+    inputSemesterID.setLabel("Chooses semester:");
+    inputSemesterID.setSize({ inputSize.x + 30, inputSize.y });
+    inputSemesterID.setPos({ xPos4, yPos4 });
     //-----------------------------------------------------------
     //-----------------------------------------------------------
     textImport = "Import list of students from file:";
     textImport.setSize(textSize);
-    textImport.setPos({ xPos4, yPos4 + yMid });
+    textImport.setPos({ xPos4, yPos2 + yMid });
     
     inputImport.defaultText = "Enter filename...";
-    inputImport.setPos({ xPos4, yPos4 });
+    inputImport.setPos({ xPos4, yPos2 });
     inputImport.setSize(inputSize);
 
     importBut.label = "Import";
     importBut.setSize(buttonSize);
-    importBut.setPos({ xPos5, yPos4 });
+    importBut.setPos({ xPos5, yPos2 });
     importBut.setViewColor();
     //-----------------------------------------------------------
     //-----------------------------------------------------------
@@ -189,6 +191,12 @@ Scene* ClassScene::process() {
     inputImport.process(mousePoint);
 
     if (ptrClass_Global != nullptr) {
+        if (!isAddListSemesterClass) {
+            Vector<string> listSemester = getListSemester(*ptrClass_Global);
+            inputSemesterID.add("All semester");
+            inputSemesterID.add(listSemester);
+            isAddListSemesterClass = true;
+        }
         sceneTitle = "Class " + ptrClass_Global->name;
         sceneTitle.centerX();
         if (ptrClass_Global->ptrSchoolYear != nullptr) {
@@ -234,8 +242,8 @@ Scene* ClassScene::process() {
     }
     else if (viewScoreboardButton.clicked(mousePoint)) {
         string filename = pathExportScoreboard.getContent();
-        string semesterID = inputSemesterID.getContent();
-        if (semesterID.empty()) {
+        string semesterID = inputSemesterID.getCurLabel();
+        if (semesterID == "All semester") {
             exportListScoreboardOfClass(filename, *ptrClass_Global, outStr);
         }
         else {
@@ -250,7 +258,6 @@ Scene* ClassScene::process() {
         ms = outStr;
         ms.centerX();
         pathExportScoreboard.clearContent();
-        inputSemesterID.clearContent();
         return this;
     }
     else if (importBut.clicked(mousePoint)) {
@@ -262,16 +269,17 @@ Scene* ClassScene::process() {
         return this;
     }
     else if (back.clicked(mousePoint)) {
+
         addStudentInput.clearContent();
         removeStudentInput.clearContent();
         changeClassnameInput.clearContent();
         pathExportStudentList.clearContent();
         pathExportScoreboard.clearContent();
-        inputSemesterID.clearContent();
+        inputSemesterID.clear();
         inputImport.clearContent();
         ptrClass_Global = nullptr;
         ms.clear();
-        ptrClass_Global = nullptr;
+        isAddListSemesterClass = false;
         return registry.schoolYearScene;
     }
     return this;

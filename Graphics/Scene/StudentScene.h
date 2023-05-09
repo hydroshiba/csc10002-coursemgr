@@ -19,6 +19,7 @@
 #include <string>
 #include "ImportAndExportFunction.h"
 #include "SearchFunction.h"
+#include "DisplayFunction.h"
 class StudentScene : public Scene {
 private:
     TextBox sceneName;
@@ -48,7 +49,7 @@ private:
 
     TextBox textSemester;
     TextBox textFileName;
-    InputBox inputSemesterID;
+    DropBox inputSemesterID;
     InputBox inputFilename;
 
     TextBox textExport;
