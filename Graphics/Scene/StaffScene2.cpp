@@ -170,11 +170,11 @@ StaffScene2::StaffScene2() {
 	textExportLAYs.setSize(textBoxContentSize);
 	textExportLAYs.setPos({ removeStudentTextBoxPos.x, yPosTextExportLAYs });
 	//-----------------------------------------------------------------------------------
-	inputLSYsFilePath.defaultText = "Input filepath...";
+	inputLSYsFilePath.defaultText = "Input filename...";
 	inputLSYsFilePath.setSize(removeInputBoxSize);
 	inputLSYsFilePath.setPos({ inputStaffID.getPos().x, yPosTextExportLSYs });
 	//-----------------------------------------------------------------------------------
-	inputLAYsFilePath.defaultText = "Input filepath...";
+	inputLAYsFilePath.defaultText = "Input filename...";
 	inputLAYsFilePath.setSize(removeInputBoxSize);
 	inputLAYsFilePath.setPos({ inputStaffID.getPos().x, yPosTextExportLAYs });
 	//-----------------------------------------------------------------------------------
