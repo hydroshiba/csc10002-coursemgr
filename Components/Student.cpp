@@ -80,24 +80,27 @@ Scoreboard* Student::getScoreboard(Course& course) const {
 float Student::getGPA() const {
     int nCredits = 0;
     float totalMark = 0;
-    for (int i = 0; i < scoreboards.size(); i++)
+    size_t n = scoreboards.size();
+    for (int i = 0; i < n; i++)
     {
         totalMark = totalMark + scoreboards[i]->total;
         nCredits = nCredits + scoreboards[i]->ptrCourse->credits;
     }
-    return totalMark;
+    return totalMark * 1.0 / n;
 }
 
 float Student::getGPA(const Semester& semester) const{
     int nCredits = 0;
     float totalMark = 0;
+    int n = 0;
     for (int i = 0; i < scoreboards.size(); i++)
         if (scoreboards[i]->ptrCourse->ptrSemester == &semester)
         {
             totalMark = totalMark + scoreboards[i]->total;
             nCredits = nCredits + scoreboards[i]->ptrCourse->credits;
+            n++;
         }
-    return totalMark;
+    return totalMark * 1.0 / n;
 } // 
 
 void Student::setInfoToClass(std::ifstream &ifs){
