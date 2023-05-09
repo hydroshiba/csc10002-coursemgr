@@ -22,7 +22,7 @@ private:
     }
 
 public:
-    Vector() : length{ 0 }, capacity{ 4 }, array{ new Type[4]() } {}
+    Vector() : length{ 0 }, capacity{ 1 }, array{ new Type[1]() } {}
 
     Vector(size_t size) {
         length = size;
@@ -31,7 +31,9 @@ public:
     }
 
     Vector(const Vector<Type>& vec) {
-        resize(vec.size());
+        length = vec.size();
+        capacity = vec.size();
+        array = new Type[vec.size()]();
 
         for (int i = 0; i < length; ++i)
             array[i] = vec[i];
@@ -62,7 +64,7 @@ public:
     }
 
     void resize(size_t size) {
-        if (size > capacity || array == nullptr) reallocate(size);
+        if (size > capacity) reallocate(size);
         else if (size > length) {
             Type* init = new Type();
 
