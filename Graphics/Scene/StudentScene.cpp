@@ -260,7 +260,7 @@ Scene* StudentScene::process() {
 		string filename = inputFilename.getContent();
 		string outStr;
 		if (semesterID == "All semester") {
-			exportListScoreboardOfClass(filename, *ptrClass_Global, outStr);
+			exportListScoreboardOfStudent(filename, *ptrStudent_Global, outStr);
 			message = outStr;
 			message.centerX();
 			return this;
@@ -295,6 +295,8 @@ Scene* StudentScene::process() {
 		inputSocialID.clearContent();
 		inputPassword.clearContent();
 		ptrStudent_Global = nullptr;
+		if (ptrStaff_Global != nullptr)
+			ptrStaff_Global = nullptr;
 		return registry.login;
 	}
 	//-----------------------------------------------------------------------------------
@@ -313,6 +315,8 @@ Scene* StudentScene::process() {
 		inputPassword.clearContent();
 		inputFilename.clearContent();
 		ptrStudent_Global = nullptr;
+		if (ptrStaff_Global != nullptr)
+			ptrStaff_Global = nullptr;
 		message.clear();
 		inputSemesterID.clear();
 		isAddListSemester = false;
