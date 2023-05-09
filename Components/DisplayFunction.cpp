@@ -56,7 +56,7 @@ Vector<string> getListSemester(const Class &CLASS){
 	for (int i = 0; i<CLASS.students.size(); ++i)
 		for (int j = 0; j<CLASS.students[i]->scoreboards.size(); ++j){
 			bool exist = false;
-			semesterID = students[i].scoreboards[j]->ptrCourse->ptrSemester->semesterID;
+			semesterID = CLASS.students[i]->scoreboards[j]->ptrCourse->ptrSemester->semesterID;
 			for (int k = 0; k<listSemester.size(); ++k){
 				if (semesterID == listSemester[k]){
 					exist = true;
