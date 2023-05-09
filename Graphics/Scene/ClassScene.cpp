@@ -192,7 +192,7 @@ Scene* ClassScene::process() {
         sceneTitle = "Class " + ptrClass_Global->name;
         sceneTitle.centerX();
         if (ptrClass_Global->ptrSchoolYear != nullptr) {
-            sceneTitle = "Class " + ptrClass_Global->name + "(" + ptrClass_Global->ptrSchoolYear->getPeriod() + ")";
+            sceneTitle = "Class " + ptrClass_Global->name + " ( " + ptrClass_Global->ptrSchoolYear->getPeriod() + " )";
             sceneTitle.centerX();
         }
         changeClassnameInput.defaultText = ptrClass_Global->name;

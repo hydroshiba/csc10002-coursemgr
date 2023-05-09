@@ -9,7 +9,7 @@ const float textSize = 30;
 const float textBoxWidth = 250;
 
 ListAcademicYearScene::ListAcademicYearScene() {
-    sceneTitle = "List Of Academic Years (" + to_string(academicYears.size()) + ")";
+    sceneTitle = "List Of Academic Years ( " + to_string(academicYears.size()) + " )";
     sceneTitle.setSize(50);
     sceneTitle.centerX();
     sceneTitle.setY(30);
@@ -128,6 +128,7 @@ Scene* ListAcademicYearScene::process() {
         inputSchoolYearRemoved.clearContent();
         chooseSchoolYear.clear();
         isAddedListAcademicYear = false;
+        ms.clear();
         return registry.staffScene;
     }
     return this;

@@ -348,6 +348,7 @@ Scene* StaffScene2::process() {
 		inputPassword.clearContent();
 		inputStudentID.clearContent();
 		inputStaffID.clearContent();
+		message.clear();
 		return registry.staffScene;
 	}
 		

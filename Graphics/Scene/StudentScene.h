@@ -54,6 +54,7 @@ private:
     TextBox textExport;
 
     TextBox classname;
+    TextBox nCourse;
 
     Button exportButton;
 

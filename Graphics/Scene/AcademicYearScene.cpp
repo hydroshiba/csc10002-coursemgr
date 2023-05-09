@@ -218,6 +218,7 @@ Scene* AcademicYearScene::process() {
         listClass.clear();
         isAddedSemester = false;
         ptrAcademicYear_Global = nullptr;
+        ms.clear();
         return registry.listAcademicYearScene;
     }
     return this;

@@ -137,9 +137,13 @@ StudentScene::StudentScene() {
 	exportButton.setPos({ inputFilename.getPos().x + inputFilename.getSize().x, inputFilename.getPos().y});
 	exportButton.setViewColor();
 	//-----------------------------------------------------------------------------------
-	classname = "None";
+	classname = "Class: None";
 	classname.setSize(textBoxContentSize);
 	classname.setPos({ textSemester.getPos().x, textFirstName.getPos().y + 80 });
+
+	nCourse = "Number of course: 0";
+	nCourse.setSize(textBoxContentSize);
+	nCourse.setPos({ textSemester.getPos().x, textFirstName.getPos().y + 120 });
 	logout.label = "Logout";
 	logout.setSize(buttonSize);
 	logout.setPos({ 1100, change.getPos().y});
@@ -189,6 +193,7 @@ void StudentScene::render() {
 	inputSemesterID.render(mousePoint);
 	inputFilename.render(mousePoint);
 	classname.render();
+	nCourse.render();
 }
 
 Scene* StudentScene::process() {
@@ -214,8 +219,9 @@ Scene* StudentScene::process() {
 		inputBirth.defaultText = ptrStudent_Global->birth.get();
 		inputSocialID.defaultText = ptrStudent_Global->socialID;
 		if (ptrStudent_Global->ptrClass != nullptr)
-			classname = ptrStudent_Global->ptrClass->name + "," + to_string(ptrStudent_Global->scoreboards.size());
-		else classname = "None, " + to_string(ptrStudent_Global->scoreboards.size());
+			classname = "Class: " + ptrStudent_Global->ptrClass->name;
+		if (ptrStudent_Global->scoreboards.size() != 0)
+			nCourse = "Number of course: " + to_string(ptrStudent_Global->scoreboards.size());
 	}
 	//-----------------------------------------------------------------------------------
 	if (change.clicked(mousePoint) && ptrStudent_Global != nullptr) {
@@ -302,6 +308,7 @@ Scene* StudentScene::process() {
 		inputSemesterID.clearContent();
 		inputFilename.clearContent();
 		ptrStudent_Global = nullptr;
+		message.clear();
 		return registry.staffScene2;
 	}
 	return this;

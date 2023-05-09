@@ -219,7 +219,7 @@ Scene* SchoolYearScene::process() {
         exportPath.clearContent();
         listClass.clear();
         isAdded = false;
-        
+        ms.clear();
         return registry.listSchoolYearScene;
     }
     return this;

@@ -198,7 +198,7 @@ Scene* SemesterScene::process() {
     if (ptrSemester_Global != nullptr) {
         sceneTitle = "Semester " + ptrSemester_Global->semesterID;
         if (ptrSemester_Global->ptrAcademicYear != nullptr) {
-            sceneTitle = "Semester " + ptrSemester_Global->semesterID + "(" + ptrSemester_Global->ptrAcademicYear->getPeriod() + ")";
+            sceneTitle = "Semester " + ptrSemester_Global->semesterID + " ( " + ptrSemester_Global->ptrAcademicYear->getPeriod() + " )";
             sceneTitle.centerX();
         }
         inputSemesterID.defaultText = ptrSemester_Global->semesterID;
@@ -280,6 +280,7 @@ Scene* SemesterScene::process() {
         listCourse.clear();
         isAddCourse = false;
         ptrSemester_Global = nullptr;
+        ms.clear();
         return registry.academicYearScene;
     }
     return this;

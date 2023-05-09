@@ -160,7 +160,7 @@ CourseScene :: CourseScene(){
 // Import scoreboard
     impScoreText = "Import scoreboards";
     impScoreText.setSize(40);
-    impScoreText.setPos({650,475});
+    impScoreText.setPos({620,475});
 
     impScoreBox.setSize({250,50});
     impScoreBox.setPos({900, 475});
@@ -188,10 +188,8 @@ CourseScene :: CourseScene(){
 	result.setY(675);
 
     test = "";
-    test.setColor(RED);
-    test.setSize(20);
-    test.centerX();
-    test.setY(550);
+    test.setSize(30);
+    test.setPos({ 620, 530 });
 }
 
 void CourseScene::render(){
@@ -269,7 +267,7 @@ Scene* CourseScene::process(){
     if (ptrCourse_Global != nullptr){
         title = ptrCourse_Global->ID;
         if (ptrCourse_Global->ptrSemester != nullptr) {
-            title = ptrCourse_Global->ID + "(" + ptrCourse_Global->ptrSemester->semesterID + ")";
+            title = ptrCourse_Global->ID + " ( " + ptrCourse_Global->ptrSemester->semesterID + " )";
             title.centerX();
             test = "Number of students: " + to_string(ptrCourse_Global->scoreboards.size());
         }
