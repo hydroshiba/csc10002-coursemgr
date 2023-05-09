@@ -86,8 +86,16 @@ bool updateSchoolYear(SchoolYear &schoolYear, const string &newStartYear, string
 		outStr = "Please enter the starting year in InputBox!";
 		return false;
 	}
+	unsigned int newStart = static_cast<unsigned int>(std::stoul(newStartYear));
+	
+	for (int i = 0; i < schoolYears.size(); i++) {
+		if (schoolYears[i].start == newStart) {
+			outStr = "SchoolYear with start year " + newStartYear + " have been already existed! Pls try another!";
+			return false;
+		}
+	}
+	schoolYear.start = newStart;
 	outStr = "Successfully changed start year of schoolyear from " + std::to_string(schoolYear.start) + " to " + newStartYear;
-	schoolYear.start = static_cast<unsigned int>(std::stoul(newStartYear));
 	return true;
 }
 
@@ -95,6 +103,12 @@ bool updateClass(Class &CLASS, const string &newClassName, string& outStr){
 	if (newClassName.empty()) {
 		outStr = "Please enter the new class name in InputBox!";
 		return false;
+	}
+	for (int i = 0; i < CLASS.ptrSchoolYear->classes.size(); i++) {
+		if (CLASS.ptrSchoolYear->classes[i].name == newClassName) {
+			outStr = "Class " + newClassName + " have been already existed! Pls try another!";
+			return false;
+		}
 	}
 	outStr = "Successfully changed class name of class from " + CLASS.name + " to " + newClassName;
 	CLASS.name = newClassName;
@@ -106,8 +120,16 @@ bool updateAcademicYear(AcademicYear& academicYear, const string& newStartYear, 
 		outStr = "Please enter the new starting year in InputBox!";
 		return false;
 	}
+	unsigned int newStart = static_cast<unsigned int>(std::stoul(newStartYear));
+
+	for (int i = 0; i < academicYears.size(); i++) {
+		if (academicYears[i].start == newStart) {
+			outStr = "AcademicYear with start year " + newStartYear + " have been already existed! Pls try another!";
+			return false;
+		}
+	}
 	outStr = "Successfully changed start year of academicyear from " + std::to_string(academicYear.start) + " to " + newStartYear;
-	academicYear.start = static_cast<unsigned int>(std::stoul(newStartYear));
+	academicYear.start = newStart;
 	return true;
 }
 
