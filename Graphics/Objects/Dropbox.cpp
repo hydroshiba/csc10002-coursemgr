@@ -119,6 +119,7 @@ void DropBox::add(const Vector<std::string> &labels) {
 string DropBox::getCurLabel() const {
     return current.label.text;
 }
+
 void DropBox::remove(const std::string label) {
     int pos = 0;
 
@@ -133,8 +134,15 @@ void DropBox::remove(const std::string label) {
     refresh();
 }
 
+void DropBox::reset() {
+    curIndex = -1;
+    current.label = "Choose an option";
+    current.label.color = border_color;
+}
+
 void DropBox::clear() {
-	options.resize(0);
+    options.resize(0);
+    reset();
     refresh();
 }
 

@@ -11,6 +11,7 @@
 #include "Scrollbar.h"
 #include "Scissor.h"
 #include "Components.h"
+
 class DropBox {
 private:
     float textSize;
@@ -50,7 +51,9 @@ public:
     void add(const Vector<std::string> &labels);
     
     string getCurLabel() const;
+
     void remove(const std::string label);
+    void reset();
     void clear();
     
     int getSelected();
