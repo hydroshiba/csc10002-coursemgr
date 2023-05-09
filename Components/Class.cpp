@@ -45,20 +45,41 @@ Student* Class::getStudent(const std::string& studentID) {
 }
 
 Vector<string> Class::getListCourse(const Semester& semester) const {
-    Vector<std::string> listCourse(0);
+    Vector<string> listCourse;
     for (int i = 0; i < this->students.size(); i++)
-        for (int j = 0; j < this->students[i]->scoreboards.size(); j++)
-            if (listCourse.find(this->students[i]->scoreboards[j]->ptrCourse->ID) == nullptr && this->students[i]->scoreboards[j]->ptrCourse->ptrSemester == &semester)
-                listCourse.append(this->students[i]->scoreboards[j]->ptrCourse->ID);
+        for (int j = 0; j < this->students[i]->scoreboards.size(); j++) {
+            if (this->students[i]->scoreboards[j]->ptrCourse->ptrSemester != &semester) continue;
+            string ID = this->students[i]->scoreboards[j]->ptrCourse->ID;
+            bool found = false;
+            for (int k = 0; k < listCourse.size(); k++) {
+                if (listCourse[k] == ID) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                listCourse.append(ID);
+            }
+        } 
     return listCourse;
 }
 
 Vector<std::string> Class::getListCourse() const{
     Vector<string> listCourse;
     for (int i = 0; i < this->students.size(); i++)
-        for (int j = 0; j < this->students[i]->scoreboards.size(); j++)
-            if (listCourse.find(this->students[i]->scoreboards[j]->ptrCourse->ID) == nullptr)
-                listCourse.append(this->students[i]->scoreboards[j]->ptrCourse->ID);
+        for (int j = 0; j < this->students[i]->scoreboards.size(); j++) {
+            string ID = this->students[i]->scoreboards[j]->ptrCourse->ID;
+            bool found = false;
+            for (int k = 0; k < listCourse.size(); k++) {
+                if (listCourse[k] == ID) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                listCourse.append(ID);
+            }
+        }           
     return listCourse;
 }
 

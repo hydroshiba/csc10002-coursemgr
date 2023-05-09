@@ -162,7 +162,7 @@ Vector<Vector<string>> getTableContentOfListScoreboardInSemesterInClass(const Cl
 		table[i + 4][0] = to_string(i + 1);
 		table[i + 4][1] = CLASS.students[i]->ID;
 		table[i + 4][2] = CLASS.students[i]->name.get();
-		for (int j = 0; j < nCourses; i++) {
+		for (int j = 0; j < nCourses; j++) {
 			Scoreboard* ptrScoreboard = CLASS.students[i]->getScoreboard(courses[j]);
 			if (ptrScoreboard == nullptr)
 				table[i + 4][j + 3] = "x";
@@ -172,6 +172,7 @@ Vector<Vector<string>> getTableContentOfListScoreboardInSemesterInClass(const Cl
 		table[i + 4][nCourses + 3] = to_string(CLASS.students[i]->getGPA(semester));
 		table[i + 4][nCourses + 4] = to_string(CLASS.students[i]->getGPA());
 	}
+	courses.~Vector();
 	return table;
 }
 
@@ -199,14 +200,14 @@ Vector<Vector<string>> getTableContentOfListScoreboardInClass(const Class& CLASS
 		table[i + 3][0] = to_string(i + 1);
 		table[i + 3][1] = CLASS.students[i]->ID;
 		table[i + 3][2] = CLASS.students[i]->name.get();
-		for (int j = 0; j < nCourses; i++) {
+		for (int j = 0; j < nCourses; j++) {
 			Scoreboard* ptrScoreboard = CLASS.students[i]->getScoreboard(courses[j]);
 			if (ptrScoreboard == nullptr)
 				table[i + 3][j + 3] = 'x';
 			else
 				table[i + 3][j + 3] = to_string(ptrScoreboard->total);
 		}
-		table[i + 3][nCourses + 3] = CLASS.students[i]->getGPA();
+		table[i + 3][nCourses + 3] = to_string(CLASS.students[i]->getGPA());
 	}
 	return table;
 }
