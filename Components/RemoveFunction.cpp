@@ -110,7 +110,7 @@ bool removeSchoolYear(const string& start, string& outStr) {
 			schoolYears[i].classes[j].ptrSchoolYear = &schoolYears[i];
 			for (int k = 0; k < schoolYears[i].classes[j].students.size(); k++) {
 				schoolYears[i].classes[j].students[k]->ptrClass = &schoolYears[i].classes[j];
-				for (int l = 0; l < schoolYears[i].classes[j].students[k]->scoreboards.size(); i++) {
+				for (int l = 0; l < schoolYears[i].classes[j].students[k]->scoreboards.size(); l++) {
 					schoolYears[i].classes[j].students[k]->scoreboards[l]->ptrStudent = schoolYears[i].classes[j].students[k];
 				}
 			}
