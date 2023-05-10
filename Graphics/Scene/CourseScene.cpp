@@ -1,49 +1,51 @@
 #include "CourseScene.h"
 
+const float textSize = 30;
+
 CourseScene :: CourseScene(){
     title = defaultStr;
     title.setSize(75);
     title.centerX();
-    title.setY(25);
+    title.setY(5);
 
 // Course Infor
     courseID = "CourseID";
-    courseID.setSize(40);
+    courseID.setSize(textSize);
     courseID.setPos({50,100});
     courseID.setColor(MAROON);
 
     classID = "ClassID";
-    classID.setSize(40);
+    classID.setSize(textSize);
     classID.setPos({50, 175});
     classID.setColor(MAROON);
 
     name = "Course Name";
-    name.setSize(40);
+    name.setSize(textSize);
     name.setPos({50, 250});
     name.setColor(MAROON);
 
     teacher = "Teacher";
-    teacher.setSize(40);
+    teacher.setSize(textSize);
     teacher.setPos({50, 325});
     teacher.setColor(MAROON);
 
     credit = "Credits";
-    credit.setSize(40);
+    credit.setSize(textSize);
     credit.setPos({50, 400});
     credit.setColor(MAROON);    
 
     maxEnroll = "Max Enroll";
-    maxEnroll.setSize(40);
+    maxEnroll.setSize(textSize);
     maxEnroll.setPos({50, 475});
     maxEnroll.setColor(MAROON);
 
     weekday = "Weekday";
-    weekday.setSize(40);
+    weekday.setSize(textSize);
     weekday.setPos({50, 550});
     weekday.setColor(MAROON);
 
     session = "Session";
-    session.setSize(40);
+    session.setSize(textSize);
     session.setPos({50, 625});
     session.setColor(MAROON);
 
@@ -82,7 +84,7 @@ CourseScene :: CourseScene(){
 // ------------------------------------------------------
 // Add student
     addText = "Add Student";
-    addText.setSize(40);
+    addText.setSize(textSize);
     addText.setPos({620,100});
 
     addBox.setSize({250,50});
@@ -96,7 +98,7 @@ CourseScene :: CourseScene(){
 // -------------------------------------------------------
 // Remove student
     removeText = "Remove Student";
-    removeText.setSize(40);
+    removeText.setSize(textSize);
     removeText.setPos({620,175});
 
     removeBox.setSize({250,50});
@@ -110,7 +112,7 @@ CourseScene :: CourseScene(){
 // -------------------------------------------------------
 // Export students
     fileText = "Export students";
-    fileText.setSize(40);
+    fileText.setSize(textSize);
     fileText.setPos({620,250});
 
     fileBox.setSize({250,50});
@@ -124,7 +126,7 @@ CourseScene :: CourseScene(){
 // -------------------------------------------------------
 // Export scoreboards
     expText = "Export scoreboards";
-    expText.setSize(40);
+    expText.setSize(textSize);
     expText.setPos({620,325});
 
     expBox.setSize({250,50});
@@ -138,14 +140,14 @@ CourseScene :: CourseScene(){
 // --------------------------------------------------------
 // Update Scoreboard Scene
     viewScore.label = "Update Scoreboards";
-    viewScore.setSize({250, 100});
-    viewScore.setPos({750, 575});
+    viewScore.setSize({300, 50});
+    viewScore.setPos({850, 625});
     viewScore.setViewColor();
 // --------------------------------------------------------
 
 // Import students
     impText = "Import students";
-    impText.setSize(40);
+    impText.setSize(textSize);
     impText.setPos({620,400});
 
     impBox.setSize({250,50});
@@ -159,7 +161,7 @@ CourseScene :: CourseScene(){
 // ------------------------------------------------------
 // Import scoreboard
     impScoreText = "Import scoreboards";
-    impScoreText.setSize(40);
+    impScoreText.setSize(textSize);
     impScoreText.setPos({620,475});
 
     impScoreBox.setSize({250,50});
@@ -177,19 +179,19 @@ CourseScene :: CourseScene(){
     change.setViewColor();
 
     back.label = "Back";
-    back.setSize({150,100});
-    back.setPos({1050, 575});
+    back.setSize({100,50});
+    back.setPos({1150, 625});
     back.setRemoveColor();
 
     result = "";
 	result.setColor(RED);
-	result.setSize(30);
+	result.setSize(textSize);
 	result.centerX();
 	result.setY(675);
 
     test = "";
-    test.setSize(30);
-    test.setPos({ 620, 530 });
+    test.setSize(textSize);
+    test.setPos({ 620, 550 });
 }
 
 void CourseScene::render(){
