@@ -10,7 +10,7 @@ const float inputHeight = 50;
 const Vector2 buttonSize = { buttonWidth, buttonHeight };
 const Vector2 inputSize = { inputWidth, inputHeight };
 
-const float xDis = 180;
+const float xDis = 200;
 const float yDis = 50;
 const float textSize = 30;
 
@@ -102,7 +102,7 @@ AcademicYearScene::AcademicYearScene() {
     //---------------------------------------------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------------------------------
     back.label = "Back";
-    back.setPos({ xPos3 + xDis - 30, 650 });
+    back.setPos({ xPos3 + xDis - 80, 650 });
     back.setSize(buttonSize);
     back.setRemoveColor();
     //---------------------------------------------------------------------------------------------------------------
