@@ -163,7 +163,7 @@ bool updateSemester(Semester &semester, const string& semesterID, const string s
 	if (!semesterID.empty()) {
 		for (int i = 0; i<ptrAcademicYear->semesters.size(); ++i)
 			if (semesterID == ptrAcademicYear->semesters[i].semesterID){
-				outStr = "The semester with ID " + semesterID + " has already existed in academic year " + to_string(ptrAcademicYear->start) + ", pls try another!";
+				outStr = "The semester with ID " + semesterID + " has already existed in academic year " + ptrAcademicYear->getPeriod() + ", pls try another!";
 				return false;
 			}
 		semester.semesterID = semesterID;
@@ -182,7 +182,7 @@ bool updateCourse(Course& course, const string& courseID, const string& classID,
 	if (!courseID.empty()) {
 		for (int i = 0; i<ptrSemester->courses.size(); ++i)
 			if (ptrSemester->courses[i].ID == courseID){
-				outStr = "The course with ID " + courseID + " has already existed in semester " + ptrSemester->semesterID + " of academic year " + to_string (ptrAcademicYear->start) + ", pls try another!";
+				outStr = "The course with ID " + courseID + " has already existed in semester " + ptrSemester->semesterID + " of academic year " + ptrAcademicYear->getPeriod() + ", pls try another!";
 				return false;
 			}
 		course.updateID(courseID);	
@@ -190,7 +190,7 @@ bool updateCourse(Course& course, const string& courseID, const string& classID,
 	if (!classID.empty()) {
 		for (int i = 0; i<ptrSemester->courses.size(); ++i)
 			if (ptrSemester->courses[i].classID == classID){
-				outStr = "The course with classID " + classID + " has already existed in semester " + ptrSemester->semesterID + " of academic year " + to_string (ptrAcademicYear->start) + ", pls try another!";
+				outStr = "The course with classID " + classID + " has already existed in semester " + ptrSemester->semesterID + " of academic year " + ptrAcademicYear->getPeriod() + ", pls try another!";
 				return false;
 			}
 		course.updateClassID(classID);
