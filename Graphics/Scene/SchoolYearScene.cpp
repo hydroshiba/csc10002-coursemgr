@@ -164,6 +164,7 @@ Scene* SchoolYearScene::process() {
         exportPath.clearContent();
         listClass.clear();
         isAddedListClasses = false;
+        ms.clear();
         return registry.classScene;
     }
     //--------------------------------------
@@ -222,7 +223,6 @@ Scene* SchoolYearScene::process() {
         listClass.clear();
         isAddedListClasses = false;
         ms.clear();
-
         return registry.listSchoolYearScene;
     }
     return this;

@@ -101,6 +101,7 @@ Scene* ListAcademicYearScene::process() {
         inputSchoolYearRemoved.clearContent();
         chooseSchoolYear.clear();
         isAddedListAcademicYear = false;
+        ms.clear();
         return registry.academicYearScene;
     }
     else if (add.clicked(mousePoint)) {

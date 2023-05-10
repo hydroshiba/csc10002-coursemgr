@@ -267,6 +267,7 @@ Scene* SemesterScene::process() {
         inputExport.clearContent();
         listCourse.clear();
         isAddCourse = false;
+        ms.clear();
         return registry.courseScene;
     }
     else if (back.clicked(mousePoint)) {

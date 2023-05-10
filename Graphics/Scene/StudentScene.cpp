@@ -297,6 +297,7 @@ Scene* StudentScene::process() {
 		ptrStudent_Global = nullptr;
 		if (ptrStaff_Global != nullptr)
 			ptrStaff_Global = nullptr;
+		message.clear();
 		return registry.login;
 	}
 	//-----------------------------------------------------------------------------------
@@ -315,8 +316,6 @@ Scene* StudentScene::process() {
 		inputPassword.clearContent();
 		inputFilename.clearContent();
 		ptrStudent_Global = nullptr;
-		if (ptrStaff_Global != nullptr)
-			ptrStaff_Global = nullptr;
 		message.clear();
 		inputSemesterID.clear();
 		isAddListSemester = false;

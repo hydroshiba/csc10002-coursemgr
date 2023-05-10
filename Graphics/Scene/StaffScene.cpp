@@ -264,7 +264,7 @@ Scene* StaffScene::process() {
 		inputEditFirstName.clearContent();
 		inputEditLastName.clearContent();
 		inputEditPassword.clearContent();
-		message = "";
+		message.clear();
 		return registry.listAcademicYearScene;
 	}
 		
@@ -278,7 +278,7 @@ Scene* StaffScene::process() {
 		inputEditFirstName.clearContent();
 		inputEditLastName.clearContent();
 		inputEditPassword.clearContent();
-		message = "";
+		message.clear();
 		return registry.listSchoolYearScene;
 	}
 		
@@ -292,7 +292,7 @@ Scene* StaffScene::process() {
 		inputEditFirstName.clearContent();
 		inputEditLastName.clearContent();
 		inputEditPassword.clearContent();
-		message = "";
+		message.clear();
 		ptrStaff_Global = nullptr;
 		return registry.login;
 	}
@@ -306,7 +306,7 @@ Scene* StaffScene::process() {
 		inputEditFirstName.clearContent();
 		inputEditLastName.clearContent();
 		inputEditPassword.clearContent();
-		message = "";
+		message.clear();
 		return registry.staffScene2;
 	}
 		

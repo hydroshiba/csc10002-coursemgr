@@ -164,6 +164,7 @@ Scene* AcademicYearScene::process() {
         exportPath.clearContent();
         listClass.clear();
         isAddedSemester = false;
+        ms.clear();
         return registry.semesterScene;
     }
     //--------------------------------------

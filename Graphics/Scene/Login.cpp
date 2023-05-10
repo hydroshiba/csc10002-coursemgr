@@ -71,7 +71,7 @@ Scene* Login::process() {
 		else if (isCorrectStudentAccount(usernameStr, passwordStr, outStr)) {
 			ptrStudent_Global = getStudent(usernameStr);
 			
-			invalid = "";
+			invalid.clear();
 			invalid.centerX();
 
 			username.content = "";

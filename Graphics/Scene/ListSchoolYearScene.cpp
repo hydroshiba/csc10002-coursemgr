@@ -101,6 +101,7 @@ Scene* ListSchoolYearScene::process() {
           inputSchoolYearRemoved.clearContent();
           chooseSchoolYear.clear();
           isAddedListSchoolYear = false;
+          ms.clear();
           return registry.schoolYearScene;
     }  
     else if (add.clicked(mousePoint)) {
