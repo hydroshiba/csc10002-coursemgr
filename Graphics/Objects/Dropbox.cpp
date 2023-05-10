@@ -25,7 +25,7 @@ void DropBox::refresh() {
     current.setSize(size);
     
     int optionNum = options.size();
-    if(optionNum > 5) optionNum = 5;
+    if(optionNum > 4) optionNum = 4;
 
     bound.x = pos.x;
     bound.y = pos.y + size.y;
