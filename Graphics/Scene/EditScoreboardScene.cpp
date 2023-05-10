@@ -52,18 +52,18 @@ EditScoreboardScene::EditScoreboardScene(){
     totalBox.defaultText = "Total score";
 
     change.label = "Change";
-    change.setSize({250,75});
-    change.setPos({750, 250});
+    change.setSize({150,50});
+    change.setPos({650, 200});
     change.setInsertColor();
 
     view.label = "View";
-    view.setSize({250,75});
-    view.setPos({750, 425});
+    view.setSize({150,50});
+    view.setPos({800, 200});
     view.setViewColor();
 
     back.label = "Back";
-    back.setSize({250,50});
-    back.setPos({1000, 600});
+    back.setSize({150,50});
+    back.setPos({1100, 550});
     back.fill_color = RED;
     back.hover_color = RED;
     back.press_color = MAROON;
