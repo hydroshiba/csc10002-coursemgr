@@ -31,13 +31,13 @@ AcademicYearScene::AcademicYearScene() {
     sceneTitle.setY(50);
     //---------------------------------------------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------------------------------
-    viewClass = "View Semesters";
-    viewClass.setSize(textSize);
-    viewClass.setPos({ 50, 200 });
+    viewSemester = "View Semesters";
+    viewSemester.setSize(textSize);
+    viewSemester.setPos({ 50, 200 });
     //---------------------------------------------------------------------------------------------------------------
-    listClass.setLabel("List of Semesters:");
-    listClass.setPos({ 50, yPos1 });
-    listClass.setSize({ 300, 50 });
+    listSemester.setLabel("List of Semesters:");
+    listSemester.setPos({ 50, yPos1 });
+    listSemester.setSize({ 300, 50 });
     //---------------------------------------------------------------------------------------------------------------
     view.label = "View";
     view.setPos({ 350, 250 });
@@ -45,13 +45,13 @@ AcademicYearScene::AcademicYearScene() {
     view.setViewColor();
     //---------------------------------------------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------------------------------
-    textAddClass = "Add Semester";
-    textAddClass.setSize(textSize);
-    textAddClass.setPos({ xPos1, yPos1 });
+    textAddSemester = "Add Semester";
+    textAddSemester.setSize(textSize);
+    textAddSemester.setPos({ xPos1, yPos1 });
     //---------------------------------------------------------------------------------------------------------------
-    inputClassAdded.defaultText = "Enter SemesterID...";
-    inputClassAdded.setPos({ xPos2, yPos1 });
-    inputClassAdded.setSize(inputSize);
+    inputSemesterAdded.defaultText = "Enter SemesterID...";
+    inputSemesterAdded.setPos({ xPos2, yPos1 });
+    inputSemesterAdded.setSize(inputSize);
     //---------------------------------------------------------------------------------------------------------------
     add.label = "Add";
     add.setPos({ xPos3, yPos1 });
@@ -59,13 +59,13 @@ AcademicYearScene::AcademicYearScene() {
     add.setInsertColor();
     //---------------------------------------------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------------------------------
-    textRemoveClass = "Remove Semester";
-    textRemoveClass.setSize(textSize);
-    textRemoveClass.setPos({ xPos1, yPos2 });
+    textRemoveSemester = "Remove Semester";
+    textRemoveSemester.setSize(textSize);
+    textRemoveSemester.setPos({ xPos1, yPos2 });
     //---------------------------------------------------------------------------------------------------------------
-    inputClassRemoved.defaultText = "Enter SemesterID...";
-    inputClassRemoved.setPos({ xPos2, yPos2 });
-    inputClassRemoved.setSize(inputSize);
+    inputSemesterRemoved.defaultText = "Enter SemesterID...";
+    inputSemesterRemoved.setPos({ xPos2, yPos2 });
+    inputSemesterRemoved.setSize(inputSize);
     //---------------------------------------------------------------------------------------------------------------
     remove.label = "Remove";
     remove.setPos({ xPos3, yPos2 });
@@ -116,16 +116,16 @@ AcademicYearScene::AcademicYearScene() {
 void AcademicYearScene::render() {
     sceneTitle.render();
     //--------------------------------------
-    viewClass.render();
-    listClass.render(mousePoint);
+    viewSemester.render();
+    listSemester.render(mousePoint);
     view.render(mousePoint);
     //--------------------------------------
-    textAddClass.render();
-    inputClassAdded.render(mousePoint);
+    textAddSemester.render();
+    inputSemesterAdded.render(mousePoint);
     add.render(mousePoint);
     //--------------------------------------
-    textRemoveClass.render();
-    inputClassRemoved.render(mousePoint);
+    textRemoveSemester.render();
+    inputSemesterRemoved.render(mousePoint);
     remove.render(mousePoint);
     //--------------------------------------
     editYear.render();
@@ -142,55 +142,55 @@ void AcademicYearScene::render() {
 Scene* AcademicYearScene::process() {
     this->mousePoint = GetMousePosition();
     inputStartYear.process(mousePoint);
-    inputClassAdded.process(mousePoint);
-    inputClassRemoved.process(mousePoint);
+    inputSemesterAdded.process(mousePoint);
+    inputSemesterRemoved.process(mousePoint);
     exportPath.process(mousePoint);
-    listClass.process(mousePoint);
+    listSemester.process(mousePoint);
     //--------------------------------------
     if (ptrAcademicYear_Global != nullptr) {
         sceneTitle = "Academic Year " + ptrAcademicYear_Global->getPeriod();
         sceneTitle.centerX();
         if (!isAddedSemester) {
             Vector<string> ls = getListSemester(*ptrAcademicYear_Global);
-            listClass.add(ls);
+            listSemester.add(ls);
             isAddedSemester = true;
         }
     }
     if (view.clicked(mousePoint)) {
-        ptrSemester_Global = getSemester(*ptrAcademicYear_Global, listClass.getCurLabel());
-        inputClassAdded.clearContent();
-        inputClassRemoved.clearContent();
+        ptrSemester_Global = getSemester(*ptrAcademicYear_Global, listSemester.getCurLabel());
+        inputSemesterAdded.clearContent();
+        inputSemesterRemoved.clearContent();
         inputStartYear.clearContent();
         exportPath.clearContent();
-        listClass.clear();
+        listSemester.clear();
         isAddedSemester = false;
         ms.clear();
         return registry.semesterScene;
     }
     //--------------------------------------
     else if (add.clicked(mousePoint)) {
-        string className = inputClassAdded.getContent();
+        string SemesterName = inputSemesterAdded.getContent();
         string outStr;
-        if (addSemester(*ptrAcademicYear_Global, className, outStr)) {
-            listClass.add(className);
-            listClass.process(mousePoint);
+        if (addSemester(*ptrAcademicYear_Global, SemesterName, outStr)) {
+            listSemester.add(SemesterName);
+            listSemester.process(mousePoint);
         }
         ms = outStr;
         ms.centerX();
-        inputClassAdded.clearContent();
+        inputSemesterAdded.clearContent();
         return this;
     }
     //--------------------------------------
     else if (remove.clicked(mousePoint)) {
-            string className = inputClassRemoved.getContent();
+            string SemesterName = inputSemesterRemoved.getContent();
             string outStr;
-            if (removeSemester(*ptrAcademicYear_Global, className, outStr)) {
-                listClass.remove(className);
-                listClass.process(mousePoint);
+            if (removeSemester(*ptrAcademicYear_Global, SemesterName, outStr)) {
+                listSemester.remove(SemesterName);
+                listSemester.process(mousePoint);
             }
             ms = outStr;
             ms.centerX();
-            inputClassRemoved.clearContent();
+            inputSemesterRemoved.clearContent();
             return this;
         }
     //--------------------------------------
@@ -214,11 +214,11 @@ Scene* AcademicYearScene::process() {
     }
     if (back.clicked(mousePoint)) {
         ptrAcademicYear_Global = nullptr;
-        inputClassAdded.clearContent();
-        inputClassRemoved.clearContent();
+        inputSemesterAdded.clearContent();
+        inputSemesterRemoved.clearContent();
         inputStartYear.clearContent();
         exportPath.clearContent();
-        listClass.clear();
+        listSemester.clear();
         isAddedSemester = false;
         ptrAcademicYear_Global = nullptr;
         ms.clear();

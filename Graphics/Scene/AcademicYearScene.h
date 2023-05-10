@@ -23,16 +23,16 @@ class AcademicYearScene : public Scene {
 private:
     TextBox sceneTitle;
 
-    TextBox viewClass;
-    DropBox listClass;
+    TextBox viewSemester;
+    DropBox listSemester;
     Button view;
 
-    TextBox textAddClass;
-    InputBox inputClassAdded;
+    TextBox textAddSemester;
+    InputBox inputSemesterAdded;
     Button add;
 
-    TextBox textRemoveClass;
-    InputBox inputClassRemoved;
+    TextBox textRemoveSemester;
+    InputBox inputSemesterRemoved;
     Button remove;
 
     TextBox editYear;
