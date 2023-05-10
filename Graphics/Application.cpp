@@ -5,17 +5,20 @@ Application::Application() {
     InitWindow(app_const::width, app_const::height, app_const::title.c_str());
 
     registry.login = new Login();
+
     registry.studentScene = new StudentScene();
     registry.staffScene = new StaffScene();
     registry.staffScene2 = new StaffScene2();
-    registry.studentScoreboardsScene = new StudentScoreBoardsScene();
-    registry.courseScene = new CourseScene();
+
     registry.schoolYearScene = new SchoolYearScene();
     registry.listSchoolYearScene = new ListSchoolYearScene();
+    registry.classScene = new ClassScene();
+
     registry.listAcademicYearScene = new ListAcademicYearScene();
     registry.academicYearScene = new AcademicYearScene();
     registry.semesterScene = new SemesterScene();
-    registry.classScene = new ClassScene();
+
+    registry.courseScene = new CourseScene();
     registry.editScoreboardCourse = new EditScoreboardScene();
 
     scene = registry.login;
@@ -29,7 +32,6 @@ Application::~Application() {
     delete registry.studentScene;
     delete registry.staffScene;
     delete registry.staffScene2;
-    delete registry.studentScoreboardsScene;
     delete registry.blank;
     delete registry.courseScene;
     delete registry.schoolYearScene;

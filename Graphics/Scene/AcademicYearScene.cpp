@@ -145,6 +145,7 @@ Scene* AcademicYearScene::process() {
     inputClassAdded.process(mousePoint);
     inputClassRemoved.process(mousePoint);
     exportPath.process(mousePoint);
+    listClass.process(mousePoint);
     //--------------------------------------
     if (ptrAcademicYear_Global != nullptr) {
         sceneTitle = "Academic Year " + ptrAcademicYear_Global->getPeriod();
@@ -155,7 +156,6 @@ Scene* AcademicYearScene::process() {
             isAddedSemester = true;
         }
     }
-    listClass.process(mousePoint);
     if (view.clicked(mousePoint)) {
         ptrSemester_Global = getSemester(*ptrAcademicYear_Global, listClass.getCurLabel());
         inputClassAdded.clearContent();

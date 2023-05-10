@@ -14,7 +14,6 @@
 #include "Scene/CourseScene.h"
 #include "Scene/SchoolYearScene.h"
 #include "Scene/ListSchoolYearScene.h"
-#include "Scene/StudentScoreboardsScene.h"
 #include "Scene/ListAcademicYearScene.h"
 #include "Scene/AcademicYearScene.h"
 #include "Scene/SemesterScene.h"

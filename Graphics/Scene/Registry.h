@@ -13,7 +13,6 @@ public:
 	Scene* studentScene;
 	Scene* staffScene;
 	Scene* staffScene2;
-	Scene* studentScoreboardsScene;
 	Scene* listAcademicYearScene;
 	Scene* academicYearScene;
 	Scene* semesterScene;
@@ -25,7 +24,6 @@ public:
 	studentScene(nullptr),
 	staffScene(nullptr),
 	staffScene2(nullptr),
-	studentScoreboardsScene(nullptr),
 	courseScene(nullptr), 
 	schoolYearScene(nullptr),
 	listSchoolYearScene(nullptr),
