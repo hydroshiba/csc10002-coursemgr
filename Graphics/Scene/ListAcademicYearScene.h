@@ -16,7 +16,7 @@
 #include "DisplayFunction.h"
 #include "RemoveFunction.h"
 #include "SearchFunction.h"
-#include "SchoolYear.h"
+#include "AcademicYear.h"
 
 class ListAcademicYearScene : public Scene {
 private:
@@ -27,18 +27,18 @@ private:
     Button view;
 
     TextBox addYear;
-    InputBox inputSchoolYearAdded;
+    InputBox inputAcademicYearAdded;
     Button add;
 
     TextBox removeYear;
-    InputBox inputSchoolYearRemoved;
+    InputBox inputAcademicYearRemoved;
     Button remove;
 
     TextBox ms;
 
     Button back;
 public:
-    DropBox chooseSchoolYear;
+    DropBox chooseAcademicYear;
     ListAcademicYearScene();
     void render();
     Scene* process();

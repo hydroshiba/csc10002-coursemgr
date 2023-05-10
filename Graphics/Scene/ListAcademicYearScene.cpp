@@ -18,9 +18,9 @@ ListAcademicYearScene::ListAcademicYearScene() {
     viewYear.setSize(textSize);
     viewYear.setPos({ 50, 200 });
 
-    chooseSchoolYear.setLabel("Choose Academic Year");
-    chooseSchoolYear.setPos({ 50, 250 });
-    chooseSchoolYear.setSize({ 350, 50 });
+    chooseAcademicYear.setLabel("Choose Academic Year");
+    chooseAcademicYear.setPos({ 50, 250 });
+    chooseAcademicYear.setSize({ 350, 50 });
 
     view.label = "View";
     view.setPos({ 400, 250 });
@@ -31,12 +31,12 @@ ListAcademicYearScene::ListAcademicYearScene() {
     addYear.setSize(textSize);
     addYear.setPos({ 600, 250 });
 
-    inputSchoolYearAdded.defaultText = "Enter start year";
-    inputSchoolYearAdded.setPos({ addYear.getPos().x + textBoxWidth, addYear.getPos().y });
-    inputSchoolYearAdded.setSize(inputSize);
+    inputAcademicYearAdded.defaultText = "Enter start year";
+    inputAcademicYearAdded.setPos({ addYear.getPos().x + textBoxWidth, addYear.getPos().y });
+    inputAcademicYearAdded.setSize(inputSize);
 
     add.label = "Add";
-    add.setPos({ inputSchoolYearAdded.getPos().x + inputSchoolYearAdded.getSize().x, inputSchoolYearAdded.getPos().y });
+    add.setPos({ inputAcademicYearAdded.getPos().x + inputAcademicYearAdded.getSize().x, inputAcademicYearAdded.getPos().y });
     add.setSize(buttonSize);
     add.setInsertColor();
     //--------------------------------------
@@ -44,12 +44,12 @@ ListAcademicYearScene::ListAcademicYearScene() {
     removeYear.setSize(textSize);
     removeYear.setPos({ addYear.getPos().x, addYear.getPos().y + yDis + add.getSize().y });
 
-    inputSchoolYearRemoved.defaultText = "Enter start year";
-    inputSchoolYearRemoved.setPos({ inputSchoolYearAdded.getPos().x, removeYear.getPos().y });
-    inputSchoolYearRemoved.setSize(inputSchoolYearAdded.getSize());
+    inputAcademicYearRemoved.defaultText = "Enter start year";
+    inputAcademicYearRemoved.setPos({ inputAcademicYearAdded.getPos().x, removeYear.getPos().y });
+    inputAcademicYearRemoved.setSize(inputAcademicYearAdded.getSize());
 
     remove.label = "Remove";
-    remove.setPos({ add.getPos().x, inputSchoolYearRemoved.getPos().y });
+    remove.setPos({ add.getPos().x, inputAcademicYearRemoved.getPos().y });
     remove.setSize(buttonSize);
     remove.setRemoveColor();
     //--------------------------------------
@@ -67,15 +67,15 @@ void ListAcademicYearScene::render() {
     sceneTitle.render();
     //--------------------------------------
     viewYear.render();
-    chooseSchoolYear.render(mousePoint);
+    chooseAcademicYear.render(mousePoint);
     view.render(mousePoint);
     //--------------------------------------
     addYear.render();
-    inputSchoolYearAdded.render(mousePoint);
+    inputAcademicYearAdded.render(mousePoint);
     add.render(mousePoint);
     //--------------------------------------
     removeYear.render();
-    inputSchoolYearRemoved.render(mousePoint);
+    inputAcademicYearRemoved.render(mousePoint);
     remove.render(mousePoint);
     //--------------------------------------
     back.render(mousePoint);
@@ -87,50 +87,50 @@ Scene* ListAcademicYearScene::process() {
     mousePoint = GetMousePosition();
     sceneTitle = "List Of Academic Years (" + to_string(academicYears.size()) + ")";
     sceneTitle.centerX();
-    chooseSchoolYear.process(mousePoint);
-    inputSchoolYearAdded.process(mousePoint);
-    inputSchoolYearRemoved.process(mousePoint);
+    chooseAcademicYear.process(mousePoint);
+    inputAcademicYearAdded.process(mousePoint);
+    inputAcademicYearRemoved.process(mousePoint);
 
     if (!isAddedListAcademicYear) {
-        chooseSchoolYear.add(getListAcademicYear());
+        chooseAcademicYear.add(getListAcademicYear());
         isAddedListAcademicYear = true;
     }
     if (view.clicked(mousePoint)) {
-        ptrAcademicYear_Global = getAcademicYear(chooseSchoolYear.getCurLabel());
-        inputSchoolYearAdded.clearContent();
-        inputSchoolYearRemoved.clearContent();
-        chooseSchoolYear.clear();
+        ptrAcademicYear_Global = getAcademicYear(chooseAcademicYear.getCurLabel());
+        inputAcademicYearAdded.clearContent();
+        inputAcademicYearRemoved.clearContent();
+        chooseAcademicYear.clear();
         isAddedListAcademicYear = false;
         ms.clear();
         return registry.academicYearScene;
     }
     else if (add.clicked(mousePoint)) {
-        string content = inputSchoolYearAdded.getContent();
+        string content = inputAcademicYearAdded.getContent();
         string outStr;
         if (addAcademicYear(content, outStr)) {
-            chooseSchoolYear.add(content);
-            chooseSchoolYear.process(mousePoint);
+            chooseAcademicYear.add(content);
+            chooseAcademicYear.process(mousePoint);
         }
         ms = outStr;
         ms.centerX();
-        inputSchoolYearAdded.clearContent();
+        inputAcademicYearAdded.clearContent();
     }
     else if (remove.clicked(mousePoint)) {
-        string startYear = inputSchoolYearRemoved.getContent();
+        string startYear = inputAcademicYearRemoved.getContent();
         string outStr;
         if (removeAcademicYear(startYear, outStr)) {
-            chooseSchoolYear.remove(startYear);
-            chooseSchoolYear.process(mousePoint);
+            chooseAcademicYear.remove(startYear);
+            chooseAcademicYear.process(mousePoint);
         }
         ms = outStr;
         ms.centerX();
-        inputSchoolYearRemoved.clearContent();
+        inputAcademicYearRemoved.clearContent();
     }
     else if (back.clicked(mousePoint)) {
-        chooseSchoolYear.process(mousePoint);
-        inputSchoolYearAdded.clearContent();
-        inputSchoolYearRemoved.clearContent();
-        chooseSchoolYear.clear();
+        chooseAcademicYear.process(mousePoint);
+        inputAcademicYearAdded.clearContent();
+        inputAcademicYearRemoved.clearContent();
+        chooseAcademicYear.clear();
         isAddedListAcademicYear = false;
         ms.clear();
         return registry.staffScene;
