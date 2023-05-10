@@ -35,6 +35,7 @@ coursemgr
 testing
 
 # Directories
+.vs/
 build/
 .vscode/
 bin/

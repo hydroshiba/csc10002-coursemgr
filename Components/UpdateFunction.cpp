@@ -25,6 +25,11 @@ bool updateStudentIn4(Student& student, const string& ID, const string& firstNam
 		return false;
 	}
 	if (!ID.empty()) {
+		for (int i = 0; i<students.size(); ++i)
+			if (students[i].ID == ID) {
+				outStr = "The student with ID " + ID + " has already existed, pls try another!";
+				return false;
+			}
 		student.setID(ID);
 	}
 	if (!firstName.empty()) {
@@ -51,6 +56,11 @@ bool updateStudentIn4(Student& student, const string& ID, const string& firstNam
 		student.setBirth(birth);
 	}
 	if (!socialID.empty()) {
+		for (int i = 0; i<students.size(); ++i)
+			if (students[i].socialID == socialID) {
+				outStr = "The student with socialID " + socialID + " has already existed, pls try another!";
+				return false;
+			}
 		student.setSocialID(socialID);
 	}
 	if (!password.empty()) {
@@ -66,6 +76,11 @@ bool updateStaffIn4(Staff& staff, const string& ID, const string& firstName, con
 		return false;
 	}
 	if (!ID.empty()) {
+		for (int i = 0; i<staffs.size(); ++i)
+			if (staffs[i].ID == ID) {
+				outStr = "The staff with ID " + ID + " has already existed, pls try another!";
+				return false;
+			}
 		staff.setID(ID);
 	}
 	if (!firstName.empty()) {
@@ -134,6 +149,7 @@ bool updateAcademicYear(AcademicYear& academicYear, const string& newStartYear, 
 }
 
 bool updateSemester(Semester &semester, const string& semesterID, const string startDate, const string endDate, string& outStr){
+	AcademicYear *ptrAcademicYear = semester.ptrAcademicYear;
 	if (startDate.empty() && endDate.empty() && semesterID.empty()) {
 		outStr = "Please input new date in at least one InputBox!";
 		return false;
@@ -145,6 +161,11 @@ bool updateSemester(Semester &semester, const string& semesterID, const string s
 		semester.endDate = string_to_date(endDate);
 	}
 	if (!semesterID.empty()) {
+		for (int i = 0; i<ptrAcademicYear->semesters.size(); ++i)
+			if (semesterID == ptrAcademicYear->semesters[i].semesterID){
+				outStr = "The semester with ID " + semesterID + " has already existed in academic year " + to_string(ptrAcademicYear->start) + ", pls try another!";
+				return false;
+			}
 		semester.semesterID = semesterID;
 	}
 	outStr = "Successfully changed properties of semester " + semester.semesterID;
@@ -152,12 +173,28 @@ bool updateSemester(Semester &semester, const string& semesterID, const string s
 }
 
 bool updateCourse(Course& course, const string& courseID, const string& classID, const string& name, const string& teacher, const string& cre,const string& maxEnroll, const string& day, const string& ss, string &outStr) {
+	Semester *ptrSemester = course.ptrSemester;
+	AcademicYear *ptrAcademicYear = ptrSemester->ptrAcademicYear;
 	if (courseID.empty() && classID.empty() && name.empty() && teacher.empty() && cre.empty() && day.empty() && ss.empty()){
 		outStr = "All input boxes are empty, please try again!";
 		return false;
 	}
-	if (!courseID.empty()) course.updateID(courseID);
-	if (!classID.empty()) course.updateClassID(classID);
+	if (!courseID.empty()) {
+		for (int i = 0; i<ptrSemester->courses.size(); ++i)
+			if (ptrSemester->courses[i].ID == courseID){
+				outStr = "The course with ID " + courseID + " has already existed in semester " + ptrSemester->semesterID + " of academic year " + to_string (ptrAcademicYear->start) + ", pls try another!";
+				return false;
+			}
+		course.updateID(courseID);	
+	}
+	if (!classID.empty()) {
+		for (int i = 0; i<ptrSemester->courses.size(); ++i)
+			if (ptrSemester->courses[i].classID == classID){
+				outStr = "The course with classID " + classID + " has already existed in semester " + ptrSemester->semesterID + " of academic year " + to_string (ptrAcademicYear->start) + ", pls try another!";
+				return false;
+			}
+		course.updateClassID(classID);
+	}
 	if (!name.empty()) course.updateName(name);
 	if (!teacher.empty()) course.updateTeacher(teacher);
 	if (!cre.empty()) course.updateCredits(std::stoi(cre));
