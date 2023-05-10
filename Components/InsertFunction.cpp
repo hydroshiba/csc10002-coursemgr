@@ -168,7 +168,7 @@ bool addStudentToClass(Class& actClass, const string& studentID, string& outStr)
 	outStr = "Complete add new student with ID " + studentID + " to class " + actClass.name;
 	return true;
 }
-// Add a new academic year
+
 // Add a new academic year
 bool addAcademicYear(const string& start, string& outStr) {
 	if (start.empty()) {

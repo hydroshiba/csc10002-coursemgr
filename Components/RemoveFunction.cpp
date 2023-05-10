@@ -132,7 +132,9 @@ bool removeClass(SchoolYear& schoolYear, const string& className, string& outStr
 		return false;
 	}
 	ptrClass->removeAllStudent();
-	schoolYear.removeClass(*ptrClass);
+	//schoolYear.removeClass(*ptrClass);
+	schoolYear.classes.remove(ptrClass);
+	ptrClass->ptrSchoolYear = nullptr;
 	for (int i = 0; i < schoolYear.classes.size(); i++) {
 		for (int j = 0; j < schoolYear.classes[i].students.size(); j++) {
 			schoolYear.classes[i].students[j]->ptrClass = &schoolYear.classes[i];
@@ -204,10 +206,10 @@ bool removeSemester(AcademicYear& academicYear, const string& semesterID, string
 		outStr = "Semester " + semesterID + " have not been already existed in this AcademicYear " + academicYear.getPeriod();
 		return false;
 	}
-	for (int i = 0; i < ptrSemester->courses.size(); i++) {
-		ptrSemester->removeAllCourse();
-	}
-	academicYear.removeSemester(*ptrSemester);
+	ptrSemester->removeAllCourse();
+	//academicYear.removeSemester(*ptrSemester);
+	academicYear.semesters.remove(ptrSemester);
+	ptrSemester->ptrAcademicYear = nullptr;
 	for (int i = 0; i < academicYear.semesters.size(); i++) {
 		academicYear.semesters[i].ptrAcademicYear = &academicYear;
 		for (int j = 0; j < academicYear.semesters[i].courses.size(); j++) {
@@ -233,7 +235,9 @@ bool removeCourse(Semester& semester, const string& courseID, string& outStr) {
 		return false;
 	}
 	ptrCourse->removeAllStudent();
-	semester.removeCourse(*ptrCourse);
+	//semester.removeCourse(*ptrCourse);
+	semester.courses.remove(ptrCourse);
+	ptrCourse->ptrSemester = nullptr;
 	for (int i = 0; i < semester.courses.size(); i++) {
 		semester.courses[i].ptrSemester = &semester;
 		for (int j = 0; j < semester.courses[i].scoreboards.size(); j++) {
