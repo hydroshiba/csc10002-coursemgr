@@ -179,14 +179,7 @@ bool updateCourse(Course& course, const string& courseID, const string& classID,
 		outStr = "All input boxes are empty, please try again!";
 		return false;
 	}
-	if (!courseID.empty()) {
-		for (int i = 0; i<ptrSemester->courses.size(); ++i)
-			if (ptrSemester->courses[i].ID == courseID){
-				outStr = "The course with ID " + courseID + " has already existed in semester " + ptrSemester->semesterID + " of academic year " + ptrAcademicYear->getPeriod() + ", pls try another!";
-				return false;
-			}
-		course.updateID(courseID);	
-	}
+	course.updateID(courseID);
 	if (!classID.empty()) {
 		for (int i = 0; i<ptrSemester->courses.size(); ++i)
 			if (ptrSemester->courses[i].classID == classID){
