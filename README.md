@@ -9,6 +9,9 @@
 * Phan Hải Minh - 22127273
 * Quách Trần Quán Vinh - 22127460
 
+**Grading scheme:** [click here](https://docs.google.com/spreadsheets/d/1s5OEkUdJzRBqYWLrOw1l1DQr69GF9VySEnOWnnZjz9M/edit#gid=0)
+**Project contribution:** [click here](https://docs.google.com/spreadsheets/d/18E4Wq1M6wVrhHKGyBCb0RZhd_UIMp2ezDnBMnfwRFbQ/edit#gid=1781385760)
+
 ## **How to run**
 
 * Download & install the latest version of [CMake](https://cmake.org/download/).
