@@ -12,7 +12,7 @@
 ## **How to run**
 
 * Download & install the latest version of [CMake](https://cmake.org/download/).
-* Clone this repository.
+* Clone [this](https://github.com/hydroshiba/CSC10002-Course-Management) repository.
 * Open console exactly in this repository's directory and type the following:
     * `cmake -S . -B ./build` (this step might require internet connection if Raylib hasn't been installed before)
     * `cmake --build ./build -j 10`
