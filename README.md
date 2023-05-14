@@ -11,7 +11,7 @@
 
 ### **Grading scheme:** [click here](https://docs.google.com/spreadsheets/d/1s5OEkUdJzRBqYWLrOw1l1DQr69GF9VySEnOWnnZjz9M/edit#gid=0)
 ### **Project contribution:** [click here](https://docs.google.com/spreadsheets/d/18E4Wq1M6wVrhHKGyBCb0RZhd_UIMp2ezDnBMnfwRFbQ/edit#gid=1781385760)
-
+### **Trello board:** [click here](https://trello.com/b/ZICL795D/csc1000222clc06coursemanagementsystemgroup08)
 ## **How to run**
 
 * Download & install the latest version of [CMake](https://cmake.org/download/).
