@@ -38,16 +38,16 @@ An `Application` class that serves as the entry point for running the program. T
 
 | Attribute / Method                | Description                                                 |
 | ------------------- | ----------------------------------------------------------- |
-| - Vector2 mousePoint| A private member variable representing the current mouse position. |
-| - Scene\* scene     | A private member variable representing the current scene that the application is rendering. |
-| - void render()     | A private member function that renders the current scene.   |
-| - void process()    | A private member function that updates the current scene.   |
-| + Application()     | A public constructor that initializes the application window and the scenes. |
-| + ~Application()    | A public destructor that cleans up the application window and the scenes. |
-| + Application(const Application &other) = delete; | A public copy constructor that is disabled. |
-| + Application& operator=(const Application &other) = delete; | A public assignment operator that is disabled. |
-| + bool shouldClose() const | A public member function that returns true if the window should close, false otherwise. |
-| + void run()         | A public member function that runs the application.          |
+| `- Vector2 mousePoint`| A private member variable representing the current mouse position. |
+| `- Scene\* scene`     | A private member variable representing the current scene that the application is rendering. |
+| `- void render()`     | A private member function that renders the current scene.   |
+| `- void process()`    | A private member function that updates the current scene.   |
+| `+ Application()`     | A public constructor that initializes the application window and the scenes. |
+| `+ ~Application()`    | A public destructor that cleans up the application window and the scenes. |
+| `+ Application(const Application &other) = delete;` | A public copy constructor that is disabled. |
+| `+ Application& operator=(const Application &other) = delete;` | A public assignment operator that is disabled. |
+| `+ bool shouldClose() const` | A public member function that returns true if the window should close, false otherwise. |
+| `+ void run()`         | A public member function that runs the application.          |
 
 ## **Graphics / Objects**
 (All objects is defined and implemented in directory *Graphics/Objects*)
