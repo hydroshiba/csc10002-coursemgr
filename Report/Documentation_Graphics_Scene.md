@@ -12,6 +12,11 @@
 ### **2. Login**
 (Define in Login.h and implemented in Login.cpp)
 `Login` is a derived class inherited from `Scene` class used to create a login scene for the application. All the members in the private class are the variables for the objects for the scene.
+You can view the practical scene and the theoretic scene by the link below:
+https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipM_eLj3Q7CP9TXBHBhOzmJ6fwgFqtyfbcQpCyAV?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3
+(Practical scene)
+https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipMdotWHytoYi8AgFc6_oj1T_9bvaR8GxZ7IxjtP?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3
+(Theoretic scene)
 
 | Attribute / Method | Description |
 | -------- | --------|
@@ -22,6 +27,11 @@
 ### **3. StudentScene**
 (Defined in StudentScene.h and implemented in StudentScene.cpp)
 `StudentScene` is a derived class inherited from `Scene` class used to create a student scene for the application. All the members in the private class are the variables for the objects for the scene.
+You can view the practical scene and the theoretic scene by the link below:
+https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipOi2-E95YuzMh5Gl8NOid_wrtYSep-2Bol7zl3q?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3
+(Practical scene)
+https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipNkSOxsAUI75jql5RHHHsL1SkuXWaYYQm4B7kXG?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3
+(Theoretic scene)
 
 | Attribute / Method | Description |
 | -------- | --------|
@@ -32,6 +42,11 @@
 ### **4. StaffScene**
 (Defined in StaffScene.h and implemented in StaffScene.cpp)
 `StaffScene` is a derived class inherited from `Scene` class used to create a staff scene for the application. All the members in the private class are the variables for the objects for the scene.
+You can view the practical scene and the theoretic scene by the link below:
+https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipMy77VTEiFspFS2D0I0ddSyxCV6TutJBmCM75N5?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3
+(Practical scene)
+https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipNfpW2q2YOzFGHvvvlEhtc3kRar17WMamUK5O5X?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3
+(Theoretic scene)
 
 | Attribute / Method | Description |
 | -------- | --------|
@@ -42,6 +57,11 @@
 ### **5. StaffScene2**
 (Defined in StaffScene2.h and implemented in StaffScene2.cpp)
 `StaffScene2` is a derived class inherited from `Scene` class used to create a additional staff scene for the application. All the members in the private class are the variables for the objects for the scene.
+You can view the practical scene and the theoretic scene by the link below:
+https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipODtxtOVOiTa03Bpnb12OuIrY0RWPdT5Qwrct-j?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3
+(Practical scene)
+https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipO2wg5usjBK0NPzIyiK9_x0mEAKiQAgEnXV8THC?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3
+(Theoretic scene)
 
 | Attribute / Method | Description |
 | -------- | --------|
@@ -52,6 +72,11 @@
 ### **6. ListSchoolYearScene**
 (Defined in ListSchoolYearScene.h and implemented in ListSchoolYearScene.cpp)
 `ListSchoolYearScene` is a derived class inherited from `Scene` class used to create a list school year scene for the application. All the members in the private class are the variables for the objects for the scene.
+You can view the practical scene and the theoretic scene by the link below:
+https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipNNv0YfkOfWWd2zNe3-OcAdJpT6_tYNdcT7TNyw?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3
+(Practical scene)
+https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipNwY0dpXMzqkLgEDdiTg12SDdxoCFXe0aue2YhD?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3
+(Theoretic scene)
 
 | Attribute / Method | Description |
 | -------- | --------|
@@ -62,6 +87,11 @@
 ### **7. SchoolYearScene**
 (Defined in SchoolYearScene.h and implemented in SchoolYearScene.cpp)
 `SchoolYearScene` is a derived class inherited from `Scene` class used to create a  school year scene for the application. All the members in the private class are the variables for the objects for the scene.
+You can view the practical scene and the theoretic scene by the link below:
+https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipNlKj58dk8b1BNXMpOeF7DvOufihQMnGMjY5DNC?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3
+(Practical scene)
+https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipMjF25x78zYrUohDpvrsVXhRyOTeluSfUfKJo2r?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3
+(Theoretic scene)
 
 | Attribute / Method | Description |
 | -------- | --------|
@@ -72,6 +102,11 @@
 ### **8. ClassScene**
 (Defined in ClassScene.h and implemented in ClassScene.cpp)
 `ClassScene` is a derived class inherited from `Scene` class used to create a class scene for the application. All the members in the private class are the variables for the objects for the scene.
+You can view the practical scene and the theoretic scene by the link below:
+https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipP0dcU5gG0h0Gd5YPie10aok8Gv5TfeyL32l3AC?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3
+(Practical scene)
+https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipP8bL00QGVf0u7JS1uVwFfxRPRojqk-JWrdgA1d?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3
+(Theoretical scene)
 
 | Attribute / Method | Description |
 | -------- | --------|
@@ -82,6 +117,11 @@
 ### **9. ListAcademicYearScene**
 (Defined in ListAcademicYearScene.h and implemented in ListAcademicYearScene.cpp)
 `ListAcademicYearScene` is a derived class inherited from `Scene` class used to create list academic year scene for the application. All the members in the private class are the variables for the objects for the scene.
+You can view the practical scene and the theoretic scene by the link below:
+https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipM93nq2NtTK-IIvhHxdISPt_6WO3ncdGQlDkTUI?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3
+(Practical scene)
+https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipPI_TlDyRCZU8O7Ut-TZ-_feJzrBPuYHtBzNXHu?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3
+(Theoretic scene)
 
 | Attribute / Method | Description |
 | -------- | --------|
@@ -92,6 +132,11 @@
 ### **10. AcademicYearScene**
 (Defined in AcademicYearScene.h and implemented in AcademicYearScene.cpp)
 `AcademicYearScene` is a derived class inherited from `Scene` class used to create a academic year scene for the application. All the members in the private class are the variables for the objects for the scene.
+You can view the practical scene and the theoretic scene by the link below:
+https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipOi7XJDs0N0HtLKpX1loLKBHNqArhkvKiTnQzu3?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3
+(Practical scene)
+https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipNCDUe7bgoeMZIm906p21aB_CGT4H7EjVzIrMEE?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3
+(Theoretic scene)
 
 | Attribute / Method | Description |
 | -------- | --------|
@@ -102,6 +147,11 @@
 ### **11. SemesterScene**
 (Defined in SemesterScene.h and implemented in SemesterScene.cpp)
 `SemesterScene` is a derived class inherited from `Scene` class used to create a semester scene for the application. All the members in the private class are the variables for the objects for the scene.
+You can view the practical scene and the theoretic scene by the link below:
+https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipN7XMbxCccXqmCoR9BQID0qbGI3kFx5Cmeduiqo?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3
+(Practical scene)
+https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipPuoXB6v1eCku1RSikZeIaiJhevCEqlNhJSwbM9?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3
+(Theoretic scene)
 
 | Attribute / Method | Description |
 | -------- | --------|
@@ -112,6 +162,11 @@
 ### **12. CourseScene**
 (Defined in ClassScene.h and implemented in CourseScene.cpp)
 `CourseScene` is a derived class inherited from `Scene` class used to create a course scene for the application. All the members in the private class are the variables for the objects for the scene.
+You can view the practical scene and the theoretic scene by the link below:
+https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipOzszUcRNZovtL39z0m0e8cdvipiDtYHITL7lgA?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3
+(Practical scene)
+https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipPJWZm6TEWe2K-aZ9B9WRCmldCnlsaIgenD04bs?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3
+(Theoretic scene)
 
 | Attribute / Method | Description |
 | -------- | --------|
@@ -122,6 +177,11 @@
 ### **13. EditCourseScene**
 (Defined in EditCourseScene.h and implemented in EditCourseScene.cpp)
 `EditCourseScene` is a derived class inherited from `Scene` class used to create a edit course scene for the application. All the members in the private class are the variables for the objects for the scene.
+You can view the practical scene and the theoretic scene by the link below:
+https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipNzcPKKlbHdw50cWshp6cCM-MLFVfPck4tCn9Ps?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3
+(Practical scene)
+https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipNFC7VN0EhwQvXo0Udzt_zm_UzbUJrsqTvavc3e?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3
+(Theoretic scene)
 
 | Attribute / Method | Description |
 | -------- | --------|
