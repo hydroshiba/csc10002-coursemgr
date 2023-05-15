@@ -1,31 +1,20 @@
 # **Documentation**
-
 ## **1. Components / Objects**
-
 ### Components
-
 The `Components.h` file serves as a central header file for including various components and defining important structures and variables used in the C++ program.
-
 #### 1. Included Libraries
-
 The following libraries are included in the `Components.h` file:
 - `<iomanip>`: Provides functions for manipulating input/output formatting.
 - `<string>`: Provides string manipulation functions and classes.
 - `"Vector.h"`: User-defined header file that implements a dynamic array data structure.
-
 #### 2. Constants
-
 - `defaultStr`: A constant string that holds the value "Error". It is used as a default value for certain string variables.
-
 #### 3. Enumerators
-
 The following enumerators are defined in the file:
 - `Weekday`: Represents the days of the week with values from `SUN` to `SAT`.
 - `Gender`: Represents gender with values `male` and `female`.
 - `Session`: Represents academic sessions with values `S1`, `S2`, `S3`, and `S4`.
-
 #### 4. Structures
-
 The following structures are forward declared in the file:
 - `Date`: Represents a date.
 - `Name`: Represents a person's name.
@@ -38,13 +27,9 @@ The following structures are forward declared in the file:
 - `Semester`: Represents a semester.
 - `Course`: Represents a course.
 - `Scoreboard`: Represents a scoreboard for a student's scores.
-
 #### 5. Struct Operator Overloading
-
 The file includes a template function `operator!=` that overloads the inequality operator for comparing two objects of the same type. It returns `true` if the objects are not equal and `false` otherwise.
-
 #### Global Variables
-
 The file declares the following global variables:
 - `schoolYears`: A `Vector` container that stores `SchoolYear` objects.
 - `academicYears`: A `Vector` container that stores `AcademicYear` objects.
@@ -63,7 +48,6 @@ These global variables are used to maintain and access important data throughout
 
 The `Components.h` file serves as a central point for including necessary components and defining key structures and variables, making them easily accessible to other parts of the program.
 
-
 ### 1. Name
 The `Name` struct represents a person's name with a first name and a last name. It provides methods for setting and retrieving the name, as well as an equality operator to compare two names.
 
@@ -75,11 +59,8 @@ The `Name` struct represents a person's name with a first name and a last name. 
 | + `set(nameFirst: const std::string&, nameLast: const std::string&)` | Public method that allows setting the first and last names of the person. |
 | + `get(): std::string` | Public method that returns the full name (first name followed by last name) as a string. |
 | `operator==(nameA: const Name&, nameB: const Name&)` | Non-member function that compares two `Name` objects for equality. Returns `true` if the first names and last names are the same, and `false` otherwise. |
-
 ### 2. Date
-
 The `Date` struct represents a specific date with day, month, and year values. It provides methods for setting and retrieving the date, as well as an equality operator to compare two dates.
-
 
 | Attribute/Method | Description |
 |------------------|-------------|
@@ -90,11 +71,9 @@ The `Date` struct represents a specific date with day, month, and year values. I
 | + `set(newDay: const unsigned short&, newMonth: const unsigned short&, newYear: const unsigned int&)` | Public method that allows setting the day, month, and year values of the date. |
 | + `get(): std::string` | Public method that returns the date in the format "dd/mm/yyyy" as a string. |
 | `operator==(dateA: const Date&, dateB: const Date&)` | Non-member function that compares two `Date` objects for equality. Returns `true` if the day, month, and year values are the same, and `false` otherwise. |
-
 ### 3. User
 
 The `User` struct represents a user with a name, ID, and password. It provides various methods for setting and retrieving user information, as well as password encryption and comparison.
-
 
 | Attribute/Method | Description |
 |------------------|-------------|
@@ -113,15 +92,11 @@ The `User` struct represents a user with a name, ID, and password. It provides v
 | + `getHashedPass(): uint64_t` | Public method that returns the hashed password of the user. |
 | `operator==(userA: const User&, userB: const User&): bool` | Non-member function that compares two `User` objects for equality. Returns `true` if the IDs and names of the users are the same, and `false` otherwise. |
 
-
 ### 4. Staff
-
 The `Staff` struct is a derived struct from `User` and represents a staff member. It inherits the attributes and methods from `User`.
 
 ### 5. Student
-
 The `Student` struct is defined in the Student.h file and inherits from the User class. It contains data related to a student such as their name, ID, password, gender, date of birth, social ID, class, and scoreboards. 
-
 
 The following table provides an overview of the attributes and methods of the Student struct:
 
@@ -146,7 +121,6 @@ The following table provides an overview of the attributes and methods of the St
 | `+ float getGPA() const` | A public method that returns the overall GPA of a student. |
 | `+ float getGPA(const Semester& semester) const` | A public method that takes in a semester and returns the GPA of the student for that semester. |
 | `+ void setInfoToClass(std::ifstream &ifs)` | A public method that reads student information from a file and sets it to
-
 ### 6. SchoolYear
 
 The `SchoolYear` struct represents a school year in a educational system. It contains information about the start year and the classes associated with that year.
@@ -165,9 +139,8 @@ The `SchoolYear` struct represents a school year in a educational system. It con
 | + `removeClass(Class& CLASS)` | Removes a `Class` object from the school year and removes the school year reference from the class. |
 | + `removeAllClass()` | Removes all classes from the school year and removes the school year reference from each class. |
 | + `getPeriod()` : std::string | Returns a string representation of the school year period, indicating the start year and end year. |
-
+    
 ### 7. Class
-
 The `Class` struct represents a class within a school year in a C++ program. It contains information about the class name, the associated school year, and the students enrolled in the class.
 
 | Attribute / Method | Description |
@@ -191,9 +164,7 @@ The `Class` struct represents a class within a school year in a C++ program. It 
 | bool operator==(const Class& classA, const Class& classB) | Checks whether two `Class` objects are equal by comparing their `name` and `ptrSchoolYear` attributes. |
     
 ### 8. AcademicYear
-
 The `AcademicYear` struct represents an academic year, which is defined by a start year and a collection of semesters. It contains methods for adding, removing, and getting a semester by its ID.
-
 
 | Attribute/Method | Description |
 | --- | --- |
@@ -208,7 +179,6 @@ The `AcademicYear` struct represents an academic year, which is defined by a sta
 | - `bool operator==(const AcademicYear& yearA, const AcademicYear& yearB)` | Returns true if two academic years are equal (have the same start year), false otherwise. |
 
 ### 9. Semester
-
 The `Semester` struct represents a semester in an academic year. It contains information about the semester ID, start and end dates, a collection of courses, and a pointer to the academic year it belongs to. It provides methods for managing courses within the semester.
 
 | Attribute/Method | Description |
@@ -232,9 +202,7 @@ The `Semester` struct represents a semester in an academic year. It contains inf
 | - `bool operator==(const Semester& semA, const Semester& semB)` | Returns true if two semesters are equal (have the same semester ID, start and end dates), false otherwise. |
 
 ### 10. Course
-
 The `Course` struct in the C++ programming language represents a course offered in an educational system. It contains various attributes and methods to manage and manipulate course information. Below is a description of the attributes and methods of the `Course` struct.
-
 
 | Attribute/Method | Description |
 |---|---|
@@ -271,9 +239,7 @@ The `Course` struct in the C++ programming language represents a course offered 
 | + `bool operator==(courseA, courseB)`| Compare two Course variable|
 
 ### 11. Scoreboard
-
 The `Scoreboard` struct represents a score record for a specific course and student. It contains information about the scores obtained by the student in different assessments of the course.
-
 
 | Attribute / Method | Description |
 |---|---|
@@ -285,9 +251,7 @@ The `Scoreboard` struct represents a score record for a specific course and stud
 | - `ptrStudent` (Student*) | A pointer to the student associated with the scoreboard. |
 
 ## **2. Components Functions**
-
 ### **1. Display functions**
-
 The following functions are used for displaying the respective structs as a drop box.
 
 | Function | Description |
@@ -301,7 +265,6 @@ The following functions are used for displaying the respective structs as a drop
 |`Vector<string> getListCourse(const Semester& semester)` | return the list of courses from a semester|
 
 The following functions are used for displaying the respective structs as a table.
-
 | Function | Description |
 |----------|-------------|
 |`Vector<Vector<string>> getTableContentOfListSchoolYear()` | return the list of school years with number of classes in each year|
@@ -317,7 +280,6 @@ The following functions are used for displaying the respective structs as a tabl
 |`Vector<Vector<string>> getTableContentOfListStudentInCourse(const Course& course)` | return the information of students in a course|
 
 ### **2. Download functions**
-
 The following functions download the data into a CSV file.
 
 | Function | Description |
@@ -334,7 +296,6 @@ The following functions download the data into a CSV file.
 |`bool downloadCourse(Course& course)` | download the selected course information|
 
 ### **3. File and Directory functions**
-
 The following functions help create the directory for importing and exporting functions.
 
 | Function | Description |
@@ -358,7 +319,6 @@ The following functions help create the directory for importing and exporting fu
 |`string getImportFolderPath()` | add prefix for data importing path|
 
 ### **4. Import and Export functions**
-
 The following functions import from and export to a CSV file.
 
 | Function | Description |
@@ -380,7 +340,6 @@ The following functions import from and export to a CSV file.
 |`bool exportListScoreboardOfCourse(const string& filename, Course& course, string& outStr)` | export the scoreboard of the course|
 
 ### **5. Insert functions**
-
 The following functions insert data.
 
 | Function | Description |
@@ -396,7 +355,6 @@ The following functions insert data.
 |`bool addStudentToCourse(Course& course, const string& studentID, string& outStr)` | add a new student to the course|
 
 ### **6. Remove functions**
-
 The following functions remove data and free memory in the process.
 
 | Function | Description |
@@ -417,7 +375,6 @@ The following functions remove data and free memory in the process.
 |`bool removeStudFromCourse(Course& course, const string& studentID, string& outStr)` | remove a student from the course|
 
 ### **7. Search functions**
-
 The following functions search the content inside the data.
 
 | Function | Description |
@@ -435,7 +392,6 @@ The following functions search the content inside the data.
 |`bool isCorrectStudentAccount(const string& studentID, const string& password, string& outStr)` | check the validity of the student account|
 
 ### **8. Sorting functions**
-
 The following functions are based on quicksort algorithm.
 
 | Function | Description |
@@ -451,7 +407,6 @@ The following functions are based on quicksort algorithm.
 |`void sortStudentsInCourse(Course& course, const int& left, const int& right)` | sort the list of students inside a course|
 
 ### **9. Update functions**
-
 The following functions update the data.
 
 | Function | Description |
@@ -466,7 +421,6 @@ The following functions update the data.
 |`bool updateScoreboard(Course& course, const string& studentID, const string& midTerm, const string& other, const string& final, const string& total, string& outStr)` | update the student scoreboard|
 
 ### **10. Upload functions**
-
 The following functions upload the data from CSV files.
 
 | Function | Description |
@@ -484,7 +438,6 @@ The following functions upload the data from CSV files.
 |`bool uploadCourse(Course& course)` | upload the course|
 
 ## **3. Graphics / Objects**
-
 ### **Graphics**
 #### 1. Constant namespace
 (Define in Constant.h)
@@ -500,12 +453,10 @@ Contains constants for various elements used in a Course Management System. It i
 * **"text_const" namespace**: the constants are defined for the font path, space between lines, size, and color of the text. The padding for the text is also defined.
 
 #### 2. Scissor
-
 (Define in Scissor.h and implement in Scissor.cpp)
-
-| Function                                       | Description                                                                                                                                                                                 |
-| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `StartScissor(Rectangle rect)`                   | Starts a new scissor rectangle with the given `Rectangle` object. It first checks if there is any previously defined scissor rectangle and modifies the current rectangle to be the intersection of the previous and new rectangle. It then calls the `EndScissorMode()` function from the "raylib.h" library and begins a new scissor mode with the modified rectangle. The rectangle is also pushed onto a stack to keep track of the previous scissor rectangles. |
+| Function | Description|
+| ---- | ----- |
+| `StartScissor(Rectangle rect)`| Starts a new scissor rectangle with the given `Rectangle` object. It first checks if there is any previously defined scissor rectangle and modifies the current rectangle to be the intersection of the previous and new rectangle. It then calls the `EndScissorMode()` function from the "raylib.h" library and begins a new scissor mode with the modified rectangle. The rectangle is also pushed onto a stack to keep track of the previous scissor rectangles. |
 | `StartScissor(Vector2 pos, Vector2 size)`     | Starts a new scissor rectangle with the given position and size as `Vector2` objects. It creates a new `Rectangle` object with these values and calls the `StartScissor(Rectangle rect)` function. |
 | `StartScissor(float x, float y, float width, float height) `| Starts a new scissor rectangle with the given position and size as separate float values. It creates a new `Rectangle` object with these values and calls the `StartScissor(Rectangle rect)` function. |
 | `EndScissor()`                                   | Pops the top scissor rectangle off the stack and calls the `EndScissorMode()` function to end the current scissor mode. It then begins a new scissor mode with the previous scissor rectangle on top of the stack, if there is one. |
@@ -516,12 +467,10 @@ Overall, this Scissor class provides a convenient way to handle scissoring of gr
 
 #### 3. Application
 (Define in Application.h and implement in Application.cpp)
-
 An `Application` class that serves as the entry point for running the program. The class initializes the window and sets the target frame rate using the Raylib library.
 
-
-| Attribute / Method                | Description                                                 |
-| ------------------- | ----------------------------------------------------------- |
+| Attribute / Method  | Description  |
+| ----- | ----- |
 | `- Vector2 mousePoint`| A private member variable representing the current mouse position. |
 | `- Scene\* scene`     | A private member variable representing the current scene that the application is rendering. |
 | `- void render()`     | A private member function that renders the current scene.   |
@@ -540,14 +489,14 @@ An `Application` class that serves as the entry point for running the program. T
 The `Text` class is a simple class used to create text objects. It contains attributes for the text content, font size, additional space between characters, font, and color. The `Text` object can be initialized using either a C-style string or an `std::string` object. 
 
 
-| Attribute / Method                  | Description                              | 
-| :---------------------------------- | :--------------------------------------- | 
-| `+ std::string text`                | The text content of the Text object.      |
-| `+ float font_size`                 | The size of the font used in the text.    |
-| `+ float space`                     | The additional space between characters. |
-| `+ Font font`                       | The font used in the text.                |
-| `+ Color color`                     | The color of the text.                    |
-| `+ Text()`                          | Default constructor.                      |
+| Attribute / Method | Description| 
+| :------- | :------- | 
+| `+ std::string text`| The text content of the Text object.      |
+| `+ float font_size`| The size of the font used in the text.    |
+| `+ float space`| The additional space between characters. |
+| `+ Font font` | The font used in the text.                |
+| `+ Color color`   | The color of the text.                    |
+| `+ Text()`| Default constructor. |
 | `+ Text(const char* text, float fsize = text_const::size, Font font = LoadFontEx(text_const::font_path.c_str(), 128, 0, 0), float space = text_const::space, Color color = text_const::color)` | Constructor that initializes the Text object with the given values. |
 | `+ Text(std::string text, float fsize = text_const::size, Font font = LoadFontEx(text_const::font_path.c_str(), 128, 0, 0), float space = text_const::space, Color color = text_const::color)` | Constructor that initializes the Text object with the given values. |
 | `+ void operator=(std::string text)` | Overloaded assignment operator that sets the text content of the Text object to the given string. |
@@ -592,7 +541,6 @@ The `TextBox` class represents a text box that can be rendered on the screen usi
 (Define in InputBox.h and implement in InputBox.cpp)
 
 The `InputBox` class provides a customizable input box to get text input from users. It contains several properties such as the text content, position, size, border and fill colors. It also supports several input events such as hovering and clicking.
-
 
 |    Attribute/Method   |          Description         |
 |-----------------------|-------------------------------|
@@ -642,17 +590,17 @@ The `Button` class inherits from the `Text` class, which represents a block of t
 | `- Vector2 size`| The size of the button.|
 | `- Vector2 textPos` | The position of the text label inside the button.   |
 | `- Rectangle border_bound`   | The bounding rectangle of the button's border.                   |
-| `- Rectangle fill_bound`                                                                                                                                                                                                                                                           | The bounding rectangle of the button's fill.                     |
-| `- Rectangle text_bound`                                                                                                                                                                                                                                                           | The bounding rectangle of the button's text.                     |
-| `- virtual void refreshText()`                                                                                                                                                                                                                                                       | Calculates the font size and position of the text label.         |
-| `- virtual void refresh()`                                                                                                                                                                                                                                                           | Calculates the bounding rectangles of the button.                |
-| `+ Text label`                                                                                                                                                                                                                                                                       | The text label to be displayed on the button.                    |
-| `+ float roundness`                                                                                                                                                                                                                                                                  | The roundness of the button's corners.                           |
-| `+ Color fill_color`                                                                                                                                                                                                                                                                 | The fill color of the button.                                    |
-| `+ Color border_color`                                                                                                                                                                                                                                                               | The border color of the button.                                  |
-| `+ Color hover_color`                                                                                                                                                                                                                                                                | The fill color of the button when the mouse is hovering over it. |
-| `+ Color press_color`                                                                                                                                                                                                                                                                | The fill color of the button when it is being pressed.           |
-| `+ Button()`                                                                                                                                                                                                                                                                         | Constructor for an empty button with default properties.     |
+| `- Rectangle fill_bound` | The bounding rectangle of the button's fill.                     |
+| `- Rectangle text_bound` | The bounding rectangle of the button's text.                     |
+| `- virtual void refreshText()` | Calculates the font size and position of the text label.         |
+| `- virtual void refresh()` | Calculates the bounding rectangles of the button.                |
+| `+ Text label`| The text label to be displayed on the button.                    |
+| `+ float roundness` | The roundness of the button's corners.                           |
+| `+ Color fill_color`| The fill color of the button.                                    |
+| `+ Color border_color` | The border color of the button.                                  |
+| `+ Color hover_color`| The fill color of the button when the mouse is hovering over it. |
+| `+ Color press_color`| The fill color of the button when it is being pressed.           |
+| `+ Button()`  | Constructor for an empty button with default properties.     |
 | `+ Button(float x, float y, float width, float height, std::string text = "", float roundness = box_const::roundness, Color fill = box_const::fill_color, Color hover = button_const::hover_color, Color press = button_const::press_color, Color border = box_const::border_color)` | Constructor for a button with custom properties.             |
 | `+ Button(Vector2 pos, Vector2 size, std::string text = "", float roundness = box_const::roundness, Color fill = box_const::fill_color, Color hover = button_const::hover_color, Color press = button_const::press_color, Color border = box_const::border_color)` | Constructor for a button with custom properties.             |
 | `+ virtual void render(const Vector2 &mouse) const` | Renders the button on the screen.                             |
@@ -695,7 +643,7 @@ Attribute / Method | Description
 The `Equilateral` class represents an equilateral triangle with a specified center, side length, angle, and color.
 
 | Attribute/Method         | Description                                                                  |
-|--------------------------|------------------------------------------------------------------------------|             
+|--------|------|             
 | - `float rootInv3`        | A constant float value equal to the inverse square root of 3.               |
 | `public`                  |                                                                              |
 | + `Vector2 center`        | The center point of the equilateral triangle.                                |
@@ -743,40 +691,40 @@ The `Scrollbar` class represents a user interface component that allows scrollin
 The `DropBox` class represents a graphical user interface (GUI) component that displays a list of options and allows the user to select one of them. This class provides methods to add, remove, and reset the options, as well as to set the position, size, and label of the component.
 
 
-| Attribute / Method            | Description                                                                                                                                                                |
-| -----------------------------| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Attribute / Method            | Description                |
+| ------| -----|
 | `- float textSize`              | Font size of the label inside the dropdown box.                                                                                                                            |
 | `- bool selected`               | Indicates whether the dropdown box is currently selected.                                                                                                                 |
 | `- int curIndex`                | Index of the currently selected option. If no option is selected, `curIndex` is set to -1.                                                                                 |
-| `- Option current`              | The currently selected option.                                                                                                                                             |
-| `- Scrollbar bar`               | The scrollbar object used in the dropdown box.                                                                                                                             |
-| `- Vector2 pos`                 | The position of the dropdown box.                                                                                                                                          |
-| `- Vector2 size`                | The size of the dropdown box.                                                                                                                                              |
-| `- Rectangle bound`             | The bounding rectangle of the dropdown box, including all the options.                                                                                                     |
+| `- Option current`              | The currently selected option. |
+| `- Scrollbar bar`               | The scrollbar object used in the dropdown box. |
+| `- Vector2 pos`                 | The position of the dropdown box. |
+| `- Vector2 size`                | The size of the dropdown box.    |
+| `- Rectangle bound`             | The bounding rectangle of the dropdown box, including all the options.|
 | `- Vector<Option> options`      | The options in the dropdown box.
-| `+ float roundness`             | The roundness of the border of the dropdown box.                                                                                                                           |
-| `+ Color fill_color`            | The fill color of the dropdown box.                                                                                                                                        |
-| `+ Color border_color`          | The border color of the dropdown box.                                                                                                                                      |
-| `+ Color hover_color`           | The hover color of the options in the dropdown box.                                                                                                                        |
-| `+ Color press_color`           | The press color of the options in the dropdown box.                                                                                                                        |
-| `+ Color text_color`            | The color of the text in the dropdown box.                                                                                                                                 |
-| `+ Equilateral arrow`           | The arrow object used in the dropdown box.                                                                                                                                 |
-| `+ DropBox()`                   | Constructor of the `DropBox` class. Initializes `curIndex`, `selected`, `current`, `pos`, and `size`.                                                                    |
-| `+ void refresh()`              | Updates the position, size, and other properties of the dropdown box and all its options.                                                                                  |
+| `+ float roundness`             | The roundness of the border of the dropdown box.|
+| `+ Color fill_color`            | The fill color of the dropdown box.  |
+| `+ Color border_color`          | The border color of the dropdown box. |
+| `+ Color hover_color`           | The hover color of the options in the dropdown box.|
+| `+ Color press_color`           | The press color of the options in the dropdown box.|
+| `+ Color text_color`            | The color of the text in the dropdown box.|
+| `+ Equilateral arrow`           | The arrow object used in the dropdown box.  |
+| `+ DropBox()`                   | Constructor of the `DropBox` class. Initializes `curIndex`, `selected`, `current`, `pos`, and `size`. |
+| `+ void refresh()`              | Updates the position, size, and other properties of the dropdown box and all its options. |
 | `+ void setLabel(std::string label)` | Sets the label of the currently selected option.                                                                                                                         |
 | `+ void setX(float x)`          | Sets the x-coordinate of the position of the dropdown box.                                                                                                                |
 | `+ void setY(float y)`          | Sets the y-coordinate of the position of the dropdown box.                                                                                                                |
-| `+ void setWidth(float width)`  | Sets the width of the dropdown box.                                                                                                                                        |
-| `+ void setHeight(float height)`| Sets the height of the dropdown box.                                                                                                                                       |
-| `+ void setPos(Vector2 pos)`    | Sets the position of the dropdown box.                                                                                                                                     |
+| `+ void setWidth(float width)`  | Sets the width of the dropdown box. |
+| `+ void setHeight(float height)`| Sets the height of the dropdown box.  |
+| `+ void setPos(Vector2 pos)`    | Sets the position of the dropdown box.|
 | `+ void setSize(Vector2 size)`  | Sets the size of the dropdown box.                                                                                                                                         |
 | `+ void add(const std::string &label)` | Adds an option to the dropdown box with the given label.                                                                                                           |
 | `+ void add(const Vector<std::string> &labels)` | Adds multiple options to the dropdown box with the given labels.                                                                                               |
-| `+ string getCurLabel() const`  | Returns the label of the currently selected option.                                                                                                                       |
-| `+ void remove(const std::string label)` | Removes the option with the given label from the dropdown box.                                                                                                    |
-| `+ void reset()`                 | Resets the dropdown box by removing all the options except the default option.                                                                                             |
-| `+ void clear()`                 | Clears the dropdown box by removing all the options.                                                                                                                       |
-| `+ int getSelected()`            | Returns the index of the currently selected option. If no option is selected, returns -1.                                                                                  |
+| `+ string getCurLabel() const`  | Returns the label of the currently selected option.|
+| `+ void remove(const std::string label)` | Removes the option with the given label from the dropdown box.|
+| `+ void reset()` | Resets the dropdown box by removing all the options except the default option.|
+| `+ void clear()`                 | Clears the dropdown box by removing all the options.|
+| `+ int getSelected()`            | Returns the index of the currently selected option. If no option is selected, returns -1.|
 |` + void render(const Vector2 &mouse)`| enders the component to the screen.
 |`+ bool process(const Vector2 &mouse)`| Processes user input and returns true if the user has selected an option.
 
@@ -793,12 +741,15 @@ The `DropBox` class represents a graphical user interface (GUI) component that d
     
 ### **2. Login**
     (Define in Login.h and implemented in Login.cpp)
-[Theoretic scene](https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipMdotWHytoYi8AgFc6_oj1T_9bvaR8GxZ7IxjtP?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3)
 
+[Theoretic scene](https://lh3.googleusercontent.com/pw/AJFCJaWxhv505NJU0G-DdoThQAL96iv_1a6crLQP5Jn0Haja8B7CT9KiokWca-AuEc1KzoWw5kATYjSDkzHjHMdfZqZfYo80VDPJP31vudUeX-SwuLsAZYj60GuLsLo-7W-gmnOBKbMp2BJtMgtC13-apD7j=w1137-h637-s-no?authuser=2)
+
+    
 ![](https://lh3.googleusercontent.com/pw/AJFCJaWxhv505NJU0G-DdoThQAL96iv_1a6crLQP5Jn0Haja8B7CT9KiokWca-AuEc1KzoWw5kATYjSDkzHjHMdfZqZfYo80VDPJP31vudUeX-SwuLsAZYj60GuLsLo-7W-gmnOBKbMp2BJtMgtC13-apD7j=w1137-h637-s-no?authuser=2)
     
 
-[Practical scene](https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipM_eLj3Q7CP9TXBHBhOzmJ6fwgFqtyfbcQpCyAV?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3)    
+[Practical scene](https://lh3.googleusercontent.com/pw/AJFCJaUwxwgL63Ol6kScYAysyNfWGrcvqtcCsXNjMBsdrE34HYB_yHKLf9e0QkfQJXyG-13G9fwj1HG6yUDTK6VJgqRhF9BwfvTlzgDTxEqpXSLvgVZf-20Tig_LxX554y6yZ0-eHiQMdNYgfS33IbhgNMRy=w1278-h750-s-no?authuser=2)    
+    
 ![](https://lh3.googleusercontent.com/pw/AJFCJaUwxwgL63Ol6kScYAysyNfWGrcvqtcCsXNjMBsdrE34HYB_yHKLf9e0QkfQJXyG-13G9fwj1HG6yUDTK6VJgqRhF9BwfvTlzgDTxEqpXSLvgVZf-20Tig_LxX554y6yZ0-eHiQMdNYgfS33IbhgNMRy=w1278-h750-s-no?authuser=2)
 
 `Login` is a derived class inherited from `Scene` class used to create a login scene for the application. All the members in the private class are the variables for the objects for the scene.
@@ -812,14 +763,14 @@ The `DropBox` class represents a graphical user interface (GUI) component that d
 ### **3. StudentScene**
     (Defined in StudentScene.h and implemented in StudentScene.cpp)
     
-[Theoretic scene](https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipNkSOxsAUI75jql5RHHHsL1SkuXWaYYQm4B7kXG?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3)
+[Theoretic scene](https://lh3.googleusercontent.com/pw/AJFCJaWWAoBwEe6DT91ig7zy55el8-fgW5w8UKz3Tir_pFHcfJteEZ8QWL2nQpKq5zDIshIBzd8huj7gANijdsR3sQ3TDJB4JNLtMM30d3X0TdfIe35HRaQ63xtYMv-cG_QonwTl7XsSMs7mHclLkw1mOtmE=w1134-h636-s-no?authuser=2)
     
-![](https://hackmd.io/_uploads/rkx0Takrh.png)
+![](https://lh3.googleusercontent.com/pw/AJFCJaWWAoBwEe6DT91ig7zy55el8-fgW5w8UKz3Tir_pFHcfJteEZ8QWL2nQpKq5zDIshIBzd8huj7gANijdsR3sQ3TDJB4JNLtMM30d3X0TdfIe35HRaQ63xtYMv-cG_QonwTl7XsSMs7mHclLkw1mOtmE=w1134-h636-s-no?authuser=2)
 
 
-[Practical scene](https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipOi2-E95YuzMh5Gl8NOid_wrtYSep-2Bol7zl3q?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3)
+[Practical scene](https://lh3.googleusercontent.com/pw/AJFCJaVOAE8f-7cU61jv_8BPBRZjyYsskeiVXy-DldquP2uQiAI0XmHl-tXbLTLk1TckwSjaNKMH5DSIxsVuw8pq-YRaj3BY-sGXqGuzxG1IPEhi36XjR6N_IXVLkpG1hpLm50J6_vO49F7eRAhrLJP5tXu1=w1280-h750-s-no?authuser=2)
     
-![](https://hackmd.io/_uploads/ryDk0akBn.png)
+![](https://lh3.googleusercontent.com/pw/AJFCJaVOAE8f-7cU61jv_8BPBRZjyYsskeiVXy-DldquP2uQiAI0XmHl-tXbLTLk1TckwSjaNKMH5DSIxsVuw8pq-YRaj3BY-sGXqGuzxG1IPEhi36XjR6N_IXVLkpG1hpLm50J6_vO49F7eRAhrLJP5tXu1=w1280-h750-s-no?authuser=2)
 
 `StudentScene` is a derived class inherited from `Scene` class used to create a student scene for the application. All the members in the private class are the variables for the objects for the scene.
 
@@ -833,13 +784,13 @@ The `DropBox` class represents a graphical user interface (GUI) component that d
 ### **4. StaffScene**
     (Defined in StaffScene.h and implemented in StaffScene.cpp)
 
-[Theoretic scene](https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipNfpW2q2YOzFGHvvvlEhtc3kRar17WMamUK5O5X?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3)
+[Theoretic scene](https://lh3.googleusercontent.com/pw/AJFCJaXWRLiOCfri8XAoJ2mdOjobzSWaA0FX59fDYv_aXwLs2H1zSMwkG0jvwR3U9JZIbQq9Rr4g_mHcUm1AV_i8flbAJjiULRHAZZ_vAGVVr74ezhAza8lqXgc7q2KvJFJuwumtJRXQYhfNLM4zniiVU0R0=w1246-h722-s-no?authuser=2)
   
-![](https://hackmd.io/_uploads/r1FtCT1Bh.png)
+![](https://lh3.googleusercontent.com/pw/AJFCJaXWRLiOCfri8XAoJ2mdOjobzSWaA0FX59fDYv_aXwLs2H1zSMwkG0jvwR3U9JZIbQq9Rr4g_mHcUm1AV_i8flbAJjiULRHAZZ_vAGVVr74ezhAza8lqXgc7q2KvJFJuwumtJRXQYhfNLM4zniiVU0R0=w1246-h722-s-no?authuser=2)
 
-[Practical scene](https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipMy77VTEiFspFS2D0I0ddSyxCV6TutJBmCM75N5?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3)
+[Practical scene](https://lh3.googleusercontent.com/pw/AJFCJaX07eFJ0LjFC5H7vFGAyn2yBkEzl4J6yuIDLwRnUGNU-p_VEn975lU81A8KlpnDZ5S2J1Oxzh9yvpHlvypsGDQbSlH46vQqK7nPHrOopt8cwPxqyMzPf-j_wXVxKMT2mc-h_imzH5l7xxRLnopW_SI2=w1275-h753-s-no?authuser=2)
     
-![](https://hackmd.io/_uploads/HkQ9RTyB2.png)
+![](https://lh3.googleusercontent.com/pw/AJFCJaX07eFJ0LjFC5H7vFGAyn2yBkEzl4J6yuIDLwRnUGNU-p_VEn975lU81A8KlpnDZ5S2J1Oxzh9yvpHlvypsGDQbSlH46vQqK7nPHrOopt8cwPxqyMzPf-j_wXVxKMT2mc-h_imzH5l7xxRLnopW_SI2=w1275-h753-s-no?authuser=2)
 
 `StaffScene` is a derived class inherited from `Scene` class used to create a staff scene for the application. All the members in the private class are the variables for the objects for the scene.
     
@@ -852,33 +803,33 @@ The `DropBox` class represents a graphical user interface (GUI) component that d
 ### **5. StaffScene2**
     (Defined in StaffScene2.h and implemented in StaffScene2.cpp)
 
-[Theoretic scene](https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipO2wg5usjBK0NPzIyiK9_x0mEAKiQAgEnXV8THC?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3)
+[Theoretic scene](https://lh3.googleusercontent.com/pw/AJFCJaUv39hzmCKpIsN5taxHnw70E-GBUphzkSCu39mOEaxrCnuaEWvIWbyYv4p9bWx5Yc_sbmVEmPJQze0Id0S0DU6EP7sEZg7pKsColjHOLlGiHFiR3cJeS-uVato00cEgg6jGPMegjr2vxBhP1U7jJqWW=w1250-h702-s-no?authuser=2)
 
-![](https://hackmd.io/_uploads/Syq-yRJrn.png)
+![](https://lh3.googleusercontent.com/pw/AJFCJaUv39hzmCKpIsN5taxHnw70E-GBUphzkSCu39mOEaxrCnuaEWvIWbyYv4p9bWx5Yc_sbmVEmPJQze0Id0S0DU6EP7sEZg7pKsColjHOLlGiHFiR3cJeS-uVato00cEgg6jGPMegjr2vxBhP1U7jJqWW=w1250-h702-s-no?authuser=2)
 
 
-[Practical scene](https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipODtxtOVOiTa03Bpnb12OuIrY0RWPdT5Qwrct-j?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3)
+[Practical scene](https://lh3.googleusercontent.com/pw/AJFCJaV82FsOo0x8W7IwLJ-w55ClcuxX7PSwz5P-EEST61C8fSEvl6qQV_E2jmjvreNXc0A8kI8MC8cF5Oxlbbx59HFSKXJrQLiFMjAOmEnQ97EalF3GFKRMc18VRD05YmN30IXVOukKOkPewrUu2nwA1fMd=w1280-h746-s-no?authuser=2)
 
-![](https://hackmd.io/_uploads/B19zyC1Sn.png)
+![](https://lh3.googleusercontent.com/pw/AJFCJaV82FsOo0x8W7IwLJ-w55ClcuxX7PSwz5P-EEST61C8fSEvl6qQV_E2jmjvreNXc0A8kI8MC8cF5Oxlbbx59HFSKXJrQLiFMjAOmEnQ97EalF3GFKRMc18VRD05YmN30IXVOukKOkPewrUu2nwA1fMd=w1280-h746-s-no?authuser=2)
 
 
 `StaffScene2` is a derived class inherited from `Scene` class used to create a additional staff scene for the application. All the members in the private class are the variables for the objects for the scene.
 | Attribute / Method | Description |
 | -------- | --------|
-| `StaffScene()` | The constructor initializes all private graphic objects. |
+| `StaffScene2()` | The constructor initializes all private graphic objects. |
 | `void render()` | Renders all the objects implemented in the private class to the student scene. |
 | `Scene* process()` | Updates the scene when user work on the scene and returns the scene to the application: <br><br>  +Click on `Add` button, if the inputs of student's information are valid, it will access to `addStudent()` function, then a new student will be added and it returns the current scene (Staff Scene). Otherwise the warning text will occur. <br><br>  +Click on `Remove` button next to the `inputStudentID` input box, if the input is valid, it will access to `removeStudent()` function, then that student will be removed from school and it returns the current scene. Otherwise, the warning text will occur. <br><br> +Click on `Remove` button next to `inputStaffID` input box, if the input is valid, it will access to `removeStaff()` function, then that staff will be removed and it returns the current scene. Otherwise, the warning text will occur. <br><br> +Click on `Export` button next to `inputLSYsFilePath` input box, it will access to `exportListSchoolYear()` function, then a `.csv` file will be exported and the application returns the current scene. Otherwise, the warning text will occur. <br><br> +Click on `Export` button next to `inputLAYsFilePath` input box, it will access to `exportListAcademicYear()` function, then a `.csv` file will be exported and the application returns the current scene. Otherwise, the warning text will occur.<br><br> +Click on `View` button, if the input in the `inputStudnetID` is valid, the application will turn to `StudentScene` scene. Otherwise, the warning text will occur.<br><br> +Click on `Back` button, the application will turn to `StaffScene` scene.|
 
 ### **6. ListSchoolYearScene**
     (Defined in ListSchoolYearScene.h and implemented in ListSchoolYearScene.cpp)
 
-[Theoretic scene](https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipNwY0dpXMzqkLgEDdiTg12SDdxoCFXe0aue2YhD?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3)
+[Theoretic scene](https://lh3.googleusercontent.com/pw/AJFCJaX9pP0UtyTpPRHWbo0q5SBk07qI0pNNp8R3FEL1WoDKGoe7VA4G9kT8Rz-4xb_WEDdPYaVlHFoJG89o2-jRWLc4wx_-HObS4GukvecMBNQ0rRgJ5_04rQghbdH2DMYN_i-Y1jn0ZJgCeKGBKS5z7_cr=w1252-h701-s-no?authuser=2)
 
-![](https://hackmd.io/_uploads/r1kD10JH2.png)
+![](https://lh3.googleusercontent.com/pw/AJFCJaX9pP0UtyTpPRHWbo0q5SBk07qI0pNNp8R3FEL1WoDKGoe7VA4G9kT8Rz-4xb_WEDdPYaVlHFoJG89o2-jRWLc4wx_-HObS4GukvecMBNQ0rRgJ5_04rQghbdH2DMYN_i-Y1jn0ZJgCeKGBKS5z7_cr=w1252-h701-s-no?authuser=2)
 
-[Practical scene](https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipNNv0YfkOfWWd2zNe3-OcAdJpT6_tYNdcT7TNyw?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3)
+[Practical scene](https://lh3.googleusercontent.com/pw/AJFCJaW8A7Wnc1ducj70dYhz3e8Ka5UDhqpgLCBPwd_3EjJODPUEkbUF2u_VbZGqwZJfkPo2tP-Hu_oEYmQTKd_sId62gs8UIBbiBkAsBJEp1TFQwqsBdklacn-fsTpdhjz008NZfCZ8A16cjRqUAdz2RrSf=w1277-h755-s-no?authuser=2)
 
-![](https://hackmd.io/_uploads/B1nvyAJSn.png)
+![](https://lh3.googleusercontent.com/pw/AJFCJaW8A7Wnc1ducj70dYhz3e8Ka5UDhqpgLCBPwd_3EjJODPUEkbUF2u_VbZGqwZJfkPo2tP-Hu_oEYmQTKd_sId62gs8UIBbiBkAsBJEp1TFQwqsBdklacn-fsTpdhjz008NZfCZ8A16cjRqUAdz2RrSf=w1277-h755-s-no?authuser=2)
 
 `ListSchoolYearScene` is a derived class inherited from `Scene` class used to create a list school year scene for the application. All the members in the private class are the variables for the objects for the scene.
 | Attribute / Method | Description |
@@ -890,13 +841,13 @@ The `DropBox` class represents a graphical user interface (GUI) component that d
 ### **7. SchoolYearScene**
     (Defined in SchoolYearScene.h and implemented in SchoolYearScene.cpp)
 
-[Theoretic scene](https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipMjF25x78zYrUohDpvrsVXhRyOTeluSfUfKJo2r?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3)
+[Theoretic scene](https://lh3.googleusercontent.com/pw/AJFCJaVd7DO0vFa_8in8h7-EBlF9STDj6i_kKilmODKKHjhfRpvOuLoYXLBceHR1SogGu1169e1gv9EjTXYcFFT3MKlU9AljFeRhLIQ8qqhwgnK1Div8SY8xjWc-u3sJ-I4DQKCg_ArtRXA6oU7oondQbb8d=w857-h480-s-no?authuser=2)
     
-![](https://hackmd.io/_uploads/Bkpp10yH2.png)
+![](https://lh3.googleusercontent.com/pw/AJFCJaVd7DO0vFa_8in8h7-EBlF9STDj6i_kKilmODKKHjhfRpvOuLoYXLBceHR1SogGu1169e1gv9EjTXYcFFT3MKlU9AljFeRhLIQ8qqhwgnK1Div8SY8xjWc-u3sJ-I4DQKCg_ArtRXA6oU7oondQbb8d=w857-h480-s-no?authuser=2)
 
-[Practical scene](https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipNlKj58dk8b1BNXMpOeF7DvOufihQMnGMjY5DNC?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3)  
+[Practical scene](https://lh3.googleusercontent.com/pw/AJFCJaUKRyO3jaOOyF8np7wiUhW3Ak7rzmrs68-9U46-ralkdhgZwh9ety2S9eK0CYLhw4mOzy6I8gBktHb4yH1XQX3-g9EB1QIdusrwLG-y_kZHNpaIre-KK0mpsbVZb6S9grsmjKi-VsTQF_sim83NRffE=w1281-h749-s-no?authuser=2)  
     
-![](https://hackmd.io/_uploads/Bko3y0yHn.png) 
+![](https://lh3.googleusercontent.com/pw/AJFCJaUKRyO3jaOOyF8np7wiUhW3Ak7rzmrs68-9U46-ralkdhgZwh9ety2S9eK0CYLhw4mOzy6I8gBktHb4yH1XQX3-g9EB1QIdusrwLG-y_kZHNpaIre-KK0mpsbVZb6S9grsmjKi-VsTQF_sim83NRffE=w1281-h749-s-no?authuser=2) 
 
 `SchoolYearScene` is a derived class inherited from `Scene` class used to create a  school year scene for the application. All the members in the private class are the variables for the objects for the scene.
 | Attribute / Method | Description |
@@ -909,13 +860,13 @@ The `DropBox` class represents a graphical user interface (GUI) component that d
     (Defined in ClassScene.h and implemented in ClassScene.cpp)
 
 
-[Theoretical scene](https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipP8bL00QGVf0u7JS1uVwFfxRPRojqk-JWrdgA1d?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3)
+[Theoretical scene](https://lh3.googleusercontent.com/pw/AJFCJaVgnwEm0ugnPqrkWEQ-OtLbBsTWvCeDwc7CclQaRFtbMUCrS8StX-txMbR7iadUQMLVH2bjnCgrOIPNFGrL4lT6pYC3t5pSNYYlED8MtPdd_eAv0BEF070B-Dxo4v6g26I9QLsBEwS677JOkE050N0y=w855-h487-s-no?authuser=2)
 
-![](https://hackmd.io/_uploads/HyAGeR1Sn.png)
+![](https://lh3.googleusercontent.com/pw/AJFCJaVgnwEm0ugnPqrkWEQ-OtLbBsTWvCeDwc7CclQaRFtbMUCrS8StX-txMbR7iadUQMLVH2bjnCgrOIPNFGrL4lT6pYC3t5pSNYYlED8MtPdd_eAv0BEF070B-Dxo4v6g26I9QLsBEwS677JOkE050N0y=w855-h487-s-no?authuser=2)
 
-[Practical scene](https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipP0dcU5gG0h0Gd5YPie10aok8Gv5TfeyL32l3AC?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3)
+[Practical scene](https://lh3.googleusercontent.com/pw/AJFCJaXwOTKBJS2ib-WYvWVOA11LXdDl2Rf59Ytz2S1l2MsSA9zIX7k3OU98CauB3kARhGhY95ipw39JkJsGYhdPgEl4cKljliBpbMBiCcd2hrx4BarWxnK75_pE3P3cNN9SEtRZX0fZxTkrH_O31bhQnIN0=w1278-h750-s-no?authuser=2)
 
-![](https://hackmd.io/_uploads/BJKHl0kSh.png)
+![](https://lh3.googleusercontent.com/pw/AJFCJaXwOTKBJS2ib-WYvWVOA11LXdDl2Rf59Ytz2S1l2MsSA9zIX7k3OU98CauB3kARhGhY95ipw39JkJsGYhdPgEl4cKljliBpbMBiCcd2hrx4BarWxnK75_pE3P3cNN9SEtRZX0fZxTkrH_O31bhQnIN0=w1278-h750-s-no?authuser=2)
 
 `ClassScene` is a derived class inherited from `Scene` class used to create a class scene for the application. All the members in the private class are the variables for the objects for the scene.
 | Attribute / Method | Description |
@@ -928,13 +879,13 @@ The `DropBox` class represents a graphical user interface (GUI) component that d
     (Defined in ListAcademicYearScene.h and implemented in ListAcademicYearScene.cpp)
 
 
-[Theoretic scene](https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipPI_TlDyRCZU8O7Ut-TZ-_feJzrBPuYHtBzNXHu?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3)
+[Theoretic scene](https://lh3.googleusercontent.com/pw/AJFCJaWyDDtjbPnHCaJpFbXHUOgvPZpKgis-RUGeDF49s7PDajlemAkjZgb3widQwzQ90xO9r-c4qLnHNQQaDV7X3zcczYVl_1DbGVcaHD7aLT4iISccHmrLzPzwBUZ9U7Jlx-0X6HvmbVkH_iHEZpwx-zyV=w1252-h710-s-no?authuser=2)
 
-![](https://hackmd.io/_uploads/B175xC1r2.png)
+![](https://lh3.googleusercontent.com/pw/AJFCJaWyDDtjbPnHCaJpFbXHUOgvPZpKgis-RUGeDF49s7PDajlemAkjZgb3widQwzQ90xO9r-c4qLnHNQQaDV7X3zcczYVl_1DbGVcaHD7aLT4iISccHmrLzPzwBUZ9U7Jlx-0X6HvmbVkH_iHEZpwx-zyV=w1252-h710-s-no?authuser=2)
 
-[Practical scene](https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipM93nq2NtTK-IIvhHxdISPt_6WO3ncdGQlDkTUI?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3)
+[Practical scene](https://lh3.googleusercontent.com/pw/AJFCJaVva0e6kcRkhxiYKq2FnolIewhr5eHaPEUlouriJc0wNdKwJ6QbGQdEoGSP5Z6eSBTa8xAebh-geBwJCBZiPHGOypcbMWT6Ah_R03iTdXYuweabTpf0k761yQVBV8esD6QKEWnrkEwiAotjyT_pDVk8=w1277-h754-s-no?authuser=2)
 
-![](https://hackmd.io/_uploads/HyC9lCkS3.png)
+![](https://lh3.googleusercontent.com/pw/AJFCJaVva0e6kcRkhxiYKq2FnolIewhr5eHaPEUlouriJc0wNdKwJ6QbGQdEoGSP5Z6eSBTa8xAebh-geBwJCBZiPHGOypcbMWT6Ah_R03iTdXYuweabTpf0k761yQVBV8esD6QKEWnrkEwiAotjyT_pDVk8=w1277-h754-s-no?authuser=2)
 
 `ListAcademicYearScene` is a derived class inherited from `Scene` class used to create list academic year scene for the application. All the members in the private class are the variables for the objects for the scene.
 | Attribute / Method | Description |
@@ -946,13 +897,13 @@ The `DropBox` class represents a graphical user interface (GUI) component that d
 ### **10. AcademicYearScene**
     (Defined in AcademicYearScene.h and implemented in AcademicYearScene.cpp)
 
-[Theoretic scene](https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipNCDUe7bgoeMZIm906p21aB_CGT4H7EjVzIrMEE?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3)
+[Theoretic scene](https://lh3.googleusercontent.com/pw/AJFCJaXfQfqDiiGURa5yUjn7bc0dMJah2PVdiPwRpU6nndln2Y_BUG3_zQSCwc6RUK8En6ZLET1Qmm7i1B7Vtj-5-APNSNvK7EzubEpAIUFNnbrSkuoWak8sBpWDcSEd7cDZnmR91onpMv_Vv69XIH-oDjuz=w859-h487-s-no?authuser=2)
 
-![](https://hackmd.io/_uploads/r1BWWC1Sh.png)
+![](https://lh3.googleusercontent.com/pw/AJFCJaXfQfqDiiGURa5yUjn7bc0dMJah2PVdiPwRpU6nndln2Y_BUG3_zQSCwc6RUK8En6ZLET1Qmm7i1B7Vtj-5-APNSNvK7EzubEpAIUFNnbrSkuoWak8sBpWDcSEd7cDZnmR91onpMv_Vv69XIH-oDjuz=w859-h487-s-no?authuser=2)
 
-[Practical scene](https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipOi7XJDs0N0HtLKpX1loLKBHNqArhkvKiTnQzu3?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3)
+[Practical scene](https://lh3.googleusercontent.com/pw/AJFCJaXEkXtKnBoHckOghd0ELDXY6vg5oVrpFgRCBLC6i0cxYRbwCQS0QxAEVDV4YxTIApmQliKEVAHGNumvGpR6StyWPKvWrnI7DNowkMfxAcbSIqugMx_oAWGYn_rj_31dZXWZTybEjYcikifilEi9-PHJ=w1281-h753-s-no?authuser=2)
 
-![](https://hackmd.io/_uploads/SyulWCkHn.png)
+![](https://lh3.googleusercontent.com/pw/AJFCJaXEkXtKnBoHckOghd0ELDXY6vg5oVrpFgRCBLC6i0cxYRbwCQS0QxAEVDV4YxTIApmQliKEVAHGNumvGpR6StyWPKvWrnI7DNowkMfxAcbSIqugMx_oAWGYn_rj_31dZXWZTybEjYcikifilEi9-PHJ=w1281-h753-s-no?authuser=2)
 
 `AcademicYearScene` is a derived class inherited from `Scene` class used to create a academic year scene for the application. All the members in the private class are the variables for the objects for the scene.
 | Attribute / Method | Description |
@@ -964,12 +915,13 @@ The `DropBox` class represents a graphical user interface (GUI) component that d
 ### **11. SemesterScene**
     (Defined in SemesterScene.h and implemented in SemesterScene.cpp)
 
-[Theoretic scene](https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipPuoXB6v1eCku1RSikZeIaiJhevCEqlNhJSwbM9?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3)
+[Theoretic scene](https://lh3.googleusercontent.com/pw/AJFCJaXM8tThRqbnnfQ6BUc0LAZkUNOxWJJk8-vydc4_j542Q2PHr91kMzbLifnqwIk8ybrzFTN6lB-i5q3sbI5y7DRoNBJI16Q79PsZUbXdXYlIZzAaVVw8WkjVLGOpV3SE0C4UlobaIEk_ZSxN8YYMK8x_=w855-h484-s-no?authuser=2)
 
-![](https://hackmd.io/_uploads/B1eSb01Sh.png)
-[Practical scene](https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipN7XMbxCccXqmCoR9BQID0qbGI3kFx5Cmeduiqo?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3)
+![](https://lh3.googleusercontent.com/pw/AJFCJaXM8tThRqbnnfQ6BUc0LAZkUNOxWJJk8-vydc4_j542Q2PHr91kMzbLifnqwIk8ybrzFTN6lB-i5q3sbI5y7DRoNBJI16Q79PsZUbXdXYlIZzAaVVw8WkjVLGOpV3SE0C4UlobaIEk_ZSxN8YYMK8x_=w855-h484-s-no?authuser=2)
+    
+[Practical scene](https://lh3.googleusercontent.com/pw/AJFCJaWMcBMJZ3RMXp5d4iC5IBwUgl7y1hG1vQFHUiij__a5MFMv32A9u8RD5Fwm9eD0r_w5TLaJWKbl-NasVICX7IU4UG-yCM9QVuUHj3yuH-LtS34aDmVq9edCMlz7rFBrnM0DsV-MLdEcPszbSUve7DB8=w1277-h754-s-no?authuser=2)
 
-![](https://hackmd.io/_uploads/S10S-R1rh.png)
+![](https://lh3.googleusercontent.com/pw/AJFCJaWMcBMJZ3RMXp5d4iC5IBwUgl7y1hG1vQFHUiij__a5MFMv32A9u8RD5Fwm9eD0r_w5TLaJWKbl-NasVICX7IU4UG-yCM9QVuUHj3yuH-LtS34aDmVq9edCMlz7rFBrnM0DsV-MLdEcPszbSUve7DB8=w1277-h754-s-no?authuser=2)
 
 `SemesterScene` is a derived class inherited from `Scene` class used to create a semester scene for the application. All the members in the private class are the variables for the objects for the scene.
 | Attribute / Method | Description |
@@ -981,13 +933,13 @@ The `DropBox` class represents a graphical user interface (GUI) component that d
 ### **12. CourseScene**
     (Defined in ClassScene.h and implemented in CourseScene.cpp)
 
-[Theoretic scene](https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipPJWZm6TEWe2K-aZ9B9WRCmldCnlsaIgenD04bs?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3)
+[Theoretic scene](https://lh3.googleusercontent.com/pw/AJFCJaUXvUnK4Z_eLVIjokPcDj242Ye4Hrd8mnhWarydmuUCGOgRav2KKJSKz2yKPj9vmjhe8fT_ebBXJ15uH0d_iVo8ob8e6hRB36jyLq6iYDf_5mt_klEDTjdhHzCuNzeiL19Yut3SpE0y3ggHove58GiG=w854-h485-s-no?authuser=2)
     
-![](https://hackmd.io/_uploads/SyxqWAyH3.png)
+![](https://lh3.googleusercontent.com/pw/AJFCJaUXvUnK4Z_eLVIjokPcDj242Ye4Hrd8mnhWarydmuUCGOgRav2KKJSKz2yKPj9vmjhe8fT_ebBXJ15uH0d_iVo8ob8e6hRB36jyLq6iYDf_5mt_klEDTjdhHzCuNzeiL19Yut3SpE0y3ggHove58GiG=w854-h485-s-no?authuser=2)
     
-[Practical scene](https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipOzszUcRNZovtL39z0m0e8cdvipiDtYHITL7lgA?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3)
+[Practical scene](https://lh3.googleusercontent.com/pw/AJFCJaXXx9LbQi_cI0HUs-DPQi5CznHI79aAjXENYyLcnF2fw6ZMx5oqTqSB2GiA3WfGVXvavowpaQnmEFwwy9hFB1-nLOlBD4cYbvOcFzB0ll_Y40MhOoNIxcprSRbzE3YijBz-2BjUoFW4ul-Ujc0ZAGZf=w1279-h750-s-no?authuser=2)
 
-![](https://hackmd.io/_uploads/BJ5q-AyBh.png)
+![](https://lh3.googleusercontent.com/pw/AJFCJaXXx9LbQi_cI0HUs-DPQi5CznHI79aAjXENYyLcnF2fw6ZMx5oqTqSB2GiA3WfGVXvavowpaQnmEFwwy9hFB1-nLOlBD4cYbvOcFzB0ll_Y40MhOoNIxcprSRbzE3YijBz-2BjUoFW4ul-Ujc0ZAGZf=w1279-h750-s-no?authuser=2)
 
 `CourseScene` is a derived class inherited from `Scene` class used to create a course scene for the application. All the members in the private class are the variables for the objects for the scene.
 | Attribute / Method | Description |
@@ -999,13 +951,13 @@ The `DropBox` class represents a graphical user interface (GUI) component that d
 ### **13. EditCourseScene**
     (Defined in EditCourseScene.h and implemented in EditCourseScene.cpp)
 
-[Theoretic scene](https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipNFC7VN0EhwQvXo0Udzt_zm_UzbUJrsqTvavc3e?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3)
+[Theoretic scene](https://lh3.googleusercontent.com/pw/AJFCJaXY_KwA3kr2JBVgnGUfnTeKvqOlMTfu3UcU0pvTPQvOVgB-1G3Hf0FXiH2YDWL3VwclXE1QA1A4feKTbH7v0ESeR_56zH4gpo2BRWE7LeilOjP-m1vXSNYyIpUF46v2ekT14Higk_e5I_mjWHGoC_LT=w853-h483-s-no?authuser=2)
     
-![](https://hackmd.io/_uploads/rJIAWCJS2.png)
+![](https://lh3.googleusercontent.com/pw/AJFCJaXY_KwA3kr2JBVgnGUfnTeKvqOlMTfu3UcU0pvTPQvOVgB-1G3Hf0FXiH2YDWL3VwclXE1QA1A4feKTbH7v0ESeR_56zH4gpo2BRWE7LeilOjP-m1vXSNYyIpUF46v2ekT14Higk_e5I_mjWHGoC_LT=w853-h483-s-no?authuser=2)
 
-[Practical scene](https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipNzcPKKlbHdw50cWshp6cCM-MLFVfPck4tCn9Ps?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3)
+[Practical scene](https://lh3.googleusercontent.com/pw/AJFCJaUfGF31bpV2z-xzbpO4Rha9H4bdwiHSk8ZwIYy4vEkxd9UfR2Rmuwb6g35rCfho4vG-VFrIqmsevSm6xW0B-VjJ-5pUDrdEe2IKw_IoeMsJ-fXvM1suavUcLfO4F12NrfftCeJ4PMmReCW7iojgRcoS=w1279-h756-s-no?authuser=2)
 
-![](https://hackmd.io/_uploads/SkXyzCJH3.png)
+![](https://lh3.googleusercontent.com/pw/AJFCJaUfGF31bpV2z-xzbpO4Rha9H4bdwiHSk8ZwIYy4vEkxd9UfR2Rmuwb6g35rCfho4vG-VFrIqmsevSm6xW0B-VjJ-5pUDrdEe2IKw_IoeMsJ-fXvM1suavUcLfO4F12NrfftCeJ4PMmReCW7iojgRcoS=w1279-h756-s-no?authuser=2)
 
 `EditCourseScene` is a derived class inherited from `Scene` class used to create a edit course scene for the application. All the members in the private class are the variables for the objects for the scene.
 | Attribute / Method | Description |
@@ -1014,7 +966,7 @@ The `DropBox` class represents a graphical user interface (GUI) component that d
 | `void render()` | Renders all the objects implemented in the private class to the login scene. |
 | `Scene* process()` | Updates the scene when user work on the scene and returns the scene to the application: <br><br> + Click on `Change` button, if score inputs are valid and student ID input is valid, the program will access to `updateScoreboard()` function, then a scoreboard of a student will be updated and the function will return the current scene. Otherwise the warning text will occur. <br><br> +Click on `View` button, the user had to enter student ID into input box, then the scoreboard of that student is shown on the screen and the function will return `SchoolYearScene` scene. <br><br> +Click on `Back` button, the application will turn to `CourseScene` scene.|
 
-### **15. Registry**
+### **14. Registry**
     (Defined in Registry.h and implemented in Registry.cpp)
 `Registry` is a class used to store all the scenes have been implemented. All attributes in `Registry` class are the pointers of the `Scene` to all the scenes.
 
