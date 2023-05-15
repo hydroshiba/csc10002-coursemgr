@@ -795,12 +795,11 @@ The `DropBox` class represents a graphical user interface (GUI) component that d
     (Define in Login.h and implemented in Login.cpp)
 [Theoretic scene](https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipMdotWHytoYi8AgFc6_oj1T_9bvaR8GxZ7IxjtP?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3)
 
-    
-![](https://hackmd.io/_uploads/rkhxTpyB2.png)
+![](https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipMdotWHytoYi8AgFc6_oj1T_9bvaR8GxZ7IxjtP?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3)
     
 
 [Practical scene](https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipM_eLj3Q7CP9TXBHBhOzmJ6fwgFqtyfbcQpCyAV?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3)    
-![](https://hackmd.io/_uploads/SJp53akB3.png)
+![](https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipM_eLj3Q7CP9TXBHBhOzmJ6fwgFqtyfbcQpCyAV?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3)
 
 `Login` is a derived class inherited from `Scene` class used to create a login scene for the application. All the members in the private class are the variables for the objects for the scene.
 
