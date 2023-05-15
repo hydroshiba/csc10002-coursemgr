@@ -795,11 +795,11 @@ The `DropBox` class represents a graphical user interface (GUI) component that d
     (Define in Login.h and implemented in Login.cpp)
 [Theoretic scene](https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipMdotWHytoYi8AgFc6_oj1T_9bvaR8GxZ7IxjtP?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3)
 
-![](https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipMdotWHytoYi8AgFc6_oj1T_9bvaR8GxZ7IxjtP?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3)
+![](https://lh3.googleusercontent.com/pw/AJFCJaWxhv505NJU0G-DdoThQAL96iv_1a6crLQP5Jn0Haja8B7CT9KiokWca-AuEc1KzoWw5kATYjSDkzHjHMdfZqZfYo80VDPJP31vudUeX-SwuLsAZYj60GuLsLo-7W-gmnOBKbMp2BJtMgtC13-apD7j=w1137-h637-s-no?authuser=2)
     
 
 [Practical scene](https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipM_eLj3Q7CP9TXBHBhOzmJ6fwgFqtyfbcQpCyAV?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3)    
-![](https://photos.google.com/share/AF1QipPgIlh4VszerPVJfCyY62qm_hl0MGfHYLtkE_G-wW-S8crWa7UcBMrps-UM37HFOA/photo/AF1QipM_eLj3Q7CP9TXBHBhOzmJ6fwgFqtyfbcQpCyAV?key=aWtIU0hvcGYxWXdXTUp1SVhfd1hPdW5NNTZsWlh3)
+![](https://lh3.googleusercontent.com/pw/AJFCJaUwxwgL63Ol6kScYAysyNfWGrcvqtcCsXNjMBsdrE34HYB_yHKLf9e0QkfQJXyG-13G9fwj1HG6yUDTK6VJgqRhF9BwfvTlzgDTxEqpXSLvgVZf-20Tig_LxX554y6yZ0-eHiQMdNYgfS33IbhgNMRy=w1278-h750-s-no?authuser=2)
 
 `Login` is a derived class inherited from `Scene` class used to create a login scene for the application. All the members in the private class are the variables for the objects for the scene.
 
