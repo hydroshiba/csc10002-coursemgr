@@ -1,4 +1,4 @@
-# **CSC10002 Project: Course Management System**
+# CSC10002 Project: Course Management System
 
 **Class:** 22CLC06  
 **Group number:** 08  
