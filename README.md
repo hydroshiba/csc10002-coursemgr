@@ -31,4 +31,4 @@ This section is made for the acknowledgements of our lecturers and teaching assi
 
 * Dr. Đinh Bá Tiến - Our beloved theory lecturer
 * Mr. Hồ Tuấn Thanh - Our lab instructor
-* Mr. Nuyễn Lê Hoàng Dũng - Our lab instructor
+* Mr. Nguyễn Lê Hoàng Dũng - Our lab instructor
