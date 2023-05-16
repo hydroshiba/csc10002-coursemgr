@@ -1,0 +1,11 @@
+StudentID, 
+Fullname, 
+Gender,
+Dob,
+SocialID,
+Class,
+Number of courses,
+Overall GPA,
+No, CourseID, SemesterID, Midterm, Final, Other, Total
+1,
+2,
