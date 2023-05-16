@@ -1,20 +1,123 @@
-# **Documentation**
-## **1. Components / Objects**
-### Components
-The `Components.h` file serves as a central header file for including various components and defining important structures and variables used in the C++ program.
-#### 1. Included Libraries
-The following libraries are included in the `Components.h` file:
-- `<iomanip>`: Provides functions for manipulating input/output formatting.
-- `<string>`: Provides string manipulation functions and classes.
-- `"Vector.h"`: User-defined header file that implements a dynamic array data structure.
-#### 2. Constants
-- `defaultStr`: A constant string that holds the value "Error". It is used as a default value for certain string variables.
-#### 3. Enumerators
-The following enumerators are defined in the file:
-- `Weekday`: Represents the days of the week with values from `SUN` to `SAT`.
-- `Gender`: Represents gender with values `male` and `female`.
-- `Session`: Represents academic sessions with values `S1`, `S2`, `S3`, and `S4`.
+# CSC10002 Project Documentation
+
+# I. Underlying data structures
+
+## Node
+
+(Defined as `struct Node<Type>` in `Node.h`)
+
+A simple node type. The basis of linked lists, stacks and other various data structures.
+
+### Attributes
+
+| Name | Description | Default Value |
+| --- | --- | --- |
+| `Type data` | A variable of the type `Type` to store the data |  |
+| `Node* next` | A pointer that points to the next node |  |
+
+### Methods
+
+| Name | Description |
+| --- | --- |
+| `Node()` | Default constructor |
+
+## Vector
+
+(Defined as `class Vector<Type>` in `Vector.h`)
+
+A vector type, which is a dynamic array that can be resized easily and efficiently.
+
+### Attributes
+
+| Name | Description | Default Value |
+| --- | --- | --- |
+| `size_t length` | The size of the vector | 0 |
+| `size_t capacity` | The capacity of the vector | 1 |
+| `Type* array` | A pointer to the underlying dynamic array | `nullptr` |
+
+### Methods
+
+| Name | Description |
+| --- | --- |
+| `Vector()` | Default constructor |
+| `Vector(size_t size)` | Constructor with size |
+| `Vector(const Vector<Type>& vec)` | Copy constructor |
+| `void reallocate(size_t newCapacity)` | Reallocates the vector to a new capacity |
+| `size_t size()` | Returns the size of the vector |
+| `void operator=(const Vector<Type>& vec)` | Copy assignment operator |
+| `Type& operator[](size_t pos)` | Index operator |
+| `Type* begin()` | Returns a pointer to the first element |
+| `Type* end()` | Returns a pointer to the last element |
+| `void resize(size_t size)` | Resizes the vector to a new size |
+| `void append(Type value)` | Pushes an element to the back of the vector |
+| `void remove(const Type& value, int amount = -1)` | Removes elements from the vector with a given value. `-1` removes all elements |
+| `void remove(Type* const ptr)` | Removes a given pointer from the vector |
+| `Type* find(const Type& value)` | Finds and returns the pointer to the first element with a given value |
+| `~Vector()` | Destructor |
+
+## Stack
+
+(Defined as `struct Stack<Type>` in `Stack.h`)
+
+A stack type, which is a LIFO (Last In First Out) data structure.
+
+### Attributes
+
+| Name | Description | Default Value |
+| --- | --- | --- |
+| `Node<Type>* head` | A pointer to the top node of the stack | `nullptr` |
+
+### Methods
+
+| Name | Description |
+| --- | --- |
+| `Stack()` | Default constructor |
+| `bool empty()` | Returns whether the stack is empty |
+| `void push(const Type &value)` | Pushes an element to the top of the stack |
+| `void pop()` | Pops the top element of the stack |
+| `Type top()` | Returns the top element of the stack |
+| `~Stack()` | Destructor |
+
+# II. Core user-defined data types
+
+## Components
+
+The `Components.h` header (and its source file `Components.cpp`) serves as a mediator file for other self-defined data types by forward-declaring them. It also includes comparing operator definition for the aformentioned types, enumerators and defines global variables.
+
+### Enumerators
+
+| Name | Description | Values |
+| --- | --- | --- |
+| `Weekday` | Days of the week | `SUN`, `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT` |
+| `Gender` | Genders | `male`, `female` |
+| `Session` | Academic sessions | `S1`, `S2`, `S3`, `S4` |
+
+### Variables
+
+| Name | Description | Default Value |
+| --- | --- | --- |
+| `std::string defaultStr` | A default string used to display in graphics objects  | `"Error"` |
+| `Vector<SchoolYear> schoolYears` | A global vector of school years |  |
+| `Vector<AcademicYear> academicYears` | A global vector of academic years |  |
+| `Vector<Student> students` | A global vector of students |  |
+| `Vector<Staff> staffs` | A global vector of staffs |  |
+| `Staff* ptrStaff_Global` | A global pointer to the currently interacting staff | `nullptr` |
+| `Student* ptrStudent_Global` | A global pointer to the currently interacting student | `nullptr` |
+| `SchoolYear* ptrSchoolYear_Global` | A global pointer to the current school year | `nullptr` |
+| `Class* ptrClass_Global` | A global pointer to the current class | `nullptr` |
+| `AcademicYear* ptrAcademicYear_Global` | A global pointer to the current academic year | `nullptr` |
+| `Semester* ptrSemester_Global` | A global pointer to the current semester | `nullptr` |
+| `Course* ptrCourse_Global` | A global pointer to the current course | `nullptr` |
+| `Scoreboard* ptrScoreboard_Global` | A global pointer to the current scoreboard | `nullptr` |
+
+### Functions
+
+| Name | Description |
+| --- | --- |
+| `bool operator!=(const Type& typeA, const Type& typeB)` | A template function to compare if compared variables differ from each other |
+
 #### 4. Structures
+
 The following structures are forward declared in the file:
 - `Date`: Represents a date.
 - `Name`: Represents a person's name.
@@ -27,422 +130,591 @@ The following structures are forward declared in the file:
 - `Semester`: Represents a semester.
 - `Course`: Represents a course.
 - `Scoreboard`: Represents a scoreboard for a student's scores.
-#### 5. Struct Operator Overloading
-The file includes a template function `operator!=` that overloads the inequality operator for comparing two objects of the same type. It returns `true` if the objects are not equal and `false` otherwise.
-#### Global Variables
-The file declares the following global variables:
-- `schoolYears`: A `Vector` container that stores `SchoolYear` objects.
-- `academicYears`: A `Vector` container that stores `AcademicYear` objects.
-- `students`: A `Vector` container that stores `Student` objects.
-- `staffs`: A `Vector` container that stores `Staff` objects.
-- `ptrStaff_Global`: A pointer to a `Staff` object.
-- `ptrStudent_Global`: A pointer to a `Student` object.
-- `ptrSchoolYear_Global`: A pointer to a `SchoolYear` object.
-- `ptrClass_Global`: A pointer to a `Class` object.
-- `ptrAcademicYear_Global`: A pointer to an `AcademicYear` object.
-- `ptrSemester_Global`: A pointer to a `Semester` object.
-- `ptrCourse_Global`: A pointer to a `Course` object.
-- `ptrScoreboard_Global`: A pointer to a `Scoreboard` object.
 
-These global variables are used to maintain and access important data throughout the program.
+## Name
 
-The `Components.h` file serves as a central point for including necessary components and defining key structures and variables, making them easily accessible to other parts of the program.
+(Defined as `struct Name` in `Name.h`)
 
-### 1. Name
-The `Name` struct represents a person's name with a first name and a last name. It provides methods for setting and retrieving the name, as well as an equality operator to compare two names.
+The `Name` struct represents one's name with a first and a last name. It provides methods for name setting and retrieval.
 
-| Attribute/Method | Description |
-|------------------|-------------|
-| - `first: std::string` | Private attribute that stores the first name of the person. |
-| - `last: std::string` | Private attribute that stores the last name of the person. |
-| + `Name(nameFirst: const std::string&, nameLast: const std::string&)` | Public constructor that initializes the `Name` object with the given first and last names. It has default parameter values of an empty string. |
-| + `set(nameFirst: const std::string&, nameLast: const std::string&)` | Public method that allows setting the first and last names of the person. |
-| + `get(): std::string` | Public method that returns the full name (first name followed by last name) as a string. |
-| `operator==(nameA: const Name&, nameB: const Name&)` | Non-member function that compares two `Name` objects for equality. Returns `true` if the first names and last names are the same, and `false` otherwise. |
-### 2. Date
-The `Date` struct represents a specific date with day, month, and year values. It provides methods for setting and retrieving the date, as well as an equality operator to compare two dates.
+### Attributes
 
-| Attribute/Method | Description |
-|------------------|-------------|
-| - `day: unsigned short` | Private attribute that stores the day value of the date. |
-| - `month: unsigned short` | Private attribute that stores the month value of the date. |
-| - `year: unsigned int` | Private attribute that stores the year value of the date. |
-| + `Date(newDay: const unsigned short&, newMonth: const unsigned short&, newYear: const unsigned int&)` | Public constructor that initializes the `Date` object with the given day, month, and year values. It has default parameter values of 0. |
-| + `set(newDay: const unsigned short&, newMonth: const unsigned short&, newYear: const unsigned int&)` | Public method that allows setting the day, month, and year values of the date. |
-| + `get(): std::string` | Public method that returns the date in the format "dd/mm/yyyy" as a string. |
-| `operator==(dateA: const Date&, dateB: const Date&)` | Non-member function that compares two `Date` objects for equality. Returns `true` if the day, month, and year values are the same, and `false` otherwise. |
-### 3. User
+| Name | Description | Default Value |
+| --- | --- | --- |
+| `std::string first` | Stores the first name of the person |  |
+| `std::string last` | Stores the first name of the person |  |
 
-The `User` struct represents a user with a name, ID, and password. It provides various methods for setting and retrieving user information, as well as password encryption and comparison.
+### Methods
 
-| Attribute/Method | Description |
-|------------------|-------------|
-| - `password: uint64_t` | Private attribute that stores the hashed password of the user. |
-| - `hash(left: uint64_t, right: uint64_t): uint64_t` | Private method that performs a custom hash operation on two `uint64_t` values and returns the result. |
-| - `hash(str: std::string): uint64_t` | Private method that performs a custom hash operation on a string and returns the result. |
-| + `name: Name` | Public attribute of type `Name` that represents the user's name. |
-| + `ID: std::string` | Public attribute that stores the user's ID. |
-| + `User(name: const Name&, ID: const std::string&, passwordStr: const std::string&)` | Public constructor that initializes the `User` object with the given name, ID, and password. The default password value is "123456". |
-| + `setFirstName(firstName: const std::string&)` | Public method that allows setting the first name of the user. |
-| + `setLastName(lastName: const std::string&)` | Public method that allows setting the last name of the user. |
-| + `setName(first: const std::string&, last: const std::string&)` | Public method that allows setting the first and last names of the user. |
-| + `setPassword(str: const std::string&)` | Public method that encrypts and sets the user's password using the given string. |
-| + `isPassword(str: const std::string&): bool` | Public method that compares the given string with the user's password. Returns `true` if the passwords match, and `false` otherwise. |
-| + `setID(ID: const std::string)` | Public method that allows setting the user's ID. |
-| + `getHashedPass(): uint64_t` | Public method that returns the hashed password of the user. |
-| `operator==(userA: const User&, userB: const User&): bool` | Non-member function that compares two `User` objects for equality. Returns `true` if the IDs and names of the users are the same, and `false` otherwise. |
-
-### 4. Staff
-The `Staff` struct is a derived struct from `User` and represents a staff member. It inherits the attributes and methods from `User`.
-
-### 5. Student
-The `Student` struct is defined in the Student.h file and inherits from the User class. It contains data related to a student such as their name, ID, password, gender, date of birth, social ID, class, and scoreboards. 
-
-The following table provides an overview of the attributes and methods of the Student struct:
-
-| Attribute / Method | Description |
+| Name | Description |
 | --- | --- |
-| `+ Gender gender` | A public attribute representing the gender of the student. |
-| `+ Date birth` | A public attribute representing the date of birth of the student. |
-| `+ std::string socialID` | A public attribute representing the social ID of the student. |
-| `+ Class* ptrClass` | A public attribute representing a pointer to the class that the student belongs to. |
-| `+ Vector<Scoreboard*> scoreboards` | A public attribute representing a vector of scoreboards for the student. |
-| `+ Student(const Name& name, const std::string& id, const std::string& password, const Gender& gender = male, const Date& birth = {0, 0, 0}, const std::string& socialID = defaultStr, Class* ptrClass = nullptr, const Vector<Scoreboard*>& scoreboards = Vector<Scoreboard*>())` | A public constructor that takes in the name, ID, password, gender, date of birth, social ID, class, and scoreboards of a student. |
-| `+ Vector<Scoreboard*> getScoreboards(const Semester& semester) const` | A public method that takes in a semester and returns a vector of scoreboards for the student in that semester. |
-| `+ Scoreboard* getScoreboard(const string& courseID) const` | A public method that takes in a course ID and returns a pointer to the scoreboard of that course for the student. |
-| `+ Scoreboard* getScoreboard(Course& course) const` | A public method that takes in a course and returns a pointer to the scoreboard of that course for the student. |
-| `+ void set(const Name& name, const std::string& id, const std::string& password, const Gender& gender, const Date& birth, const std::string& socialID, Class* ptrClass, const Vector<Scoreboard*>& scoreboards)` | A public method that sets the name, ID, password, gender, date of birth, social ID, class, and scoreboards of a student. |
-| `+ void setName(const Name& name)` | A public method that sets the name of a student. |
-| `+ void setGender(const Gender& gender)` | A public method that sets the gender of a student. |
-| `+ void setBirth(const Date& birth)` | A public method that sets the date of birth of a student. |
-| `+ void setSocialID(const std::string& socialID)` | A public method that sets the social ID of a student. |
-| `+ void setClass(Class* ptrClass)` | A public method that sets the class of a student. |
-| `+ void setScoreboards(Vector<Scoreboard*>& scoreboards)` | A public method that sets the scoreboards of a student. |
-| `+ float getGPA() const` | A public method that returns the overall GPA of a student. |
-| `+ float getGPA(const Semester& semester) const` | A public method that takes in a semester and returns the GPA of the student for that semester. |
-| `+ void setInfoToClass(std::ifstream &ifs)` | A public method that reads student information from a file and sets it to
-### 6. SchoolYear
+| `Name(const std::string& nameFirst = defaultStr, const std::string& nameLast = defaultStr)` | Constructor with arguments for first & last names |
+| `void set(const std::string& nameFirst, const std::string& nameLast)` |  Modifies the first & last names
+| `std::string get() const` | Returns the full name (concatenation of first & last names) |
 
-The `SchoolYear` struct represents a school year in a educational system. It contains information about the start year and the classes associated with that year.
+### Operators
 
-| Attribute/Method | Description |
-|-----------------|-------------|
-| - `start` : unsigned int | The starting year of the school year. |
-| - `classes` : Vector<Class> | A vector of `Class` objects representing the classes associated with the school year. |
-| + `getStartYear()` : unsigned int | Returns the starting year of the school year. |
-| + `set(const unsigned int& start, const Vector<Class>& classes)` | Sets the start year and classes of the school year. |
-| + `update(const unsigned int& start)` | Updates the start year of the school year. |
-| + `update(Vector<Class>& classes)` | Updates the classes of the school year. |
-| + `getStudent(const std::string& studentID)` : Student* | Returns a pointer to a `Student` object with the given student ID, if found in any of the classes within the school year. |
-| + `getClass(const std::string& className)` : Class* | Returns a pointer to a `Class` object with the given class name, if found within the school year. |
-| + `addClass(Class& CLASS)` | Adds a `Class` object to the school year and assigns the school year as its parent. |
-| + `removeClass(Class& CLASS)` | Removes a `Class` object from the school year and removes the school year reference from the class. |
-| + `removeAllClass()` | Removes all classes from the school year and removes the school year reference from each class. |
-| + `getPeriod()` : std::string | Returns a string representation of the school year period, indicating the start year and end year. |
+| Name | Description |
+| --- | --- |
+| `bool operator==(const Name& nameA, const Name& nameB)` | Compares two names |
+
+## Date
+
+(Defined as `struct Date` in `Date.h`)
+
+The `Date` struct stores a specific date with day, month, and year values, while also provides methods for setting and retrieving the date.
+
+### Attributes
+
+| Name | Description | Default Value |
+| --- | --- | --- |
+| `unsigned short day` | Stores the day value of the date |  |
+| `unsigned short month` | Stores the month value of the date |  |
+| `unsigned int year` | Stores the year value of the date |  |
+
+### Methods
+
+| Name | Description |
+| --- | --- |
+| `Date(const unsigned short& newDay = 0, const unsigned short& newMonth = 0, const unsigned int& newYear = 0)` | Constructor with arguments for day, month, and year |
+| `void set(const unsigned short& newDay, const unsigned short& newMonth, const unsigned int& newYear)` | Modifies the day, month, and year values |
+| `std::string get() const` | Returns the date in the format "dd/mm/yyyy" |
+
+### Operators
+
+| Name | Description |
+| --- | --- |
+| `bool operator==(const Date& dateA, const Date& dateB)` | Compares two dates |
+
+## User
+
+(Defined as `struct User` in `User.h`)
+
+The `User` struct represents a user with a name, ID, and password.
+
+### Attributes
+
+| Name | Description | Default Value |
+| --- | --- | --- |
+| `Name name` | Stores the name of the user |  |
+| `std::string ID` | Stores the ID of the user |  |
+| `uint64_t password` | Stores the hashed password of the user |  |
+
+### Methods
+
+| Name | Description |
+| --- | --- |
+| `User(const Name& name = { defaultStr, defaultStr }, const std::string& ID = defaultStr, const std::string& passwordStr = "123456")` | Constructor with arguments for name, ID, and password |
+| `uint64_t hash(uint64_t left, uint64_t right)` | Performs a custom hash operation on two `uint64_t` values and returns the result |
+| `uint64_t hash(std::string str)` | Performs a custom hash operation on a string and returns the result |
+| `void setFirstName(const std::string& firstName)` | Modifies the first name of the user |
+| `void setLastName(const std::string& lastName)` | Modifies the last name of the user |
+| `void setName(const std::string& first, const std::string& last)` | Modifies the name of the user |
+| `void setPassword(const std::string& str)` | Modifies the password of the user |
+| `void setPassWordUpLoad(const std::string& passwordInFile)` | Converts the hashed password in the file to a `uint64_t` value and stores it in the `password` attribute |
+| `bool isPassword(const std::string& str)` | Checks if the given string matches the user's password |
+| `void setID(const std::string& ID)` | Modifies the ID of the user |
+| `uint64_t getHashedPass()` | Returns the hashed password of the user |
+
+### Operators
+
+| Name | Description |
+| --- | --- |
+| `bool operator==(const User& userA, const User& userB)` | Compares two users |
+
+## Staff
+
+(Defined as `struct Staff` in `User.h`)
+
+The `Staff` struct, which inherits from the `User` struct, represents a staff member with a name, ID, and password. Since the `Staff` struct inherits from the `User` struct, it also inherits all of the attributes and methods of the `User` struct, but it has no additional attributes or methods.
+
+## Student
+
+(Defined as `struct Student` in `Student.h`)
+
+The `Student` struct, which inherits from the `User` struct, represents a student with a name, ID, password and additional attributes. Since the `Student` struct inherits from the `User` struct, it also inherits all of the attributes and methods of the `User` struct, with additional attributes and methods.
+
+### Additional attributes
+
+| Name | Description | Default Value |
+| --- | --- | --- |
+| `Gender gender` | Stores the gender of the student |
+| `Date birth` | Stores the date of birth of the student |
+| `std::string socialID` | Stores the social ID of the student |
+| `Class* ptrClass` | Stores a pointer to the class that the student belongs to |
+| `Vector<Scoreboard*> scoreboards` | Stores a vector of scoreboards of the student |
+
+### Additional methods
+
+| Name | Description |
+| --- | --- |
+| `Student(const Name& name = { defaultStr, defaultStr }, const std::string& id = defaultStr, const std::string& password = "", const Gender& gender = male, const Date& birth = {0, 0, 0}, const std::string& socialID = defaultStr, Class* ptrClass = nullptr, const Vector<Scoreboard*>& scoreboards = Vector<Scoreboard*>())` | Constructor with arguments for attributes |
+| `Vector<Scoreboard*> getScoreboards(const Semester& semester) const` | Returns a vector of scoreboards of the student in the given semester |
+| `Scoreboard* getScoreboard(const std::string& courseID) const` | Returns the scoreboard of the student in the given course with the given ID |
+| `Scoreboard* getScoreboard(Course& course) const` | Returns the scoreboard of the student in the given course |
+| `void set(const Name& name, const std::string& id, const std::string& password, const Gender& gender, const Date& birth, const std::string& socialID, Class* ptrClass, const Vector<Scoreboard*>& scoreboards)` | Modifies the attributes of the student |
+| `void setName(const Name& name)` | Modifies the name of the student |
+| `void setGender(const Gender& gender)` | Modifies the gender of the student |
+| `void setBirth(const Date& birth)` | Modifies the date of birth of the student |
+| `void setSocialID(const std::string& socialID)` | Modifies the social ID of the student |
+| `void setClass(Class* ptrClass)` | Modifies the class of the student |
+| `void setScoreboards(Vector<Scoreboard*>& scoreboards)` | Modifies the scoreboards of the student |
+| `float getGPA() const` | Returns the overall GPA of the student |
+| `float getGPA(const Semester& semester) const` | Returns the GPA of the student in the given semester |
+| `void setInfoToClass(std::ifstream &ifs)` | Reads the information of the student from a file stream and stores it in the student |
+| `void setInfoToCourseCSV(std::ifstream &ifs)` | Reads the information of the student from a CSV file and stores it in the student |
+| `void setInfoCourseConsole(std::string &actClass)` | Reads the information of the student from the console and stores it in the student |
+
+### Additional operators
+
+| Name | Description |
+| --- | --- |
+| `bool operator==(const Student& studentA, const Student& studentB)` | Compares two students |
+
+## School year
+
+(Defined as `struct SchoolYear` in `SchoolYear.h`)
+
+The `SchoolYear` struct represents a generation of students, with a starting year and its classes.
+
+### Attributes
+
+| Name | Description | Default Value |
+| --- | --- | --- |
+| `unsigned int start` | The starting year of the school year | 0 |
+| `Vector<Class> classes` | A vector of `Class` objects representing the classes associated with the school year |  |
+
+### Methods
+
+| Name | Description |
+| --- | --- |
+| `SchoolYear(const int& start = 0, const Vector<Class>& classes = Vector<Class>())` | Constructor with arguments for attributes |
+| `unsigned int getStartYear()` | Returns the starting year of the school year |
+| `void set(const unsigned int& start, const Vector<Class>& classes)` | Sets the start year and classes of the school year |
+| `void update(const unsigned int& start)` | Updates the start year of the school year |
+| `void update(Vector<Class>& classes)` | Updates the classes of the school year |
+| `Student* getStudent(const std::string& studentID)` | Returns a pointer to a `Student` object with the given student ID, if found in any of the classes within the school year |
+| `Class* getClass(const std::string& className)` | Returns a pointer to a `Class` object with the given class name, if found in the school year |
+| `void addClass(Class& CLASS)` | Adds a new class to the school year |
+| `void removeClass(Class& CLASS)` | Removes a class from the school year |
+| `void removeAllClass()` | Removes all classes from the school year |
+| `std::string getPeriod(std::string& period) const` | Gets the period of the school year |
+
+### Operators
+
+| Name | Description |
+| --- | --- |
+| `bool operator==(const SchoolYear& yearA, const SchoolYear& yearB)` | Compares two school years |
+
+## Class
+
+(Defined as `struct Class` in `Class.h`)
     
-### 7. Class
-The `Class` struct represents a class within a school year in a C++ program. It contains information about the class name, the associated school year, and the students enrolled in the class.
+The `Class` struct represents a class within a school year with students.
 
-| Attribute / Method | Description |
-| ----------------- | ----------- |
-| - `ptrSchoolYear: SchoolYear*` | A pointer to the associated school year for the class. |
-| - `name: std::string` | The name of the class. |
-| - `students: Vector<Student*>` | A vector containing pointers to the students enrolled in the class. |
-| + `Class(SchoolYear* ptrSchoolYear = nullptr, const std::string& name = defaultStr, const Vector<Student*>& students = Vector<Student*>())` | Constructor for the `Class` struct. Initializes the `ptrSchoolYear`, `name`, and `students` attributes. |
-| + `void set(SchoolYear* ptrSchoolYear, const std::string& name, const Vector<Student*>& students)` | Sets the `ptrSchoolYear`, `name`, and `students` attributes of the class. |
-| + `void update(SchoolYear* ptrSchoolYear)` | Updates the `ptrSchoolYear` attribute of the class. |
-| + `void update(const std::string& name)` | Updates the `name` attribute of the class. |
-| + `void addStudent(Student*& student)` | Adds a student to the class by appending the student pointer to the `students` vector. |
-| + `void removeStudent(Student*& student)` | Removes a student from the class by removing the corresponding student pointer from the `students` vector. |
-| + `Vector<string> getListCourse(const Semester& semester) const` | Retrieves a vector of course IDs associated with the specified semester for the class. |
-| + `Vector<std::string> getListCourse() const` | Retrieves a vector of all course IDs for the class. |
-| + `void removeAllStudent()` | Removes all students from the class by resetting the `students` vector. |
-| + `Student* getStudent(const std::string& studentID)` | Retrieves a pointer to a student in the class based on their student ID. |
-| + `void displayScoreboardScreen(const Semester& semester)` | Displays the scoreboard of the class for the specified semester on the console. |
-| + `void displayScoreboardFile(const Semester& semester, std::ofstream& ofs)` | Writes the scoreboard of the class for the specified semester to a file. |
-| <br>**Friend Functions** |
-| bool operator==(const Class& classA, const Class& classB) | Checks whether two `Class` objects are equal by comparing their `name` and `ptrSchoolYear` attributes. |
+### Attributes
+
+| Name | Description | Default Value |
+| --- | --- | --- |
+| `SchoolYear* ptrSchoolYear` | A pointer to the associated school year for the class | |
+| `std::string name` | The name of the class | |
+| `Vector<Student*> students` | A vector containing pointers to the students in the class | |
+
+### Methods
+
+| Name | Description |
+| --- | --- |
+| `Class(SchoolYear* ptrSchoolYear = nullptr, const std::string& name = defaultStr, const Vector<Student*>& students = Vector<Student*>())` | Constructor for the `Class` struct with arguments to initialize its attributes |
+| `void set(SchoolYear* ptrSchoolYear, const std::string& name, const Vector<Student*>& students)` | Sets the `ptrSchoolYear`, `name`, and `students` attributes of the class |
+| `void update(SchoolYear* ptrSchoolYear)` | Updates the year associated to this class |
+| `void update(const std::string& name)` | Updates the name of the class |
+| `void update(Vector<Student*>& students)` | Updates the students in the class |
+| `void addStudent(Student*& student)` | Adds a student to the class |
+| `void removeStudent(Student*& student)` | Removes a student from the class |
+| `void removeAllStudent()` | Removes all students from the class |
+| `Vector<string> getListCourse() const` | Returns a vector of courses of the class that its students have enrolled |
+| `Vector<string> getListCourse(const Semester& semester) const` | Returns a vector of courses of the class that its students have enrolled in the given semester |
+| `Student* getStudent(const std::string& studentID)` | Returns a pointer to a `Student` object with the given student ID, if found in the class |
+| `void displayScoreboardScreen(const Semester& semester)` | Displays the scoreboard of the class in the given semester |
+| `void displayScoreboardFile(const Semester& semester, std::ofstream& ofs)` | Export the scoreboard of the class in the given semester to a file stream |
+
+### Operators
+
+| Name | Description |
+| --- | --- |
+| `bool operator==(const Class& classA, const Class& classB)` | Compares two classes |
+
+## Academic year
     
-### 8. AcademicYear
-The `AcademicYear` struct represents an academic year, which is defined by a start year and a collection of semesters. It contains methods for adding, removing, and getting a semester by its ID.
+The `AcademicYear` struct represents an academic year, which has a period of 12 months divided into 3 semesters.
 
-| Attribute/Method | Description |
+### Attributes
+
+| Name | Description | Default Value |
+| --- | --- | --- |
+| `unsigned int start` | The start year of the academic year | |
+| `Vector<Semester> semesters` | A list of semesters in the academic year | |
+
+### Methods
+
+| Name | Description |
 | --- | --- |
-| - `unsigned int start` | The start year of the academic year. |
-| - `Vector<Semester> semesters` | A vector of semesters in the academic year. |
-| + `AcademicYear(const unsigned int& start = 0, const Vector<Semester>& semester = Vector<Semester>())` | Constructor to create an academic year with a start year and a vector of semesters. |
-| + `Semester* getSemester(const std::string& semesterID)` | Returns a pointer to the semester with the specified ID, or nullptr if it does not exist. |
-| + `void addSemester(Semester& semester)` | Adds a semester to the academic year. |
-| + `void removeSemester(Semester& semester)` | Removes a semester from the academic year. |
-| + `void removeAllSemester()` | Removes all semesters from the academic year. |
-| + `std::string getPeriod() const` | Returns a string representing the period of the academic year, in the format "start year - end year". |
-| - `bool operator==(const AcademicYear& yearA, const AcademicYear& yearB)` | Returns true if two academic years are equal (have the same start year), false otherwise. |
+| `AcademicYear(const unsigned int& start = 0, const Vector<Semester>& semester = Vector<Semester>())` | Constructor with arguments to initialize attributes |
+| `Semester* getSemester(const std::string& semesterID)` | Returns a pointer to the semester with the specified ID, or nullptr if it does not exist |
+| `void addSemester(Semester& semester)` | Adds a semester to the academic year |
+| `void removeSemester(Semester& semester)` | Removes a semester from the academic year |
+| `void removeAllSemester()` | Removes all semesters from the academic year |
+| `std::string getPeriod() const` | Returns a string representing the period of the academic year |
 
-### 9. Semester
-The `Semester` struct represents a semester in an academic year. It contains information about the semester ID, start and end dates, a collection of courses, and a pointer to the academic year it belongs to. It provides methods for managing courses within the semester.
+### Operators
 
-| Attribute/Method | Description |
+| Name | Description |
 | --- | --- |
-| + `std::string semesterID` | The ID of the semester. |
-| + `Date startDate` | The start date of the semester. |
-| + `Date endDate` | The end date of the semester. |
-| + `Vector<Course> courses` | A vector of courses in the semester. |
-| + `AcademicYear* ptrAcademicYear` | A pointer to the academic year that the semester belongs to. |
-| + `Semester(const std::string& semesterID = defaultStr, const Date& startDate = { 0, 0, 0 }, const Date& endDate = { 0, 0, 0 }, const Vector<Course>& course = Vector<Course>(), AcademicYear* ptrAcademicYear = nullptr)` | Constructor to create a semester with the specified semester ID, start and end dates, a vector of courses, and a pointer to the academic year. |
-| + `void set(const std::string& semesterID, const Date& startDate, const Date& endDate, const Vector<Course>& course, AcademicYear* ptrAcademicYear)` | Sets the attributes of the semester to the specified values. |
-| + `void updateSemesterID(const std::string& semesterID)` | Updates the semester ID. |
-| + `void updateStartDate(const Date& startDate)` | Updates the start date of the semester. |
-| + `void updateEndDate(const Date& endDate)` | Updates the end date of the semester. |
-| + `void updateCourses(Vector<Course>& course)` | Updates the courses in the semester. |
-| + `void updateAcademicYear(AcademicYear* ptrAcademicYear)` | Updates the academic year that the semester belongs to. |
-| + `Course* getCourse(const std::string& courseID)` | Returns a pointer to the course with the specified ID, or nullptr if it does not exist. |
-| + `void addCourse(Course& course)` | Adds a course to the semester. |
-| + `void removeCourse(Course& course)` | Removes a course from the semester. |
-| + `void removeAllCourse()` | Removes all courses from the semester. |
-| - `bool operator==(const Semester& semA, const Semester& semB)` | Returns true if two semesters are equal (have the same semester ID, start and end dates), false otherwise. |
+| `bool operator==(const AcademicYear& yearA, const AcademicYear& yearB)` | Compares two academic years |
 
-### 10. Course
-The `Course` struct in the C++ programming language represents a course offered in an educational system. It contains various attributes and methods to manage and manipulate course information. Below is a description of the attributes and methods of the `Course` struct.
+## Semester
 
-| Attribute/Method | Description |
-|---|---|
-| - `ID` (`string`) | The ID of the course. |
-| - `classID` (`string`) | The ID of the class associated with the course. |
-| - `name` (`string`) | The name of the course. |
-| - `teacher` (`string`) | The name of the teacher who teaches the course. |
-| - `credits` (`int`) | The number of credits assigned to the course. |
-| - `maxEnroll` (`int`) | The maximum number of students that can enroll in the course. |
-| - `weekday` (`Weekday`) | The day of the week when the course is scheduled. |
-| - `session` (`Session`) | The session of the course (e.g., morning, afternoon). |
-| - `ptrSemester` (`Semester*`) | A pointer to the semester associated with the course. |
-| - `scoreboards` (`Vector<Scoreboard*>`) | A vector of pointers to scoreboards, representing the performance of students in the course. |
-| + `Course()` | Constructor of the `Course` struct. |
-| + `void set(ID, classID, name, teacher, credits, maxEnroll, weekday, session, ptrSemester, scoreboards)` | Sets the values of the attributes of the course. |
-| + `void updateID(ID)` | Updates the ID of the course. |
-| + `void updateClassID(classID)` | Updates the class ID of the course. |
-| + `void updateName(name)` | Updates the name of the course. |
-| + `void updateTeacher(teacher)` | Updates the name of the teacher of the course. |
-| + `void updateCredits(credits)` | Updates the number of credits assigned to the course. |
-| + `void updateMaxEnroll(maxEnroll)` | Updates the maximum number of students that can enroll in the course. |
-| + `void updateWeekday(weekday)` | Updates the day of the week when the course is scheduled. |
-| + `void updateSession(session)` | Updates the session of the course. |
-| + `void updateSemester(ptrSemester)` | Updates the semester associated with the course. |
-| + `void updateScoreboard(scoreboards)` | Updates the scoreboards associated with the course. |
-| + `Student* getStudent(studentID)` | Retrieves a pointer to a student enrolled in the course based on their ID. |
-| + `Scoreboard* getScoreboard(studentID)` | Retrieves a pointer to the scoreboard of a student in the course based on their ID. |
-| + `void addStudent(student)` | Adds a student to the course by creating a new scoreboard for the student. |
-| + `void removeStudent(student)` | Removes a student from the course and deletes their associated scoreboard. |
-| + `void removeAllStudent()` | Removes all students from the course and deletes their associated scoreboards. |
-| + `void displayInfoFile(ofs)` | Displays the course information in a formatted manner in the specified output stream. |
-| + `void displayInfoTable(table)` | Displays the course information in a tabular format using the provided table. |
-| + `void importScoreBoards(ifs)` | Imports scoreboards for the course from the specified input file stream. |
-| + `bool operator==(courseA, courseB)`| Compare two Course variable|
+(Defined as `struct Semester` in `Semester.h`)
 
-### 11. Scoreboard
-The `Scoreboard` struct represents a score record for a specific course and student. It contains information about the scores obtained by the student in different assessments of the course.
+The `Semester` struct represents a semester in a typical year, which has its own start and end dates, and a list of courses.
 
-| Attribute / Method | Description |
-|---|---|
-| - `midterm` (float) | The score obtained by the student in the midterm assessment. |
-| - `final` (float) | The score obtained by the student in the final assessment. |
-| - `other` (float) | The score obtained by the student in other assessments. |
-| - `total` (float) | The total score obtained by the student in the course. |
-| - `ptrCourse` (Course*) | A pointer to the course associated with the scoreboard. |
-| - `ptrStudent` (Student*) | A pointer to the student associated with the scoreboard. |
+### Attributes
 
-## **2. Components Functions**
-### **1. Display functions**
-The following functions are used for displaying the respective structs as a drop box.
+| Name | Description | Default Value |
+| --- | --- | --- |
+| `std::string semesterID` | The ID of the semester | |
+| `Date startDate` | The start date of the semester | |
+| `Date endDate` | The end date of the semester | |
+| `Vector<Course> courses` | A list of courses in the semester | |
+| `AcademicYear* ptrAcademicYear` | A pointer to the academic year associated with the semester | |
+
+### Methods
+
+| Name | Description |
+| --- | --- |
+| `Semester(const std::string& semesterID = defaultStr, const Date& startDate = { 0, 0, 0 }, const Date& endDate = { 0, 0, 0 }, const Vector<Course>& course = Vector<Course>(), AcademicYear* ptrAcademicYear = nullptr)` | Constructor with arguments to initialize attributes |
+| `void set(const std::string& semesterID, const Date& startDate, const Date& endDate, const Vector<Course>& course, AcademicYear* ptrAcademicYear)` | Sets the attributes of the semester |
+| `void updateSemesterID(const std::string& semesterID)` | Updates the ID of the semester |
+| `void updateStartDate(const Date& startDate)` | Updates the start date of the semester |
+| `void updateEndDate(const Date& endDate)` | Updates the end date of the semester |
+| `void updateCourses(Vector<Course>& course)` | Updates the list of courses in the semester |
+| `void addCourse(Course& course)` | Adds a course to the semester |
+| `void removeCourse(Course& course)` | Removes a course from the semester |
+| `void removeAllCourse()` | Removes all courses from the semester |
+| `Course* getCourse(const std::string& courseID)` | Returns a pointer to the course with the specified ID, or nullptr if it does not exist |
+
+### Operators
+
+| Name | Description |
+| --- | --- |
+| `bool operator==(const Semester& semA, const Semester& semB)` | Compares two semesters |
+
+## Course
+
+(Defined as `struct Course` in `Course.h`)
+
+The `Course` struct represents a course in a standard university, which has its own ID, name, teacher, number of credits, maximum number of students, and a list of students enrolled in the course.
+
+### Attributes
+
+| Name | Description | Default Value |
+| --- | --- | --- |
+| `std::string ID` | The ID of the course | |
+| `std::string classID` | The ID of the class associated with the course | |
+| `std::string name` | The name of the course | |
+| `std::string teacher` | The name of the teacher teaching the course | |
+| `int credits` | The number of credits assigned to the course | |
+| `int maxEnroll` | The maximum number of students that can enroll in the course | |
+| `Weekday weekday` | The course's scheduled day of the week | |
+| `Session session` | The course's scheduled session of the day (morning, afternoon) | |
+| `Semester* ptrSemester` | A pointer to the semester associated with the course | |
+| `Vector<Scoreboard*> scoreboards` | A vector of pointers to scoreboards, which store the scores of students in this particular course | |
+
+### Methods
+
+| Name | Description |
+| --- | --- |
+| `Course(const std::string& ID = defaultStr, const std::string& classID = defaultStr, const std::string& name = defaultStr, const std::string& teacher = defaultStr, const int& credits = 0, const int& maxEnroll = 50, const Weekday& weekday = MON, const Session& session = S1, Semester* ptrSemester = nullptr, const Vector<Scoreboard*>& scoreboards = Vector<Scoreboard*>())` | Constructor with arguments to initialize attributes |
+| `void set(const std::string& ID, const std::string& classID, const std::string& name, const std::string& teacher, const int& credits, const int& maxEnroll, const Weekday& weekday, const Session& session, Semester* ptrSemester, const Vector<Scoreboard*>& scoreboards)` | Sets the attributes of the course |
+| `void updateID(const std::string& ID)` | Updates the ID of the course |
+| `void updateClassID(const std::string& classID)` | Updates the ID of the class associated with the course |
+| `void updateName(const std::string& name)` | Updates the name of the course |
+| `void updateTeacher(const std::string& teacher)` | Updates the name of the teacher teaching the course |
+| `void updateCredits(const int& credits)` | Updates the number of credits assigned to the course |
+| `void updateMaxEnroll(const int& maxEnroll)` | Updates the maximum number of students that can enroll in the course |
+| `void updateWeekday(const Weekday& weekday)` | Updates the scheduled day of the week |
+| `void updateSession(const Session& session)` | Updates the scheduled session of the day |
+| `void updateSemester(Semester* ptrSemester)` | Updates the semester associated with the course |
+| `void updateScoreboard(const Vector<Scoreboard*>& scoreboards)` | Updates the list of scoreboards associated with the course |
+| `Student* getStudent(const std::string& studentID)` | Returns a pointer to the student with the specified ID, or nullptr if it does not exist |
+| `Scoreboard* getScoreboard(const std::string& studentID)` | Returns a pointer to the scoreboard with the specified student ID, or nullptr if it does not exist |
+| `void addStudent(Student& student)` | Adds a student to the course |
+| `void removeStudent(Student& student)` | Removes a student from the course |
+| `void removeAllStudent()` | Removes all students from the course |
+| `void displayInfoFile(std::ofstream& ofs)` | Writes the course's information to a file stream |
+| `void displayInfoTable(Vector<Vector<std::string>>& table) const` | Displays the course information in a tabular format using the provided table |
+| `void importScoreBoards(std::ifstream& ifs)` | Imports the scores of students in the course from a file |
+
+### Operators
+
+| Name | Description |
+| --- | --- |
+| `bool operator==(const Course& courseA, const Course& courseB)` | Compares two courses |
+
+## Scoreboard
+
+(Defined as `struct Scoreboard` in `Scoreboard.h`)
+
+The `Scoreboard` struct represents a score record for a specific course and student. It contains information about the scores of the student in various examinations of the course.
+
+### Attributes
+
+| Name | Description | Default Value |
+| --- | --- | --- |
+| `float midterm` | The midterm result | |
+| `float final` | The final result | |
+| `float other` | Other results in total | |
+| `float total` | The total result | |
+| `Course* ptrCourse` | A pointer to the course associated with the scoreboard | |
+| `Student* ptrStudent` | A pointer to the student associated with the scoreboard | |
+
+### Methods
+
+| Name | Description |
+| --- | --- |
+| `Scoreboard(Course* ptrCourse = nullptr, Student* ptrStudent = nullptr, const float& midterm = -1, const float& final = -1, const float& other = -1, const float& total = -1)` | Constructor with arguments to initialize attributes |
+| `void setScore(const float& midterm, const float& final, const float& other, const float& total)` | Sets the scores of the student in the course |
+| `void updateMidterm(const float& midterm)` | Updates the midterm result |
+| `void updateFinal(const float& final)` | Updates the final result |
+| `void updateOther(const float& other)` | Updates the other result |
+| `void updateTotal(const float& total)` | Updates the total result |
+
+# III. Helper Functions
+
+## Display functions
+
+(Defined in `DisplayFunction.h`)
+
+The following functions are used to convert the following data types into a string vector to be used in dropboxes.
+
+| Name | Description |
+|----------|-------------|
+|`Vector<string> getListSchoolYear()` | Returns a list of school years (as the start year of each school year) to display on the screen |
+|`Vector<string> getListAcademicYear()` |  Returns a list of academic years (as the start year of each academic year) to display on the screen |
+|`Vector<string> getListClass(const SchoolYear& schoolYear)` | Returns a list of classes of a school year |
+|`Vector<string> getListSemester(const AcademicYear& academicYear)` | Returns a list of semesters of an academic year |
+|`Vector<string> getListSemester(const Class& CLASS)` | Returns a list of semesters of a class|
+|`Vector<string> getListSemester(const Student &student)` | Returns a list of semester of a student |
+|`Vector<string> getListCourse(const Semester& semester)` | Returns a list of courses in a semester |
+
+The following functions are used to convert the following data types into a 2-dimensional string vector to be used in tables.
 
 | Function | Description |
 |----------|-------------|
-|`Vector<string> getListSchoolYear()` | return the list of school years (as the start year of each school year) to display to the screen|
-|`Vector<string> getListAcademicYear()` |  return the list of academic years (as the start year of each academic year) to display to the screen|
-|`Vector<string> getListClass(const SchoolYear& schoolYear)` | return the list of classes inside a school year|
-|`Vector<string> getListSemester(const AcademicYear& academicYear)` | return the list of semesters inside an academic year|
-|`Vector<string> getListSemester(const Class& CLASS)` | return the list of semesters inside a class|
-|`Vector<string> getListSemester(const Student &student)` | return the list of semester of a student|
-|`Vector<string> getListCourse(const Semester& semester)` | return the list of courses from a semester|
+|`Vector<Vector<string>> getTableContentOfListSchoolYear()` | Returns a list of school years with the number of classes in each year |
+|`Vector<Vector<string>> getTableContentOfSchoolYear(const SchoolYear& schoolYear)` | Returns the list of classes with the number of students in each class |
+|`Vector<Vector<string>> getTableContentOfListStudentInClass(const Class& CLASS)` | Returns a list of students with their information |
+|`Vector<Vector<string>> getTableContentOfListScoreboardInSemesterInClass(const Class& CLASS, const Semester& semester)` | Returns the scoreboard in the given semester of the given class |
+|`Vector<Vector<string>> getTableContentOfListScoreboardInClass(const Class& CLASS)` | Returns the scoreboard in the given year of the given class |
+|`Vector<Vector<string>> getTableContentOfScoreboardOfStudent(const Student& student)` | Returns the scoreboard of a student in the given year |
+|`Vector<Vector<string>> getTableContentOfScoreboardInSemesterOfStudent(const Student& student, const Semester& semester)` | Returns the scoreboard of a student in the given semester |
+|`Vector<Vector<string>> getTableContentOfListAcademicYear()` | Returns the list of academic years with the number of semesters in each year |
+|`Vector<Vector<string>> getTableContentOfAcademicYear(const AcademicYear& academicYear)` | Returns the list of semesters and information of each in an academic year|
+|`Vector<Vector<string>> getTableContentOfSemester(const Semester& semester)` | Returns the information of a semester|
+|`Vector<Vector<string>> getTableContentOfListStudentInCourse(const Course& course)` | Returns the information of students in a course |
 
-The following functions are used for displaying the respective structs as a table.
-| Function | Description |
+## Download functions
+
+(Defined in `DownLoadFunction.h`)
+
+The following functions save the data into CSV files when the program is closed.
+
+| Name | Description |
 |----------|-------------|
-|`Vector<Vector<string>> getTableContentOfListSchoolYear()` | return the list of school years with number of classes in each year|
-|`Vector<Vector<string>> getTableContentOfSchoolYear(const SchoolYear& schoolYear)` | return the list of classes with number of student in each class|
-|`Vector<Vector<string>> getTableContentOfListStudentInClass(const Class& CLASS)` | return the list of student with their information|
-|`Vector<Vector<string>> getTableContentOfListScoreboardInSemesterInClass(const Class& CLASS, const Semester& semester)` | return the scoreboard in a semester of a class|
-|`Vector<Vector<string>> getTableContentOfListScoreboardInClass(const Class& CLASS)` | return the scoreboard in a year of a class|
-|`Vector<Vector<string>> getTableContentOfScoreboardOfStudent(const Student& student)` | return the scoreboard of a student in a year|
-|`Vector<Vector<string>> getTableContentOfScoreboardInSemesterOfStudent(const Student& student, const Semester& semester)` | return the scoreboard of a student in a semester|
-|`Vector<Vector<string>> getTableContentOfListAcademicYear()` | return the list of academic years with number of semesters in each year|
-|`Vector<Vector<string>> getTableContentOfAcademicYear(const AcademicYear& academicYear)` | return the list of semesters and information of each in an academic year|
-|`Vector<Vector<string>> getTableContentOfSemester(const Semester& semester)` | return the information of a semester|
-|`Vector<Vector<string>> getTableContentOfListStudentInCourse(const Course& course)` | return the information of students in a course|
+|`bool downloadAllData()` | Downloads all the data to the default CSV files |
+|`bool downloadListStaff()` | Downloads all staffs to the default CSV files |
+|`bool downloadListStudent()` | Downloads all students to the default CSV files |
+|`bool downloadListSchoolYear()` | Downloads all school years to the default CSV files |
+|`bool downloadSchoolYear(SchoolYear& schoolYear)` | Downloads the given school year to the default CSV files |
+|`bool downloadClass(Class& CLASS)` | Downloads the given class to the default CSV files |
+|`bool downloadListAcademicYear()` | Downloads all academic years to the default CSV files |
+|`bool downloadAcademicYear(AcademicYear& academicYear)` | Downloads the given academic year to the default CSV files |
+|`bool downloadSemester(Semester& semester)` | Downloads the given semester to the default CSV files |
+|`bool downloadCourse(Course& course)` | Downloads the given course to the default CSV files |
 
-### **2. Download functions**
-The following functions download the data into a CSV file.
+## File and directory functions
 
-| Function | Description |
+(Defined in `FileAndDirFunction.h`)
+
+The following functions create necessary directories for importing and exporting functions.
+
+| Name | Description |
 |----------|-------------|
-|`bool downloadAllData()` | download all the data|
-|`bool downloadListStaff()` | download a list of staves|
-|`bool downloadListStudent()` | download a list of students|
-|`bool downloadListSchoolYear()` | download a list of school years| 
-|`bool downloadSchoolYear(SchoolYear& schoolYear)` | download the selected school year|
-|`bool downloadClass(Class& CLASS)` | download the selected class|
-|`bool downloadListAcademicYear()` | download a list of academic years|
-|`bool downloadAcademicYear(AcademicYear& academicYear)` | download the selected academic year|
-|`bool downloadSemester(Semester& semester)` | download the selected semester information|
-|`bool downloadCourse(Course& course)` | download the selected course information|
+|`void createDirectoryIfNotExists(const string& dirPath)` | Creates a new directory if it does not exist yet |
+|`string getListStaffFilePath()` | Returns the directory of the staff list file |
+|`string getListStudentFilePath()` | Returns the directory of the student list file |
+|`string getListSchoolYearFilePath()` | Returns the directory of the school year list file |
+|`string getListAcademicYearFilePath()` | Returns the directory of the academic year list file |
+|`string getSchoolYearFolderPath(const SchoolYear& schoolyear)` | Returns the folder path to the given school year |
+|`string getSchoolYearFilePath(const SchoolYear& schoolyear)` | Returns the file path to the given school year |
+|`string getClassFolderPath(const Class& CLASS)` | Returns the folder path to the given class |
+|`string getClassFilePath(const Class& CLASS)` | Returns the file path to the given class |
+|`string getAcademicYearFolderPath(const AcademicYear& academicYear)` | Returns the folder path to the given academic year |
+|`string getAcademicYearFilePath(const AcademicYear& academicYear)` | Returns the file path to the given academic year |
+|`string getSemesterFolderPath(const Semester& semester)` | Returns the folder path to the given semester |
+|`string getSemesterFilePath(const Semester& semester)` | Returns the file path to the given semester |
+|`string getCourseFolderPath(const Course& course)` | Returns the folder path to the given course |
+|`string getCourseFilePath(const Course& course)` | Returns the file path to the given course |
+|`string getExportFolderPath()` | Adds prefix to data exporting path |
+|`string getImportFolderPath()` | Adds prefix to data importing path |
 
-### **3. File and Directory functions**
-The following functions help create the directory for importing and exporting functions.
+## Import and export functions
 
-| Function | Description |
+(Defined in `ImportAndExportFunction.h`)
+
+The following functions import data from and export data to a CSV files.
+
+| Name | Description |
 |----------|-------------|
-|`void createDirectoryIfNotExists(const string& dirPath)` | create a new directory if it doesn't exist|
-|`string getListStaffFilePath()` | return the directory of the list of staves file|
-|`string getListStudentFilePath()` | return the directory of the list of student file|
-|`string getListSchoolYearFilePath()` | return the directory of the list of school year file|
-|`string getListAcademicYearFilePath()` | return the directory of the list of academic year file|
-|`string getSchoolYearFolderPath(const SchoolYear& schoolyear)` | return the folder path of the start of school year|
-|`string getSchoolYearFilePath(const SchoolYear& schoolyear)` | return the file path of the start of school year|
-|`string getClassFolderPath(const Class& CLASS)` | return the folder path of the class|
-|`string getClassFilePath(const Class& CLASS)` | return the file path of the class|
-|`string getAcademicYearFolderPath(const AcademicYear& academicYear)` | return the folder path of the start of academic year|
-|`string getAcademicYearFilePath(const AcademicYear& academicYear)` | return the file path of the start of academic year|
-|`string getSemesterFolderPath(const Semester& semester)` | return the folder path of the semester|
-|`string getSemesterFilePath(const Semester& semester)` | return the file path of the semester|
-|`string getCourseFolderPath(const Course& course)` | return the folder path of the course|
-|`string getCourseFilePath(const Course& course)` | return the file path of the course|
-|`string getExportFolderPath()` | add prefix for data exporting path|
-|`string getImportFolderPath()` | add prefix for data importing path|
+|`bool importStudentListOfClassFromFile(const string& filename, Class& actClass, string& outStr)` | Imports students to a class |
+|`bool importStudentListOfCourseFromFile(const string& filename, Course& course, string& outStr)` | Imports students to a course |
+|`bool exportListOfStudentInCourse(const string& filename, Course& course, string& outStr)` | Exports students in a course |
+|`bool importScoreBoardOfCourse(const string& filename, Course& course, string& outStr)` | Imports scoreboards of a course |
+|`bool exportListScoreboardOfStudent(const string& filename, Student& student, string& outStr)` | Exports scoreboards of a student in an academic year |
+|`bool exportListScoreboardInSemesterOfStudent(const string& filename, Student& student, Semester& semester, string& outStr)` | Exports scoreboards of a student in a semester |
+|`bool exportListSchoolYear(const string& filename, string& outStr)` | Exports all school years |
+|`bool exportListClassInSchoolYear(const string& filename, SchoolYear& schoolYear, string& outStr)` | Exports classes of a school year |
+|`bool exportListStudentInClass(const string& filename, Class& CLASS, string& outStr)` | Exports students in a class |
+|`bool exportListScoreboardInSemesterOfClass(const string& filename, Class& CLASS, Semester& semester, string& outStr)` | Exports scoreboards of a class in a semester |
+|`bool exportListScoreboardOfClass(const string& filename, Class& CLASS, string& outStr)` | Exports scoreboards of a class |
+|`bool exportListAcademicYear(const string& filename, string& outStr)` | Exports all academic years |
+|`bool exportListSemesterInAcademicYear(const string& filename, AcademicYear& academicYear, string& outStr)` | Exports semesters in an academic year |
+|`bool exportListCourseInSemester(const string& filename, Semester& semester, string& outStr)` | Exports courses in a semester |
+|`bool exportListScoreboardOfCourse(const string& filename, Course& course, string& outStr)` | Exports scoreboards of a course |
 
-### **4. Import and Export functions**
-The following functions import from and export to a CSV file.
+## Insert functions
 
-| Function | Description |
+(Defined in `InsertFunction.h`)
+
+The following functions create new values of various data types then add them to given lists.
+
+| Name | Description |
 |----------|-------------|
-|`bool importStudentListOfClassFromFile(const string& filename, Class& actClass, string& outStr)` | import the student list in a class|
-|`bool importStudentListOfCourseFromFile(const string& filename, Course& course, string& outStr)` | import the student list in a course|
-|`bool exportListOfStudentInCourse(const string& filename, Course& course, string& outStr)` | export the student list in a course|
-|`bool importScoreBoardOfCourse(const string& filename, Course& course, string& outStr)` | import the scoreboard of a course|
-|`bool exportListScoreboardOfStudent(const string& filename, Student& student, string& outStr)` | export the scoreboard in an academic year of a student|
-|`bool exportListScoreboardInSemesterOfStudent(const string& filename, Student& student, Semester& semester, string& outStr)` | export the scoreboard in a semester of a student|
-|`bool exportListSchoolYear(const string& filename, string& outStr)` | export the list of school years|
-|`bool exportListClassInSchoolYear(const string& filename, SchoolYear& schoolYear, string& outStr)` | export the list of classes|
-|`bool exportListStudentInClass(const string& filename, Class& CLASS, string& outStr)` | export the list of students in a class|
-|`bool exportListScoreboardInSemesterOfClass(const string& filename, Class& CLASS, Semester& semester, string& outStr)` | export the scoreboard in a semester of a class|
-|`bool exportListScoreboardOfClass(const string& filename, Class& CLASS, string& outStr)` | export the scoreboard of a class|
-|`bool exportListAcademicYear(const string& filename, string& outStr)` | export the list of academic years|
-|`bool exportListSemesterInAcademicYear(const string& filename, AcademicYear& academicYear, string& outStr)` | export the list of semesters in an academic year|
-|`bool exportListCourseInSemester(const string& filename, Semester& semester, string& outStr)` | export the list of courses in a semester|
-|`bool exportListScoreboardOfCourse(const string& filename, Course& course, string& outStr)` | export the scoreboard of the course|
+|`bool addStudent(const string& ID, const string& firstName, const string& lastName, const string& genderStr, const string& birthStr, const string& socialID, const string& password, string& outStr)` | Adds a new student |
+|`bool addStaff(string curStaffID, const string& ID, const string& password, const string& firstName, const string& lastName, string& outStr)` | Adds a new staff |
+|`bool addSchoolYear(const string& start, string& outStr)` | Adds a new school year |
+|`bool addClass(SchoolYear& schoolYear, const string& className, string& outStr)` | Adds a new class to the given school year |
+|`bool addStudentToClass(Class& actClass, const string& studentID, string& outStr)` | Adds a new student to the given class |
+|`bool addAcademicYear(const string& start, string& outStr)` | Adds a new academic year |
+|`bool addSemester(AcademicYear& newYear, const string& semesterID, string& outStr)` | Adds a new semester to the given academic year |
+|`bool addCourse(Semester& semester, const string& courseID, string& outStr)` | Adds a new course to the given semester |
+|`bool addStudentToCourse(Course& course, const string& studentID, string& outStr)` | Adds a new student to the given course |
 
-### **5. Insert functions**
-The following functions insert data.
+## Remove functions
 
-| Function | Description |
+(Defined in `RemoveFunction.h`)
+
+The following functions remove data, freeing memory in the process.
+
+| Name | Description |
 |----------|-------------|
-|`bool addStudent(const string& ID, const string& firstName, const string& lastName, const string& genderStr, const string& birthStr, const string& socialID, const string& password, string& outStr)` | add a new student|
-|`bool addStaff(string curStaffID, const string& ID, const string& password, const string& firstName, const string& lastName, string& outStr)` | add a new staff|
-|`bool addSchoolYear(const string& start, string& outStr)` | add a new school year|
-|`bool addClass(SchoolYear& schoolYear, const string& className, string& outStr)` | add a new class for the school year|
-|`bool addStudentToClass(Class& actClass, const string& studentID, string& outStr)` | add a new student to the class|
-|`bool addAcademicYear(const string& start, string& outStr)` | add a new academic year|
-|`bool addSemester(AcademicYear& newYear, const string& semesterID, string& outStr)` | add a new semester to the academic year|
-|`bool addCourse(Semester& semester, const string& courseID, string& outStr)` | add a new course to the semester|
-|`bool addStudentToCourse(Course& course, const string& studentID, string& outStr)` | add a new student to the course|
+|`bool removeListStudent()` | Removes students |
+|`bool removeListStaff()` | Removes staffs |
+|`bool removeListSchoolYear()` | Removes school years |
+|`bool removeListAcademicYear()` | Removes academic years |
+|`bool freeMemory()` | Removes all data |
+|`bool removeStudent(const string& studentID, string& outStr)` | Removes a student |
+|`bool removeStaff(string curStaffID, const string& staffID, string& outStr)` | Removes a staff |
+|`bool removeSchoolYear(const string& start, string& outStr)` | Removes a school year |
+|`bool removeClass(SchoolYear& schoolYears, const string& className, string& outStr)` | Removes a class |
+|`bool removeStudentFromClass(Class& CLASS, const string& studentID, string& outStr)` | Removes a student from the class |
+|`bool removeAcademicYear(const string& start, string& outStr)` | Removes an academic year |
+|`bool removeSemester(AcademicYear& academicYear, const string& semesterID, string& outStr)` | Removes a semester |
+|`bool removeCourse(Semester& semester, const string& courseID, string& outStr)` | Removes a course |
+|`bool removeStudFromCourse(Course& course, const string& studentID, string& outStr)` | Removes a student from the course |
 
-### **6. Remove functions**
-The following functions remove data and free memory in the process.
+## Search functions
 
-| Function | Description |
+(Defined in `SearchFunction.h`)
+
+The following functions search for necessary content from the data.
+
+| Name | Description |
 |----------|-------------|
-|`bool removeListStudent()` | remove the list of students|
-|`bool removeListStaff()` | remove the list of staves|
-|`bool removeListSchoolYear()` | remove the list of school year|
-|`bool removeListAcademicYear()` | remove the list of academic years|
-|`bool freeMemory()` | remove everthing|
-|`bool removeStudent(const string& studentID, string& outStr)` | remove a student from school|
-|`bool removeStaff(string curStaffID, const string& staffID, string& outStr)` | remove a staff from school|
-|`bool removeSchoolYear(const string& start, string& outStr)` | remove a school year|
-|`bool removeClass(SchoolYear& schoolYears, const string& className, string& outStr)` | remove a class|
-|`bool removeStudentFromClass(Class& CLASS, const string& studentID, string& outStr)` | remove a student from the class|
-|`bool removeAcademicYear(const string& start, string& outStr)` | remove an academic year|
-|`bool removeSemester(AcademicYear& academicYear, const string& semesterID, string& outStr)` | remove a semester|
-|`bool removeCourse(Semester& semester, const string& courseID, string& outStr)` | remove a course|
-|`bool removeStudFromCourse(Course& course, const string& studentID, string& outStr)` | remove a student from the course|
+|`Student* getStudent(const string& studentID)` | Finds a student |
+|`Staff* getStaff(const string& staffID)` | Finds a staff |
+|`SchoolYear* getSchoolYear(const string& start)` | Finds a school year |
+|`AcademicYear* getAcademicYear(const string& start)` | Finds an academic year |
+|`Class* getClass(SchoolYear& schoolYear, const string& className)` | Finds a class from the given school year |
+|`Semester* getSemester(const string& semesterID)` | Finds a semester |
+|`Semester* getSemester(AcademicYear& academicYear, const string& semesterID)` | Finds a semester from the given academic year |
+|`Course* getCourse(Semester& semester, const string& courseID)` | Finds a course from a semester |
+|`Scoreboard* getScoreboard(Course& course, const string& studentID)` | Finds the scoreboard of a given student from their course |
+|`bool isCorrectStaffAccount(const string& staffID, const string& password, string& outStr)` | Authenticates the staff account |
+|`bool isCorrectStudentAccount(const string& studentID, const string& password, string& outStr)` | Authenticates the student account |
 
-### **7. Search functions**
-The following functions search the content inside the data.
+## Sort functions
 
-| Function | Description |
+(Defined in `SortFunction.h`)
+
+The following functions sort various data type lists using the Quicksort algorithm.
+
+| Name | Description |
 |----------|-------------|
-|`Student* getStudent(const string& studentID)` | find a student|
-|`Staff* getStaff(const string& staffID)` | find a staff|
-|`SchoolYear* getSchoolYear(const string& start)` | find a school year|
-|`AcademicYear* getAcademicYear(const string& start)` | find an academic year|
-|`Class* getClass(SchoolYear& schoolYear, const string& className)` | find a class inside the school year|
-|`Semester* getSemester(const string& semesterID)` | find a semester|
-|`Semester* getSemester(AcademicYear& academicYear, const string& semesterID)` | find a semester inside the academic year|
-|`Course* getCourse(Semester& semester, const string& courseID)` | find a course inside a semester|
-|`Scoreboard* getScoreboard(Course& course, const string& studentID)` | find the scoreboard of the student inside his/her course|
-|`bool isCorrectStaffAccount(const string& staffID, const string& password, string& outStr)` | check the validity of the staff account|
-|`bool isCorrectStudentAccount(const string& studentID, const string& password, string& outStr)` | check the validity of the student account|
+|`void sortStudentList(Vector<Student>& students, const int& left, const int& right)` | Sorts students |
+|`void sortStaffList(Vector<Staff>& staffs, const int& left, const int& right)` | Sorts staffs |
+|`void sortSchoolYearList(Vector<SchoolYear>& schoolYears, const int& left, const int& right)` | Sorts school years |
+|`void sortAcademicYearList(Vector<AcademicYear>& academicYears, const int& left, const int& right)` | Sorts academic years |
+|`void sortSemesters(Vector<Semester>& semesters, const int& left, const int& right)` | Sorts semesters |
+|`void sortClasses(Vector<Class>& classes, const int& left, const int& right)` | Sorts classes |
+|`void sortCourses(Vector<Course>& courses, const int& left, const int& right)` | Sorts courses |
+|`void sortStudentsInClass(Class& CLASS, const int& left, const int& right)` | Sorts students of a class |
+|`void sortStudentsInCourse(Course& course, const int& left, const int& right)` | Sorts students of a course |
 
-### **8. Sorting functions**
-The following functions are based on quicksort algorithm.
+## Update functions
 
-| Function | Description |
-|----------|-------------|
-|`void sortStudentList(Vector<Student>& students, const int& left, const int& right)` | sort the list of students|
-|`void sortStaffList(Vector<Staff>& staffs, const int& left, const int& right)` | sort the list of staves|
-|`void sortSchoolYearList(Vector<SchoolYear>& schoolYears, const int& left, const int& right)` | sort the list of school year|
-|`void sortAcademicYearList(Vector<AcademicYear>& academicYears, const int& left, const int& right)` | sort the list academic year|
-|`void sortSemesters(Vector<Semester>& semesters, const int& left, const int& right)` | sort the list of semesters|
-|`void sortClasses(Vector<Class>& classes, const int& left, const int& right)` | sort the list of classes|
-|`void sortCourses(Vector<Course>& courses, const int& left, const int& right)` | sort the list of courses|
-|`void sortStudentsInClass(Class& CLASS, const int& left, const int& right)` | sort the list of students inside a class|
-|`void sortStudentsInCourse(Course& course, const int& left, const int& right)` | sort the list of students inside a course|
+(Defined in `UpdateFunction.h`)
 
-### **9. Update functions**
 The following functions update the data.
 
-| Function | Description |
+| Name | Description |
 |----------|-------------|
-|`bool updateStudentIn4(Student& student, const string& ID, const string& firstName, const string& lastName, const string& genderStr, const string& birthStr, const string& socialID, const string& password, string& outStr)` | update the student information|
-|`bool updateStaffIn4(Staff& staff, const string& ID, const string& firstName, const string& lastName, const string& password, string& outStr)` | update the staff information|
-|`bool updateSchoolYear(SchoolYear& schoolYear, const string& newStartYear, string& outStr)` | update the school year information|
-|`bool updateClass(Class& CLASS, const string& newClassName, string& outStr)` | update the class information|
-|`bool updateAcademicYear(AcademicYear& academicYear, const string& newStartYear, string& outStr)` | update the academic year information|
-|`bool updateSemester(Semester& semester, const string& semesterID, const string startDate, const string endDate, string& outStr)` | update the semester information|
-|`bool updateCourse(Course& course, const string& courseID, const string& classID, const string& name, const string& teacher, const string& cre, const string& maxEnroll, const string& day, const string& ss, string &outStr)` | update the course information|
-|`bool updateScoreboard(Course& course, const string& studentID, const string& midTerm, const string& other, const string& final, const string& total, string& outStr)` | update the student scoreboard|
+|`bool updateStudentIn4(Student& student, const string& ID, const string& firstName, const string& lastName, const string& genderStr, const string& birthStr, const string& socialID, const string& password, string& outStr)` | Updates the student information |
+|`bool updateStaffIn4(Staff& staff, const string& ID, const string& firstName, const string& lastName, const string& password, string& outStr)` | Updates the staff information |
+|`bool updateSchoolYear(SchoolYear& schoolYear, const string& newStartYear, string& outStr)` | Updates the school year information |
+|`bool updateClass(Class& CLASS, const string& newClassName, string& outStr)` | Updates the class information |
+|`bool updateAcademicYear(AcademicYear& academicYear, const string& newStartYear, string& outStr)` | Updates the academic year information |
+|`bool updateSemester(Semester& semester, const string& semesterID, const string startDate, const string endDate, string& outStr)` | Updates the semester information |
+|`bool updateCourse(Course& course, const string& courseID, const string& classID, const string& name, const string& teacher, const string& cre, const string& maxEnroll, const string& day, const string& ss, string &outStr)` | Updates the course information |
+|`bool updateScoreboard(Course& course, const string& studentID, const string& midTerm, const string& other, const string& final, const string& total, string& outStr)` | Updates the student scoreboard |
 
-### **10. Upload functions**
-The following functions upload the data from CSV files.
+## Upload functions
 
-| Function | Description |
+(Defined in `UpLoadFunction.h`)
+
+The following functions upload the data from CSV files when the program starts.
+
+| Name | Description |
 |----------|-------------|
-|`bool uploadAllData()` | upload all the data|
-|`bool uploadListStaff()` | upload the list of staves|
-|`bool uploadListStudent()` | upload the list of students|
-|`bool uploadListSchoolYear()` | uplooad the list of school years|
-|`bool uploadSchoolYear(SchoolYear& schoolYear)` | upload the school year|
-|`bool uploadStudent(Class& actClass, Student& student, std::string id)` | upload the student to a class|
-|`bool uploadClass(Class& actClass)` | upload the class|
-|`bool uploadListAcademicYear()` | upload the list of academic years|
-|`bool uploadAcademicYear(AcademicYear& academicYear)` | upload the academic year|
-|`bool uploadSemester(Semester& semester)` | upload the semester|
-|`bool uploadCourse(Course& course)` | upload the course|
+|`bool uploadAllData()` | Uploads all the data |
+|`bool uploadListStaff()` | Uploads the list of staffs |
+|`bool uploadListStudent()` | Uploads the list of students |
+|`bool uploadListSchoolYear()` | Uploads the list of school years |
+|`bool uploadSchoolYear(SchoolYear& schoolYear)` | Uploads the school year |
+|`bool uploadStudent(Class& actClass, Student& student, std::string id)` | Uploads the student to the given class |
+|`bool uploadClass(Class& actClass)` | Uploads the class |
+|`bool uploadListAcademicYear()` | Uploads the list of academic years |
+|`bool uploadAcademicYear(AcademicYear& academicYear)` | Uploads the academic year |
+|`bool uploadSemester(Semester& semester)` | Uploads the semester |
+|`bool uploadCourse(Course& course)` | Uploads the course |
 
-## **3. Graphics / Objects**
-### **Graphics**
-#### 1. Constant namespace
-(Define in Constant.h)
+# IV. Graphics
 
-Contains constants for various elements used in a Course Management System. It includes constants for application, box, button, and text related components.
+## Constants
+
+(Defined in Constant.h)
+
+Contains default values for graphical elements & objects used in the program. The constants are divided into these following namespaces:
 
 * **"app_const" namespace**:  the constants are defined for the width, height, and frames per second of the application window. Additionally, the title of the window and the path of the application directory are also defined.
 
@@ -452,8 +724,10 @@ Contains constants for various elements used in a Course Management System. It i
 
 * **"text_const" namespace**: the constants are defined for the font path, space between lines, size, and color of the text. The padding for the text is also defined.
 
-#### 2. Scissor
+## Scissor
+
 (Define in Scissor.h and implement in Scissor.cpp)
+
 | Function | Description|
 | ---- | ----- |
 | `StartScissor(Rectangle rect)`| Starts a new scissor rectangle with the given `Rectangle` object. It first checks if there is any previously defined scissor rectangle and modifies the current rectangle to be the intersection of the previous and new rectangle. It then calls the `EndScissorMode()` function from the "raylib.h" library and begins a new scissor mode with the modified rectangle. The rectangle is also pushed onto a stack to keep track of the previous scissor rectangles. |
@@ -465,7 +739,8 @@ The source file "Scissor.cpp" defines the scissorStack variable as an external S
 
 Overall, this Scissor class provides a convenient way to handle scissoring of graphics to a certain area in a 2D graphics program. It also allows for nested scissor rectangles, with the ability to modify the current rectangle to the intersection of the previous and new rectangle.
 
-#### 3. Application
+## Application
+
 (Define in Application.h and implement in Application.cpp)
 An `Application` class that serves as the entry point for running the program. The class initializes the window and sets the target frame rate using the Raylib library.
 
@@ -483,7 +758,8 @@ An `Application` class that serves as the entry point for running the program. T
 | `+ void run()`         | A public member function that runs the application.          |
 
 (All objects is defined and implemented in directory *Graphics/Objects*)
-### 1. Text
+
+## Text
 (Define in Text.h and implement in Text.cpp)
 
 The `Text` class is a simple class used to create text objects. It contains attributes for the text content, font size, additional space between characters, font, and color. The `Text` object can be initialized using either a C-style string or an `std::string` object. 
@@ -504,7 +780,7 @@ The `Text` class is a simple class used to create text objects. It contains attr
 | `+ Vector2 size()`                   | Returns a Vector2 containing the width and height of the Text object based on the current font and font size. |
 
 
-### 2. TextBox
+## TextBox
 (Define in TextBox.h and implement in TextBox.cpp)
 
 The `TextBox` class represents a text box that can be rendered on the screen using `raylib`. The class provides various methods to set and get properties of the text box, and also to render it on the screen.
@@ -537,7 +813,7 @@ The `TextBox` class represents a text box that can be rendered on the screen usi
 | + `void render()` | Renders the text box on the screen |
 | + `void clear()` | Clears the content of the text box | 
 
-### 3. InputBox
+## InputBox
 (Define in InputBox.h and implement in InputBox.cpp)
 
 The `InputBox` class provides a customizable input box to get text input from users. It contains several properties such as the text content, position, size, border and fill colors. It also supports several input events such as hovering and clicking.
@@ -577,7 +853,7 @@ The `InputBox` class provides a customizable input box to get text input from us
 | `+pressed(mouse: Vector2): bool` | Returns `true` if the InputBox was being clicked |
 | `+hovering(mouse: Vector2): bool` | Returns `true` if the mouse is hovering over the InputBox
 
-### 4. Button
+## Button
 (Define in Button.h and implement in Button.cpp)
 
 The `Button` class is used to create clickable buttons in graphical user interface (GUI) applications. The class is defined in the `Button.h` header file and implemented in the `Button.cpp` source file. 
@@ -621,7 +897,7 @@ The `Button` class inherits from the `Text` class, which represents a block of t
 | `+ pressed(mouse: Vector2): bool` | Returns `true` if the Button was being clicked. |
 | `+ hovering(mouse: Vector2): bool` | Returns `true` if the mouse is hovering over the Button.
 
-### 5 Option
+## Option
 (Define in Option.h and implement in Option.cpp)
 
 This class `Option` extends the `Button` class and includes the `Scissor` and `raylib` libraries. It is used to create an option that can be clicked and interacted with. It has protected attributes for the left and right padding of the option, and public methods for getting these values, refreshing the text and bounds of the option, and rendering the option.
@@ -637,7 +913,7 @@ Attribute / Method | Description
 `+ float getRightPad()` | Returns the right padding of the option.
 `+ void render(const Vector2 &mouse) const` | Renders the option with the given mouse position.
 
-### 6. Equilateral
+## Equilateral
 (Define in Equilareral.h and implement in Equilateral.cpp)
 
 The `Equilateral` class represents an equilateral triangle with a specified center, side length, angle, and color.
@@ -654,7 +930,7 @@ The `Equilateral` class represents an equilateral triangle with a specified cent
 | + `Equilateral(Vector2 center, float length, float angle, Color color)` | The constructor of the Equilateral class, which initializes the attributes with the given values. |
 | + `void render()`         | A method to render the equilateral triangle on the screen. It uses the raylib library's `DrawTriangle()` function to draw the triangle on the screen. |
 
-### 7. Scrollbar
+## Scrollbar
 (Define in Scrollbar.h and implement in Scrollbar.cpp)
 
 The `Scrollbar` class represents a user interface component that allows scrolling through a large content area that doesn't fit within a smaller window.
@@ -685,7 +961,7 @@ The `Scrollbar` class represents a user interface component that allows scrollin
 | + `void render(const Vector2 &mouse)` | Renders the scrollbar. |
 | + `void process(const Vector2 &mouse)` | Processes the scrollbar for the current frame. |
 
-### 8. DropBox
+## DropBox
 (Define in DropBox.h and implement in DropBox.cpp)
 
 The `DropBox` class represents a graphical user interface (GUI) component that displays a list of options and allows the user to select one of them. This class provides methods to add, remove, and reset the options, as well as to set the position, size, and label of the component.
@@ -728,8 +1004,9 @@ The `DropBox` class represents a graphical user interface (GUI) component that d
 |` + void render(const Vector2 &mouse)`| enders the component to the screen.
 |`+ bool process(const Vector2 &mouse)`| Processes user input and returns true if the user has selected an option.
 
-## **4. Graphics / Scene**
-### **1. Scene**
+# Graphical scenes
+
+## Scene
 (Defined in Scene.h)
 `Scene` is a base class that can be inherited by the derived classes, these classes inherite the attributes and methods in `Scene` class, which is used to create specific scenes.
 
@@ -739,7 +1016,7 @@ The `DropBox` class represents a graphical user interface (GUI) component that d
 | `virtual void render()` | Renders all the graphic objects to the scene. |
 | `virtual Scene* process()` | Updates and returns the scene to the application. |
     
-### **2. Login**
+## Login
     (Define in Login.h and implemented in Login.cpp)
 
 [Theoretic scene](https://lh3.googleusercontent.com/pw/AJFCJaWxhv505NJU0G-DdoThQAL96iv_1a6crLQP5Jn0Haja8B7CT9KiokWca-AuEc1KzoWw5kATYjSDkzHjHMdfZqZfYo80VDPJP31vudUeX-SwuLsAZYj60GuLsLo-7W-gmnOBKbMp2BJtMgtC13-apD7j=w1137-h637-s-no?authuser=2)
@@ -760,7 +1037,7 @@ The `DropBox` class represents a graphical user interface (GUI) component that d
 | `void render()` | Renders all the objects implemented in the private class to the login scene. |
 | `Scene* process()` | Updates the scene when user work on the scene and returns the scene to the application: <br><br> + Click on `login` button, if the username and password are valid, it will return the next scene (Student Scene / Staff Scene). Otherwise the warning text will occur. <br><br> + Click on `Quit` button, the application will be closed. |
 
-### **3. StudentScene**
+## Student scene
     (Defined in StudentScene.h and implemented in StudentScene.cpp)
     
 [Theoretic scene](https://lh3.googleusercontent.com/pw/AJFCJaWWAoBwEe6DT91ig7zy55el8-fgW5w8UKz3Tir_pFHcfJteEZ8QWL2nQpKq5zDIshIBzd8huj7gANijdsR3sQ3TDJB4JNLtMM30d3X0TdfIe35HRaQ63xtYMv-cG_QonwTl7XsSMs7mHclLkw1mOtmE=w1134-h636-s-no?authuser=2)
@@ -781,7 +1058,7 @@ The `DropBox` class represents a graphical user interface (GUI) component that d
 | `void render()` | Renders all the objects implemented in the private class to the student scene. |
 | `Scene* process()` | Updates the scene when user work on the scene and returns the scene to the application: <br><br>  +Click on `Change` button, if the inputs are valid, it will access to `updateStudentIn4()` function, then the information will be updated and return the current scene (Student Scene). Otherwise the warning text will occur. <br><br>  +Click on `Export` button, if the input in the file name input box is valid, it will access to the `exportListScoreboardOfStudnet()` function, then a `.csv` file will be exported. In addition, if user choose a semester from semester drop box, then it will access to the `exportListScoreboardInSemesterOfStudent()`, then a `.csv` file will be exported. Otherwise, the warning text will occur. It also returns the current scene. <br><br> +Click on `Back` button (it only appears when user access this scene through `StaffScene2` scene, the application will turn to `StaffScene2` scene. <br><br> +Click on `Logout` button, the application will turn to `Login` scene.|
 
-### **4. StaffScene**
+## Staff scene
     (Defined in StaffScene.h and implemented in StaffScene.cpp)
 
 [Theoretic scene](https://lh3.googleusercontent.com/pw/AJFCJaXWRLiOCfri8XAoJ2mdOjobzSWaA0FX59fDYv_aXwLs2H1zSMwkG0jvwR3U9JZIbQq9Rr4g_mHcUm1AV_i8flbAJjiULRHAZZ_vAGVVr74ezhAza8lqXgc7q2KvJFJuwumtJRXQYhfNLM4zniiVU0R0=w1246-h722-s-no?authuser=2)
@@ -800,7 +1077,7 @@ The `DropBox` class represents a graphical user interface (GUI) component that d
 | `void render()` | Renders all the objects implemented in the private class to the student scene. |
 | `Scene* process()` | Updates the scene when user work on the scene and returns the scene to the application: <br><br>  +Click on `Change` button, if the inputs in `Edit Staff` tab are valid, it will access to `updateStaffIn4()` function, then the information will be updated and return the current scene (Staff Scene). Otherwise the warning text will occur. <br><br>  +Click on `Add` button, if the inputs in `Add new staff` tab are valid, it will access to `addStaff()` function, then a new staff will be added and it returns the current scene. Otherwise, the warning text will occur. <br><br> +Click on `Next` button, the application will turn to the `StaffScene2` scene. <br><br> +Click on `SchoolYears` button, the application will turn to `ListSchoolYearScene` scene. <br><br> +Click on `AcademicYears` button, the application will turn to `ListAcademicYearScene` scene. <br><br> +Click on `Logout` button, the application will turn to `Login` scene.|
 
-### **5. StaffScene2**
+## Add student from staff scene
     (Defined in StaffScene2.h and implemented in StaffScene2.cpp)
 
 [Theoretic scene](https://lh3.googleusercontent.com/pw/AJFCJaUv39hzmCKpIsN5taxHnw70E-GBUphzkSCu39mOEaxrCnuaEWvIWbyYv4p9bWx5Yc_sbmVEmPJQze0Id0S0DU6EP7sEZg7pKsColjHOLlGiHFiR3cJeS-uVato00cEgg6jGPMegjr2vxBhP1U7jJqWW=w1250-h702-s-no?authuser=2)
@@ -820,7 +1097,7 @@ The `DropBox` class represents a graphical user interface (GUI) component that d
 | `void render()` | Renders all the objects implemented in the private class to the student scene. |
 | `Scene* process()` | Updates the scene when user work on the scene and returns the scene to the application: <br><br>  +Click on `Add` button, if the inputs of student's information are valid, it will access to `addStudent()` function, then a new student will be added and it returns the current scene (Staff Scene). Otherwise the warning text will occur. <br><br>  +Click on `Remove` button next to the `inputStudentID` input box, if the input is valid, it will access to `removeStudent()` function, then that student will be removed from school and it returns the current scene. Otherwise, the warning text will occur. <br><br> +Click on `Remove` button next to `inputStaffID` input box, if the input is valid, it will access to `removeStaff()` function, then that staff will be removed and it returns the current scene. Otherwise, the warning text will occur. <br><br> +Click on `Export` button next to `inputLSYsFilePath` input box, it will access to `exportListSchoolYear()` function, then a `.csv` file will be exported and the application returns the current scene. Otherwise, the warning text will occur. <br><br> +Click on `Export` button next to `inputLAYsFilePath` input box, it will access to `exportListAcademicYear()` function, then a `.csv` file will be exported and the application returns the current scene. Otherwise, the warning text will occur.<br><br> +Click on `View` button, if the input in the `inputStudnetID` is valid, the application will turn to `StudentScene` scene. Otherwise, the warning text will occur.<br><br> +Click on `Back` button, the application will turn to `StaffScene` scene.|
 
-### **6. ListSchoolYearScene**
+## List school year scene
     (Defined in ListSchoolYearScene.h and implemented in ListSchoolYearScene.cpp)
 
 [Theoretic scene](https://lh3.googleusercontent.com/pw/AJFCJaX9pP0UtyTpPRHWbo0q5SBk07qI0pNNp8R3FEL1WoDKGoe7VA4G9kT8Rz-4xb_WEDdPYaVlHFoJG89o2-jRWLc4wx_-HObS4GukvecMBNQ0rRgJ5_04rQghbdH2DMYN_i-Y1jn0ZJgCeKGBKS5z7_cr=w1252-h701-s-no?authuser=2)
@@ -838,7 +1115,7 @@ The `DropBox` class represents a graphical user interface (GUI) component that d
 | `void render()` | Renders all the objects implemented in the private class to the login scene. |
 | `Scene* process()` | Updates the scene when user work on the scene and returns the scene to the application: <br><br> + Click on `Add` button, if a start year is valid, the program will access to `addSchoolYear()` function, then a school year will be added and the function will return the current scene. Otherwise the warning text will occur. <br><br> + Click on `Remove` button, if a start year is valid, the program will access to `removeSchoolYear()` then a school year will be removed, the function will return the current scene. Otherwise the warning text will occur. <br><br> +Click on `View` button, the user had to choose the school year drop box, then the function will return `SchoolYearScene` scene. <br><br> +Click on `Back` button, the application will turn to `StaffScene` scene.|
 
-### **7. SchoolYearScene**
+## School year scene
     (Defined in SchoolYearScene.h and implemented in SchoolYearScene.cpp)
 
 [Theoretic scene](https://lh3.googleusercontent.com/pw/AJFCJaVd7DO0vFa_8in8h7-EBlF9STDj6i_kKilmODKKHjhfRpvOuLoYXLBceHR1SogGu1169e1gv9EjTXYcFFT3MKlU9AljFeRhLIQ8qqhwgnK1Div8SY8xjWc-u3sJ-I4DQKCg_ArtRXA6oU7oondQbb8d=w857-h480-s-no?authuser=2)
@@ -856,7 +1133,7 @@ The `DropBox` class represents a graphical user interface (GUI) component that d
 | `void render()` | Renders all the objects implemented in the private class to the login scene. |
 | `Scene* process()` | Updates the scene when user work on the scene and returns the scene to the application: <br><br> + Click on `Add` button, if a class name is valid, the program will access to `addSemester()` function, then a class will be added and the function will return the current scene. Otherwise the warning text will occur. <br><br> + Click on `Remove` button, if a class name is valid, the program will access to `removeSemester()`, then a class will be removed, the function will return the current scene. Otherwise the warning text will occur. <br><br> +Click on `View` button, the user had to choose the class drop box, then the function will return `SemesterScene` scene. <br><br> +Click on `Change` button, if the start year is valid, the program will access to `updateAcademicYearYear()`, then this schoolYear will be updated and the program will return this scene. Otherwise the warning text will occur. <br><br> +Click on `Export` button, if the exported file name is valid, the program will access to `exportListSemesterInAcademicYear()`, then a `.csv` file will be exported and the function returns current scene. Otherwise, the warning text will occur. <br><br> +Click on `Back` button, the application will turn to `ListAcademicYearScene` scene
 
-### **8. ClassScene**
+## Class scene
     (Defined in ClassScene.h and implemented in ClassScene.cpp)
 
 
@@ -875,7 +1152,7 @@ The `DropBox` class represents a graphical user interface (GUI) component that d
 | `void render()` | Renders all the objects implemented in the private class to the login scene. |
 | `Scene* process()` | Updates the scene when user work on the scene and returns the scene to the application: <br><br> + Click on `Add` button, if a student ID is valid, the program will access to `addStudentToClass()` function, then a student will be added and the function will return the current scene. Otherwise the warning text will occur. <br><br> + Click on `Remove` button, if a student ID is valid, the program will access to `removeStudentFromClass()`, then a student will be removed, the function will return the current scene. Otherwise the warning text will occur. <br><br> +Click on `View` button, the user had to choose the class drop box, then the function will return `ClassScene` scene. <br><br> +Click on `Change` button, if the class name is valid, the program will access to `updateClass()`, then this class will be updated and the program will return this scene. Otherwise the warning text will occur. <br><br> +Click on `Export` button, if the exported file name input is valid, the program will access to `exportListStudentInClass()`,  In addition, if user choose a semester in semester drop box, the program will access to `exportListScoreboardInSemesterOfClass()`, then a `.csv` file will be exported and the function returns current scene. Otherwise, the warning text will occur. <br><br> +Click on `Import` button, if the imported file name input is valid, the program will access to `importStudentListOfClassFromFile()`, then the function returns the current scene. Otherwise the warning will occur. <br><br> +Click on `Back` button, the application will turn to `ListSchoolYearScene` scene.|
 
-### **9. ListAcademicYearScene**
+## List academic year scene
     (Defined in ListAcademicYearScene.h and implemented in ListAcademicYearScene.cpp)
 
 
@@ -894,7 +1171,7 @@ The `DropBox` class represents a graphical user interface (GUI) component that d
 | `void render()` | Renders all the objects implemented in the private class to the login scene. |
 | `Scene* process()` | Updates the scene when user work on the scene and returns the scene to the application: <br><br> + Click on `Add` button, if a start year is valid, the program will access to `addAcademicYear()` function, then a school year will be added and the function will return the current scene. Otherwise the warning text will occur. <br><br> + Click on `Remove` button, if a start year is valid, the program will access to `removeAcademicYear()` then a school year will be removed, the function will return the current scene. Otherwise the warning text will occur. <br><br> +Click on `View` button, the user had to choose the school year drop box, then the function will return `AcademicYearScene` scene. <br><br> +Click on `Back` button, the application will turn to `StaffScene` scene.|
 
-### **10. AcademicYearScene**
+## Academic year scene
     (Defined in AcademicYearScene.h and implemented in AcademicYearScene.cpp)
 
 [Theoretic scene](https://lh3.googleusercontent.com/pw/AJFCJaXfQfqDiiGURa5yUjn7bc0dMJah2PVdiPwRpU6nndln2Y_BUG3_zQSCwc6RUK8En6ZLET1Qmm7i1B7Vtj-5-APNSNvK7EzubEpAIUFNnbrSkuoWak8sBpWDcSEd7cDZnmR91onpMv_Vv69XIH-oDjuz=w859-h487-s-no?authuser=2)
@@ -912,7 +1189,7 @@ The `DropBox` class represents a graphical user interface (GUI) component that d
 | `void render()` | Renders all the objects implemented in the private class to the login scene. |
 | `Scene* process()` | Updates the scene when user work on the scene and returns the scene to the application: <br><br> + Click on `Add` button, if a semester ID input is valid, the program will access to `addClass()` function, then a semester will be added and the function will return the current scene. Otherwise the warning text will occur. <br><br> + Click on `Remove` button, if a semester ID input is valid, the program will access to `removeClass()`, then a semester will be removed, the function will return the current scene. Otherwise the warning text will occur. <br><br> +Click on `View` button, the user had to choose the semester drop box, then the function will return `ClassScene` scene. <br><br> +Click on `Change` button, if the start year is valid, the program will access to `updateAcademicYear()`, then this academicYear will be updated and the program will return this scene. Otherwise the warning text will occur. <br><br> +Click on `Export` button, if the exported file name is valid, the program will access to `exportListClassInAcademicYear()`, then a `.csv` file will be exported and the function returns current scene. Otherwise, the warning text will occur. <br><br> +Click on `Back` button, the application will turn to `ListAcademicYearScene` scene. |
 
-### **11. SemesterScene**
+## Semester scene
     (Defined in SemesterScene.h and implemented in SemesterScene.cpp)
 
 [Theoretic scene](https://lh3.googleusercontent.com/pw/AJFCJaXM8tThRqbnnfQ6BUc0LAZkUNOxWJJk8-vydc4_j542Q2PHr91kMzbLifnqwIk8ybrzFTN6lB-i5q3sbI5y7DRoNBJI16Q79PsZUbXdXYlIZzAaVVw8WkjVLGOpV3SE0C4UlobaIEk_ZSxN8YYMK8x_=w855-h484-s-no?authuser=2)
@@ -930,7 +1207,7 @@ The `DropBox` class represents a graphical user interface (GUI) component that d
 | `void render()` | Renders all the objects implemented in the private class to the login scene. |
 | `Scene* process()` | Updates the scene when user work on the scene and returns the scene to the application: <br><br> + Click on `Add` button, if a course ID input is valid, the program will access to `addCourse()` function, then a course will be added and the function will return the current scene. Otherwise the warning text will occur. <br><br> + Click on `Remove` button, if a course ID input is valid, the program will access to `removeCourse()`, then a course will be removed, the function will return the current scene. Otherwise the warning text will occur. <br><br> +Click on `View` button, the user had to choose the course drop box, then the function will return `CourseScene` scene. <br><br> +Click on `Change` button, if the start date input, end date input or semesterID input are valid, the program will access to `updateSemester()`, `Semester::updateStartDate()` or `Semester::updateEndDate()`, then this semester will be updated and the program will return this scene. Otherwise the warning text will occur. <br><br> +Click on `Export` button, if the exported file name is valid, the program will access to `exportListCourseInSemester()`, then a `.csv` file will be exported and the function returns current scene. Otherwise, the warning text will occur. <br><br> +Click on `Back` button, the application will turn to `AcademicYearScene` scene. |
 
-### **12. CourseScene**
+## Course scene
     (Defined in ClassScene.h and implemented in CourseScene.cpp)
 
 [Theoretic scene](https://lh3.googleusercontent.com/pw/AJFCJaUXvUnK4Z_eLVIjokPcDj242Ye4Hrd8mnhWarydmuUCGOgRav2KKJSKz2yKPj9vmjhe8fT_ebBXJ15uH0d_iVo8ob8e6hRB36jyLq6iYDf_5mt_klEDTjdhHzCuNzeiL19Yut3SpE0y3ggHove58GiG=w854-h485-s-no?authuser=2)
@@ -948,7 +1225,7 @@ The `DropBox` class represents a graphical user interface (GUI) component that d
 | `void render()` | Renders all the objects implemented in the private class to the login scene. |
 | `Scene* process()` | Updates the scene when user work on the scene and returns the scene to the application: <br><br> + Click on `Add` button, if a student ID is valid, the program will access to `addStudentToCourse()` function, then a student will be added and the function will return the current scene. Otherwise the warning text will occur. <br><br> + Click on `Remove` button, if a student ID is valid, the program will access to `removeStudentFromCourse()`, then a student will be removed, the function will return the current scene. Otherwise the warning text will occur. <br><br> +Click on `UpdateScoreboard` button, the function will return `EditCourseScene` scene. <br><br> +Click on `Change` button, if the course information inputs are valid, the program will access to `updateCourse()`, then this class will be updated and the program will return this scene. Otherwise the warning text will occur. <br><br> +Click on `Export` button, if the exported file name inputs are valid, the program will access to `exportListStudentInCourse()` or `exportListScoreboardOfCourse()`, then a `.csv` file will be exported and the function returns current scene. Otherwise, the warning text will occur. <br><br> +Click on `Import` button, if the imported file name inputs are valid, the program will access to `importStudentListOfCourseFromFile()` or ` importScoreBoardOfCourse()`, then the function returns the current scene. Otherwise the warning will occur. <br><br> +Click on `Back` button, the application will turn to `SemesterScene` scene.|
 
-### **13. EditCourseScene**
+## Edit course scene
     (Defined in EditCourseScene.h and implemented in EditCourseScene.cpp)
 
 [Theoretic scene](https://lh3.googleusercontent.com/pw/AJFCJaXY_KwA3kr2JBVgnGUfnTeKvqOlMTfu3UcU0pvTPQvOVgB-1G3Hf0FXiH2YDWL3VwclXE1QA1A4feKTbH7v0ESeR_56zH4gpo2BRWE7LeilOjP-m1vXSNYyIpUF46v2ekT14Higk_e5I_mjWHGoC_LT=w853-h483-s-no?authuser=2)
@@ -966,7 +1243,7 @@ The `DropBox` class represents a graphical user interface (GUI) component that d
 | `void render()` | Renders all the objects implemented in the private class to the login scene. |
 | `Scene* process()` | Updates the scene when user work on the scene and returns the scene to the application: <br><br> + Click on `Change` button, if score inputs are valid and student ID input is valid, the program will access to `updateScoreboard()` function, then a scoreboard of a student will be updated and the function will return the current scene. Otherwise the warning text will occur. <br><br> +Click on `View` button, the user had to enter student ID into input box, then the scoreboard of that student is shown on the screen and the function will return `SchoolYearScene` scene. <br><br> +Click on `Back` button, the application will turn to `CourseScene` scene.|
 
-### **14. Registry**
+## Registry
     (Defined in Registry.h and implemented in Registry.cpp)
 `Registry` is a class used to store all the scenes have been implemented. All attributes in `Registry` class are the pointers of the `Scene` to all the scenes.
 
