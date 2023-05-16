@@ -7,17 +7,6 @@
 * Nguyễn Gia Huy - 22127154
 * Phan Hải Minh - 22127273
 * Quách Trần Quán Vinh - 22127460
-## Features
-### In the current version
-+ User-friendly interface
-+ User permissions
-+ Add, delete, search, update objects
-+ Import and export data from file
-
-### Update in future version
-+ Directly display the table on the software interface
-+ Allows users to select files directly from the computer
-+ Report errors when users enter serious errors
 
 ## How to run
 
