@@ -1,3 +1,80 @@
+# CSC10002 Project Documentation - Group 08
+
+## Group members
+
+* Đào Việt Hoàng - 22127121
+* Phan Hải Minh - 22127273
+* Quách Trần Quán Vinh - 22127460
+* Nguyễn Gia Huy - 22127154
+
+## Table of Contents
+
+### [I. Underlying data structures](#i-underlying-data-structures)
+
+* [Node](#node)
+* [Vector](#vector)
+* [Stack](#stack)
+
+### [II. Core user-defined data types](#ii-core-user-defined-data-types)
+
+* [Components](#components)
+* [Name](#name)
+* [Date](#date)
+* [User](#user)
+* [Staff](#staff)
+* [Student](#student)
+* [School year](#school-year)
+* [Class](#class)
+* [Academic year](#academic-year)
+* [Semester](#semester)
+* [Course](#course)
+* [Scoreboard](#scoreboard)
+
+### [III. Helper functions](#iii-helper-functions)
+
+* [Display functions](#display-functions)
+* [Download functions](#download-functions)
+* [File and directory functions](#file-and-directory-functions)
+* [Import and export functions](#import-and-export-functions)
+* [Insert functions](#insert-functions)
+* [Remove functions](#remove-functions)
+* [Search functions](#search-functions)
+* [Sort functions](#sort-functions)
+* [Update functions](#update-functions)
+* [Upload functions](#upload-functions)
+
+### [IV. Graphics](#iv-graphics)
+
+* [Constants](#constants)
+* [Scissor](#scissor)
+* [Application](#application)
+* [Text](#text)
+* [Text box](#text-box)
+* [Input box](#input-box)
+* [Button](#button)
+* [Option](#option)
+* [Equilateral](#equilateral)
+* [Scrollbar](#scrollbar)
+* [Dropbox](#dropbox)
+
+### [V. Graphical scenes](#v-graphical-scenes)
+
+* [Scene](#scene)
+* [Login](#login)
+* [Student scene](#student-scene)
+* [Staff scene](#staff-scene)
+* [Add student from staff scene](#add-student-from-staff-scene)
+* [List school years scene](#list-school-years-scene)
+* [School year scene](#school-year-scene)
+* [Class scene](#class-scene)
+* [List academic years scene](#list-academic-years-scene)
+* [Academic year scene](#academic-year-scene)
+* [Semester scene](#semester-scene)
+* [Course scene](#course-scene)
+* [Edit course scene](#edit-course-scene)
+* [Scene registry](#scene-registry)
+
+
 # I. Underlying data structures
 
 ## Node
@@ -763,7 +840,7 @@ The `Text` class is a simple class used to create text objects. It contains attr
 | `+ Vector2 size()`                   | Returns a Vector2 containing the width and height of the Text object based on the current font and font size. |
 
 
-## TextBox
+## Text box
 (Define in TextBox.h and implement in TextBox.cpp)
 
 The `TextBox` class represents a text box that can be rendered on the screen using `raylib`. The class provides various methods to set and get properties of the text box, and also to render it on the screen.
@@ -796,7 +873,7 @@ The `TextBox` class represents a text box that can be rendered on the screen usi
 | + `void render()` | Renders the text box on the screen |
 | + `void clear()` | Clears the content of the text box | 
 
-## InputBox
+## Input box
 (Define in InputBox.h and implement in InputBox.cpp)
 
 The `InputBox` class provides a customizable input box to get text input from users. It contains several properties such as the text content, position, size, border and fill colors. It also supports several input events such as hovering and clicking.
@@ -944,7 +1021,7 @@ The `Scrollbar` class represents a user interface component that allows scrollin
 | + `void render(const Vector2 &mouse)` | Renders the scrollbar. |
 | + `void process(const Vector2 &mouse)` | Processes the scrollbar for the current frame. |
 
-## DropBox
+## Dropbox
 (Define in DropBox.h and implement in DropBox.cpp)
 
 The `DropBox` class represents a graphical user interface (GUI) component that displays a list of options and allows the user to select one of them. This class provides methods to add, remove, and reset the options, as well as to set the position, size, and label of the component.
@@ -987,7 +1064,7 @@ The `DropBox` class represents a graphical user interface (GUI) component that d
 |` + void render(const Vector2 &mouse)`| enders the component to the screen.
 |`+ bool process(const Vector2 &mouse)`| Processes user input and returns true if the user has selected an option.
 
-# Graphical scenes
+# V. Graphical scenes
 
 ## Scene
 (Defined in Scene.h)
@@ -1080,7 +1157,7 @@ The `DropBox` class represents a graphical user interface (GUI) component that d
 | `void render()` | Renders all the objects implemented in the private class to the student scene. |
 | `Scene* process()` | Updates the scene when user work on the scene and returns the scene to the application: <br><br>  +Click on `Add` button, if the inputs of student's information are valid, it will access to `addStudent()` function, then a new student will be added and it returns the current scene (Staff Scene). Otherwise the warning text will occur. <br><br>  +Click on `Remove` button next to the `inputStudentID` input box, if the input is valid, it will access to `removeStudent()` function, then that student will be removed from school and it returns the current scene. Otherwise, the warning text will occur. <br><br> +Click on `Remove` button next to `inputStaffID` input box, if the input is valid, it will access to `removeStaff()` function, then that staff will be removed and it returns the current scene. Otherwise, the warning text will occur. <br><br> +Click on `Export` button next to `inputLSYsFilePath` input box, it will access to `exportListSchoolYear()` function, then a `.csv` file will be exported and the application returns the current scene. Otherwise, the warning text will occur. <br><br> +Click on `Export` button next to `inputLAYsFilePath` input box, it will access to `exportListAcademicYear()` function, then a `.csv` file will be exported and the application returns the current scene. Otherwise, the warning text will occur.<br><br> +Click on `View` button, if the input in the `inputStudnetID` is valid, the application will turn to `StudentScene` scene. Otherwise, the warning text will occur.<br><br> +Click on `Back` button, the application will turn to `StaffScene` scene.|
 
-## List school year scene
+## List school years scene
     (Defined in ListSchoolYearScene.h and implemented in ListSchoolYearScene.cpp)
 
 [Theoretic scene](https://lh3.googleusercontent.com/pw/AJFCJaX9pP0UtyTpPRHWbo0q5SBk07qI0pNNp8R3FEL1WoDKGoe7VA4G9kT8Rz-4xb_WEDdPYaVlHFoJG89o2-jRWLc4wx_-HObS4GukvecMBNQ0rRgJ5_04rQghbdH2DMYN_i-Y1jn0ZJgCeKGBKS5z7_cr=w1252-h701-s-no?authuser=2)
@@ -1135,7 +1212,7 @@ The `DropBox` class represents a graphical user interface (GUI) component that d
 | `void render()` | Renders all the objects implemented in the private class to the login scene. |
 | `Scene* process()` | Updates the scene when user work on the scene and returns the scene to the application: <br><br> + Click on `Add` button, if a student ID is valid, the program will access to `addStudentToClass()` function, then a student will be added and the function will return the current scene. Otherwise the warning text will occur. <br><br> + Click on `Remove` button, if a student ID is valid, the program will access to `removeStudentFromClass()`, then a student will be removed, the function will return the current scene. Otherwise the warning text will occur. <br><br> +Click on `View` button, the user had to choose the class drop box, then the function will return `ClassScene` scene. <br><br> +Click on `Change` button, if the class name is valid, the program will access to `updateClass()`, then this class will be updated and the program will return this scene. Otherwise the warning text will occur. <br><br> +Click on `Export` button, if the exported file name input is valid, the program will access to `exportListStudentInClass()`,  In addition, if user choose a semester in semester drop box, the program will access to `exportListScoreboardInSemesterOfClass()`, then a `.csv` file will be exported and the function returns current scene. Otherwise, the warning text will occur. <br><br> +Click on `Import` button, if the imported file name input is valid, the program will access to `importStudentListOfClassFromFile()`, then the function returns the current scene. Otherwise the warning will occur. <br><br> +Click on `Back` button, the application will turn to `ListSchoolYearScene` scene.|
 
-## List academic year scene
+## List academic years scene
     (Defined in ListAcademicYearScene.h and implemented in ListAcademicYearScene.cpp)
 
 
@@ -1226,7 +1303,7 @@ The `DropBox` class represents a graphical user interface (GUI) component that d
 | `void render()` | Renders all the objects implemented in the private class to the login scene. |
 | `Scene* process()` | Updates the scene when user work on the scene and returns the scene to the application: <br><br> + Click on `Change` button, if score inputs are valid and student ID input is valid, the program will access to `updateScoreboard()` function, then a scoreboard of a student will be updated and the function will return the current scene. Otherwise the warning text will occur. <br><br> +Click on `View` button, the user had to enter student ID into input box, then the scoreboard of that student is shown on the screen and the function will return `SchoolYearScene` scene. <br><br> +Click on `Back` button, the application will turn to `CourseScene` scene.|
 
-## Registry
+## Scene registry
     (Defined in Registry.h and implemented in Registry.cpp)
 `Registry` is a class used to store all the scenes have been implemented. All attributes in `Registry` class are the pointers of the `Scene` to all the scenes.
 
