@@ -1,5 +1,3 @@
-# CSC10002 Project Documentation
-
 # I. Underlying data structures
 
 ## Node
@@ -115,21 +113,6 @@ The `Components.h` header (and its source file `Components.cpp`) serves as a med
 | Name | Description |
 | --- | --- |
 | `bool operator!=(const Type& typeA, const Type& typeB)` | A template function to compare if compared variables differ from each other |
-
-#### 4. Structures
-
-The following structures are forward declared in the file:
-- `Date`: Represents a date.
-- `Name`: Represents a person's name.
-- `User`: Represents a user.
-- `Staff`: Represents a staff member.
-- `SchoolYear`: Represents a school year.
-- `Class`: Represents a class.
-- `Student`: Represents a student.
-- `AcademicYear`: Represents an academic year.
-- `Semester`: Represents a semester.
-- `Course`: Represents a course.
-- `Scoreboard`: Represents a scoreboard for a student's scores.
 
 ## Name
 
