@@ -2,7 +2,7 @@
 ## Information
 ### **Class:** 22CLC06  
 ### **Lecturers**
-We would like to say thanks to all of my professors who taught us in this class, for giving us a chance to complete a project on my own as well as helping us to get necessary knowledge to do so.
+We would like to say thanks to all of my professors who taught us in this class, for giving us a chance to complete a project on our own as well as helping us to get necessary knowledge to do so.
 - Dinh Ba Tien - Theory lecturer
 - HO Tuan Thanh - Lab lecturer
 - Nguyen Le Hoang Dung - Lab lecturer
