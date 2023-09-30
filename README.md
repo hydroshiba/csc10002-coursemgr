@@ -19,7 +19,7 @@
 
 ## Full documentation
 
-In progress.
+Refer to [this](https://github.com/hydroshiba/csc10002-coursemgr/blob/main/Report/Documentation.md).
 
 ## Acknowledgements
 
